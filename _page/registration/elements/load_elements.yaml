@@ -1,9 +1,0 @@
-
-appId: com.something.something
----
-- runFlow:
-  when:
-    platform: Android
-    commands:
-      - runScripts:
-          file: elements/registration.android.js

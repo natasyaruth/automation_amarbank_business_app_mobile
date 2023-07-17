@@ -1,5 +1,0 @@
-appId: com.loanmortgage.mymortgage
----
-# - launchApp: com.loanmortgage.mymortgage
-- runFlow: ../../flow/start-loan-application/start_new_loan_application_form_success.yml
-- runFlow: ../../flow/submit-primary-applicant/submit_primary_applicant_success.yml

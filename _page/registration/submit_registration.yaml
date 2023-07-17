@@ -1,4 +1,0 @@
-appId: com.something.something
----
-- runFlow: elements/load_elements.yaml
-- tapOn: ${registration.form.registerBtn}
