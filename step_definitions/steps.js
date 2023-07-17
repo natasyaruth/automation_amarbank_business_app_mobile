@@ -16,12 +16,6 @@ When("registering the account", () => {
 
 Then("I should see the account created successfully", () => {});
 
-When("I am verifying my phone number with the following details:", () => {
-  optConfirmationPage.isOpen();
-  optConfirmationPage.fillInOptCode("123456");
-  optConfirmationPage.sendOtp();
-});
-
 Then("my account should be created", () => {
   loginPage.native();
   loginPage.login();
@@ -29,8 +23,9 @@ Then("my account should be created", () => {
 });
 
 When("verifying my phone number by entering the code sent to me", () => {
-  // From "features/account_registration.feature" {"line":15,"column":5}
-  throw new Error("Not implemented yet");
+  optConfirmationPage.isOpen();
+  optConfirmationPage.fillInOptCode("123456");
+  optConfirmationPage.sendOtp();
 });
 
 Given("had been registering the account with the following details:", () => {
@@ -39,7 +34,7 @@ Given("had been registering the account with the following details:", () => {
     email: "fakemail@email.com",
     mobileNumber: "081234567890",
     password: "123456",
-    password: "123456",
+    confirmPassword: "123456",
   };
   registrationPage.fillInAccountInformation(account);
   registrationPage.clickCreateAccountButton();
