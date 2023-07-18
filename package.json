@@ -17,5 +17,8 @@
         "codeceptjs": "^3.5.2",
         "playwright": "^1.36.0",
         "webdriverio": "^6.12.1"
+    },
+    "dependencies": {
+        "codeceptjs-chai": "^2.3.5"
     }
 }

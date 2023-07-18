@@ -1,3 +1,5 @@
+const { fields } = require("../pages/registration");
+
 const { I, registrationPage, optConfirmationPage, loginPage } = inject();
 
 Given("I am a customer lead wanting to open a new account", () => {});
@@ -55,4 +57,13 @@ When("I am verifying my phone number with the code {string}", (actualCode) => {
 
 Then("I should be notified that the code is invalid", () => {
   optConfirmationPage.getErrorMessage();
+});
+
+When( "I am filling field {string} with {string}", (fieldName, actualFullName) => {
+  registrationPage.fillFieldRegistration(fieldName, actualFullName);
+});
+
+Then( "I should see message error {string} in the below of field {string}", (expectedMsgError, fieldName) => {
+  let actualMessage = registrationPage.getMessageErrorFieldRegistration(fieldName);
+  I.assertEqual(actualMessage,expectedMsgError);
 });
