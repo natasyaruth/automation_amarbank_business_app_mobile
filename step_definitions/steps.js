@@ -59,8 +59,8 @@ Then("I should be notified that the code is invalid", () => {
   optConfirmationPage.getErrorMessage();
 });
 
-When( "I am filling field {string} with {string}", (fieldName, actualFullName) => {
-  registrationPage.fillFieldRegistration(fieldName, actualFullName);
+When( "I am filling field {string} with {string}", (fieldName, actualValue) => {
+  registrationPage.fillFieldRegistration(fieldName, actualValue);
 });
 
 Then( "I should see message error {string} in the below of field {string}", (expectedMsgError, fieldName) => {

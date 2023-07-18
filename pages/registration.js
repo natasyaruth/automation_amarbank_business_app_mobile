@@ -82,13 +82,13 @@ module.exports = {
         getValue = await I.grabTextFrom(this.messageErrorFields.msgErrorPhoneNumber);
       
       } else if(
-        this.fields.password
+        fieldName === this.fields.password
         ){
         I.seeElement(this.messageErrorFields.msgPassword);
         getValue = await I.grabTextFrom(this.messageErrorFields.password);
       
       } else if(
-        this.fields.confirmPassword
+        fieldName === this.fields.confirmPassword
         ){
         I.seeElement(this.messageErrorFields.msgConfirmPassword);
         getValue = await I.grabTextFrom(this.messageErrorFields.msgConfirmPassword);  
