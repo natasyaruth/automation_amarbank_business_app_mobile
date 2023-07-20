@@ -10,13 +10,24 @@ module.exports = {
   },
   buttons: {
     createAccount: "~buttonCreateAccount",
+    btnBackRegist: "~buttonBackRegist",
+    btnConfirm: "~buttonConfirm",
   },
   messageErrorFields:{
-    msgErrorFullName: "~textMsgErrorFullname",
+    msgErrorFullName: "~textMsgErrorFullName",
     msgErrorEmail: "~textMsgErrorEmail",
     msgErrorPhoneNumber: "~textMsgErrorPhoneNumber",
     msgPassword: "~textMsgErrorPassword",
     msgConfirmPassword: "~textMsgErrorConfirmPassword",
+  },
+  icons:{
+    iconEyePassword: "~iconEyePassword",
+    iconEyeConfirmPassword: "~iconEyeConfirmPassword",
+  },
+  links:{
+    linkLogin: "~linkLogin",
+    linkTermsCondition: "~linkTermsCondition",
+    linkPrivacyPolicy: "~linkPrivacyPolicy",
   },
 
   fillInAccountInformation(accountInformation) {
@@ -98,7 +109,27 @@ module.exports = {
     }
   },
 
+  clickIconEyePassword(){
+    I.click(this.icons.iconEyePassword);
+  },
+
+  clickIconEyeConfirmPassword(){
+    I.click(this.icons.iconEyeConfirmPassword);
+  },
+
   clickCreateAccountButton() {
     I.click(this.buttons.createAccount);
+  },
+
+  goToLoginPage() {
+    I.click(this.links.linkLogin);
+  },
+
+  goToTermsAndConditionPage() {
+    I.click(this.links.linkTermsCondition);
+  },
+
+  goToPrivacyPolicyPage() {
+    I.click(this.links.linkPrivacyPolicy);
   },
 };

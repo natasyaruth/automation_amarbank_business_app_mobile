@@ -17,7 +17,7 @@ exports.config = {
       require: "./helpers/JetpackComposeHelper.js",
     },
   },
-  ChaiWrapper:{
+  ChaiWrapper: {
     require: "codeceptjs-chai",
   },
   include: {
@@ -30,6 +30,8 @@ exports.config = {
     loginPage: "./pages/login.js",
 
     welcomePage: "./pages/welcome.js",
+
+    changePhoneNumberPage: "./pages/changePhoneNumber.js",
   },
   mocha: {},
   bootstrap: null,
