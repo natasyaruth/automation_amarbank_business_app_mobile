@@ -63,7 +63,7 @@ When( "I am filling field {string} with {string}", (fieldName, actualValue) => {
   registrationPage.fillFieldRegistration(fieldName, actualValue);
 });
 
-Then( "I should see message error {string} in the below of field {string}", (expectedMsgError, fieldName) => {
-  let actualMessage = registrationPage.getMessageErrorFieldRegistration(fieldName);
-  I.assertEqual(actualMessage,expectedMsgError);
+Then( "I should see message error {string} in the below of field {string}", async (expectedMsgError, fieldName) => {
+  let actualMessage = await registrationPage.getMessageErrorFieldRegistration(fieldName);
+  I.assertEqual(actualMessage, expectedMsgError);
 });

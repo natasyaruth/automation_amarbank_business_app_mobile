@@ -16,9 +16,9 @@ exports.config = {
     JetpackComposeHelper: {
       require: "./helpers/JetpackComposeHelper.js",
     },
-  },
-  ChaiWrapper: {
-    require: "codeceptjs-chai",
+    ChaiWrapper: {
+      require: "codeceptjs-chai",
+    },
   },
   include: {
     I: "./steps_file.js",

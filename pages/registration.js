@@ -14,11 +14,11 @@ module.exports = {
     btnConfirm: "~buttonConfirm",
   },
   messageErrorFields:{
-    msgErrorFullName: "~textMsgErrorFullName",
-    msgErrorEmail: "~textMsgErrorEmail",
-    msgErrorPhoneNumber: "~textMsgErrorPhoneNumber",
-    msgPassword: "~textMsgErrorPassword",
-    msgConfirmPassword: "~textMsgErrorConfirmPassword",
+    fullName: "~textMsgErrorFullName",
+    email: "~textMsgErrorEmail",
+    mobileNumber: "~textMsgErrorPhoneNumber",
+    password: "~textMsgErrorPassword",
+    confirmPassword: "~textMsgErrorConfirmPassword",
   },
   icons:{
     iconEyePassword: "~iconEyePassword",
@@ -70,43 +70,12 @@ module.exports = {
     I.hideDeviceKeyboard();
   },
 
-  getMessageErrorFieldRegistration (fieldName)  {
-    let getValue;
-    async ({I}) => {
-
-      if(
-        fieldName === this.fields.fullName
-        ){
-        I.seeElement(this.messageErrorFields.msgErrorFullName);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgErrorFullName);
-      
-      } else if(
-        fieldName === this.fields.email
-        ){
-        I.seeElement(this.messageErrorFields.msgErrorEmail);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgErrorEmail);
-     
-      } else if(
-        fieldName === this.fields.mobileNumber
-        ){
-        I.seeElement(this.messageErrorFields.msgErrorPhoneNumber);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgErrorPhoneNumber);
-      
-      } else if(
-        fieldName === this.fields.password
-        ){
-        I.seeElement(this.messageErrorFields.msgPassword);
-        getValue = await I.grabTextFrom(this.messageErrorFields.password);
-      
-      } else if(
-        fieldName === this.fields.confirmPassword
-        ){
-        I.seeElement(this.messageErrorFields.msgConfirmPassword);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgConfirmPassword);  
+  async getMessageErrorFieldRegistration (fieldName) {
+      if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+        throw new Error('Field ${fieldName} is not found');
       }
-
-      return getValue;
-    }
+      I.seeElement(this.messageErrorFields[fieldName]);
+      return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
   clickIconEyePassword(){
