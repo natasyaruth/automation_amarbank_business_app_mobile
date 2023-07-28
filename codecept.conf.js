@@ -16,6 +16,9 @@ exports.config = {
     JetpackComposeHelper: {
       require: "./helpers/JetpackComposeHelper.js",
     },
+    ChaiWrapper: {
+      require: "codeceptjs-chai",
+    },
   },
   include: {
     I: "./steps_file.js",
@@ -27,6 +30,8 @@ exports.config = {
     loginPage: "./pages/login.js",
 
     welcomePage: "./pages/welcome.js",
+
+    changePhoneNumberPage: "./pages/changePhoneNumber.js",
   },
   mocha: {},
   bootstrap: null,
@@ -56,8 +61,7 @@ exports.config = {
     pauseOnFail: {},
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0,
     },

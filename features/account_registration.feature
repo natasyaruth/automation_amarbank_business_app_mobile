@@ -15,6 +15,29 @@ Feature: Account registration
     And verifying my phone number by entering the code sent to me
     Then my account should be created
 
+  Scenario: Create a new account with fullname contain with special char (.-,')
+    Given I am a customer lead wanting to open a new account
+    When I am filling in my account information with the following details:
+      | fullName        | John Doe S.Kom, M'Kom- |
+      | email           | john.doe@email.com     |
+      | mobileNumber    | 0400000000             |
+      | password        | password               |
+      | confirmPassword | password               |
+    And registering the account
+    And verifying my phone number by entering the code sent to me
+    Then my account should be created
+
+  @TC001 
+  Scenario: Input fullname contain with special char other than (.-,')
+    Given I am a customer lead wanting to open a new account
+    When I am filling field 'fullName' with 'John Doe#@!'
+    Then I should see message error 'Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-)' in the below of field 'fullName'
+
+  Scenario: Input fullname contain with number
+    Given I am a customer lead wanting to open a new account
+    When I am filling field 'fullName' with '12345'
+    Then I should see message error 'Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-)' in the below of field 'fullName'
+
   Scenario: Verifying phone number with invalid code
     Given I am a customer lead wanting to open a new account
     And had been registering the account with the following details:
