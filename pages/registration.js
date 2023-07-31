@@ -78,6 +78,14 @@ module.exports = {
       return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
+  async getValueFromFieldRegistration (fieldName) {
+    if(Object.keys(this.fields).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.fields[fieldName]);
+    return await I.grabTextFrom(this.fields[fieldName]);
+  },
+
   clickIconEyePassword(){
     I.click(this.icons.iconEyePassword);
   },
