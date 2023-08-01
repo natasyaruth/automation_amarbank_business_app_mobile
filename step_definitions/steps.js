@@ -67,11 +67,3 @@ Then( "I should see message error {string} in the below of field {string}", (exp
   let actualMessage = registrationPage.getMessageErrorFieldRegistration(fieldName);
   I.assertEqual(actualMessage,expectedMsgError);
 });
-
-Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
-  I.see(expectedValue);
-  if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
-    I.seeElement(loginPage.buttons[buttonName]);
-    loginPage.clickBackToLogin;
-  } 
-});
