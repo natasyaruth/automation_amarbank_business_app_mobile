@@ -36,29 +36,20 @@ module.exports = {
     I.hideDeviceKeyboard();
   },
 
-  getMessageErrorFieldLogin (fieldName)  {
-    let getValue;
-    async ({I}) => {
-
-      if(
-        fieldName === this.fields.userID
-        ){
-        I.seeElement(this.messageErrorFields.msgErrorUserID);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgErrorUserID);
-      
-      } else if(
-        fieldName === this.fields.password
-        ){
-        I.seeElement(this.messageErrorFields.msgPassword);
-        getValue = await I.grabTextFrom(this.messageErrorFields.msgPassword); 
-      }
-
-      return getValue;
+  async getMessageErrorFieldLogin (fieldName) {
+    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
     }
+    I.seeElement(this.messageErrorFields[fieldName]);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
   clickLoginButton() {
     I.click(this.buttons.login);
   },
 
+  clickBackToLogin(){
+    I.click(this.buttons.tryAgain);
+    I.waitForInvisible(this.buttons.tryAgain, 2);
+  },
 }
