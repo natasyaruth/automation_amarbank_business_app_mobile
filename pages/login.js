@@ -31,16 +31,6 @@ module.exports = {
   fillFieldLogin(fieldName, txtValue){
 
     I.seeElement(this.fields[fieldName]);
-
-    if (
-      this.fields[fieldName] === "" ||
-      this.fields[fieldName] === null ||
-      this.fields[fieldName] === "-"
-    ) {
-      I.clearField(this.fields[fieldName]);
-      return;
-    }
-
     I.click(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
     I.hideDeviceKeyboard();
@@ -70,5 +60,5 @@ module.exports = {
   clickLoginButton() {
     I.click(this.buttons.login);
   },
-  // insert your locators and methods here
+
 }
