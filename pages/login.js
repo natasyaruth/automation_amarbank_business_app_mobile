@@ -48,7 +48,35 @@ module.exports = {
     I.click(this.buttons.login);
   },
 
-  clickBackToLogin(){
+  clickReactivationButton(){
+    I.click(this.buttons.reactivation);
+  },
+
+  clickClosePopUpButton(){
+    I.click(this.buttons.close);
+  },
+
+  clickBackToOnboardingPage(){
+    I.click(this.buttons.back);
+  },
+
+  clickIconEyePassword(){
+    I.click(this.icon.eyePassword);
+  },
+
+  clickIconCallCenter(){
+    I.click(this.icon.callCenter);
+  },
+
+  clickGoToRegistrationPage(){
+    I.click(this.link.registration);
+  },
+
+  clickGoToForgotPasswordPage(){
+    I.click(this.link.forgotPassword);
+  },
+
+  clickBackToPageLogin(){
     I.click(this.buttons.tryAgain);
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
