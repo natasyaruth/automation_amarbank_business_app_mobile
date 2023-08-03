@@ -38,7 +38,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./step_definitions/steps.js"],
+    steps: ["./step_definitions/steps.js","./step_definitions/steps_login.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -57,6 +57,7 @@ exports.config = {
       enabled: true,
     },
     pauseOnFail: {},
+    
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{

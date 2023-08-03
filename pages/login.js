@@ -28,6 +28,18 @@ module.exports = {
     rememberMe: "~checkBoxRememberMe",
   },
 
+  fillInAccountInformation(accountInformation) {
+    Object.keys(accountInformation).forEach((key) => {
+      if (this.fields[key] === undefined) {
+        return;
+      }
+
+      I.seeElement(this.fields[key]);
+      I.setText(this.fields[key], accountInformation[key]);
+      I.hideDeviceKeyboard();
+    });
+  },
+  
   fillFieldLogin(fieldName, txtValue){
 
     I.seeElement(this.fields[fieldName]);
