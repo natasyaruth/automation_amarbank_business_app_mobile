@@ -1,3 +1,15 @@
+const env = {
+  testrail: {
+    host: process.env.TESTRAIL_HOST,
+    user: process.env.TESTRAIL_USER,
+    password: process.env.TESTRAIL_API_KEY,
+    projectId: process.env.TESTRAIL_PROJECT_ID,
+    suiteId: process.env.TESTRAIL_SUITE_ID,
+    debugLog: process.env.TESTRAIL_DEBUG_LOG || false,
+    enabled: process.env.TESTRAIL_ENABLED || false,
+  },
+};
+
 exports.config = {
   output: "./output",
   helpers: {
@@ -59,9 +71,11 @@ exports.config = {
       enabled: true,
     },
     pauseOnFail: {},
+    testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
       timeout: 0,
     },
