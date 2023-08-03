@@ -14,6 +14,7 @@ exports.config = {
   output: "./output",
   helpers: {
     Appium: {
+      require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
       app: "./assets/app/app-debug.apk",
       platform: "Android",
@@ -24,9 +25,6 @@ exports.config = {
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
       },
-    },
-    JetpackComposeHelper: {
-      require: "./helpers/JetpackComposeHelper.js",
     },
     ChaiWrapper: {
       require: "codeceptjs-chai",
