@@ -2,14 +2,16 @@ const Appium = require("codeceptjs/lib/helper/Appium");
 
 class JetpackComposeHelper extends Appium {
   async setText(identifier, input) {
-    if (input == "") {
-      this.clearField(identifier);
-    }
-
     await this.fillField(identifier, input);
   }
 
   async fillField(identifier, input) {
+    if (input == "") {
+      await super.fillField(this._getParentLocator(identifier), "\b");
+      await this.clearField(identifier);
+      return;
+    }
+
     await super.fillField(this._getParentLocator(identifier), input);
   }
 
