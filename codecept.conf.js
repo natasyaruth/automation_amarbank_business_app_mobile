@@ -57,7 +57,6 @@ exports.config = {
       enabled: true,
     },
     pauseOnFail: {},
-    
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
