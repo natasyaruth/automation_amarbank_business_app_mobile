@@ -39,3 +39,12 @@ Then("I should see message error {string} in the below of field {string}",async(
     I.assertEqual(actualMessage, expectedMsgError);
   });
 
+When("I am filling in my account information with wrong password with details:{string}]",(actualValue)=>{});
+
+Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
+    I.see(expectedValue);
+    if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
+      I.seeElement(loginPage.buttons[buttonName]);
+      loginPage.clickBackToPageLogin;
+    } 
+  });

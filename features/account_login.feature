@@ -32,7 +32,7 @@ Feature: Account login
   
   @C75492     
   Scenario: Input Password with no value
-    Given I am registering customer with following details: userID is JOHN12j3 and password is Pass1234
+    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
     When I am filling in my account information with the following details:
       | userID        | JOHN12j3           |
       | password      |                    |
@@ -49,7 +49,7 @@ Feature: Account login
    @TC007
    Scenario: Login with wrong Password for many times
     Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
-    When I am filling in my account information with wrong password
+    When I am filling in my account information with wrong password with details:'passpass'
     Then I should see pop up '<Message>' with button '<Button>'
     Examples:
       | testRailTag  |  | Message  | Button |
