@@ -35,7 +35,7 @@ exports.config = {
 
     registrationPage: "./pages/registration.js",
 
-    otpConfirmationPage: "./pages/optConfirmation.js",
+    optConfirmationPage: "./pages/optConfirmation.js",
 
     loginPage: "./pages/login.js",
 
