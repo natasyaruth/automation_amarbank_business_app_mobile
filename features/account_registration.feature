@@ -3,7 +3,7 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
-  @TC001
+  @C75459 @C75462
   Scenario: Create a new account
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
@@ -18,13 +18,13 @@ Feature: Account registration
     And verifying my email by login by user id
     Then my account should be created
 
-  @TC002
+  @C75427
   Scenario: Verifying field fullname contain with special char (.-,')
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field fullname
 
-  @TC003
+  @C75432 @C75438 @C75444 @C75454 @C75456
   Scenario Outline: Verifying fields has been filled and then empty the fields
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Testing'
@@ -38,7 +38,7 @@ Feature: Account registration
       | password        | Password            |
       | confirmPassword | Konfirmasi password |
 
-  @TC004
+  @C75433 @C75435 @C75446 @C75455 @C75457
   Scenario: Create account without filling the form
     Given I am a customer want to access menu registration
     When I submit form without fill the fields
@@ -49,17 +49,7 @@ Feature: Account registration
       | password        | Password            |
       | confirmPassword | Konfirmasi password |
 
-  Scenario Outline: Input fields with whitespace in the front and back of the value
-    Given I am a customer want to access menu registration
-    When I am filling field '<Field>' with ' <First Value> '
-    Then I should see '<After Trimmed Value>' in field '<Field>' with whitespace in the front is trimmed
-    Examples:
-      | Field           | First Value            | After Trimmed Value    |
-      | fullName        | Ruth Natasya           | "Ruth Natasya "        |
-      | email           | ruth.natasya@gmail.com | ruth.natasya@gmail.com |
-      | mobileNumber    | 89561122179            | 89561122179            |
-
-  @TC005
+  @C75428 @C75429 @C75430 @C75431
   Scenario Outline: Verifying full name with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with '<Value>'
@@ -72,18 +62,18 @@ Feature: Account registration
       | Ru                                                                                                           | Nama lengkap minimal 3 & maksimal 100 karakter                                 |
       |                                                                                                              | Nama lengkap wajib diisi                                                       |
 
-  @TC006
+  @C75436 @C75439
   Scenario Outline: Verifying email with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'email' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'email'
     Examples:                                                                 ❸
-      | Value                  | Message                     |
-      | ruth.natasyagmail.com  | E-mail tidak sesuai format  |
-      | ruth natasya@gmail.com | E-mail tidak sesuai format  |
-      |                        | Nomor handphone wajib diisi |
+      | Value                  | Message                    |
+      | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+      | ruth natasya@gmail.com | E-mail tidak sesuai format |
+      |                        | E-mail wajib diisi         |
 
-  @TC007
+  @C75440 @C75441 @C75442	@C75443	@C75445
   Scenario Outline: Verifying phone number with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '<Value>'
@@ -97,7 +87,13 @@ Feature: Account registration
       | 8678 995676   | Nomor handphone tidak sesuai format                           |
       |               | Nomor handphone wajib diisi                                   |
 
-  @TC008
+  @C75447
+  Scenario: Verifying autotrim 0 after label +62 in field phonenumber
+    Given I am a customer want to access menu registration
+    When I am filling field 'mobileNumber' with '0895611221700'
+    Then I will see '895611221700' in field 'mobileNumber'
+
+  @C75449 @C75450 @C75451 @C75448
   Scenario Outline: Verifying password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
@@ -111,7 +107,13 @@ Feature: Account registration
       | Test1           | Password minimal 8 karakter                                   |
       |                 | Password wajib diisi                                          |
 
-  @TC009
+  @C75452
+  Scenario: Verifying field password contain with alphabeth, number and special character
+    Given I am a customer want to access menu registration
+    When I am filling field 'password' with 'Test1234!@'
+    Then I shouldn't see message error in the below of field password
+
+  @C75458
   Scenario Outline: Verifying confirm password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'confirmPassword' with '<Value>'
@@ -121,21 +123,12 @@ Feature: Account registration
       | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
       |                 | Konfirmasi password wajib diisi                |
 
-  Scenario: Access link login in page registration
-    Given I am a customer want to access menu login from page registration
-    When I click link registration
-    Then I will directing to page login
+  @C75434
+  Scenario: Verifying autotrim in field Full name
+    Given I am a customer want to access menu registration
+    When I am filling field 'fullName' with ' Ruth Natasya '
+    Then I will see 'Ruth Natasya ' in field 'fullName'
 
-  Scenario: Access link terms and condition in page registration
-    Given I am a customer want go to page terms and condition through link login in the page registration
-    When I click link terms and condition
-    Then I will directing to web view terms and condition
-  
-  Scenario: Access link privacy and policy in page registration
-    Given I am a customer want go to page registration through link login in the page registration
-    When I click link privacy and policy
-    Then I will directing to web view privacy and policy
-  
   Scenario: Verifying phone number with invalid code
     Given I am a customer lead wanting to open a new account
     And had been registering the account with the following details:
@@ -147,4 +140,3 @@ Feature: Account registration
     And The verification code sent to me is '123456'
     When I am verifying my phone number with the code '213456'
     Then I should be notified that the code is invalid
-

@@ -87,7 +87,7 @@ module.exports = {
       throw new Error('Field ${fieldName} is not found');
     }
     I.seeElement(this.fields[fieldName]);
-    return await I.grabTextFrom(this.fields[fieldName]);
+    return await I.grabTextFromField(this.fields[fieldName]);
   },
 
   clickIconEyePassword(){
