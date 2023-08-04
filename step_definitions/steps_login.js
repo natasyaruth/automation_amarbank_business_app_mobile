@@ -35,7 +35,7 @@ When("I am filling field {string} with {string}",(fieldName,actualValue)=>{
 });
 
 Then("I should see message error {string} in the below of field {string}",async(actualMessage, fieldName)=>{
-  let actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
-  I.assertEqual(actualMessage, expectedMsgError);
-});
+    let actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
+    I.assertEqual(actualMessage, expectedMsgError);
+  });
 
