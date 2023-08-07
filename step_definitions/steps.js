@@ -90,17 +90,7 @@ Then ("I am clearing the field {string}", (fieldName)=> {
   registrationPage.clearFieldsRegistration(fieldName); 
 });
 
-Then ("I should see message error should be filled in all fields with following details:", async (table) => {
-  for (const id in table.rows) {
-    const listRows = table.rows[id].cells;
-
-    let actualMessage = await registrationPage.getMessageErrorFieldRegistration(listRows[0].value);
-
-    I.assertEqual(actualMessage, listRows[1].value+" wajib diisi");
-  }
-});
-
-Then ("I submit form without fill the fields", () =>{
+Then ("I submit form registration", () =>{
   I.click(registrationPage.buttons.createAccount);
 });
 
@@ -113,3 +103,16 @@ Then ("I will see {string} in field {string}", async (expectedValue, fieldName) 
   let actualValue = await registrationPage.getValueFromFieldRegistration(fieldName);
   I.assertEqual(actualValue, expectedValue);
 });
+
+When ("I fill form registration except field {string}", (fieldName) =>{
+  const account = {
+    fullName: "John Doe",
+    email: "fakemail@email.com",
+    mobileNumber: "81234567890",
+    password: "Test1234",
+    confirmPassword: "Test1234",
+  };
+
+  delete account[fieldName];
+  registrationPage.fillInAccountInformation(account);
+})
