@@ -10,8 +10,8 @@ module.exports = {
   },
   buttons: {
     createAccount: "~buttonCreateAccount",
-    btnBackRegist: "~buttonBackRegist",
-    btnConfirm: "~buttonConfirm",
+    backRegist: "~buttonBackRegist",
+    confirm: "~buttonConfirm",
   },
   messageErrorFields:{
     fullName: "~textMsgErrorFullName",
@@ -21,13 +21,13 @@ module.exports = {
     confirmPassword: "~textMsgErrorConfirmPassword",
   },
   icons:{
-    iconEyePassword: "~iconEyePassword",
-    iconEyeConfirmPassword: "~iconEyeConfirmPassword",
+    eyePassword: "~iconEyePassword",
+    eyeConfirmPassword: "~iconEyeConfirmPassword",
   },
   links:{
-    linkLogin: "~linkLogin",
-    linkTermsCondition: "~linkTermsCondition",
-    linkPrivacyPolicy: "~linkPrivacyPolicy",
+    login: "~linkLogin",
+    termsCondition: "~linkTermsCondition",
+    privacyPolicy: "~linkPrivacyPolicy",
   },
 
   fillInAccountInformation(accountInformation) {
@@ -73,32 +73,56 @@ module.exports = {
   async getMessageErrorFieldRegistration (fieldName) {
       if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
         throw new Error('Field ${fieldName} is not found');
-      }
-      I.seeElement(this.messageErrorFields[fieldName]);
+      } 
+      I.waitForElement(this.messageErrorFields[fieldName], 2);
       return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
+  clearFieldsRegistration(fieldName){
+    I.clearField(this.fields[fieldName]);
+  },
+
+  async getValueFromFieldRegistration (fieldName) {
+    if(Object.keys(this.fields).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.fields[fieldName]);
+    return await I.grabTextFromField(this.fields[fieldName]);
+  },
+
   clickIconEyePassword(){
-    I.click(this.icons.iconEyePassword);
+    I.click(this.icons.eyePassword);
   },
 
   clickIconEyeConfirmPassword(){
-    I.click(this.icons.iconEyeConfirmPassword);
+    I.click(this.icons.eyeConfirmPassword);
   },
 
   clickCreateAccountButton() {
     I.click(this.buttons.createAccount);
   },
 
+  clickButtonBackToPageRegistration(){
+    I.waitForElement(this.buttons.backRegist);
+    I.click(this.buttons.backRegist);
+    I.waitForInvisible(this.buttons.backRegist, 3);
+  },
+
+  clickButtonConfirm(){
+    I.waitForElement(this.buttons.confirm);
+    I.click(this.buttons.confirm);
+    I.waitForInvisible(this.buttons.confirm, 3);
+  },
+
   goToLoginPage() {
-    I.click(this.links.linkLogin);
+    I.click(this.links.console.login);
   },
 
   goToTermsAndConditionPage() {
-    I.click(this.links.linkTermsCondition);
+    I.click(this.links.termsCondition);
   },
 
   goToPrivacyPolicyPage() {
-    I.click(this.links.linkPrivacyPolicy);
+    I.click(this.links.privacyPolicy);
   },
 };

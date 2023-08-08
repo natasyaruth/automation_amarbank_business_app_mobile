@@ -4,27 +4,27 @@ const { I } = inject();
 
 module.exports = {
     icon:{
-        icnCallCenter: "~iconCallCenter"
+        callCenter: "~iconCallCenter"
     },
     buttons:{
-        btnBack: "~buttonBack",
-        btnClose: "~buttonCloseCallCenter"
+        back: "~buttonBack",
+        close: "~buttonCloseCallCenter"
     },
     cards:{
-        cardWA: "~cardWhatsApp",
-        cardEmail: "~cardEmail",
+        whatsApp: "~cardWhatsApp",
+        email: "~cardEmail",
     },
 
     clickButtonBack(){
-        I.click(this.buttons.btnBack);
+        I.click(this.buttons.back);
     },
     goToCallCenter(){
-        I.click(this.icon.icnCallCenter);
+        I.click(this.icon.callCenter);
     },
     openCardWhatsApp(){
-        I.click(this.cards.cardWA);
+        I.click(this.cards.whatsApp);
     },
     openCardEmail(){
-        I.click(this.cards.cardEmail);
+        I.click(this.cards.email);
     },
 }

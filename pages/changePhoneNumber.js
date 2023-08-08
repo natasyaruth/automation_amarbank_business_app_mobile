@@ -16,7 +16,7 @@ module.exports = {
   },
 
   messageErrorField: {
-    msgErrorPhoneNumber: "textMsgErrorPhoneNumber",
+    msgErrorPhoneNumber: "~textMsgErrorPhoneNumber",
   },
 
   fillFieldNewPhoneNumber(txtValue){
