@@ -34,8 +34,8 @@ Feature: Account login
   Scenario: Input Password with no value
     Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
     When I am filling in my account information with the following details:
-      | userID        | JOHN12j3           |
-      | password      |                    |
+      | userID        | JOHN12j3      |
+      | password      |               |
     Then I should see message error 'Password wajib diisi' in the below of field 'password'
   
   @C75497
@@ -52,12 +52,12 @@ Feature: Account login
     When I am filling in my account information with wrong password with details:'passpass'
     Then I should see pop up '<Message>' with button '<Button>'
     Examples:
-      | testRailTag  |  | Message  | Button |
-      | @C75509 | Value Jika 3 kali salah akun anda akan terblokir  |  buttonTryAgain      |
-      | @C75510 | Value Jika 3 kali salah akun anda akan terblokir  |  buttonTryAgain      |
-      | @C75511 | Akun Anda Terblokir  |        |
-      | @C75512 | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | buttonTryAgain      |
-      | @C75513 | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda  |  buttonReactivation        |
+      | testRailTag  | Message                                                                            | Button              |
+      | @C75509      | Value Jika 3 kali salah akun anda akan terblokir                                   | buttonTryAgain      |
+      | @C75510      | Value Jika 3 kali salah akun anda akan terblokir                                   | buttonTryAgain      |
+      | @C75511      | Akun Anda Terblokir                                                                |                     |
+      | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | buttonTryAgain      |
+      | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | buttonReactivation  |
 
   Scenario: User click Eye icon for 1 times
     Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234 
