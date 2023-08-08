@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "codeceptjs-chai": "^2.3.5",
-        "codeceptjs-testrail": "^1.10.2"
+        "codeceptjs-testrail": "^1.10.2",
+        "dotenv": "^16.3.1"
     }
 }

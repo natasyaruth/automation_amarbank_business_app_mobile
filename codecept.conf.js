@@ -1,5 +1,8 @@
+require("dotenv").config();
+
 const env = {
   testrail: {
+    require: "codeceptjs-testrail",
     host: process.env.TESTRAIL_HOST,
     user: process.env.TESTRAIL_USER,
     password: process.env.TESTRAIL_API_KEY,
