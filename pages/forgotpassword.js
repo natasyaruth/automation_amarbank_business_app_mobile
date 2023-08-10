@@ -10,11 +10,9 @@ module.exports = {
         resetPassword: "~buttonResetPassword",
         backResetPassword: "~buttonBackUserID",
         checkEmail: "~buttonCheckEmail",
-        back: "~buttonBack",
         confirm: "~buttonConfirm",
       },
     icon: {
-        callCenter: "~iconCallCenter",
         eyePassword: "~iconEyePassword",
         eyeConfirmPassword: "~iconEyeConfirmPassword",
       },
