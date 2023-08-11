@@ -11,6 +11,7 @@ module.exports = {
   },
 
   clickButtonRegister(){
+    I.waitForElement(this.buttons.registration, 5);
     I.click(this.buttons.registration);
   },
 };

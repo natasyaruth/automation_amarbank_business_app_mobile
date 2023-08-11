@@ -7,6 +7,7 @@ module.exports = {
     mobileNumber: "~textFieldPhoneNumber",
     password: "~textFieldPassword",
     confirmPassword: "~textFieldPasswordConfirm",
+    businessCode: "~textFieldBusinessCode",
   },
   buttons: {
     createAccount: "~buttonCreateAccount",
@@ -19,6 +20,7 @@ module.exports = {
     mobileNumber: "~textMsgErrorPhoneNumber",
     password: "~textMsgErrorPassword",
     confirmPassword: "~textMsgErrorConfirmPassword",
+    businessCode: "~textMsgErrorBusinessCode"
   },
   icons:{
     eyePassword: "~iconEyePassword",
@@ -28,6 +30,11 @@ module.exports = {
     login: "~linkLogin",
     termsCondition: "~linkTermsCondition",
     privacyPolicy: "~linkPrivacyPolicy",
+  },
+  label:{
+    email: "~labelEmail",
+    mobileNumber: "~labelPhoneNumber",
+    companyName: "~labelCompanyName",
   },
 
   fillInAccountInformation(accountInformation) {
@@ -90,6 +97,14 @@ module.exports = {
     return await I.grabTextFromField(this.fields[fieldName]);
   },
 
+  async getValueInformation(labelName) {
+    if(Object.keys(this.label).indexOf(labelName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.label[labelName]);
+    return await I.grabTextFrom(this.label[labelName]);
+  },
+
   clickIconEyePassword(){
     I.click(this.icons.eyePassword);
   },
@@ -115,7 +130,7 @@ module.exports = {
   },
 
   goToLoginPage() {
-    I.click(this.links.console.login);
+    I.click(this.links.login);
   },
 
   goToTermsAndConditionPage() {
