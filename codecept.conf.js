@@ -45,6 +45,8 @@ exports.config = {
     welcomePage: "./pages/welcome.js",
 
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
+
+    headerPage: "./pages/header.js",
   },
   mocha: {},
   bootstrap: null,
