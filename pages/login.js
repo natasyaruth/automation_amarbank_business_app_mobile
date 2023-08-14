@@ -9,7 +9,6 @@ module.exports = {
     login: "~buttonLogin",
     tryAgain: "~buttonTryAgain",
     reactivation: "~buttonReactivation",
-    back: "~buttonBack",
     close: "~buttonClose",
   },
   messageErrorFields:{
@@ -17,7 +16,6 @@ module.exports = {
     msgPassword: "~textMsgErrorPassword",
   },
   icon: {
-    callCenter: "~iconCallCenter",
     eyePassword: "~iconEyePassword",
   },
   link: {

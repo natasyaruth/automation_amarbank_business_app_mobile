@@ -6,11 +6,11 @@ Feature: Account login
   @C75493
   Scenario: Login with registered account
     Given I am registered customer with following details: 
-      | userID        | JOHN12j3           |
-      | password      | Pass1234           | 
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          | 
     When I am filling in my account information with the following details:
-      | userID        | JOHN12j3           |
-      | password      | Pass1234           |
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          |
     And login with registered account
     Then I successed go to dashbord
   
@@ -36,21 +36,21 @@ Feature: Account login
   @C75492     
   Scenario: Input Password with no value
     Given I am registered customer with following details: 
-      | userID        | JOHN12j3      |
-      | password      | Pass1234      | 
+      | userID        | JOHN12j3       |
+      | password      | Pass1234       | 
     When I am filling in my account information with the following details:
-      | userID        | JOHN12j3      |
-      | password      |               |
+      | userID        | JOHN12j3       |
+      | password      |                |
     Then I should see message error 'Password wajib diisi' in the below of field 'password'
   
   @C75497
   Scenario: Login with User ID and Password is empty
     Given I am registered customer with following details:
-      | userID        | JOHN12j3      |
-      | password      | Pass1234      | 
+      | userID        | JOHN12j3       |
+      | password      | Pass1234       | 
     When I am filling in my account information with the following details: 
-      | userID        |               |
-      | password      |               |
+      | userID        |                |
+      | password      |                |
     Then I should see pop up with text 'Password wajib diisi' and 'User ID wajib diisi' displayed
   
    @TC007
