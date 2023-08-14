@@ -1,5 +1,3 @@
-const { card } = require("./businessType");
-
 const { I } = inject();
 
 module.exports = {
