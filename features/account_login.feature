@@ -2,9 +2,12 @@ Feature: Account login
   In order to go to SMB dashboard after registration
   As a customer lead
   I want to login with registered account
+  
   @C75493
   Scenario: Login with registered account
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234 
+    Given I am registered customer with following details: 
+      | userID        | JOHN12j3           |
+      | password      | Pass1234           | 
     When I am filling in my account information with the following details:
       | userID        | JOHN12j3           |
       | password      | Pass1234           |
@@ -32,7 +35,9 @@ Feature: Account login
   
   @C75492     
   Scenario: Input Password with no value
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
+    Given I am registered customer with following details: 
+      | userID        | JOHN12j3      |
+      | password      | Pass1234      | 
     When I am filling in my account information with the following details:
       | userID        | JOHN12j3      |
       | password      |               |
@@ -40,11 +45,13 @@ Feature: Account login
   
   @C75497
   Scenario: Login with User ID and Password is empty
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
+    Given I am registered customer with following details:
+      | userID        | JOHN12j3      |
+      | password      | Pass1234      | 
     When I am filling in my account information with the following details: 
       | userID        |               |
       | password      |               |
-    Then I should see pop up with text 'Data yang dimasukkan salah' displayed
+    Then I should see pop up with text 'Password wajib diisi' and 'User ID wajib diisi' displayed
   
    @TC007
    Scenario: Login with wrong Password for many times
