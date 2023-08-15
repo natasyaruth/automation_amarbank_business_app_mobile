@@ -27,7 +27,7 @@ Feature: Account login
     Given I am a customer lead want to login my account 
     When I am filling field 'userID' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'userID'
-    Examples : 
+    Examples: 
     | testRailTag  | Value        | Message                         |
     | @C75489      | JOHN1=+,!    | User ID tidak sesuai format     |
     | @C75490      | JOHN12       | User ID minimal 8 digits        |
@@ -53,8 +53,7 @@ Feature: Account login
       | password      |                |
     Then I should see pop up with text 'Password wajib diisi' and 'User ID wajib diisi' displayed
   
-   @TC007
-   Scenario: Login with wrong Password for many times
+   Scenario Outline: Login with wrong Password for many times
     Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
     When I am filling in my account information with wrong password with details:'passpass'
     Then I should see pop up '<Message>' with button '<Button>'
@@ -66,12 +65,24 @@ Feature: Account login
       | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | buttonTryAgain      |
       | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | buttonReactivation  |
 
+  @C75503
   Scenario: User click Eye icon for 1 times
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234 
-    When I click icon 'iconEyePassword' on field 'textFieldPassword' 
+    Given I am registered customer with following details: 
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          | 
+    When I am filling in my account information with the following details:
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          |  
+    And I click icon iconEyePassword 
     Then I should see the password on field 'textFieldPassword'
-
+  
+  @C75504
   Scenario: User click Eye icon for 2 times
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234 
-    When I click icon 'iconEyePassword' on field 'textFieldPassword' 
+    Given I am registered customer with following details: 
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          | 
+    When I am filling in my account information with the following details:
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          |  
+    And I click icon iconEyePassword 
     Then I should not see the password on field 'textFieldPassword'

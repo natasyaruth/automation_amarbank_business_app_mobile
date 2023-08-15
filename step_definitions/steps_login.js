@@ -1,8 +1,10 @@
 const { fields } = require("../pages/login");
 
-const { I, registrationPage, optConfirmationPage, loginPage } = inject();
+const { I, loginPage } = inject();
 
-Given("I am registered customer with following details:", () => {});
+Given("I am registered customer with following details:", (table) => {
+    loginPage.clickLoginButton();
+});
 
 When("I am filling in my account information with the following details:",
 (table)=>{
@@ -16,11 +18,12 @@ When("login with registered account",()=>{
 });
 
 Then("I successed go to dashbord",()=>{
-    //mungkin akan ditambahkan dashboardpage nanti,
-    //karena setelah login masuk ke dashboard
+    I.see('Selamat, akun Anda berhasil dibuat')
 });
 
-Given("I am unregistered customer try to regist with unregistered account", () => {});
+Given("I am unregistered customer try to regist with unregistered account", () => {
+    loginPage.clickLoginButton();
+});
 
 When("login with unregistered account",()=>{
     loginPage.clickLoginButton();
@@ -35,7 +38,7 @@ When("I am filling field {string} with {string}",(fieldName,actualValue)=>{
 });
 
 Then("I should see message error {string} in the below of field {string}",async(actualMessage, fieldName)=>{
-    let actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
+    actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
     I.assertEqual(actualMessage, expectedMsgError);
   });
 
@@ -48,3 +51,7 @@ Then ("I should see pop up {string} with button {string}", (expectedValue, butto
       loginPage.clickBackToPageLogin;
     } 
   });
+
+When('I click iconEyePassword',()=>{
+    loginPage.clickIconEyePassword();
+});

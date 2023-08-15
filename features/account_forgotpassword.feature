@@ -7,7 +7,7 @@ Scenario: Input UserID with wrong format
   Given I am a customer want to reset password  
   When I am filling field 'userID' with '<Value>'
   Then I should see message error '<Message>' in the below of field 'userID'
-  Examples : 
+  Examples: 
     | testRailTag  | Value        | Message                         |
     | @C75516      | JOHN1=+,!    | User ID tidak sesuai format     |
     | @C81356      | JOHN12       | User ID minimal 8 digits        |
