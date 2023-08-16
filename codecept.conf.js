@@ -32,6 +32,15 @@ exports.config = {
     ChaiWrapper: {
       require: "codeceptjs-chai",
     },
+    REST: {
+      endpoint: "https://dev-api-sms.otoku.io",
+      defaultHeaders: {
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    },
   },
   include: {
     I: "./steps_file.js",
@@ -47,6 +56,8 @@ exports.config = {
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
 
     headerPage: "./pages/header.js",
+
+    whitelistDao: "./dao/whitelistDao.js",
   },
   mocha: {},
   bootstrap: null,
