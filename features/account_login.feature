@@ -86,3 +86,15 @@ Feature: Account login
       | password      | Pass1234          |  
     And I click icon iconEyePassword 
     Then I should not see the password on field 'textFieldPassword'
+
+  Scenario: User click CallCenter icon 
+    Given I am customer that already on page login 
+    When I click icon CallCenter
+    Then I should see pop up with text 'Hubungi Tim Kami' displayed 
+  
+  Scenario: User click link Lupa Password
+    Given I am customer that already on page login
+    When I click link button lupa password
+    Then I should see pop up with text 'Masukan User ID Anda untuk mendapatkan email mereset password' displayed
+
+  

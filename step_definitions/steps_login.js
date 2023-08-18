@@ -29,7 +29,9 @@ When("login with unregistered account",()=>{
     loginPage.clickLoginButton();
 });
 
-Then("I should see pop up with text {string} and {string} displayed",(actualMessage,actualValue)=>{})
+Then("I should see pop up with text {string} displayed",(actualMessage)=>{});
+
+Then("I should see pop up with text {string} and {string} displayed",(actualMessage,actualValue)=>{});
 
 Given("I am a customer lead want to login my account", () => {});
 
@@ -54,4 +56,14 @@ Then ("I should see pop up {string} with button {string}", (expectedValue, butto
 
 When('I click iconEyePassword',()=>{
     loginPage.clickIconEyePassword();
+});
+
+Given("I am customer that already on page login", () => {});
+
+When("I click icon CallCenter",()=>{
+    loginPage.clickIconCallCenter();
+});
+
+When("I click icon CallCenter",()=>{
+    loginPage.clickGoToForgotPasswordPage();
 });
