@@ -96,5 +96,4 @@ Feature: Account login
     Given I am customer that already on page login
     When I click link button lupa password
     Then I should see pop up with text 'Masukan User ID Anda untuk mendapatkan email mereset password' displayed
-
-  
+    
