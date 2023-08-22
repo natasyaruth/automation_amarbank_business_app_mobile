@@ -2,6 +2,10 @@ const { fields } = require("../pages/login");
 
 const { I, loginPage } = inject();
 
+const globalVar = {
+    password: "",
+};
+
 Given("I am registered customer with following details:", (table) => {
     loginPage.clickLoginButton();
 });
@@ -9,6 +13,7 @@ Given("I am registered customer with following details:", (table) => {
 When("I am filling in my account information with the following details:",
 (table)=>{
     const account = table.parse().rowsHash();
+    globalVar.password = account["password"];
     loginPage.fillInAccountInformation(account);
 }
 );
@@ -60,6 +65,10 @@ Then("I should see message error {string} in the below of field {string}",async(
 
 When("I am filling in my account information with wrong password with details:{string}]",(actualValue)=>{});
 
+When("I login with wrong password",()=>{
+    loginPage.clickLoginButton();
+})
+
 Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
     I.see(expectedValue);
     if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
@@ -68,8 +77,21 @@ Then ("I should see pop up {string} with button {string}", (expectedValue, butto
     } 
   });
 
-When('I click iconEyePassword',()=>{
+When('I click icon iconEyePassword',()=>{
     loginPage.clickIconEyePassword();
+});
+
+When('I click icon iconEyePassword for 2 times',()=>{
+    loginPage.clickIconEyePassword();
+    loginPage.clickIconEyePassword();
+});
+
+Then('I should see the password on field {string}',(fieldName)=>{
+    I.see(globalVar.password);
+});
+
+Then('I should not see the password on field {string}',(fieldName)=>{
+    I.dontSee(globalVar.password);
 });
 
 Given("I am customer that already on page login", () => {});

@@ -33,6 +33,18 @@ Feature: Account login
     | @C75490      | JOHN12       | User ID minimal 8 digits        |
     | @C75491      |              | User ID wajib diisi             |
   
+  @C75491     
+  Scenario: Input Password with no value
+    Given I am registered customer with following details: 
+      | userID        | JOHN12j3       |
+      | password      | Pass1234       | 
+    When I am filling in my account information with the following details:
+      | userID        | JOHN12j3       |
+      | password      |                |
+    And I login with password empty
+    Then I should see message error 'Password wajib diisi' in the below of field 'password'
+  
+
   @C75492     
   Scenario: Input Password with no value
     Given I am registered customer with following details: 
@@ -56,15 +68,20 @@ Feature: Account login
     Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
     And I should see message error 'Password wajib diisi' in the below of field 'password'
   
-    
+   @Login_Wrong_Password_Until_5_Times
    Scenario Outline: Login with wrong Password for many times
-    Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
-    When I am filling in my account information with wrong password with details:'passpass'
+    Given I am registered customer with following details:
+      | userID        | JOHN12j3       |
+      | password      | Pass1234       | 
+    When I am filling in my account information with the following details: 
+      | userID        | JOHN12j3       |
+      | password      | Pass1234       |
+    And I login with wrong password
     Then I should see pop up '<Message>' with button '<Button>'
     Examples:
       | testRailTag  | Message                                                                            | Button              |
-      | @C75509      | Value Jika 3 kali salah akun anda akan terblokir                                   | buttonTryAgain      |
-      | @C75510      | Value Jika 3 kali salah akun anda akan terblokir                                   | buttonTryAgain      |
+      | @C75509      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
+      | @C75510      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
       | @C75511      | Akun Anda Terblokir                                                                |                     |
       | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | buttonTryAgain      |
       | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | buttonReactivation  |
@@ -88,7 +105,7 @@ Feature: Account login
     When I am filling in my account information with the following details:
       | userID        | JOHN12j3          |
       | password      | Pass1234          |  
-    And I click icon iconEyePassword 
+    And I click icon iconEyePassword for 2 times
     Then I should not see the password on field 'textFieldPassword'
 
   Scenario: User click CallCenter icon 
