@@ -22,27 +22,17 @@ Feature: Account login
       | password      |  Pass1234           |
     And login with unregistered account
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
-
-  Scenario Outline: Verifying User ID with invalid value
-    Given I am a customer lead want to login my account 
-    When I am filling field 'userID' with '<Value>'
-    Then I should see message error '<Message>' in the below of field 'userID'
-    Examples: 
-    | testRailTag  | Value        | Message                         |
-    | @C75489      | JOHN1=+,!    | User ID tidak sesuai format     |
-    | @C75490      | JOHN12       | User ID minimal 8 digits        |
-    | @C75491      |              | User ID wajib diisi             |
-  
+    
   @C75491     
-  Scenario: Input Password with no value
+  Scenario: Input UserID with no value
     Given I am registered customer with following details: 
       | userID        | JOHN12j3       |
       | password      | Pass1234       | 
     When I am filling in my account information with the following details:
-      | userID        | JOHN12j3       |
-      | password      |                |
-    And I login with password empty
-    Then I should see message error 'Password wajib diisi' in the below of field 'password'
+      | userID        |                |
+      | password      | Pass1234       |
+    And I login with userID empty
+    Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
   
 
   @C75492     

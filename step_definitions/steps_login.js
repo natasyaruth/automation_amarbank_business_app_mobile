@@ -52,7 +52,11 @@ When("I am filling field {string} with {string}",(fieldName,actualValue)=>{
 
 When("I login with password empty",()=>{
     loginPage.clickLoginButton();
-})
+});
+
+When("I login with userID empty",()=>{
+    loginPage.clickLoginButton();
+});
 
 When("I login with password and userID empty",()=>{
     loginPage.clickLoginButton();
@@ -67,7 +71,7 @@ When("I am filling in my account information with wrong password with details:{s
 
 When("I login with wrong password",()=>{
     loginPage.clickLoginButton();
-})
+});
 
 Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
     I.see(expectedValue);
