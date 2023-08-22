@@ -29,17 +29,31 @@ When("login with unregistered account",()=>{
     loginPage.clickLoginButton();
 });
 
-Then("I should see pop up with text {string} displayed",(actualMessage)=>{});
+Then("I should see pop up with text {string} displayed",(actualMessage)=>{
+    I.see(actualMessage);
+});
 
-Then("I should see pop up with text {string} and {string} displayed",(actualMessage,actualValue)=>{});
+Then("I should see pop up with text {string} and {string} displayed",(actualMessage,actualValue)=>{
+    I.see(actualMessage);
+});
 
-Given("I am a customer lead want to login my account", () => {});
+Given("I am a customer lead want to login my account", () => {
+    loginPage.clickLoginButton();
+});
 
 When("I am filling field {string} with {string}",(fieldName,actualValue)=>{
     loginPage.fillFieldLogin(fieldName, actualValue)
 });
 
-Then("I should see message error {string} in the below of field {string}",async(actualMessage, fieldName)=>{
+When("I login with password empty",()=>{
+    loginPage.clickLoginButton();
+})
+
+When("I login with password and userID empty",()=>{
+    loginPage.clickLoginButton();
+})
+
+Then("I should see message error {string} in the below of field {string}",async(expectedMsgError, fieldName)=>{
     actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
     I.assertEqual(actualMessage, expectedMsgError);
   });

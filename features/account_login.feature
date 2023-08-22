@@ -6,11 +6,11 @@ Feature: Account login
   @C75493
   Scenario: Login with registered account
     Given I am registered customer with following details: 
-      | userID        | JOHN12j3          |
-      | password      | Pass1234          | 
+      | userID        | ruthad74          |
+      | password      | Test1234          | 
     When I am filling in my account information with the following details:
-      | userID        | JOHN12j3          |
-      | password      | Pass1234          |
+      | userID        | ruthad74          |
+      | password      | Test1234          |
     And login with registered account
     Then I successed go to dashbord
   
@@ -18,10 +18,10 @@ Feature: Account login
   Scenario: Login with unregistered account
     Given I am unregistered customer try to regist with unregistered account
     When I am filling in my account information with the following details:
-      | userID        | LOLO1212           |
-      | password      | Pass1234           |
+      | userID        |  LOLO1212           |
+      | password      |  Pass1234           |
     And login with unregistered account
-    Then I should see pop up with text 'Data yang dimasukkan salah' displayed
+    Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
   Scenario Outline: Verifying User ID with invalid value
     Given I am a customer lead want to login my account 
@@ -41,6 +41,7 @@ Feature: Account login
     When I am filling in my account information with the following details:
       | userID        | JOHN12j3       |
       | password      |                |
+    And I login with password empty
     Then I should see message error 'Password wajib diisi' in the below of field 'password'
   
   @C75497
@@ -51,8 +52,11 @@ Feature: Account login
     When I am filling in my account information with the following details: 
       | userID        |                |
       | password      |                |
-    Then I should see pop up with text 'Password wajib diisi' and 'User ID wajib diisi' displayed
+    And I login with password and userID empty
+    Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
+    And I should see message error 'Password wajib diisi' in the below of field 'password'
   
+    
    Scenario Outline: Login with wrong Password for many times
     Given I am registered customer with following details: userID is JOHN12j3 and password is Pass1234
     When I am filling in my account information with wrong password with details:'passpass'

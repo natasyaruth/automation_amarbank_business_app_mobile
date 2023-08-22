@@ -12,8 +12,8 @@ module.exports = {
     close: "~buttonClose",
   },
   messageErrorFields:{
-    msgErrorUserID: "~textMsgErrorUserID",
-    msgPassword: "~textMsgErrorPassword",
+    userID: "~textMsgErrorUserID",
+    password: "~textMsgErrorPassword",
   },
   icon: {
     eyePassword: "~iconEyePassword",
@@ -31,7 +31,7 @@ module.exports = {
       if (this.fields[key] === undefined) {
         return;
       }
-
+      I.click(this.fields[key]);
       I.seeElement(this.fields[key]);
       I.setText(this.fields[key], accountInformation[key]);
       I.hideDeviceKeyboard();
