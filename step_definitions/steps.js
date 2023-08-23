@@ -3,17 +3,33 @@ const { fields } = require("../pages/registration");
 const {
   I,
   registrationPage,
-  optConfirmationPage,
+  otpConfirmationPage,
   loginPage,
   welcomePage,
   headerPage,
+  verificationEmailPage,
   whitelistDao,
+  otpDao,
 } = inject();
+
+const globalVar = {
+  phoneNumber: "",
+  otpCode: "",
+  email: "",
+  password: "",
+  companyName: "",
+  businessCode: "",
+}
 
 Given("I am a customer lead wanting to open a new account", () => {});
 
 Given("I am a customer want to access menu registration", () => {
   welcomePage.clickButtonRegister();
+});
+
+Given ("I am a customer lead wanting to register account business from invitation", () => {
+  // step to get business code from email
+  // step to get company name from email
 });
 
 When("I choose menu registration", () => {
@@ -24,12 +40,19 @@ When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    const element = {};
-    registrationPage.fillInAccountInformation(account);
-    const res = await whitelistDao.whitelistPhoneNumber(
-      account["mobileNumber"]
+    globalVar.phoneNumber = "62"+account["mobileNumber"];
+    globalVar.email = account["email"];
+    globalVar.password = account["password"];
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+"+globalVar.phoneNumber
     );
 
+    await whitelistDao.whitelistEmail(
+      globalVar.email
+    );
+
+    registrationPage.fillInAccountInformation(account);
     registrationPage.clickCreateAccountButton();
 
     let actualPhoneNumber = await registrationPage.getValueInformation(
@@ -42,11 +65,9 @@ When(
   }
 );
 
-When("registering the account", () => {
+When("I registering the account", () => {
   registrationPage.clickButtonConfirm();
 });
-
-Then("I should see the account created successfully", () => {});
 
 Then("my account should be created", () => {
   loginPage.native();
@@ -54,38 +75,64 @@ Then("my account should be created", () => {
   loginPage.shouldBeSuucess();
 });
 
-When("verifying my phone number by entering the code sent to me", () => {
-  optConfirmationPage.isOpen();
-  optConfirmationPage.fillInOptCode("123456");
-  optConfirmationPage.sendOtp();
+When("I verifying my phone number by entering the code sent to me", async () => {
+  otpConfirmationPage.isOpen();
+  let actualPhoneNumber = await otpConfirmationPage.getPhoneNumber();
+  let expectedPhoneNumber = globalVar.phoneNumber.substring(2);
+
+  I.see("Verifikasi Nomor HP");
+  I.see("Kode OTP telah dikirim ke nomor");
+  I.assertEqual(actualPhoneNumber, "+62 "+expectedPhoneNumber);
+
+  globalVar.otpCode = (await otpDao.getOTP(globalVar.phoneNumber)).otp
+  otpConfirmationPage.fillInOtpCode(globalVar.otpCode);
 });
 
-When("verifying my email by login by user id", () => {
-  I.waitForText("Verifikasi Email");
+When ("I verifying my phone number by entering the wrong code", async () =>{
+  otpConfirmationPage.isOpen();
+  otpConfirmationPage.fillInOtpCode("000000");
 });
 
-Given("had been registering the account with the following details:", () => {
+When("I verifying my email by login by user id", async () => {
+  I.waitForText("Verifikasi Email", 10);
+  I.see("Segera Cek E-mail");
+  I.see("Kami telah mengirim User ID ke e-mail:");
+
+  let actualEmail = await verificationEmailPage.getEmailValue();
+  I.assertEqual(actualEmail, globalVar.email);
+
+  // step to get user id from email
+
+  verificationEmailPage.loginWithUserId(userID, globalVar.password);
+});
+
+Given ("I am a customer had been registering the account with the following details:", async (table) => {
   const account = {
-    fullName: "John Doe",
+    fullName: "Ruth Natasya",
     email: "fakemail@email.com",
-    mobileNumber: "081234567890",
-    password: "123456",
-    confirmPassword: "123456",
+    mobileNumber: "81234567890",
+    password: "Test1234",
+    confirmPassword: "Test1234",
   };
+  globalVar.phoneNumber = "62"+account["mobileNumber"];
+
+  await whitelistDao.whitelistPhoneNumber(
+    "+"+globalVar.phoneNumber
+  );
+
+  await whitelistDao.whitelistEmail(
+    globalVar.email
+  );
+
+  welcomePage.clickButtonRegister();
   registrationPage.fillInAccountInformation(account);
   registrationPage.clickCreateAccountButton();
+  registrationPage.clickButtonConfirm();
 });
 
-Given("The verification code sent to me is {string}", (expectedCode) => {});
-
-When("I am verifying my phone number with the code {string}", (actualCode) => {
-  optConfirmationPage.isOpen();
-  optConfirmationPage.fillInOptCode(actualCode);
-  optConfirmationPage.sendOtp();
-});
-
-Then("I should be notified that the code is invalid", () => {
-  optConfirmationPage.getErrorMessage();
+Then("I should be notified in the below of field OTP that {string}", async (expectedMsgError) => {
+  let actualMsgError = await otpConfirmationPage.getMessageError();
+  I.assertEqual(actualMsgError, expectedMsgError);
 });
 
 When("I am filling field {string} with {string}", (fieldName, actualValue) => {
@@ -102,22 +149,26 @@ Then(
   }
 );
 
-Then("I shouldn't see message error in the below of field fullname", () => {
-  I.waitForInvisible(registrationPage.messageErrorFields.fullName);
-});
+Then ("I shouldn't see message error in the below of field {string}", async (fieldName) => {
+  let infoFieldPassword = "Min. 8 karakter dari huruf besar, kecil & angka";
+  let infoFieldBusinessCode = "Jika tidak ada, kosongkan kode bisnis.";
 
-Then(
-  "I shouldn't see message error in the below of field password",
-  async () => {
-    let infoFieldPassword = "Min. 8 karakter dari huruf besar, kecil & angka";
+  if(fieldName === "password"){
 
-    let messageField = await registrationPage.getMessageErrorFieldRegistration(
-      "password"
-    );
-
+    let messageField = await registrationPage.getMessageErrorFieldRegistration(fieldName);
     I.assertEqual(messageField, infoFieldPassword);
+
+  } else if (fieldName === "businessCode") {
+
+    let messageField = await registrationPage.getMessageErrorFieldRegistration(fieldName);
+    I.assertEqual(messageField, infoFieldBusinessCode);
+
+  } else {
+
+    I.waitForInvisible(registrationPage.messageErrorFields[fieldName]);
   }
-);
+
+});
 
 Then("I am clearing the field {string}", (fieldName) => {
   registrationPage.clearFieldsRegistration(fieldName);
@@ -160,8 +211,39 @@ When("I fill form registration except field {string}", (fieldName) => {
   registrationPage.fillInAccountInformation(account);
 });
 
-When("I click icon eye in {string} field", (fieldName) => {
-  if (fieldName === "password") {
+When(
+  "I filling in my account business information with the following details:",
+  async (table) => {
+    const account = table.parse().rowsHash();
+    globalVar.phoneNumber = "62"+account["mobileNumber"];
+    globalVar.email = account["email"];
+    globalVar.password = account["password"];
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+"+globalVar.phoneNumber
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVar.email
+    );
+
+    registrationPage.fillInAccountInformation(account);
+    registrationPage.fillFieldRegistration("businessCode", globalVar.businessCode);
+    globalVar.phoneNumber = "62"+account["mobileNumber"];  
+    globalVar.password = account["password"];
+
+    registrationPage.clickCreateAccountButton();
+
+    let actualPhoneNumber = await registrationPage.getValueInformation('mobileNumber');
+    let actualCompanyName = await registrationPage.getValueInformation('companyName');
+    
+    I.assertEqual(actualPhoneNumber, "+62 "+account['mobileNumber']);
+    I.assertEqual(actualCompanyName, globalVar.companyName);
+  }
+);
+
+When ("I click icon eye in {string} field", (fieldName) => {
+  if(fieldName === "password"){
     registrationPage.clickIconEyePassword();
   } else if (fieldName === "confirmPassword") {
     registrationPage.clickIconEyeConfirmPassword();
@@ -188,7 +270,15 @@ When("I click link privacy and policy", () => {
   registrationPage.goToPrivacyPolicyPage();
 });
 
-Then("I will directing to page login", () => {
+When ("I click call center", () => {
+  headerPage.goToCallCenter();
+});
+
+Then ("I will see helping center via whatsapp and email", () => {
+  
+});
+
+Then ("I will directing to page login", ()=>{
   I.waitForText("Masuk Akun");
   I.seeElement(headerPage.buttons.back);
   // I.seeElement(loginPage) // field user id
@@ -234,4 +324,49 @@ When("I click button back in the page registration", () => {
 
 Then("I will direct to page onboarding", () => {
   I.seeElement(welcomePage.buttons.registration);
+});
+
+When ("I let the otp code expire", ()=>{
+  I.wait(60);
+  I.seeElement(otpConfirmationPage.links.resendOTP);
+});
+
+When("I verifying my phone number by entering the wrong code more than five times", () =>{
+  otpConfirmationPage.isOpen();
+  for(let attempts=0;attempts<5;attempts++){
+    otpConfirmationPage.fillInOtpCode("123456");
+    otpConfirmationPage.clearFieldOTP();
+    I.wait(1);
+  }
+});
+
+Then ("I can't filled the OTP field", () => {
+  I.seeAttributesOnElements(otpConfirmationPage.fields.otp, { 
+    enabled: "false"});
+  I.seeAttributesOnElements(otpConfirmationPage.button.verifyPhoneNumber, { 
+    enabled: "false"});  
+});
+
+Then ("I should be notified that I can reverify the phone number tomorrow", async () => {
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  const day = tomorrowDate.getDay();
+  const month = tomorrowDate.getMonth();
+  const year = tomorrowDate.getFullYear();
+  const months = [
+    "Jan", "Feb", "Mar", "Apr",
+    "Mei", "Jun", "Jul", "Aug",
+    "Sep", "Okt", "Nov", "Des"
+  ];
+
+  const hours = tomorrowDate.getHours();
+  const minutes = tomorrowDate.getMinutes();
+  const currentTime = hours.toString().padStart(2, '0')+":"+minutes.toString().padStart(2, '0');
+
+  let actualMsgError = await otpConfirmationPage.getMessageError();
+
+  I.assertEqual(actualMsgError, "Kode OTP dikirim kembali pada: tanggal "+day+
+  " "+months[month]+" "+year+", pukul "+currentTime+" WIB");
 });

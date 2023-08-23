@@ -15,4 +15,20 @@ module.exports = {
       data: response.data,
     };
   },
+
+  async whitelistEmail(email) {
+
+    const response = await I.sendPostRequest("/address/whitelist/v1", {
+      address: email,
+    });
+
+    if (!response) {
+      throw new Error("failed to whitelist email");
+    }
+
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  },
 };
