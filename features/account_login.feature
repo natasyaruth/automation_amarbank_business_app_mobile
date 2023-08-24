@@ -22,7 +22,7 @@ Feature: Account login
       | password      |  Pass1234           |
     And login with unregistered account
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
-    
+
   @C75491     
   Scenario: Input UserID with no value
     Given I am registered customer with following details: 
@@ -100,11 +100,11 @@ Feature: Account login
 
   Scenario: User click CallCenter icon 
     Given I am customer that already on page login 
-    When I click icon CallCenter
+    When I click button 'CallCenter'
     Then I should see pop up with text 'Hubungi Tim Kami' displayed 
   
   Scenario: User click link Lupa Password
     Given I am customer that already on page login
-    When I click link button lupa password
+    When I click button 'forgotPassword'
     Then I should see pop up with text 'Masukan User ID Anda untuk mendapatkan email mereset password' displayed
     
