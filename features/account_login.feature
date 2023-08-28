@@ -73,8 +73,8 @@ Feature: Account login
       | @C75509      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
       | @C75510      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
       | @C75511      | Akun Anda Terblokir                                                                |                     |
-      | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | buttonTryAgain      |
-      | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | buttonReactivation  |
+      | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | tryAgain            |
+      | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | reactivation        |
 
   @C75503
   Scenario: User click Eye icon for 1 times
@@ -98,13 +98,37 @@ Feature: Account login
     And I click icon iconEyePassword for 2 times
     Then I should not see the password on field 'textFieldPassword'
 
+  @C75505
   Scenario: User click CallCenter icon 
     Given I am customer that already on page login 
-    When I click button 'CallCenter'
+    When I click icon 'callCenter'
     Then I should see pop up with text 'Hubungi Tim Kami' displayed 
+    And I should see pop up with text 'Kami akan membantu Anda dalam pembuatan rekening' displayed
   
+  @C75506
   Scenario: User click link Lupa Password
     Given I am customer that already on page login
     When I click button 'forgotPassword'
-    Then I should see pop up with text 'Masukan User ID Anda untuk mendapatkan email mereset password' displayed
-    
+    Then I should see new page with text 'Masukan User ID Anda untuk mendapatkan email mereset password.' displayed 
+    And I should see field 'userID' on page Forgot Password
+   
+  @C75507
+  Scenario: User click link Daftar
+    Given I am customer that already on page login
+    When I click button 'registration'
+    Then I should see new page with text 'Buat Akun' displayed 
+    And I should see field 'fullName' on page Registration
+   
+  @C75508
+  Scenario: User click checkbox Ingat Saya
+    Given I am customer that already on page login
+    When I am filling in my account information with the following details:
+      | userID        | ruthad74          |
+      | password      | Test1234          |
+    And I click checkbox 'rememberMe'
+    And login with registered account 
+    And I am going to log out
+    Then I should see checkbox rememberMe is checked 
+    And I should see field 'userID' is filled
+
+  

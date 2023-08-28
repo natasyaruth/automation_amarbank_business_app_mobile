@@ -3,20 +3,16 @@ Feature: Account Forgot Password
   As a customer
   I want to reset password 
 
-Scenario: Input UserID with wrong format
-  Given I am a customer want to reset password  
-  When I am filling field 'userID' with '<Value>'
-  Then I should see message error '<Message>' in the below of field 'userID'
-  Examples: 
-    | testRailTag  | Value        | Message                         |
-    | @C75516      | JOHN1=+,!    | User ID tidak sesuai format     |
-    | @C81356      | JOHN12       | User ID minimal 8 digits        |
-    | @C81357      |              | User ID wajib diisi             |
- 
+Scenario: Input UserID with empty value
+  Given I am a customer want to reset password 
+  When I am filling field 'userID' with ' '
+  And click button Reset Password
+  Then I should see message error 'User ID belum diregistrasi' in the below of field 'userID'
+
 Scenario: Input UserID that has been unregistered
   Given I am a customer want to reset password 
   When I am filling field 'userID' with 'JOHN1232'
-  And reset password with unregistered userid
+  And click button Reset Password
   Then I should see message error 'User ID belum diregistrasi' in the below of field 'userID'
 
 Scenario: Input UserID that has been registered
@@ -29,3 +25,38 @@ Scenario: User click resend email
   Given I am a customer still not receive email after request forgot password 
   When I click link 'resendEmail' on page Cek Email 
   Then I should see page with text 'Segera Cek E-mail' and button 'checkEmail'
+
+Scenario: User click cek email 
+  Given I am a customer still not receive email after request forgot password 
+  When I click link 'resendEmail' on page Cek Email 
+  Then I should see page with text 'Segera Cek E-mail' and button 'checkEmail'
+
+
+Scenario: User click Eye icon for 1 times
+  Given I am registered customer with following details: 
+    | userID        | JOHN12j3          |
+    | password      | Pass1234          | 
+  When I am filling in my account information with the following details:
+    | userID        | JOHN12j3          |
+    | password      | Pass1234          |  
+  And I click icon iconEyePassword 
+  Then I should see the password on field 'textFieldPassword'
+  
+  
+Scenario: User click Eye icon for 2 times
+  Given I am registered customer with following details: 
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          | 
+  When I am filling in my account information with the following details:
+      | userID        | JOHN12j3          |
+      | password      | Pass1234          |  
+  And I click icon iconEyePassword for 2 times
+  Then I should not see the password on field 'textFieldPassword'
+
+  
+Scenario: User click CallCenter icon 
+  Given I am customer that already on page login 
+  When I click icon 'callCenter'
+  Then I should see pop up with text 'Hubungi Tim Kami' displayed 
+  And I should see pop up with text 'Kami akan membantu Anda dalam pembuatan rekening' displayed
+  
