@@ -10,6 +10,7 @@ module.exports = {
     tryAgain: "~buttonTryAgain",
     reactivation: "~buttonReactivation",
     close: "~buttonClose",
+    callCenter: "~buttonCallCenter", 
   },
   messageErrorFields:{
     userID: "~textMsgErrorUserID",
@@ -75,7 +76,7 @@ module.exports = {
   },
 
   clickIconCallCenter(){
-    I.click(this.icon.callCenter);
+    I.click(this.buttons.callCenter);
   },
 
   clickGoToRegistrationPage(){
@@ -84,6 +85,11 @@ module.exports = {
 
   clickGoToForgotPasswordPage(){
     I.click(this.link.forgotPassword);
+  },
+
+  clickLinkOnPage(linkName){
+    I.seeElement(this.link[linkName]);
+    I.click(this.link[linkName]);
   },
 
   clickBackToPageLogin(){

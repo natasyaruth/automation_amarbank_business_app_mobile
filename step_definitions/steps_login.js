@@ -1,9 +1,11 @@
+const forgotpassword = require("../pages/forgotpassword");
 const { fields } = require("../pages/login");
 
-const { I, loginPage } = inject();
+const { I, loginPage, registrationPage, forgotpasswordPage } = inject();
 
 const globalVar = {
     password: "",
+    userID:"",
 };
 
 Given("I am registered customer with following details:", (table) => {
@@ -14,6 +16,7 @@ When("I am filling in my account information with the following details:",
 (table)=>{
     const account = table.parse().rowsHash();
     globalVar.password = account["password"];
+    globalVar.password = account["userID"];
     loginPage.fillInAccountInformation(account);
 }
 );
@@ -23,7 +26,8 @@ When("login with registered account",()=>{
 });
 
 Then("I successed go to dashbord",()=>{
-    I.see('Selamat, akun Anda berhasil dibuat')
+    ///dashboard still on development from mobile
+    ///I.see('Selamat, akun Anda berhasil dibuat')
 });
 
 Given("I am unregistered customer try to regist with unregistered account", () => {
@@ -75,11 +79,16 @@ When("I login with wrong password",()=>{
 
 Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
     I.see(expectedValue);
-    if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
-      I.seeElement(loginPage.buttons[buttonName]);
-      loginPage.clickBackToPageLogin;
-    } 
+    I.seeElement(loginPage.buttons[buttonName]);
   });
+
+// Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
+//     I.see(expectedValue);
+//     if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
+//       I.seeElement(loginPage.buttons[buttonName]);
+//       loginPage.clickBackToPageLogin;
+//     } 
+//   });
 
 When('I click icon iconEyePassword',()=>{
     loginPage.clickIconEyePassword();
@@ -98,12 +107,36 @@ Then('I should not see the password on field {string}',(fieldName)=>{
     I.dontSee(globalVar.password);
 });
 
-Given("I am customer that already on page login", () => {});
+Given("I am customer that already on page login", () => {
+    loginPage.clickLoginButton();
+});
 
-When("I click icon CallCenter",()=>{
+When("I click icon {string}",()=>{
     loginPage.clickIconCallCenter();
 });
 
-When("I click icon CallCenter",()=>{
-    loginPage.clickGoToForgotPasswordPage();
+When("I click button {string}",(linkName)=>{
+    loginPage.clickLinkOnPage(linkName);
 });
+
+Then("I should see new page with text {string} displayed",(actualMessage)=>{
+    I.see(actualMessage);
+});
+
+Then("I should see field {string} on page Forgot Password",(fieldName)=>{
+    I.seeElement(forgotpasswordPage.fields[fieldName])
+});
+
+Then("I should see field {string} on page Registration",(fieldName)=>{
+    I.seeElement(registrationPage.fields[fieldName])
+});
+
+When("I click checkbox {string}",(actualValue)=>{
+    loginPage.checkbox(actualValue);
+});
+
+When("I am going to log out",()=>{
+    ///ntar manggil dari logout 
+});
+
+
