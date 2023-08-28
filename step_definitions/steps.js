@@ -1,3 +1,4 @@
+const changePhoneNumber = require("../pages/changePhoneNumber");
 const { fields } = require("../pages/registration");
 
 const {
@@ -10,6 +11,7 @@ const {
   verificationEmailPage,
   whitelistDao,
   otpDao,
+  changePhoneNumberPage,
 } = inject();
 
 const globalVar = {
@@ -103,18 +105,13 @@ When("I verifying my email by login by user id", async () => {
 
   // step to get user id from email
 
-  verificationEmailPage.loginWithUserId(userID, globalVar.password);
+  verificationEmailPage.loginWithUserId(userID, globalVar.password, globalVar.email);
 });
 
 Given ("I am a customer had been registering the account with the following details:", async (table) => {
-  const account = {
-    fullName: "Ruth Natasya",
-    email: "fakemail@email.com",
-    mobileNumber: "81234567890",
-    password: "Test1234",
-    confirmPassword: "Test1234",
-  };
+  const account = table.parse().rowsHash();
   globalVar.phoneNumber = "62"+account["mobileNumber"];
+  globalVar.email = account["email"];
 
   await whitelistDao.whitelistPhoneNumber(
     "+"+globalVar.phoneNumber
@@ -318,7 +315,7 @@ Then(
   }
 );
 
-When("I click button back in the page registration", () => {
+When("I click button back in the header page", () => {
   headerPage.clickButtonBack();
 });
 
@@ -331,9 +328,17 @@ When ("I let the otp code expire", ()=>{
   I.seeElement(otpConfirmationPage.links.resendOTP);
 });
 
-When("I verifying my phone number by entering the wrong code more than five times", () =>{
+When("I verifying my phone number by entering the wrong code five times", () =>{
   otpConfirmationPage.isOpen();
-  for(let attempts=0;attempts<5;attempts++){
+  for(let attempts=1;attempts<6;attempts++){
+    otpConfirmationPage.fillInOtpCode("123456");
+    I.wait(2);
+  }
+});
+
+When("I verifying my phone number by entering the wrong code four times", () =>{
+  otpConfirmationPage.isOpen();
+  for(let attempts=1;attempts<5;attempts++){
     otpConfirmationPage.fillInOtpCode("123456");
     otpConfirmationPage.clearFieldOTP();
     I.wait(1);
@@ -342,9 +347,10 @@ When("I verifying my phone number by entering the wrong code more than five time
 
 Then ("I can't filled the OTP field", () => {
   I.seeAttributesOnElements(otpConfirmationPage.fields.otp, { 
-    enabled: "false"});
+    enabled: "true"});
+  I.hideDeviceKeyboard();  
   I.seeAttributesOnElements(otpConfirmationPage.button.verifyPhoneNumber, { 
-    enabled: "false"});  
+    enabled: "true"});  
 });
 
 Then ("I should be notified that I can reverify the phone number tomorrow", async () => {
@@ -369,4 +375,57 @@ Then ("I should be notified that I can reverify the phone number tomorrow", asyn
 
   I.assertEqual(actualMsgError, "Kode OTP dikirim kembali pada: tanggal "+day+
   " "+months[month]+" "+year+", pukul "+currentTime+" WIB");
+});
+
+When ("I choose change phonenumber", () =>{
+  otpConfirmationPage.isOpen();
+  otpConfirmationPage.clickChangePhoneNumber();
+  I.waitForText("Ubah Nomor HP", 5);
+  I.seeElement(headerPage.buttons.back);
+});
+
+When ("I change my phonenumber into {string}", async (newPhoneNumber) => {
+  globalVar.phoneNumber = "62"+newPhoneNumber
+  await whitelistDao.whitelistPhoneNumber(
+    "+"+newPhoneNumber
+  );
+  
+  changePhoneNumberPage.fillFieldNewPhoneNumber(newPhoneNumber);
+  changePhoneNumberPage.clickChangePhoneNumberBtn();
+  I.waitForText("Verifikasi Nomor HP", 10);
+});
+
+When ("I resend the OTP", () =>{
+  I.waitForElement(otpConfirmationPage.links.resendOTP, 60);
+  otpConfirmationPage.resendOTP();
+  I.waitForInvisible(otpConfirmationPage.links.resendOTP, 5);
+});
+
+When ("I will directing to page verification email", async () => {
+  I.waitForText("Verifikasi Email", 10);
+  I.see("Segera Cek E-mail");
+  I.see("Kami telah mengirim User ID ke e-mail:");
+
+  let actualEmail = await verificationEmailPage.getEmailValue();
+  I.assertEqual(actualEmail, globalVar.email);
+});
+
+When ("I filling new phonenumber with my old phonenumber", async () =>{
+  let oldPhoneNumber = (await changePhoneNumberPage.getOldPhoneNumber()).substring(4);
+
+  changePhoneNumberPage.fillFieldNewPhoneNumber(oldPhoneNumber);
+});
+
+Then ("I should see message error {string} in the below of field new phonenumber", async (expectedMsgError) => {
+  let actualMsgError = await changePhoneNumberPage.getMessageErrorNewPassword();
+  I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+When ("I filling new phonenumber with {string}", (phoneNumber) => {
+  changePhoneNumberPage.fillFieldNewPhoneNumber(phoneNumber);
+});
+
+Then ("I will direct to page verification phonenumber",  () => {
+  I.waitForText("Verifikasi Nomor HP", 5);
+  I.see("Kode OTP telah dikirim ke nomor");
 });
