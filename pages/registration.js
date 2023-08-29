@@ -71,10 +71,7 @@ module.exports = {
       I.clearField(this.fields[fieldName]);
       return;
     }
-
-    I.click(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
-    I.hideDeviceKeyboard();
   },
 
   async getMessageErrorFieldRegistration (fieldName) {
@@ -126,18 +123,21 @@ module.exports = {
   clickButtonConfirm(){
     I.waitForElement(this.buttons.confirm);
     I.click(this.buttons.confirm);
-    I.waitForInvisible(this.buttons.confirm, 3);
+    I.waitForInvisible(this.buttons.confirm, 10);
   },
 
   goToLoginPage() {
+    I.swipeUp(this.buttons.createAccount, 10000, 3000);
     I.click(this.links.login);
   },
 
   goToTermsAndConditionPage() {
+    I.swipeUp(this.buttons.createAccount, 10000, 3000);
     I.click(this.links.termsCondition);
   },
 
   goToPrivacyPolicyPage() {
+    I.swipeUp(this.buttons.createAccount, 10000, 3000);
     I.click(this.links.privacyPolicy);
   },
 };

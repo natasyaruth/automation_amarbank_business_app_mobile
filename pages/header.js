@@ -2,7 +2,7 @@ const { I } = inject();
 
 module.exports = {
     icon:{
-        callCenter: "~iconCallCenter"
+        callCenter: "~buttonCallCenter"
     },
     buttons:{
         back: "~buttonBack",

@@ -35,19 +35,19 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     },
+    JSONResponse: {},
   },
   include: {
     I: "./steps_file.js",
 
     registrationPage: "./pages/registration.js",
 
-    optConfirmationPage: "./pages/optConfirmation.js",
+    otpConfirmationPage: "./pages/otpConfirmation.js",
 
     loginPage: "./pages/login.js",
 
@@ -58,6 +58,10 @@ exports.config = {
     headerPage: "./pages/header.js",
 
     whitelistDao: "./dao/whitelistDao.js",
+
+    verificationEmailPage: "./pages/verificationEmail.js",
+
+    otpDao: "./dao/otpDao.js",
   },
   mocha: {},
   bootstrap: null,
@@ -88,8 +92,7 @@ exports.config = {
     testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0,
     },
