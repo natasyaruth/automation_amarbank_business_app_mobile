@@ -16,7 +16,7 @@ When("I am filling in my account information with the following details:",
 (table)=>{
     const account = table.parse().rowsHash();
     globalVar.password = account["password"];
-    globalVar.password = account["userID"];
+    globalVar.userID = account["userID"];
     loginPage.fillInAccountInformation(account);
 }
 );
@@ -81,14 +81,6 @@ Then ("I should see pop up {string} with button {string}", (expectedValue, butto
     I.see(expectedValue);
     I.seeElement(loginPage.buttons[buttonName]);
   });
-
-// Then ("I should see pop up {string} with button {string}", (expectedValue, buttonName)=>{
-//     I.see(expectedValue);
-//     if(expectedValue !== "Silakan coba masuk kembali setelah 30 menit."){
-//       I.seeElement(loginPage.buttons[buttonName]);
-//       loginPage.clickBackToPageLogin;
-//     } 
-//   });
 
 When('I click icon iconEyePassword',()=>{
     loginPage.clickIconEyePassword();

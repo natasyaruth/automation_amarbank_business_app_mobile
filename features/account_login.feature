@@ -14,7 +14,7 @@ Feature: Account login
     And login with registered account
     Then I successed go to dashbord
   
-  @C76892
+  @Login @C76892
   Scenario: Login with unregistered account
     Given I am unregistered customer try to regist with unregistered account
     When I am filling in my account information with the following details:
@@ -23,7 +23,7 @@ Feature: Account login
     And login with unregistered account
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
-  @C75491     
+  @Login @C75491     
   Scenario: Input UserID with no value
     Given I am registered customer with following details: 
       | userID        | JOHN12j3       |
@@ -35,7 +35,7 @@ Feature: Account login
     Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
   
 
-  @C75492     
+  @Login @C75492     
   Scenario: Input Password with no value
     Given I am registered customer with following details: 
       | userID        | JOHN12j3       |
@@ -46,7 +46,7 @@ Feature: Account login
     And I login with password empty
     Then I should see message error 'Password wajib diisi' in the below of field 'password'
   
-  @C75497
+  @Login @C75497
   Scenario: Login with User ID and Password is empty
     Given I am registered customer with following details:
       | userID        | JOHN12j3       |
@@ -58,7 +58,7 @@ Feature: Account login
     Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
     And I should see message error 'Password wajib diisi' in the below of field 'password'
   
-   @Login_Wrong_Password_Until_5_Times
+   @Wrong_Password_Until_5_Times
    Scenario Outline: Login with wrong Password for many times
     Given I am registered customer with following details:
       | userID        | JOHN12j3       |
@@ -76,7 +76,7 @@ Feature: Account login
       | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | tryAgain            |
       | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | reactivation        |
 
-  @C75503
+  @Login @C75503
   Scenario: User click Eye icon for 1 times
     Given I am registered customer with following details: 
       | userID        | JOHN12j3          |
@@ -87,7 +87,7 @@ Feature: Account login
     And I click icon iconEyePassword 
     Then I should see the password on field 'textFieldPassword'
   
-  @C75504
+  @Login @C75504
   Scenario: User click Eye icon for 2 times
     Given I am registered customer with following details: 
       | userID        | JOHN12j3          |
@@ -98,21 +98,21 @@ Feature: Account login
     And I click icon iconEyePassword for 2 times
     Then I should not see the password on field 'textFieldPassword'
 
-  @C75505
+  @Login @C75505
   Scenario: User click CallCenter icon 
     Given I am customer that already on page login 
     When I click icon 'callCenter'
     Then I should see pop up with text 'Hubungi Tim Kami' displayed 
     And I should see pop up with text 'Kami akan membantu Anda dalam pembuatan rekening' displayed
   
-  @C75506
+  @Login @C75506
   Scenario: User click link Lupa Password
     Given I am customer that already on page login
     When I click button 'forgotPassword'
     Then I should see new page with text 'Masukan User ID Anda untuk mendapatkan email mereset password.' displayed 
     And I should see field 'userID' on page Forgot Password
    
-  @C75507
+  @Login @C75507
   Scenario: User click link Daftar
     Given I am customer that already on page login
     When I click button 'registration'
