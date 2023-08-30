@@ -22,16 +22,6 @@ module.exports = {
   fillFieldNewPhoneNumber(txtValue){
 
     I.seeElement(this.fields.newPhoneNumber);
-
-    if (
-      this.fields.newPhoneNumber === "" ||
-      this.fields.newPhoneNumber === null ||
-      this.fields.newPhoneNumber === "-"
-    ) {
-      I.clearField(this.fields.newPhoneNumber);
-      return;
-    }
-
     I.click(this.fields.newPhoneNumber);
     I.setText(this.fields.newPhoneNumber, txtValue);
     I.hideDeviceKeyboard();
@@ -40,4 +30,13 @@ module.exports = {
   clickChangePhoneNumberBtn(){
     I.click(this.button.btnChangePhoneNumber);
   },
+
+  async getOldPhoneNumber (){
+    return await I.grabTextFrom(this.label.oldPhoneNumber);
+  },
+
+  async getMessageErrorNewPassword () {
+    I.waitForElement(this.messageErrorField.msgErrorPhoneNumber, 2);
+    return await I.grabTextFrom(this.messageErrorField.msgErrorPhoneNumber);
+},
 }

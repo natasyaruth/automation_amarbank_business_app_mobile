@@ -10,7 +10,7 @@ Feature: Account registration
     And I filling in my account information with the following details:
       | fullName        | John Doe           |
       | email           | john.doe@email.com |
-      | mobileNumber    | 85155021230        |
+      | mobileNumber    | 85984421230        |
       | password        | 1234Test           |
       | confirmPassword | 1234Test           |
     And I registering the account
@@ -189,7 +189,7 @@ Feature: Account registration
   @registration_1 @C75853
   Scenario: Back to page Onboarding from page Registration
     Given I am a customer want to access menu registration
-    When I click button back in the page registration
+    When I click button back in the header page
     Then I will direct to page onboarding
 
   @C81400
@@ -214,37 +214,107 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
-  @C76006
+  @verification_phonenumber @C76006
   Scenario: Verifying phone number with wrong OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567890        |
+      | mobileNumber    | 81234567877        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I verifying my phone number by entering the wrong code
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
-  @C76007
+  @verification_phonenumber @C76007
   Scenario: Verifying phone number with expired OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567890        |
+      | mobileNumber    | 81230067866        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I let the otp code expire
     And I verifying my phone number by entering the code sent to me
-    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan sudah kadaluarsa'
+    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
 
-  @C76008
-  Scenario: Verifying phone number with wrong OTP code more than five times
+  @C76009
+  Scenario: Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567890        |
+      | mobileNumber    | 81234567855        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
-    When I verifying my phone number by entering the wrong code more than five times
+    When I verifying my phone number by entering the wrong code five times
     Then I can't filled the OTP field
     And I should be notified that I can reverify the phone number tomorrow
+
+  @change_phonenumber
+  Scenario: Create account with phone number has been updated on the verification page
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81293655100        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I choose change phonenumber
+    And I change my phonenumber into '89561122178'
+    And I resend the OTP
+    And I verifying my phone number by entering the code sent to me
+    Then I will directing to page verification email
+ 
+  @change_phonenumber
+  Scenario: Change phonenumber with old phonenumber
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81234567892        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I choose change phonenumber
+    And I filling new phonenumber with my old phonenumber
+    Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
+
+  @change_phonenumber @scenario_negative_field_phoneNumber_in_change_phonenumber_with_invalid_value
+  Scenario Outline: Verifying new phone number with invalid value
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81234567550        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I choose change phonenumber
+    And I filling new phonenumber with '<Value>'
+    Then I should see message error '<Message>' in the below of field new phonenumber
+    Examples:                                                                 ❸
+      | testRailTag | Value         | Message                                                       |
+      |             | 89561r12367   | Nomor handphone wajib diisi                                   |
+      |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+      |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+      |             | 9678995676    | Nomor handphone tidak sesuai format                           |
+      |             | 8678 995676   | Nomor handphone wajib diisi                                   |
+      |             |               | Nomor handphone wajib diisi                                   |
+
+  @change_phonenumber @C76010
+  Scenario: Create account with wrong code otp four times then input valid code
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya        |
+      | email           | ruth@trash-mail.com |
+      | mobileNumber    | 81234457898         |
+      | password        | Test1234            |
+      | confirmPassword | Test1234            |
+    When I verifying my phone number by entering the wrong code four times
+    And I verifying my phone number by entering the code sent to me
+    Then I will directing to page verification email
+
+  @change_phonenumber
+  Scenario: Back to page Verification phonenumber from page change phonenumber
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81288567890        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I choose change phonenumber
+    And I click button back in the header page
+    Then I will direct to page verification phonenumber

@@ -29,6 +29,7 @@ module.exports = {
 
   isOpen() {
     I.waitForElement(this.fields.otp, 30);
+    I.wait(3);
   },
 
   fillInOtpCode(otpCode) {
@@ -42,4 +43,12 @@ module.exports = {
   clearFieldOTP(){
     I.clearField(this.fields.otp);
   },
+
+  clickChangePhoneNumber(){
+    I.click(this.links.changePhoneNumber);
+  },
+
+  resendOTP(){
+    I.click(this.links.resendOTP);
+  }
 };

@@ -9,15 +9,19 @@ module.exports = {
     resendEmail: "~linkResendEmail",
   },
   button:{
-    login: "~ButtonLogin",
+    login: "~buttonLogin",
   },
 
-  loginWithUserId(userID, password){
+  loginWithUserId(userID, password, email){
     I.click(this.button.login);
     I.waitForText("Masuk Akun", 10);
-    I.fillField(loginPage.fields.userID, userID);
-    I.fillField(loginPage.fields.password, password);
-    I.click(loginPage.buttons.login);
+    I.see("Selamat akun berhasil dibuat. Silakan masuk akun");
+    I.see("Gunakan User ID yang telah kami kirim ke e-mail:");
+    I.see(email);
+
+    // I.fillField(loginPage.fields.userID, userID);
+    // I.fillField(loginPage.fields.password, password);
+    // I.click(loginPage.buttons.login);
   },
 
   async getEmailValue(){
