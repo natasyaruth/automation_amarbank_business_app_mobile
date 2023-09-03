@@ -1,4 +1,6 @@
 Feature: Apply Either Loan and select the loan type
+As a customer lead
+I want to login Aplly loan and select the loan type
 
 @C83802
 Scenario: validate content on select either apply for loan

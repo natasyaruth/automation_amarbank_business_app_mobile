@@ -63,7 +63,7 @@ Scenario('user validate and select loan type AR', () =>{
 });
 
 Scenario('user validate and select loan type PO', () =>{
-    Given('user on onboarding loan',()=>{
+    Given('user on loan type page',()=>{
         loanTypePage.viewLoanTypePage();
     });
     And('user validate wording loan type {string}',()=>{
@@ -86,5 +86,32 @@ Scenario('user validate and select loan type PO', () =>{
     });
     And('user click back to loan type page',()=>{
         loanTypePage.clickBackButtonLoanTypePage();
+    });
+});
+
+Scenario('user validate and select loan type AP', () =>{
+    Given('user on loan type page',()=>{
+        loanTypePage.viewLoanTypePage();
+    });
+    And('user validate wording loan type {string}',()=>{
+        loanTypePage.validateLoanTypeList();
+    });
+    When('user select loan type {string}',()=>{
+        loanTypePage.selectLoanTypeList();
+    });
+    And('user validate button lihat skema pinjaman is enable true',()=>{
+        loanTypePage.buttons.nextButton(isEnabled);
+    });
+    Then('user click button lihat skema pinjaman',()=>{
+        loanTypePage.clickNextButton();
+    });
+    And('user on loan schema {string}',()=>{
+        loanTypePage.validateLoanSchemPage();
+    });
+    And('user validate content loan schema {string}',()=>{
+        loanTypePage.validateContentField();
+    });
+    And('user click button select the schema',()=>{
+        loanTypePage.clickButtonStart();
     });
 });

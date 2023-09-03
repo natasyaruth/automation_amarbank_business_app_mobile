@@ -12,9 +12,10 @@ type otpDao = typeof import('./dao/otpDao.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 type loanTypePage = typeof import('./pages/loan_applications/loanType.js');
+type selectAnchorPage = typeof import('./pages/loan_applications/selectAnchor.js');
 
 declare namespace CodeceptJS {
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage }
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage }
   interface Methods extends Appium, ChaiWrapper, REST {}
   interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper> {}
   namespace Translation {
