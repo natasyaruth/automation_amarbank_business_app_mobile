@@ -11,8 +11,8 @@ Scenario('validate content on select either apply for loan', () => {
     And('user validate wording {string}',()=>{
         loanTypePage.validationTextTittleOnboarding();
     });
-    When('user validate benefit {string}',()=>{
-        loanTypePage.validationBenefitText();
+    When('user validate benefit {string}',(benefitText)=>{
+        loanTypePage.validationBenefitText(benefitText);
     });
     And('user validate benefit {string}',()=>{
         loanTypePage.validationBenefitText();

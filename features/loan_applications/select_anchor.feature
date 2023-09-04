@@ -15,7 +15,7 @@ And user fill search anchor 'Unilever'
 When user select result of search
 And user on anchor cooperating page
 Then user select the date cooperating
-And user should see the date on field 'valueDateField'
+And user should see the date 'Agustus 2020' on field 'valueDateField'
 And user back to list anchor page
 
 @C83809
@@ -31,8 +31,8 @@ And user should see error 'Tanggal bekerjasama wajib diisi' in the below of fiel
 @C83809
 Scenario: User success fill data other anchor
 Given user on anchor cooperating page
-And user fill field supplier name
+And user filling field 'anchorNameField' with 'UD Dagangan'
 When user select industry type
-And user select date cooperating
+And user select the date cooperating
 Then user click button next
 And user on select loan amount

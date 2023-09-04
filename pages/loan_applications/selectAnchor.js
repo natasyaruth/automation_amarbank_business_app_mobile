@@ -16,7 +16,8 @@ module.exports = {
         dateYearField: "",
         valueDateField: "",
         anchorNameField: "",
-        industryTypeField: ""
+        industryTypeField: "",
+        industryTypeList: ""
     },
     buttons: {
         selectBtn: "",
@@ -52,6 +53,9 @@ module.exports = {
     viewAnchorCooperatingPage(){
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
     },
+    viewLoanAmountPage(){
+        I.seeElement(this.textField.textFieldSelectLoanAmountPage);
+    },
     selectDateCooperating(){
         I.seeElement(this.fields.dateField);
         I.click(this.fields.dateField);
@@ -83,7 +87,30 @@ module.exports = {
         I.seeElement(this.messageErrorFields[fieldName]);
         return await I.grabTextFrom(this.messageErrorFields[fieldName]);
       },
-    async getValueFieldData (){
-        
+    async getValueFieldData (fieldName){
+        if(Object.keys(this.fields).indexOf(fieldName) === -1){
+            throw new Error('Field ${fieldName} is not found');
+        }
+        I.seeElement(this.fields[fieldName]);
+        return await I.grabTextFromField(this.fields[fieldName]);
+    },
+    fillFieldAnchorName(fieldName, txtValue){
+        I.seeElement(this.fields[fieldName]);
+        if (
+            this.fields[fieldName] === "" ||
+            this.fields[fieldName] === null ||
+            this.fields[fieldName] === "-"
+        ){
+            I.clearField(this.fields[fieldName]);
+            return;
+        }
+        I.setText(this.fields[fieldName], txtValue);
+    },
+    selectIndustryType(){
+        I.wait(5);
+        I.seeElement(this.fields.industryTypeField);
+        I.click(this.fields.industryTypeField);
+        I.wait(5);
+        I.click(this.fields.industryTypeList);
     }
 }
