@@ -10,6 +10,8 @@ const env = {
     suiteId: process.env.TESTRAIL_SUITE_ID,
     debugLog: process.env.TESTRAIL_DEBUG_LOG || false,
     enabled: process.env.TESTRAIL_ENABLED || false,
+    runId: process.env.TESTRAIL_RUN_ID || undefined,
+    closeTestRun: process.env.TESTRAIL_CLOSE_RUN || false,
   },
 };
 
@@ -35,7 +37,8 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -70,7 +73,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./step_definitions/steps.js","./step_definitions/steps_login.js"],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -92,7 +95,8 @@ exports.config = {
     testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
       timeout: 0,
     },
