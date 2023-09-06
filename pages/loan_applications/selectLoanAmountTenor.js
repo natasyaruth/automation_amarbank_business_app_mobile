@@ -1,5 +1,3 @@
-const { viewLoanAmountPage } = require("./selectAnchor");
-
 const { I } = inject();
 
 module.exports = {
