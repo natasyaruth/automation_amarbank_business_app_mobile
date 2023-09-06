@@ -14,8 +14,8 @@ type ChaiWrapper = import('codeceptjs-chai');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao }
-  interface Methods extends Appium, ChaiWrapper, REST {}
-  interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper> {}
+  interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
+  interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper>, WithTranslation<JSONResponse> {}
   namespace Translation {
     interface Actions {}
   }
