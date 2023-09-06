@@ -65,9 +65,9 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
-    loanTypePage: "./pages/loan_applications/loanType.js",
-    selectAnchorPage: "./pages/loan_applications/selectAnchor.js",
-    selectLoanAmountPage: "./pages/loan_applications/selectLoanAmountTenor.js"
+    loanTypePage: "./pages/loanType.js",
+    selectAnchorPage: "./pages/selectAnchor.js",
+    selectLoanAmountPage: "./pages/selectLoanAmountTenor.js"
   },
   mocha: {},
   bootstrap: null,

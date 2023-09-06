@@ -2,18 +2,18 @@ Feature: Apply Either Loan and select the loan type
     As a customer lead
     I want to login Aplly loan and select the loan type
 
-    @LoanApp
-    Background: Login with user registered
-    Given I am registered customer with following details:
-        | userID   | niza59ce |
-        | password | Feb042017 |
-    When I am filling in my account information with the following details:
-        | userID   | niza59ce |
-        | password | Feb042017 |
-    And login with registered account
-    Then I successed go to dashbord
-    And I click button loan dashboard
-    
+
+    Background:
+        Given I am registered customer with following details:
+            | userID   | niza59ce  |
+            | password | Feb042017 |
+        When I am filling in my account information with the following details:
+            | userID   | niza59ce  |
+            | password | Feb042017 |
+        And login with registered account
+        Then I successed go to dashbord
+        And I click button loan dashboard
+
     @C83802
     Scenario: validate content on select either apply for loan
         Given user on onboarding loan

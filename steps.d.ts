@@ -11,9 +11,9 @@ type verificationEmailPage = typeof import('./pages/verificationEmail.js');
 type otpDao = typeof import('./dao/otpDao.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
-type loanTypePage = typeof import('./pages/loan_applications/loanType.js');
-type selectAnchorPage = typeof import('./pages/loan_applications/selectAnchor.js');
-type selectLoanAmountPage = typeof import('./pages/loan_applications/selectLoanAmountTenor.js');
+type loanTypePage = typeof import('./pages/loanType.js');
+type selectAnchorPage = typeof import('./pages/selectAnchor.js');
+type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage }
