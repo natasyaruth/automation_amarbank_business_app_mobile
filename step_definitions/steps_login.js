@@ -131,4 +131,6 @@ When("I am going to log out",()=>{
     ///ntar manggil dari logout 
 });
 
-
+Then("I click button loan dashboard",()=>{
+    loginPage.clickBtnOnBoardingPage();
+});

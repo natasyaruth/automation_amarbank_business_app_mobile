@@ -11,6 +11,7 @@ module.exports = {
     reactivation: "~buttonReactivation",
     close: "~buttonClose",
     callCenter: "~buttonCallCenter", 
+    onboardingPage: {xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]'},
   },
   messageErrorFields:{
     userID: "~textMsgErrorUserID",
@@ -96,4 +97,8 @@ module.exports = {
     I.click(this.buttons.tryAgain);
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
+  clickBtnOnBoardingPage(){
+    I.wait(3);
+    I.click(this.buttons.onboardingPage);
+  }
 }

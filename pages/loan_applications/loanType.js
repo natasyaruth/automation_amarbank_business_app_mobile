@@ -9,31 +9,31 @@ module.exports = {
         textOnlyWith1: "",
         textOnlyWith2: "",
         textOnlyWith3: "",
-        textFieldLoanTypePage: "",
-        textFieldLoanAP: "",
-        textFieldLoanAR: "",
-        textFieldLoanPO: "",
-        textLoanSchemaAP: "",
-        textLoanSchemaAR: "",
-        textLoanSchemaPO: ""
+        textFieldLoanTypePage: {xpath: '//android.widget.TextView[contains(@text, "Bagaimana gambaran masalah pendanaan Anda?")]'},
+        textFieldLoanAP: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh tempo untuk mendanai tagihan dari supplier")]'},
+        textFieldLoanAR: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh dana di muka karena pembeli belum bayar tagihan.")]'},
+        textFieldLoanPO: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh pinjaman untuk mendanai proyek")]'},
+        textLoanSchemaAP: {xpath: '//android.widget.TextView[contains(@text, "Skema Pinjaman Distributor")]'},
+        textLoanSchemaAR: {xpath: '//android.widget.TextView[contains(@text, "Skema Pinjaman Modal Proyek")]'},
+        textLoanSchemaPO: {xpath: '//android.widget.TextView[contains(@text, "Skema Pinjaman Tagihan Faktur")]'}
     },
     buttons: {
         startButton: "",
-        backButtonLoanTypePage: "",
-        nextButton: ""
+        backButtonLoanTypePage: {xpath: '//android.view.View[@content-desc="buttonBack"]'},
+        nextButton: "~buttonResetPassword"
     },
     radioButtons: {
-        radioBtnAP: "",
-        radioBtnAR: "",
-        radioBtnPO: "",
+        radioBtnAP: {xpath: '//android.widget.RadioButton'},
+        radioBtnAR: {xpath: '//android.widget.RadioButton'},
+        radioBtnPO: {xpath: '//android.widget.RadioButton'},
     },
     contentFields: {
         fieldAP: "",
         fieldAR: "",
         fieldPO: "",
-        viewPageAP: "",
-        viewPageAR: "",
-        viewPagePO: ""
+        viewPageAP: "~Loan Schema",
+        viewPageAR: "~Loan Schema",
+        viewPagePO: "~Loan Schema"
     },
 
 // Function for call the id component
@@ -108,26 +108,29 @@ module.exports = {
     validateLoanSchemPage(loanSchema){
         switch (loanSchema){
             case AP:
-                I.assertEqual(this.textField.textLoanSchemaAP, "");
+                actualValue = I.grabTextFromField(this.textField.textLoanSchemaAP);
+                I.assertEqual(actualValue, 'Skema Pinjaman Distributor');
                 break;
             case AR:
-                I.assertEqual(this.textField.textLoanSchemaAR, "");
+                actualValue = I.grabTextFromField(this.textField.textLoanSchemaAR);
+                I.assertEqual(actualValue, 'Skema Pinjaman Modal Proyek');
                 break;
             case PO:
-                I.assertEqual(this.textField.textLoanSchemaPO, "");
+                actualValue = I.grabTextFromField(this.textField.textLoanSchemaPO);
+                I.assertEqual(actualValue, 'Skema Pinjaman Tagihan Faktur');
                 break;
         }
     },
     validateContentField(contentFieldText){
         switch (contentFieldText){
             case AP:
-                I.assertEqual(this.contentFields.fieldAP, "");
+                I.seeElement(this.contentFields.viewPageAP);
                 break;
             case AR:
-                I.assertEqual(this.contentFields.fieldAR, "");
+                I.seeElement(this.contentFields.viewPageAR);
                 break;
             case PO:
-                I.assertEqual(this.contentFields.fieldPO, "");
+                I.seeElement(this.contentFields.viewPagePO);
                 break;
         }
     },

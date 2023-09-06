@@ -23,7 +23,7 @@ exports.config = {
       appiumV2: true,
       app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator",
+      device: "emulator-5554",
       path: "/",
       desiredCapabilities: {
         platformName: "Android",
@@ -65,6 +65,9 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
+    loanTypePage: "./pages/loan_applications/loanType.js",
+    selectAnchorPage: "./pages/loan_applications/selectAnchor.js",
+    selectLoanAmountPage: "./pages/loan_applications/selectLoanAmountTenor.js"
   },
   mocha: {},
   bootstrap: null,
