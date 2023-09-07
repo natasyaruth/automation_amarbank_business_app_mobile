@@ -29,11 +29,12 @@ module.exports = {
 
   isOpen() {
     I.waitForElement(this.fields.otp, 30);
-    I.wait(3);
+    I.waitForInvisible(this.links.resendOTP, 50);
   },
 
   fillInOtpCode(otpCode) {
     I.fillField(this.fields.otp, otpCode);
+    I.hideDeviceKeyboard();
   },
 
   sendOtp() {

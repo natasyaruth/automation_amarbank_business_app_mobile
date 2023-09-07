@@ -1,7 +1,6 @@
-const forgotpassword = require("../pages/forgotpassword");
 const { fields } = require("../pages/login");
 
-const { I, loginPage, registrationPage, forgotpasswordPage } = inject();
+const { I, loginPage, registrationPage, forgotPasswordPage } = inject();
 
 const globalVar = {
     password: "",
@@ -112,11 +111,11 @@ When("I click button {string}",(linkName)=>{
 });
 
 Then("I should see new page with text {string} displayed",(actualMessage)=>{
-    I.see(actualMessage);
+    I.waitForText(actualMessage, 10);
 });
 
 Then("I should see field {string} on page Forgot Password",(fieldName)=>{
-    I.seeElement(forgotpasswordPage.fields[fieldName])
+    I.seeElement(forgotPasswordPage.fields[fieldName]);
 });
 
 Then("I should see field {string} on page Registration",(fieldName)=>{

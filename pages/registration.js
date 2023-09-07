@@ -111,6 +111,7 @@ module.exports = {
   },
 
   clickCreateAccountButton() {
+    I.swipeUp(this.fields.confirmPassword, 500, 1000);
     I.click(this.buttons.createAccount);
   },
 
@@ -127,7 +128,7 @@ module.exports = {
   },
 
   goToLoginPage() {
-    I.swipeUp(this.buttons.createAccount, 10000, 3000);
+    I.swipeUp(this.fields.confirmPassword, 10000, 3000);
     I.click(this.links.login);
   },
 
