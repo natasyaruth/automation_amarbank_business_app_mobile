@@ -89,7 +89,6 @@ Feature: Account login
       | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi, maka akun Anda akan terblokir permanen.  | tryAgain            |
       | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                         | reactivation        |
 
-
   @Login @C75503
   Scenario: User click Eye icon for 1 times
     Given I am registered customer with following details: 
