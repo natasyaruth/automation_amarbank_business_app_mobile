@@ -56,6 +56,10 @@ Then('system should display loan limit offer has been expired page', () => {
     loanDashboardPage.validateSignatureCardisExpired();
 });
 
+Then('I cannot access detail limit offer card', () => {
+    loanDashboardPage.validateOfferCardDisable();
+});
+
 
 
 

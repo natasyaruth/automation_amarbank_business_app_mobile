@@ -120,6 +120,13 @@ module.exports = {
   validateSignatureCardisExpired() {
     I.see('Tanda Tangan Sebelum');
     I.see('0 hari : 0 jam : 0 menit');
+
+  },
+
+  validateOfferCardDisable() {
+    I.wait(2);
+    I.seeElement(this.cards.cardOffer);
+    I.hasAttribute('disable');
   },
 
   filters: {

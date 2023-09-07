@@ -31,6 +31,7 @@ Feature: Signature User Drop Off for Approval Limit Loan
         Given I have been on loan dashboard page and show expired loan limit offer card
         When I access loan limit approval page with card got expired time
         Then system should display loan limit offer has been expired page
+        And I cannot access detail limit offer card
 
 
 
