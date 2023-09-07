@@ -33,6 +33,7 @@ module.exports = {
   },
 
   clickButtonBack() {
+    I.wait(2);
     I.click(this.buttons.back);
   },
 
@@ -91,5 +92,54 @@ module.exports = {
     I.seeElement(this.filters.filterByOnActive);
     I.seeElement(this.filters.filterByOnProcess);
     I.seeElement(this.filters.filterbyOnDone);
+  },
+
+  validateSignatureCard() {
+    I.see('Segera Setujui Penawaran Pinjaman');
+    I.see('Tanda Tangan Sebelum');
+    I.see('Pinjaman yang ditawarkan:');
+  },
+
+  goToSignaturedPage() {
+    I.wait(2);
+    I.seeElement(this.cards.cardOffer);
+    I.click(this.cards.cardOffer);
+
+  },
+
+  validateSignaturePage() {
+    I.wait(2);
+    I.see('Tanda Tangan');
+  },
+
+  backToSignatureCardPage() {
+    I.wait(2);
+    I.click(this.buttons.buttonBack);
+  },
+
+  validateSignatureCardisExpired() {
+    I.see('Tanda Tangan Sebelum');
+    I.see('0 hari : 0 jam : 0 menit');
+  },
+
+  filters: {
+    filterByOnProcess: "~filterByOnProcess",
+    filterByOnActive: "~filterByOnActive",
+    filterbyOnDone: "~filterbyOnDone",
+  },
+
+  goToStatusInProcessLimitHistory() {
+    I.seeElement(this.filters.filterByOnProcess);
+    I.click(this.filters.filterByOnProcess);
+  },
+
+  goToStatusActiveLimitHistory() {
+    I.seeElement(this.filters.filterByOnActive);
+    I.click(this.filters.filterByOnActive);
+  },
+
+  goToStatusDoneLimitHistory() {
+    I.seeElement(this.filters.filterByOnActive);
+    I.click(this.filters.filterbyOnDone);
   },
 }
