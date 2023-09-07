@@ -21,13 +21,16 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-debug.apk",
+      // app: "./assets/app/app-debug.apk",
       platform: "Android",
       device: "emulator-5554",
-      path: "/",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         newCommandTimeout: 300,
       },
     },
@@ -76,7 +79,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js"],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/steps_loanType.js"],
   },
   plugins: {
     screenshotOnFail: {
