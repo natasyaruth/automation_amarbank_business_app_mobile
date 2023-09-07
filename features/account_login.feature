@@ -58,13 +58,13 @@ Feature: Account login
     Then I should see message error 'User ID wajib diisi' in the below of field 'userID'
     And I should see message error 'Password wajib diisi' in the below of field 'password'
   
-   @Wrong_Password_Until_5_Times
+   @Login @Wrong_Password_Until_3_Times
    Scenario Outline: Login with wrong Password for many times
     Given I am registered customer with following details:
-      | userID        | JOHN12j3       |
+      | userID        | ruthad74       |
       | password      | Pass1234       | 
     When I am filling in my account information with the following details: 
-      | userID        | JOHN12j3       |
+      | userID        | ruthe283       |
       | password      | Pass1234       |
     And I login with wrong password
     Then I should see pop up '<Message>' with button '<Button>'
@@ -72,9 +72,22 @@ Feature: Account login
       | testRailTag  | Message                                                                            | Button              |
       | @C75509      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
       | @C75510      | Jika 3 kali salah akun Anda akan terblokir.                                        | tryAgain            |
-      | @C75511      | Akun Anda Terblokir                                                                |                     |
-      | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi maka akun anda akan terblokir permanen  | tryAgain            |
-      | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                       | reactivation        |
+      | @C75511      | Akun Anda Terblokir                                                                | close               |
+  
+   @Wrong_Password_after_blocked
+   Scenario Outline: Login with wrong Password for many times after blocked
+    Given I am registered customer with following details:
+      | userID        | ruthad74       |
+      | password      | Pass1234       | 
+    When I am filling in my account information with the following details: 
+      | userID        | ruth99b9         |
+      | password      | Pass1234        |
+    And I login with wrong password
+    Then I should see pop up '<Message>' with button '<Button>'
+    Examples:
+      | testRailTag  | Message                                                                              | Button              |
+      | @C75512      | Sudah 4 kali salah. Jika salah 1 kali lagi, maka akun Anda akan terblokir permanen.  | tryAgain            |
+      | @C75513      | Silakan reaktivasi akun untuk mengaktivasi kembali akun Anda                         | reactivation        |
 
   @Login @C75503
   Scenario: User click Eye icon for 1 times
