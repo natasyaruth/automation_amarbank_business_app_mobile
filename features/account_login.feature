@@ -24,7 +24,7 @@ Feature: Account login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
   @Login @C75491     
-  Scenario: Input UserID with no value
+  Scenario: Input UserID without value
     Given I am registered customer with following details: 
       | userID        | JOHN12j3       |
       | password      | Pass1234       | 
@@ -36,7 +36,7 @@ Feature: Account login
   
 
   @Login @C75492     
-  Scenario: Input Password with no value
+  Scenario: Input Password without value
     Given I am registered customer with following details: 
       | userID        | JOHN12j3       |
       | password      | Pass1234       | 

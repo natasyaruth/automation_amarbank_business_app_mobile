@@ -8,12 +8,13 @@ type changePhoneNumberPage = typeof import('./pages/changePhoneNumber.js');
 type headerPage = typeof import('./pages/header.js');
 type whitelistDao = typeof import('./dao/whitelistDao.js');
 type verificationEmailPage = typeof import('./pages/verificationEmail.js');
+type forgotPasswordPage = typeof import('./pages/forgotPassword.js');
 type otpDao = typeof import('./dao/otpDao.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
 declare namespace CodeceptJS {
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao }
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, forgotPasswordPage: forgotPasswordPage, otpDao: otpDao }
   interface Methods extends Appium, ChaiWrapper, REST {}
   interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper> {}
   namespace Translation {
