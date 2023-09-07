@@ -38,9 +38,9 @@ Feature: History Page
         When I access menu bar limit with status 'Dalam Proses'
         Then I should see history limit on process
 
-    Scenario: Access History Limit Dashboard For 'Aktif' Bar
-        Given I have been access history loan limit to see status 'Aktif'
-        When I access menu bar limit with status 'Aktif'
+    Scenario: Access History Limit Dashboard For "Aktif" Bar
+        Given I have been access history loan limit to see status "Aktif"
+        When I access menu bar limit with status "Aktif"
         Then I should see history limit active
 
     Scenario: Access History Limit Dashboard For 'Selesai' Bar

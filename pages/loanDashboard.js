@@ -37,11 +37,7 @@ module.exports = {
     I.click(this.buttons.back);
   },
 
-  goToHistory() {
-    I.seeElement(this.buttons.buttonHistory);
-    I.click(this.buttons.buttonHistory);
-  },
-
+  //Loan Dashboard
   applyNewLimitLoan() {
     I.seeElement(this.buttons.buttonNewLimit);
     I.click(this.buttons.buttonNewLimit);
@@ -72,6 +68,7 @@ module.exports = {
   validateApprovalLimitOfferHasExpired() {
     I.see('Penawaran limit berakhir dalam', '0 hari : 0 jam : 0 menit');
     I.seeElement(this.buttons.buttonApprove);
+    I.hasAttribute('disable');
   },
 
   approveLimitLoanOffering() {
@@ -88,12 +85,7 @@ module.exports = {
     I.click(this.buttons.buttonClose);
   },
 
-  validateHistoryPage() {
-    I.seeElement(this.filters.filterByOnActive);
-    I.seeElement(this.filters.filterByOnProcess);
-    I.seeElement(this.filters.filterbyOnDone);
-  },
-
+  //Signature Card
   validateSignatureCard() {
     I.see('Segera Setujui Penawaran Pinjaman');
     I.see('Tanda Tangan Sebelum');
@@ -129,10 +121,16 @@ module.exports = {
     I.hasAttribute('disable');
   },
 
-  filters: {
-    filterByOnProcess: "~filterByOnProcess",
-    filterByOnActive: "~filterByOnActive",
-    filterbyOnDone: "~filterbyOnDone",
+  //History Page
+  goToHistory() {
+    I.seeElement(this.buttons.buttonHistory);
+    I.click(this.buttons.buttonHistory);
+  },
+
+  validateHistoryPage() {
+    I.seeElement(this.filters.filterByOnActive);
+    I.seeElement(this.filters.filterByOnProcess);
+    I.seeElement(this.filters.filterbyOnDone);
   },
 
   goToStatusInProcessLimitHistory() {
