@@ -45,3 +45,8 @@ Feature: Loan Dashboard
                 When I am accessing history
                 Then History loan page will be showed
 
+        Scenario: Back to The Main Dashboard
+                Given I am on the loan Dashboard
+                When I back to the previous page
+                Then I should see main dashboard
+
