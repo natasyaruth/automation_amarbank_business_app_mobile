@@ -33,5 +33,17 @@ Feature: Signature User Drop Off for Approval Limit Loan
         Then system should display loan limit offer has been expired page
         And I cannot access detail limit offer card
 
+    Scenario: Validate Slider After Card Added
+        Given I got a card for another loan limit offer card from system
+        When I access loan business in main dashboard for checking the addition card
+        Then I should slide the card section
+
+    Scenario: Back to The Previous Dashboard
+        Given I am on the loan limit offer card
+        When I back to the previous page
+        Then I should see previous page
+
+
+
 
 

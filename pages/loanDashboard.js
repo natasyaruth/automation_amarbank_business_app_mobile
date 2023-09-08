@@ -121,6 +121,13 @@ module.exports = {
     I.hasAttribute('disable');
   },
 
+  //multiple entry card
+  async multipleEntryPointSliderCard() {
+    let locator1 = 'this.cards.cardOffer[@text = "Tanda Tangan Sebelum:"]';
+    let locator2 = 'this.cards.cardOffer[@text = "Setujui Pinjaman Sebelum:"]';
+    I.swipeTo(locator1, locator2, 'right', 30, 200, 800);
+  },
+
   //History Page
   goToHistory() {
     I.seeElement(this.buttons.buttonHistory);

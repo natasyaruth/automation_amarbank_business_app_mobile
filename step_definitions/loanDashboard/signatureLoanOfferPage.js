@@ -60,6 +60,29 @@ Then('I cannot access detail limit offer card', () => {
     loanDashboardPage.validateOfferCardDisable();
 });
 
+// Scenario: Validate Slider After Card Added
+Given('I got a card for another loan limit offer card from system', () => {
+
+});
+When('I access loan business in main dashboard for checking the addition card', () => {
+    loanDashboardPage.validateSignatureCard();
+});
+Then('I should slide the card section', () => {
+    loanDashboardPage.multipleEntryPointSliderCard();
+});
+
+// Scenario: Back to The Previous Dashboard
+Given('I am on the loan limit offer card', () => {
+    loanDashboardPage.multipleEntryPointSliderCard();
+});
+When('I back to the previous page', () => {
+    loanDashboardPage.clickButtonBack();
+});
+
+Then('I should see previous page', () => {
+
+});
+
 
 
 
