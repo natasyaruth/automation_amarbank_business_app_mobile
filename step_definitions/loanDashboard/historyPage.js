@@ -52,7 +52,7 @@ Then('I should see history "Tagihan"', () => {
 
 });
 
-//Scenario: Access History Limit Dashboard For 'Dalam Proses' Bar
+//Scenario: Access History Limit Dashboard For Status On Process
 Given('I have been access history loan limit to see status "Dalam Proses"', () => {
     loanDashboardPage.goToHistory();
 });
@@ -63,7 +63,7 @@ Then('I should see history limit on process', () => {
 
 });
 
-//Scenario: Access History Limit Dashboard For 'Aktif' Bar
+//Scenario: Access History Limit Dashboard For Status Active
 Given('I have been access history loan limit to see status "Aktif"', () => {
     loanDashboardPage.goToHistory();
 });
@@ -74,7 +74,7 @@ Then('I should see history limit active', () => {
 
 });
 
-//Scenario: Access History Limit Dashboard For 'Selesai' Bar
+//Scenario: Access History Limit Dashboard For Status Done
 Given('I have been access history loan limit to see status "Selesai"', () => {
     loanDashboardPage.goToHistory();
 });
