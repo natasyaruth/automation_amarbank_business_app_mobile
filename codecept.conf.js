@@ -65,6 +65,8 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
+
+    forgotPasswordPage: "./pages/forgotPassword.js",
   },
   mocha: {},
   bootstrap: null,

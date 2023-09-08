@@ -25,4 +25,8 @@ module.exports = {
     openCardEmail(){
         I.click(this.cards.email);
     },
+    closeCallCenter(){
+        I.click(this.buttons.close);
+        I.waitForInvisible(this.buttons.close, 5);
+    }
 }

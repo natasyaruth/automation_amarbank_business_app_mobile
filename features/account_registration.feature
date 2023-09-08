@@ -8,11 +8,11 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | John Doe           |
-      | email           | john.doe@email.com |
-      | mobileNumber    | 85984421230        |
-      | password        | 1234Test           |
-      | confirmPassword | 1234Test           |
+      | fullName        | John Doe            |
+      | email           | ruth.test@email.com |
+      | mobileNumber    | 87911921277         |
+      | password        | 1234Test            |
+      | confirmPassword | 1234Test            |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
@@ -163,7 +163,7 @@ Feature: Account registration
     When I click link privacy and policy
     Then I will directing to web view privacy and policy
 
-  @C75465
+  @registration_1 @C75465
   Scenario: Access call center on page registration
     Given I am a customer want to access menu registration
     When I click call center
@@ -219,7 +219,7 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567877        |
+      | mobileNumber    | 81234567870        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I verifying my phone number by entering the wrong code
@@ -230,45 +230,56 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81230067866        |
+      | mobileNumber    | 89994567866        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I let the otp code expire
     And I verifying my phone number by entering the code sent to me
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
 
-  @C76009
+  @verification_phonenumber @C76009
   Scenario: Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567855        |
+      | mobileNumber    | 88844568672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I verifying my phone number by entering the wrong code five times
-    Then I can't filled the OTP field
-    And I should be notified that I can reverify the phone number tomorrow
+    Then I should be notified that I can reverify the phone number tomorrow
+
+  @verification_phonenumber @C76010
+  Scenario: Create account with wrong code otp four times then input valid code
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya        |
+      | email           | ruth@trash-mail.com |
+      | mobileNumber    | 81230057898         |
+      | password        | Test1234            |
+      | confirmPassword | Test1234            |
+    When I verifying my phone number by entering the wrong code four times
+    And I verifying my phone number by entering the code sent to me
+    Then I will directing to page verification email
 
   @change_phonenumber
   Scenario: Create account with phone number has been updated on the verification page
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81293655100        |
+      | mobileNumber    | 81240455100        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I choose change phonenumber
-    And I change my phonenumber into '89561122178'
+    And I change my phonenumber into '89577322178'
     And I resend the OTP
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
- 
+
   @change_phonenumber
   Scenario: Change phonenumber with old phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567892        |
+      | mobileNumber    | 89834567892        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I choose change phonenumber
@@ -280,32 +291,20 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 81234567550        |
+      | mobileNumber    | <Phone Number>     |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I choose change phonenumber
     And I filling new phonenumber with '<Value>'
     Then I should see message error '<Message>' in the below of field new phonenumber
     Examples:                                                                 ❸
-      | testRailTag | Value         | Message                                                       |
-      |             | 89561r12367   | Nomor handphone wajib diisi                                   |
-      |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      |             | 9678995676    | Nomor handphone tidak sesuai format                           |
-      |             | 8678 995676   | Nomor handphone wajib diisi                                   |
-      |             |               | Nomor handphone wajib diisi                                   |
-
-  @change_phonenumber @C76010
-  Scenario: Create account with wrong code otp four times then input valid code
-    Given I am a customer had been registering the account with the following details:
-      | fullName        | Ruth Natasya        |
-      | email           | ruth@trash-mail.com |
-      | mobileNumber    | 81234457898         |
-      | password        | Test1234            |
-      | confirmPassword | Test1234            |
-    When I verifying my phone number by entering the wrong code four times
-    And I verifying my phone number by entering the code sent to me
-    Then I will directing to page verification email
+      | testRailTag | Value         | Message                                                       | Phone Number |
+      |             | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
+      |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
+      |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
+      |             | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
+      |             | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
+      |             |               | Nomor handphone wajib diisi                                   | 81234567892  |
 
   @change_phonenumber
   Scenario: Back to page Verification phonenumber from page change phonenumber
@@ -318,3 +317,109 @@ Feature: Account registration
     When I choose change phonenumber
     And I click button back in the header page
     Then I will direct to page verification phonenumber
+
+  @verification_phonenumber @C76011
+  Scenario: First attempt resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81193628993        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I get my first OTP
+    And I resend the OTP
+    Then I will get new OTP different with my first OTP
+    And I will see attempt left '1/5'
+
+  @verification_phonenumber @C76012
+  Scenario: Second attempt resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 88793628993        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    And I've requested OTP '1' times
+    When I get my first OTP
+    And I resend the OTP
+    Then I will get new OTP different with my first OTP
+    And I will see attempt left '2/5'
+
+  @verification_phonenumber @C76013
+  Scenario: Third attempt resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 84493628993        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    And I've requested OTP '2' times
+    When I get my first OTP
+    And I resend the OTP
+    Then I will get new OTP different with my first OTP
+    And I will see attempt left '3/5'
+
+  @verification_phonenumber @C76014
+  Scenario: Fourth attempt resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81293508106        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    And I've requested OTP '3' times
+    When I get my first OTP
+    And I resend the OTP
+    Then I will get new OTP different with my first OTP
+    And I will see attempt left '4/5'
+
+  @verification_phonenumber @C76015
+  Scenario: Fifth attempt resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81273598106        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    And I've requested OTP '4' times
+    When I get my first OTP
+    And I resend the OTP
+    Then I will get new OTP different with my first OTP
+    And I will see attempt left '5/5'
+
+  @verification_phonenumber @C76016
+  Scenario: Resend OTP more than five times
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 89561339239        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    And I've requested OTP '5' times
+    When I resend the OTP
+    Then I should be notified that I can reverify the phone number tomorrow
+    And I cannot change my phonenumber
+
+  @verification_phonenumber
+  Scenario: Verify state count attempt error when try to resend OTP
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 89561338639        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |  
+    When I verifying my phone number by entering the wrong code four times  
+    And I resend the OTP
+    And I verifying my phone number by entering the wrong code four times
+    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
+
+  @verification_email @C80855
+  Scenario: Resend email verification
+    Given I am a customer had been registering and verify phonenumber with following details:
+      | fullName        | Ruth Natasya       |
+      | email           | fakemail@email.com |
+      | mobileNumber    | 81293697203        |
+      | password        | Test1234           |
+      | confirmPassword | Test1234           |
+    When I resend email verification
+    Then I will notify that resend email is successfully
