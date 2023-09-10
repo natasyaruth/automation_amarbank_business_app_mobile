@@ -13,29 +13,29 @@ Feature: History Page
         And login with registered account
         Then I successed go to dashbord
 
-    Scenario: Access History Limit Dashboard
-        Given I have been access loan dashboard to see history loan
-        When I am accessing history
-        Then History loan page will be showed
+    Scenario: Access History Dashboard For "Limit" Bar
+        Given I have been access history loan to see menu "Limit"
+        When I access menu bar "Limit"
+        Then I should see history "Limit"
 
-    Scenario: Access History Dashboard For 'Pencairan' Bar
-        Given I have been access history loan to see menu 'Pencairan'
-        When I access menu bar 'Pencairan'
-        Then I should see history 'Pencairan'
+    Scenario: Access History Dashboard For "Pencairan" Bar
+        Given I have been access history loan to see menu "Pencairan"
+        When I access menu bar "Pencairan"
+        Then I should see history "Pencairan"
 
-    Scenario: Access History Dashboard For 'Limit' Bar
-        Given I have been access history loan to see menu 'Limit'
-        When I access menu bar 'Limit'
-        Then I should see history 'Limit'
+    Scenario: Access History Dashboard For "Limit" Bar
+        Given I have been access history loan to see menu "Limit"
+        When I access menu bar "Limit"
+        Then I should see history "Limit"
 
-    Scenario: Access History Dashboard For 'Tagihan' Bar
-        Given I have been access history loan to see menu 'Tagihan'
-        When I access menu bar 'Tagihan'
-        Then I should see history 'Tagihan'
+    Scenario: Access History Dashboard For "Tagihan" Bar
+        Given I have been access history loan to see menu "Tagihan"
+        When I access menu bar "Tagihan"
+        Then I should see history "Tagihan"
 
     Scenario: Access History Limit Dashboard For Status On Process
-        Given I have been access history loan limit to see status 'Dalam Proses'
-        When I access menu bar limit with status 'Dalam Proses'
+        Given I have been access history loan limit to see status "Dalam Proses"
+        When I access menu bar limit with status "Dalam Proses"
         Then I should see history limit on process
 
     Scenario: Access History Limit Dashboard For Status Active
@@ -44,6 +44,21 @@ Feature: History Page
         Then I should see history limit active
 
     Scenario: Access History Limit Dashboard For Status Done
-        Given I have been access history loan limit to see status 'Selesai'
-        When I access menu bar limit with status 'Selesai'
+        Given I have been access history loan limit to see status "Selesai"
+        When I access menu bar limit with status "Selesai"
         Then I should see history limit done
+
+    Scenario: Access History Loan Disbursement Dashboard For All Status
+        Given I have been access history of loan disbursement to see status "Semua"
+        When I access menu bar of loan disbursement with status "Semua"
+        Then I should see all history of disbursement
+
+    Scenario: Access History Loan Disbursement For Status "Kirim PDC"
+        Given I have been access history of loan disbursement to see status "Kirim PDC"
+        When I access menu bar of loan disbursement with status "Kirim PDC"
+        Then I should see history of "Kirim PDC"
+
+    Scenario: Access History Loan Disbursement For Status "Menunggu Konfirmasi"
+        Given I have been access history of loan disbursement to see status "Menunggu Konfirmasi"
+        When I access menu bar of loan disbursement with status "Menunggu Konfirmasi"
+        Then I should see history of "Menunggu Konfirmasi"

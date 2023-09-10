@@ -23,6 +23,8 @@ module.exports = {
 
   tabs: {
     tabLimit: "~tabLimit",
+    tabDisbursement: '~tabDisbursement',
+    tabBills: '~tabBills',
 
   },
 
@@ -135,9 +137,43 @@ module.exports = {
   },
 
   validateHistoryPage() {
+    I.seeElement(this.tabs.tabLimit);
     I.seeElement(this.filters.filterByOnActive);
     I.seeElement(this.filters.filterByOnProcess);
     I.seeElement(this.filters.filterbyOnDone);
+  },
+
+  goToTabLimit() {
+    I.seeElement(this.tabs.tabLimit);
+    I.click(this.tabs.tabLimit);
+  },
+
+  validateTabLimit() {
+    I.seeElement(this.filters.filterByOnProcess);
+    I.seeElement(this.filters.filterByOnActive);
+    I.seeElement(this.filters.filterbyOnDone);
+  },
+
+  goToTabDisbursement() {
+    I.seeElement(this.tabs.tabDisbursement);
+    I.click(this.tabs.tabDisbursement);
+  },
+
+  validateTabDisbursement() {
+    I.seeElement(this.filters);
+    I.seeElement(this.filters);
+    I.seeElement(this.filters);
+  },
+
+  goToTabBills() {
+    I.seeElement(this.tabs.tabBills);
+    I.click(this.tabs.tabBills);
+  },
+
+  validateTabBills() {
+    I.seeElement(this.filters);
+    I.seeElement(this.filters);
+    I.seeElement(this.filters);
   },
 
   goToStatusInProcessLimitHistory() {
@@ -145,13 +181,53 @@ module.exports = {
     I.click(this.filters.filterByOnProcess);
   },
 
+  validateStatusInProcessLimitHistory() {
+    I.seeElement(this.filters.filterByOnProcess);
+  },
+
   goToStatusActiveLimitHistory() {
     I.seeElement(this.filters.filterByOnActive);
     I.click(this.filters.filterByOnActive);
   },
 
-  goToStatusDoneLimitHistory() {
+  validateStatusActiveLimitHistory() {
     I.seeElement(this.filters.filterByOnActive);
+  },
+
+  goToStatusDoneLimitHistory() {
+    I.seeElement(this.filters.filterbyOnDone);
     I.click(this.filters.filterbyOnDone);
   },
+
+  validateStatusDoneLimitHistory() {
+    I.seeElement(this.filters.filterbyOnDone);
+  },
+
+  goToAllStatusDisbursementHistory() {
+    I.seeElement(this.filters);
+    I.click(this.filters);
+  },
+
+  validateAllStatusDisbursementHistory() {
+    I.seeElement(this.filters);
+  },
+
+  goToStatusSendPDCofDisbursementHistory() {
+    I.seeElement(this.filters);
+    I.click(this.filters);
+  },
+
+  validateStatusSendPDCofDisbursementHistory() {
+    I.seeElement(this.filters);
+  },
+
+  goToWaitingConfirmationStatusDisbursementHistory() {
+    I.seeElement(this.filters);
+    I.click(this.filters);
+  },
+
+  validateWaitingConfirmationStatusDisbursementHistory() {
+    I.seeElement(this.filters);
+  },
+
 }
