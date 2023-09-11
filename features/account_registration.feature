@@ -59,10 +59,10 @@ Feature: Account registration
     Then I should see message error '<Message>' in the below of field 'fullName'
     Examples:                                                                 ❸
       | testRailTag | Value | Message                  |
-      # | @C75428     | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      # | @C75429     | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      # | @C75430     | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      # | @C75431     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      | @C75428     | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      | @C75429     | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      | @C75430     | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      | @C75431     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       | @C80637     |       | Nama lengkap wajib diisi |
 
   @registration_1 @scenario_negative_field_email_with_invalid_value
