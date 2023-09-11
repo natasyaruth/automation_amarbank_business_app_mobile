@@ -1,5 +1,5 @@
-const loanDashboardPage = require("../pages/loanDashboard");
-const { fields } = require("../pages/login");
+// const loanDashboardPage = require("../pages/loanDashboard");
+// const { fields } = require("../pages/login");
 
 const { I, loginPage, loanDashboardPage } = inject();
 

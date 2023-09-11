@@ -1,8 +1,9 @@
-Feature: Loan Dashboard
-        In order to test Loan Dashboard page
+@LoanDash
+Feature: Loan DashboardIn order to test Loan Dashboard page
         As a customer
         I am able to approve limit offers
-        Background: Login with registered account
+
+        Background:
                 Given I am registered customer with following details:
                         | userID   | ruthad74 |
                         | password | Test1234 |
@@ -12,6 +13,7 @@ Feature: Loan Dashboard
                 And login with registered account
                 Then I successed go to dashbord
 
+@C32312312 @LoanDash
         Scenario: Validate design of loan dashboard offer
                 Given I got a loan limit offer from system
                 When I access loan business in main dashboard
