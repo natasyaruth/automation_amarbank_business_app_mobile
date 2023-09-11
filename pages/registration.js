@@ -62,15 +62,6 @@ module.exports = {
   fillFieldRegistration(fieldName, txtValue){
 
     I.seeElement(this.fields[fieldName]);
-
-    if (
-      this.fields[fieldName] === "" ||
-      this.fields[fieldName] === null ||
-      this.fields[fieldName] === "-"
-    ) {
-      I.clearField(this.fields[fieldName]);
-      return;
-    }
     I.setText(this.fields[fieldName], txtValue);
   },
 

@@ -27,4 +27,12 @@ module.exports = {
       otp: response.data.otp,
     };
   },
+
+  async getUserID(email){
+    const response = await I.sendGetRequest("https://dev-smb-user.otoku.io/api/v1/user/find/"+email);
+
+    I.seeResponseCodeIsSuccessful();
+
+    return response.data[0];
+  },
 }
