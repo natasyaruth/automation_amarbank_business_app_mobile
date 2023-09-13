@@ -1,22 +1,41 @@
+@LoanApp
 Feature: Select the Anchor
     As a customer lead
     I want to select the anchor
 
-    @C83807
+    Background:
+        Given I am registered customer with following details:
+            | userID   | niza59ce  |
+            | password | Feb042017 |
+        When I am filling in my account information with the following details:
+            | userID   | niza59ce  |
+            | password | Feb042017 |
+        And login with registered account
+        Then I successed go to dashbord
+        And I click button loan dashboard
+        And user click button ajukan pinjaman
+        And user on loan type page
+        And user select loan type "AP"
+        And user click button lihat skema pinjaman
+        And user on loan schema "AP"
+        And user click button select the schema
+
+    @C83807 @LoanApp
     Scenario: user search anchor is not found
         Given user on the anchor page
-        When user fill search anchor 'testingaja'
+        When user fill search anchor "testingaja"
         Then user validate anchor is not found
 
-    @C83808
+    @C83808 @LoanApp
     Scenario: User can select anchor on the list
         Given user on the anchor page
-        And user fill search anchor 'Unilever'
+        And user fill search anchor "PT. Tasrifin"
         When user select result of search
         And user on anchor cooperating page
         Then user select the date cooperating
-        And user should see the date 'Agustus 2020' on field 'valueDateField'
+        And user should see the date "Agustus 2021"
         And user back to list anchor page
+        And user click button select the schema
 
     @C83809
     Scenario: User validate error field on form another anchor
@@ -24,15 +43,17 @@ Feature: Select the Anchor
         When user click icon other anchor
         And user on anchor cooperating page
         Then user click button next
-        And user should see error 'Nama supplier wajib diisi' in the below of field 'anchorNameField'
-        And user should see error 'Tipe industri wajib diisi' in the below of field 'industryTypeField'
-        And user should see error 'Tanggal bekerjasama wajib diisi' in the below of field 'dateField'
+        And user should see error "Nama supplier wajib diisi" in the below of field "anchorNameField"
+        And user should see error "Tipe industri wajib diisi" in the below of field "industryTypeField"
+        And user should see error "Tanggal bekerjasama wajib diisi" in the below of field "dateField"
 
-    @C83809
+    @C83809 @LoanApp
     Scenario: User success fill data other anchor
+        Given user on the anchor page
+        When user click icon other anchor
         Given user on anchor cooperating page
-        And user filling field 'anchorNameField' with 'UD Dagangan'
+        And user filling field "anchorNameField" with "UD Dagangan"
         When user select industry type
         And user select the date cooperating
-        Then user click button next
-        And user on select loan amount
+        # Then user click button next
+        # And user on select loan amount

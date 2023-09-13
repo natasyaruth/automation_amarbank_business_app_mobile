@@ -98,7 +98,7 @@ module.exports = {
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
   clickBtnOnBoardingPage(){
-    I.wait(3);
+    I.wait(5);
     I.click(this.buttons.onboardingPage);
   }
 }

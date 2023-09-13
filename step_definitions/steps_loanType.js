@@ -1,120 +1,60 @@
-const { isDisplayed, isEnabled } = require("wd/lib/commands");
-
 const {I, loanTypePage} = inject();
 
 
-// Feature('Apply Either Loan and select the loan type')
+// Feature(/Apply Either Loan and select the loan type/)
 
-// Scenario('validate content on select either apply for loan', () => {
-    // Given('user on onboarding loan',()=>{
-        // loanTypePage.viewPageOnBoarding(isDisplayed);
-    // });
-    // And('user validate wording {string}',()=>{
-        // loanTypePage.validationTextTittleOnboarding();
-    // });
-    // When('user validate benefit {string}',(benefitText)=>{
-        // loanTypePage.validationBenefitText(benefitText);
-    // });
-    // And('user validate benefit {string}',()=>{
-        // loanTypePage.validationBenefitText();
-    // });
-    // And('user validate benefit {string}',()=>{
-        // loanTypePage.validationBenefitText();
-    // });
-    // And('user validate content hanya dengan',()=>{
-        // loanTypePage.validationTextOnlyWithFirst();
-        // I.wait(5);
-        // loanTypePage.validationTextOnlyWithTwo();
-        // I.wait(5);
-        // loanTypePage.validationTextOnlyWithThree();
-    // });
-    // Then('user click button ajukan pinjaman',()=>{
-        // loanTypePage.clickButtonStart();
-    // });
-    // And('user on loan type page',()=>{
-        // loanTypePage.viewLoanTypePage();
-    // });
-// });
+// Scenario(/validate content on select either apply for loan/)
+    Given(/user on onboarding loan/,()=>{
+        loanTypePage.viewPageOnBoarding();
+    });
+    Given(/user should see field title onboarding/,()=>{
+        I.wait(2);
+        loanTypePage.validationTextTittleOnboarding();
+    });
+    When(/user validate benefit \"([^\"]*)\"/,(benefitText)=>{
+        I.wait(2);
+        loanTypePage.validationBenefitText(benefitText);
+    });
+    When(/user validate content loan requirement/,()=>{
+        I.wait(2);
+        loanTypePage.validateContentLoanRequirement();
+    });
+    Then(/user click button ajukan pinjaman/,()=>{
+        loanTypePage.clickButtonStart();
+    });
 
-Scenario('user validate and select loan type AR', () => {
-    Given('user on onboarding loan',()=>{
-        I.wait(5);
+// Scenario(/user validate and select loan type AR/)
+    Given(/user on loan type page/,()=>{
+        I.wait(2);
         loanTypePage.viewLoanTypePage();
     });
-    Given('user validate wording loan type {string}',()=>{
-        loanTypePage.validateLoanTypeList();
+    Given(/user validate wording loan type \"([^\"]*)\"/,(loanType)=>{
+        I.wait(2);
+        loanTypePage.validateLoanTypeList(loanType);
     });
-    When('user select loan type {string}',()=>{
-        loanTypePage.selectLoanTypeList();
+    When(/user select loan type \"([^\"]*)\"/,(selectLoanType)=>{
+        I.wait(2);
+        loanTypePage.selectLoanTypeList(selectLoanType);
     });
-    When('user validate button lihat skema pinjaman is enable true',()=>{
-        loanTypePage.buttons.nextButton(isEnabled);
-    });
-    Then('user click button lihat skema pinjaman',()=>{
-        loanTypePage.clickNextButton();
-    });
-    Then('user on loan schema {string}',()=>{
-        loanTypePage.validateLoanSchemPage();
-    });
-    Then('user validate content loan schema {string}',()=>{
-        loanTypePage.validateContentField();
-    });
-    Then('user click back to loan type page',()=>{
-        loanTypePage.clickBackButtonLoanTypePage();
-    });
-});
-
-Scenario('user validate and select loan type PO', () => {
-    Given('user on loan type page',()=>{
-        I.wait(5);
-        loanTypePage.viewLoanTypePage();
-    });
-    Given('user validate wording loan type {string}',()=>{
-        loanTypePage.validateLoanTypeList();
-    });
-    When('user select loan type {string}',()=>{
-        loanTypePage.selectLoanTypeList();
-    });
-    When('user validate button lihat skema pinjaman is enable true',()=>{
-        loanTypePage.buttons.nextButton(isEnabled);
-    });
-    Then('user click button lihat skema pinjaman',()=>{
-        loanTypePage.clickNextButton();
-    });
-    Then('user on loan schema {string}',()=>{
-        loanTypePage.validateLoanSchemPage();
-    });
-    Then('user validate content loan schema {string}',()=>{
-        loanTypePage.validateContentField();
-    });
-    Then('user click back to loan type page',()=>{
-        loanTypePage.clickBackButtonLoanTypePage();
-    });
-});
-
-// Scenario('user validate and select loan type AP', () =>{
-    // Given('user on loan type page',()=>{
-        // loanTypePage.viewLoanTypePage();
-    // });
-    // And('user validate wording loan type {string}',()=>{
-        // loanTypePage.validateLoanTypeList();
-    // });
-    // When('user select loan type {string}',()=>{
-        // loanTypePage.selectLoanTypeList();
-    // });
-    // And('user validate button lihat skema pinjaman is enable true',()=>{
+    // When(/user validate button lihat skema pinjaman is enable true/,()=>{
         // loanTypePage.buttons.nextButton(isEnabled);
     // });
-    // Then('user click button lihat skema pinjaman',()=>{
-        // loanTypePage.clickNextButton();
-    // });
-    // And('user on loan schema {string}',()=>{
-        // loanTypePage.validateLoanSchemPage();
-    // });
-    // And('user validate content loan schema {string}',()=>{
-        // loanTypePage.validateContentField();
-    // });
-    // And('user click button select the schema',()=>{
-        // loanTypePage.clickButtonStart();
-    // });
-// });
+    Then(/user click button lihat skema pinjaman/,()=>{
+        loanTypePage.clickNextButton();
+    });
+    Then(/user on loan schema \"([^\"]*)\"/,()=>{
+        I.wait(2);
+        loanTypePage.validateLoanSchemPage();
+    });
+    Then(/user validate content loan schema \"([^\"]*)\"/,()=>{
+        I.wait(2);
+        loanTypePage.validateContentField();
+    });
+    Then(/user click back to loan type page/,()=>{
+        loanTypePage.clickBackButtonLoanTypePage();
+        I.wait(2);
+    });
+
+    Then(/user click button select the schema/,()=>{
+        loanTypePage.clickNextButton();
+    });

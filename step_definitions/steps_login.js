@@ -28,6 +28,7 @@ When("login with registered account",()=>{
 Then("I successed go to dashbord",()=>{
     ///dashboard still on development from mobile
     ///I.see('Selamat, akun Anda berhasil dibuat')
+    I.wait(2);
 });
 
 Given("I am unregistered customer try to regist with unregistered account", () => {
