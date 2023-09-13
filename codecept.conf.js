@@ -77,7 +77,7 @@ exports.config = {
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js", 
             "./step_definitions/steps_login.js",
-            "./step_definitions/steps_forgotpassword.js",],
+            "./step_definitions/steps_forgotPassword.js",],
   },
   plugins: {
     screenshotOnFail: {

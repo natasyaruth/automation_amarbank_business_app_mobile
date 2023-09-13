@@ -1,9 +1,9 @@
 const {
     I,
-    loginPage,
+    welcomePage,
     registrationPage,
     forgotPasswordPage,
-    welcomePage, } = inject();
+    loginPage,} = inject();
 
 const globalVar = {
     password: "",
@@ -30,7 +30,7 @@ Given("I am a registered customer with following details:", (table) => {
     welcomePage.clickButtonLogin();
 });
 
-When("I filling in my account information with the following details:",
+When("I filling in form login with the following details:",
     (table) => {
         const account = table.parse().rowsHash();
         globalVar.password = account["password"];

@@ -8,7 +8,7 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | rutha013 |
       | password | 1234Test |
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | rutha013 |
       | password | 1234Test |
     And I click login
@@ -17,7 +17,7 @@ Feature: Account login
   @login @C76892
   Scenario: Login with unregistered account
     Given I am an unregistered customer trying to login
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | LOLO1212 |
       | password | Pass1234 |
     And I click login
@@ -28,7 +28,7 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | JOHN12j3 |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   |          |
       | password | Pass1234 |
     And I click login
@@ -39,7 +39,7 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | JOHN12j3 |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | JOHN12j3 |
       | password |          |
     And I click login
@@ -50,7 +50,7 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | JOHN12j3 |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   |  |
       | password |  |
     And I click login
@@ -62,7 +62,7 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | ruth55ba |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | ruth55ba |
       | password | Pass1234 |
     And I click login
@@ -71,10 +71,10 @@ Feature: Account login
   @login @C75510
   Scenario: Login with wrong password twice
     Given I am a customer who has failed to login '1' times with following details:
-      | userID   | ruth5010 |
+      | userID   | natabe66 |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
-      | userID   | ruth5010 |
+    When I filling in form login with the following details:
+      | userID   | natabe66 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'  
@@ -82,10 +82,10 @@ Feature: Account login
   @login @C75511
   Scenario: Login with wrong password three times
     Given I am a customer who has failed to login '2' times with following details:
-      | userID   | ruth44f1 |
+      | userID   | ruth06dc |
       | password | Pass1234 |
-    When I filling in my account information with the following details:
-      | userID   | ruth44f1 |
+    When I filling in form login with the following details:
+      | userID   | ruth06dc |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Akun Anda Terblokir' with button 'close'    
@@ -93,7 +93,7 @@ Feature: Account login
   @login @C75503
   Scenario: User want to see their password
     Given I am customer that already on page login
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | JOHN12j3 |
       | password | Pass1234 |
     And I click icon eye password
@@ -102,7 +102,7 @@ Feature: Account login
   @login @C75504
   Scenario: User don't want to see their password
     Given I am customer that already on page login
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | JOHN12j3 |
       | password | Pass1234 |
     And I click icon eye password twice
@@ -132,7 +132,7 @@ Feature: Account login
   @login @C75508
   Scenario: User want to remember their User ID
     Given I am customer that already on page login
-    When I filling in my account information with the following details:
+    When I filling in form login with the following details:
       | userID   | rutha013 |
       | password | 1234Test |
     And I click checkbox remember me
