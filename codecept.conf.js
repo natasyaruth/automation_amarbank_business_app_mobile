@@ -82,7 +82,8 @@ exports.config = {
     steps: ["./step_definitions/steps.js", 
     "./step_definitions/steps_login.js", 
     "./step_definitions/steps_loanType.js",
-    "./step_definitions/steps_selectAnchor.js"
+    "./step_definitions/steps_selectAnchor.js",
+    "./step_definitions/steps_loanAmountTenor.js"
   ],
   },
   plugins: {

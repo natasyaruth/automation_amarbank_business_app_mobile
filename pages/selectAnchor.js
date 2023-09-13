@@ -1,16 +1,12 @@
 const { I } = inject();
 
-module.exports = function(){
-
-}
-
 module.exports = {
     textField: {
         textFieldAnchorPage: "~textTitlePage",
         textFieldTitleAnchorNotFound: "~textTitleErrorPlatform",
         textFieldSubTitleAnchorNotFound: "~textMessageErrorPlatform",
         textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'},
-        textFieldSelectLoanAmountPage: ""
+        textFieldSelectLoanAmountPage: {xpath: '//android.widget.TextView[contains(@text, "Berapa kebutuhan pinjaman yang Anda butuhkan?")]'}
     },
     fields: {
         searchField: "~textFieldSearch",
@@ -37,9 +33,9 @@ module.exports = {
         otherAnchor: "~buttonAdd"
     },
     messageErrorFields: {
-        msgErrorAnchorName: "",
-        msgErrorIndustryType: "",
-        msgErrorDateCooperating: ""
+        anchorNameField: "~textMsgNameError",
+        industryTypeField: "~textMsgTypeError",
+        dateField: "~textMsgStartDateError"
     },
 
     // Function for call the id component
@@ -66,6 +62,7 @@ module.exports = {
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
     },
     viewLoanAmountPage(){
+        I.wait(5);
         I.seeElement(this.textField.textFieldSelectLoanAmountPage);
     },
     selectDateCooperating(){
@@ -80,7 +77,7 @@ module.exports = {
     },
     clickBackButtonToListAcnhor(){
         I.wait(5);
-        I.click(this.fields.backBtn);
+        I.click(this.buttons.backBtn);
     },
     clickIconOtherAnchor(){
         I.wait(5);

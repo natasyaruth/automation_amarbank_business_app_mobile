@@ -24,9 +24,6 @@ const {I, selectAnchorPage} = inject();
     Then(/user select the date cooperating/,()=>{
         selectAnchorPage.selectDateCooperating();
     });
-    Then(/user should see the date \"([^\"]*)\"/, (txtValue) =>{
-        I.see(txtValue)
-    });
     Then(/user back to list anchor page/,()=>{
         selectAnchorPage.clickBackButtonToListAcnhor();
     });

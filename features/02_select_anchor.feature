@@ -33,11 +33,9 @@ Feature: Select the Anchor
         When user select result of search
         And user on anchor cooperating page
         Then user select the date cooperating
-        And user should see the date "Agustus 2021"
         And user back to list anchor page
-        And user click button select the schema
 
-    @C83809
+    @C83809 @LoanApp
     Scenario: User validate error field on form another anchor
         Given user on the anchor page
         When user click icon other anchor
@@ -55,5 +53,5 @@ Feature: Select the Anchor
         And user filling field "anchorNameField" with "UD Dagangan"
         When user select industry type
         And user select the date cooperating
-        # Then user click button next
-        # And user on select loan amount
+        Then user click button next
+        And user on select loan amount

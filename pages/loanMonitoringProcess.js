@@ -2,9 +2,11 @@ const { I } = inject();
 
 module.exports = {
     textField: {
-        loanProcessPage: ""
+        loanProcessPage: "",
     },
     fields: {
+        titleFieldSuccessCompleteData: {xpath: '//android.widget.TextView[contains(@text, "Terima kasih telah melengkapi Data Diri")]'},
+        subTitleFieldSuccessCompleteData: {xpath: '//android.widget.TextView[contains(@text, "Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pengajuan pinjaman")]'},
         titleDocumentField: "",
         statusCheckingDocumentField: "",
         wordingDocumentField: "",
@@ -29,5 +31,12 @@ module.exports = {
         }
         I.seeElement(this.fields[fieldName]);
         return await I.grabTextFromField(this.fields[fieldName]);
-    }
+    },
+    async getTextFieldSuccessCompleteData (fieldName) {
+        if(Object.keys(this.fields).indexOf(fieldName) === -1){
+          throw new Error('Field ${fieldName} is not found');
+        }
+        I.seeElement(this.fields[fieldName]);
+        return await I.grabTextFrom(this.fields[fieldName]);
+    },
 }
