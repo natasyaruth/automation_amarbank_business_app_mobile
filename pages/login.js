@@ -13,7 +13,7 @@ module.exports = {
     callCenter: "~buttonCallCenter", 
     onboardingPage: {xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]'},
   },
-  messageErrorFields:{
+  messageErrorFields: {
     userID: "~textMsgErrorUserID",
     password: "~textMsgErrorPassword",
   },
@@ -39,17 +39,16 @@ module.exports = {
       I.hideDeviceKeyboard();
     });
   },
-  
-  fillFieldLogin(fieldName, txtValue){
 
+  fillFieldLogin(fieldName, txtValue) {
     I.seeElement(this.fields[fieldName]);
     I.click(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
     I.hideDeviceKeyboard();
   },
 
-  async getMessageErrorFieldLogin (fieldName) {
-    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+  async getMessageErrorFieldLogin(fieldName) {
+    if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
       throw new Error('Field ${fieldName} is not found');
     }
     I.seeElement(this.messageErrorFields[fieldName]);
@@ -60,45 +59,60 @@ module.exports = {
     I.click(this.buttons.login);
   },
 
-  clickReactivationButton(){
+  clickReactivationButton() {
     I.click(this.buttons.reactivation);
   },
 
-  clickClosePopUpButton(){
+  closeBottomSheet() {
     I.click(this.buttons.close);
   },
 
-  clickBackToOnboardingPage(){
+  clickBackToOnboardingPage() {
     I.click(this.buttons.back);
   },
 
-  clickIconEyePassword(){
+  clickIconEyePassword() {
     I.click(this.icon.eyePassword);
   },
 
-  clickIconCallCenter(){
+  clickIconCallCenter() {
     I.click(this.buttons.callCenter);
   },
 
-  clickGoToRegistrationPage(){
+  goToRegistrationPage() {
     I.click(this.link.registration);
   },
 
-  clickGoToForgotPasswordPage(){
+  goToForgotPasswordPage() {
     I.click(this.link.forgotPassword);
   },
 
-  clickLinkOnPage(linkName){
-    I.seeElement(this.link[linkName]);
-    I.click(this.link[linkName]);
-  },
-
-  clickBackToPageLogin(){
+  tryToLogin() {
     I.click(this.buttons.tryAgain);
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
+
   clickBtnOnBoardingPage(){
     I.wait(5);
     I.click(this.buttons.onboardingPage);
+  },
+
+  checkRememberMe() {
+    let stateCheckBox = I.grabAttributeFrom(this.checkbox.rememberMe, 'checked')
+    if (
+      stateCheckBox === "true") {
+      I.click(this.checkbox.rememberMe);
+    }
+    I.click(this.checkbox.rememberMe);
+    I.seeAttributesOnElements(
+      this.checkbox.rememberMe,
+      {
+        checked: "true"
+      }
+    );
+  },
+
+  async getValueUserID() {
+    return await I.grabTextFromField(this.fields.userID);
   }
 }

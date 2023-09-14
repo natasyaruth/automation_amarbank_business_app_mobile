@@ -71,7 +71,8 @@ exports.config = {
     loanTypePage: "./pages/loanType.js",
     selectAnchorPage: "./pages/selectAnchor.js",
     selectLoanAmountPage: "./pages/selectLoanAmountTenor.js",
-    loanMonitoringProcessPage: "./pages/loanMonitoringProcess.js"
+    loanMonitoringProcessPage: "./pages/loanMonitoringProcess.js",
+    forgotPasswordPage: "./pages/forgotPassword.js",
   },
   mocha: {},
   bootstrap: null,
@@ -85,7 +86,9 @@ exports.config = {
     "./step_definitions/steps_loanType.js",
     "./step_definitions/steps_selectAnchor.js",
     "./step_definitions/steps_loanAmountTenor.js",
-    "./step_definitions/steps_loanMonitoring.js"
+    "./step_definitions/steps_loanMonitoring.js",
+    "./step_definitions/steps_login.js",
+    "./step_definitions/steps_forgotPassword.js"
   ],
   },
   plugins: {

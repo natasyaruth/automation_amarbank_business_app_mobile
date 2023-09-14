@@ -1,3 +1,5 @@
+const { isOpen } = require("./otpConfirmation");
+
 const { I, loginPage } = inject();
 
 module.exports = {
@@ -14,14 +16,14 @@ module.exports = {
 
   loginWithUserId(userID, password, email){
     I.click(this.button.login);
-    I.waitForText("Masuk Akun", 10);
-    I.see("Selamat akun berhasil dibuat. Silakan masuk akun");
+    I.waitForText("Selamat akun berhasil dibuat. Silakan masuk akun", 10);
+    I.see("Masuk Akun");
     I.see("Gunakan User ID yang telah kami kirim ke e-mail:");
     I.see(email);
 
-    // I.fillField(loginPage.fields.userID, userID);
-    // I.fillField(loginPage.fields.password, password);
-    // I.click(loginPage.buttons.login);
+    I.fillField(loginPage.fields.userID, userID);
+    I.fillField(loginPage.fields.password, password);
+    I.click(loginPage.buttons.login);
   },
 
   async getEmailValue(){
@@ -31,5 +33,10 @@ module.exports = {
 
   clickResendEmailLink(){
     I.click(this.link.resendEmail);
-  }
+  },
+
+  isOpen(){
+    I.waitForElement(this.button.login, 15);
+    I.see("Verifikasi Email")
+  },
 }

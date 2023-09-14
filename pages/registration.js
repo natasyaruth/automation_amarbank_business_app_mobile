@@ -62,15 +62,6 @@ module.exports = {
   fillFieldRegistration(fieldName, txtValue){
 
     I.seeElement(this.fields[fieldName]);
-
-    if (
-      this.fields[fieldName] === "" ||
-      this.fields[fieldName] === null ||
-      this.fields[fieldName] === "-"
-    ) {
-      I.clearField(this.fields[fieldName]);
-      return;
-    }
     I.setText(this.fields[fieldName], txtValue);
   },
 
@@ -111,6 +102,7 @@ module.exports = {
   },
 
   clickCreateAccountButton() {
+    I.swipeUp(this.fields.confirmPassword, 500, 1000);
     I.click(this.buttons.createAccount);
   },
 
@@ -127,7 +119,7 @@ module.exports = {
   },
 
   goToLoginPage() {
-    I.swipeUp(this.buttons.createAccount, 10000, 3000);
+    I.swipeUp(this.fields.confirmPassword, 10000, 3000);
     I.click(this.links.login);
   },
 
