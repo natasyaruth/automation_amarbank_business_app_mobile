@@ -1,4 +1,3 @@
-
 Feature: History Page
     In order to test history loan page
     As a customer
@@ -13,12 +12,12 @@ Feature: History Page
             | password | Test1234 |
         And login with registered account
         Then I successed go to dashbord
-
-    Scenario: Access History Dashboard For "Limit" Bar
-        Given I have been access history loan to see menu "Limit"
+    @C1
+    Scenario: Access History Dashboard For Limit Bar
+        Given I have been access history loan to see menu Limit
         When I access menu bar "Limit"
         Then I should see history "Limit"
-
+@C2
     Scenario: Access History Dashboard For "Pencairan" Bar
         Given I have been access history loan to see menu "Pencairan"
         When I access menu bar "Pencairan"
@@ -44,6 +43,11 @@ Feature: History Page
         When I access menu bar limit with status "Aktif"
         Then I should see history limit active
 
+    Scenario: Validate Limit Active With Multiple Active Loan
+        Given I have been access history loan limit to see status user have more than one status active
+        When I access menu bar limit with status active
+        Then I should see more than one active limit loan
+
     Scenario: Access History Limit Dashboard For Status Done
         Given I have been access history loan limit to see status "Selesai"
         When I access menu bar limit with status "Selesai"
@@ -54,12 +58,12 @@ Feature: History Page
         When I access menu bar of loan disbursement with status "Semua"
         Then I should see all history of disbursement
 
-    Scenario: Access History Loan Disbursement For Status "Kirim PDC"
+    Scenario: Access History Loan Disbursement For Status Send PDC
         Given I have been access history of loan disbursement to see status "Kirim PDC"
         When I access menu bar of loan disbursement with status "Kirim PDC"
         Then I should see history of "Kirim PDC"
 
-    Scenario: Access History Loan Disbursement For Status "Menunggu Konfirmasi"
+    Scenario: Access History Loan Disbursement For Status Waiting Confirmation
         Given I have been access history of loan disbursement to see status "Menunggu Konfirmasi"
         When I access menu bar of loan disbursement with status "Menunggu Konfirmasi"
         Then I should see history of "Menunggu Konfirmasi"

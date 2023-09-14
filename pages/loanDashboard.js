@@ -13,18 +13,24 @@ module.exports = {
     buttonDisbursement: "~buttonDisbursement",
     buttonClose: "~buttonClose",
     buttonApprove: "~buttonApprove",
+    buttonPayBill: "~buttonPayBill",
 
   },
 
   cards: {
     cardOffer: "~cardOffer",
     cardActiveBill: "~cardActiveBill",
+    cardLimitAP: "~cardLimitAP",
+    cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
+    cardLimitAR: "cardLimitAR",
+    cardLimitARDirectLoan: "~cardLimitARDirectLoan",
+    cardLimitPO: "~cardLimitPO",
   },
 
   tabs: {
     tabLimit: "~tabLimit",
     tabDisbursement: '~tabDisbursement',
-    tabBills: '~tabBills',
+    tabBill: '~tabBill',
 
   },
 
@@ -32,11 +38,18 @@ module.exports = {
     filterByOnProcess: "~filterByOnProcess",
     filterByOnActive: "~filterByOnActive",
     filterbyOnDone: "~filterbyOnDone",
+    filterByAll: "~filterByAll",
+    filterBySendPDC: "~filterBySendPDC",
+    filterByWaitingConfirmation: "~filterByWaitingConfirmation",
+  },
+
+  checkBoxs: {
+    checkBoxInvoice: "~checkBoxInvoice",
   },
 
   clickButtonBack() {
     I.wait(2);
-    I.click(this.buttons.back);
+    I.click(this.buttons.buttonBack);
   },
 
   //Loan Dashboard
@@ -138,9 +151,14 @@ module.exports = {
 
   validateHistoryPage() {
     I.seeElement(this.tabs.tabLimit);
-    I.seeElement(this.filters.filterByOnActive);
-    I.seeElement(this.filters.filterByOnProcess);
-    I.seeElement(this.filters.filterbyOnDone);
+    I.seeElement(this.tabs.tabDisbursement);
+    I.seeElement(this.tabs.tabBill);
+    I.see("Dalam Proses");
+    I.see("Aktif");
+    I.see("Selesai");
+    // I.seeElement(this.filters.filterByOnActive);
+    // I.seeElement(this.filters.filterByOnProcess);
+    // I.seeElement(this.filters.filterbyOnDone);
   },
 
   goToTabLimit() {
@@ -160,20 +178,19 @@ module.exports = {
   },
 
   validateTabDisbursement() {
-    I.seeElement(this.filters);
-    I.seeElement(this.filters);
-    I.seeElement(this.filters);
+    I.seeElement(this.filters.filterByAll);
+    I.seeElement(this.filters.filterBySendPDC);
+    I.seeElement(this.filters.filterByWaitingConfirmation);
   },
 
-  goToTabBills() {
-    I.seeElement(this.tabs.tabBills);
-    I.click(this.tabs.tabBills);
+  goToTabBill() {
+    I.seeElement(this.tabs.tabBill);
+    I.click(this.tabs.tabBill);
   },
 
   validateTabBills() {
-    I.seeElement(this.filters);
-    I.seeElement(this.filters);
-    I.seeElement(this.filters);
+    I.seeElement(this.checkBoxs.checkBoxInvoice);
+    I.seeElement(this.buttons.buttonPayBill);
   },
 
   goToStatusInProcessLimitHistory() {
@@ -186,12 +203,17 @@ module.exports = {
   },
 
   goToStatusActiveLimitHistory() {
-    I.seeElement(this.filters.filterByOnActive);
-    I.click(this.filters.filterByOnActive);
+    // I.seeElement(this.filters.filterByOnActive);
+    //I.click(this.filters.filterByOnActive);
+    I.click("Aktif");
   },
 
   validateStatusActiveLimitHistory() {
     I.seeElement(this.filters.filterByOnActive);
+  },
+
+  validateMultipleStatusActive() {
+
   },
 
   goToStatusDoneLimitHistory() {
@@ -204,30 +226,53 @@ module.exports = {
   },
 
   goToAllStatusDisbursementHistory() {
-    I.seeElement(this.filters);
-    I.click(this.filters);
+    I.seeElement(this.filters.filterByAll);
+    I.click(this.filters.filterByAll);
   },
 
   validateAllStatusDisbursementHistory() {
-    I.seeElement(this.filters);
+    I.seeElement(this.filters.filterByAll);
   },
 
   goToStatusSendPDCofDisbursementHistory() {
-    I.seeElement(this.filters);
-    I.click(this.filters);
+    I.seeElement(this.filters.filterBySendPDC);
+    I.click(this.filters.filterBySendPDC);
   },
 
   validateStatusSendPDCofDisbursementHistory() {
-    I.seeElement(this.filters);
+    I.seeElement(this.filters.filterBySendPDC);
   },
 
   goToWaitingConfirmationStatusDisbursementHistory() {
-    I.seeElement(this.filters);
-    I.click(this.filters);
+    I.seeElement(this.filters.filterByWaitingConfirmation);
+    I.click(this.filters.filterByWaitingConfirmation);
   },
 
   validateWaitingConfirmationStatusDisbursementHistory() {
-    I.seeElement(this.filters);
+    I.seeElement(this.filters.filterByWaitingConfirmation);
   },
 
+  validateLoanTypeofLoanAP() {
+    I.seeElement(this.cards.cardLimitAP);
+    I.see('Invoice Menunggu Dibayar');
+    I.see('Bayar Invoice');
+  },
+
+  validateLoanTypeofLoanAPDirectLoan() {
+    I.seeElement(this.cards.cardLimitAPDirectLoan);
+    I.see('Upload Invoice Untuk Dibayar');
+    I.see('Bayar Invoice');
+  },
+
+  validateLoanTypeofLoanPO() {
+    I.seeElement(this.cards.cardLimitPO);
+    I.see('Upload Invoice Untuk Dibayar');
+    I.see('Bayar Invoice');
+  },
+
+  validateLoanTypeofLoanARDirectLoan() {
+    I.seeElement(this.cards.cardLimitARDirectLoan);
+    I.see('Upload Invoice Untuk Cairkan');
+    I.see('Cairkan Limit');
+  },
 }

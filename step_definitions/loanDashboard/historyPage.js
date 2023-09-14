@@ -73,6 +73,18 @@ Then('I should see history limit active', () => {
     loanDashboardPage.validateStatusActiveLimitHistory();
 });
 
+//Scenario: Validate Limit Active With Multiple Active Loan
+Given('I have been access history loan limit to see status user have more than one status active', () => {
+    loanDashboardPage.goToHistory();
+    loanDashboardPage.goToTabLimit();
+});
+When('I access menu bar limit with status active', () => {
+    loanDashboardPage.goToStatusActiveLimitHistory();
+});
+Then('I should see more than one active limit loan', () => {
+
+});
+
 //Scenario: Access History Limit Dashboard For Status Done
 Given('I have been access history loan limit to see status "Selesai"', () => {
     loanDashboardPage.goToHistory();

@@ -13,19 +13,23 @@ Given('I got a loan limit offer from system', () => {
 
 });
 When('I access loan business in main dashboard', () => {
+    I.click("Loan Dashboard")
 });
 
 Then('I should see approve loan offer card', () => {
+    I.wait(3);
     loanDashboardPage.validateLimitCardOffering();
 });
 
 Then('I should see the button to apply for new limit loan', () => {
-    I.seeElement(this.buttons.buttonNewLimit);
+    //I.seeElement(this.buttons.buttonNewLimit);
+    I.see("Ajukan Limit Baru");
 });
 
 
 //Scenario: Access Loan limit Approval Page
 Given('I have been on loan dashboard page and show a loan limit offer card', () => {
+    I.click("Loan Dashboard");
     loanDashboardPage.validateLimitCardOffering();
 });
 
@@ -85,12 +89,89 @@ Then('New limit loan page will show', () => {
 
 //Scenario: Access History Limit Dashboard
 Given('I have been access loan dashboard to see history loan', () => {
+    I.click("Loan Dashboard");
     loanDashboardPage.validateLimitCardOffering();
 });
 When('I am accessing history', () => {
     loanDashboardPage.goToHistory();
 });
-Then('history loan page will be showed', () => {
+Then('History loan page will be showed', () => {
     loanDashboardPage.validateHistoryPage();
 });
+
+// Scenario: Back to The Main Dashboard
+Given('I am on the loan Dashboard', () => {
+    I.click("Loan Dashboard");
+    loanDashboardPage.validateLimitCardOffering();
+});
+When('I back to the previous page', () => {
+    loanDashboardPage.clickButtonBack();
+});
+
+Then('I should see main dashboard', () => {
+    I.see("Loan Dashboard");
+});
+
+// Scenario: Validate Card Limit For Type Loan AP
+Given('I have been on Loan Dashboard to see the loan type of Loan AP', () => {
+    I.click("Loan Dashboard");
+    loanDashboardPage.validateLimitCardOffering();
+    loanDashboardPage.goToHistory();
+});
+
+When('I validate the card of "Loan AP"', () => {
+    loanDashboardPage.goToStatusActiveLimitHistory();
+});
+
+Then('I should see the wording dan card design of "Loan AP"', () => {
+    loanDashboardPage.validateLoanTypeofLoanAP();
+});
+
+// Scenario: Validate Card Limit For Type Loan AP Direct Loan
+Given('I have been on Loan Dashboard to see the loan type of Loan AP Direct Loan', () => {
+    I.click("Loan Dashboard");
+    loanDashboardPage.validateLimitCardOffering();
+    loanDashboardPage.goToHistory();
+});
+
+When('I validate the card of "Loan AP direct loan"', () => {
+    loanDashboardPage.goToStatusActiveLimitHistory();
+});
+
+Then('I should see the wording dan card design of "Loan AP Direct Loan"', () => {
+    loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
+});
+
+// Scenario: Validate Card Limit For Type Loan PO
+Given('I have been on Loan Dashboard to see the loan type of Loan PO', () => {
+    I.click("Loan Dashboard");
+    loanDashboardPage.validateLimitCardOffering();
+    loanDashboardPage.goToHistory();
+});
+
+When('I validate the card of "Loan PO"', () => {
+    loanDashboardPage.goToStatusActiveLimitHistory();
+});
+
+Then('I should see the wording dan card design of "Loan PO"', () => {
+    loanDashboardPage.validateLoanTypeofLoanPO();
+});
+
+// Scenario: Validate Card Limit For Type Loan PO
+Given('I have been on Loan Dashboard to see the loan type of Loan AR Direct Loan', () => {
+    I.click("Loan Dashboard");
+    loanDashboardPage.validateLimitCardOffering();
+    loanDashboardPage.goToHistory();
+});
+
+When('I validate the card of "Loan AR direct loan"', () => {
+    loanDashboardPage.goToStatusActiveLimitHistory();
+});
+
+Then('I should see the wording dan card design of "Loan AR Direct Loan"', () => {
+    loanDashboardPage.validateLoanTypeofLoanARDirectLoan;
+});
+
+
+
 
