@@ -54,4 +54,3 @@ Feature: Select the Anchor
         When user select industry type
         And user select the date cooperating
         Then user click button next
-        And user on select loan amount

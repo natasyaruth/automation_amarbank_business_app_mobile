@@ -1,7 +1,7 @@
+@LoanTenor
 Feature: Select the Loan Amount and Tenor
     As a customer lead
     I want to select Loan Amount and tenor
-
 
     Background:
         Given I am registered customer with following details:
@@ -13,84 +13,145 @@ Feature: Select the Loan Amount and Tenor
         And login with registered account
         Then I successed go to dashbord
         And I click button loan dashboard
+        And user click button ajukan pinjaman
         And user on loan type page
         And user select loan type "AP"
         And user click button lihat skema pinjaman
         And user on loan schema "AP"
         And user click button select the schema
         And user on the anchor page
-        And user fill search anchor "Unilever"
-        When user select result of search
+        And user fill search anchor "PT. Tasrifin"
+        And user select result of search
         And user on anchor cooperating page
-        Then user select the date cooperating
-        And user should see the date "Agustus 2020" on field "valueDateField"
-        Then user click button next
-        And user on select loan amount
+        And user select the date cooperating
+        And user click button next
 
-    @C83823
+    @C83823 @LoanTenor
     Scenario: Validate Error Field on Select Loan Amount and Tenor Form
         Given user on select loan amount page
-        And user clear amount loan
         When user click button next on select loan amount page
-        Then user should see error "Minimal pinjaman Rp50.000.000 (50 Juta)" in the below of field "amountLoanField"
-        And user should see error "Tenor pinjaman wajib diisi" in the below of field "tenorLoanField"
-        And user clear amount loan
+        Then user should see error "Minimal pinjaman Rp50.000.000 (50 Juta)" in the field "errorAmountLoanField"
+        And user should see error "Tenor pinjaman wajib diisi" in the field "errorTenorLoanField"
         And user filling field "amountLoanField" with "6000000000"
         And user click button next on select loan amount page
-        And user should see error "Maksimal pinjaman Rp5.000.000.000 (5 Miliar)" in the below of field "amountLoanField"
+        And user should see error "Maksimal pinjaman Rp5.000.000.000 (5 Miliar)" in the field "errorAmountLoanField"
 
-    @C83823
+    @C83823 @LoanTenor
     Scenario: Success Select Loan Amount and Tenor
         Given user on select loan amount page
         When user filling field "amountLoanField" with "200000000"
-        Then user select the tenor
+        Then user select the tenor "1"
         And user click button next on select loan amount page
         And user on legality business page
 
-    @C83824
+    @C83824 @LoanTenor
     Scenario: Validate Error Field on legality business form
-        Given user on legality business page
-        When user click button next on legality business page
-        Then user should see error "Jenis legalitas bisnis wajib dipilih" in the below of field "bussTypeField"
-        And user should see error "Tanggal usaha berdiri wajib diisi" in the below of field "dateEstablishField"
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user click button next on legality business page
+        Then user should see error "Jenis legalitas bisnis wajib dipilih" in the field "errorBussTypeField"
+        And user should see error "Tanggal usaha berdiri wajib diisi" in the field "errorDateEstablishField"
 
-    @C83824
+    @C83824 @LoanTenor
     Scenario: User success fill legality business form
-        Given user select legality business type
-        When user select business establishment date
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user select legality business type
+        And user select business establishment date
         And user select the day date "1"
         And user select the month date "1"
         And user select the year date "1"
-        Then user click button next on legality business page
+        Then user choose the date
+        And user click button next on legality business page
         And user on head office location page
 
-    @C83825
+    @C83825 @LoanTenor
     Scenario: Validate Error Field on head office location
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user select legality business type
+        And user select business establishment date
+        And user select the day date "1"
+        And user select the month date "1"
+        And user select the year date "1"
+        Then user choose the date
+        And user click button next on legality business page
         Given user on head office location page
         And user select location others
         When user click button next on head office location page
-        Then user should see error "Lokasi bisnis wajib dipilih" in the below of field "bussLocationField"
+        Then user should see error "Lokasi bisnis wajib diisi" in the field "errorBussLocationField"
 
-    @C83825
+    @C83825 @LoanTenor
     Scenario: Validate Loan Not available on business location
-        Given user on head office location page
-        When user filling field "bussLocationField" with "Medan"
-        Then user click button next on head office location page
-        And user should see new page with text "Untuk saat ini kami belum melayani pinjaman di kotamu." displayed with button "openAccount"
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user select legality business type
+        And user select business establishment date
+        And user select the day date "1"
+        And user select the month date "1"
+        And user select the year date "1"
+        And user choose the date
+        Then user click button next on legality business page
+        And user on head office location page
+        And user select location others
+        And user filling field "bussLocationField" with "Medan"
+        And user click button next on head office location page
+        And user should see new page head office location not provided
         And user click close button
 
-    @C83825
-    Scenario:  User Success Select Head Office Location
-        Given user on head office location page
-        When user select location jabodetabek
-        Then user click button next on head office location page
+    @C83825 @LoanTenor
+    Scenario: User Success Select Head Office Location
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user select legality business type
+        And user select business establishment date
+        And user select the day date "1"
+        And user select the month date "1"
+        And user select the year date "1"
+        And user choose the date
+        Then user click button next on legality business page
+        And user on head office location page
+        And user select location jabodetabek
+        And user click button next on head office location page
         And user on success apply loan page
 
-    @C83826
+    @C83826 @LoanTenor
     Scenario: Validate Wording on Success Apply Loan Page
-        Given user on success apply loan page
-        When user validate title "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman" on field "titleSuccesApplyLoanField"
+        Given user on select loan amount page
+        And user filling field "amountLoanField" with "200000000"
+        And user select the tenor "1Month"
+        And user click button next on select loan amount page
+        When user on legality business page
+        And user select legality business type
+        And user select business establishment date
+        And user select the day date "Previous"
+        And user select the month date "Previous"
+        And user select the year date "Previous"
+        And user choose the date
+        Then user click button next on legality business page
+        And user on head office location page
+        And user select location jabodetabek
+        And user click button next on head office location page
+        And user on success apply loan page
+        And user validate title "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman" on field "titleSuccesApplyLoanField"
         And user validate subtitle "Untuk mempercepat proses pengajuan pinjaman, mohon melengkapi data" on field "subTitleSuccesApplyLoanField"
-        Then user validate information business need done
+        And user validate information business need done
         And user validate information loan need done
         And user validate complete the data section
+        And user click button continue complete the data
+        And user on success complete the data page

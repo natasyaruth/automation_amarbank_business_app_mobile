@@ -14,9 +14,10 @@ type ChaiWrapper = import('codeceptjs-chai');
 type loanTypePage = typeof import('./pages/loanType.js');
 type selectAnchorPage = typeof import('./pages/selectAnchor.js');
 type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
+type loanMonitoringProcessPage = typeof import('./pages/loanMonitoringProcess.js');
 
 declare namespace CodeceptJS {
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage }
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage }
   interface Methods extends Appium, ChaiWrapper, REST {}
   interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper> {}
   namespace Translation {

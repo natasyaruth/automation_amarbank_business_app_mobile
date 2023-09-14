@@ -36,9 +36,6 @@ const {I, loanTypePage} = inject();
         I.wait(2);
         loanTypePage.selectLoanTypeList(selectLoanType);
     });
-    // When(/user validate button lihat skema pinjaman is enable true/,()=>{
-        // loanTypePage.buttons.nextButton(isEnabled);
-    // });
     Then(/user click button lihat skema pinjaman/,()=>{
         loanTypePage.clickNextButton();
     });

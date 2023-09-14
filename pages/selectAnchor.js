@@ -5,8 +5,7 @@ module.exports = {
         textFieldAnchorPage: "~textTitlePage",
         textFieldTitleAnchorNotFound: "~textTitleErrorPlatform",
         textFieldSubTitleAnchorNotFound: "~textMessageErrorPlatform",
-        textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'},
-        textFieldSelectLoanAmountPage: {xpath: '//android.widget.TextView[contains(@text, "Berapa kebutuhan pinjaman yang Anda butuhkan?")]'}
+        textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'}
     },
     fields: {
         searchField: "~textFieldSearch",
@@ -40,6 +39,7 @@ module.exports = {
 
     // Function for call the id component
     viewAnchorPage(){
+        I.wait(2);
         I.seeElement(this.textField.textFieldAnchorPage);
     },
     fillFieldSearch(txtValue){
@@ -59,11 +59,8 @@ module.exports = {
         I.click(this.fields.anchorSearchResult);
     },
     viewAnchorCooperatingPage(){
+        I.wait(2);
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
-    },
-    viewLoanAmountPage(){
-        I.wait(5);
-        I.seeElement(this.textField.textFieldSelectLoanAmountPage);
     },
     selectDateCooperating(){
         I.seeElement(this.fields.dateField);
@@ -94,17 +91,6 @@ module.exports = {
         I.seeElement(this.messageErrorFields[fieldName]);
         return await I.grabTextFrom(this.messageErrorFields[fieldName]);
       },
-    // async getValueFieldData (expectedValue){
-        // let actualValue = await I.grabAttributeFrom(this.fields.dateField, 'text');
-        // I.assertEqual(actualValue, expectedValue);
-    // },
-    // async getValueInformation(fieldName) {
-        // if(Object.keys(this.fields).indexOf(fieldName) === -1){
-        //   throw new Error('Field ${fieldName} is not found');
-        // }
-        // I.seeElement(this.fields[fieldName]);
-        // return await I.grabTextFromField(this.fields[fieldName]);
-    //   },
 
     fillFieldAnchorName(fieldName, txtValue){
         I.seeElement(this.fields[fieldName]);

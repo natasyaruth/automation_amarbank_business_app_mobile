@@ -43,14 +43,6 @@ const {I, selectAnchorPage} = inject();
         let actualValue = await selectAnchorPage.getMessageErrorFieldOnOtherAnchor(fieldName);
         I.assertEqual(actualValue, expectedValue);
     });
-    // Then(/user should see error {string} in the below of field {string}/,async(expectedValue, fieldName)=>{
-        // let actualValue = await selectAnchorPage.getMessageErrorFieldOnOtherAnchor(fieldName);
-        // I.assertEqual(actualValue, expectedValue);
-    // });
-    // Then(/user should see error {string} in the below of field {string}/,async(expectedValue, fieldName)=>{
-        // let actualValue = await selectAnchorPage.getMessageErrorFieldOnOtherAnchor(fieldName);
-        // I.assertEqual(actualValue, expectedValue);
-    // });
 
 // Scenario(/User success fill data other anchor/)
     Given(/user on anchor cooperating page/,()=>{
@@ -67,7 +59,4 @@ const {I, selectAnchorPage} = inject();
     });
     Then(/user click button next/,()=>{
         selectAnchorPage.clickNextBtnOnAnchorPage();
-    });
-    Then(/user on select loan amount/,()=>{
-        selectAnchorPage.viewLoanAmountPage();
     });
