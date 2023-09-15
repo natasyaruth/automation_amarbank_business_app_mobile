@@ -5,13 +5,13 @@ Feature: Apply Either Loan and select the loan type
 
 
     Background:
-        Given I am registered customer with following details:
+        Given I am a registered customer with following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        When I am filling in my account information with the following details:
+        When I filling in form login with the following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        And login with registered account
+        And I click login
         Then I successed go to dashbord
         And I click button loan dashboard
 
@@ -33,7 +33,6 @@ Feature: Apply Either Loan and select the loan type
         And user on loan type page
         And user validate wording loan type "AR"
         When user select loan type "AR"
-        # And user validate button lihat skema pinjaman is enable true
         Then user click button lihat skema pinjaman
         And user on loan schema "AR"
         And user validate content loan schema "AR"
@@ -46,7 +45,6 @@ Feature: Apply Either Loan and select the loan type
         And user on loan type page
         And user validate wording loan type "PO"
         When user select loan type "PO"
-        # And user validate button lihat skema pinjaman is enable true
         Then user click button lihat skema pinjaman
         And user on loan schema "PO"
         And user validate content loan schema "PO"
@@ -59,7 +57,6 @@ Feature: Apply Either Loan and select the loan type
         Given user on loan type page
         And user validate wording loan type "AP"
         When user select loan type "AP"
-        # Then user validate button lihat skema pinjaman is enable true
         Then user click button lihat skema pinjaman
         And user on loan schema "AP"
         And user validate content loan schema "AP"

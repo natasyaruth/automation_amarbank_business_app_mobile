@@ -25,10 +25,10 @@ Then("I successed go to dashbord",()=>{
     ///dashboard still on development from mobile
     ///I.see('Selamat, akun Anda berhasil dibuat')
     I.wait(2);
-        loginPage.fillInAccountInformation(account);
-        loginPage.clickLoginButton();
-        I.waitForText("Data Yang Dimasukkan Salah", 10);
-        loginPage.tryToLogin();
+        // loginPage.fillInAccountInformation(account);
+        // loginPage.clickLoginButton();
+        // I.waitForText("Data Yang Dimasukkan Salah", 10);
+        // loginPage.tryToLogin();
     });
 
 Given("I am a registered customer with following details:", (table) => {

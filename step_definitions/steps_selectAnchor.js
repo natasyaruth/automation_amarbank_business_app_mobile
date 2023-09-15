@@ -45,10 +45,10 @@ const {I, selectAnchorPage} = inject();
     });
 
 // Scenario(/User success fill data other anchor/)
-    Given(/user on anchor cooperating page/,()=>{
-        selectAnchorPage.viewAnchorCooperatingPage();
-    });
-    Given(/user filling field \"([^\"]*)\" with \"([^\"]*)\"/,(fieldName, actualValue)=>{
+    // Given(/user on anchor cooperating page/,()=>{
+        // selectAnchorPage.viewAnchorCooperatingPage();
+    // });
+    Given(/user fill a field \"([^\"]*)\" with \"([^\"]*)\"/,(fieldName, actualValue)=>{
         selectAnchorPage.fillFieldAnchorName(fieldName, actualValue);
     });
     When(/user select industry type/,()=>{

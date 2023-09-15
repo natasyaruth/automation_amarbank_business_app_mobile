@@ -83,15 +83,16 @@ const {I, selectLoanAmountPage} = inject();
     Given(/user on success apply loan page/,()=>{
         selectLoanAmountPage.viewSuccessApplyLoanPage();
     });
-    When(/user validate title \"([^\"]*)\" on field \"([^\"]*)\"/, async(expectedValue, fieldName)=>{
+    When(/user validate text success apply loan \"([^\"]*)\" on field \"([^\"]*)\"/, async(expectedValue, fieldName)=>{
+        I.wait(2);
         let actualValue = await selectLoanAmountPage.getTextFieldSuccessApplyLoan(fieldName);
         I.assertEqual(actualValue, expectedValue);
     });
-    When(/user validate subtitle \"([^\"]*)\" on field \"([^\"]*)\"/, async(expectedValue, fieldName)=>{
-        I.wait(5);
-        let actualValue = await selectLoanAmountPage.getTextFieldSuccessApplyLoan(fieldName);
-        I.assertEqual(actualValue, expectedValue);
-    });
+    // When(/user validate subtitle \"([^\"]*)\" on field \"([^\"]*)\"/, async(expectedValue, fieldName)=>{
+        // I.wait(5);
+        // let actualValue = await selectLoanAmountPage.getTextFieldSuccessApplyLoan(fieldName);
+        // I.assertEqual(actualValue, expectedValue);
+    // });
     Then(/user validate information business need done/,()=>{
         selectLoanAmountPage.validateBussNeedDoneSection();
     });

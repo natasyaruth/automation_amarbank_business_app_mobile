@@ -18,7 +18,7 @@ module.exports = {
         dateYearPreviousField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[1]'},
         dateYearSelectedField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[2]'},
         dateYearNextField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[3]'},
-        anchorNameField: "~textFieldSupplierName",
+        anchorName: "~textFieldSupplierName",
         industryTypeField: "~textFieldSupplierType",
         industryTypeList1: {xpath: '(//android.widget.TextView[@content-desc="itemIndustryType"])[1]'}
     },
@@ -94,16 +94,9 @@ module.exports = {
 
     fillFieldAnchorName(fieldName, txtValue){
         I.seeElement(this.fields[fieldName]);
-        if (
-            this.fields[fieldName] === "" ||
-            this.fields[fieldName] === null ||
-            this.fields[fieldName] === "-"
-        ){
-            I.clearField(this.fields[fieldName]);
-            return;
-        }
         I.setText(this.fields[fieldName], txtValue);
     },
+
     selectIndustryType(){
         I.wait(5);
         I.seeElement(this.fields.industryTypeField);

@@ -4,13 +4,13 @@ Feature: Select the Loan Amount and Tenor
     I want to select Loan Amount and tenor
 
     Background:
-        Given I am registered customer with following details:
+        Given I am a registered customer with following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        When I am filling in my account information with the following details:
+        When I filling in form login with the following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        And login with registered account
+        And I click login
         Then I successed go to dashbord
         And I click button loan dashboard
         And user click button ajukan pinjaman
@@ -20,9 +20,10 @@ Feature: Select the Loan Amount and Tenor
         And user on loan schema "AP"
         And user click button select the schema
         And user on the anchor page
-        And user fill search anchor "PT. Tasrifin"
-        And user select result of search
+        And user click icon other anchor
         And user on anchor cooperating page
+        And user fill a field "anchorName" with "UD Dagangan"
+        And user select industry type
         And user select the date cooperating
         And user click button next
 
@@ -40,7 +41,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: Success Select Loan Amount and Tenor
         Given user on select loan amount page
         When user filling field "amountLoanField" with "200000000"
-        Then user select the tenor "1"
+        Then user select the tenor "1Month"
         And user click button next on select loan amount page
         And user on legality business page
 
@@ -48,7 +49,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: Validate Error Field on legality business form
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
-        And user select the tenor "1"
+        And user select the tenor "1Month"
         And user click button next on select loan amount page
         When user on legality business page
         And user click button next on legality business page
@@ -59,7 +60,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: User success fill legality business form
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
-        And user select the tenor "1"
+        And user select the tenor "1Month"
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -75,7 +76,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: Validate Error Field on head office location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
-        And user select the tenor "1"
+        And user select the tenor "1Month"
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -94,7 +95,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: Validate Loan Not available on business location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
-        And user select the tenor "1"
+        And user select the tenor "1Month"
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -115,7 +116,7 @@ Feature: Select the Loan Amount and Tenor
     Scenario: User Success Select Head Office Location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
-        And user select the tenor "1"
+        And user select the tenor "1Month"
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -148,8 +149,8 @@ Feature: Select the Loan Amount and Tenor
         And user select location jabodetabek
         And user click button next on head office location page
         And user on success apply loan page
-        And user validate title "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman" on field "titleSuccesApplyLoanField"
-        And user validate subtitle "Untuk mempercepat proses pengajuan pinjaman, mohon melengkapi data" on field "subTitleSuccesApplyLoanField"
+        And user validate text success apply loan "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman" on field "titleSuccesApplyLoanField"
+        And user validate text success apply loan "Untuk mempercepat proses pengajuan pinjaman, mohon melengkapi data" on field "subTitleSuccesApplyLoanField"
         And user validate information business need done
         And user validate information loan need done
         And user validate complete the data section

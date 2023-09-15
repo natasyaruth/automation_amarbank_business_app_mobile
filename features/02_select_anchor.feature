@@ -4,13 +4,13 @@ Feature: Select the Anchor
     I want to select the anchor
 
     Background:
-        Given I am registered customer with following details:
+        Given I am a registered customer with following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        When I am filling in my account information with the following details:
+        When I filling in form login with the following details:
             | userID   | niza59ce  |
             | password | Feb042017 |
-        And login with registered account
+        And I click login
         Then I successed go to dashbord
         And I click button loan dashboard
         And user click button ajukan pinjaman
@@ -29,7 +29,7 @@ Feature: Select the Anchor
     @C83808 @LoanApp
     Scenario: User can select anchor on the list
         Given user on the anchor page
-        And user fill search anchor "PT. Tasrifin"
+        And user fill search anchor "Kumarat"
         When user select result of search
         And user on anchor cooperating page
         Then user select the date cooperating
@@ -50,7 +50,7 @@ Feature: Select the Anchor
         Given user on the anchor page
         When user click icon other anchor
         Given user on anchor cooperating page
-        And user filling field "anchorNameField" with "UD Dagangan"
+        And user fill a field "anchorName" with "UD Dagangan"
         When user select industry type
         And user select the date cooperating
         Then user click button next
