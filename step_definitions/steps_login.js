@@ -8,6 +8,7 @@ const {
 const globalVar = {
     password: "",
     userID: "",
+    countValue: "",
 };
 
 Given("I am a customer who has failed to login {string} times with following details:", (countValue, table) => {
@@ -24,6 +25,7 @@ Given("I am a customer who has failed to login {string} times with following det
         I.waitForText("Data Yang Dimasukkan Salah", 10);
         loginPage.tryToLogin();
     }
+    globalVar.countValue = countValue;
 });
 
 Given("I am a registered customer with following details:", (table) => {
@@ -68,22 +70,33 @@ Then("I should be notified {string} in the below of field {string}", async (expe
 Then("I should see pop up {string} with button {string}", (expectedValue, buttonName) => {
     I.waitForText(expectedValue, 10);
     I.seeElement(loginPage.buttons[buttonName]);
+
+    if(globalVar.countValue === 2){
+        loginPage.closeBottomSheet();
+    } else{
+        loginPage.tryToLogin();
+    }
+    
+    loginPage.fillFieldLogin('userID', globalVar.userID);
+    loginPage.fillFieldLogin('password', "1234Test");
+    loginPage.clickLoginButton();
+    I.waitForText("Dashboard Screen", 10);
 });
 
-When('I click icon eye password', () => {
+When("I click icon eye password", () => {
     loginPage.clickIconEyePassword();
 });
 
-When('I click icon eye password twice', () => {
+When("I click icon eye password twice", () => {
     loginPage.clickIconEyePassword();
     loginPage.clickIconEyePassword();
 });
 
-Then('I should see my password', () => {
+Then("I should see my password", () => {
     I.see(globalVar.password);
 });
 
-Then('I should not see my password', () => {
+Then("I should not see my password", () => {
     I.dontSee(globalVar.password);
 });
 
