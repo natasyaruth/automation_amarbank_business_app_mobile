@@ -10,8 +10,6 @@ const env = {
     suiteId: process.env.TESTRAIL_SUITE_ID,
     debugLog: process.env.TESTRAIL_DEBUG_LOG || false,
     enabled: process.env.TESTRAIL_ENABLED || false,
-    runId: process.env.TESTRAIL_RUN_ID || undefined,
-    closeTestRun: process.env.TESTRAIL_CLOSE_RUN || false,
   },
 };
 
@@ -37,8 +35,7 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -65,8 +62,6 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
-
-    forgotPasswordPage: "./pages/forgotPassword.js",
   },
   mocha: {},
   bootstrap: null,
@@ -97,8 +92,7 @@ exports.config = {
     testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0,
     },
