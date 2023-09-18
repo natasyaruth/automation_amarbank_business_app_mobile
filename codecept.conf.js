@@ -12,7 +12,7 @@ const env = {
     enabled: process.env.TESTRAIL_ENABLED || false,
     runId: process.env.TESTRAIL_RUN_ID || undefined,
     closeTestRun: process.env.TESTRAIL_CLOSE_RUN || false,
-  },
+  }
 };
 
 exports.config = {
@@ -28,6 +28,7 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
+        newCommandTimeout: 300,
         deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb",
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
@@ -35,7 +36,7 @@ exports.config = {
       },
     },
     ChaiWrapper: {
-      require: "codeceptjs-chai",
+      require: "codeceptjs-chai"
     },
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
@@ -43,10 +44,10 @@ exports.config = {
         Authorization:
           "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+        Accept: "application/json"
+      }
     },
-    JSONResponse: {},
+    JSONResponse: {}
   },
   include: {
     I: "./steps_file.js",
@@ -66,7 +67,6 @@ exports.config = {
     whitelistDao: "./dao/whitelistDao.js",
 
     verificationEmailPage: "./pages/verificationEmail.js",
-
     otpDao: "./dao/otpDao.js",
     loanTypePage: "./pages/loanType.js",
     selectAnchorPage: "./pages/selectAnchor.js",
@@ -93,34 +93,34 @@ exports.config = {
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true,
+      enabled: true
     },
     tryTo: {
-      enabled: true,
+      enabled: true
     },
     retryFailedStep: {
-      enabled: true,
+      enabled: true
     },
     retryTo: {
-      enabled: true,
+      enabled: true
     },
     eachElement: {
-      enabled: true,
+      enabled: true
     },
     pauseOnFail: {},
-    testrail: env.testrail,
+    testrail: env.testrail
   },
   stepTimeout: 0,
   stepTimeoutOverride: [
     {
       pattern: "wait.*",
-      timeout: 0,
+      timeout: 0
     },
     {
       pattern: "amOnPage",
-      timeout: 0,
-    },
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
-  name: "amarbank-smb-mobile-testing",
+  name: "amarbank-smb-mobile-testing"
 };
