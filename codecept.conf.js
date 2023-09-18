@@ -21,13 +21,16 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-debug.apk",
+      // app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator",
-      path: "/",
+      device: "emulator-5554",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         newCommandTimeout: 300,
       },
     },
@@ -65,7 +68,10 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
-
+    loanTypePage: "./pages/loanType.js",
+    selectAnchorPage: "./pages/selectAnchor.js",
+    selectLoanAmountPage: "./pages/selectLoanAmountTenor.js",
+    loanMonitoringProcessPage: "./pages/loanMonitoringProcess.js",
     forgotPasswordPage: "./pages/forgotPassword.js",
   },
   mocha: {},
@@ -76,8 +82,14 @@ exports.config = {
   gherkin: {
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js", 
-            "./step_definitions/steps_login.js",
-            "./step_definitions/steps_forgotPassword.js",],
+    "./step_definitions/steps_login.js", 
+    "./step_definitions/steps_loanType.js",
+    "./step_definitions/steps_selectAnchor.js",
+    "./step_definitions/steps_loanAmountTenor.js",
+    "./step_definitions/steps_loanMonitoring.js",
+    "./step_definitions/steps_login.js",
+    "./step_definitions/steps_forgotPassword.js"
+  ],
   },
   plugins: {
     screenshotOnFail: {

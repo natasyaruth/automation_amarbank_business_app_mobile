@@ -12,9 +12,13 @@ type otpDao = typeof import('./dao/otpDao.js');
 type forgotPasswordPage = typeof import('./pages/forgotPassword.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
+type loanTypePage = typeof import('./pages/loanType.js');
+type selectAnchorPage = typeof import('./pages/selectAnchor.js');
+type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
+type loanMonitoringProcessPage = typeof import('./pages/loanMonitoringProcess.js');
 
 declare namespace CodeceptJS {
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, forgotPasswordPage: forgotPasswordPage }
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, forgotPasswordPage: forgotPasswordPage, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<ChaiWrapper>, WithTranslation<JSONResponse> {}
   namespace Translation {

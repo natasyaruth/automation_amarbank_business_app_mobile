@@ -1,3 +1,6 @@
+const changePhoneNumber = require("../pages/changePhoneNumber");
+const { fields } = require("../pages/registration");
+
 const {
   I,
   registrationPage,
