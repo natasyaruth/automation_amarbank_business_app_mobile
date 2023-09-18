@@ -1,7 +1,7 @@
-const loanDashboardPage = require("../pages/loanDashboard");
+const signatureLoanOfferPage = require("../pages/loanDashboard/signatureLoanOfferPage.js");
 const { fields } = require("../pages/login");
 
-const { I, loginPage, loanDashboardPage } = inject();
+const { I, loginPage, signatureLoanOfferPage } = inject();
 
 const globalVar = {
     password: "",

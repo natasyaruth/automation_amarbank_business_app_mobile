@@ -12,12 +12,12 @@ Feature: History Page
             | password | Test1234 |
         And login with registered account
         Then I successed go to dashbord
-    @C1
+
     Scenario: Access History Dashboard For Limit Bar
         Given I have been access history loan to see menu Limit
         When I access menu bar "Limit"
         Then I should see history "Limit"
-@C2
+
     Scenario: Access History Dashboard For "Pencairan" Bar
         Given I have been access history loan to see menu "Pencairan"
         When I access menu bar "Pencairan"

@@ -83,8 +83,8 @@ Given('I have been access loan dashboard', () => {
 When('I am adding apply for new limit loan', () => {
     loanDashboardPage.applyNewLimitLoan();
 });
-Then('New limit loan page will show', () => {
-
+Then('Show Loan Schema', () => {
+    loanDashboardPage.validateSchemaLoanPage();
 });
 
 //Scenario: Access History Limit Dashboard

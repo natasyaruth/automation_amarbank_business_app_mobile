@@ -9,7 +9,7 @@ const globalVar = {
 };
 
 //Scenario: Access History Dashboard For 'Limit' Bar
-Given('I have been access history loan to see menu "Limit"', () => {
+Given('I have been access history loan to see menu Limit', () => {
     loanDashboardPage.goToHistory();
 });
 When('I access menu bar "Limit"', () => {
@@ -82,7 +82,8 @@ When('I access menu bar limit with status active', () => {
     loanDashboardPage.goToStatusActiveLimitHistory();
 });
 Then('I should see more than one active limit loan', () => {
-
+    loanDashboardPage.grabNumberFromText;
+    loanDashboardPage.totalCardActive();
 });
 
 //Scenario: Access History Limit Dashboard For Status Done

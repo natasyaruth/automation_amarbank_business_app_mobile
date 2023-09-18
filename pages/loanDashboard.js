@@ -14,6 +14,8 @@ module.exports = {
     buttonClose: "~buttonClose",
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
+    buttonNext: "~buttonNext",
+
 
   },
 
@@ -31,7 +33,6 @@ module.exports = {
     tabLimit: "~tabLimit",
     tabDisbursement: '~tabDisbursement',
     tabBill: '~tabBill',
-
   },
 
   filters: {
@@ -47,6 +48,23 @@ module.exports = {
     checkBoxInvoice: "~checkBoxInvoice",
   },
 
+  text: {
+    textActiveLimitsCount: "~textActiveLimitsCount",
+    textRadioButtonAP: "~textRadioButtonAP",
+    textRadioButtonAR: "~textRadioButtonAR",
+    textRadioButtonPO: "~textRadioButtonPO",
+  },
+
+  radioButtons: {
+    radioButtonAP: "~radioButtonAP",
+    radioButtonAR: "~radioButtonAR",
+    radioButtonPO: "~radioButtonPO",
+  },
+  icons: {
+    iconInfo: "~iconInfo",
+  },
+
+
   clickButtonBack() {
     I.wait(2);
     I.click(this.buttons.buttonBack);
@@ -56,6 +74,18 @@ module.exports = {
   applyNewLimitLoan() {
     I.seeElement(this.buttons.buttonNewLimit);
     I.click(this.buttons.buttonNewLimit);
+  },
+
+  validateSchemaLoanPage() {
+    I.see('Bagaimana gambaran masalah pendanaan Anda?');
+    I.seeElement(this.radioButtons.radioButtonAP);
+    I.seeElement(this.radioButtons.radioButtonAR);
+    I.seeElement(this.radioButtons.radioButtonPO);
+    I.seeElement(this.text.textRadioButtonAP);
+    I.seeElement(this.textRadioButtonAP);
+    I.seeElement(this.text.textRadioButtonAR);
+    I.seeElement(this.text.textRadioButtonPO);
+    I.seeElement(this.buttons.buttonNext);
   },
 
   validateLimitCardOffering() {
@@ -105,13 +135,13 @@ module.exports = {
     I.see('Segera Setujui Penawaran Pinjaman');
     I.see('Tanda Tangan Sebelum');
     I.see('Pinjaman yang ditawarkan:');
+
   },
 
   goToSignaturedPage() {
     I.wait(2);
     I.seeElement(this.cards.cardOffer);
     I.click(this.cards.cardOffer);
-
   },
 
   validateSignaturePage() {
@@ -200,6 +230,8 @@ module.exports = {
 
   validateStatusInProcessLimitHistory() {
     I.seeElement(this.filters.filterByOnProcess);
+  }, catch(error) {
+    console.error('Data tidak ditemukan');
   },
 
   goToStatusActiveLimitHistory() {
@@ -210,10 +242,17 @@ module.exports = {
 
   validateStatusActiveLimitHistory() {
     I.seeElement(this.filters.filterByOnActive);
+    I.see("Aktif");
   },
 
-  validateMultipleStatusActive() {
+  async grabNumberFromText() {
+    let teks = await I.grabTextFrom(this.text.textActiveLimitsCount);
+    let number = teks.match(/\d+/g).join(this.text.textActiveLimitsCount);
+  },
 
+  async totalCardActive() {
+    let totalElementVisible = await I.grabNumberOfVisibleElements("Limit tersedia:");
+    I.see(totalElementVisible, grabNumberFromText);
   },
 
   goToStatusDoneLimitHistory() {

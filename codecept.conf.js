@@ -72,7 +72,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: ["./features/*.feature", "./features/loanDashboard/*.feature"],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js"],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/historyPage.js", "./step_definitions/loanDashboard/loanDashboard.js"],
   },
   plugins: {
     screenshotOnFail: {
