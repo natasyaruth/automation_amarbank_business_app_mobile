@@ -9,8 +9,8 @@ const env = {
     projectId: process.env.TESTRAIL_PROJECT_ID,
     suiteId: process.env.TESTRAIL_SUITE_ID,
     debugLog: process.env.TESTRAIL_DEBUG_LOG || false,
-    enabled: process.env.TESTRAIL_ENABLED || false,
-  },
+    enabled: process.env.TESTRAIL_ENABLED || false
+  }
 };
 
 exports.config = {
@@ -26,21 +26,22 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300,
-      },
+        newCommandTimeout: 300
+      }
     },
     ChaiWrapper: {
-      require: "codeceptjs-chai",
+      require: "codeceptjs-chai"
     },
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+        Accept: "application/json"
+      }
     },
-    JSONResponse: {},
+    JSONResponse: {}
   },
   include: {
     I: "./steps_file.js",
@@ -61,7 +62,7 @@ exports.config = {
 
     verificationEmailPage: "./pages/verificationEmail.js",
 
-    otpDao: "./dao/otpDao.js",
+    otpDao: "./dao/otpDao.js"
   },
   mocha: {},
   bootstrap: null,
@@ -71,37 +72,38 @@ exports.config = {
   gherkin: {
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js",
-      "./step_definitions/steps_login.js"],
+      "./step_definitions/steps_login.js"]
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true,
+      enabled: true
     },
     tryTo: {
-      enabled: true,
+      enabled: true
     },
     retryFailedStep: {
-      enabled: true,
+      enabled: true
     },
     retryTo: {
-      enabled: true,
+      enabled: true
     },
     eachElement: {
-      enabled: true,
+      enabled: true
     },
     pauseOnFail: {},
-    testrail: env.testrail,
+    testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
-      timeout: 0,
+      timeout: 0
     },
     {
       pattern: "amOnPage",
-      timeout: 0,
-    },
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
-  name: "amarbank-smb-mobile-testing",
+  name: "amarbank-smb-mobile-testing"
 };
