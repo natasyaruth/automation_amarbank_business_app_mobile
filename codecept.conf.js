@@ -37,8 +37,7 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -67,6 +66,8 @@ exports.config = {
     otpDao: "./dao/otpDao.js",
 
     forgotPasswordPage: "./pages/forgotPassword.js",
+
+    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
   },
   mocha: {},
   bootstrap: null,
@@ -75,9 +76,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./step_definitions/steps.js", 
-            "./step_definitions/steps_login.js",
-            "./step_definitions/steps_forgotPassword.js",],
+    steps: ["./step_definitions/steps.js","./step_definitions/steps_login.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -99,8 +98,7 @@ exports.config = {
     testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0,
     },
