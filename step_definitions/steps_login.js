@@ -1,4 +1,4 @@
-const forgotpassword = require("../pages/forgotpassword");
+const forgotpassword = require("../pages/forgotPassword");
 const { fields } = require("../pages/login");
 
 const { I, loginPage, registrationPage, forgotpasswordPage } = inject();
