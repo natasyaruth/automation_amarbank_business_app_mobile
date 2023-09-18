@@ -16,7 +16,7 @@ module.exports = {
   },
  
   async getOTP(phoneNumber){
-    const response = await I.sendGetRequest("https://dev-smb-user.otoku.io//api/v1/otp/find/sms?phone="+phoneNumber);
+    const response = await I.sendGetRequest("https://dev-smb-user.otoku.io/api/v1/otp/find/sms?phone="+phoneNumber);
 
     I.seeResponseCodeIsSuccessful();
     I.seeResponseContainsKeys(['phone', 'otp', 'otpExpired', 'verifyAttemptsLeft', 
@@ -26,5 +26,13 @@ module.exports = {
       status: response.status,
       otp: response.data.otp,
     };
+  },
+
+  async getUserID(email){
+    const response = await I.sendGetRequest("https://dev-smb-user.otoku.io/api/v1/user/find/"+email);
+
+    I.seeResponseCodeIsSuccessful();
+
+    return response.data[0];
   },
 }

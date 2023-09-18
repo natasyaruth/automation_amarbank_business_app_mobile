@@ -1,60 +1,52 @@
 Feature: Account Forgot Password
   In order to going to SMB dashboard while forgot user password
   As a customer
-  I want to reset password 
+  I want to reset password
 
-@C81357
-Scenario: Input UserID with empty value
-  Given I am a customer want to reset password 
-  When I am filling field 'userID' with ' '
-  And click button Reset Password
-  Then I should see message error 'User ID belum diregistrasi' in the below of field 'userID'
+  @forgot_password @C81357
+  Scenario: Reset password with user ID is empty
+    Given I am a customer want to reset password
+    And I leave field User ID empty
+    When I click button Reset Password
+    Then I should be notified 'User ID wajib diisi'
 
-@C75517
-Scenario: Input UserID that has been unregistered
-  Given I am a customer want to reset password 
-  When I am filling field 'userID' with 'JOHN1232'
-  And click button Reset Password
-  Then I should see message error 'User ID belum diregistrasi' in the below of field 'userID'
+  @forgot_password @C75517
+  Scenario: Reset password with user ID hasn't been registered
+    Given I am a customer want to reset password
+    When I am filling field User ID with 'JOHN1232'
+    And I click button Reset Password
+    Then I should be notified 'User ID tidak terdaftar'
 
-@C75518
-Scenario: Input UserID that has been registered
-  Given I am a customer want to reset password 
-  When I am filling field 'userID' with 'JOHN1232'
-  And reset password with registered userid
-  Then I should see new page with text 'Segera Cek E-mail' and button 'checkEmail'
+  @forgot_password @C75518
+  Scenario: Reset password with user ID has been registered
+    Given I am a customer want to reset password
+    When I am filling field User ID with 'ruth55ba'
+    And I click button Reset Password
+    Then I should be notified that email Reset Password successfully sent
 
-@C75520
-Scenario: User click resend email 
-  Given I am a customer still not receive email after request forgot password 
-  When I click link 'resendEmail' on page Cek Email 
-  Then I should see page with text 'Segera Cek E-mail' and button 'checkEmail'
+  @forgot_password @C75520
+  Scenario: Resend email reset password
+    Given I am a customer with User ID 'ruth5010' has already requested a password reset
+    And who has not received the reset password email
+    When I resend email reset password
+    Then I should be notified that email reset password has been successfully sent
 
-@C75521
-Scenario: User click cek email 
-  Given I am a customer still not receive email after request forgot password 
-  When I click link 'resendEmail' on page Cek Email 
-  Then I should see page with text 'Segera Cek E-mail' and button 'checkEmail'
+  Scenario: Reset password with user ID from invitation business
+    Given I am a customer has User ID '' and company name ''
+    When I am filling field User ID with ''
+    And I click button Reset Password
+    And I click button confirmation reset password
+    Then I should be notified that email Reset Password successfully sent
 
-@C75528
-Scenario: User click Eye icon for 1 times
-  Given I am registered customer with following details: 
-    | userID        | JOHN12j3          |
-    | password      | Pass1234          | 
-  When I am filling in my account information with the following details:
-    | userID        | JOHN12j3          |
-    | password      | Pass1234          |  
-  And I click icon iconEyePassword 
-  Then I should see the password on field 'textFieldPassword'
-  
-@C75530  
-Scenario: User click Eye icon for 2 times
-  Given I am registered customer with following details: 
-      | userID        | JOHN12j3          |
-      | password      | Pass1234          | 
-  When I am filling in my account information with the following details:
-      | userID        | JOHN12j3          |
-      | password      | Pass1234          |  
-  And I click icon iconEyePassword for 2 times
-  Then I should not see the password on field 'textFieldPassword'
+  Scenario: Back to page reset password from pop up confirmation
+    Given I am a customer has User ID '' and company name ''
+    When I am filling field User ID with ''
+    And I click button Reset Password
+    And I click button back from pop up reset password
+    Then I should back to page reset password with field User ID still filled
 
+  @forgot_password
+  Scenario: Back to page login from page reset password
+    Given I am a customer want to reset password
+    When I click button back in the header page
+    Then I will directing to page login
