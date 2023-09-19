@@ -107,4 +107,3 @@ When('system check that anchor already upload invoice', () => {
 Then('I should be see anchor has card in anchor detail page', () => {
 
 });
-
