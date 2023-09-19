@@ -1,53 +1,63 @@
 const { I } = inject();
 
 module.exports = {
-    fields: {
-        userID: "~textFieldUserID",
-        newPassword: "~textFieldPassword",
-        confirmNewPassword: "~textFieldConfirmationPassword"
-      },
-    buttons: {
-        resetPassword: "~buttonResetPassword",
-        backResetPassword: "~buttonBackUserID",
-        checkEmail: "~buttonCheckEmail",
-        confirm: "~buttonConfirm",
-      },
-    icon: {
-        eyePassword: "~iconEyePassword",
-        eyeConfirmPassword: "~iconEyeConfirmPassword",
-      },
-    link: {
-        resendEmail: "~linkResendEmail",
-      },
-    text: {
-        textUserID: "~textUserID",
-        textCompanyName: "~textCompanyName",
-        textEmail: "~textEmail"
-      },
-    messageErrorFields:{
-        msgErrorUserID: "~textMsgErrorUserID",
-        msgPassword: "~textMsgErrorPassword",
-        msgConfirmPassword: "~textMsgErrorConfirmPassword"
-      },
-    
-    fillFieldForgotPassword(fieldName, txtValue){
+  fields: {
+    userID: "~textFieldUserID",
+  },
+  buttons: {
+    resetPassword: "~buttonResetPassword",
+    backPopUpConfirm: "~buttonBackUserID",
+    checkEmail: "~buttonCheckEmail",
+    confirm: "~buttonConfirm",
+  },
+  link: {
+    resendEmail: "~linkResendEmail",
+  },
+  text: {
+    userID: "~textUserID",
+    companyName: "~textCompanyName",
+    email: "~textEmail"
+  },
+  messageErrorFields: {
+    userID: "~textMsgErrorUserID",
+  },
 
-        I.seeElement(this.fields[fieldName]);
-        I.click(this.fields[fieldName]);
-        I.setText(this.fields[fieldName], txtValue);
-        I.hideDeviceKeyboard();
-      },
+  fillUserID(txtValue) {
+    I.setText(this.fields.userID, txtValue);
+  },
 
-    clickButtonResetPassword() {
-        I.click(this.buttons.resetPassword);
-      },
-    clickButtonCheckEmail() {
-        I.click(this.buttons.checkEmail);
-      },
-    clickButtonConfirm() {
-        I.click(this.buttons.confirm);
-      },
-    clickButtonBackUserID() {
-        I.click(this.buttons.back);
-      },
+  isOpen() {
+    I.waitForElement(this.fields.userID, 10);
+  },
+
+  clickButtonResetPassword() {
+    I.click(this.buttons.resetPassword);
+  },
+
+  resendEmail() {
+    I.click(this.link.resendEmail);
+  },
+
+  clickButtonConfirm() {
+    I.click(this.buttons.confirm);
+  },
+
+  backtoPageResetPassword() {
+    I.click(this.buttons.backPopUpConfirm);
+  },
+  
+  async getMessageError() {
+    I.waitForElement(this.messageErrorFields.userID, 10);
+    return await I.grabTextFrom(this.messageErrorFields.userID);
+  },
+
+  async getUserID() {
+    I.waitForElement(this.text.userID, 10);
+    return await I.grabTextFrom(this.text.userID);
+  },
+
+  async getCompanyName() {
+    I.waitForElement(this.text.companyName, 10);
+    return await I.grabTextFrom(this.text.companyName);
+  },
 }

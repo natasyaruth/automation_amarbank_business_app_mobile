@@ -5,8 +5,8 @@ const {
   I,
   registrationPage,
   otpConfirmationPage,
-  loginPage,
   welcomePage,
+  loginPage,
   headerPage,
   verificationEmailPage,
   whitelistDao,
@@ -21,6 +21,7 @@ const globalVar = {
   password: "",
   companyName: "",
   businessCode: "",
+  userID: "",
 }
 
 Given("I am a customer lead wanting to open a new account", () => {});
@@ -72,9 +73,8 @@ When("I registering the account", () => {
 });
 
 Then("my account should be created", () => {
-  // loginPage.native();
-  // loginPage.login();
-  // loginPage.shouldBeSuucess();
+  I.waitForText("Dashboard Screen", 10);
+  // check dashboard step
 });
 
 When("I verifying my phone number by entering the code sent to me", async () => {
@@ -104,9 +104,9 @@ When("I verifying my email by login by user id", async () => {
   let actualEmail = await verificationEmailPage.getEmailValue();
   I.assertEqual(actualEmail, globalVar.email);
 
-  // step to get user id from email
+  globalVar.userID = await otpDao.getUserID(globalVar.email);
 
-  verificationEmailPage.loginWithUserId("test", globalVar.password, globalVar.email);
+  verificationEmailPage.loginWithUserId(globalVar.userID, globalVar.password, globalVar.email);
 });
 
 Given ("I am a customer had been registering the account with the following details:", async (table) => {

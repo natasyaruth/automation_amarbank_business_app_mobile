@@ -3,16 +3,16 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
-  @C75459
+  @registration_1 @C75459
   Scenario: Create a new account
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | John Doe            |
-      | email           | ruth.test@email.com |
-      | mobileNumber    | 87911921277         |
-      | password        | 1234Test            |
-      | confirmPassword | 1234Test            |
+      | fullName        | Ruth Natasya                   |
+      | email           | testing.ruth.first@email.com |
+      | mobileNumber    | 89111921997                    |
+      | password        | 1234Test                       |
+      | confirmPassword | 1234Test                       |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
@@ -58,12 +58,12 @@ Feature: Account registration
     When I am filling field 'fullName' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'fullName'
     Examples:                                                                 ❸
-      | testRailTag | Value                                                | Message                                                                        |
+      | testRailTag | Value | Message                  |
       | @C75428     | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
       | @C75429     | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
       | @C75430     | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       | @C75431     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      | @C80637     |                                                      | Nama lengkap wajib diisi                                                       |
+      | @C80637     |       | Nama lengkap wajib diisi |
 
   @registration_1 @scenario_negative_field_email_with_invalid_value
   Scenario Outline: Verifying email with invalid value
@@ -407,8 +407,8 @@ Feature: Account registration
       | email           | fakemail@email.com |
       | mobileNumber    | 89561338639        |
       | password        | Test1234           |
-      | confirmPassword | Test1234           |  
-    When I verifying my phone number by entering the wrong code four times  
+      | confirmPassword | Test1234           |
+    When I verifying my phone number by entering the wrong code four times
     And I resend the OTP
     And I verifying my phone number by entering the wrong code four times
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
