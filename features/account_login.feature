@@ -60,10 +60,10 @@ Feature: Account login
   @login @C75509
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
-      | userID   | ruth55ba |
+      | userID   | ruth0ba7 |
       | password | Pass1234 |
     When I filling in form login with the following details:
-      | userID   | ruth55ba |
+      | userID   | ruth0ba7 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
@@ -71,10 +71,10 @@ Feature: Account login
   @login @C75510
   Scenario: Login with wrong password twice
     Given I am a customer who has failed to login '1' times with following details:
-      | userID   | natabe66 |
+      | userID   | ruth0ba7 |
       | password | Pass1234 |
     When I filling in form login with the following details:
-      | userID   | natabe66 |
+      | userID   | ruth0ba7 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'  
@@ -85,7 +85,7 @@ Feature: Account login
       | userID   | ruth06dc |
       | password | Pass1234 |
     When I filling in form login with the following details:
-      | userID   | ruth06dc |
+      | userID   | ruth0ba7 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Akun Anda Terblokir' with button 'close'    
