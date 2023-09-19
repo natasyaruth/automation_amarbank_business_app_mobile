@@ -80,6 +80,8 @@ exports.config = {
     forgotPasswordPage: "./pages/forgotPassword.js",
 
     onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
+
+    uploadKtpPage: "./pages/uploadKtp.js",
   },
   mocha: {},
   bootstrap: null,
@@ -95,7 +97,9 @@ exports.config = {
     "./step_definitions/steps_loanAmountTenor.js",
     "./step_definitions/steps_loanMonitoring.js",
     "./step_definitions/steps_login.js",
-    "./step_definitions/steps_forgotPassword.js"
+    "./step_definitions/steps_forgotPassword.js",
+    "./step_definitions/steps_kyc_account_opening.js",
+    "./step_definitions/steps_onboarding_account_opening.js"
   ],
   },
   plugins: {

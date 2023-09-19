@@ -15,10 +15,7 @@ module.exports = {
   },
 
   chooseLegalityBusinessType(type) {
-    if (this.fields[type] === undefined) {
-      return;
-    }
-    I.seeElement(this.radioButtons[type]);
+    I.waitForElement(this.radioButtons[type], 10);
     I.click(this.radioButtons[type]);
   },
 

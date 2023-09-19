@@ -1,6 +1,3 @@
-const forgotpassword = require("./pages/forgotpassword");
-const { fields } = require("./pages/login");
-
 const {
     I,
     welcomePage,
