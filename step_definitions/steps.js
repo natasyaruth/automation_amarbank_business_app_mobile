@@ -1,3 +1,6 @@
+const changePhoneNumber = require("../pages/changePhoneNumber");
+const { fields } = require("../pages/registration");
+
 const {
   I,
   registrationPage,
@@ -379,6 +382,7 @@ Then ("I should be notified that I can reverify the phone number tomorrow", asyn
   " "+months[month]+" "+year+", pukul "+currentTime);
 
   I.dontSeeElement(otpConfirmationPage.links.resendOTP);
+  await otpDao.resetLimitRequestOtp(globalVar.phoneNumber);
 });
 
 When ("I choose change phonenumber", () =>{

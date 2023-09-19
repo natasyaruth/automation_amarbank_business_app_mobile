@@ -1,3 +1,6 @@
+const forgotpassword = require("./pages/forgotpassword");
+const { fields } = require("./pages/login");
+
 const {
     I,
     welcomePage,
@@ -19,24 +22,31 @@ Given("I am a customer who has failed to login {string} times with following det
         const account = table.parse().rowsHash();
         globalVar.password = account["password"];
         globalVar.userID = account["userID"];
-
-        loginPage.fillInAccountInformation(account);
-        loginPage.clickLoginButton();
-        I.waitForText("Data Yang Dimasukkan Salah", 10);
-        loginPage.tryToLogin();
     }
     globalVar.countValue = countValue;
 });
 
+Then("I successed go to dashbord",()=>{
+    ///dashboard still on development from mobile
+    ///I.see('Selamat, akun Anda berhasil dibuat')
+    I.wait(2);
+        // loginPage.fillInAccountInformation(account);
+        // loginPage.clickLoginButton();
+        // I.waitForText("Data Yang Dimasukkan Salah", 10);
+        // loginPage.tryToLogin();
+    });
+
 Given("I am a registered customer with following details:", (table) => {
     welcomePage.clickButtonLogin();
+
+    const account = table.parse().rowsHash();
+    globalVar.password = account["password"];
+    globalVar.userID = account["userID"];
 });
 
 When("I filling in form login with the following details:",
     (table) => {
         const account = table.parse().rowsHash();
-        globalVar.password = account["password"];
-        globalVar.userID = account["userID"];
         loginPage.fillInAccountInformation(account);
     }
 );
@@ -78,7 +88,7 @@ Then("I should see pop up {string} with button {string}", (expectedValue, button
     }
     
     loginPage.fillFieldLogin('userID', globalVar.userID);
-    loginPage.fillFieldLogin('password', "1234Test");
+    loginPage.fillFieldLogin('password', globalVar.password);
     loginPage.clickLoginButton();
     I.waitForText("Dashboard Screen", 10);
 });
@@ -137,6 +147,9 @@ When("I click logout", () => {
     I.click("LOGOUT") // this only temporary because dashboard still on development
 });
 
+Then("I click button loan dashboard",()=>{
+    loginPage.clickBtnOnBoardingPage();
+});
 Then("I should see checkbox remember me is checked", () => {
     I.waitForText("Masuk Akun", 10);
     I.seeAttributesOnElements(

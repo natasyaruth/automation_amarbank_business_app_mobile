@@ -10,7 +10,8 @@ module.exports = {
     tryAgain: "~buttonTryAgain",
     reactivation: "~buttonReactivation",
     close: "~buttonClose",
-    callCenter: "~buttonCallCenter",
+    callCenter: "~buttonCallCenter", 
+    onboardingPage: {xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]'},
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -32,14 +33,18 @@ module.exports = {
       if (this.fields[key] === undefined) {
         return;
       }
+      I.click(this.fields[key]);
       I.seeElement(this.fields[key]);
       I.setText(this.fields[key], accountInformation[key]);
+      I.hideDeviceKeyboard();
     });
   },
 
   fillFieldLogin(fieldName, txtValue) {
     I.seeElement(this.fields[fieldName]);
+    I.click(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
+    I.hideDeviceKeyboard();
   },
 
   async getMessageErrorFieldLogin(fieldName) {
@@ -87,6 +92,11 @@ module.exports = {
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
 
+  clickBtnOnBoardingPage(){
+    I.wait(5);
+    I.click(this.buttons.onboardingPage);
+  },
+
   checkRememberMe() {
     let stateCheckBox = I.grabAttributeFrom(this.checkbox.rememberMe, 'checked')
     if (
@@ -104,5 +114,5 @@ module.exports = {
 
   async getValueUserID() {
     return await I.grabTextFromField(this.fields.userID);
-  },
+  }
 }

@@ -20,7 +20,7 @@ Feature: Account Forgot Password
   @forgot_password @C75518
   Scenario: Reset password with user ID has been registered
     Given I am a customer want to reset password
-    When I am filling field User ID with 'ruth55ba'
+    When I am filling field User ID with 'ruth79f5'
     And I click button Reset Password
     Then I should be notified that email Reset Password successfully sent
 
@@ -31,6 +31,7 @@ Feature: Account Forgot Password
     When I resend email reset password
     Then I should be notified that email reset password has been successfully sent
 
+  @C88557
   Scenario: Reset password with user ID from invitation business
     Given I am a customer has User ID '' and company name ''
     When I am filling field User ID with ''
@@ -38,6 +39,7 @@ Feature: Account Forgot Password
     And I click button confirmation reset password
     Then I should be notified that email Reset Password successfully sent
 
+  @C88558
   Scenario: Back to page reset password from pop up confirmation
     Given I am a customer has User ID '' and company name ''
     When I am filling field User ID with ''
@@ -45,7 +47,7 @@ Feature: Account Forgot Password
     And I click button back from pop up reset password
     Then I should back to page reset password with field User ID still filled
 
-  @forgot_password
+  @forgot_password @C88559
   Scenario: Back to page login from page reset password
     Given I am a customer want to reset password
     When I click button back in the header page
