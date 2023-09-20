@@ -8,11 +8,11 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Ruth Natasya                   |
-      | email           | testing.ruth.first@email.com |
-      | mobileNumber    | 89111921997                    |
-      | password        | 1234Test                       |
-      | confirmPassword | 1234Test                       |
+      | fullName        | Ruth Natasya                 |
+      | email           | ruth.hutauruk@amarbank.co.id |
+      | mobileNumber    | 81293628149                  |
+      | password        | 1234Test                     |
+      | confirmPassword | 1234Test                     |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
@@ -58,12 +58,12 @@ Feature: Account registration
     When I am filling field 'fullName' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'fullName'
     Examples:                                                                 ❸
-      | testRailTag | Value | Message                  |
+      | testRailTag | Value                                                | Message                                                                        |
       | @C75428     | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
       | @C75429     | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
       | @C75430     | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       | @C75431     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      | @C80637     |       | Nama lengkap wajib diisi |
+      | @C80637     |                                                      | Nama lengkap wajib diisi                                                       |
 
   @registration_1 @scenario_negative_field_email_with_invalid_value
   Scenario Outline: Verifying email with invalid value
@@ -163,7 +163,7 @@ Feature: Account registration
     When I click link privacy and policy
     Then I will directing to web view privacy and policy
 
-  @registration_1 @C75465
+  @C75465
   Scenario: Access call center on page registration
     Given I am a customer want to access menu registration
     When I click call center
@@ -242,7 +242,7 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 88844568672        |
+      | mobileNumber    | 87539568672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     When I verifying my phone number by entering the wrong code five times
@@ -260,7 +260,7 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  @change_phonenumber
+  @change_phonenumber @C88595
   Scenario: Create account with phone number has been updated on the verification page
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -274,7 +274,7 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  @change_phonenumber
+  @change_phonenumber @C88596
   Scenario: Change phonenumber with old phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -299,14 +299,14 @@ Feature: Account registration
     Then I should see message error '<Message>' in the below of field new phonenumber
     Examples:                                                                 ❸
       | testRailTag | Value         | Message                                                       | Phone Number |
-      |             | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
-      |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
-      |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
-      |             | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
-      |             | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
-      |             |               | Nomor handphone wajib diisi                                   | 81234567892  |
+      | @C88597     | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
+      | @C88598     | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
+      | @C88599     | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
+      | @C88600     | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
+      | @C88601     | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
+      | @C88602     |               | Nomor handphone wajib diisi                                   | 81234567892  |
 
-  @change_phonenumber
+  @change_phonenumber @C88603
   Scenario: Back to page Verification phonenumber from page change phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -400,7 +400,7 @@ Feature: Account registration
     Then I should be notified that I can reverify the phone number tomorrow
     And I cannot change my phonenumber
 
-  @verification_phonenumber
+  @verification_phonenumber @C88604
   Scenario: Verify state count attempt error when try to resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |

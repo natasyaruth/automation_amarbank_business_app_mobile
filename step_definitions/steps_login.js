@@ -38,13 +38,15 @@ Then("I successed go to dashbord",()=>{
 
 Given("I am a registered customer with following details:", (table) => {
     welcomePage.clickButtonLogin();
+
+    const account = table.parse().rowsHash();
+    globalVar.password = account["password"];
+    globalVar.userID = account["userID"];
 });
 
 When("I filling in form login with the following details:",
     (table) => {
         const account = table.parse().rowsHash();
-        globalVar.password = account["password"];
-        globalVar.userID = account["userID"];
         loginPage.fillInAccountInformation(account);
     }
 );
@@ -86,7 +88,7 @@ Then("I should see pop up {string} with button {string}", (expectedValue, button
     }
     
     loginPage.fillFieldLogin('userID', globalVar.userID);
-    loginPage.fillFieldLogin('password', "1234Test");
+    loginPage.fillFieldLogin('password', globalVar.password);
     loginPage.clickLoginButton();
     I.waitForText("Dashboard Screen", 10);
 });
