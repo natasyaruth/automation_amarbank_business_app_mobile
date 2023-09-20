@@ -66,19 +66,8 @@ exports.config = {
 
     otpDao: "./dao/otpDao.js",
     
-    loanTypePage: "./pages/loanType.js",
-    
-    selectAnchorPage: "./pages/selectAnchor.js",
-    
-    selectLoanAmountPage: "./pages/selectLoanAmountTenor.js",
-    
-    loanMonitoringProcessPage: "./pages/loanMonitoringProcess.js",
-    
     forgotPasswordPage: "./pages/forgotPassword.js",
-
-    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
-
-    uploadKtpPage: "./pages/uploadKtp.js",
+    
   },
   mocha: {},
   bootstrap: null,
@@ -88,8 +77,8 @@ exports.config = {
   gherkin: {
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js", 
-    "./step_definitions/steps_login.js",
-    "./step_definitions/steps_forgotPassword.js",],
+            "./step_definitions/steps_login.js",
+            "./step_definitions/steps_forgotPassword.js",],
   },
   plugins: {
     screenshotOnFail: {
