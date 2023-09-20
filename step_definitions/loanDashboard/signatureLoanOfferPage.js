@@ -1,13 +1,9 @@
-const signatureLoanOfferPage = require("../pages/loanDashboard/signatureLoanOfferPage.js");
-const { fields } = require("../pages/login");
-
-const { I, loginPage, signatureLoanOfferPage } = inject();
+const { I, loginPage, loanDashboardPage } = inject();
 
 const globalVar = {
     password: "",
     userID: "",
 };
-
 //Scenario: Validate design of entry point signature user drop off for approval limit loan
 Given('I got a card for signature loan limit offer from system', () => {
 
