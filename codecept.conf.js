@@ -32,6 +32,7 @@ exports.config = {
         deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb",
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        autoGrantPermissions: true,
         newCommandTimeout: 300,
       },
     },

@@ -33,9 +33,9 @@ Feature: Checking Monitoring Process
         When user on legality business page
         And user select legality business type
         And user select business establishment date
-        And user select the day date "1"
-        And user select the month date "1"
-        And user select the year date "1"
+        And user select the day date "Previous"
+        And user select the month date "Previous"
+        And user select the year date "Previous"
         And user choose the date
         Then user click button next on legality business page
         And user on head office location page
