@@ -28,8 +28,13 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300
-      }
+        newCommandTimeout: 300,
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        autoGrantPermissions: true,
+        newCommandTimeout: 300,
+      },
     },
     ChaiWrapper: {
       require: "codeceptjs-chai"
