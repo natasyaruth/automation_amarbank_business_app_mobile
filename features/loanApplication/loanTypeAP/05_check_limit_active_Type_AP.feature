@@ -1,8 +1,8 @@
 @loanActiveTypeAP
-Feature: Apply Either Loan and select the loan type
-        In order to test entry point for signature user drop off Loan Dashboard page
+Feature:Checking Loan Type AP and Direct AP with Status Active
+In order to checking limit active for loan type AP and Direct AP
         As a customer
-        I am able to approve limit offers
+I am able to verify limit active loan type AP and direct AP in history page
 
         Background: Login with registered account
                 Given I am a registered customer with following details:
@@ -13,7 +13,7 @@ Feature: Apply Either Loan and select the loan type
                         | password | 1234Test |
                 And I click login
                 Then I will direct to dashboard
-        @55551
+
         Scenario: Validate Card Limit For Type Loan AP
                 Given I have been on Loan Dashboard to see the loan type of Loan AP
                 When I validate the card of "Loan AP"
