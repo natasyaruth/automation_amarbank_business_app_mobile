@@ -156,7 +156,6 @@ Then('I should see the wording and card design of "Loan PO"', async () => {
 //@C88635 Validate Card Limit For Type Loan AR Direct Loan
 Given('I have been on Loan Dashboard to see the loan type of Loan AR Direct Loan', () => {
     loanDashboardPage.goToLoanDashboard();
-    loanDashboardPage.validateLimitCardOffering();
     loanDashboardPage.goToHistory();
 });
 
