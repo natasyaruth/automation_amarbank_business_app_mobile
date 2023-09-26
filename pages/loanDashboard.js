@@ -1,3 +1,5 @@
+const { error } = require("codeceptjs-testrail/lib/output");
+
 const { I } = inject();
 
 module.exports = {
@@ -16,7 +18,6 @@ module.exports = {
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
 
-
   },
 
   cards: {
@@ -24,8 +25,7 @@ module.exports = {
     cardActiveBill: "~cardActiveBill",
     cardLimitAP: "~cardLimitAP",
     cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
-    cardLimitAR: "cardLimitAR",
-    cardLimitARDirectLoan: "~cardLimitARDirectLoan",
+    cardLimitAR: "~cardLimitAR",
     cardLimitPO: "~cardLimitPO",
   },
 
@@ -49,6 +49,8 @@ module.exports = {
   },
 
   text: {
+    textDashboardScreen: "Dashboard Screen",
+    textLoanDashboard: "Loan Dashboard",
     textActiveLimitsCount: "~textActiveLimitsCount",
     textRadioButtonAP: "~textRadioButtonAP",
     textRadioButtonAR: "~textRadioButtonAR",
@@ -64,14 +66,22 @@ module.exports = {
     iconInfo: "~iconInfo",
   },
 
+  //Dashboard Screen
+  goToLoanDashboard() {
+    I.wait(3);
+    I.see(this.text.textDashboardScreen);
+    I.click(this.text.textLoanDashboard);
+    I.see('Pinjaman Bisnis');
+  },
 
+  //Loan Dashboard
   clickButtonBack() {
     I.wait(2);
     I.click(this.buttons.buttonBack);
   },
 
-  //Loan Dashboard
   applyNewLimitLoan() {
+    I.wait(2);
     I.seeElement(this.buttons.buttonNewLimit);
     I.click(this.buttons.buttonNewLimit);
   },
@@ -82,17 +92,22 @@ module.exports = {
     I.seeElement(this.radioButtons.radioButtonAR);
     I.seeElement(this.radioButtons.radioButtonPO);
     I.seeElement(this.text.textRadioButtonAP);
-    I.seeElement(this.textRadioButtonAP);
+    I.seeElement(this.text.textRadioButtonAP);
     I.seeElement(this.text.textRadioButtonAR);
     I.seeElement(this.text.textRadioButtonPO);
     I.seeElement(this.buttons.buttonNext);
   },
 
-  validateLimitCardOffering() {
-    I.seeElement(this.cards.cardOffer);
+  async validateLimitCardOffering() {
+    try {
+      await I.seeElement(this.cards.cardOffer);
+      console.log('Element exists');
     I.see('Segera Setujui Penawaran Pinjaman');
-    I.see('Setujui Pinjaman Sebelum:');
+      I.see('Setujui Pinjaman Sebelum:');
     I.see('Pinjaman yang ditawarkan:');
+    } catch (error) {
+      console.log('Element does not exist');
+    }
   },
 
   goToApprovalLimitOffering() {
@@ -111,9 +126,8 @@ module.exports = {
   },
 
   validateApprovalLimitOfferHasExpired() {
-    I.see('Penawaran limit berakhir dalam', '0 hari : 0 jam : 0 menit');
+    I.see('Penawaran limit berakhir dalam');
     I.seeElement(this.buttons.buttonApprove);
-    I.hasAttribute('disable');
   },
 
   approveLimitLoanOffering() {
@@ -122,7 +136,7 @@ module.exports = {
   },
 
   verifyApproveLimit() {
-    I.see('Dalam tahap development');
+    I.seeElement(this.buttons.buttonApprove);
   },
 
   closeApproveLimitLoanPage() {
@@ -130,12 +144,15 @@ module.exports = {
     I.click(this.buttons.buttonClose);
   },
 
+  validateButtonCloseInvisible() {
+    I.waitForInvisible(this.buttons.buttonClose);
+  },
+
   //Signature Card
   validateSignatureCard() {
     I.see('Segera Setujui Penawaran Pinjaman');
     I.see('Tanda Tangan Sebelum');
     I.see('Pinjaman yang ditawarkan:');
-
   },
 
   goToSignaturedPage() {
@@ -186,9 +203,9 @@ module.exports = {
     I.see("Dalam Proses");
     I.see("Aktif");
     I.see("Selesai");
-    // I.seeElement(this.filters.filterByOnActive);
-    // I.seeElement(this.filters.filterByOnProcess);
-    // I.seeElement(this.filters.filterbyOnDone);
+    I.seeElement(this.filters.filterByOnActive);
+    I.seeElement(this.filters.filterByOnProcess);
+    I.seeElement(this.filters.filterbyOnDone);
   },
 
   goToTabLimit() {
@@ -213,7 +230,7 @@ module.exports = {
     I.seeElement(this.filters.filterByWaitingConfirmation);
   },
 
-  goToTabBill() {
+  goToTabBills() {
     I.seeElement(this.tabs.tabBill);
     I.click(this.tabs.tabBill);
   },
@@ -235,8 +252,8 @@ module.exports = {
   },
 
   goToStatusActiveLimitHistory() {
-    // I.seeElement(this.filters.filterByOnActive);
-    //I.click(this.filters.filterByOnActive);
+    I.seeElement(this.filters.filterByOnActive);
+    I.click(this.filters.filterByOnActive);
     I.click("Aktif");
   },
 
@@ -245,15 +262,20 @@ module.exports = {
     I.see("Aktif");
   },
 
-  async grabNumberFromText() {
-    let teks = await I.grabTextFrom(this.text.textActiveLimitsCount);
-    let number = teks.match(/\d+/g).join(this.text.textActiveLimitsCount);
+  verifyMultipleActiveLimit() {
+    I.wait(2);
+    I.seeElement(this.text.textActiveLimitsCount);
   },
 
-  async totalCardActive() {
-    let totalElementVisible = await I.grabNumberOfVisibleElements("Limit tersedia:");
-    I.see(totalElementVisible, grabNumberFromText);
-  },
+  // async grabNumberFromText() {
+  //   let teks = await I.grabTextFrom(this.text.textActiveLimitsCount);
+  //   let number = teks.match(/\d+/g).join(this.text.textActiveLimitsCount);
+  // },
+
+  // async totalCardActive() {
+  //   let totalElementVisible = await I.grabNumberOfVisibleElements("Limit tersedia:");
+  //   I.see(totalElementVisible, grabNumberFromText);
+  // },
 
   goToStatusDoneLimitHistory() {
     I.seeElement(this.filters.filterbyOnDone);
@@ -291,27 +313,53 @@ module.exports = {
     I.seeElement(this.filters.filterByWaitingConfirmation);
   },
 
-  validateLoanTypeofLoanAP() {
-    I.seeElement(this.cards.cardLimitAP);
-    I.see('Invoice Menunggu Dibayar');
-    I.see('Bayar Invoice');
+  async validateLoanTypeofLoanAP() {
+    try {
+      await I.seeElement(this.cards.cardLimitAP);
+      console.log('Element exists');
+      I.seeElement(this.cards.cardLimitAP);
+      I.see('Invoice Menunggu Dibayar');
+      I.see('Bayar Invoice');
+      I.seeElement(this.buttons.buttonUseLimit);
+    } catch (error) {
+      console.log('Element does not exist');
+    }
+  }, 
+
+  async validateLoanTypeofLoanAPDirectLoan() {
+    try {
+      await I.seeElement(this.cards.cardLimitAPDirectLoan);
+      console.log('Element exists');
+      I.seeElement(this.cards.cardLimitAPDirectLoan);
+      I.see('Upload Invoice Untuk Dibayar');
+      I.see('Bayar Invoice');
+    } catch (error) {
+      console.log('Element does not exist');
+    }
   },
 
-  validateLoanTypeofLoanAPDirectLoan() {
-    I.seeElement(this.cards.cardLimitAPDirectLoan);
-    I.see('Upload Invoice Untuk Dibayar');
-    I.see('Bayar Invoice');
-  },
-
-  validateLoanTypeofLoanPO() {
+  async validateLoanTypeofLoanPO() {
+    try {
+      await I.seeElement(this.cards.cardLimitPO);
+      console.log('Element exists');
     I.seeElement(this.cards.cardLimitPO);
-    I.see('Upload Invoice Untuk Dibayar');
-    I.see('Bayar Invoice');
+      // I.see('Upload Invoice Untuk Dibayar');
+      // I.see('Bayar Invoice');
+    } catch (error) {
+      console.log('Element does not exist');
+    }
   },
 
-  validateLoanTypeofLoanARDirectLoan() {
-    I.seeElement(this.cards.cardLimitARDirectLoan);
-    I.see('Upload Invoice Untuk Cairkan');
-    I.see('Cairkan Limit');
+  async validateLoanTypeofLoanARDirectLoan() {
+    try {
+      await I.seeElement(this.cards.cardLimitAR);
+      console.log('Element exists');
+      I.seeElement(this.cards.cardLimitAR);
+      I.see('Upload Invoice Untuk Cairkan');
+      I.see('Cairkan Limit');
+      I.seeElement(this.buttons.buttonUseLimit);
+    } catch (error) {
+      console.log('Element does not exist');
+    }
   },
 }

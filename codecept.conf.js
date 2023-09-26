@@ -21,10 +21,10 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      // app: "./assets/app/app-debug.apk",
+      app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator-5554",
-      path: "/wd/hub",
+      device: "emulator",
+      path: "/",
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
@@ -34,7 +34,7 @@ exports.config = {
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
         newCommandTimeout: 300,
-      },
+      }
     },
     ChaiWrapper: {
       require: "codeceptjs-chai"
@@ -67,6 +67,7 @@ exports.config = {
     whitelistDao: "./dao/whitelistDao.js",
 
     verificationEmailPage: "./pages/verificationEmail.js",
+
     otpDao: "./dao/otpDao.js",
     loanTypePage: "./pages/loanApplication/loanType.js",
     selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
@@ -74,6 +75,7 @@ exports.config = {
     loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
     forgotPasswordPage: "./pages/forgotPassword.js",
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
+    loanDashboardPage: "./pages/loanDashboard.js",
   },
   mocha: {},
   bootstrap: null,
@@ -93,7 +95,9 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanAmountTenor.js",
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/steps_login.js",
-      "./step_definitions/steps_forgotPassword.js"
+      "./step_definitions/steps_forgotPassword.js",
+      "./step_definitions/loanDashboard/loanDashboard.js", 
+      "./step_definitions/loanDashboard/historyPage.js"
     ],
   },
   plugins: {

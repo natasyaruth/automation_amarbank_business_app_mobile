@@ -1,6 +1,3 @@
-const loanDashboardPage = require("../pages/loanDashboard");
-const { fields } = require("../pages/login");
-
 const { I, loginPage, loanDashboardPage } = inject();
 
 const globalVar = {
@@ -8,8 +5,9 @@ const globalVar = {
     userID: "",
 };
 
-//Scenario: Access History Dashboard For 'Limit' Bar
+//@C88614 Scenario: Access History Dashboard For 'Limit' Bar
 Given('I have been access history loan to see menu Limit', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
 });
 When('I access menu bar "Limit"', () => {
@@ -20,8 +18,9 @@ Then('I should see history "Limit"', () => {
     loanDashboardPage.validateTabLimit();
 });
 
-//Scenario: Access History Dashboard For 'Pencairan' Bar
+//@C88615 Scenario: Access History Dashboard For 'Pencairan' Bar
 Given('I have been access history loan to see menu "Pencairan"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
 });
 
@@ -34,8 +33,9 @@ Then('I should see history "Pencairan"', () => {
     loanDashboardPage.validateTabDisbursement();
 });
 
-// Scenario: Access History Dashboard For 'Tagihan' Bar
+//@C88617 Scenario: Access History Dashboard For 'Tagihan' Bar
 Given('I have been access history loan to see menu "Tagihan"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
 });
 When('I access menu bar "Tagihan"', () => {
@@ -46,8 +46,9 @@ Then('I should see history "Tagihan"', () => {
     loanDashboardPage.validateTabBills();
 });
 
-//Scenario: Access History Limit Dashboard For Status On Process
+//@C88618 Scenario: Access History Limit Dashboard For Status On Process
 Given('I have been access history loan limit to see status "Dalam Proses"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabLimit();
 
@@ -61,8 +62,9 @@ Then('I should see history limit on process', () => {
     loanDashboardPage.validateStatusInProcessLimitHistory();
 });
 
-//Scenario: Access History Limit Dashboard For Status Active
+//@C88619 Scenario: Access History Limit Dashboard For Status Active
 Given('I have been access history loan limit to see status "Aktif"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabLimit();
 });
@@ -73,8 +75,9 @@ Then('I should see history limit active', () => {
     loanDashboardPage.validateStatusActiveLimitHistory();
 });
 
-//Scenario: Validate Limit Active With Multiple Active Loan
+//@C88620 Scenario: Validate Limit Active With Multiple Active Loan
 Given('I have been access history loan limit to see status user have more than one status active', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabLimit();
 });
@@ -82,12 +85,14 @@ When('I access menu bar limit with status active', () => {
     loanDashboardPage.goToStatusActiveLimitHistory();
 });
 Then('I should see more than one active limit loan', () => {
-    loanDashboardPage.grabNumberFromText;
-    loanDashboardPage.totalCardActive();
+    loanDashboardPage.verifyMultipleActiveLimit();
+    //loanDashboardPage.grabNumberFromText;
+    //loanDashboardPage.totalCardActive();
 });
 
-//Scenario: Access History Limit Dashboard For Status Done
+//@C88621 Scenario: Access History Limit Dashboard For Status Done
 Given('I have been access history loan limit to see status "Selesai"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabLimit();
 });
@@ -98,8 +103,9 @@ Then('I should see history limit done', () => {
     loanDashboardPage.validateStatusDoneLimitHistory();
 });
 
-//Scenario: Access History Loan Disbursement Dashboard For All Status
+//@C88622 Scenario: Access History Loan Disbursement Dashboard For All Status
 Given('I have been access history of loan disbursement to see status "Semua"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabDisbursement();
 
@@ -112,8 +118,9 @@ Then('I should see all history of disbursement', () => {
     loanDashboardPage.validateAllStatusDisbursementHistory();
 });
 
-//Scenario: Access History Loan Disbursement For Status "Kirim PDC"
+//@C88623 Scenario: Access History Loan Disbursement For Status Send PDC
 Given('I have been access history of loan disbursement to see status "Kirim PDC"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabDisbursement();
 });
@@ -124,8 +131,9 @@ Then('I should see history of "Kirim PDC"', () => {
     loanDashboardPage.validateStatusSendPDCofDisbursementHistory();
 });
 
-//Scenario: Access History Loan Disbursement For Status "Menunggu Konfirmasi"
+//@C88624 Scenario: Access History Loan Disbursement For Status Waiting Confirmation
 Given('I have been access history of loan disbursement to see status "Menunggu Konfirmasi"', () => {
+    loanDashboardPage.goToLoanDashboard();
     loanDashboardPage.goToHistory();
     loanDashboardPage.goToTabDisbursement();
 });

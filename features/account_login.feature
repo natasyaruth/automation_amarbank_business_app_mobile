@@ -60,10 +60,10 @@ Feature: Account login
   @login @C75509
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
-      | userID   | ruth55ba |
-      | password | Pass1234 |
+      | userID   | ruth2322 |
+      | password | Test1234 |
     When I filling in form login with the following details:
-      | userID   | ruth55ba |
+      | userID   | ruth2322 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
@@ -71,10 +71,10 @@ Feature: Account login
   @login @C75510
   Scenario: Login with wrong password twice
     Given I am a customer who has failed to login '1' times with following details:
-      | userID   | natabe66 |
-      | password | Pass1234 |
+      | userID   | ruth15ff |
+      | password | Test1234 |
     When I filling in form login with the following details:
-      | userID   | natabe66 |
+      | userID   | ruth15ff |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'  
@@ -82,10 +82,10 @@ Feature: Account login
   @login @C75511
   Scenario: Login with wrong password three times
     Given I am a customer who has failed to login '2' times with following details:
-      | userID   | ruth06dc |
-      | password | Pass1234 |
+      | userID   | ruth17a5 |
+      | password | Test1234 |
     When I filling in form login with the following details:
-      | userID   | ruth06dc |
+      | userID   | ruth17a5 |
       | password | Pass1234 |
     And I click login
     Then I should see pop up 'Akun Anda Terblokir' with button 'close'    
@@ -131,7 +131,9 @@ Feature: Account login
 
   @login @C75508
   Scenario: User want to remember their User ID
-    Given I am customer that already on page login
+    Given I am a registered customer with following details:
+      | userID   | rutha013 |
+      | password | 1234Test |
     When I filling in form login with the following details:
       | userID   | rutha013 |
       | password | 1234Test |
