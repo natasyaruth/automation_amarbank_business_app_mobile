@@ -1,4 +1,4 @@
-@kyc_upload_ktp
+@kycUploadKtp
 Feature: Account Opening KYC UD - Upload KTP Photo
   In order to opening my Giro account with legality business type UD in SMB
   As a customer

@@ -28,8 +28,7 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300,
-        autoGrantPermissions: true,
+        newCommandTimeout: 300
       }
     },
     ChaiWrapper: {
@@ -38,12 +37,13 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: 
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json"
       }
     },
-    JSONResponse: {},
+    JSONResponse: {}
   },
   include: {
     I: "./steps_file.js",
@@ -67,17 +67,6 @@ exports.config = {
     otpDao: "./dao/otpDao.js",
 
     loanDashboardPage: "./pages/loanDashboard.js",
-
-    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
-
-    uploadKtpPage: "./pages/uploadKtp.js",
-
-    formKtpPage: "./pages/formKtp.js",
-
-    resetStateDao: "./dao/resetStateDao.js",
-
-    globalVariable: "./global_variable.js"
-    
   },
   mocha: {},
   bootstrap: null,
@@ -86,14 +75,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: ["./features/*.feature", "./features/loanDashboard/*.feature"],
-    steps: ["./step_definitions/steps.js",
-      "./step_definitions/steps_login.js",
-      "./step_definitions/loanDashboard/loanDashboard.js",
-      "./step_definitions/loanDashboard/historyPage.js",
-      "./step_definitions/steps_onboarding_account_opening.js",
-      "./step_definitions/steps_kyc_upload_eKtp.js",
-      "./step_definitions/steps_kyc_submit_form_ktp.js"
-    ],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -115,14 +97,15 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
-    pattern: "wait.*",
-    timeout: 0
-  },
-  {
-    pattern: "amOnPage",
-    timeout: 0
-  }
+  stepTimeoutOverride: [
+    {
+      pattern: "wait.*",
+      timeout: 0
+    },
+    {
+      pattern: "amOnPage",
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"
