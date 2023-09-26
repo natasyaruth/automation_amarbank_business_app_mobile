@@ -16,11 +16,11 @@ module.exports = {
         descriptionBottomSheet: { xpath: '//android.widget.TextView[contains(@text, "Proses verifikasi pinjaman juga mencakup pembuatan rekening giro secara otomatis.")]' },
         loanProcessPage : {xpath: '//android.widget.TextView[contains(@text, "Pengajuanmu Sedang Diproses Tim Kami")]'},
         titleDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Pengecekan Dokumen")]'},
-        statusCheckingDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Proses saat ini")]'},
+        statusCurrentProcess: {xpath: '//android.widget.TextView[contains(@text, "Proses saat ini")]'},
         wordingDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Dokumen sudah berhasil dikirim, Tim kami akan memprosesnya.")]'},
-        titleAnalystCreditField: "",
-        statusAnalystCreditField: "",   
-        wordingAnalystCreditField: "",
+        titleAnalystCreditField: {xpath: '//android.widget.TextView[contains(@text, "Analisa Kredit")]'},
+        statusProcessComplete: {xpath: '//android.widget.TextView[contains(@text, "Proses selesai")]'},
+        wordingAnalystCreditField: {xpath: '//android.widget.TextView[contains(@text, "Hasil analisa kredit akan menentukan limit pinjaman yang Anda gunakan untuk transaksi dengan supplier.")]'},
         titleLastStepField: "",
         statusLastStepField: "",
         wordingLastStepField: ""
@@ -99,4 +99,24 @@ module.exports = {
         I.seeElement(this.fields[fieldName]);
         return await I.grabTextFrom(this.fields[fieldName]);
     },
+    async getTextFieldTitleCA(){
+        I.wait(2);
+        I.seeElement(this.fields.titleAnalystCreditField);
+        let actualValue = await I.grabAttributeFrom(this.fields.wordingAnalystCreditField, "text");
+        I.assertEqual(actualValue, "Hasil analisa kredit akan menentukan limit pinjaman yang Anda gunakan untuk transaksi dengan supplier.");
+    },
+    async getStatusLoanProcess(){
+        switch (statusText){
+            case "current":
+                I.wait(2);
+                let valueCurrent = await I.grabAttributeFrom(this.fields.statusCurrentProcess, "text");
+                I.assertEqual(valueCurrent, "Proses saat ini");
+            break;
+            case "complete":
+                I.wait(2);
+                let valueComplete = await I.grabAttributeFrom(this.fields.statusCurrentProcess, "text");
+                I.assertEqual(valueComplete, "Proses selesai");
+            break;
+        }
+    }
 }

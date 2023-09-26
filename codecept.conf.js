@@ -28,7 +28,12 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300
+        newCommandTimeout: 300,
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        autoGrantPermissions: true,
+        newCommandTimeout: 300,
       }
     },
     ChaiWrapper: {
@@ -37,8 +42,7 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json"
       }
@@ -65,7 +69,12 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
-
+    loanTypePage: "./pages/loanApplication/loanType.js",
+    selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
+    selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
+    loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+    forgotPasswordPage: "./pages/forgotPassword.js",
+    uploadDocLoanPage: "./pages/uploadDocLoan.js",
     loanDashboardPage: "./pages/loanDashboard.js",
   },
   mocha: {},
@@ -74,8 +83,22 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature"],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
+    features: ["./features/*.feature", 
+    "./features/loanApplication/loanTypeAP/*.feature",
+    "./features/loanApplication/loanTypeAR/*.feature",
+    "./features/loanApplication/loanTypePO/*.feature"
+  ],
+    steps: ["./step_definitions/steps.js",
+      "./step_definitions/steps_login.js",
+      "./step_definitions/loanApplication/steps_loanType.js",
+      "./step_definitions/loanApplication/steps_selectAnchor.js",
+      "./step_definitions/loanApplication/steps_loanAmountTenor.js",
+      "./step_definitions/loanApplication/steps_loanMonitoring.js",
+      "./step_definitions/steps_login.js",
+      "./step_definitions/steps_forgotPassword.js",
+      "./step_definitions/loanDashboard/loanDashboard.js", 
+      "./step_definitions/loanDashboard/historyPage.js"
+    ],
   },
   plugins: {
     screenshotOnFail: {
@@ -97,8 +120,7 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0
     },
