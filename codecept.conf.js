@@ -42,8 +42,7 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json"
       }
@@ -75,6 +74,7 @@ exports.config = {
     selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
     loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
     forgotPasswordPage: "./pages/forgotPassword.js",
+    uploadDocLoanPage: "./pages/uploadDocLoan.js",
   },
   mocha: {},
   bootstrap: null,
@@ -85,10 +85,11 @@ exports.config = {
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js", 
     "./step_definitions/steps_login.js", 
-    "./step_definitions/steps_loanType.js",
-    "./step_definitions/steps_selectAnchor.js",
-    "./step_definitions/steps_loanAmountTenor.js",
-    "./step_definitions/steps_loanMonitoring.js",
+    "step_definitions/loanApplication/*.js",
+    // "./step_definitions/steps_loanType.js",
+    // "./step_definitions/steps_selectAnchor.js",
+    // "./step_definitions/steps_loanAmountTenor.js",
+    // "./step_definitions/steps_loanMonitoring.js",
     "./step_definitions/steps_login.js",
     "./step_definitions/steps_forgotPassword.js"
   ],
@@ -113,8 +114,7 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0
     },

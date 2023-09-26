@@ -1,6 +1,6 @@
-Feature: Submit Loan Type AR Status is Rejected
+Feature: Submit Loan Type AR Status is Approved
     As a customer lead
-    I want to submit loan and rejected by vp of bussiness
+    I want to submit loan and Approved by VP of bussiness
 
     Background:
         Given I am a registered customer with foll
@@ -62,5 +62,6 @@ Feature: Submit Loan Type AR Status is Rejected
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan
-        And user trigered api change status loan is "rejected"
-        And user validate status is "rejected"
+        And user trigered api change status loan is approved
+        And user validate status is approved
+        And user validate content limit approved page

@@ -1,6 +1,6 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Submit Loan Type AR Status is Rejected
     As a customer lead
-    I want to submit loan and Approved by VP of bussiness
+    I want to submit loan and rejected by vp of bussiness
 
     Background:
         Given I am a registered customer with foll
@@ -11,17 +11,17 @@ Feature: Submit Loan Type AR Status is Approved
             | password | Feb042017 |
         And I click login
         Then I successed go to dashbord
-        And I click button loan dashboard
+
+    @C83807 @LoanApp
+    Scenario: User success fill data buyer and submit the loan and rejected the limit
+        Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
         And user select loan type "AR"
         And user click button lihat skema pinjaman
         And user on loan schema "AR"
         And user click button select the schema
-
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
-        Given user on buyer cooperating page
+        When user on buyer cooperating page
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
@@ -49,10 +49,11 @@ Feature: Submit Loan Type AR Status is Approved
         And user click view required documents button
         And user validate text prepare the following documents
         And user validate description prepare the following documents
-        And user close button
+        And user close button prepare doc bottom sheet
         And user click button upload documents
         # section upload document
-        Given user upload document nib
+        Given user on upload document page
+        When user upload document nib
         And user upload document deed of company
         And user upload document sk kemenkumham
         And user upload document npwp of company
@@ -62,5 +63,9 @@ Feature: Submit Loan Type AR Status is Approved
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan
-        And user trigered api change status loan is "approved"
-        And user validate status is "approved"
+        And user trigered api change status loan is rejected
+
+    Scenario: User success fill data buyer and submit the loan and rejected the limit
+        Given user on buyer cooperating page
+        And user validate status is rejected
+        And user validate content limit rejected page
