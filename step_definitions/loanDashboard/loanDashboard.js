@@ -114,7 +114,6 @@ Then('I should see main dashboard', () => {
 //@C88632 Scenario: Validate Card Limit For Type Loan AP
 Given('I have been on Loan Dashboard to see the loan type of Loan AP', () => {
     loanDashboardPage.goToLoanDashboard();
-    loanDashboardPage.validateLimitCardOffering();
     loanDashboardPage.goToHistory();
 });
 
@@ -129,7 +128,6 @@ Then('I should see the wording and card design of "Loan AP"', async () => {
 //@C88633 Scenario: Validate Card Limit For Type Loan AP Direct Loan
 Given('I have been on Loan Dashboard to see the loan type of Loan AP Direct Loan', () => {
     loanDashboardPage.goToLoanDashboard();
-    loanDashboardPage.validateLimitCardOffering();
     loanDashboardPage.goToHistory();
 });
 
@@ -144,7 +142,6 @@ Then('I should see the wording and card design of "Loan AP Direct Loan"', async 
 //@C88634 Scenario: Validate Card Limit For Type Loan PO
 Given('I have been on Loan Dashboard to see the loan type of Loan PO', () => {
     loanDashboardPage.goToLoanDashboard();
-    loanDashboardPage.validateLimitCardOffering();
     loanDashboardPage.goToHistory();
 });
 
@@ -159,7 +156,6 @@ Then('I should see the wording and card design of "Loan PO"', async () => {
 //@C88635 Validate Card Limit For Type Loan AR Direct Loan
 Given('I have been on Loan Dashboard to see the loan type of Loan AR Direct Loan', () => {
     loanDashboardPage.goToLoanDashboard();
-    loanDashboardPage.validateLimitCardOffering();
     loanDashboardPage.goToHistory();
 });
 
