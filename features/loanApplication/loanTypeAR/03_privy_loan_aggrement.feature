@@ -48,10 +48,10 @@ Feature: Submit Loan Type AR until sign privy
         And user on monitoring loan process page
         And user click view required documents button
         And user validate text prepare the following documents
-        And user validate description prepare the following documents
+        And user validate description prepare the following documents "AR"
         And user close button
         And user click button upload documents
-        # section upload document
+        ## section upload document ##
         Given user upload document nib
         And user upload document deed of company
         And user upload document sk kemenkumham
@@ -61,9 +61,35 @@ Feature: Submit Loan Type AR until sign privy
         And user upload document financial reports in the last 1 year
         And user click button refresh
         And user click back button to loan processing
-        # section trigered status loan
+        ## section trigered status loan ##
         And user trigered api change status loan is "approved"
         And user validate status is "approved"
         And user click accept the limit offer
         And user on tnc sign digital with privy page
-        And user validate 
+        And user should see countdown timer is shoeing
+        And user validate anountion information about privy
+        And user validate anountion prepare the documents
+        And user validate bottom sheet anountion "AR"
+        And user should see digital signature privy aggrement page
+        And user should see tnc privy page
+        And user click button read and sign
+        ## section sign loan aggrement on privy ##
+        And user should see aggrement sign privy page
+        And user click button sign on privy
+        And user click button next on privy
+        And user should see otp dialog
+        And user should see notif tosh otp send
+        And user click button confirmation
+        And user should see notificaiton sign success
+        ## section sign personal aggrement on privy ##
+        And user should see aggrement sign privy page
+        And user click button sign on privy
+        And user click button next on privy
+        And user should see otp dialog
+        And user should see notif tosh otp send
+        And user click button confirmation
+        And user should see notificaiton sign success
+        ## section waiting activation limit ##
+        And user on waiting activation limit page
+        And user validate title waiting check status "Proses Aktivasi Limit Pinjaman" on field "titleWaitingLimitActivation"
+        And user validate subtitle waiting check status "Mohon menunggu, butuh 1-3 menit untuk mengaktivasi layanan pinjaman. " on field "subTitleWaitingLimitActivation"
