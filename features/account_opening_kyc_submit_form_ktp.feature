@@ -1,3 +1,4 @@
+@kycSubmitFormKtp
 Feature: Account Opening KYC UD - Submit Form KTP
   In order to opening my Giro account with legality business type UD in SMB
   As a customer
@@ -30,7 +31,6 @@ Feature: Account Opening KYC UD - Submit Form KTP
   # - Pemilik Bisnis
   # - Upload Dokumen
 
-  @kyc_submit_form_ktp
   Scenario: Submit form KTP successfully
     Given I am a customer who has selected the business type UD
     When I fill all information identity details as followings:

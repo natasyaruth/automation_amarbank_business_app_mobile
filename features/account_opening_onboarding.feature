@@ -1,4 +1,4 @@
-@account_opening_onboarding
+@accountOpeningOnBoarding
 Feature: Account Opening Onboarding
     In order to opening my Giro account in SMB
     As a customer
