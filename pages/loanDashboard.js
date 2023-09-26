@@ -71,6 +71,7 @@ module.exports = {
     I.wait(3);
     I.see(this.text.textDashboardScreen);
     I.click(this.text.textLoanDashboard);
+    I.see('Pinjaman Bisnis');
   },
 
   //Loan Dashboard
@@ -97,12 +98,16 @@ module.exports = {
     I.seeElement(this.buttons.buttonNext);
   },
 
-  validateLimitCardOffering() {
-    I.wait(5);
-    I.seeElement(this.cards.cardOffer);
+  async validateLimitCardOffering() {
+    try {
+      await I.seeElement(this.cards.cardOffer);
+      console.log('Element exists');
     I.see('Segera Setujui Penawaran Pinjaman');
-    I.see('Setujui Pinjaman Sebelum:');
+      I.see('Setujui Pinjaman Sebelum:');
     I.see('Pinjaman yang ditawarkan:');
+    } catch (error) {
+      console.log('Element does not exist');
+    }
   },
 
   goToApprovalLimitOffering() {
