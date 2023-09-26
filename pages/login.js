@@ -114,5 +114,5 @@ module.exports = {
 
   async getValueUserID() {
     return await I.grabTextFromField(this.fields.userID);
-  }
+  },
 }

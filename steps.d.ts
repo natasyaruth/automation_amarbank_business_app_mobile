@@ -9,23 +9,12 @@ type headerPage = typeof import('./pages/header.js');
 type whitelistDao = typeof import('./dao/whitelistDao.js');
 type verificationEmailPage = typeof import('./pages/verificationEmail.js');
 type otpDao = typeof import('./dao/otpDao.js');
-type loanTypePage = typeof import('./pages/loanApplication/loanType.js');
-type selectAnchorPage = typeof import('./pages/loanApplication/selectAnchor.js');
-type selectLoanAmountPage = typeof import('./pages/loanApplication/selectLoanAmountTenor.js');
-type loanMonitoringProcessPage = typeof import('./pages/loanApplication/loanMonitoringProcess.js');
 type forgotPasswordPage = typeof import('./pages/forgotPassword.js');
-type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp.js');
-type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
-type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
 declare namespace CodeceptJS {
-<<<<<<< HEAD
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, forgotPasswordPage: forgotPasswordPage, uploadDocLoanPage: uploadDocLoanPage, loanDashboardPage: loanDashboardPage}
-=======
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, forgotPasswordPage: forgotPasswordPage, uploadDocLoanPage: uploadDocLoanPage, loanDashboardPage: loanDashboardPage, privyAggrementPage: privyAggrementPage }
->>>>>>> 51a8e0b (PR for cases on privy aggrement)
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, forgotPasswordPage: forgotPasswordPage, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, loanDashboardPage: loanDashboardPage}
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}
   namespace Translation {

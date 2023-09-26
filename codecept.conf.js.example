@@ -12,7 +12,7 @@ const env = {
     enabled: process.env.TESTRAIL_ENABLED || false,
     runId: process.env.TESTRAIL_RUN_ID || undefined,
     closeTestRun: process.env.TESTRAIL_CLOSE_RUN || false,
-  }
+  },
 };
 
 exports.config = {
@@ -28,42 +28,46 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300
-      }
+        newCommandTimeout: 300,
+        autoGrantPermissions: true,
+      },
     },
     ChaiWrapper: {
-      require: "codeceptjs-chai"
+      require: "codeceptjs-chai",
     },
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     },
     JSONResponse: {},
   },
   include: {
     I: "./steps_file.js",
+
     registrationPage: "./pages/registration.js",
+
     otpConfirmationPage: "./pages/otpConfirmation.js",
+
     loginPage: "./pages/login.js",
+
     welcomePage: "./pages/welcome.js",
+
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
+
     headerPage: "./pages/header.js",
+
     whitelistDao: "./dao/whitelistDao.js",
+
     verificationEmailPage: "./pages/verificationEmail.js",
+
     otpDao: "./dao/otpDao.js",
-    loanTypePage: "./pages/loanApplication/loanType.js",
-    selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
-    selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
-    loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+
     forgotPasswordPage: "./pages/forgotPassword.js",
-    uploadDocLoanPage: "./pages/uploadDocLoan.js",
-<<<<<<< HEAD
-=======
-    loanDashboardPage: "./pages/loanDashboard.js",
   },
   mocha: {},
   bootstrap: null,
@@ -71,39 +75,43 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature"],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
+    features: "./features/*.feature",
+    steps: ["./step_definitions/steps.js", 
+            "./step_definitions/steps_login.js",
+            "./step_definitions/steps_forgotPassword.js",
+            "./step_definitions/steps_onboarding_account_opening.js",
+            "./step_definitions/steps_kyc_account_opening.js",],
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true
+      enabled: true,
     },
     tryTo: {
-      enabled: true
+      enabled: true,
     },
     retryFailedStep: {
-      enabled: true
+      enabled: true,
     },
     retryTo: {
-      enabled: true
+      enabled: true,
     },
     eachElement: {
-      enabled: true
+      enabled: true,
     },
     pauseOnFail: {},
-    testrail: env.testrail
+    testrail: env.testrail,
   },
   stepTimeout: 0,
   stepTimeoutOverride: [
     {
       pattern: "wait.*",
-      timeout: 0
+      timeout: 0,
     },
     {
       pattern: "amOnPage",
-      timeout: 0
-    }
+      timeout: 0,
+    },
   ],
   tests: "./*_test.js",
-  name: "amarbank-smb-mobile-testing"
+  name: "amarbank-smb-mobile-testing",
 };
