@@ -4,6 +4,8 @@ const {
     resetStateDao,
     globalVariable } = inject();
 
+Given ("I am a customer who has uploaded my eKTP photo", () =>{});    
+
 When("I fill all information identity details as followings:", 
     async (table) => { 
     const ktpData = table.parse().rowsHash();
@@ -21,8 +23,7 @@ Then("I will notify my information identity details has successfully submitted",
 });
 
 Then("I will direct to page capture selfie", async () => {
-    I.see("Ambil Foto Diri Anda");
+    I.waitForText("Ambil Foto Diri Anda", 10);
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
 });
