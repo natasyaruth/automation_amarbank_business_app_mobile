@@ -21,6 +21,7 @@ module.exports = {
     gender: "~textFieldGender",
     religion: "~textFieldReligion",
     maritalStatus: "~textFieldMaritalStatus",
+    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View[1]"},
   },
   dropDownsSearch:{
     province: "~textFieldProvince",
@@ -69,15 +70,12 @@ module.exports = {
         ){
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
-        I.click(value);
+        I.click(this.dropDowns.firstItem);
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
         ){
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
-        I.setText(this.fields.search, value);
-        I.hideDeviceKeyboard();
-        I.wait(1);
         I.click(this.dropDownsSearch.firstItem);
         I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
       }  else if (
@@ -88,7 +86,7 @@ module.exports = {
         I.swipeDown(this.text.year, 2000, 4000);
         I.click(this.buttons.chooseDate);  
         I.waitForInvisible(this.buttons.chooseDate, 10);
-        I.swipeUp(this.fields.address, 1800, 1000);
+        I.swipeUp(this.fields.address, 800, 500);
       }
     }
   },

@@ -19,26 +19,14 @@ Feature: Account Opening KYC UD - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
-  # Please use this list to fill State Name:
-  # - Tipe Bisnis
-  # - Foto eKTP
-  # - Verifikasi Data eKTP
-  # - Selfie
-  # - Data Diri
-  # - Alamat Tempat Tinggal
-  # - Data Pekerjaan
-  # - Profil Bisnis
-  # - Pemilik Bisnis
-  # - Upload Dokumen
-
   Scenario: Submit form KTP successfully
-    Given I am a customer who has selected the business type UD
+    Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
-      | eKtpNumber    | 3171016006920003          |
+      | eKtpNumber    | 3175071107800011          |
       | fullName      | NADYA LAROSA              |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |
-      | gender        | Perempuan                 |
+      | gender        | Laki-laki                 |
       | address       | Jl. Durian Runtuh No. 13  |
       | rt            | 01                        |
       | rw            | 05                        |

@@ -76,6 +76,18 @@ exports.config = {
     forgotPasswordPage: "./pages/forgotPassword.js",
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
     loanDashboardPage: "./pages/loanDashboard.js",
+
+    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
+
+    uploadKtpPage: "./pages/uploadKtp.js",
+
+    formKtpPage: "./pages/formKtp.js",
+
+    resetStateDao: "./dao/resetStateDao.js",
+
+    globalVariable: "./global_variable.js",
+
+    uploadSelfiePage: "./pages/uploadSelfie.js",
   },
   mocha: {},
   bootstrap: null,
@@ -83,12 +95,16 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", 
-    "./features/loanApplication/loanTypeAP/*.feature",
-    "./features/loanApplication/loanTypeAR/*.feature",
-    "./features/loanApplication/loanTypePO/*.feature"
-  ],
-    steps: ["./step_definitions/steps.js",
+    features: ["./features/*.feature",
+      "./features/loanApplication/loanTypeAP/*.feature",
+      "./features/loanApplication/loanTypeAR/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature",
+      "./features/loanDashboard/*.feature",
+      "./features/funding_account_creation/*.feature",
+      "./features/funding_account_opening/01_account_opening_kyc/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyb/*.feature",
+    ],
+    steps: ["./step_definitions/steps_registration.js",
       "./step_definitions/steps_login.js",
       "./step_definitions/loanApplication/steps_loanType.js",
       "./step_definitions/loanApplication/steps_selectAnchor.js",
@@ -96,9 +112,13 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/steps_login.js",
       "./step_definitions/steps_forgotPassword.js",
-      "./step_definitions/loanDashboard/loanDashboard.js", 
-      "./step_definitions/loanDashboard/historyPage.js"
-    ],
+      "./step_definitions/loanDashboard/loanDashboard.js",
+      "./step_definitions/loanDashboard/historyPage.js",
+      "./step_definitions/steps_onBoardingAccountOpening.js",
+      "./step_definitions/steps_kycUploadEKtp.js",
+      "./step_definitions/steps_kycSubmitFormKtp.js",
+      "./step_definitions/steps_kycUploadSelfie.js"
+    ], 
   },
   plugins: {
     screenshotOnFail: {
@@ -121,13 +141,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-      pattern: "wait.*",
-      timeout: 0
-    },
-    {
-      pattern: "amOnPage",
-      timeout: 0
-    }
+    pattern: "wait.*",
+    timeout: 0
+  },
+  {
+    pattern: "amOnPage",
+    timeout: 0
+  }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"
