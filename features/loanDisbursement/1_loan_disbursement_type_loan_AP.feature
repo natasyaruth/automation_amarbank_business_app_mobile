@@ -26,3 +26,17 @@ Feature: Loan Disbursement for Loan Type AP
   And I don't have any past due date
   Then I direct to page for checking Loan Tenor
 
+ Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor More Than Facility Due Date
+  Given I have been on Loan Dashboard to checking if loan tenor more than Facility due date
+  When I click button "Gunakan Limit" in card type Loan AP
+  And system check that loan tenor more than facility due date
+  Then I direct to "Pengajuan Anda Melebihi Batas Aktif Fasilitas" section
+
+ Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor Less Than or Equal With Facility Due Date
+  Given I have been on Loan Dashboard to checking if loan tenor less than or equal with Facility due date
+  When I click button "Gunakan Limit" in card type Loan AP
+  And system check that loan tenor less than or equal with facility due date
+  Then I direct to anchor detail page
+
+
+
