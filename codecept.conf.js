@@ -69,12 +69,19 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
 
     otpDao: "./dao/otpDao.js",
+
     loanTypePage: "./pages/loanApplication/loanType.js",
+
     selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
+
     selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
+
     loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+
     forgotPasswordPage: "./pages/forgotPassword.js",
+
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
+    
     loanDashboardPage: "./pages/loanDashboard.js",
 
     onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
