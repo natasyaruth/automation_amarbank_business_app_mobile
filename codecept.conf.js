@@ -81,7 +81,7 @@ exports.config = {
     forgotPasswordPage: "./pages/forgotPassword.js",
 
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
-    
+
     loanDashboardPage: "./pages/loanDashboard.js",
 
     onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
@@ -95,6 +95,18 @@ exports.config = {
     globalVariable: "./global_variable.js",
 
     uploadSelfiePage: "./pages/uploadSelfie.js",
+
+    formPersonalDataPage: "./pages/formPersonalData.js",
+
+    formDomicileAddressPage: "./pages/formDomicileAddress.js",
+
+    formEmploymentDataPage: "./pages/formEmploymentData.js",
+
+    formBusinessProfilePage: "./pages/formBusinessProfile.js",
+
+    formBusinessOwnerPage: "./pages/formBusinessOwner.js",
+
+    formBusinessAddressPage: "./pages/formBusinessAddress.js",
   },
   mocha: {},
   bootstrap: null,
@@ -124,8 +136,14 @@ exports.config = {
       "./step_definitions/steps_onBoardingAccountOpening.js",
       "./step_definitions/steps_kycUploadEKtp.js",
       "./step_definitions/steps_kycSubmitFormKtp.js",
-      "./step_definitions/steps_kycUploadSelfie.js"
-    ], 
+      "./step_definitions/steps_kycUploadSelfie.js",
+      // "./step_definitions/steps_kycSubmitFormDataPersonal.js",
+      // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
+      // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
+      // "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
+      // "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
+      // "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
+    ],
   },
   plugins: {
     screenshotOnFail: {
@@ -148,13 +166,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-    pattern: "wait.*",
-    timeout: 0
-  },
-  {
-    pattern: "amOnPage",
-    timeout: 0
-  }
+      pattern: "wait.*",
+      timeout: 0
+    },
+    {
+      pattern: "amOnPage",
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

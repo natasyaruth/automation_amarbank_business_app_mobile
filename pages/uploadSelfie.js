@@ -7,4 +7,8 @@ module.exports = {
   text: {
     infoType: "~textAccountFormation",
   },
+
+  async getInformationAccount(){
+    return await I.grabTextFrom(this.text.infoType);
+  }
 }

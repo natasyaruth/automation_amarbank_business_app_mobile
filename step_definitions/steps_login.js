@@ -34,6 +34,10 @@ Given("I am a registered customer with following details:", (table) => {
     const account = table.parse().rowsHash();
     globalVariable.login.password = account["password"];
     globalVariable.login.userID = account["userID"];
+
+    if(Object.keys(account).indexOf("email") !== -1){
+        globalVariable.registration.email = account["email"];
+    }
 });
 
 When("I filling in form login with the following details:",

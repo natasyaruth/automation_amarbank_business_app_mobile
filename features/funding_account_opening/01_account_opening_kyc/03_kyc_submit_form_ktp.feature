@@ -6,10 +6,10 @@ Feature: Account Opening KYC UD - Submit Form KTP
 
   Background: User choose legality business type UD
     Given I am a registered customer with following details:
-      | userID   | ruthb2e9 |
+      | userID   | ruth4f2a |
       | password | 1234Test |
     And I filling in form login with the following details:
-      | userID   | ruthb2e9 |
+      | userID   | ruth4f2a |
       | password | 1234Test |
     And I click login
     Then I will direct to dashboard
@@ -22,7 +22,7 @@ Feature: Account Opening KYC UD - Submit Form KTP
   Scenario: Submit form KTP successfully
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
-      | eKtpNumber    | 3175071107800011          |
+      | eKtpNumber    | 3179954209830009          |
       | fullName      | NADYA LAROSA              |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |
