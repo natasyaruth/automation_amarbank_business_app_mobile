@@ -3,6 +3,9 @@ const { I, headerPage, onboardingAccOpeningPage } = inject();
 module.exports = {
 
     async resetStateFlow(stateNumber, userID, password) {
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
         const responseLogin = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
             password: password,
