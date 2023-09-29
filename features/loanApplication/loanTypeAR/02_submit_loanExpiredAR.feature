@@ -1,4 +1,4 @@
-Feature: Submit Loan Type AR until sign privy
+Feature: Submit Loan Type AR Status is Approved
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
@@ -11,17 +11,17 @@ Feature: Submit Loan Type AR until sign privy
             | password | Feb042017 |
         And I click login
         Then I successed go to dashbord
-        And I click button loan dashboard
+
+    @C83807 @LoanApp
+    Scenario: User success fill data buyer and submit the loan
+        Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
         And user select loan type "AR"
         And user click button lihat skema pinjaman
         And user on loan schema "AR"
         And user click button select the schema
-
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
-        Given user on buyer cooperating page
+        When user on buyer cooperating page
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
@@ -48,10 +48,10 @@ Feature: Submit Loan Type AR until sign privy
         And user on monitoring loan process page
         And user click view required documents button
         And user validate text prepare the following documents
-        And user validate description prepare the following documents "AR"
+        And user validate description prepare the following documents
         And user close button
         And user click button upload documents
-        ## section upload document ##
+        # section upload document
         Given user upload document nib
         And user upload document deed of company
         And user upload document sk kemenkumham
@@ -61,35 +61,16 @@ Feature: Submit Loan Type AR until sign privy
         And user upload document financial reports in the last 1 year
         And user click button refresh
         And user click back button to loan processing
-        ## section trigered status loan ##
-        And user trigered api change status loan is "approved"
-        And user validate status is "approved"
-        And user click accept the limit offer
-        And user on tnc sign digital with privy page
-        And user should see countdown timer is shoeing
-        And user validate anountion information about privy
-        And user validate anountion prepare the documents
-        And user validate bottom sheet anountion "AR"
-        And user should see digital signature privy aggrement page
-        And user should see tnc privy page
-        And user click button read and sign
-        ## section sign loan aggrement on privy ##
-        And user should see aggrement sign privy page
-        And user click button sign on privy
-        And user click button next on privy
-        And user should see otp dialog
-        And user should see notif tosh otp send
-        And user click button confirmation
-        And user should see notificaiton sign success
-        ## section sign personal aggrement on privy ##
-        And user should see aggrement sign privy page
-        And user click button sign on privy
-        And user click button next on privy
-        And user should see otp dialog
-        And user should see notif tosh otp send
-        And user click button confirmation
-        And user should see notificaiton sign success
-        ## section waiting activation limit ##
-        And user on waiting activation limit page
-        And user validate title waiting check status "Proses Aktivasi Limit Pinjaman" on field "titleWaitingLimitActivation"
-        And user validate subtitle waiting check status "Mohon menunggu, butuh 1-3 menit untuk mengaktivasi layanan pinjaman. " on field "subTitleWaitingLimitActivation"
+        # section trigered status loan
+        And user trigered api change status loan is approved
+
+    Scenario: User validate Limit Loan Activation Rejected
+        Given I have been access history loan limit to see status "Selesai"
+        When I access menu bar limit with status "Selesai"
+        Then I select first list card loan expired
+        And user validate status is expired
+        And user validate content limit expired page
+        And user click button send reason
+        And user should see error reason "Mohon isi alasan tidak menyetujui limit" in field "errorReasonField"
+        And user fill a field reason "textFieldReason" with "Gak Jadi Minjem"
+        And user click button send reason

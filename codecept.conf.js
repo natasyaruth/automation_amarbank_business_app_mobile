@@ -51,23 +51,14 @@ exports.config = {
   },
   include: {
     I: "./steps_file.js",
-
     registrationPage: "./pages/registration.js",
-
     otpConfirmationPage: "./pages/otpConfirmation.js",
-
     loginPage: "./pages/login.js",
-
     welcomePage: "./pages/welcome.js",
-
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
-
     headerPage: "./pages/header.js",
-
     whitelistDao: "./dao/whitelistDao.js",
-
     verificationEmailPage: "./pages/verificationEmail.js",
-
     otpDao: "./dao/otpDao.js",
     loanTypePage: "./pages/loanApplication/loanType.js",
     selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
@@ -76,6 +67,7 @@ exports.config = {
     forgotPasswordPage: "./pages/forgotPassword.js",
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
     loanDashboardPage: "./pages/loanDashboard.js",
+    privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
   },
   mocha: {},
   bootstrap: null,
@@ -83,11 +75,11 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", 
-    "./features/loanApplication/loanTypeAP/*.feature",
-    "./features/loanApplication/loanTypeAR/*.feature",
-    "./features/loanApplication/loanTypePO/*.feature"
-  ],
+    features: ["./features/*.feature",
+      "./features/loanApplication/loanTypeAP/*.feature",
+      "./features/loanApplication/loanTypeAR/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature"
+    ],
     steps: ["./step_definitions/steps.js",
       "./step_definitions/steps_login.js",
       "./step_definitions/loanApplication/steps_loanType.js",
@@ -96,7 +88,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/steps_login.js",
       "./step_definitions/steps_forgotPassword.js",
-      "./step_definitions/loanDashboard/loanDashboard.js", 
+      "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js"
     ],
   },
