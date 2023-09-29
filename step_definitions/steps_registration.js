@@ -12,17 +12,8 @@ const {
   whitelistDao,
   otpDao,
   changePhoneNumberPage,
+  globalVariable,
 } = inject();
-
-const globalVar = {
-  phoneNumber: "",
-  otpCode: "",
-  email: "",
-  password: "",
-  companyName: "",
-  businessCode: "",
-  userID: "",
-}
 
 Given("I am a customer lead wanting to open a new account", () => {});
 
@@ -43,16 +34,16 @@ When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVar.phoneNumber = "62"+account["mobileNumber"];
-    globalVar.email = account["email"];
-    globalVar.password = account["password"];
+    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+    globalVariable.registration.email = account["email"];
+    globalVariable.registration.password = account["password"];
 
     await whitelistDao.whitelistPhoneNumber(
-      "+"+globalVar.phoneNumber
+      "+"+globalVariable.registration.phoneNumber
     );
 
     await whitelistDao.whitelistEmail(
-      globalVar.email
+      globalVariable.registration.email
     );
 
     registrationPage.fillInAccountInformation(account);
@@ -79,14 +70,14 @@ Then("my account should be created", () => {
 
 When("I verifying my phone number by entering the code sent to me", async () => {
   let actualPhoneNumber = await otpConfirmationPage.getPhoneNumber();
-  let expectedPhoneNumber = globalVar.phoneNumber.substring(2);
+  let expectedPhoneNumber = globalVariable.registration.phoneNumber.substring(2);
 
   I.see("Verifikasi Nomor HP");
   I.see("Kode OTP telah dikirim ke nomor");
   I.assertEqual(actualPhoneNumber, "+62 "+expectedPhoneNumber);
 
-  globalVar.otpCode = (await otpDao.getOTP(globalVar.phoneNumber)).otp
-  otpConfirmationPage.fillInOtpCode(globalVar.otpCode);
+  globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
+  otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
 });
 
 When ("I verifying my phone number by entering the wrong code", async () =>{
@@ -102,24 +93,24 @@ When("I verifying my email by login by user id", async () => {
   I.see("Kami telah mengirim User ID ke e-mail:");
 
   let actualEmail = await verificationEmailPage.getEmailValue();
-  I.assertEqual(actualEmail, globalVar.email);
+  I.assertEqual(actualEmail, globalVariable.registration.email);
 
-  globalVar.userID = await otpDao.getUserID(globalVar.email);
+  globalVariable.registration.userID = await otpDao.getUserID(globalVariable.registration.email);
 
-  verificationEmailPage.loginWithUserId(globalVar.userID, globalVar.password, globalVar.email);
+  verificationEmailPage.loginWithUserId(globalVariable.registration.userID, globalVariable.registration.password, globalVariable.registration.email);
 });
 
 Given ("I am a customer had been registering the account with the following details:", async (table) => {
   const account = table.parse().rowsHash();
-  globalVar.phoneNumber = "62"+account["mobileNumber"];
-  globalVar.email = account["email"];
+  globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+  globalVariable.registration.email = account["email"];
 
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVar.phoneNumber
+    "+"+globalVariable.registration.phoneNumber
   );
 
   await whitelistDao.whitelistEmail(
-    globalVar.email
+    globalVariable.registration.email
   );
 
   welcomePage.clickButtonRegister();
@@ -215,22 +206,22 @@ When(
   "I filling in my account business information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVar.phoneNumber = "62"+account["mobileNumber"];
-    globalVar.email = account["email"];
-    globalVar.password = account["password"];
+    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+    globalVariable.registration.email = account["email"];
+    globalVariable.registration.password = account["password"];
 
     await whitelistDao.whitelistPhoneNumber(
-      "+"+globalVar.phoneNumber
+      "+"+globalVariable.registration.phoneNumber
     );
 
     await whitelistDao.whitelistEmail(
-      globalVar.email
+      globalVariable.registration.email
     );
 
     registrationPage.fillInAccountInformation(account);
-    registrationPage.fillFieldRegistration("businessCode", globalVar.businessCode);
-    globalVar.phoneNumber = "62"+account["mobileNumber"];  
-    globalVar.password = account["password"];
+    registrationPage.fillFieldRegistration("businessCode", globalVariable.registration.businessCode);
+    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];  
+    globalVariable.registration.password = account["password"];
 
     registrationPage.clickCreateAccountButton();
 
@@ -238,7 +229,7 @@ When(
     let actualCompanyName = await registrationPage.getValueInformation('companyName');
     
     I.assertEqual(actualPhoneNumber, "+62 "+account['mobileNumber']);
-    I.assertEqual(actualCompanyName, globalVar.companyName);
+    I.assertEqual(actualCompanyName, globalVariable.registration.companyName);
   }
 );
 
@@ -382,7 +373,7 @@ Then ("I should be notified that I can reverify the phone number tomorrow", asyn
   " "+months[month]+" "+year+", pukul "+currentTime);
 
   I.dontSeeElement(otpConfirmationPage.links.resendOTP);
-  await otpDao.resetLimitRequestOtp(globalVar.phoneNumber);
+  await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
 });
 
 When ("I choose change phonenumber", () =>{
@@ -393,9 +384,9 @@ When ("I choose change phonenumber", () =>{
 });
 
 When ("I change my phonenumber into {string}", async (newPhoneNumber) => {
-  globalVar.phoneNumber = "62"+newPhoneNumber
+  globalVariable.registration.phoneNumber = "62"+newPhoneNumber
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVar.phoneNumber
+    "+"+globalVariable.registration.phoneNumber
   );
 
   changePhoneNumberPage.fillFieldNewPhoneNumber(newPhoneNumber);
@@ -415,7 +406,7 @@ When ("I will directing to page verification email", async () => {
   I.see("Kami telah mengirim User ID ke e-mail:");
 
   let actualEmail = await verificationEmailPage.getEmailValue();
-  I.assertEqual(actualEmail, globalVar.email);
+  I.assertEqual(actualEmail, globalVariable.registration.email);
 });
 
 When ("I filling new phonenumber with my old phonenumber", async () =>{
@@ -439,14 +430,14 @@ Then ("I will direct to page verification phonenumber",  () => {
 });
 
 When ("I get my first OTP", async () => {
-  globalVar.otpCode = (await otpDao.getOTP(globalVar.phoneNumber)).otp
+  globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 });
 
 Then ("I will get new OTP different with my first OTP",  async () => {
-  let newOtp = (await otpDao.getOTP(globalVar.phoneNumber)).otp
+  let newOtp = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 
-  I.assertNotEqual(newOtp, globalVar.otpCode);
-  globalVar.otpCode = newOtp;
+  I.assertNotEqual(newOtp, globalVariable.registration.otpCode);
+  globalVariable.registration.otpCode = newOtp;
 });
 
 Then ("I will see attempt left {string}", (leftAttempt) => {
@@ -464,15 +455,15 @@ Given ("I've requested OTP {string} times", (timesAttempt) => {
 
 Given ("I am a customer had been registering and verify phonenumber with following details:", async (table) => {
   const account = table.parse().rowsHash();
-  globalVar.phoneNumber = "62"+account["mobileNumber"];
-  globalVar.email = account["email"];
+  globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+  globalVariable.registration.email = account["email"];
 
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVar.phoneNumber
+    "+"+globalVariable.registration.phoneNumber
   );
 
   await whitelistDao.whitelistEmail(
-    globalVar.email
+    globalVariable.registration.email
   );
 
   welcomePage.clickButtonRegister();
@@ -481,7 +472,7 @@ Given ("I am a customer had been registering and verify phonenumber with followi
   registrationPage.clickButtonConfirm();
 
   I.waitForText("Verifikasi Nomor HP", 10);  
-  otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVar.phoneNumber)).otp);
+  otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
 
   verificationEmailPage.isOpen();  
 });

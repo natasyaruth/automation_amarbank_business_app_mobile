@@ -60,14 +60,46 @@ exports.config = {
     whitelistDao: "./dao/whitelistDao.js",
     verificationEmailPage: "./pages/verificationEmail.js",
     otpDao: "./dao/otpDao.js",
+
     loanTypePage: "./pages/loanApplication/loanType.js",
+
     selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
+
     selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
+
     loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+
     forgotPasswordPage: "./pages/forgotPassword.js",
-    uploadDocLoanPage: "./pages/uploadDocLoan.js",
+
+    uploadDocLoanPage: "./pages/loanApplication/uploadDocLoanApp.js",
+
     loanDashboardPage: "./pages/loanDashboard.js",
+
     privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
+
+    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
+
+    uploadKtpPage: "./pages/uploadKtp.js",
+
+    formKtpPage: "./pages/formKtp.js",
+
+    resetStateDao: "./dao/resetStateDao.js",
+
+    globalVariable: "./global_variable.js",
+
+    uploadSelfiePage: "./pages/uploadSelfie.js",
+
+    formPersonalDataPage: "./pages/formPersonalData.js",
+
+    formDomicileAddressPage: "./pages/formDomicileAddress.js",
+
+    formEmploymentDataPage: "./pages/formEmploymentData.js",
+
+    formBusinessProfilePage: "./pages/formBusinessProfile.js",
+
+    formBusinessOwnerPage: "./pages/formBusinessOwner.js",
+
+    formBusinessAddressPage: "./pages/formBusinessAddress.js",
   },
   mocha: {},
   bootstrap: null,
@@ -78,18 +110,36 @@ exports.config = {
     features: ["./features/*.feature",
       "./features/loanApplication/loanTypeAP/*.feature",
       "./features/loanApplication/loanTypeAR/*.feature",
-      "./features/loanApplication/loanTypePO/*.feature"
+      "./features/loanApplication/loanTypePO/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature",
+      "./features/loanDashboard/*.feature",
+      "./features/funding_account_creation/*.feature",
+      "./features/funding_account_opening/01_account_opening_kyc/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyb/*.feature",
+      "./features/funding_transfer/*.feature",
+      "./features/funding_create_pin/*.feature",
     ],
-    steps: ["./step_definitions/steps.js",
+    steps: ["./step_definitions/steps_registration.js",
       "./step_definitions/steps_login.js",
       "./step_definitions/loanApplication/steps_loanType.js",
       "./step_definitions/loanApplication/steps_selectAnchor.js",
       "./step_definitions/loanApplication/steps_loanAmountTenor.js",
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
-      "./step_definitions/steps_login.js",
+      "./step_definitions/loanApplication/steps_privyAggrement.js",
+      "./step_definitions/loanApplication/steps_uploadLoanDoc.js",
       "./step_definitions/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
-      "./step_definitions/loanDashboard/historyPage.js"
+      "./step_definitions/loanDashboard/historyPage.js",
+      "./step_definitions/steps_onBoardingAccountOpening.js",
+      "./step_definitions/steps_kycUploadEKtp.js",
+      "./step_definitions/steps_kycSubmitFormKtp.js",
+      "./step_definitions/steps_kycUploadSelfie.js",
+      // "./step_definitions/steps_kycSubmitFormDataPersonal.js",
+      // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
+      // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
+      "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
+      // "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
+      // "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
     ],
   },
   plugins: {

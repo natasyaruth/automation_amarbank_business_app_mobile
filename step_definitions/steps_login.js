@@ -3,13 +3,8 @@ const {
     welcomePage,
     registrationPage,
     forgotPasswordPage,
-    loginPage,} = inject();
-
-const globalVar = {
-    password: "",
-    userID: "",
-    countValue: "",
-};
+    loginPage,
+    globalVariable} = inject();
 
 Given("I am a customer who has failed to login {string} times with following details:", (countValue, table) => {
     welcomePage.clickButtonLogin();
@@ -17,10 +12,10 @@ Given("I am a customer who has failed to login {string} times with following det
     for (let i=0;i<countValue;i++) {
 
         const account = table.parse().rowsHash();
-        globalVar.password = account["password"];
-        globalVar.userID = account["userID"];
+        globalVariable.login.password = account["password"];
+        globalVariable.login.userID = account["userID"];
     }
-    globalVar.countValue = countValue;
+    globalVariable.login.countValue = countValue;
 });
 
 Then("I successed go to dashbord",()=>{
@@ -37,8 +32,12 @@ Given("I am a registered customer with following details:", (table) => {
     welcomePage.clickButtonLogin();
 
     const account = table.parse().rowsHash();
-    globalVar.password = account["password"];
-    globalVar.userID = account["userID"];
+    globalVariable.login.password = account["password"];
+    globalVariable.login.userID = account["userID"];
+
+    if(Object.keys(account).indexOf("email") !== -1){
+        globalVariable.registration.email = account["email"];
+    }
 });
 
 When("I filling in form login with the following details:",
@@ -78,14 +77,14 @@ Then("I should see pop up {string} with button {string}", (expectedValue, button
     I.waitForText(expectedValue, 10);
     I.seeElement(loginPage.buttons[buttonName]);
 
-    if(globalVar.countValue === 2){
+    if(globalVariable.login.countValue === 2){
         loginPage.closeBottomSheet();
     } else{
         loginPage.tryToLogin();
     }
     
-    loginPage.fillFieldLogin('userID', globalVar.userID);
-    loginPage.fillFieldLogin('password', globalVar.password);
+    loginPage.fillFieldLogin('userID', globalVariable.login.userID);
+    loginPage.fillFieldLogin('password', globalVariable.login.password);
     loginPage.clickLoginButton();
     I.waitForText("Dashboard Screen", 10);
 });
@@ -100,11 +99,11 @@ When("I click icon eye password twice", () => {
 });
 
 Then("I should see my password", () => {
-    I.see(globalVar.password);
+    I.see(globalVariable.login.password);
 });
 
 Then("I should not see my password", () => {
-    I.dontSee(globalVar.password);
+    I.dontSee(globalVariable.login.password);
 });
 
 Given("I am customer that already on page login", () => {
@@ -159,5 +158,5 @@ Then("I should see checkbox remember me is checked", () => {
 
 Then("I should see field user ID is filled with the last user ID", async () => {
     let actualUserID = await loginPage.getValueUserID();
-    I.assertEqual(actualUserID, globalVar.userID);
+    I.assertEqual(actualUserID, globalVariable.login.userID);
 });
