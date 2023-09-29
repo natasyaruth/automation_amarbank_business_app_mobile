@@ -5,16 +5,18 @@ module.exports = {
   fields: {
     businessName: "~textFieldBusinessName",
     businessField: "~textFieldBusiness",
-    monthlyIncome: "~textFieldIncome",
     npwp: "~textFieldNpwp",
     nib: "~textFieldNib",
   },
   buttons: {
     saveProfileBusiness: "~buttonSaveJobData",
+    chooseDate: "~buttonChoose",
+    cancelDate: "~buttonCancel",
     closeBottomSheet: "~buttonClose"
   },
   dropDowns:{
     industry: "~textFieldIndustryType",
+    monthlyIncome: "~textFieldIncome",
     firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View[1]"},
   },
   datePicker:{
@@ -54,11 +56,11 @@ module.exports = {
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.click(value);
+        I.swipeUp(this.dropDowns[fieldName], 500, 1000);  
 
       } else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
         ){
-
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
         I.swipeDown(this.text.date, 2000, 4000);
