@@ -11,17 +11,17 @@ Feature: Submit Loan Type AR Status is Approved
             | password | Feb042017 |
         And I click login
         Then I successed go to dashbord
-        And I click button loan dashboard
+
+    @C83807 @LoanApp
+    Scenario: User success fill data buyer and submit the loan
+        Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
         And user select loan type "AR"
         And user click button lihat skema pinjaman
         And user on loan schema "AR"
         And user click button select the schema
-
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
-        Given user on buyer cooperating page
+        When user on buyer cooperating page
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
@@ -63,5 +63,10 @@ Feature: Submit Loan Type AR Status is Approved
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
+
+    Scenario: User validate Limit Loan Activation Approved
+        Given I have been access history loan limit to see status "Dalam Proses"
+        When I access menu bar limit with status "Dalam Proses"
+        Then I select first list card loan approved
         And user validate status is approved
         And user validate content limit approved page

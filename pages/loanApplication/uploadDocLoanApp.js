@@ -2,6 +2,7 @@ const { I } = inject();
 
 module.exports = {
     fields: {
+      textFieldReason: ""
 
     },
     buttons: {
@@ -17,7 +18,8 @@ module.exports = {
         btnUploadFinReport: "",
         btnRefreshUploadDoc: "",
         backBtn: "",
-        btnAcceptLimitOffer: ""
+        btnAcceptLimitOffer: "",
+        btnSendReason: ""
     },
     textView: {
         titleBottomSheetDocNeeded: {xpath: '//android.widget.TextView[contains(@text, "Persiapkan Dokumen Berikut")]'},
@@ -46,7 +48,12 @@ module.exports = {
         contentDescLimitApproved: {xpath: '//android.widget.TextView[contains(@text, "Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet Amar Bank.")]'},
         titleLimitActivationRejected: {xpath: '//android.widget.TextView[contains(@text, "Mohon Maaf, Permohonan limit Anda belum disetujui")]'},
         contentDescLimitRejected: {xpath: '//android.widget.TextView[contains(@text, "Kami memberitahukan bahwa hasil analisis kredit Anda belum memenuhi kriteria penilaian kami saat ini.")]'},
+        titleLimitActivationExpired: {xpath: '//android.widget.TextView[contains(@text, "Penawaran limit sudah berakhir")]'},
+        contentDescLimitExpired: {xpath: '//android.widget.TextView[contains(@text, "Beritahu kami alasan mengapa Anda tidak menyetujui penawaran limit yang kami sediakan.")]'},
     },
+    messageErrorFields: {
+      errorReasonField: "~textMsgErrorLoan",
+  },
 
     // Function for call the id component
     async changeStatusVPBusinessApproved() {
@@ -104,5 +111,16 @@ module.exports = {
         I.wait(2);
         let actualValue = await I.grabAttributeFrom(this.textView.contentDescLimitRejected, "text");
         I.assertEqual(actualValue, "Kami memberitahukan bahwa hasil analisis kredit Anda belum memenuhi kriteria penilaian kami saat ini.");
-      }
+      },
+      async getStatusLimitExpired(){
+        I.wait(2);
+        I.seeElement(this.textView.titleLimitActivationExpired);
+        let actualLimitExpired = await I.grabAttributeFrom(this.textView.titleLimitActivationExpired, "text");
+        I.assertEqual(actualLimitExpired, "Penawaran limit sudah berakhir");
+      },
+      async validateContentExpiredPage(){
+        I.wait(2);
+        let actualValue = await I.grabAttributeFrom(this.textView.contentDescLimitExpired, "text");
+        I.assertEqual(actualValue, "Beritahu kami alasan mengapa Anda tidak menyetujui penawaran limit yang kami sediakan.");
+      },
 }
