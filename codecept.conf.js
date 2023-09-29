@@ -51,23 +51,14 @@ exports.config = {
   },
   include: {
     I: "./steps_file.js",
-
     registrationPage: "./pages/registration.js",
-
     otpConfirmationPage: "./pages/otpConfirmation.js",
-
     loginPage: "./pages/login.js",
-
     welcomePage: "./pages/welcome.js",
-
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
-
     headerPage: "./pages/header.js",
-
     whitelistDao: "./dao/whitelistDao.js",
-
     verificationEmailPage: "./pages/verificationEmail.js",
-
     otpDao: "./dao/otpDao.js",
     loanTypePage: "./pages/loanApplication/loanType.js",
     selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
@@ -75,6 +66,11 @@ exports.config = {
     loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
     forgotPasswordPage: "./pages/forgotPassword.js",
     uploadDocLoanPage: "./pages/uploadDocLoan.js",
+<<<<<<< HEAD
+=======
+    loanDashboardPage: "./pages/loanDashboard.js",
+    privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
+>>>>>>> 51a8e0b (PR for cases on privy aggrement)
   },
   mocha: {},
   bootstrap: null,
@@ -82,6 +78,7 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
+<<<<<<< HEAD
     features: "./features/*.feature",
     steps: ["./step_definitions/steps.js", 
     "./step_definitions/steps_login.js", 
@@ -93,6 +90,24 @@ exports.config = {
     "./step_definitions/steps_login.js",
     "./step_definitions/steps_forgotPassword.js"
   ],
+=======
+    features: ["./features/*.feature",
+      "./features/loanApplication/loanTypeAP/*.feature",
+      "./features/loanApplication/loanTypeAR/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature"
+    ],
+    steps: ["./step_definitions/steps.js",
+      "./step_definitions/steps_login.js",
+      "./step_definitions/loanApplication/steps_loanType.js",
+      "./step_definitions/loanApplication/steps_selectAnchor.js",
+      "./step_definitions/loanApplication/steps_loanAmountTenor.js",
+      "./step_definitions/loanApplication/steps_loanMonitoring.js",
+      "./step_definitions/steps_login.js",
+      "./step_definitions/steps_forgotPassword.js",
+      "./step_definitions/loanDashboard/loanDashboard.js",
+      "./step_definitions/loanDashboard/historyPage.js"
+    ],
+>>>>>>> 51a8e0b (PR for cases on privy aggrement)
   },
   plugins: {
     screenshotOnFail: {

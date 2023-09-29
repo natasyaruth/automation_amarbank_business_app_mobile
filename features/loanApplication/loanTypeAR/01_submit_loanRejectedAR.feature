@@ -65,7 +65,9 @@ Feature: Submit Loan Type AR Status is Rejected
         # section trigered status loan
         And user trigered api change status loan is rejected
 
-    Scenario: User success fill data buyer and submit the loan and rejected the limit
-        Given user on buyer cooperating page
+    Scenario: User validate Limit Loan Activation Rejected
+        Given I have been access history loan limit to see status "Selesai"
+        When I access menu bar limit with status "Selesai"
+        Then I select first list card loan rejected
         And user validate status is rejected
         And user validate content limit rejected page
