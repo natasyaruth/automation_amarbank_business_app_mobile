@@ -70,12 +70,14 @@ module.exports = {
         ){
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
-        I.click(this.dropDowns.firstItem);
+        I.click(value);
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
         ){
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
+        I.setText(this.fields.search, value);
+        I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);
         I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
       }  else if (
@@ -87,6 +89,8 @@ module.exports = {
         I.click(this.buttons.chooseDate);  
         I.waitForInvisible(this.buttons.chooseDate, 10);
         I.swipeUp(this.fields.address, 800, 500);
+      } else{
+        throw new Error(information[i]+" not found, please check again data naming");
       }
     }
   },
