@@ -9,9 +9,15 @@ type headerPage = typeof import('./pages/header.js');
 type whitelistDao = typeof import('./dao/whitelistDao.js');
 type verificationEmailPage = typeof import('./pages/verificationEmail.js');
 type otpDao = typeof import('./dao/otpDao.js');
+type forgotPasswordPage = typeof import('./pages/forgotPassword.js');
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
+type loanTypePage = typeof import('./pages/loanType.js');
+type selectAnchorPage = typeof import('./pages/selectAnchor.js');
+type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
+type loanMonitoringProcessPage = typeof import('./pages/loanMonitoringProcess.js');
+type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type loanDisbursementPage = typeof import('./pages/loanDisbursement.js');
 
 declare namespace CodeceptJS {

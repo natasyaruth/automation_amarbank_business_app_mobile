@@ -37,7 +37,8 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json"
       }
