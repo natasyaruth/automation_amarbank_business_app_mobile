@@ -139,7 +139,7 @@ exports.config = {
       // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
       "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
-      // "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
     ],
   },
   plugins: {

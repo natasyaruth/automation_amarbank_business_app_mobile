@@ -6,16 +6,17 @@ module.exports = {
     address: "~textFieldAddress",
     rt: "~textFieldRT",
     rw: "~textFieldRW",
+    search: "~tag",
   },
   buttons: {
     openAccount: "~buttonOpenAccount",
     closeBottomSheet: "~buttonClose"
   },
-  dropDownSearch:{
-    province: "~dropdownProvince",
-    city: "~dropdownCity",
-    district: "~dropdownDistrict",
-    village: "~dropdownVillage",
+  dropDownsSearch:{
+    province: "~textFieldProvince",
+    city: "~textFieldCity",
+    district: "~textFieldDistrict",
+    village: "~textFieldVillage",
     firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
   },
   messageErrorFields:{
@@ -24,11 +25,11 @@ module.exports = {
     rw: "~textErrorRW",
     province: "~textErrorProvince",
     city: "~textErrorCity",
-    village: "~textErrorVillage",
-    district: "~textErrorDistrict",
+    village: "~textFieldVillage",
+    district: "~textFieldDistrict",
   },
   checkBox:{
-    termsAndCondition: "~checkBoxTnc",
+    termsAndCondition: "~checkBoxPrivacyPolicy",
     rights: "~checkBoxRight",
   },
 
