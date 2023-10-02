@@ -77,8 +77,8 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature"],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
+    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature", "./features/loanDisbursement/*.feature",],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js", "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -100,7 +100,8 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
       timeout: 0
     },
