@@ -21,9 +21,9 @@ Feature: Loan Disbursement for Loan Type AP
   Then I direct to pay the bill limit section
 
  Scenario: Validate request loan disbursement for type Loan AP when customer don't have any past due date
-  Given I have been on Loan Dashboard to checking if customer don't have any past due date
+  Given I have been on Loan Dashboard to checking if customer do not have any past due date
   When I click button "Gunakan Limit" in card type Loan AP
-  And I don't have any past due date
+  And I do not have any past due date
   Then I direct to page for checking Loan Tenor
 
  Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor More Than Facility Due Date
@@ -42,16 +42,10 @@ Feature: Loan Disbursement for Loan Type AP
   Given I have been on Loan Dashboard to checking if anchor have not uploaded invoice yet
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that anchor have not uploaded invoice yet
-  Then I should be see anchor's card is empty in anchor detail page
+  Then I should be see anchor has card is empty in anchor detail page
 
  Scenario: Validate request loan disbursement for type Loan AP when Anchor Already Upload Invoice
   Given I have been on Loan Dashboard to checking if anchor already upload invoice
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that anchor already upload invoice
-  Then I should be see anchor's card in anchor detail page
-
-
-
-
-
-
+  Then I should be see anchor has card in anchor detail page
