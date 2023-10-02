@@ -17,6 +17,7 @@ type selectAnchorPage = typeof import('./pages/selectAnchor.js');
 type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
 type loanMonitoringProcessPage = typeof import('./pages/loanMonitoringProcess.js');
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
+type loanDisbursementPage = typeof import('./pages/loanDisbursement.js');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, forgotPasswordPage: forgotPasswordPage, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, loanDashboardPage: loanDashboardPage}
