@@ -67,8 +67,6 @@ exports.config = {
     otpDao: "./dao/otpDao.js",
 
     loanDashboardPage: "./pages/loanDashboard.js",
-
-    loanDisbursementPage: "./pages/loanDisbursement.js",
   },
   mocha: {},
   bootstrap: null,
@@ -76,7 +74,7 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature", "./features/loanDisbursement/*.feature"],
+    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature", "./features/loanDisbursement/*.feature",],
     steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js", "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js"],
   },
   plugins: {
@@ -99,7 +97,8 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
       timeout: 0
     },
