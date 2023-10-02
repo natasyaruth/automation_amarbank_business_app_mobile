@@ -49,8 +49,10 @@ module.exports = {
   },
 
   saveListDirectors(){
-    I.waitForElement(this.buttons.saveListDirectors, 10);
-    I.click(this.buttons.saveListDirectors);
+    // I.waitForElement(this.buttons.saveListDirectors, 10);
+    // I.click(this.buttons.saveListDirectors);
+    I.waitForText("Simpan Pemilik Bisnis", 10);
+    I.click("Simpan Pemilik Bisnis");
   },
 
 }
