@@ -28,7 +28,12 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
-        newCommandTimeout: 300
+        newCommandTimeout: 300,
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        autoGrantPermissions: true,
+        newCommandTimeout: 300,
       }
     },
     ChaiWrapper: {
@@ -37,8 +42,7 @@ exports.config = {
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization:
-          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
         Accept: "application/json"
       }
@@ -57,19 +61,33 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
     otpDao: "./dao/otpDao.js",
 
-    loanTypePage: "./pages/loanApplication/loanType.js",
-
-    selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
-
-    selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
-
-    loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
-
-    forgotPasswordPage: "./pages/forgotPassword.js",
-
-    uploadDocLoanPage: "./pages/uploadDocLoan.js",
-
     loanDashboardPage: "./pages/loanDashboard.js",
+
+    privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
+
+    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
+
+    uploadKtpPage: "./pages/uploadKtp.js",
+
+    formKtpPage: "./pages/formKtp.js",
+
+    resetStateDao: "./dao/resetStateDao.js",
+
+    globalVariable: "./global_variable.js",
+
+    uploadSelfiePage: "./pages/uploadSelfie.js",
+
+    formPersonalDataPage: "./pages/formPersonalData.js",
+
+    formDomicileAddressPage: "./pages/formDomicileAddress.js",
+
+    formEmploymentDataPage: "./pages/formEmploymentData.js",
+
+    formBusinessProfilePage: "./pages/formBusinessProfile.js",
+
+    formBusinessOwnerPage: "./pages/formBusinessOwner.js",
+
+    formBusinessAddressPage: "./pages/formBusinessAddress.js",
   },
   mocha: {},
   bootstrap: null,
@@ -77,8 +95,8 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature", "./features/loanApplication/loanTypeAP/*.feature", "/features/loanApplication/loanTypeAR/*.feature", "./features/loanDisbursement/*.feature",],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js", "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js"],
+    features: ["./features/*.feature", "./features/loanDashboard/*.feature"],
+    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
   },
   plugins: {
     screenshotOnFail: {
@@ -100,8 +118,7 @@ exports.config = {
     testrail: env.testrail
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [
-    {
+  stepTimeoutOverride: [{
       pattern: "wait.*",
       timeout: 0
     },
