@@ -118,6 +118,8 @@ exports.config = {
       "./features/funding_account_opening/02_account_opening_kyb/*.feature",
       // "./features/funding_transfer/*.feature",
       // "./features/funding_create_pin/*.feature",
+      "./features/loanDisbursement/*.feature",
+
     ],
     steps: ["./step_definitions/steps_registration.js",
       "./step_definitions/steps_login.js",
@@ -140,6 +142,7 @@ exports.config = {
       "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
       "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
     ],
   },
   plugins: {
