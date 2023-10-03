@@ -7,6 +7,7 @@ module.exports = {
   },
 
   clickButtonLogin(){
+    I.waitForElement(this.buttons.login, 10);
     I.click(this.buttons.login);
   },
 

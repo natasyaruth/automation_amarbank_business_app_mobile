@@ -35,4 +35,15 @@ module.exports = {
 
     return response.data[0];
   },
+
+  async resetLimitRequestOtp(phoneNumber){
+    const response = await I.sendDeleteRequest("https://dev-smb-user.otoku.io/api/v1/otp/reset?phone="+phoneNumber);
+
+    I.seeResponseCodeIsSuccessful();
+
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  },
 }
