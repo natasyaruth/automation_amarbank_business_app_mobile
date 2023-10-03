@@ -37,3 +37,10 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that loan tenor less than or equal with facility due date
   Then I direct to anchor detail page
+
+ Scenario: Validate Loan Program Information for Type AP - Direct Loan
+  Given I have been in anchor detail page for type AP - Direct Loan
+  When I click "Info Selengkapnya" in limit card
+  Then I should be see loan program information section for that card's anchor
+  And I close the loan information section
+  And I back to the anchor detail
