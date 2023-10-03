@@ -18,6 +18,22 @@ type selectLoanAmountPage = typeof import('./pages/selectLoanAmountTenor.js');
 type loanMonitoringProcessPage = typeof import('./pages/loanMonitoringProcess.js');
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type loanDisbursementPage = typeof import('./pages/loanDisbursement.js');
+type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp.js');
+type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
+type onboardingAccOpeningPage = typeof import('./pages/onboardingAccOpening.js');
+type uploadKtpPage = typeof import('./pages/uploadKtp.js');
+type formKtpPage = typeof import('./pages/formKtp.js');
+type resetStateDao = typeof import('./dao/resetStateDao.js');
+type globalVariable = typeof import('./global_variable.js');
+type uploadSelfiePage = typeof import('./pages/uploadSelfie.js');
+type formPersonalDataPage = typeof import('./pages/formPersonalData.js');
+type formDomicileAddressPage = typeof import('./pages/formDomicileAddress.js');
+type formEmploymentDataPage = typeof import('./pages/formEmploymentData.js');
+type formBusinessProfilePage = typeof import('./pages/formBusinessProfile.js');
+type formBusinessOwnerPage = typeof import('./pages/formBusinessOwner.js');
+type formBusinessAddressPage = typeof import('./pages/formBusinessAddress.js');
+type Appium = import('./helpers/JetpackComposeHelper.js');
+type ChaiWrapper = import('codeceptjs-chai');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, forgotPasswordPage: forgotPasswordPage, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, loanDashboardPage: loanDashboardPage}
