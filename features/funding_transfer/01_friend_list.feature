@@ -34,12 +34,11 @@ Feature: User have friend list
     Scenario: Account number was not found
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
-        And I can input and search bank name
+        And I search 'Bank BCA' in seacrh box bank name
         And I tap on bank name
-        And I input account number
+        And I input account number '4500300700'
         And I click on check
         Then I will see error message "Nomor Rekening tidak ditemukan"
 
