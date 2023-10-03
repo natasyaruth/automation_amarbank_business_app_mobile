@@ -20,21 +20,19 @@ Feature: User have friend list
         Then I can see message "Belum ada Nama Penerima"
 
     Scenario: User search friend list
-        Given I am a customer who wants to Transfer
+        Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I input name 'Nurul Septariani' from the search box
-        Then the name is found from the list
+        Then I find name 'Nurul Septariani' from the list
 
     Scenario: User search friend list and the name is not found
-        Given I am a customer who wants to Transfer
+        Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I input name 'Nurul Septariani' from the search box
-        Then the name is not found from the list
+        Then I can't find the name 'Nurul Septariani' from the list
 
     Scenario: Account number was not found
-        Given I am a customer who wants to Transfer
+        Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
         And I will direct to friend list page
         And I click Transfer ke Penerima Baru
@@ -43,10 +41,10 @@ Feature: User have friend list
         And I tap on bank name
         And I input account number
         And I click on check
-        Then I will see error message "Nomor Rekening tidak ditemukan "
+        Then I will see error message "Nomor Rekening tidak ditemukan"
 
     Scenario: User add friend list and validate account number and name
-        Given I am a customer who wants to Transfer
+        Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
         And I will direct to friend list page
         And I click Transfer ke Penerima Baru
