@@ -30,6 +30,7 @@ Feature: User create PIN
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create a PIN
         When I choose menu Transfer from main dashboard
+        And I input incorrect password
         And I click Next
         Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir"
         And I click try again
@@ -37,6 +38,7 @@ Feature: User create PIN
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create a PIN
         When I choose menu Transfer from main dashboard
+        And I input incorrect password
         And I click Next
         Then I should see pop up message "Akun Anda terblokir. Silahkan coba masukkan kembali setelah 30 menit"
 
