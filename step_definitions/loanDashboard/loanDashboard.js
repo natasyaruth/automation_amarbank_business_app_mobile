@@ -1,10 +1,5 @@
 const { I, loginPage, loanDashboardPage } = inject();
 
-const globalVar = {
-    password: "",
-    userID: "",
-};
-
 // @C88625 Scenario: Validate design of loan dashboard offer
 Given('I got a loan limit offer from system', () => {
 

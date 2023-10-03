@@ -60,3 +60,8 @@ const {I, selectAnchorPage} = inject();
     Then(/user click button next/,()=>{
         selectAnchorPage.clickNextBtnOnAnchorPage();
     });
+
+// Scenario(/User success fill data buyer and submit the loan/)
+    Given(/user on buyer cooperating page/,()=>{
+        selectAnchorPage.viewBuyerPage();
+    });

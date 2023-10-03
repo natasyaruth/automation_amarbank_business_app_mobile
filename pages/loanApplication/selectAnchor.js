@@ -42,6 +42,12 @@ module.exports = {
         I.wait(2);
         I.seeElement(this.textField.textFieldAnchorPage);
     },
+    async viewBuyerPage(){
+        I.seeElement(this.textField.textFieldAnchorPage);
+        I.wait(2);
+        let actualValueTitle = await I.grabAttributeFrom(this.textField.textFieldAnchorPage, 'text');
+        I.assertEqual(actualValueTitle, 'Dengan buyer mana Anda bekerjasama?');
+    },
     fillFieldSearch(txtValue){
         I.seeElement(this.fields.searchField);
         I.setText(this.fields.searchField, txtValue);
