@@ -24,13 +24,15 @@ Feature: User create PIN
         When I choose menu Transfer from main dashboard        
         And I Input incorrect password
         And I click Next
-        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir" and try again button 
+        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir" 
+        And I click try again  
 
      Scenario: User input incorrect password twice
         Given I am a customer who wants to create a PIN       
         When I choose menu Transfer from main dashboard 
         And I click Next
-        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir" and try again button
+        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir" 
+        And I click try again 
 
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create a PIN    
@@ -48,7 +50,7 @@ Feature: User create PIN
     Scenario: User don't want to see their password
         Given I am a customer who wants to create a PIN 
         When I choose menu Transfer from main dashboard   
-        And I am not click icon eye
+        And I click icon eye twice
         Then I will not see my password
 
     Scenario: User input correct password
@@ -66,7 +68,8 @@ Feature: User create PIN
         And I input new pin
         And I input confirmation new pin
         And I input OTP
-        Then I will see message "Selamat, PIN berhasil dibuat" and directly go to 
+        Then I will see message "Selamat, PIN berhasil dibuat" 
+        And I will directly go to Friend list page 
 
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN
