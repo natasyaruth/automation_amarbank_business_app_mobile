@@ -24,7 +24,6 @@ type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type loanDisbursementPage = typeof import('./pages/loanDisbursement.js');
 type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp.js');
 type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
-type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type onboardingAccOpeningPage = typeof import('./pages/onboardingAccOpening.js');
 type uploadKtpPage = typeof import('./pages/uploadKtp.js');
 type formKtpPage = typeof import('./pages/formKtp.js');
