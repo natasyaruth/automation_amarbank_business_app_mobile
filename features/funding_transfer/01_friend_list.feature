@@ -43,16 +43,16 @@ Feature: User have friend list
         Then I will see error message "Nomor Rekening tidak ditemukan"
 
     Scenario: User add friend list and validate account number and name
-        Given I am a customer who wants to Transfer and has no friend list
+        Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
-        And I can input and search bank name
+        And I search 'Bank BNI' in search box bank name
         And I tap on bank name
-        And I input account number
+        And I input account number '0354779001'
         And I click on Check
-        And User check on the checkbox "Simpan data di Daftar Penerima"
+        And I check on the checkbox save as friend list
         And I click on Next
         Then I can see toastbar "Data berhasil disimpan ke daftar penerima"
 
