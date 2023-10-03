@@ -41,3 +41,4 @@ Then('I do not have any past due date', () => {
 Then('I direct to page for checking Loan Tenor', async () => {
  await loanDisbursement.validateSectionHavePastDueDate();
 });
+
