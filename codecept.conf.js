@@ -100,6 +100,8 @@ exports.config = {
     formBusinessOwnerPage: "./pages/formBusinessOwner.js",
 
     formBusinessAddressPage: "./pages/formBusinessAddress.js",
+
+    createPINPage: "./pages/createPIN.js",
   },
   mocha: {},
   bootstrap: null,
