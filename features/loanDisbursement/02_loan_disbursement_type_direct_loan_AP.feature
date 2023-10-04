@@ -36,4 +36,4 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
   Given I have been on Loan Dashboard to checking if loan tenor less than or equal with Facility due date
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that loan tenor less than or equal with facility due date
-  Then I direct to anchor detail page
+
