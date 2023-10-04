@@ -47,56 +47,6 @@ exports.config = {
     JSONResponse: {},
   },
   include: {
-<<<<<<< HEAD
-    I: "./steps_file.js",
-
-    registrationPage: "./pages/registration.js",
-
-    otpConfirmationPage: "./pages/otpConfirmation.js",
-
-    loginPage: "./pages/login.js",
-
-    welcomePage: "./pages/welcome.js",
-
-    changePhoneNumberPage: "./pages/changePhoneNumber.js",
-
-    headerPage: "./pages/header.js",
-
-    whitelistDao: "./dao/whitelistDao.js",
-
-    verificationEmailPage: "./pages/verificationEmail.js",
-
-    otpDao: "./dao/otpDao.js",
-
-    forgotPasswordPage: "./pages/forgotPassword.js",
-
-    onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
-
-    uploadKtpPage: "./pages/uploadKtp.js",
-
-    formKtpPage: "./pages/formKtp.js",
-
-    resetStateDao: "./dao/resetStateDao.js",
-
-    globalVariable: "./global_variable.js"
-  },
-  mocha: {},
-  bootstrap: null,
-  timeout: null,
-  teardown: null,
-  hooks: [],
-  gherkin: {
-    features: "./features/*.feature",
-    steps: ["./step_definitions/steps.js",
-      "./step_definitions/steps_login.js",
-      "./step_definitions/loanDashboard/loanDashboard.js",
-      "./step_definitions/loanDashboard/historyPage.js",
-      "./step_definitions/steps_onboarding_account_opening.js",
-      "./step_definitions/steps_kyc_upload_eKtp.js",
-      "./step_definitions/steps_kyc_submit_form_ktp.js"
-    ],
-  },
-=======
   I: "./steps_file.js",
   registrationPage: "./pages/registration.js",
   otpConfirmationPage: "./pages/otpConfirmation.js",
@@ -169,7 +119,6 @@ gherkin: {
     // "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
   ],
 },
->>>>>>> origin/Develop
   plugins: {
     screenshotOnFail: {
       enabled: true,

@@ -61,6 +61,18 @@ exports.config = {
     verificationEmailPage: "./pages/verificationEmail.js",
     otpDao: "./dao/otpDao.js",
 
+    loanTypePage: "./pages/loanApplication/loanType.js",
+
+    selectAnchorPage: "./pages/loanApplication/selectAnchor.js",
+
+    selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
+
+    loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+
+    forgotPasswordPage: "./pages/forgotPassword.js",
+
+    uploadDocLoanPage: "./pages/loanApplication/uploadDocLoanApp.js",
+
     loanDashboardPage: "./pages/loanDashboard.js",
 
     privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
@@ -95,8 +107,43 @@ exports.config = {
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature", "./features/loanDashboard/*.feature"],
-    steps: ["./step_definitions/steps.js", "./step_definitions/steps_login.js", "./step_definitions/loanDashboard/loanDashboard.js", "./step_definitions/loanDashboard/historyPage.js"],
+    features: ["./features/*.feature",
+      "./features/loanApplication/loanTypeAP/*.feature",
+      "./features/loanApplication/loanTypeAR/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature",
+      "./features/loanApplication/loanTypePO/*.feature",
+      "./features/loanDashboard/*.feature",
+      "./features/funding_account_creation/*.feature",
+      "./features/funding_account_opening/01_account_opening_kyc/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyb/*.feature",
+      // "./features/funding_transfer/*.feature",
+      // "./features/funding_create_pin/*.feature",
+      "./features/loanDisbursement/*.feature",
+
+    ],
+    steps: ["./step_definitions/steps_registration.js",
+      "./step_definitions/steps_login.js",
+      "./step_definitions/loanApplication/steps_loanType.js",
+      "./step_definitions/loanApplication/steps_selectAnchor.js",
+      "./step_definitions/loanApplication/steps_loanAmountTenor.js",
+      "./step_definitions/loanApplication/steps_loanMonitoring.js",
+      "./step_definitions/loanApplication/steps_privyAggrement.js",
+      "./step_definitions/loanApplication/steps_uploadLoanDoc.js",
+      "./step_definitions/steps_forgotPassword.js",
+      "./step_definitions/loanDashboard/loanDashboard.js",
+      "./step_definitions/loanDashboard/historyPage.js",
+      "./step_definitions/steps_onBoardingAccountOpening.js",
+      "./step_definitions/steps_kycUploadEKtp.js",
+      "./step_definitions/steps_kycSubmitFormKtp.js",
+      "./step_definitions/steps_kycUploadSelfie.js",
+      // "./step_definitions/steps_kycSubmitFormDataPersonal.js",
+      // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
+      // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
+      "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
+      "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
+      "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
+    ],
   },
   plugins: {
     screenshotOnFail: {
