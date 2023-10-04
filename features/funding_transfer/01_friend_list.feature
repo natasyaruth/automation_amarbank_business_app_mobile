@@ -22,7 +22,6 @@ Feature: User have friend list
     Scenario: User click back button
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to Friend list page
         And I click back button
         Then I will go back to main Dashboard
 
@@ -52,7 +51,6 @@ Feature: User have friend list
     Scenario: User close bottom sheet list bank name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
         Then I close bottom sheet list bank name
@@ -60,7 +58,6 @@ Feature: User have friend list
     Scenario: User choose another bank name after inquiry
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
         And I search 'Bank BNI' in search box bank name
@@ -73,7 +70,6 @@ Feature: User have friend list
     Scenario: User uncheck checkbox save as friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
         And I search 'Bank BNI' in search box bank name
@@ -87,7 +83,6 @@ Feature: User have friend list
     Scenario: User add friend list and validate account number and name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to friend list page
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
         And I search 'Bank BNI' in search box bank name
