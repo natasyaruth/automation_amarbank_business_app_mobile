@@ -35,8 +35,8 @@ Feature: User have friend list
     Scenario: User search friend list and the name is not found
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I input name 'Nurul Septariani' from the search box
-        Then I can't find the name 'Nurul Septariani' from the list
+        Then I input name 'Nurul Septariani' from the search box
+        And I can't find the name 'Nurul Septariani' from the list
 
     Scenario: Account number was not found
         Given I am a customer who wants to Transfer and has no friend list
