@@ -42,13 +42,16 @@ Feature: Loan Disbursement for Loan Type AP
   Given I have been on Loan Dashboard to checking if anchor have not uploaded invoice yet
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that anchor have not uploaded invoice yet
-  Then I should be see anchor's card is empty in anchor detail page
+  Then I should be see anchor has card is empty in anchor detail page
 
  Scenario: Validate request loan disbursement for type Loan AP when Anchor Already Upload Invoice
   Given I have been on Loan Dashboard to checking if anchor already upload invoice
   When I click button "Gunakan Limit" in card type Loan AP
   And system check that anchor already upload invoice
-  Then I should be see anchor's card in anchor detail page
+  Then I should be see anchor has card in anchor detail page
+
+
+
 
 
 
