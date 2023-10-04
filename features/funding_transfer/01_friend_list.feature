@@ -16,8 +16,15 @@ Feature: User have friend list
     Scenario: User has no friend list
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
-        And I will direct to Friend list Page
-        Then I can see message "Belum ada Nama Penerima"
+        Then I will direct to Friend list Page
+        And I can see message "Belum ada Nama Penerima"
+
+    Scenario: User click back button
+        Given I am a customer who wants to Transfer and has no friend list
+        When I choose menu Transfer from main dashboard
+        And I will direct to Friend list page
+        And I click back button
+        Then I will go back to main Dashboard
 
     Scenario: User search friend list
         Given I am a customer who wants to Transfer and has friend list
@@ -36,11 +43,46 @@ Feature: User have friend list
         When I choose menu Transfer from main dashboard
         And I click Transfer ke Penerima Baru
         And I can choose Bank name
-        And I search 'Bank BCA' in seacrh box bank name
+        And I search 'Bank BCA' in search box bank name
         And I tap on bank name
         And I input account number '4500300700'
         And I click on check
         Then I will see error message "Nomor Rekening tidak ditemukan"
+
+    Scenario: User close bottom sheet list bank name
+        Given I am a customer who wants to Transfer and has friend list
+        When I choose menu Transfer from main dashboard
+        And I will direct to friend list page
+        And I click Transfer ke Penerima Baru
+        And I can choose Bank name
+        Then I close bottom sheet list bank name
+
+    Scenario: User choose another bank name after inquiry
+        Given I am a customer who wants to Transfer and has friend list
+        When I choose menu Transfer from main dashboard
+        And I will direct to friend list page
+        And I click Transfer ke Penerima Baru
+        And I can choose Bank name
+        And I search 'Bank BNI' in search box bank name
+        And I tap on bank name
+        And I input account number '0354779001'
+        And I click on check
+        And I click Bank name
+        Then I will go back to choose bank name  
+
+    Scenario: User uncheck checkbox save as friend list
+        Given I am a customer who wants to Transfer and has friend list
+        When I choose menu Transfer from main dashboard
+        And I will direct to friend list page
+        And I click Transfer ke Penerima Baru
+        And I can choose Bank name
+        And I search 'Bank BNI' in search box bank name
+        And I tap on bank name
+        And I input account number '0354779001'
+        And I click on check
+        And I uncheck on the checkbox save as friend list
+        And I click on Next
+        Then I can't see toastbar "Data berhasil disimpan ke daftar penerima"
 
     Scenario: User add friend list and validate account number and name
         Given I am a customer who wants to Transfer and has friend list
@@ -51,10 +93,11 @@ Feature: User have friend list
         And I search 'Bank BNI' in search box bank name
         And I tap on bank name
         And I input account number '0354779001'
-        And I click on Check
+        And I click on check
         And I check on the checkbox save as friend list
         And I click on Next
         Then I can see toastbar "Data berhasil disimpan ke daftar penerima"
+        And I can see friend name on friend list page
 
     Scenario: User has friend list
         Given I am a customer who wants to Transfer and already has friend list
