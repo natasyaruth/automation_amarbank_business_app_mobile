@@ -19,7 +19,7 @@ Feature: Account Opening KYB UD - Submit Business Profile
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3171015104980006          |
+            | eKtpNumber    | 3173046203950002          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |

@@ -7,13 +7,13 @@ const {
 } = inject();
 
 Given("I am a customer who has completed my KYC process", ()=>{
-   headerPage.clickButtonBack();
-   I.waitForText("Dashboard Screen") 
 });
 
 When("I continue to process KYB", ()=>{
     // I.waitForElement(formEmploymentDataPage.buttons.continueToKYB, 10);
     // formEmploymentDataPage.continueToKYB();
+    headerPage.clickButtonBack();
+    I.waitForText("Dashboard Screen") 
     I.click("Go To KYB")
 });
 
