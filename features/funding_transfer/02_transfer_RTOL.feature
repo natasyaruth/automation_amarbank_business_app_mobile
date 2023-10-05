@@ -277,8 +277,6 @@ Feature: User transfer RTOL
         And Input PIN
         Then I successfully transferred
 
-    Scenario: User verify page successful to transfer 
-        
 
         When I choose menu Transfer from main dashboard
         And I click Transfer ke Penerima Baru
