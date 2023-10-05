@@ -1,5 +1,3 @@
-const { button } = require("../pages/changePhoneNumber");
-
 const {
     I,
     formKtpPage,
