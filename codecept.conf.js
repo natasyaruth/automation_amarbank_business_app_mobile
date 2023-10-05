@@ -138,7 +138,7 @@ exports.config = {
       "./step_definitions/steps_kycUploadEKtp.js",
       "./step_definitions/steps_kycSubmitFormKtp.js",
       "./step_definitions/steps_kycUploadSelfie.js",
-      // "./step_definitions/steps_kycSubmitFormDataPersonal.js",
+      "./step_definitions/steps_kycSubmitFormDataPersonal.js",
       // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
       // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
       "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
