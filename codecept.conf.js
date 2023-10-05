@@ -100,6 +100,9 @@ exports.config = {
     formBusinessOwnerPage: "./pages/formBusinessOwner.js",
 
     formBusinessAddressPage: "./pages/formBusinessAddress.js",
+
+    createPINPage: "./pages/createPIN.js",
+    loanDisbursementPage: "./pages/loanDisbursement.js",
   },
   mocha: {},
   bootstrap: null,
@@ -136,13 +139,14 @@ exports.config = {
       "./step_definitions/steps_kycUploadEKtp.js",
       "./step_definitions/steps_kycSubmitFormKtp.js",
       "./step_definitions/steps_kycUploadSelfie.js",
-      // "./step_definitions/steps_kycSubmitFormDataPersonal.js",
+      "./step_definitions/steps_kycSubmitFormDataPersonal.js",
       // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
       // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
       "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
       "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
+      "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
     ],
   },
   plugins: {
