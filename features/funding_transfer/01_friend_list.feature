@@ -12,7 +12,6 @@ Feature: User have friend list
             | password | Test1234 |
         And I click login
         Then I will direct to dashboard
-
     Scenario: User has no friend list
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
