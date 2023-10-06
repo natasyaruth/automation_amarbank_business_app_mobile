@@ -48,18 +48,17 @@ Feature: Submit Loan Type AR Status is Rejected
         And user on monitoring loan process page
         And user click view required documents button
         And user validate text prepare the following documents
-        And user validate description prepare the following documents
-        And user close button prepare doc bottom sheet
+        And user validate description prepare the following documents "AR"
         And user click button upload documents
         # section upload document
         Given user on upload document page
-        When user upload document nib
-        And user upload document deed of company
-        And user upload document sk kemenkumham
-        And user upload document npwp of company
-        And user upload document proof of purchase with the buyer
-        And user upload document payment mutation for the last 6 months
-        And user upload document financial reports in the last 1 year
+        When user upload document "nib"
+        And user upload document "deedOfComp"
+        And user upload document "SKKemen"
+        And user upload document "npwpOfComp"
+        And user upload document "proofOfPurchase"
+        And user upload document "paymentMutation"
+        And user upload document "financialReports"
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan
