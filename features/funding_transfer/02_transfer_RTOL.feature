@@ -60,7 +60,7 @@ Feature: User transfer RTOL
         And I choose the friendlist
         And I input nominal 'Rp.55.000.000'
         And I choose category "Pembayaran"
-        And I choose sub caategory "Pinjaman"
+        And I choose sub category "Pinjaman"
         And I input notes
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
@@ -82,23 +82,4 @@ Feature: User transfer RTOL
         And I click transfer now
         And Input PIN
         Then I successfully transferred
-
-
-        When I choose menu Transfer from main dashboard
-        And I click Transfer ke Penerima Baru
-        And I can choose Bank name
-        And I search 'Bank BNI' in search box bank name
-        And I tap on bank name
-        And I input account number '0354779002'
-        And I click on next
-        And I input nominal 'Rp.35.000.000'
-        And I choose kategori "Pembayaran"
-        And I choose sub kategori "Pinjaman"
-        And I input catatan
-        And I click pilih layanan transfer
-        And i choose layanan transfer 'RTOL'
-        And I click transfer
-        And I click transfer sekarang
-        And Input PIN
-        Then I successfully transfer
-
+        
