@@ -1,5 +1,3 @@
-const { I } = inject();
-
 module.exports = {
   fields: {
     inputSearchFriend: "~textFieldSearch",
@@ -73,5 +71,3 @@ module.exports = {
     return await I.grabValueFrom(this.messageError.errorAccountNumber);
   },
 }
-
-
