@@ -8,7 +8,7 @@ module.exports = {
     inputNotes: "~textFieldNote",
   },
   cards: {
-    itemFriendlist: "~itemReceiver",  
+    itemFriendlist: "~itemReceiver",
     itemBankName: "~itemBank",
   },
   button: {
@@ -21,7 +21,7 @@ module.exports = {
     listBankName: "~dropDownFieldListBank",
     listCategory: "~dropDownCategory",
     listSubCategory: "~dropDownSubCategory",
-    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
+    firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View" },
   },
   text: {
     textReceiverName: "~textReceiverName",
@@ -33,43 +33,43 @@ module.exports = {
   messageError: {
     errorAccountNumber: "~textFieldErrorAccountNumber",
   },
-  fillSearchFriendlist(friendname){
-    I.waitForElement(this.fields.inputSearchFriend,10);
-    I.setText(this.fields.inputSearchFriend,friendname);
+  fillSearchFriendlist(friendname) {
+    I.waitForElement(this.fields.inputSearchFriend, 10);
+    I.setText(this.fields.inputSearchFriend, friendname);
   },
-  addNewFriendList(){
-   I.click(this.button.buttonNewFriendlist);
+  addNewFriendList() {
+    I.click(this.button.buttonNewFriendlist);
   },
- searchBankName(bankname){  
-  I.click(this.dropdownslistBankName);
-  I.waitForElement(this.button.closeBottomSheetBankName, 10);
-  I.setText(this.fields.inputSearchBankName,bankname);
-  I.hideDeviceKeyboard();
-  I.click(this.dropdowns.firstItem);
- },
- fillAccountNumber(accountnumber){
-  I.setText(this.fields.inputAccountNumber,accountnumber);
- },
-checkingaccountnumber(){
-  I.click(this.button.buttonCheckaccount);
-},
-async saveFriendlist(){
+  searchBankName(bankname) {
+    I.click(this.dropdownslistBankName);
+    I.waitForElement(this.button.closeBottomSheetBankName, 10);
+    I.setText(this.fields.inputSearchBankName, bankname);
+    I.hideDeviceKeyboard();
+    I.click(this.dropdowns.firstItem);
+  },
+  fillAccountNumber(accountnumber) {
+    I.setText(this.fields.inputAccountNumber, accountnumber);
+  },
+  checkingaccountnumber() {
+    I.click(this.button.buttonCheckaccount);
+  },
+  async saveFriendlist() {
     const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
 
-    if(isChecked === "false"){
+    if (isChecked === "false") {
       I.click(this.checkBox.checkSaveFriendList);
     }
-  I.click(this.button.buttonNext);
-},
-async SavedFriendlist(){
-  const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
+    I.click(this.button.buttonNext);
+  },
+  async SavedFriendlist() {
+    const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
 
-  if(isChecked === "true"){
-    I.click(this.checkBox.checkSaveFriendList);
-  }
-I.click(this.button.buttonNext);
-},
-async getMessageErrorAccoutNotFound(){
-  return await I.grabValueFrom(this.messageError.errorAccountNumber);
-},
+    if (isChecked === "true") {
+      I.click(this.checkBox.checkSaveFriendList);
+    }
+    I.click(this.button.buttonNext);
+  },
+  async getMessageErrorAccoutNotFound() {
+    return await I.grabValueFrom(this.messageError.errorAccountNumber);
+  },
 }
