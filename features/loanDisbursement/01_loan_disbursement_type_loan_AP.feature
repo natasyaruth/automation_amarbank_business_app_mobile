@@ -106,6 +106,22 @@ Feature: Loan Disbursement for Loan Type AP
   When I click button continue disburse loan with PIN has not been Created
   Then direct to the created PIN
 
+ Scenario: Continue Disburse The Loan When Input False Pin
+  Given I haven been in calculation page of amount
+  When I click button continue disburse loan with input false PIN
+  Then I should be see <Error_Message>
+ Example: Input PIN Disbursement
+   | PIN  | Error_Message            |
+   | 1234 | Pin salah silakan ulangi |
+   |      | Pin wajib diisi          |
+
+ Scenario: Continue Disburse The Loan When Input True Pin
+  Given I haven been in calculation page of amount
+  When I click button continue disburse loan with input true PIN
+  Then I should be see the page of delivery PDC
+
+
+
 
 
 

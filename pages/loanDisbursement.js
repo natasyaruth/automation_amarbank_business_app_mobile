@@ -129,4 +129,23 @@ module.exports = {
       I.see('Invoice Tersedia');
     }
   },
+
+  goToProgramLoanInformation() {
+    I.seeElement(this.buttons.buttonDetailLimit);
+    I.click(this.buttons.buttonDetailLimit);
+  },
+
+  validateProgramLoanInformation() {
+    I.waitForVisible('Informasi Program Pinjaman');
+    I.see('Program pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+  },
+
+  closeProgramLoanInformation() {
+    I.click(this.buttons.buttonClose);
+    I.waitForInvisible('Informasi Program Pinjaman');
+    I.waitForVisible(this.buttons.buttonDetailLimit);
+  },
+
+
+
 }
