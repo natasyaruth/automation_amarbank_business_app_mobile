@@ -1,11 +1,9 @@
-const { click } = require("webdriverio/build/commands/element");
-
 const { I } = inject();
 
 module.exports = {
   fields: {
     inputSearchFriend: "~textFieldSearch",
-    inputNorek: "~textFieldAccountNumber",
+    inputAccountNumber: "~textFieldAccountNumber",
     inputSearchBankName: "~textFieldSearchBank",
     inputNotes: "~textFieldNote",
   },
@@ -14,20 +12,20 @@ module.exports = {
     itemBankName: "~itemBank",
   },
   button: {
-    buttonTransferPenerimaBaru: "~buttonTransfer",
+    buttonNewFriendlist: "~buttonTransfer",
     buttonCheckaccount: "~buttonInquiry",
     buttonNext: "~buttonNext",
     closeBottomSheetBankName: "~buttonClose",
-
   },
   dropdowns: {
     listBankName: "~dropDownFieldListBank",
     listCategory: "~dropDownCategory",
     listSubCategory: "~dropDownSubCategory",
+    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
   },
   text: {
     textReceiverName: "~textReceiverName",
-    textbankname: "~textBank",
+    textbankname: "~textBankName",
   },
   checbox: {
     checkSaveFriendList: "~checkBoxSaveReceiver",
@@ -39,31 +37,39 @@ module.exports = {
     I.waitForElement(this.fields.inputSearchFriend,10);
     I.setText(this.fields.inputSearchFriend,friendname);
   },
-  transferNoFriendlist(){
-    I.click(this.button.buttonTransferPenerimaBaru);
+  addNewFriendList(){
+   I.click(this.button.buttonNewFriendlist);
   },
- fillSearchBankName(bankname){  
+ searchBankName(bankname){  
+  I.click(this.dropdownslistBankName);
+  I.waitForElement(this.button.closeBottomSheetBankName, 10);
   I.setText(this.fields.inputSearchBankName,bankname);
-  I.click(this.button.closeBottomSheetBankName);
+  I.hideDeviceKeyboard();
+  I.click(this.dropdowns.firstItem);
  },
  fillAccountNumber(accountnumber){
-  I.setText(this.fields.inputNorek,accountnumber);
+  I.setText(this.fields.inputAccountNumber,accountnumber);
  },
 checkingaccountnumber(){
   I.click(this.button.buttonCheckaccount);
 },
-saveFriendlist(){
-  I.wait(5);
-  I.see(this.text.textbankname);
-  I.see('Pastikan Pemilik rekening benar')
-  I.see(this.text.textReceiverName);
-  I.click(this.checbox.checkSaveFriendList);
+async saveFriendlist(){
+    const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
+
+    if(isChecked === "false"){
+      I.click(this.checkBox.checkSaveFriendList);
+    }
   I.click(this.button.buttonNext);
+},
+async SavedFriendlist(){
+  const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
+
+  if(isChecked === "true"){
+    I.click(this.checkBox.checkSaveFriendList);
+  }
+I.click(this.button.buttonNext);
 },
 async getMessageErrorAccoutNotFound(){
   return await I.grabValueFrom(this.messageError.errorAccountNumber);
 },
 }
-
-
-
