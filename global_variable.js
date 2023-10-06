@@ -16,5 +16,8 @@ module.exports = {
     formKtp:{
         eKTPNumber: "",
         fullName:"",
-    }
+    },
+    createPin:{
+        newPin:""
+    },
 }

@@ -3,6 +3,7 @@ const {
     formEmploymentDataPage,
     formBusinessProfilePage,
     headerPage,
+    resetStateDao,
     globalVariable
 } = inject();
 
