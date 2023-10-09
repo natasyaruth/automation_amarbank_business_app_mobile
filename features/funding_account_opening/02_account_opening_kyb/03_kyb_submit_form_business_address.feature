@@ -20,7 +20,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3175024901890006          |
+            | eKtpNumber    | 3171081207900008          |
             | fullName      | NADYA SAMANTHA            |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
