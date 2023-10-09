@@ -85,7 +85,7 @@ module.exports = {
         ){
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
-        I.swipeDown(this.text.year, 2000, 4000);
+        I.swipeDown(this.text.year, 3000, 4000);
         I.click(this.buttons.chooseDate);  
         I.waitForInvisible(this.buttons.chooseDate, 10);
         I.swipeUp(this.fields.address, 800, 500);

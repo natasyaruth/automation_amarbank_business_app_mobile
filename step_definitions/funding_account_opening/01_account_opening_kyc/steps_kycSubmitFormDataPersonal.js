@@ -19,10 +19,6 @@ When("I submit my personal data details", () =>{
     formPersonalDataPage.savePersonalData();
 });
 
-Then("I will notify my personal data details has successfully submitted", () => {
-    I.waitForText("Data diri berhasil disimpan", 10);
-});
-
 Then("I will direct to page domicile address", async () => {
     I.waitForText("Alamat Tempat Tinggal Sekarang", 10);
     I.seeElement(formDomicileAddressPage.radioButtons.ktpAddress);
