@@ -53,7 +53,7 @@ Feature: User transfer RTOL
         And I click choose bank transfer service
         And I choose transer service 'RTOL'
         And I click transfer
-        Then I click transfer now
+        Then I will directly go to page confirmation transfer
 
     Scenario: User transfer with RTOL and input wrong PIN
         When I search name 'Nurul Septariani' in friendlist
@@ -65,7 +65,7 @@ Feature: User transfer RTOL
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
         And I click transfer
-        Then I click transfer now
+        And I will directly go to page confirmation transfer
         And I input wrong PIN
         Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
