@@ -54,3 +54,9 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
   Given I have been in invoice detail to continue disbursement
   When I continue to disburse the invoice with invoice amount more than available limit
   Then I should be see "Limit tidak mencukupi" section
+
+ Scenario: Continue Disburse The Loan After "Perhitungan Pencairan" Has Been Displayed With PIN is True
+  Given I have been on "Perhitungan pencairan page"
+  When I continue disburse the loan
+  Then continue to input PIN page
+  And system will direct to "Pengiriman PDC(Cek Mundur) page"
