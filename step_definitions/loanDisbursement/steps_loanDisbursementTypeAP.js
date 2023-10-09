@@ -1,4 +1,4 @@
-const loanDisbursement = require("../../pages/loanDisbursement");
+const loanDisbursement = require("../../pages/loanDisbursement.js");
 
 const { I, loginPage, loanDashboardPage, loanDisbursementPage } = inject();
 
@@ -41,7 +41,7 @@ Then('I do not have any past due date', () => {
 });
 
 Then('I direct to page for checking Loan Tenor', async () => {
- await loanDisbursement.validateSectionHavePastDueDate();
+ await loanDisbursementPage.validateSectionHavePastDueDate();
 });
 
 // Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor More Than Facility Due Date
@@ -51,7 +51,7 @@ Given('I have been on Loan Dashboard to checking if loan tenor more than Facilit
  loanDashboardPage.validateLoanTypeofLoanAP();
 });
 When('I click button "Gunakan Limit" in card type Loan AP', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('system check that loan tenor more than facility due date', () => {
@@ -59,7 +59,7 @@ When('system check that loan tenor more than facility due date', () => {
 });
 
 Then('I direct to "Pengajuan Anda Melebihi Batas Aktif Fasilitas" section', async () => {
- await loanDisbursement.validateLoanIsTenorMoreThanPastDueDate();
+ await loanDisbursementPage.validateLoanIsTenorMoreThanPastDueDate();
 });
 
 // Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor Less Than or Equal With Facility Due Date
@@ -70,7 +70,7 @@ Given('I have been on Loan Dashboard to checking if loan tenor less than or equa
 });
 
 When('I click button "Gunakan Limit" in card type Loan AP', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('system check that loan tenor less than or equal with facility due date', () => {
@@ -78,7 +78,7 @@ When('system check that loan tenor less than or equal with facility due date', (
 });
 
 Then('I direct to anchor detail page', async () => {
- await loanDisbursement.validateLoanTenorLessThanPastDueDate;
+ await loanDisbursementPage.validateLoanTenorLessThanPastDueDate;
 });
 
 // Scenario: Validate request loan disbursement for type Loan AP when Anchor Have Not Uploaded Invoice Yet
@@ -89,7 +89,7 @@ Given('I have been on Loan Dashboard to checking if anchor have not uploaded inv
 });
 
 When('I click button "Gunakan Limit" in card type Loan AP', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('system check that anchor have not uploaded invoice yet', () => {
@@ -97,7 +97,7 @@ When('system check that anchor have not uploaded invoice yet', () => {
 });
 
 Then('I should be see anchor has card is empty in anchor detail page', async () => {
- loanDisbursement.validateNotUploadInvoiceYet();
+ loanDisbursementPage.validateNotUploadInvoiceYet();
 });
 
 // Scenario: Validate request loan disbursement for type Loan AP when Anchor Already Upload Invoice
@@ -108,7 +108,7 @@ Given('I have been on Loan Dashboard to checking if anchor already upload invoic
 });
 
 When('I click button "Gunakan Limit" in card type Loan AP', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('system check that anchor already upload invoice', () => {
@@ -116,32 +116,32 @@ When('system check that anchor already upload invoice', () => {
 });
 
 Then('I should be see anchor has card in anchor detail page', async () => {
- await loanDisbursement.validateAlreadyUploadInvoice();
+ await loanDisbursementPage.validateAlreadyUploadInvoice();
 });
 
 // Scenario: Validate page Loan Program Information
 Given('I have been in anchor detail page to validate loan program information', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I click button "Info Selanjutnya', () => {
- loanDisbursement.goToProgramLoanInformation();
+ loanDisbursementPage.goToProgramLoanInformation();
 });
 
 Then('I should be see Program Loan Information', () => {
- loanDisbursement.validateProgramLoanInformation();
+ loanDisbursementPage.validateProgramLoanInformation();
 });
 
 //Scenario: Close Section Loan Program Infomation
 Given('I have been in anchor detail page to close the loan program information section', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 When('I click button "Info Selanjutnya"', () => {
- loanDisbursement.goToProgramLoanInformation()
+ loanDisbursementPage.goToProgramLoanInformation()
 });
 
 When('I click Close button', () => {
- loanDisbursement.closeProgramLoanInformation();
+ loanDisbursementPage.closeProgramLoanInformation();
 });
 Then('Loan Program Information should be dissapear', () => {
  I.dontSee('Informasi Program Pinjaman');
@@ -153,126 +153,174 @@ Then('Back to the Anchor detail page', () => {
 
 //Scenario: Access Invoice Card Confirmation Detail
 Given('I have been in anchor detail page', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
-When('I click button detail invoice for the first row', () => {
-
+When('I click button detail invoice for the first row', async () => {
+ await loanDisbursementPage.goToCheckInvoiceDetail();
 });
 
 Then('I should be see Invoice Confirmation page', () => {
+ loanDisbursementPage.validateInvoiceConfirmationDetail();
 
 });
 
-Then('I should be see detail invoice', () => {
-
+Then('I should be see detail invoice', async () => {
+ await loanDisbursementPage.InvoiceDetailConfirmation();
 });
 
 // Scenario: Open Document Invoice Transaction Page
 Given('I have been in detail invoice to open invoice transaction detail', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
-When('I open invoice document card', () => {
-
+When('I open invoice document card', async () => {
+ await loanDisbursementPage.goToCheckInvoiceDetail();
+ loanDisbursementPage.validateInvoiceConfirmationDetail();
 });
 
 Then('the document will appears', () => {
+ loanDisbursementPage.openDocumentPreview();
 
 });
 
 // Scenario: Open Link "Klik disini" to Send Note if There are Any Problems
 Given('I have been in detail invoice to send limit disbursement', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I have any issue', () => {
-
+ loanDisbursementPage.hasAnInvoiceIssue();
 });
-Then('show section "Invoice Tidak Sesuai"', () => {
 
+Then('show section "Invoice Tidak Sesuai"', () => {
+ loanDisbursementPage.validateInvoiceIssuePage();
 });
 
 Then('back to the confirmation invoice detail after close section', () => {
-
+ loanDisbursementPage.closeInvoiceIssuePage();
 });
 
 // Scenario: Send notes "Invoice Tidak Sesuai"
 Given('I have been been in detail invoice to report my invoice issue', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I input invoice issue', () => {
-
+ loanDisbursementPage.hasAnInvoiceIssue();
+ loanDisbursementPage.validateInvoiceIssuePage();
+ loanDisbursementPage.inputInvoiceIssue();
 });
 
 Then('show toastbar "Kendala invoice sudah dilaporkan"', () => {
-
+ loanDisbursementPage.validateToastBarIssueHasBeenReported();
 });
 
-Then('button Continue Disbursement Calculations', () => {
-
+Then('button Continue Disbursement Calculations is dissapear', () => {
+ I.dontSeeElement(this.buttons.buttonDisburse);
 });
 
 // Scenario: Send Disbursement Calculations When Limit is Insufficient
 Given('I have been in detail invoice to send disbursement calculation when limit is Insufficient', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I click button "lanjut perhitungan pencairan"', () => {
-
+ I.click(this.buttons.buttonDisburse);
 });
 Then('show section limit is insufficient', () => {
-
+ loanDisbursementPage.validateLimitInsufficient()
 });
 
 Then('back to the confirmation invoice detail after I close the section', () => {
-
+ I.click(this.buttons.buttonClose);
 });
 
 //Scenario: Send Disbursement Calculations When Disbursement Amount More Than 2 Billion
 Given('I have been in detail invoice to send disbursement calculation when disbursement amount more than 2 Billion', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I click button "lanjut perhitungan pencairan"', () => {
-
+ I.click(this.buttons.buttonDisburse);
 });
-Then('show disbursement calculation page if amount more than 2 billion', () => {
-
+Then('show disbursement calculation page if amount more than 2 billion', async () => {
+ await loanDisbursementPage.validateDisburseAmountPageMoreThan2Billion();
 });
 
 // Scenario: Send Disbursement Calculations When Disbursement Amount Less or Equal than 2 Billion
 Given('I have been in detail invoice to send disbursement calculation when disbursement amount less or equal than 2 Billion', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I click button "lanjut perhitungan pencairan"', () => {
+ I.click(this.buttons.buttonDisburse);
 
 });
 
-Then('show disbursement calculation page if amount more than 2 billion', () => {
-
+Then('show disbursement calculation page if amount more than 2 billion', async () => {
+ await loanDisbursementPage.validateDisburseAmountPageLessOrEqualThan2Billion();
 });
 
 // Scenario: Continue Disburse The Loan When The PIN Has Not Been Created
 Given('I haven been in calculation page of amount', () => {
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 When('I click button continue disburse loan with PIN has not been Created', () => {
+ I.click(this.buttons.buttonDisburse);
+ I.waitForText('Lanjut Cairkan Pinjaman');
+ I.click(this.buttons.buttonDisburse);
 
 });
 Then('direct to the created PIN', () => {
-
+ //direct to the created PIN 
 });
 
 //Scenario: Continue Disburse The Loan When Input True Pin
 Given('I haven been in calculation page of amount', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 When('I click button continue disburse loan with input true PIN', () => {
-
+ I.click(this.buttons.buttonDisburse);
+ I.waitForText('Lanjut Cairkan Pinjaman');
+ I.click(this.buttons.buttonDisburse);
+ //direct to the input PIN
 });
 
 Then('I should be see the page of delivery PDC', () => {
+ loanDisbursementPage.validateSendPDCPage();
+});
 
+Then('The address should be copied after I click button copy', () => {
+ loanDisbursementPage.copyDeliveryAddress();
+});
+Then('back to the main dashboard after I close the section', () => {
+ loanDisbursementPage.closeDeliveryAddress();
 });
