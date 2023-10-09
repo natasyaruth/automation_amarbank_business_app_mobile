@@ -48,7 +48,7 @@ module.exports = {
     I.click(this.dropdownlist.drobDownListSubCategory);
     I.waitForElement(this.button.buttonCloseSubCategory,5);  
     I.click(this.button.buttonChooseMethod); 
-  }
+  },
   submitTransferRTOL(){
     I.click(this.chooseitem.chooseMethodTransfer);
     I.click(this.button.buttonTransfer);
@@ -70,6 +70,4 @@ module.exports = {
     I.click(this.button.buttonCopy);
     I.click(this.button.buttonShare);
   },
-
-
 }
