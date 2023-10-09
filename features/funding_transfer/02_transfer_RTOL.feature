@@ -37,10 +37,10 @@ Feature: User transfer RTOL
         And I input nominal 'Rp.55.000.000'
         And I choose category "Pembayaran"
         And I choose sub category "Pinjaman"
-        And I input notes
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast and RTOL
-        And i choose transfer service 'RTOL'
+        And I choose transfer service 'RTOL'
 
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
@@ -49,9 +49,9 @@ Feature: User transfer RTOL
         And I input nominal 'Rp.55.000.000'
         And I choose category "Pembayaran"
         And I choose sub category "Pinjaman"
-        And I input notes
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And I choose transer service 'RTOL'
         And I click transfer
         Then I click transfer now
 
@@ -61,13 +61,13 @@ Feature: User transfer RTOL
         And I input nominal 'Rp.55.000.000'
         And I choose category "Pembayaran"
         And I choose sub category "Pinjaman"
-        And I input notes
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
         And I click transfer
         Then I click transfer now
-        And Input wrong PIN
-        Then I can see message "Input yang dimasukkan salah, silahkan coba lagi"
+        And I input wrong PIN
+        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
     Scenario: User successfully transfer
         When I search name 'Nurul Septariani' in friendlist
@@ -75,11 +75,11 @@ Feature: User transfer RTOL
         And I input nominal 'Rp.55.000.000'
         And I choose category "Pembayaran"
         And I choose category "Pinjaman"
-        And I input notes
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
         And I click transfer
         And I click transfer now
-        And Input PIN
+        And I input PIN
         Then I successfully transferred
         
