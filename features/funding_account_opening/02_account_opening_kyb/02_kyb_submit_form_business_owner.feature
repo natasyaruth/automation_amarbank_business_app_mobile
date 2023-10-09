@@ -6,11 +6,11 @@ Feature: Account Opening KYB UD - Submit Business Owners
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruthb2e9                |
-            | password | 1234Test                |
-            | email    | natasyaruth03@gmail.com |
+            | userID   | ruthbad8                     |
+            | password | 1234Test                     |
+            | email    | ruth.hutauruk@amarbank.co.id |
         And I filling in form login with the following details:
-            | userID   | ruthb2e9 |
+            | userID   | ruthbad8 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -20,7 +20,7 @@ Feature: Account Opening KYB UD - Submit Business Owners
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3175102509890004          |
+            | eKtpNumber    | 3172041507800024          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |

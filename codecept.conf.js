@@ -52,13 +52,21 @@ exports.config = {
   include: {
     I: "./steps_file.js",
     registrationPage: "./pages/registration.js",
+
     otpConfirmationPage: "./pages/otpConfirmation.js",
+
     loginPage: "./pages/login.js",
+
     welcomePage: "./pages/welcome.js",
+
     changePhoneNumberPage: "./pages/changePhoneNumber.js",
+
     headerPage: "./pages/header.js",
+
     whitelistDao: "./dao/whitelistDao.js",
+
     verificationEmailPage: "./pages/verificationEmail.js",
+
     otpDao: "./dao/otpDao.js",
 
     loanTypePage: "./pages/loanApplication/loanType.js",
@@ -102,6 +110,7 @@ exports.config = {
     formBusinessAddressPage: "./pages/formBusinessAddress.js",
 
     createPINPage: "./pages/createPIN.js",
+
     loanDisbursementPage: "./pages/loanDisbursement.js",
   },
   mocha: {},
@@ -124,27 +133,27 @@ exports.config = {
       "./features/loanDisbursement/*.feature",
 
     ],
-    steps: ["./step_definitions/steps_registration.js",
-      "./step_definitions/steps_login.js",
+    steps: ["./step_definitions/funding_account_creation/steps_registration.js",
+      "./step_definitions/funding_account_creation/steps_login.js",
       "./step_definitions/loanApplication/steps_loanType.js",
       "./step_definitions/loanApplication/steps_selectAnchor.js",
       "./step_definitions/loanApplication/steps_loanAmountTenor.js",
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/loanApplication/steps_privyAggrement.js",
       "./step_definitions/loanApplication/steps_uploadLoanDoc.js",
-      "./step_definitions/steps_forgotPassword.js",
+      "./step_definitions/funding_account_creation/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js",
-      "./step_definitions/steps_onBoardingAccountOpening.js",
-      "./step_definitions/steps_kycUploadEKtp.js",
-      "./step_definitions/steps_kycSubmitFormKtp.js",
-      "./step_definitions/steps_kycUploadSelfie.js",
-      "./step_definitions/steps_kycSubmitFormDataPersonal.js",
-      // "./step_definitions/steps_kycSubmitFormDomicileAddress.js",
-      // "./step_definitions/steps_kycSubmitFormDataEmployment.js",
-      "./step_definitions/steps_kybSubmitFormBusinessProfile.js",
-      "./step_definitions/steps_kybSubmitFormBusinessOwner.js",
-      "./step_definitions/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_onBoardingAccountOpening.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycUploadEKtp.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormKtp.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycUploadSelfie.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDataPersonal.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDomicileAddress.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDataEmployment.js",
+      "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessProfile.js",
+      "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessOwner.js",
+      "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
     ],

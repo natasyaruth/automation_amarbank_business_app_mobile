@@ -6,10 +6,10 @@ Feature: Account Opening KYB UD - Submit Business Profile
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruthb2e9 |
+            | userID   | ruthbad8 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruthb2e9 |
+            | userID   | ruthbad8 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -19,7 +19,7 @@ Feature: Account Opening KYB UD - Submit Business Profile
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3173046203950002          |
+            | eKtpNumber    | 3172050809790001          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |

@@ -21,7 +21,7 @@ When("I submit my information identity details", () =>{
 });
 
 Then("I will notify my information identity details has successfully submitted", () => {
-    // I.waitForText("Data eKTP berhasil disimpan", 10);
+    I.waitForText("Data eKTP berhasil disimpan", 10);
 });
 
 Then("I will direct to page capture selfie", async () => {
