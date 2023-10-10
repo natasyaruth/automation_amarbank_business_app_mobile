@@ -62,7 +62,7 @@ module.exports = {
 
   async checkTnC(){
     const isChecked = await I.grabAttributeFrom(this.checkBox.termsAndCondition, "checked");
-
+    console.log(isChecked);
     if(isChecked === "false"){
       I.click(this.checkBox.termsAndCondition);
     }
