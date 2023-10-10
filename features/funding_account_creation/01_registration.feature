@@ -9,8 +9,8 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Ruth Natasya                 |
-      | email           | ruth.hutauruk@amarbank.co.id |
-      | mobileNumber    | 81293628149                  |
+      | email           | ruth01@trash-mail.com |
+      | mobileNumber    | 81293622249                  |
       | password        | 1234Test                     |
       | confirmPassword | 1234Test                     |
     And I registering the account

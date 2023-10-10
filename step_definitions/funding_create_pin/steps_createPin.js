@@ -1,5 +1,3 @@
-const global_variable = require("../../global_variable");
-
 const {
     I,
     createPINPage,

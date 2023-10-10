@@ -14,7 +14,7 @@ When("I continue to process KYB", ()=>{
     // I.waitForElement(formEmploymentDataPage.buttons.continueToKYB, 10);
     // formEmploymentDataPage.continueToKYB();
     headerPage.clickButtonBack();
-    I.waitForText("Dashboard Screen") 
+    I.waitForText("Dashboard Screen", 10) 
     I.click("Go To KYB")
 });
 

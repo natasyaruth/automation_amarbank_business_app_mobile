@@ -1,6 +1,7 @@
 const {
     I,
     formBusinessAddressPage,
+    resetStateDao,
     globalVariable
 } = inject();
 
@@ -13,12 +14,12 @@ When ("I fill my business address as followings:", (table) =>{
     formBusinessAddressPage.fillBusinessAddress(businessAddress);
 });
 
-When("I agree with the terms and condition", ()=>{
-    formBusinessAddressPage.checkTnC();
+When("I agree with the terms and condition", async ()=>{
+    await formBusinessAddressPage.checkTnC();
 });
 
-When("I allow company to store my data", ()=>{
-    formBusinessAddressPage.checkRights();
+When("I allow company to store my data", async ()=>{
+    await formBusinessAddressPage.checkRights();
 });
 
 When("I submit my business address", ()=>{
