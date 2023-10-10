@@ -15,6 +15,43 @@ Feature: User transfer BIFAST
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
 
+
+    Scenario: User transfer with BIFAST with empty notes
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.55.000.000'
+        And I choose category "Pembayaran"
+        And I choose sub category "Pinjaman"
+        And I click choose bank transfer service
+        And i choose transer service 'BI FAST'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred
+
+    Scenario: User transfer with BIFAST and input notes with emoji and symbol
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.55.000.000'
+        And I choose category "Pembayaran"
+        And I choose sub category "Pinjaman"
+        And I input notes with 'Pembayaran #Oktober :D'
+        And I click choose bank transfer service
+        Then i see message "Catatan tidak menggunakan emoji dan symbol"
+
+    Scenario: User Transfer BIFAST and input notes more than 50 char
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.55.000.000'
+        And I choose category "Pembayaran"
+        And I choose sub category "Pinjaman"
+        And I input notes with 'Pembayaran #Oktober'
+        And I click choose bank transfer service
+        Then i see message "Catatan tidak bisa input lebih dari 50 char"
+
     Scenario: User transfer detail with BI FAST
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
@@ -40,7 +77,45 @@ Feature: User transfer BIFAST
         And I click transfer
         Then I will directly go to page confirmation transfer
 
+    Scenario: User Transfer BIFAST with amount < Rp.10.000
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.9.000'
+        Then I see message error "Nilai Transfer minimal Rp.10.000"
+
+    Scenario: User Transfer BIFAST with amount = Rp.100.000
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.100.000.000'
+        And I choose category "Pembayaran"
+        And I choose category "Pinjaman"
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And i choose transer service 'BI FAST'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred
+
+    Scenario: User Transfer BIFAST with amount = Rp.250.000.000
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input nominal 'Rp.250.000.000'
+        And I choose category "Pembayaran"
+        And I choose category "Pinjaman"
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And i choose transer service 'BI FAST'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred
+
     Scenario: User successfully transfer
+        Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
         And I input nominal 'Rp.55.000.000'
