@@ -2,7 +2,10 @@ const { I } = inject();
 
 module.exports = {
   fields: {
-    textFieldReason: ""
+    textFieldReason: "",
+    listCardLoanExpired: "",
+    listCardLoanApproved: "",
+    listCardLoanRejected: ""
 
   },
   buttons: {
@@ -254,5 +257,41 @@ module.exports = {
   clickBtnBackToLoanProcessing(){
     I.wait(2);
     I.click(this.buttons.backBtn);
-  }
+  },
+  clickListCardExpired(){
+    I.wait(2);
+    I.click(this.fields.listCardLoanExpired);
+  },
+  clickListCardRejected(){
+    I.wait(2);
+    I.click(this.fields.listCardLoanRejected);
+  },
+  clickListCardApproved(){
+    I.wait(2);
+    I.click(this.fields.listCardLoanApproved);
+  },
+  clickBtnSendReason(){
+    I.wait(2);
+    I.click(this.buttons.btnSendReason);
+  },
+  async getErrorFieldReason (fieldName) {
+    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.messageErrorFields[fieldName]);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
+  fillFieldReason(fieldName, txtValue){
+    I.seeElement(this.fields[fieldName]);
+    if (
+        this.fields[fieldName] === "" ||
+        this.fields[fieldName] === null ||
+        this.fields[fieldName] === "-"
+    ){
+        I.clearField(this.fields[fieldName]);
+        return;
+    }
+    I.setText(this.fields[fieldName], txtValue);
+  },
+
 }
