@@ -1,7 +1,7 @@
-Feature: User transfer RTOL
+Feature: User transfer BIFAST
     In order to transfer
     As a customer
-    I want to make transfer RTOL
+    I want to make transfer BIFAST
 
 
     Background: User has registered and login to dashboard
@@ -14,21 +14,6 @@ Feature: User transfer RTOL
         And I click login
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
-
-    Scenario: User close buttom sheet category transaction
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
-        And I choose the friendlist
-        And I choose category 'Pembayaran'
-        And I close bottom sheet category
-        Then I see bottom sheet category is dissapear
-
-    Scenario: User input nominal higher than active balance
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
-        And I choose the friendlist
-        And I input nominal higher than active balance
-        Then I can see message "saldo aktif tidak mencukupi"
 
     Scenario: User transfer detail with BI FAST
         Given I am a customer who wants to Transfer and has friend list
@@ -82,5 +67,4 @@ Feature: User transfer RTOL
         And I click transfer now
         And I input PIN
         Then I successfully transferred
-        
-        
+
