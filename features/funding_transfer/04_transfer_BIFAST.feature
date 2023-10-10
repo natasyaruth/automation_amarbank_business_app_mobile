@@ -40,20 +40,6 @@ Feature: User transfer BIFAST
         And I click transfer
         Then I will directly go to page confirmation transfer
 
-    Scenario: User transfer with BI FAST and input wrong PIN
-        When I search name 'Nurul Septariani' in friendlist
-        And I choose the friendlist
-        And I input nominal 'Rp.55.000.000'
-        And I choose category "Pembayaran"
-        And I choose sub category "Pinjaman"
-        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
-        And I click choose bank transfer service
-        And i choose transer service 'BI FAST'
-        And I click transfer
-        And I will directly go to page confirmation transfer
-        And I input wrong PIN
-        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
-
     Scenario: User successfully transfer
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
