@@ -5,10 +5,10 @@ module.exports = {
     companyName: "~fieldCompany"
   }, 
   dropDowns:{
-    workType: "~dropdownWork",
-    sourceIncome: "~dropdownSourceIncome",
-    monthlyIncome: "~dropdownMonthlyIncome",
-    industry: "~dropdownIndustry",
+    workType: "~fieldTypeWork",
+    sourceIncome: "~fieldSourceIncome",
+    monthlyIncome: "~fieldMonthlyIncome",
+    industry: "~fieldIndustry",
   },
   buttons:{
     saveEmploymentData: "~buttonSaveWorkData",
@@ -24,9 +24,9 @@ module.exports = {
       const value = employmentData[fieldName];
 
       if(
-        Object.keys(this.fields).indexOf(fieldName) !== -1
+        Object.keys(this.field).indexOf(fieldName) !== -1
         ){
-        I.setText(this.fields[fieldName], value);
+        I.setText(this.field[fieldName], value);
 
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1

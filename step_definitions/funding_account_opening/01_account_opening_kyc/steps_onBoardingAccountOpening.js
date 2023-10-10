@@ -1,9 +1,8 @@
-const resetStateDao = require("../dao/resetStateDao");
-
 const {
     I,
     onboardingAccOpeningPage,
     uploadKtpPage,
+    resetStateDao,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {

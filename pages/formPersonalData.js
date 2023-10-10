@@ -6,9 +6,9 @@ module.exports = {
     motherName: "~texfieldMotherName",
     npwp: "~texfieldNpwp"
   },
-  dropdowns:{
-    lastEducation: "~dropdownLastEdu",
-    purposeAccount: "~dropdownPurpose"
+  dropDowns:{
+    lastEducation: "~textfieldLastEdu",
+    purposeAccount: "~textFieldPurpose"
   },
   buttons: {
     savePersonalData: "~buttonSavePersonalData",
