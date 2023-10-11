@@ -44,8 +44,7 @@ Feature: User transfer BIFAST
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
         And I input amount '55.000.000'
-        And I choose category "Pembayaran"
-        And I choose sub category "Pinjaman"
+        And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran #Oktober :D'
         And I click choose bank transfer service
         Then I see error message "Catatan tidak menggunakan emoji & symbol"
