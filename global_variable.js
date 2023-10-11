@@ -20,4 +20,8 @@ module.exports = {
     createPin:{
         newPin:""
     },
+    friendList:{
+        bankName:"",
+        receiverName:"",
+    },
 }

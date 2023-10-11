@@ -33,7 +33,9 @@ module.exports = {
 
     I.seeResponseCodeIsSuccessful();
 
-    return response.data[0];
+    const lastIndex = response.data.length - 1;
+
+    return response.data[lastIndex];
   },
 
   async resetLimitRequestOtp(phoneNumber){
