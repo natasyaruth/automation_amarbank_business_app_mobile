@@ -77,7 +77,7 @@ Feature: User transfer RTOL
         And I click transfer
         And I click transfer now
         And I input PIN
-        Then I successfully transferred
+        Then I successfully transferred without notes
 
     Scenario: User transfer with RTOL and input notes with emoji and symbol
         Given I am a customer who wants to Transfer and has friend list
@@ -137,7 +137,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And I choose transer service 'RTOL'
         And I click transfer
         And I click transfer now
         And I input PIN
