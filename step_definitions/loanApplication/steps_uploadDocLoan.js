@@ -4,7 +4,7 @@ Given(/user click view required documents button/, () => {
     uploadDocLoanPage.clickBtnViewRequiredDoc();
 });
 Given(/user validate text prepare the following documents/, () => {
-    uploadDocLoanPage.clickBtnViewRequiredDoc();
+    uploadDocLoanPage.validateTextViewPrepareDocNeedTitle();
 });
 When(/user validate description prepare the following documents \"([^\"]*)\"/,(loanType)=>{
     uploadDocLoanPage.validateBottomSheetDocNeededContent(loanType);

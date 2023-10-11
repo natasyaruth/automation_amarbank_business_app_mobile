@@ -5,21 +5,23 @@ module.exports = {
     textFieldReason: "",
     listCardLoanExpired: "",
     listCardLoanApproved: "",
-    listCardLoanRejected: ""
+    listCardLoanRejected: "",
+    textProgressBar: "~textUploadProgress",
+    progressBar: "~progressBar"
 
   },
   buttons: {
-    viewDocNeeded: "",
-    btnClose: "",
+    viewDocNeeded: "~buttonShowDocumentList",
+    btnClose: "~buttonCloseSuccessBottomSheet",
     btnUploadDoc: "",
     btnUploadNib: "",
     btnUploadAkte: "",
     btnUploadSk: "",
     btnUploadNpwp: "",
-    btnUploadPurchase: "",
-    btnUploadMutation: "",
-    btnUploadFinReport: "",
-    btnRefreshUploadDoc: "",
+    btnUploadPurchase: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[1]' },
+    btnUploadMutation: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[2]' },
+    btnUploadFinReport: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[3]' },
+    btnRefreshUploadDoc: "~buttonRefresh",
     backBtn: "",
     btnAcceptLimitOffer: "",
     btnSendReason: ""
@@ -159,7 +161,7 @@ module.exports = {
         I.assertEqual(actualValue2, "Laporan keuangan dalam 1 tahun terakhir(jika ada).");
         I.wait(2);
         I.click(this.buttons.btnClose);
-      break;
+        break;
       case 'APIND':
         I.wait(2);
         let actualValueInd = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAP, "text");
@@ -172,7 +174,7 @@ module.exports = {
         I.assertEqual(actualValueInd2, "Laporan keuangan dalam 1 tahun terakhir(jika ada).");
         I.wait(2);
         I.click(this.buttons.btnClose);
-      break;
+        break;
       case 'AR':
         I.wait(2);
         I.seeElement(this.textView.nibBottomSheetTextView);
@@ -189,7 +191,7 @@ module.exports = {
         I.assertEqual(actualValueAR2, "Laporan keuangan dalam 1 tahun terakhir.");
         I.wait(2);
         I.click(this.buttons.btnClose);
-      break;
+        break;
       case 'PO':
         I.wait(2);
         I.seeElement(this.textView.nibBottomSheetTextView);
@@ -206,18 +208,18 @@ module.exports = {
         I.assertEqual(actualValuePO2, "Laporan keuangan dalam 1 tahun terakhir(jika ada).");
         I.wait(2);
         I.click(this.buttons.btnClose);
-      break;
+        break;
     }
   },
-  clickBtnUploadDoc(){
+  clickBtnUploadDoc() {
     I.wait(2);
     I.click(this.buttons.btnUploadDoc);
   },
-  viewUploadDocPage(){
+  viewUploadDocPage() {
     I.wait(2);
     I.seeElement(this.textView.uploadDocTextViewPage);
   },
-  uploadDocuments(docType){
+  async uploadDocuments(docType) {
     I.wait(2);
     switch (docType) {
       case 'nib':
@@ -239,57 +241,66 @@ module.exports = {
       case 'proofOfPurchase':
         I.seeElement(this.buttons.btnUploadPurchase);
         I.attachFile(this.buttons.btnUploadPurchase, 'data/beruang.pdf');
+        I.wait(2);
+        let actualValueTextBar5 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
+        I.assertEqual(actualValueTextBar5, "true");
       break;
       case 'paymentMutation':
         I.seeElement(this.buttons.btnUploadMutation);
         I.attachFile(this.buttons.btnUploadMutation, 'data/beruang.pdf');
+        I.wait(2);
+        let actualValueTextBar6 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
+        I.assertEqual(actualValueTextBar6, "true");
       break;
       case 'financialReports':
         I.seeElement(this.buttons.btnUploadFinReport);
         I.attachFile(this.buttons.btnUploadFinReport, 'data/beruang.pdf');
+        I.wait(2);
+        let actualValueTextBar7 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
+        I.assertEqual(actualValueTextBar7, "true");
       break;
     }
   },
-  clickBtnRefresh(){
+  clickBtnRefresh() {
     I.wait(2);
     I.click(this.buttons.btnRefreshUploadDoc);
   },
-  clickBtnBackToLoanProcessing(){
+  clickBtnBackToLoanProcessing() {
     I.wait(2);
     I.click(this.buttons.backBtn);
   },
-  clickListCardExpired(){
+  clickListCardExpired() {
     I.wait(2);
     I.click(this.fields.listCardLoanExpired);
   },
-  clickListCardRejected(){
+  clickListCardRejected() {
     I.wait(2);
     I.click(this.fields.listCardLoanRejected);
   },
-  clickListCardApproved(){
+  clickListCardApproved() {
     I.wait(2);
     I.click(this.fields.listCardLoanApproved);
   },
-  clickBtnSendReason(){
+  clickBtnSendReason() {
     I.wait(2);
     I.click(this.buttons.btnSendReason);
   },
-  async getErrorFieldReason (fieldName) {
-    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+  async getErrorFieldReason(fieldName) {
+    if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
       throw new Error('Field ${fieldName} is not found');
     }
     I.seeElement(this.messageErrorFields[fieldName]);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
-  fillFieldReason(fieldName, txtValue){
+  fillFieldReason(fieldName, txtValue) {
     I.seeElement(this.fields[fieldName]);
     if (
-        this.fields[fieldName] === "" ||
-        this.fields[fieldName] === null ||
-        this.fields[fieldName] === "-"
-    ){
-        I.clearField(this.fields[fieldName]);
-        return;
+      this.fields[fieldName] === "" ||
+      this.fields[fieldName] === null ||
+      this.fields[fieldName] === "-"
+    ) {
+      I.clearField(this.fields[fieldName]);
+      return;
     }
     I.setText(this.fields[fieldName], txtValue);
   },

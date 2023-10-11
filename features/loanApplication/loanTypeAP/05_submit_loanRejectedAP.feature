@@ -49,14 +49,14 @@ Feature: Submit Loan Type AP Status is Rejected
         And user on monitoring loan process page
         And user click view required documents button
         And user validate text prepare the following documents
-        And user validate description prepare the following documents "AR"
+        And user validate description prepare the following documents "AP"
         And user click button upload documents
         # section upload document
         Given user on upload document page
-        When user upload document "nib"
-        And user upload document "deedOfComp"
-        And user upload document "SKKemen"
-        And user upload document "npwpOfComp"
+        # When user upload document "nib"
+        # And user upload document "deedOfComp"
+        # And user upload document "SKKemen"
+        # And user upload document "npwpOfComp"
         And user upload document "proofOfPurchase"
         And user upload document "paymentMutation"
         And user upload document "financialReports"
