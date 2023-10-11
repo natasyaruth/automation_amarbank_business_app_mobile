@@ -112,6 +112,8 @@ exports.config = {
     createPINPage: "./pages/createPIN.js",
 
     loanDisbursementPage: "./pages/loanDisbursement.js",
+
+    friendListPage: "./pages/friendList.js",
   },
   mocha: {},
   bootstrap: null,

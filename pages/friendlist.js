@@ -1,73 +1,108 @@
 module.exports = {
   fields: {
-    inputSearchFriend: "~textFieldSearch",
-    inputAccountNumber: "~textFieldAccountNumber",
-    inputSearchBankName: "~textFieldSearchBank",
-    inputNotes: "~textFieldNote",
+    searchFriend: "~textFieldSearch",
+    accountNumber: "~textFieldAccountNumber",
+    searchBankName: "~textFieldSearchBank",
+    notes: "~textFieldNote",
   },
   cards: {
-    itemFriendlist: "~itemReceiver",
-    itemBankName: "~itemBank",
+    friendList: "~itemReceiver",
+    bankName: "~itemBank",
   },
-  button: {
-    buttonNewFriendlist: "~buttonTransfer",
-    buttonCheckaccount: "~buttonInquiry",
-    buttonNext: "~buttonNext",
+  buttons: {
+    newFriendlist: "~buttonTransfer",
+    checkAccount: "~buttonInquiry",
+    next: "~buttonNext",
     closeBottomSheetBankName: "~buttonClose",
   },
-  dropdowns: {
+  dropDowns: {
     listBankName: "~dropDownFieldListBank",
     listCategory: "~dropDownCategory",
     listSubCategory: "~dropDownSubCategory",
     firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View" },
   },
   text: {
-    textReceiverName: "~textReceiverName",
-    textbankname: "~textBankName",
+    receiverName: "~textReceiverName",
+    bankName: "~textBankName",
   },
-  checbox: {
-    checkSaveFriendList: "~checkBoxSaveReceiver",
+  checkBox: {
+    saveFriendList: "~checkBoxSaveReceiver",
   },
   messageError: {
-    errorAccountNumber: "~textFieldErrorAccountNumber",
+    accountNumber: "~textFieldErrorAccountNumber",
   },
+
   fillSearchFriendlist(friendname) {
-    I.waitForElement(this.fields.inputSearchFriend, 10);
-    I.setText(this.fields.inputSearchFriend, friendname);
-  },
-  addNewFriendList() {
-    I.click(this.button.buttonNewFriendlist);
-  },
-  searchBankName(bankname) {
-    I.click(this.dropdownslistBankName);
-    I.waitForElement(this.button.closeBottomSheetBankName, 10);
-    I.setText(this.fields.inputSearchBankName, bankname);
+    I.waitForElement(this.fields.searchFriend, 10);
+    I.setText(this.fields.searchFriend, friendname);
     I.hideDeviceKeyboard();
-    I.click(this.dropdowns.firstItem);
   },
+
+  closeBankList(){
+    I.click(this.buttons.closeBottomSheetBankName);
+  },
+
+  addNewFriendList() {
+    I.waitForElement(this.buttons.newFriendlist, 10);
+    I.click(this.buttons.newFriendlist);
+  },
+
+  chooseListBank(){
+    I.click(this.dropDowns.listBankName);
+    I.waitForElement(this.buttons.closeBottomSheetBankName, 10);
+  },
+
+  chooseBank(){
+    I.click(this.dropDowns.firstItem);
+  },
+
+  searchBankName(bankname) {
+    I.setText(this.fields.searchBankName, bankname);
+    I.hideDeviceKeyboard();
+  },
+
   fillAccountNumber(accountnumber) {
-    I.setText(this.fields.inputAccountNumber, accountnumber);
+    I.setText(this.fields.accountNumber, accountnumber);
+    I.hideDeviceKeyboard();
   },
-  checkingaccountnumber() {
-    I.click(this.button.buttonCheckaccount);
+
+  checkingAccountNumber() {
+    I.click(this.buttons.checkAccount);
   },
+
   async saveFriendlist() {
-    const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
+    const isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
 
     if (isChecked === "false") {
-      I.click(this.checkBox.checkSaveFriendList);
+      I.click(this.checkBox.saveFriendList);
     }
-    I.click(this.button.buttonNext);
   },
-  async SavedFriendlist() {
-    const isChecked = await I.grabAttributeFrom(this.checkBox.checkSaveFriendList, "checked");
+
+  async unSavedFriendlist() {
+    const isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
 
     if (isChecked === "true") {
-      I.click(this.checkBox.checkSaveFriendList);
+      I.click(this.checkBox.saveFriendList);
     }
-    I.click(this.button.buttonNext);
   },
+
+  processToTransfer(){
+    I.click(this.buttons.next);
+  },
+
   async getMessageErrorAccoutNotFound() {
-    return await I.grabValueFrom(this.messageError.errorAccountNumber);
+    return await I.grabValueFrom(this.messageError.accountNumber);
+  },
+
+  async getBankName(){
+    return await I.grabTextFrom(this.text.bankName);
+  },
+
+  getValueAccNumber(){
+    return I.grabTextFromField(this.fields.accountNumber);
+  },
+
+  async getReceiverName(){
+    return await I.grabTextFrom(this.text.receiverName);
   },
 }
