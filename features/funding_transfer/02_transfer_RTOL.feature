@@ -5,7 +5,7 @@ Feature: User transfer RTOL
 
 
     Background: User has registered and login to dashboard
-        Given I am a registered  customer with following details:
+        Given I am a registered customer with following details:
             | userID   | ruth17a5 |
             | password | Test1234 |
         When I filling in form login with the following details:
@@ -23,25 +23,50 @@ Feature: User transfer RTOL
         And I close bottom sheet category
         Then I see bottom sheet category is dissapear
 
-    Scenario: User input nominal higher than active balance
+    Scenario: User input amount higher than active balance
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal higher than active balance
+        And I input amount higher than active balance
         Then I can see message "saldo aktif tidak mencukupi"
 
     Scenario: User transfer detail with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input amount '50.000.000'
-        And I choose category "Pembayaran"        
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast and RTOL
         And I choose transfer service 'RTOL'
 
-     Scenario: User transfer with RTOL with empty notes
+    Scenario: User confirmation transfer with RTOL
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"       
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And I choose transer service 'RTOL'
+        And I click transfer
+        Then I will directly go to page confirmation transfer
+
+    Scenario: User transfer with RTOL and input wrong PIN
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"        
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And i choose transer service 'RTOL'
+        And I click transfer
+        And I will directly go to page confirmation transfer
+        And I input wrong PIN
+        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
+
+      Scenario: User transfer with RTOL with empty notes
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
@@ -92,32 +117,6 @@ Feature: User transfer RTOL
         And I input PIN
         Then I successfully transferred
 
-    Scenario: User confirmation transfer with RTOL
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
-        And I choose the friendlist
-        And I input amount '50.000.000'
-        And I choose category "Pembayaran"        
-        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
-        And I click choose bank transfer service
-        And I choose transer service 'RTOL'
-        And I click transfer
-        Then I will directly go to page confirmation transfer
-
-    Scenario: User transfer with RTOL and input wrong PIN
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
-        And I choose the friendlist
-        And I input amount '50.000.000'
-        And I choose category "Pembayaran"        
-        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
-        And I click choose bank transfer service
-        And i choose transer service 'RTOL'
-        And I click transfer
-        And I will directly go to page confirmation transfer
-        And I input wrong PIN
-        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
-
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Sheena Andrian' in friendlist
@@ -129,13 +128,12 @@ Feature: User transfer RTOL
         And I will directly go to page confirmation transfer between Amar Bank
         And I click transfer now
         And I input PIN
-        Then I successfully transferred between Amar Bank   
-        
+        Then I successfully transferred between Amar Bank 
+
     Scenario: User successfully transfer
-        Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input amount '50.000.000'
+        And I input amount '55.000.000'
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
