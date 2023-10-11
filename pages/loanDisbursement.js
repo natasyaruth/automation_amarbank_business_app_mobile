@@ -86,6 +86,22 @@ module.exports = {
     }
   },
 
+  async validateSectionHaveNotPastDueDate() {
+    const haveNotPastDueDate = await I.dontSee('Anda Memiliki Tagihan Yang Belum Dibayar');
+    if (haveNotPastDueDate) {
+      //Click the "Gunakan Limit" button
+      I.dontSee('Selesaikan pembayaran terlebih dahulu sebelum menggunakan limit');
+      I.seeElement(this.buttons.buttonDetailLimit);
+    } else {
+      I.see('Selesaikan pembayaran terlebih dahulu sebelum menggunakan limit');
+      I.seeElement(this.buttons.buttonDismiss);
+      I.seeElement(this.buttons.buttonClose);
+      I.click(this.buttons.buttonDismiss);
+      I.click(this.buttons.buttonUseLimit);
+      I.click(this.buttons.buttonClose);
+    }
+  },
+
   async validateLoanIsTenorMoreThanPastDueDate() {
     const loanTenorMoreThanPastDueDate = await I.see('Pengajuan Anda Melebihi Batas Aktif Fasilitas');
     if (loanTenorMoreThanPastDueDate) {
@@ -302,5 +318,14 @@ module.exports = {
     I.waitForElement(this.buttons.buttonUseLimit);
     I.click(this.buttons.buttonUseLimit);
   },
+
+  validateAnchorDetail() {
+    I.waitForElement(this.buttons.buttonUpload);
+    I.seeElement(this.buttons.buttonUpload);
+    I.seeElement(this.buttons.buttonDetailLimit);
+  },
+
+
+
 
 }
