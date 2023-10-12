@@ -63,6 +63,9 @@ module.exports = {
     toastBarIssueHasBeenReported: "~toastBarIssueHasBeenReported",
   },
 
+  texts: {
+    textAvailableLimit: "~textAvailableLimit",
+  },
 
   usingLimitLoanDisbursementTypeAP() {
     I.seeElement(this.cards.cardLimitAP);
@@ -395,5 +398,24 @@ module.exports = {
     I.dontSeeElement(this.buttons.buttonDisburse);
     I.seeElement(this.buttons.buttonContinuePay);
   },
+
+  grabtextAvailableLimitDirectAP() {
+    I.grabTextFrom(this.texts.textAvailableLimit).then((text) => {
+      I.click(this.buttons.buttonUpload);
+      I.click(this.buttons.buttonTakePicture);
+      I.click(this.buttons.buttonTakePicture);
+      I.waitForElement(this.textFields.textFieldNominal);
+      I.seeElement(this.buttons.buttonPreview);
+      I.fillField(this.textFields.textFieldNominal, text);
+      I.fillField('01/09/2023');
+    });
+  },
+
+  fillingInvoiceDetailLessorEqualThanAvailableLimit() {
+    I.fillField(this.textFields.textFieldNominal, '100000000');
+    I.seeInField(this.textFields.textFieldNominal, '100000000');
+
+  },
+
 
 }
