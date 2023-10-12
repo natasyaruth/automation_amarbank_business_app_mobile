@@ -1,73 +1,128 @@
 const { I } = inject();
 
 module.exports = {
-  field: {
-    inputNominalTransfer: ~"textFieldNominal",
-    inputNotes: ~"textFieldNote",
-    inputPIN: ~"textFieldPIN",
+  fields: {
+    amount: "~textFieldNominal",
+    notes: "~textFieldNote",
+    pin: "~textFieldPIN",
   },
-  text: {
-    textBalance: ~"textBalance",
-    textNominal: ~"textNominal",
-    textService: ~"textService",
-    textTotal: ~"textTotal",
-    textCategory: ~"textCategory",
-    textSubCategory: ~"textSubCategory",
-    textNote: ~"textNote",
+  texts: {
+    balance: "~textBalance",
+    amount: "~textNominal",
+    service: "~textService",
+    total: "~textTotal",
+    category: "~textCategory",
+    subCategory: "~textSubCategory",
+    note: "~textNote",
   },
-  dropdownlist: {
-    dropDownListCategory: ~"dropDownCategory",
-    drobDownListSubCategory: ~"dropDownSubCategory",
+  dropdownLists: {
+    category: "~dropDownCategory",
+    subCategory: "~dropDownSubCategory",
   },
-  button: {
-    buttonChooseMethod: ~"buttonChoseMethod",
-    buttonRefresh: ~"buttonRefresh",
-    buttonCloseSubCategory: ~"buttonClose",    
-    buttonTransfer: ~"buttonTransfer",
-    buttonCopy: ~"buttonCopy",
-    buttonShare: ~"buttonShare",
-    buttonCheckStatus: ~"buttonCheckStatus",
-    buttonCheckMethod: ~"buttonChangeMethod",
+  buttons: {
+    methodTransfer: "~buttonChoseMethod",
+    refresh: "~buttonRefresh",
+    closeSubCategory: "~buttonClose",    
+    transfer: "~buttonTransfer",
+    copy: "~buttonCopy",
+    share: "~buttonShare",
+    checkStatus: "~buttonCheckStatus",
+    checkMethod: "~buttonChangeMethod",
   },
   cards: {
-    itemCategory: ~"itemCategory",
-    itemSubCategory: ~"itemSubCategory",
+    category: "~itemCategory",
+    subCategory: "~itemSubCategory",
   }, 
-  chooseitem:{
-  chooseMethodTransfer: ~"optionRTOL",
+  radioButtons:{
+    methodRtol: "~optionRTOL",
+    methodSkn: "~optionSKN",
+    methodRtgs: "~optionRTGS",
+    methodBifast: "~optionBifast"
   },
-  messageerror: {
-    errorNominaltransfer: ~"textFieldErrorNominal",
-    errorNotest: ~"textFieldErrorNote",
-    errorPIN: ~"textFieldErrorPIN",
+  messageErrors: {
+    amount: "~textFieldErrorNominal",
+    notes: "~textFieldErrorNote",
+    pin: "~textFieldErrorPIN",
   },
-  submitMethodTransfer(nominaltransfer){
-    I.setText(this.field.inputNominalTransfer,nominaltransfer);
-    I.click(this.dropdownlist.dropDownListCategory);
-    I.waitForElement(this.button.buttonCloseSubCategory,5);
-    I.click(this.dropdownlist.drobDownListSubCategory);
-    I.waitForElement(this.button.buttonCloseSubCategory,5);  
-    I.click(this.button.buttonChooseMethod); 
+
+  inputAmountTransfer(amount){
+    I.waitForElement(this.fields.amount, 10);
+    I.setText(this.fields.amount, amount);
   },
-  submitTransferRTOL(){
-    I.click(this.chooseitem.chooseMethodTransfer);
-    I.click(this.button.buttonTransfer);
+
+  async getMessageErrorField(fieldName){
+    return await I.grabTextFrom(fieldName);
   },
-  confirmationTransfer(){
-    I.seeElement(this.text.textNominal);
-    I.seeElement(this.text.textService);
-    I.seeElement(this.text.textTotal);
-    I.seeElement(this.text.textCategory);
-    I.seeElement(this.text.textSubCategory);
-    I.seeElement(this.text.textNote);
-    I.click(this.button.buttonTransfer);
+
+  async getBalance(){
+    return await I.grabTextFrom(this.texts.balance);
   },
-  inputPIN(inputPIN){
-    I.setText(this.field.inputPIN);  
+
+  async getAmountConfirmation(){
+    return await I.grabTextFrom(this.texts.amount);
   },
-  shareTransfer(){
-    I.seeElement(this.text.textNote);
-    I.click(this.button.buttonCopy);
-    I.click(this.button.buttonShare);
+
+  async getServiceMethod(){
+    return await I.grabTextFrom(this.texts.service);
   },
+
+  async getTotal(){
+    return await I.grabTextFrom(this.texts.total);
+  },
+
+  async getCategory(){
+    return await I.grabTextFrom(this.texts.category);
+  },
+
+  async getNotes(){
+    return await I.grabTextFrom(this.texts.note);
+  },
+
+  chooseCategory(category){
+    I.click(this.dropdownLists.category);
+    I.waitForElement(this.buttons.closeSubCategory, 10);
+    I.click(category);
+  },
+
+  fillNotes(notes){
+    I.waitForElement(this.fields.notes, 10);
+    I.setText(this.fields.notes, notes);
+  },
+
+  chooseMethodTransfer(){
+    I.click(this.buttons.methodTransfer);
+  },
+
+  chooseRtol(){
+    I.click(this.radioButtons.methodRtol);
+  },
+
+  chooseSkn(){
+    I.click(this.radioButtons.methodSkn);
+  },
+
+  chooseRtgs(){
+    I.click(this.radioButtons.methodRtgs);
+  },
+
+  chooseBifast(){
+    I.click(this.radioButtons.methodBifast);
+  },
+
+  processTransfer(){
+    I.click(this.buttons.transfer);
+  },
+
+  confirmTransfer(){
+    I.click(this.buttons.transfer);
+  },
+
+  inputPin(pin){
+    I.waitForElement(this.fields.pin, 10);
+    I.setText(this.fields.pin, pin);
+  },
+
+  shareReceipt(){
+    I.click(this.buttons.share);
+  }
 }
