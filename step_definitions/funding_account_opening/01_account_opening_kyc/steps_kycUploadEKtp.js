@@ -25,7 +25,7 @@ When("I upload my eKTP photo", async () => {
     resetStateDao.reloadPageAfterResetState();
 });
 
-Then("I will directing to page submit form KTP", () => {
+Then("I will directing to page submit form KTP", async () => {
     I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
     await 
     resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);

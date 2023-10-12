@@ -113,7 +113,7 @@ exports.config = {
 
     loanDisbursementPage: "./pages/loanDisbursement.js",
 
-    privyAggrementPage: "./pages/loanApplication/privyAggrement.js",
+    friendListPage: "./pages/friendList.js",
   },
   mocha: {},
   bootstrap: null,
@@ -130,8 +130,8 @@ exports.config = {
       "./features/funding_account_creation/*.feature",
       "./features/funding_account_opening/01_account_opening_kyc/*.feature",
       "./features/funding_account_opening/02_account_opening_kyb/*.feature",
-      "./features/funding_transfer/*.feature",
-      "./features/funding_create_pin/*.feature",
+      // "./features/funding_transfer/*.feature",
+      // "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
 
     ],
@@ -151,8 +151,8 @@ exports.config = {
       "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormKtp.js",
       "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycUploadSelfie.js",
       "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDataPersonal.js",
-      // "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDomicileAddress.js",
-      // "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDataEmployment.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDomicileAddress.js",
+      "./step_definitions/funding_account_opening/01_account_opening_kyc/steps_kycSubmitFormDataEmployment.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessOwner.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",

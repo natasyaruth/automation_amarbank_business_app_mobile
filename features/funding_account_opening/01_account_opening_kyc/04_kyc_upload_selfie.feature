@@ -6,10 +6,10 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
 
   Background: User choose legality business type UD
     Given I am a registered customer with following details:
-      | userID   | ruth4f2a |
+      | userID   | ruth5a50 |
       | password | 1234Test |
     And I filling in form login with the following details:
-      | userID   | ruth4f2a |
+      | userID   | ruth5a50 |
       | password | 1234Test |
     And I click login
     Then I will direct to dashboard
@@ -19,7 +19,7 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
     And I submit my legality type
     And I upload my eKTP photo
     And I fill all information identity details as followings:
-      | eKtpNumber    | 3175071105960007          |
+      | eKtpNumber    | 3175044501980004          |
       | fullName      | NADYA LAROSA              |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |

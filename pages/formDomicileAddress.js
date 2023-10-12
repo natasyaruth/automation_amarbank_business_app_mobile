@@ -5,21 +5,22 @@ module.exports = {
   fields:{
     address: "~fieldAddress",
     rt: "~fieldRt",
-    rw: "~fieldRt",
-    search: "~fieldSearch",
+    rw: "~fieldRw",
+    search: "~tag",
   },
   dropDown:{
-    typeResidence: "~dropdownTypeResidence",
+    typeResidence: "~fieldTypeResidence",
   },
   dropDownSearch:{
-    province: "~dropdownProvince",
-    city: "~dropdownCity",
-    district: "~dropdownDistrict",
-    village: "~dropdownVillage",
+    province: "~fieldProvince",
+    city: "~fieldCity",
+    district: "~fieldDistrict",
+    village: "~fieldVillage",
     firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
   },
-  button: {
-    saveDomicile: "~buttonSaveAddress"
+  buttons: {
+    saveDomicile: "~buttonSaveAddress",
+    closeBottomSheet: "~buttonClose"
   },
   radioButtons:{
     ktpAddress: "~checkboxOldAddress",
@@ -39,9 +40,9 @@ module.exports = {
         I.setText(this.fields[fieldName], value);
 
       } else if (
-        Object.keys(this.dropDowns).indexOf(fieldName) !== -1
+        Object.keys(this.dropDown).indexOf(fieldName) !== -1
         ){
-        I.click(this.dropDowns[fieldName]);
+        I.click(this.dropDown[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.click(value);
       } else if(
@@ -51,7 +52,7 @@ module.exports = {
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.setText(this.fields.search, value);
         I.click(this.dropDownSearch.firstItem);
-        I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+        I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
       } else{
         throw new Error(information[i]+" not found, please check again data naming");
       }
@@ -59,7 +60,7 @@ module.exports = {
   },
 
   saveDomicileAddress(){
-    I.click(this.button.saveDomicile);
+    I.click(this.buttons.saveDomicile);
   },
 
   chooseNewDomicile(){
