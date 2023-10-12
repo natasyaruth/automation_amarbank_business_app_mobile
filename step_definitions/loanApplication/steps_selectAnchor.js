@@ -65,3 +65,6 @@ const {I, selectAnchorPage} = inject();
     Given(/user on buyer cooperating page/,()=>{
         selectAnchorPage.viewBuyerPage();
     });
+    Given(/user on bowheer cooperating page/,()=>{
+        selectAnchorPage.viewBowheerPage();
+    });
