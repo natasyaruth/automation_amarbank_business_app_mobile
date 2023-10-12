@@ -112,6 +112,8 @@ exports.config = {
     createPINPage: "./pages/createPIN.js",
 
     loanDisbursementPage: "./pages/loanDisbursement.js",
+
+    friendListPage: "./pages/friendList.js",
   },
   mocha: {},
   bootstrap: null,
@@ -140,7 +142,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanAmountTenor.js",
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/loanApplication/steps_privyAggrement.js",
-      "./step_definitions/loanApplication/steps_uploadLoanDoc.js",
+      "./step_definitions/loanApplication/steps_uploadDocLoan.js",
       "./step_definitions/funding_account_creation/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js",

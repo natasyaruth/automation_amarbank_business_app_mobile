@@ -48,6 +48,12 @@ module.exports = {
         let actualValueTitle = await I.grabAttributeFrom(this.textField.textFieldAnchorPage, 'text');
         I.assertEqual(actualValueTitle, 'Dengan buyer mana Anda bekerjasama?');
     },
+    async viewBowheerPage(){
+        I.seeElement(this.textField.textFieldAnchorPage);
+        I.wait(2);
+        let actualValueTitle = await I.grabAttributeFrom(this.textField.textFieldAnchorPage, 'text');
+        I.assertEqual(actualValueTitle, 'Dengan pemilik proyek/bowheer mana Anda bekerjasama?');
+    },
     fillFieldSearch(txtValue){
         I.seeElement(this.fields.searchField);
         I.setText(this.fields.searchField, txtValue);

@@ -1,13 +1,13 @@
-Feature: Submit Loan Type AR Status is Rejected
+Feature: Submit Loan Type PO Status is Rejected
     As a customer lead
     I want to submit loan and rejected by vp of bussiness
 
     Background:
         Given I am a registered customer with foll
-            | userID   | bots2912  |
+            | userID   | bots691c  |
             | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | bots2912  |
+            | userID   | bots691c  |
             | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
@@ -17,11 +17,11 @@ Feature: Submit Loan Type AR Status is Rejected
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
-        And user select loan type "AR"
+        And user select loan type "PO"
         And user click button lihat skema pinjaman
-        And user on loan schema "AR"
+        And user on loan schema "PO"
         And user click button select the schema
-        When user on buyer cooperating page
+        When user on bowheer cooperating page
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
