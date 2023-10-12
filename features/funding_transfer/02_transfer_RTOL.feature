@@ -23,20 +23,19 @@ Feature: User transfer RTOL
         And I close bottom sheet category
         Then I see bottom sheet category is dissapear
 
-    Scenario: User input nominal higher than active balance
+    Scenario: User input amount higher than active balance
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal higher than active balance
+        And I input amount higher than active balance
         Then I can see message "saldo aktif tidak mencukupi"
 
     Scenario: User transfer detail with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal 'Rp.55.000.000'
-        And I choose category "Pembayaran"
-        And I choose sub category "Pinjaman"
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast and RTOL
@@ -46,9 +45,8 @@ Feature: User transfer RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal 'Rp.55.000.000'
-        And I choose category "Pembayaran"
-        And I choose sub category "Pinjaman"
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And I choose transer service 'RTOL'
@@ -58,9 +56,8 @@ Feature: User transfer RTOL
     Scenario: User transfer with RTOL and input wrong PIN
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal 'Rp.55.000.000'
-        And I choose category "Pembayaran"
-        And I choose sub category "Pinjaman"
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
@@ -69,15 +66,78 @@ Feature: User transfer RTOL
         And I input wrong PIN
         Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
-    Scenario: User successfully transfer
+      Scenario: User transfer with RTOL with empty notes
+        Given I am a customer who wants to Transfer and has friend list
         When I search name 'Nurul Septariani' in friendlist
         And I choose the friendlist
-        And I input nominal 'Rp.55.000.000'
-        And I choose category "Pembayaran"
-        And I choose category "Pinjaman"
+        And I input amount '50.000.000'
+        And I choose category "Pembayaran"       
+        And I click choose bank transfer service
+        And i choose transer service 'RTOL'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred without notes
+
+    Scenario: User transfer with RTOL and input notes with emoji and symbol
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '50.000.000'
+        And I choose category "Pembayaran"        
+        And I input notes with 'Pembayaran #Oktober :D'
+        And I click choose bank transfer service
+        Then i see message "Catatan tidak menggunakan emoji & symbol"
+
+    Scenario: User Transfer RTOL with amount = Rp.20.000.000
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '20.000.000'
+        And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service 'RTOL'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred
+
+    Scenario: User Transfer RTOL with amount = Rp.50.000.000
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '100.000.000'
+        And I choose category "Pembayaran"        
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And i choose transer service 'RTOL'
+        And I click transfer
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred
+
+    Scenario: User successfully transfer between Amar Bank
+        Given I am a customer who wants to Transfer and has friend list
+        When I search name 'Sheena Andrian' in friendlist
+        And I choose the friendlist
+        And I input amount '50.000.000'
+        And I choose category "Pembayaran"        
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And I will directly go to page confirmation transfer between Amar Bank
+        And I click transfer now
+        And I input PIN
+        Then I successfully transferred between Amar Bank 
+
+    Scenario: User successfully transfer
+        When I search name 'Nurul Septariani' in friendlist
+        And I choose the friendlist
+        And I input amount '55.000.000'
+        And I choose category "Pembayaran"        
+        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
+        And I click choose bank transfer service
+        And I choose transer service 'RTOL'
         And I click transfer
         And I click transfer now
         And I input PIN
