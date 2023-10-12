@@ -325,7 +325,75 @@ module.exports = {
     I.seeElement(this.buttons.buttonDetailLimit);
   },
 
+  goToUploadDocument() {
+    I.seeElement(this.buttons.buttonUpload);
+    I.click(this.buttons.buttonUpload);
+  },
 
+  takePicture() {
+    I.waitForClickable(this.buttons.buttonTakePicture);
+    I.waitForVisible(this.buttons.buttonTakePicture);
+    I.wait(5);
+    I.waitForInvisible(this.buttons.buttonTakePicture);
+  },
 
+  validateInvoiceConfirmation() {
+    I.see('Konfirmasi Invoice');
+    I.waitForElement(this.buttons.buttonPreview);
+    I.seeElement(this.buttons.buttonPreview);
+    I.click(this.buttons.buttonPreview);
+  },
+
+  closeUploadInvoiceSection() {
+    I.waitForElement(this.buttons.buttonClose);
+    I.click(this.buttons.buttonClose);
+    I.waitForElement(this.buttons.buttonDetailLimit);
+    I.see('Konfirmasi Invoice');
+  },
+
+  getInvoicePhotosFromGallery() {
+    I.waitForClickable(this.buttons.buttonGetFromGallery);
+    I.click(this.buttons.buttonGetFromGallery);
+  },
+
+  validateInvoiceConfirmationAfterUploadPhotoFromGallery() {
+    I.see('Konfirmasi Invoice');
+    I.waitForElement(this.buttons.buttonPreview);
+    I.click(this.buttons.buttonPreview);
+  },
+
+  validateFailedUploadPhoto() {
+    I.waitForElement(this.buttons.buttonReupload);
+    I.see('Upload Invoice Gagal');
+    I.see('Ukuran file tidak boleh lebih dari 10MB');
+    I.seeElement(this.buttons.buttonUpload);
+
+  },
+
+  reUploadInvoiceDocument() {
+    I.waitForElement(this.buttons.buttonReupload);
+    I.click(this.buttons.buttonReupload);
+    I.waitForInvisible(this.buttons.buttonReupload);
+    I.waitForElement(this.buttons.buttonPreview);
+  },
+
+  keepAmountInvoiceisEmpty() {
+    I.click(this.textFields.textFieldNominal);
+  },
+
+  keepFieldDateisEmpty() {
+    I.click(this.textFields.textFieldDate);
+  },
+
+  keepEmptyInvoiceDetail() {
+    I.seeElement(this.buttons.buttonContinuePay);
+  },
+
+  validateErrorMessageDetailInvoiceareEmpty() {
+    I.see('Nominal invoice wajib diisi');
+    I.see('Tanggal invoice wajib diisi');
+    I.dontSeeElement(this.buttons.buttonDisburse);
+    I.seeElement(this.buttons.buttonContinuePay);
+  },
 
 }
