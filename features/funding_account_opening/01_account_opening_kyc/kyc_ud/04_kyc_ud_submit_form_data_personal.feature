@@ -1,4 +1,4 @@
-@kycSubmitFormDataPersonal
+@kycSubmitFormDataPersonalUD
 Feature: Account Opening KYC UD - Submit Data Personal
     In order to opening my Giro account with legality business type UD in SMB
     As a customer
@@ -36,7 +36,7 @@ Feature: Account Opening KYC UD - Submit Data Personal
         And I submit my information identity details
         And I upload my selfie photo
 
-    Scenario: Submit form Data Personal successfully
+    Scenario: Submit form Data Personal successfully business type UD
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:
             | lastEducation | SMA             |

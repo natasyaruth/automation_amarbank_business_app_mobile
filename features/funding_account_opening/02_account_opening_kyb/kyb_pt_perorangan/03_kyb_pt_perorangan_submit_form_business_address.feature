@@ -1,10 +1,10 @@
-@kybSubmitFormBusinessAddressUD
-Feature: Account Opening KYB UD - Submit Business Address
-    In order to opening my Giro account with legality business type UD in SMB
+@kybSubmitFormBusinessAddressIndividualBusiness
+Feature: Account Opening KYB PT Perorangan - Submit Business Address
+    In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer
     I want to submit my business address as part of the KYB Process
 
-    Background: User choose legality business type UD
+    Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
             | userID   | ruth1ed7              |
             | password | 1234Test              |
@@ -16,7 +16,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'ud'
+        And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
@@ -68,7 +68,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my business profile
         And I submit business owner list
 
-    Scenario: Submit form Business Address successfully business type UD
+    Scenario: Submit form Business Address successfully business type PT Perorangan
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:
             | address  | Jl. Gambir Belok kanan No. 23 |

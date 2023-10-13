@@ -1,4 +1,4 @@
-
+@kycSubmitFormDomicileAddressIndividual
 Feature: Account Opening KYC Individual - Submit Domicile Address
     In order to opening my Giro account with legality business type Individual in SMB
     As a customer
@@ -36,20 +36,20 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
+            | lastEducation  | SMA             |
+            | motherName     | NADYA LAMUSU    |
+            | purposeAccount | Tabungan        |
+            | npwp           | 121785542123321 |
         And I submit my personal data details
 
-    Scenario: Submit form Domicile address same with KTP successfully
+    Scenario: Submit form Domicile address same with KTP successfully business type Individual
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
-    @kycSubmitFormDomicileAddress
-    Scenario: Submit form Domicile address with new address successfully
+    Scenario: Submit form Domicile address with new address successfully business type Individual
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill new domicile details as followings:
