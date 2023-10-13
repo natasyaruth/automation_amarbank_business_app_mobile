@@ -1,27 +1,26 @@
-@kybSubmitFormBusinessAddressUD
-Feature: Account Opening KYB UD - Submit Business Address
-    In order to opening my Giro account with legality business type UD in SMB
+@kybSubmitFormBusinessProfileIndividualBusiness
+Feature: Account Opening KYB PT Perorangan - Submit Business Profile
+    In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer
-    I want to submit my business address as part of the KYB Process
+    I want to submit my business profile as part of the KYB Process
 
-    Background: User choose legality business type UD
+    Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID   | ruth1ed7              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | ruth0ba7 |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth1ed7 |
+            | userID   | ruth0ba7 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'ud'
+        And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172024112840005          |
-            | fullName      | NADYA SAMANTHA            |
+            | eKtpNumber    | 3175080601830002          |
+            | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
             | gender        | Laki-laki                 |
@@ -56,6 +55,9 @@ Feature: Account Opening KYB UD - Submit Business Address
             | workType     | Pegawai Swasta       |
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
+
+    Scenario: Submit form Business Profile successfully business type PT Perorangan
+        Given I am a customer who has completed my KYC process
         When I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
@@ -66,19 +68,5 @@ Feature: Account Opening KYB UD - Submit Business Address
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
-        And I submit business owner list
-
-    Scenario: Submit form Business Address successfully business type UD
-        Given I am a customer who has submitted business owner list
-        When I fill my business address as followings:
-            | address  | Jl. Gambir Belok kanan No. 23 |
-            | rt       | 010                           |
-            | rw       | 027                           |
-            | province | DKI JAKARTA                   |
-            | city     | JAKARTA SELATAN               |
-            | district | PANCORAN                      |
-            | village  | PANCORAN                      |
-        And I agree with the terms and condition
-        And I allow company to store my data
-        And I submit my business address
-        Then I will directing to page upload require documents for business
+        Then I will notify my business profile has successfully submitted
+        And I will directing to page business owner

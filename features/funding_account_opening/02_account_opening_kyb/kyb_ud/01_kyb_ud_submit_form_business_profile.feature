@@ -1,4 +1,4 @@
-@kybSubmitFormBusinessProfile
+@kybSubmitFormBusinessProfileUD
 Feature: Account Opening KYB UD - Submit Business Profile
     In order to opening my Giro account with legality business type UD in SMB
     As a customer
@@ -56,7 +56,7 @@ Feature: Account Opening KYB UD - Submit Business Profile
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
 
-    Scenario: Submit form Business Profile successfully
+    Scenario: Submit form Business Profile successfully business type UD
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
         And I fill my business profile as followings:

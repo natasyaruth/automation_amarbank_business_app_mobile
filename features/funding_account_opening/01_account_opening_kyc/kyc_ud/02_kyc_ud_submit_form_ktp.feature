@@ -1,4 +1,4 @@
-@kycSubmitFormKtp
+@kycSubmitFormKtpUD
 Feature: Account Opening KYC UD - Submit Form KTP
   In order to opening my Giro account with legality business type UD in SMB
   As a customer
@@ -19,7 +19,7 @@ Feature: Account Opening KYC UD - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
-  Scenario: Submit form KTP successfully
+  Scenario: Submit form KTP successfully business type UD
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
       | eKtpNumber    | 3173035601860007          |

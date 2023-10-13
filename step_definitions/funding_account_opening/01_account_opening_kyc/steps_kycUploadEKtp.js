@@ -16,6 +16,8 @@ Given("I am a customer who has selected the business type UD", () => { });
 
 Given("I am a customer who has selected the business type Individual", () => { });
 
+Given("I am a customer who has selected the business type PT Perorangan", () =>{});
+
 Given("My last flow kyc step is {string}", (stateName) => {
     let lastStateNumber = onboardingAccOpeningPage.getStateNumber(stateName);
     // step to hit API reset state

@@ -1,4 +1,4 @@
-@kycSubmitFormDataEmployment
+@kycSubmitFormDataEmploymentIndividual
 Feature: Account Opening KYC Individual - Submit Data Employment
     In order to opening my Giro account with legality business type Individual in SMB
     As a customer
@@ -53,7 +53,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | village       | PANCORAN                  |
         And I submit my domicile address
 
-    Scenario: Submit form Data Employment successfully
+    Scenario: Submit form Data Employment successfully business type Individual
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:
             | workType      | Pegawai Negeri Sipil |

@@ -1,4 +1,4 @@
-@kycUploadSelfie
+@kycUploadSelfieUD
 Feature: Account Opening KYC UD - Upload Selfie Photo
   In order to opening my Giro account with legality business type UD in SMB
   As a customer
@@ -35,7 +35,7 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
 
-  Scenario: Upload selfie image successfully
+  Scenario: Upload selfie image successfully business type UD
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'
     When I upload my selfie photo

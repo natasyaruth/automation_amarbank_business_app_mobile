@@ -1,4 +1,4 @@
-@kycUploadKtp
+@kycUploadKtpUD
 Feature: Account Opening KYC UD - Upload KTP Photo
   In order to opening my Giro account with legality business type UD in SMB
   As a customer
@@ -18,7 +18,7 @@ Feature: Account Opening KYC UD - Upload KTP Photo
     And I choose legality business type 'ud'
     And I submit my legality type
     
-  Scenario: Upload eKTP photo successfully
+  Scenario: Upload eKTP photo successfully business type UD
     Given I am a customer who has selected the business type UD
     When I upload my eKTP photo
     Then I will directing to page submit form KTP
