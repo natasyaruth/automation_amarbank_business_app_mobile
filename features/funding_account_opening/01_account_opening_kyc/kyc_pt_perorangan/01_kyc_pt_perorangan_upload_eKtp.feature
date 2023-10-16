@@ -1,4 +1,4 @@
-@kycUploadKtpIndividualBusiness
+@kycUploadKtpPTPerorangan
 Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
   In order to opening my Giro account with legality business type PT Perorangan in SMB
   As a customer

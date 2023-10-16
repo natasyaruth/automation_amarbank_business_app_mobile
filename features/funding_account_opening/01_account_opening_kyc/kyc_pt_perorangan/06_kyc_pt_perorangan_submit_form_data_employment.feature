@@ -1,4 +1,4 @@
-@kycSubmitFormDataEmploymentIndividualBusiness
+@kycSubmitFormDataEmploymentPTPerorangan
 Feature: Account Opening KYC PT Perorangan - Submit Data Employment
     In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer

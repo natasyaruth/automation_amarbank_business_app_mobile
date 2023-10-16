@@ -1,4 +1,4 @@
-@kycSubmitFormDataPersonalCompany
+@kycSubmitFormDataPersonalPTPerusahaan
 Feature: Account Opening KYC PT Perusahaan - Submit Data Personal
     In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer

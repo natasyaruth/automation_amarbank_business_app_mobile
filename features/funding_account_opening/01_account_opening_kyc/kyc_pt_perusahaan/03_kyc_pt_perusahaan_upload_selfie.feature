@@ -1,4 +1,4 @@
-@kycUploadSelfieCompany
+@kycUploadSelfiePTPerusahaan
 Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
   In order to opening my Giro account with legality business type PT Perusahaan in SMB
   As a customer

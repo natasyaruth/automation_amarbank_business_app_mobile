@@ -1,4 +1,4 @@
-@kybSubmitFormBusinessAddressIndividualBusiness
+@kybSubmitFormBusinessAddressPTPerorangan
 Feature: Account Opening KYB PT Perorangan - Submit Business Address
     In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer
@@ -6,11 +6,11 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID   | ruth1ed7              |
+            | userID   | ruth67b0              |
             | password | 1234Test              |
             | email    | ruth01@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruth1ed7 |
+            | userID   | ruth67b0 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -20,7 +20,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172024112840005          |
+            | eKtpNumber    | 3171012702730001          |
             | fullName      | NADYA SAMANTHA            |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |

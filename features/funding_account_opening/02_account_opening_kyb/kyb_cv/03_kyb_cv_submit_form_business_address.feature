@@ -1,15 +1,16 @@
-@kycSubmitFormDomicileAddressPTPerusahaan
-Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
+@kybSubmitFormBusinessAddressCompany
+Feature: Account Opening KYB PT Perusahaan - Submit Business Address
     In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer
-    I want to submit my domiciles address as part of the KYC Process
+    I want to submit my business address as part of the KYB Process
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | ruth5e5c              |
+            | password | 1234Test              |
+            | email    | ruth01@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
+            | userID   | ruth5e5c |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -19,8 +20,8 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174090101780017          |
-            | fullName      | NADYA LAROSA              |
+            | eKtpNumber    | 3172024112840005          |
+            | fullName      | NADYA SAMANTHA            |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
             | gender        | Laki-laki                 |
@@ -40,17 +41,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-
-    Scenario: Submit form Domicile address same with KTP successfully business type PT Perusahaan
-        Given I am a customer who has submitted my personal data details
-        When I choose my domicile address same with my identity information
-        And I submit my domicile address
-        Then I will notify my domicile address has successfully submitted
-        And I will direct to page Data Employment
-
-    Scenario: Submit form Domicile address with new address successfully business type PT Perusahaan
-        Given I am a customer who has submitted my personal data details
-        When I choose my new domicile address
+        And I choose my new domicile address
         And I fill new domicile details as followings:
             | typeResidence | Rumah                     |
             | address       | JL. KS TUBUN NO. 27       |
@@ -61,5 +52,33 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
             | district      | PANCORAN                  |
             | village       | PANCORAN                  |
         And I submit my domicile address
-        Then I will notify my domicile address has successfully submitted
-        And I will direct to page Data Employment
+        And I fill my employment details as followings:
+            | workType     | Pegawai Swasta       |
+            | sourceIncome | Pemasukan dari Usaha |
+        And I submit my employment data
+        When I continue to process KYB
+        And I fill my business profile as followings:
+            | businessName      | PT. ABCD        |
+            | industry          | Jasa            |
+            | businessField     | Restoran        |
+            | monthlyIncome     | 30 - 50 juta    |
+            | npwp              | 906283213036000 |
+            | nib               | 9129106701234   |
+            | businessDateStart | 10/10/2010      |
+        And I submit my business profile
+        And I submit business owner list
+
+    Scenario: Submit form Business Address successfully business type PT Perusahaan
+        Given I am a customer who has submitted business owner list
+        When I fill my business address as followings:
+            | address  | Jl. Gambir Belok kanan No. 23 |
+            | rt       | 010                           |
+            | rw       | 027                           |
+            | province | DKI JAKARTA                   |
+            | city     | JAKARTA SELATAN               |
+            | district | PANCORAN                      |
+            | village  | PANCORAN                      |
+        And I agree with the terms and condition
+        And I allow company to store my data
+        And I submit my business address
+        Then I will directing to page upload require documents for business
