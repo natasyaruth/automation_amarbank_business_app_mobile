@@ -1,5 +1,5 @@
-@loanActiveTypeAP
-Feature:Checking Loan Type AP and Direct AP with Status Active
+
+Feature: Checking Loan Type AP and Direct AP with Status Active
 In order to checking limit active for loan type AP and Direct AP
         As a customer
 I am able to verify limit active loan type AP and direct AP in history page

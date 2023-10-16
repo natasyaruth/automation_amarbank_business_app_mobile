@@ -23,8 +23,8 @@ exports.config = {
       appiumV2: true,
       app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator",
-      path: "/",
+      device: "emulator-5554",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",

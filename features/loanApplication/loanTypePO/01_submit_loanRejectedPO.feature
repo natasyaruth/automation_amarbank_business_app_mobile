@@ -12,8 +12,7 @@ Feature: Submit Loan Type PO Status is Rejected
         And I click login
         Then I successed go to dashbord
 
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan and rejected the limit
+    Scenario: User PO success fill data buyer and submit the loan and rejected the limit
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -64,7 +63,7 @@ Feature: Submit Loan Type PO Status is Rejected
         # section trigered status loan
         And user trigered api change status loan is rejected
 
-    Scenario: User validate Limit Loan Activation Rejected
+    Scenario: User PO validate Limit Loan Activation Rejected
         Given I have been access history loan limit to see status "Selesai"
         When I access menu bar limit with status "Selesai"
         Then I select first list card loan rejected
