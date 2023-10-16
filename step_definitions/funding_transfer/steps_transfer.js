@@ -1,3 +1,5 @@
+const { fillNotes } = require("../../pages/transfer");
+
 const {
     I,
     transferPage,
@@ -29,16 +31,17 @@ When("I input amount higher than active balance", (amount) => {
 });
 
 Then("I can see message {string}", async (messageErrorAmount) => {
-    let actualMessageError = await transferPage.getMessageErroAmount();
+    let actualMessageError = await transferPage.messageErrorAmount();
     I.assertEqual(actualMessageError, messageErrorAmount);
+    
 });
 
 When("I input amount {string}", (amount) => {
     transferPage.inputAmountTransfer(amount);
 });
 
-When("I input notes with {string}", (notes) => {
-    transferPage.fillNotes(notes);
+When("I input notes with {string}", (errornotes) => {
+    transferPage.fillNotes(errornotes);
 });
 
 When("I click choose bank transfer service", () => {
@@ -90,8 +93,8 @@ Then("I successfully transferred without notes", () => {
 });
 
 Then("i see message {string}", async (errornotes) => {
-    let actualerrornotes = await transferPage.getNotes();
-    I.assertEqual(actualerrornotes, errornotes);
+    let actualerrornotes = await transferPage.getMessageErrorNotes();
+    I.assertEqual(actualerrornotes,errornotes);    
 });
 
 When("I input PIN", (Pin) => {
@@ -105,10 +108,6 @@ Then("Then I successfully transferred", () => {
     I.see(transferPage.buttons.share);
 });
 
-Then("I see error message {string}", async (erroramount) => {
-    let actualerroramount = await transferPage.getAmountConfirmation();
-    I.assertEqual(actualerroramount,erroramount);
-});
 
 
 
