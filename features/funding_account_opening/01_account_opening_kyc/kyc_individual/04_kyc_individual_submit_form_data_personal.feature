@@ -1,6 +1,6 @@
-@kycSubmitFormDataPersonal
-Feature: Account Opening KYC UD - Submit Data Personal
-    In order to opening my Giro account with legality business type UD in SMB
+@kycSubmitFormDataPersonalIndividual
+Feature: Account Opening KYC Individual - Submit Data Personal
+    In order to opening my Giro account with legality business type Individual in SMB
     As a customer
     I want to submit my data personal as part of the KYC Process
 
@@ -15,7 +15,7 @@ Feature: Account Opening KYC UD - Submit Data Personal
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'ud'
+        And I choose legality business type 'individual'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
@@ -36,11 +36,12 @@ Feature: Account Opening KYC UD - Submit Data Personal
         And I submit my information identity details
         And I upload my selfie photo
 
-    Scenario: Submit form Data Personal successfully
+    Scenario: Submit form Data Personal successfully business type Individual
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
+            | lastEducation  | SMA             |
+            | motherName     | NADYA LAMUSU    |
+            | purposeAccount | Tabungan        |
+            | npwp           | 121785542123321 |
         And I submit my personal data details
         Then I will direct to page domicile address

@@ -1,18 +1,18 @@
-Feature: Submit Loan Type AR until sign privy
+Feature: Submit Loan Type AP until sign privy
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
     Background:
         Given I am a registered customer with foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | botseb19  |
+            | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | botseb19  |
+            | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
 
-    Scenario: User validate Limit Loan Activation Approved
+    Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
         Then I select first list card loan approved
@@ -24,7 +24,7 @@ Feature: Submit Loan Type AR until sign privy
         And user validate anountion information about privy
         And user validate anountion prepare the documents
         And user click button view additional document
-        And user validate bottom sheet anountion "AR"
+        And user validate bottom sheet anountion "AP"
         And user should see digital signature privy aggrement page
         And user should see tnc privy page
         And user click button read and sign

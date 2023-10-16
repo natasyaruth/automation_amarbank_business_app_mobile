@@ -1,26 +1,27 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Submit Loan Type AP Status is Rejected
     As a customer lead
-    I want to submit loan and Approved by VP of bussiness
+    I want to submit loan and rejected by vp of bussiness
 
     Background:
         Given I am a registered customer with foll
-            | userID   | bots2912  |
+            | userID   | botseb19  |
             | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | bots2912  |
+            | userID   | botseb19  |
             | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
 
-    Scenario: User AR success fill data buyer and submit the loan
+    Scenario: User AP success fill data buyer and submit the loan and rejected the limit
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
-        And user select loan type "AR"
+        And user select loan type "AP"
         And user click button lihat skema pinjaman
-        And user on loan schema "AR"
+        And user on loan schema "AP"
         And user click button select the schema
-        When user on buyer cooperating page
+        When user on the anchor page
+        And user click icon other anchor
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
@@ -47,26 +48,25 @@ Feature: Submit Loan Type AR Status is Approved
         And user on monitoring loan process page
         And user click view required documents button
         And user validate text prepare the following documents
-        And user validate description prepare the following documents
-        And user close button
+        And user validate description prepare the following documents "AP"
         And user click button upload documents
         # section upload document
         Given user on upload document page
-        When user upload document "nib"
-        And user upload document "deedOfComp"
-        And user upload document "SKKemen"
-        And user upload document "npwpOfComp"
+        # When user upload document "nib"
+        # And user upload document "deedOfComp"
+        # And user upload document "SKKemen"
+        # And user upload document "npwpOfComp"
         And user upload document "proofOfPurchase"
         And user upload document "paymentMutation"
         And user upload document "financialReports"
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan
-        And user trigered api change status loan is approved
+        And user trigered api change status loan is rejected
 
-    Scenario: User AR validate Limit Loan Activation Approved
-        Given I have been access history loan limit to see status "Dalam Proses"
-        When I access menu bar limit with status "Dalam Proses"
-        Then I select first list card loan approved
-        And user validate status is approved
-        And user validate content limit approved page
+    Scenario: User AP validate Limit Loan Activation Rejected
+        Given I have been access history loan limit to see status "Selesai"
+        When I access menu bar limit with status "Selesai"
+        Then I select first list card loan rejected
+        And user validate status is rejected
+        And user validate content limit rejected page

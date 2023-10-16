@@ -1,19 +1,18 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Submit Loan Type AR Status is Expired
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
     Background:
         Given I am a registered customer with foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
 
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
+    Scenario: User AR success fill data buyer and submit the loan
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -52,19 +51,20 @@ Feature: Submit Loan Type AR Status is Approved
         And user close button
         And user click button upload documents
         # section upload document
-        Given user upload document nib
-        And user upload document deed of company
-        And user upload document sk kemenkumham
-        And user upload document npwp of company
-        And user upload document proof of purchase with the buyer
-        And user upload document payment mutation for the last 6 months
-        And user upload document financial reports in the last 1 year
+        Given user on upload document page
+        When user upload document "nib"
+        And user upload document "deedOfComp"
+        And user upload document "SKKemen"
+        And user upload document "npwpOfComp"
+        And user upload document "proofOfPurchase"
+        And user upload document "paymentMutation"
+        And user upload document "financialReports"
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
 
-    Scenario: User validate Limit Loan Activation Rejected
+    Scenario: User AR validate Limit Loan Activation Expired
         Given I have been access history loan limit to see status "Selesai"
         When I access menu bar limit with status "Selesai"
         Then I select first list card loan expired

@@ -1,26 +1,26 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Submit Loan Type PO Status is Expired
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
     Background:
         Given I am a registered customer with foll
-            | userID   | bots2912  |
+            | userID   | bots691c  |
             | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | bots2912  |
+            | userID   | bots691c  |
             | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
 
-    Scenario: User AR success fill data buyer and submit the loan
+    Scenario: User PO success fill data buyer and submit the loan
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
-        And user select loan type "AR"
+        And user select loan type "PO"
         And user click button lihat skema pinjaman
-        And user on loan schema "AR"
+        And user on loan schema "PO"
         And user click button select the schema
-        When user on buyer cooperating page
+        When user on bowheer cooperating page
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
@@ -64,9 +64,13 @@ Feature: Submit Loan Type AR Status is Approved
         # section trigered status loan
         And user trigered api change status loan is approved
 
-    Scenario: User AR validate Limit Loan Activation Approved
-        Given I have been access history loan limit to see status "Dalam Proses"
-        When I access menu bar limit with status "Dalam Proses"
-        Then I select first list card loan approved
-        And user validate status is approved
-        And user validate content limit approved page
+    Scenario: User PO validate Limit Loan Activation Expired
+        Given I have been access history loan limit to see status "Selesai"
+        When I access menu bar limit with status "Selesai"
+        Then I select first list card loan expired
+        And user validate status is expired
+        And user validate content limit expired page
+        And user click button send reason
+        And user should see error reason "Mohon isi alasan tidak menyetujui limit" in field "errorReasonField"
+        And user fill a field reason "textFieldReason" with "Gak Jadi Minjem"
+        And user click button send reason

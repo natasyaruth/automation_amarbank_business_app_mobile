@@ -1,16 +1,15 @@
-@kybSubmitFormBusinessOwners
-Feature: Account Opening KYB UD - Submit Business Owners
+@kycSubmitFormDataEmploymentUD
+Feature: Account Opening KYC UD - Submit Data Employment
     In order to opening my Giro account with legality business type UD in SMB
     As a customer
-    I want to submit list business owner as part of the KYB Process
+    I want to submit my data employment as part of the KYC Process
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruthec01              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | ruth1ed7 |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruthec01 |
+            | userID   | ruth1ed7 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -20,7 +19,7 @@ Feature: Account Opening KYB UD - Submit Business Owners
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172021710820021          |
+            | eKtpNumber    | 3172024112840005          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -52,24 +51,11 @@ Feature: Account Opening KYB UD - Submit Business Owners
             | district      | PANCORAN                  |
             | village       | PANCORAN                  |
         And I submit my domicile address
-        And I fill my employment details as followings:
+
+    Scenario: Submit form Data Employment successfully business type UD
+        Given I am a customer who has submitted my domicile address
+        When I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
-        When I continue to process KYB
-        And I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
-        And I submit my business profile
-
-    Scenario: Submit form Business owner successfully
-        Given I am a customer who has submitted my business profile
-        And I am the only one business owner
-        When I submit business owner list
-        Then I will notify business owner list has successfully submitted
-        And I will directing to page business address
+        Then I will notify that I already fill my personal details data

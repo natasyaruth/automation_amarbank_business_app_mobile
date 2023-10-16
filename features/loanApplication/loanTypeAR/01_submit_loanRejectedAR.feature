@@ -4,16 +4,15 @@ Feature: Submit Loan Type AR Status is Rejected
 
     Background:
         Given I am a registered customer with foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         And I click login
         Then I successed go to dashbord
 
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan and rejected the limit
+    Scenario: User AR success fill data buyer and submit the loan and rejected the limit
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -64,7 +63,7 @@ Feature: Submit Loan Type AR Status is Rejected
         # section trigered status loan
         And user trigered api change status loan is rejected
 
-    Scenario: User validate Limit Loan Activation Rejected
+    Scenario: User AR validate Limit Loan Activation Rejected
         Given I have been access history loan limit to see status "Selesai"
         When I access menu bar limit with status "Selesai"
         Then I select first list card loan rejected
