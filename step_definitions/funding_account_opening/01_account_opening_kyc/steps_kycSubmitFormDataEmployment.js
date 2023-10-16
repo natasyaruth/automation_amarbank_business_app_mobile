@@ -32,3 +32,13 @@ Then ("I will notify that I already fill my personal details data", async ()=>{
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
+
+Then ("I will notify that my personal data details needs to be verified first", async ()=>{
+    I.waitForText("Terimakasih telah melengkapi semua data", 10);
+    I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
+    I.see(formEmploymentDataPage.buttons.continue);
+    formEmploymentDataPage.continueToDashboard();
+
+    await 
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});

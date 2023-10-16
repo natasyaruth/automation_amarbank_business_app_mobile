@@ -1,10 +1,10 @@
-@kycSubmitFormKtp
-Feature: Account Opening KYC UD - Submit Form KTP
-  In order to opening my Giro account with legality business type UD in SMB
+@kycSubmitFormKtpIndividual
+Feature: Account Opening KYC Individual - Submit Form KTP
+  In order to opening my Giro account with legality business type Individual in SMB
   As a customer
   I want to submit my identity information as part of the KYC Process
 
-  Background: User choose legality business type UD
+  Background: User choose legality business type Individual
     Given I am a registered customer with following details:
       | userID   | ruth5a50 |
       | password | 1234Test |
@@ -15,11 +15,11 @@ Feature: Account Opening KYC UD - Submit Form KTP
     Then I will direct to dashboard
     When I swipe to card Giro Account
     And I choose Giro Account
-    And I choose legality business type 'ud'
+    And I choose legality business type 'individual'
     And I submit my legality type
     And I upload my eKTP photo
 
-  Scenario: Submit form KTP successfully
+  Scenario: Submit form KTP successfully business type Individual
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
       | eKtpNumber    | 3173035601860007          |

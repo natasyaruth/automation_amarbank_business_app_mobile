@@ -13,7 +13,7 @@ module.exports = {
   buttons:{
     saveEmploymentData: "~buttonSaveWorkData",
     closeBottomSheet: "~buttonClose",
-    continueToKYB: "~buttonNext"
+    continue: "~buttonNext",
   },
 
   fillEmploymentData(employmentData){
@@ -45,6 +45,10 @@ module.exports = {
   },
 
   continueToKYB(){
-    I.click(this.buttons.continueToKYB);
+    I.click(this.buttons.continue);
+  },
+
+  continueToDashboard(){
+    I.click(this.buttons.continue);
   }
 }
