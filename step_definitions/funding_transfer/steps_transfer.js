@@ -7,33 +7,28 @@ const {
     createPINPage,
 } = inject();
 
-Given("I am a customer who wants to Transfer and has no friend list", () => { });
-
-Given("I am a customer who wants to Transfer and has friend list", () => { });
-
-
 When("I choose category {string}", (category) => {
     I.wait(2)
     transferPage.chooseCategory(category);
 });
 
-When("I close bottom sheet category", (closebuttonsheet) => {
+When("I close bottom sheet category", () => {
     I.wait(2);
-    transferPage.closesheetcategory(closebuttonsheet);
+    transferPage.closesheetcategory();
 });
 
 Then("I see bottom sheet category is dissapear", () => {
-    I.dontSee(transferPage.dropdownLists.category);
+    I.waitForInvisible(transferPage.dropdownLists.category);
 });
 
-When("I input amount higher than active balance", (amount) => {
-    transferPage.inputAmountTransfer(amount);
+When("I input amount higher than active balance", async (amount) => {
+    const activeBalance = await I.getBalance();
+    const amount = activeBalance + 10.000
 });
 
-Then("I can see message {string}", async (messageErrorAmount) => {
+Then("I can see message {string}", async (messageError) => {
     let actualMessageError = await transferPage.messageErrorAmount();
-    I.assertEqual(actualMessageError, messageErrorAmount);
-    
+    I.assertEqual(actualMessageError, messageError);    
 });
 
 When("I input amount {string}", (amount) => {
@@ -48,9 +43,11 @@ When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
 });
 
-Then("I can see BI Fast and RTOL", () => { });
+Then("I can see BI Fast and RTOL", () => { 
 I.see(transferPage.radioButtons.methodBifast);
 I.see(transferPage.radioButtons.methodRtol);
+});
+
 
 Then("I choose transfer service {string}", (rtolService) => {
     transferPage.chooseRtol(rtolService);
@@ -105,7 +102,6 @@ Then("Then I successfully transferred", () => {
     I.see(transferPage.buttons.copy);
     I.see(transferPage.buttons.share);
     I.see(transferPage.texts.note);
-    I.see(transferPage.buttons.share);
 });
 
 
