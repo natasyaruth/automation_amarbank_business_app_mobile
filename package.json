@@ -13,15 +13,15 @@
     "devDependencies": {
         "@codeceptjs/configure": "^0.10.0",
         "@codeceptjs/examples": "^1.2.1",
-        "@codeceptjs/ui": "^0.6.1",
-        "codeceptjs": "^3.5.4",
-        "playwright": "^1.36.0",
+        "@codeceptjs/ui": "^0.7.0",
+        "codeceptjs": "^3.5.6",
+        "playwright": "^1.38.1",
         "webdriverio": "^8.6.3"
     },
     "dependencies": {
-        "appium-uiautomator2-driver": "^2.29.5",
+        "appium-uiautomator2-driver": "^2.31.3",
         "codeceptjs-chai": "^2.3.5",
-        "codeceptjs-testrail": "^1.10.2",
+        "codeceptjs-testrail": "^1.4.2",
         "dotenv": "^16.3.1"
     }
 }
