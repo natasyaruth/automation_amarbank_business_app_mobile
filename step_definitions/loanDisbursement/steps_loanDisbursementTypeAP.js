@@ -1,5 +1,3 @@
-const loanDisbursement = require("../../pages/loanDisbursement.js");
-
 const { I, loginPage, loanDashboardPage, loanDisbursementPage } = inject();
 
 const globalVar = {
@@ -14,7 +12,7 @@ Given('I have been on Loan Dashboard to checking if customer have any past due d
  loanDashboardPage.validateLoanTypeofLoanAP();
 });
 When('I click button "Gunakan Limit" in card type Loan AP', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAP();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
 Then('I have any past due date', () => {

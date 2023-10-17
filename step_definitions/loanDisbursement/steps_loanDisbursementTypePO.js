@@ -8,23 +8,27 @@ const globalVar = {
 };
 
 // Scenario: Validate request loan disbursement for type Loan PO when customer have any past due date
-Given('I have been on Loan Dashboard to checking if customer Loan AP - Direct AP have any past due date', () => {
-
+Given('I have been on Loan Dashboard to checking if customer Loan PO have any past due date', () => {
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 When('I click button "Gunakan Limit" in card type Loan PO', () => {
-
+ loanDisbursementPage.usingLimitLoanDisbursementTypePO();
 });
 
 When('I have any past due date', () => {
-
+ I.wait(3);
 });
-Then('I direct to pay the bill limit section', () => {
-
+Then('I direct to pay the bill limit section', async () => {
+ await loanDisbursement.validateSectionHavePastDueDate();
 });
 
 // Scenario: Validate request loan disbursement for type Loan PO when customer do not have any past due date
 Given('I have been on Loan Dashboard to checking if customer Loan PO do not have any past due date', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 
 When('I click button "Gunakan Limit" in card type Loan PO', () => {
