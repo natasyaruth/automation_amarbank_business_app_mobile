@@ -516,4 +516,21 @@ module.exports = {
     I.click(this.buttons.buttonClose);
   },
 
+  // Loan Type PO
+
+  usingLimitLoanDisbursementTypePO() {
+    I.seeElement(this.cards.cardLimitAPDirectLoan);
+    I.waitForElement(this.buttons.buttonUseLimit);
+    I.click(this.buttons.buttonUseLimit);
+  },
+
+
+  //Loan Type AR
+
+  usingLimitLoanDisbursementTypeLoanAR() {
+    I.seeElement(this.cards.cardLimitAR);
+    I.waitForElement(this.buttons.buttonUseLimit);
+    I.click(this.buttons.buttonUseLimit);
+  },
+
 }

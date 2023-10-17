@@ -4,12 +4,12 @@ const {
     registrationPage,
     forgotPasswordPage,
     loginPage,
-    globalVariable} = inject();
+    globalVariable } = inject();
 
 Given("I am a customer who has failed to login {string} times with following details:", (countValue, table) => {
     welcomePage.clickButtonLogin();
 
-    for (let i=0;i<countValue;i++) {
+    for (let i = 0;i < countValue;i++) {
 
         const account = table.parse().rowsHash();
         globalVariable.login.password = account["password"];
@@ -18,15 +18,15 @@ Given("I am a customer who has failed to login {string} times with following det
     globalVariable.login.countValue = countValue;
 });
 
-Then("I successed go to dashbord",()=>{
+Then("I successed go to dashbord", () => {
     ///dashboard still on development from mobile
     ///I.see('Selamat, akun Anda berhasil dibuat')
     I.wait(2);
-        // loginPage.fillInAccountInformation(account);
-        // loginPage.clickLoginButton();
-        // I.waitForText("Data Yang Dimasukkan Salah", 10);
-        // loginPage.tryToLogin();
-    });
+    // loginPage.fillInAccountInformation(account);
+    // loginPage.clickLoginButton();
+    // I.waitForText("Data Yang Dimasukkan Salah", 10);
+    // loginPage.tryToLogin();
+});
 
 Given("I am a registered customer with following details:", (table) => {
     welcomePage.clickButtonLogin();
@@ -35,7 +35,7 @@ Given("I am a registered customer with following details:", (table) => {
     globalVariable.login.password = account["password"];
     globalVariable.login.userID = account["userID"];
 
-    if(Object.keys(account).indexOf("email") !== -1){
+    if (Object.keys(account).indexOf("email") !== -1) {
         globalVariable.registration.email = account["email"];
     }
 });
@@ -77,12 +77,12 @@ Then("I should see pop up {string} with button {string}", (expectedValue, button
     I.waitForText(expectedValue, 10);
     I.seeElement(loginPage.buttons[buttonName]);
 
-    if(globalVariable.login.countValue === 2){
+    if (globalVariable.login.countValue === 2) {
         loginPage.closeBottomSheet();
-    } else{
+    } else {
         loginPage.tryToLogin();
     }
-    
+
     loginPage.fillFieldLogin('userID', globalVariable.login.userID);
     loginPage.fillFieldLogin('password', globalVariable.login.password);
     loginPage.clickLoginButton();
@@ -143,7 +143,7 @@ When("I click logout", () => {
     I.click("LOGOUT") // this only temporary because dashboard still on development
 });
 
-Then("I click button loan dashboard",()=>{
+Then("I click button loan dashboard", () => {
     loginPage.clickBtnOnBoardingPage();
 });
 Then("I should see checkbox remember me is checked", () => {
@@ -151,7 +151,7 @@ Then("I should see checkbox remember me is checked", () => {
     I.seeAttributesOnElements(
         loginPage.checkbox.rememberMe,
         {
-          checked: "true"
+            checked: "true"
         }
     );
 });
