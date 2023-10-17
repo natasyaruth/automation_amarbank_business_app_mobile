@@ -39,7 +39,7 @@ Feature: User transfer RTOL
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast and RTOL
-        And I choose transfer service 'RTOL'
+        And I choose transfer service RTOL
 
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
@@ -49,7 +49,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And I choose transer service 'RTOL'
+        And I choose transer service RTOL
         And I click transfer
         Then I will directly go to page confirmation transfer
 
@@ -60,7 +60,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And i choose transer service RTOL
         And I click transfer
         And I will directly go to page confirmation transfer
         And I input wrong PIN
@@ -73,7 +73,7 @@ Feature: User transfer RTOL
         And I input amount '50.000.000'
         And I choose category "Pembayaran"       
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And i choose transer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN
@@ -97,7 +97,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And i choose transer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN
@@ -111,7 +111,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'RTOL'
+        And i choose transer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN
@@ -137,7 +137,7 @@ Feature: User transfer RTOL
         And I choose category "Pembayaran"        
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And I choose transer service 'RTOL'
+        And I choose transer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN
