@@ -1,5 +1,3 @@
-const loanDisbursement = require("../../pages/loanDisbursement");
-
 const { I, loginPage, loanDashboardPage, loanDisbursementPage } = inject();
 
 const globalVar = {

@@ -1,5 +1,3 @@
-const loanDisbursementPage = require("../../pages/loanDisbursement.js");
-const loanDashboardPage = require("../../pages/loanDashboard.js");
 const { I, loginPage, loanDashboardPage, loanDisbursementPage } = inject();
 
 const globalVar = {
@@ -137,7 +135,7 @@ When('I upload from galery', () => {
 
 });
 
-Then('Document invoice will be showed in "Konfirmasi Invoice" page', ', () => {
+Then('Document invoice will be showed in "Konfirmasi Invoice" page', () => {
 
 });
 
