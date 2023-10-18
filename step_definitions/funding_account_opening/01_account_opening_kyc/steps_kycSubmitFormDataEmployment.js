@@ -6,15 +6,16 @@ const {
 
 Given("I am a customer who has submitted my domicile address", ()=>{});
 
-When("I fill my employment details as followings:", (table)=>{
+When("I fill my employment details as followings:", async (table)=>{
     I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
     
     const employmentData = table.parse().rowsHash();
-    formEmploymentDataPage.fillEmploymentData(employmentData);
+    await formEmploymentDataPage.fillEmploymentData(employmentData);
 });
 
 When("I submit my employment data", ()=>{
     formEmploymentDataPage.saveEmploymentData();
+    I.wait(3);
 });
 
 Then ("I will notify that I already fill my personal details data", async ()=>{
@@ -28,6 +29,16 @@ Then ("I will notify that I already fill my personal details data", async ()=>{
     I.see("Multiple User");
     I.see("Debit Card");
     I.seeElement(formEmploymentDataPage.buttons.continueToKYB);
+
+    await 
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then ("I will notify that my personal data details needs to be verified first", async ()=>{
+    I.waitForText("Terimakasih telah melengkapi semua data", 10);
+    I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
+    I.see(formEmploymentDataPage.buttons.continue);
+    formEmploymentDataPage.continueToDashboard();
 
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

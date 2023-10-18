@@ -1,4 +1,4 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Submit Loan Type AP Status is Approved
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
@@ -12,8 +12,7 @@ Feature: Submit Loan Type AR Status is Approved
         And I click login
         Then I successed go to dashbord
 
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
+    Scenario: User AP success fill data buyer and submit the loan
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -66,7 +65,7 @@ Feature: Submit Loan Type AR Status is Approved
         # section trigered status loan
         And user trigered api change status loan is approved
 
-    Scenario: User validate Limit Loan Activation Approved
+    Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
         Then I select first list card loan approved

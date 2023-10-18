@@ -1,5 +1,5 @@
-@loanActiveTypePO
-Feature:Checking Loan Type PO with Status Active
+
+Feature: Checking Loan Type PO with Status Active
  In order to checking limit active for loan type PO
  As a customer
  I am able to verify limit active loan type AP and direct AP in history page

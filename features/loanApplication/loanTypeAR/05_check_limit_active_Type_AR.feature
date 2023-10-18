@@ -1,5 +1,5 @@
-@loanActiveTypeAR
-Feature:Checking Loan Type AR with Status Active
+
+Feature: Checking Loan Type AR with Status Active
     In order to checking limit active for loan type AR
     As a customer
     I am able to verify limit active loan type AR in history page

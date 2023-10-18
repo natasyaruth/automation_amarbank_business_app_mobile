@@ -1,10 +1,10 @@
-@kycUploadSelfie
-Feature: Account Opening KYC UD - Upload Selfie Photo
-  In order to opening my Giro account with legality business type UD in SMB
+@kycSubmitFormKtpIndividual
+Feature: Account Opening KYC Individual - Submit Form KTP
+  In order to opening my Giro account with legality business type Individual in SMB
   As a customer
-  I want to upload my selfie photo as part of the KYC Process
+  I want to submit my identity information as part of the KYC Process
 
-  Background: User choose legality business type UD
+  Background: User choose legality business type Individual
     Given I am a registered customer with following details:
       | userID   | ruth5a50 |
       | password | 1234Test |
@@ -15,11 +15,14 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
     Then I will direct to dashboard
     When I swipe to card Giro Account
     And I choose Giro Account
-    And I choose legality business type 'ud'
+    And I choose legality business type 'individual'
     And I submit my legality type
     And I upload my eKTP photo
-    And I fill all information identity details as followings:
-      | eKtpNumber    | 3175044501980004          |
+
+  Scenario: Submit form KTP successfully business type Individual
+    Given I am a customer who has uploaded my eKTP photo
+    When I fill all information identity details as followings:
+      | eKtpNumber    | 3173035601860007          |
       | fullName      | NADYA LAROSA              |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |
@@ -34,11 +37,5 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
       | religion      | Katolik                   |
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
-
-  Scenario: Upload selfie image successfully
-    Given I am a customer who has submitted my information identity details
-    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'
-    When I upload my selfie photo
-    Then I will notify my photo selfie has successfully submitted
-    And I will directing to page submit Data Personal
-    
+    Then I will notify my information identity details has successfully submitted
+    And I will direct to page capture selfie

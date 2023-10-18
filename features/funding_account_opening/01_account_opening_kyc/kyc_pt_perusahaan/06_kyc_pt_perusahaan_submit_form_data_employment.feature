@@ -1,10 +1,10 @@
-@kycSubmitFormDataEmployment
-Feature: Account Opening KYC UD - Submit Data Employment
-    In order to opening my Giro account with legality business type UD in SMB
+@kycSubmitFormDataEmploymentPTPerusahaan
+Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
+    In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer
     I want to submit my data employment as part of the KYC Process
 
-    Background: User choose legality business type UD
+    Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
             | userID   | ruth0ba7 |
             | password | 1234Test |
@@ -15,7 +15,7 @@ Feature: Account Opening KYC UD - Submit Data Employment
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'ud'
+        And I choose legality business type 'company'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
@@ -36,9 +36,9 @@ Feature: Account Opening KYC UD - Submit Data Employment
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
+            | lastEducation  | SMA             |
+            | motherName     | NADYA LAMUSU    |
+            | npwp           | 121785542123321 |
         And I submit my personal data details
         And I choose my new domicile address
         And I fill new domicile details as followings:
@@ -52,7 +52,7 @@ Feature: Account Opening KYC UD - Submit Data Employment
             | village       | PANCORAN                  |
         And I submit my domicile address
 
-    Scenario: Submit form Data Employment successfully
+    Scenario: Submit form Data Employment successfully business type PT Perusahaan
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:
             | workType     | Pegawai Swasta       |

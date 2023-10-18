@@ -15,7 +15,7 @@ Feature: Loan Disbursement for Loan Type PO
   Then I will direct to dashboard
 
  Scenario: Validate request loan disbursement for type Loan PO when customer have any past due date
-  Given I have been on Loan Dashboard to checking if customer Loan AP - Direct AP have any past due date
+  Given I have been on Loan Dashboard to checking if customer Loan PO have any past due date
   When I click button "Gunakan Limit" in card type Loan PO
   And I have any past due date
   Then I direct to pay the bill limit section
@@ -82,4 +82,27 @@ Feature: Loan Disbursement for Loan Type PO
   Then I should be see the error message of "Nominal invoice" and "Tanggal Invoice"
 
  Scenario: Validate Empty Data Supplier Section
-  Given I have been in "Konfirmasi Invoice"
+  Given I have been in "Konfirmasi Invoice" to validate empty data supplier section
+  When continue to input data Supplier
+  Then I should be see list of bank name of Supplier
+  And I should be see field of search bank name
+
+ Scenario: Continue Disburse The Loan Type PO With Status Success After "Perhitungan Pencairan" Has Been Displayed With PIN is True
+  Given I have been on "Perhitungan pencairan page" loan type PO
+  When I continue disburse the loan and the status is Done
+  Then continue to input PIN page
+  And system will direct to "Pengiriman PDC(Cek Mundur)" page
+  And system show "Segera Kirim PDC" after close the success page and back to the loan dashboard
+
+ Scenario: Continue Disburse The Loan Type PO With Status Waiting After "Perhitungan Pencairan" Has Been Displayed With PIN is True
+  Given I have been on "Perhitungan pencairan page" loan type PO
+  When I continue disburse the loan and the status is process waiting
+  Then continue to input PIN page
+  And system will direct to "Proses Pengecekan Invoice"
+  And system show "Proses Pengecekan Invoice" after close the waiting page and back to the loan dashboard
+
+ Scenario: Continue Disburse The Loan Type PO With Status Rejected Process After "Perhitungan Pencairan"
+  Given I have been on "Perhitungan pencairan page" loan type PO
+  When I continue to input PIN page
+  And system will direct to "Invoice Tidak Disetujui"
+  And system will be direct to the dashboard after close the page
