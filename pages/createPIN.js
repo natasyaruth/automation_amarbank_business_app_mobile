@@ -5,6 +5,7 @@ module.exports = {
     password: "~textFieldPassword",
     newPIN: "~textFieldPin",
     otpcode: "~textFieldOtp",
+    confirmPIN: ~"textFieldPin",
   },
   buttons: {
     submitpassword: "~buttonNext",
