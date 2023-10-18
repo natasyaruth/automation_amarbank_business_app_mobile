@@ -104,5 +104,5 @@ Feature: Loan Disbursement for Loan Type PO
  Scenario: Continue Disburse The Loan Type PO With Status Rejected Process After "Perhitungan Pencairan"
   Given I have been on "Perhitungan pencairan page" loan type PO
   When I continue to input PIN page
-  And system will direct to "Invoice Tidak Disetujui"
+  Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page
