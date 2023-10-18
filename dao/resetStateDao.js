@@ -1,4 +1,6 @@
-const { I, headerPage, onboardingAccOpeningPage, globalVariable } = inject();
+const fs = require('fs')
+
+const { I, headerPage} = inject();
 
 module.exports = {
 
@@ -35,15 +37,23 @@ module.exports = {
         }
     },
 
+    loadImageAsBase64(filePath) {
+        const img = fs.readFileSync(filePath);
+      
+        return Buffer.from(img).toString('base64');
+      },
+
     async uploadKTP(userID, password) {
+
+        const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
-        I.amBearerAuthenticated(secret(bearerToken))
+        I.amBearerAuthenticated(secret(bearerToken));
 
         const responseKtp = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/photo/ktp", secret({
             imageFormat: "jpg",
-            file: globalVariable.image.eKTP,
+            file: base64Ktp,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -57,20 +67,22 @@ module.exports = {
 
     async uploadSelfie(userID, password) {
 
+        const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
+
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseKtp = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/photo/selfie", secret({
+        const responseSelfie = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/photo/selfie", secret({
             imageFormat: "jpg",
-            file: globalVariable.image.selfie,
+            file: base64Selfie,
         }));
 
         I.seeResponseCodeIsSuccessful();
 
         return {
-            status: responseKtp.status,
-            data: responseKtp.data,
+            status: responseSelfie.status,
+            data: responseSelfie.data,
         }
     },
 
@@ -90,7 +102,7 @@ module.exports = {
 
         I.seeResponseCodeIsSuccessful();
 
-        return{
+        return {
             status: responseDeviceData.status,
             data: responseDeviceData.data
         }
