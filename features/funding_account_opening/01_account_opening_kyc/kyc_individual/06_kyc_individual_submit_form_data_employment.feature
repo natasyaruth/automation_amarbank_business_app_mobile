@@ -6,10 +6,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
+            | userID   | ruth34d2 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
+            | userID   | ruth34d2 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -38,7 +38,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I fill my personal data details as followings:
             | lastEducation  | SMA             |
             | motherName     | NADYA LAMUSU    |
-            | purposeAccount | Tabungan        |
+            | purposeAccount | Pinjaman        |
             | npwp           | 121785542123321 |
         And I submit my personal data details
         And I choose my new domicile address

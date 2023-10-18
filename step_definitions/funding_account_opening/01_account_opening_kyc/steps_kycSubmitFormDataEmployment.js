@@ -6,15 +6,16 @@ const {
 
 Given("I am a customer who has submitted my domicile address", ()=>{});
 
-When("I fill my employment details as followings:", (table)=>{
+When("I fill my employment details as followings:", async (table)=>{
     I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
     
     const employmentData = table.parse().rowsHash();
-    formEmploymentDataPage.fillEmploymentData(employmentData);
+    await formEmploymentDataPage.fillEmploymentData(employmentData);
 });
 
 When("I submit my employment data", ()=>{
     formEmploymentDataPage.saveEmploymentData();
+    I.wait(3);
 });
 
 Then ("I will notify that I already fill my personal details data", async ()=>{

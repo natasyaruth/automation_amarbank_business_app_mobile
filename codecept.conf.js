@@ -115,6 +115,11 @@ exports.config = {
 
     friendListPage: "./pages/friendList.js",
   },
+  settings:{
+    logging: {
+      level: 'warn',
+    },
+  },
   mocha: {},
   bootstrap: null,
   timeout: null,
@@ -128,12 +133,12 @@ exports.config = {
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
-      // "./features/funding_account_opening/01_account_opening_kyc/kyc_cv/*.feature",
+      "./features/funding_account_opening/01_account_opening_kyc/kyc_cv/*.feature",
       "./features/funding_account_opening/01_account_opening_kyc/kyc_individual/*.feature",
       "./features/funding_account_opening/01_account_opening_kyc/kyc_pt_perorangan/*.feature",
       "./features/funding_account_opening/01_account_opening_kyc/kyc_pt_perusahaan/*.feature",
       "./features/funding_account_opening/01_account_opening_kyc/kyc_ud/*.feature",
-      // "./features/funding_account_opening/02_account_opening_kyb/kyb_cv/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyb/kyb_cv/*.feature",
       "./features/funding_account_opening/02_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyb/kyb_ud/*.feature",

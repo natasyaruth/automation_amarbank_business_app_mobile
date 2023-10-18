@@ -11,7 +11,7 @@ When("I fill my personal data details as followings:",
     async (table) => { 
     const personalData = table.parse().rowsHash();
     I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
-    formPersonalDataPage.fillPersonalData(personalData);
+    await formPersonalDataPage.fillPersonalData(personalData);
   }
 );
 

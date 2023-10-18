@@ -1,10 +1,10 @@
-@kycSubmitFormDomicileAddressPTPerusahaan
-Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
-    In order to opening my Giro account with legality business type PT Perusahaan in SMB
+@kycSubmitFormDomicileAddressCV
+Feature: Account Opening KYC CV - Submit Domicile Address
+    In order to opening my Giro account with legality business type CV in SMB
     As a customer
     I want to submit my domiciles address as part of the KYC Process
 
-    Background: User choose legality business type PT Perusahaan
+    Background: User choose legality business type CV
         Given I am a registered customer with following details:
             | userID   | ruth0ba7 |
             | password | 1234Test |
@@ -15,7 +15,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'company'
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
@@ -41,14 +41,14 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
             | npwp          | 121785542123321 |
         And I submit my personal data details
 
-    Scenario: Submit form Domicile address same with KTP successfully business type PT Perusahaan
+    Scenario: Submit form Domicile address same with KTP successfully business type CV
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
-    Scenario: Submit form Domicile address with new address successfully business type PT Perusahaan
+    Scenario: Submit form Domicile address with new address successfully business type CV
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill new domicile details as followings:
