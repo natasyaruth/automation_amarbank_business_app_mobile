@@ -76,7 +76,7 @@ Feature: User transfer RTOL
         And i choose transer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '123456'
         Then I successfully transferred without notes
 
     Scenario: User transfer with RTOL and input notes with emoji and symbol
@@ -100,7 +100,7 @@ Feature: User transfer RTOL
         And i choose transer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '123456'
         Then I successfully transferred
 
     Scenario: User Transfer RTOL with amount = Rp.50.000.000
@@ -114,7 +114,7 @@ Feature: User transfer RTOL
         And i choose transer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '123456'
         Then I successfully transferred
 
     Scenario: User successfully transfer between Amar Bank
@@ -127,7 +127,7 @@ Feature: User transfer RTOL
         And I click choose bank transfer service
         And I will directly go to page confirmation transfer between Amar Bank
         And I click transfer now
-        And I input PIN
+        And I input PIN '123456'
         Then I successfully transferred between Amar Bank 
 
     Scenario: User successfully transfer
@@ -140,7 +140,7 @@ Feature: User transfer RTOL
         And I choose transer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '123456'
         Then I successfully transferred
         
         

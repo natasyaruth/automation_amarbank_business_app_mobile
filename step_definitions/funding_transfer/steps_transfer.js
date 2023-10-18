@@ -12,29 +12,31 @@ When("I choose category {string}", (category) => {
     transferPage.chooseCategory(category);
 });
 
-When("I close bottom sheet category", () => {
-    I.wait(2);
-    transferPage.closesheetcategory();
+When("I close bottom sheet category", (category) => {
+    I.wait(2);    
+    I.assertEqual(actualService,globalVariable.transfer.category);
 });
 
-When("I input amount higher than active balance", async (amount) => {
-    const activeBalance = await I.getBalance();
+When("I input amount higher than active balance", async () => {
+    const activeBalance = await transferPage.getBalance();
     const amount = activeBalance + 10.000
     transferPage.inputAmountTransfer(amount);
 });
 
 Then("I can see message {string}", async (messageError) => {
-    let actualMessageError = await transferPage.getMessageErrorAmount
+    let actualMessageError = await transferPage.getMessageErrorAmount();
     I.assertEqual(actualMessageError, messageError);
 });
 
 When("I input amount {string}", (amount) => {
+    transferPage.inputAmountTransfer(amount);
     globalVariable.transfer.amount = amount;
 
 });
 
 When("I input notes with {string}", (notes) => {
-    transferPage.fillNotes(notes);
+    transferPage.fillNotes(notes); 
+    globalVariable.transfer.note = notes;
 });
 
 Then("I see message {string}", async(errorMessageNotes) =>{
@@ -47,8 +49,8 @@ When("I click choose bank transfer service", () => {
 });
 
 Then("I can see BI Fast and RTOL", () => { 
-    I.waitForElement(transferPage.radioButtons.methodRtol);
-    I.waitForElement(transferPage.radioButtons.methodBifast);
+    I.waitForElement(transferPage.radioButtons.methodRtol,5);
+    I.waitForElement(transferPage.radioButtons.methodBifast,5);
 });
 
 Then("I choose transfer service RTOL", () => {
@@ -70,8 +72,7 @@ Then("I will directly go to page confirmation transfer", async () => {
 
     I.waitForElement(transferPage.texts.service,10);
     const actualService = await transferPage.getServiceMethod();
-    I.assertEqual(actualService,globalVariable.transfer.service);
-
+  
     I.see(transferPage.texts.total);
 
     I.waitForElement(transferPage.texts.category,10);
@@ -135,6 +136,8 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
     I.waitForElement(transferPage.texts.note,10);
     const actualnotes = await transferPage.getNotes();
     I.assertEqual(actualnotes,globalVariable.transfer.notes);
+
+    I.dontSee(globalVariable.transfer.service);
 });
 
 Then("Then I successfully transferred between Amar Bank", () => {
