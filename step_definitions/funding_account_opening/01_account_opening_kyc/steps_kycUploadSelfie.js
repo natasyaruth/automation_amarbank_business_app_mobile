@@ -17,7 +17,7 @@ Given("my information about my account opening is {string}", async (expectedInfo
 When("I upload my selfie photo", async () => {
     I.waitForElement(uploadSelfiePage.buttons.takePhoto, 10)
     await 
-    resetStateDao.resetStateFlow(5, globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
 });
 

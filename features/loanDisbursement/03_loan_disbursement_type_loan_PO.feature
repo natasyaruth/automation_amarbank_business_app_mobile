@@ -15,7 +15,7 @@ Feature: Loan Disbursement for Loan Type PO
   Then I will direct to dashboard
 
  Scenario: Validate request loan disbursement for type Loan PO when customer have any past due date
-  Given I have been on Loan Dashboard to checking if customer Loan AP - Direct AP have any past due date
+  Given I have been on Loan Dashboard to checking if customer Loan PO have any past due date
   When I click button "Gunakan Limit" in card type Loan PO
   And I have any past due date
   Then I direct to pay the bill limit section
@@ -104,5 +104,5 @@ Feature: Loan Disbursement for Loan Type PO
  Scenario: Continue Disburse The Loan Type PO With Status Rejected Process After "Perhitungan Pencairan"
   Given I have been on "Perhitungan pencairan page" loan type PO
   When I continue to input PIN page
-  And system will direct to "Invoice Tidak Disetujui"
+  Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page

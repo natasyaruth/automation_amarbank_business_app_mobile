@@ -516,4 +516,38 @@ module.exports = {
     I.click(this.buttons.buttonClose);
   },
 
+  // Loan Type PO
+
+  usingLimitLoanDisbursementTypePO() {
+    I.seeElement(this.cards.cardLimitAPDirectLoan);
+    I.waitForElement(this.buttons.buttonUseLimit);
+    I.click(this.buttons.buttonUseLimit);
+  },
+
+
+  //Loan Type AR
+
+  usingLimitLoanDisbursementTypeLoanAR() {
+    I.seeElement(this.cards.cardLimitAR);
+    I.waitForElement(this.buttons.buttonUseLimit);
+    I.click(this.buttons.buttonUseLimit);
+  },
+
+  validateProgramLoanInformationAR() {
+    I.waitForVisible('Informasi Program Pinjaman');
+    I.see('Program pinjaman ini diajukan berdasarkan tagihan faktur dari buyer Anda.');
+  },
+
+  grabtextAvailableLimitAR() {
+    I.grabTextFrom(this.texts.textAvailableLimit).then((text) => {
+      I.click(this.buttons.buttonUpload);
+      I.click(this.buttons.buttonTakePicture);
+      I.click(this.buttons.buttonTakePicture);
+      I.waitForElement(this.textFields.textFieldNominal);
+      I.seeElement(this.buttons.buttonPreview);
+      I.fillField(this.textFields.textFieldNominal, text);
+      I.fillField('01/09/2023');
+    });
+  },
+
 }

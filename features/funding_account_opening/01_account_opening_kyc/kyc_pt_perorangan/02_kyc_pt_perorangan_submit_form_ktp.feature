@@ -1,4 +1,4 @@
-@kycSubmitFormKtpIndividualBusiness
+@kycSubmitFormKtpPTPerorangan
 Feature: Account Opening KYC PT Perorangan - Submit Form KTP
   In order to opening my Giro account with legality business type PT Perorangan in SMB
   As a customer

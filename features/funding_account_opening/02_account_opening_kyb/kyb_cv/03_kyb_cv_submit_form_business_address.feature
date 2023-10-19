@@ -1,26 +1,26 @@
-@kybSubmitFormBusinessAddressPTPerorangan
-Feature: Account Opening KYB PT Perorangan - Submit Business Address
-    In order to opening my Giro account with legality business type PT Perorangan in SMB
+@kybSubmitFormBusinessAddressCompany
+Feature: Account Opening KYB PT Perusahaan - Submit Business Address
+    In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer
     I want to submit my business address as part of the KYB Process
 
-    Background: User choose legality business type PT Perorangan
+    Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ruth67b0              |
+            | userID   | ruth5e5c              |
             | password | 1234Test              |
             | email    | ruth01@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruth67b0 |
+            | userID   | ruth5e5c |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'individualBusiness'
+        And I choose legality business type 'company'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3171012702730001          |
+            | eKtpNumber    | 3172024112840005          |
             | fullName      | NADYA SAMANTHA            |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -68,7 +68,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I submit my business profile
         And I submit business owner list
 
-    Scenario: Submit form Business Address successfully business type PT Perorangan
+    Scenario: Submit form Business Address successfully business type PT Perusahaan
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:
             | address  | Jl. Gambir Belok kanan No. 23 |

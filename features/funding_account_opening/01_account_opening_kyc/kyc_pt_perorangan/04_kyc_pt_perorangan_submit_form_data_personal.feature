@@ -1,4 +1,4 @@
-@kycSubmitFormDataPersonalIndividualBusiness
+@kycSubmitFormDataPersonalPTPerorangan
 Feature: Account Opening KYC PT Perorangan - Submit Data Personal
     In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer

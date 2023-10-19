@@ -1,10 +1,10 @@
-@kycUploadSelfiePTPerorangan
-Feature: Account Opening KYC PT Perorangan - Upload Selfie Photo
-  In order to opening my Giro account with legality business type PT Perorangan in SMB
+@kycUploadSelfieCV
+Feature: Account Opening KYC CV - Upload Selfie Photo
+  In order to opening my Giro account with legality business type CV in SMB
   As a customer
   I want to upload my selfie photo as part of the KYC Process
 
-  Background: User choose legality business type PT Perorangan
+  Background: User choose legality business type CV
     Given I am a registered customer with following details:
       | userID   | ruth5a50 |
       | password | 1234Test |
@@ -15,7 +15,7 @@ Feature: Account Opening KYC PT Perorangan - Upload Selfie Photo
     Then I will direct to dashboard
     When I swipe to card Giro Account
     And I choose Giro Account
-    And I choose legality business type 'individualBusiness'
+    And I choose legality business type 'cv'
     And I submit my legality type
     And I upload my eKTP photo
     And I fill all information identity details as followings:
@@ -35,9 +35,9 @@ Feature: Account Opening KYC PT Perorangan - Upload Selfie Photo
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
 
-  Scenario: Upload selfie image successfully business type PT Perorangan
+  Scenario: Upload selfie image successfully business type CV
     Given I am a customer who has submitted my information identity details
-    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'
+    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'
     When I upload my selfie photo
     Then I will notify my photo selfie has successfully submitted
     And I will directing to page submit Data Personal
