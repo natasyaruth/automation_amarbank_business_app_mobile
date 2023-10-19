@@ -36,12 +36,16 @@ Feature: Select the Loan Amount and Tenor
         And user filling field "amountLoanField" with "6000000000"
         And user click button next on select loan amount page
         And user should see error "Maksimal pinjaman Rp5.000.000.000 (5 Miliar)" in the field "errorAmountLoanField"
+        And user should see error "Setujui syarat dan ketentuan" in the field "agreetnc"
 
     @C83823 @LoanTenor
     Scenario: Success Select Loan Amount and Tenor
         Given user on select loan amount page
         When user filling field "amountLoanField" with "200000000"
         Then user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
+        And user click wording tnc
         And user click button next on select loan amount page
         And user on legality business page
 
@@ -50,6 +54,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user click button next on legality business page
@@ -61,6 +67,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -77,6 +85,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -96,6 +106,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -117,6 +129,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type
@@ -136,6 +150,8 @@ Feature: Select the Loan Amount and Tenor
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
+        And user click checkbox T&C on select loan amount page
+        And user validate wording tnc
         And user click button next on select loan amount page
         When user on legality business page
         And user select legality business type

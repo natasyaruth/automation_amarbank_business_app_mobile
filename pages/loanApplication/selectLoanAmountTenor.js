@@ -8,7 +8,8 @@ module.exports = {
         textFieldSuccesApplyLoan: {xpath: '//android.widget.TextView[contains(@text, "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman")]'},
         textFieldTitleHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Maaf, Untuk saat ini kami belum melayani pinjaman di Medan.")]'},
         textFieldDescriptionHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Tidak perlu khawatir, kami akan mempertimbangkan untuk memperluas wilayah pelayanan pinjaman dikota/kabupaten Anda.")]'},
-        textFieldSuccesCompleteData: {xpath: '//android.widget.TextView[contains(@text, "Terima kasih telah melengkapi Data Diri")]'}
+        textFieldSuccesCompleteData: {xpath: '//android.widget.TextView[contains(@text, "Terima kasih telah melengkapi Data Diri")]'},
+        textFieldTnc: "~textTnc"
     },
     fields: {
         amountLoanField: "~textFieldLoan",
@@ -42,14 +43,19 @@ module.exports = {
         nextBtn: "~buttonNext",
         closeBtn: {xpath: '//android.view.View[@content-desc="Button Close"]'},
         chooseBtn: "~buttonChoose",
-        cancelBtn: "~buttonCancel"
+        cancelBtn: "~buttonCancel",
+        closeBtn: "~buttonClose"
+    },
+    checkBox: {
+        checkboxtnc: "~checkboxTnc"
     },
     messageErrorFields: {
         errorAmountLoanField: "~textMsgErrorLoan",
         errorTenorLoanField: "~textMsgErrorTenor",
         errorBussTypeField: "~textMsgErrorCompanyLegality",
         errorDateEstablishField: "~textMsgErrorCompanySince",
-        errorBussLocationField: "~textMsgErrorCompanyLocation"
+        errorBussLocationField: "~textMsgErrorCompanyLocation",
+        agreetnc: "~TextErrorTnc"
     },
     radioButton: {
         otherLocationRadioBtn: {xpath: '(//android.widget.RadioButton[@content-desc="radioLocation"])[3]'},
@@ -267,5 +273,18 @@ module.exports = {
         // let actualValueSubTitle = await I.grabAttributeFrom(this.textField.textFieldDescriptionHeadOfficeNotFound, 'text');
         // I.assertEqual(actualValueSubTitle, 'Tidak perlu khawatir, kami akan mempertimbangkan untuk memperluas wilayah pelayanan pinjaman dikota/kabupaten Anda.');
         I.seeElement(this.textField.textFieldDescriptionHeadOfficeNotFound);
-    }
+    },
+    clickcheckBox(){
+        I.click(this.checkBox.checkboxtnc);
+    },
+    async validateWordingTnc(){
+        I.wait(3);
+        let actualValue = await I.grabAttributeFrom(this.textField.textFieldTnc, 'text');
+        I.assertEqual(actualValue, 'Saya menyetujui Syarat & Ketentuan dari PT. Bank Amar Indonesia Tbk.');
+    },
+    clickWordingCheckBox(){
+        I.click(this.textField.textFieldTnc);
+        I.wait(2);
+        I.click(this.buttons.closeBtn);
+    },
 }
