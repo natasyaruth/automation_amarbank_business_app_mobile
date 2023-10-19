@@ -19,8 +19,8 @@ module.exports = {
     eyePassword: "~iconShowHidePassword",
   },
   messageErrorFields: {
-    errorPIN: "~",
-    errorOTPcode: "~",
+    errorPIN: "~textErrorPin",
+    errorOTPcode: "~textErrorOtp",
   },
 
   submitPassword() {

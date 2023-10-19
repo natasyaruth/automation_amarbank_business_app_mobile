@@ -11,6 +11,25 @@ Given("I am a customer who wants to create PIN", () => { });
 
 Given("I don't have a PIN", () => { });
 
+Given("I am a customer who wants to create PIN from menu other",() => {});
+
+When("I don't have a PIN", () => {});
+
+When("I choose other", () => {
+    createPINPage.goToOtherMenu();
+});
+
+Then("I go to page other", () => {});
+Then("I can see change password and create transaction pin", () => {});
+
+When("I click create transaction pin", () => {
+    createPINPage.goToCreatePIN();
+});
+
+Then("I directly go to page Create New PIN", () => {});
+
+Then("I directly go to page call our team", () => {});
+When("I can see change password and change transaction pin", () => {});
 When("I choose menu Transfer from main dashboard", () => {
     I.click("Go To Transfer");
 });
