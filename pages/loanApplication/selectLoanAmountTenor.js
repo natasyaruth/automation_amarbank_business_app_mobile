@@ -44,10 +44,10 @@ module.exports = {
         closeBtn: {xpath: '//android.view.View[@content-desc="Button Close"]'},
         chooseBtn: "~buttonChoose",
         cancelBtn: "~buttonCancel",
-        closeBtn: "~buttonClose"
+        closeBtn: "~buttonClose",
     },
     checkBox: {
-        checkboxtnc: "~checkboxTnc"
+        checkboxtnc: "~checkboxTnc",
     },
     messageErrorFields: {
         errorAmountLoanField: "~textMsgErrorLoan",

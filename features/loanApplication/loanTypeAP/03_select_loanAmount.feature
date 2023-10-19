@@ -55,11 +55,11 @@ Feature: Select the Loan Amount and Tenor
         And user filling field "amountLoanField" with "200000000"
         And user select the tenor "1Month"
         And user click checkbox T&C on select loan amount page
-        And user validate wording tnc
+        When user validate wording tnc
         And user click button next on select loan amount page
-        When user on legality business page
+        Then user on legality business page
         And user click button next on legality business page
-        Then user should see error "Jenis legalitas bisnis wajib dipilih" in the field "errorBussTypeField"
+        And user should see error "Jenis legalitas bisnis wajib dipilih" in the field "errorBussTypeField"
         And user should see error "Tanggal usaha berdiri wajib diisi" in the field "errorDateEstablishField"
 
     @C83824 @LoanTenor
