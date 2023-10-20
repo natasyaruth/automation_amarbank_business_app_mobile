@@ -89,7 +89,7 @@ module.exports = {
     async allowDeviceData(userID, password) {
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
-        I.amBearerAuthenticated(bearerToken);
+        I.amBearerAuthenticated(secret(bearerToken));
 
         const responseDeviceData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/device", secret({
             deviceId: "QWERTY78922",
