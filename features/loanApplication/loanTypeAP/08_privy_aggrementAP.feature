@@ -19,6 +19,11 @@ Feature: Submit Loan Type AP until sign privy
         And user validate status is approved
         And user validate content limit approved page
         And user click accept the limit offer
+        And user should see text view "Dokumen Surat Kuasa" on bottom sheet "titleSuratKuasa"
+        And user should see terms and condition before signing Surat Kuasa
+        And user click button "Download" Dokumen Surat Kuasa in the bellow of field "buttonDownload"
+        And user click button "Nanti Saja" Dokumen Surat Kuasa in the bellow of field "buttonLater"
+        And user click button close on bottom sheet
         And user on tnc sign digital with privy page
         And user should see countdown timer is showing
         And user validate anountion information about privy

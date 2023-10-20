@@ -3,6 +3,15 @@ const { I, privyAggrementPage} = inject();
 Given(/user click accept the limit offer/, () => {
     privyAggrementPage.clickBtnAcceptLimitOffer();
 });
+Given(/user click button close on bottom sheet/, () => {
+    privyAggrementPage.clickBtnClose();
+});
+Given(/user click button download dokumen surat kuasa/, () => {
+    privyAggrementPage.clickBtnDownload();
+});
+Given(/user click button nanti saja dokumen surat kuasa/, () => {
+    privyAggrementPage.clickBtnLater();
+});
 Given(/user on tnc sign digital with privy page/, () => {
     privyAggrementPage.viewTncWithPrivyPage();
 });

@@ -25,17 +25,21 @@ module.exports = {
     notifOtpSend: { xpath: '//android.widget.TextView[contains(@text, "OTP Dikirim")]' },
     notifSignSuccess: { xpath: '//android.widget.TextView[contains(@text, "OTP Dikirim")]' },
     titleWaitingLimitActivation: { xpath: '//android.widget.TextView[contains(@text, "Proses Aktivasi Limit Pinjaman")]' },
-    subTitleWaitingLimitActivation: { xpath: '//android.widget.TextView[contains(@text, "Mohon menunggu, butuh 1-3 menit untuk mengaktivasi layanan pinjaman. ")]' },
+    subTitleWaitingLimitActivation: { xpath: '//android.widget.TextView[contains(@text, "Mohon menunggu, butuh 1-3 menit untuk mengaktivasi layanan pinjaman.")]' },
+    titleSuratKuasa: { xpath: '//android.widget.TextView[contains(@text, "Download Surat Kuasa")]' },
   },
   buttons: {
-    btnClose: "",
+    btnClose: "~buttonClose",
     btnReadSign: "",
     backButton: "",
     btnSignOnPrivy: "",
     btnNextOnPrivy: "",
     btnConfirmOnPrivy: "",
     btnCheckStatus: "",
-    btnAcceptLimitOffer: ""
+    btnAcceptLimitOffer: "",
+    btnDownload: "~buttonDownload",
+    btnLater: "~buttonLater"
+
   },
   checkBox: {
     cbTnC: ""
@@ -121,6 +125,18 @@ module.exports = {
   clickBtnAcceptLimitOffer() {
     I.wait(2);
     I.click(this.buttons.btnAcceptLimitOffer);
+  },
+  clickBtnClose() {
+    I.wait(2);
+    I.click(this.buttons.btnClose);
+  },
+  clickBtnDownload() {
+    I.wait(2);
+    I.click(this.buttons.btnDownload);
+  },
+  clickBtnLater() {
+    I.wait(2);
+    I.click(this.buttons.btnLater);
   },
   async validateBottomSheetContent(loanType) {
     I.wait(2);
