@@ -1,3 +1,4 @@
+const { radioButton } = require("../../pages/loanApplication/selectLoanAmountTenor");
 
 const {
     I,
@@ -54,6 +55,12 @@ Then("I can see BI Fast and RTOL", () => {
     I.waitForElement(transferPage.radioButtons.methodBifast,5);
 });
 
+Then("I can see BI Fast, SKN and RTGS", () => {
+    I.waitForElement(transferPage.radioButtons.methodBifast,5);
+    I.waitForElement(transferPage.radioButtons.methodRtol,5);
+    I.waitForElement(transferPage.radioButtons.methodSkn,5);
+    
+});
 Then("I choose transfer service RTOL", () => {
     transferPage.chooseRtol();
 });
@@ -61,6 +68,8 @@ Then("I choose transfer service RTOL", () => {
 Then("I choose transfer service BIFAST", () => {
     transferPage.chooseBifast();
 });
+
+Then("I choose transfer service SKN", () => {});
 
 When("I click transfer", () => {
     transferPage.processTransfer();

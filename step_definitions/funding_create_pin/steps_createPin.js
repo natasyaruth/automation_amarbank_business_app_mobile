@@ -17,8 +17,6 @@ When("I choose other", () => {
 });
 
 Then("I go to page other ", () => {
-
-    Then("I can see change password and create transaction pin", () => { });
     I.waitForElement(createPINPage.buttons.changepPassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
@@ -39,28 +37,32 @@ Then("I will see bottom sheet call our team", () => {
     createPINPage.closeBottomSheet();
 });
 
-Given("Given I am a customer who wants to create PIN from menu other", () => {});
+Given("Given I am a customer who wants to create PIN from menu other", () => { });
 
-When("When I choose other", () => {});
+When("When I choose other", () => {
+    createPINPage.goToOtherMenu();
+});
 
 When("I choose menu Transfer from main dashboard", () => {
     I.click("Go To Transfer");
 });
 
-Then("Then I go to page other", () => {
-    createPINPage.goToOtherMenu();
+Then("I go to page other ", () => {
+    Then("I can see change password and create transaction pin", () => { });
+    I.waitForElement(createPINPage.buttons.changepPassword, 5);
+    I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
 
-Then("I can see change password and create transaction pin", () => {});
-Then("I directly go to page Create New PIN", () => {});
-
-Then("I click create transaction pin", (){
-    createPINPage.goToOtherMenu
+Then("I click create transaction pin", () =>{
+    createPINPage.goToCreatePIN();
 });
 
-Then("Then I directly go to page call our team", () => {});
-
-Then("I can see change password and change transaction pin", () => {});
+Then("I will see bottom sheet call our team", () => {
+    I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman',5);
+    I.see(createPINPage.buttons.whatsapp);
+    I.see(createPINPage.buttons.emailSupport);
+    createPINPage.closeBottomSheet();
+});
 
 Then("I will directly to Create New PIN page", () => {
     I.waitForText("Buat PIN Transaksi", 10);
@@ -160,8 +162,8 @@ Then("My PIN successfully created", () => {
 Then("I will directly go to Friend list page", () => {
     createPINPage.continueAfterCreatePin();
     // add waiting button friendlist
-}):
-    
+});
+
 Then("I will go back to page other", () => {
     I.see(createPINPage.buttons.changepPassword);
     I.see(createPINPage.buttons.changePIN);
