@@ -24,7 +24,7 @@ Feature: User transfer BIFAST
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast and RTOL
-        And I choose transfer service 'BI FAST'
+        And I choose transfer service BIFAST
 
     Scenario: User transfer with BIFAST with empty notes
         Given I am a customer who wants to Transfer and has friend list
@@ -74,7 +74,7 @@ Feature: User transfer BIFAST
         And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'BI FAST'
+        And i choose transer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN
@@ -88,7 +88,7 @@ Feature: User transfer BIFAST
         And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'BI FAST'
+        And i choose transer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN
@@ -102,7 +102,7 @@ Feature: User transfer BIFAST
         And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And I choose transer service 'BI FAST'
+        And I choose transer service BIFAST
         And I click transfer
         Then I will directly go to page confirmation transfer   
 
@@ -127,7 +127,7 @@ Feature: User transfer BIFAST
         And I choose category "Pembayaran"       
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
-        And i choose transer service 'BI FAST'
+        And i choose transer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN

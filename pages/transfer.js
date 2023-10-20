@@ -58,6 +58,18 @@ module.exports = {
     return await I.grabTextFrom(this.texts.balance);
   },
 
+  async getMessageErrorAmount(){
+    return await I.grabTextFrom(this.messageErrors.amount);
+  },
+
+  async getMessageErrorPIN(){
+    return await I.grabTextFrom(this.messageErrors.pin);
+  },
+
+  async getMessageErrorNotes(){
+    return await I.grabTextFrom(this.messageErrors.notes);
+  },
+
   async getAmountConfirmation(){
     return await I.grabTextFrom(this.texts.amount);
   },
