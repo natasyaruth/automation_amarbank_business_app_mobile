@@ -26,6 +26,15 @@ const {I, selectLoanAmountPage} = inject();
     Then(/user on legality business page/, ()=>{
         selectLoanAmountPage.viewLegalityBussPage();
     });
+    Then(/user click checkbox T&C on select loan amount page/, ()=>{
+        selectLoanAmountPage.clickcheckBox();
+    });
+    Then(/user validate wording tnc/, ()=>{
+        selectLoanAmountPage.validateWordingTnc();
+    });
+    Then(/user click wording tnc/, ()=>{
+        selectLoanAmountPage.clickWordingCheckBox();
+    });
  
 // Scenario(/Validate Error Field on legality business form/)
     When(/user click button next on legality business page/,()=>{
