@@ -12,8 +12,13 @@ module.exports = {
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
-    otherMenu: ~"",
-    createPIN: ~"",
+    otherMenu: "~",
+    createPIN: "~",
+    changepPassword: "~",
+    changePIN: "~",
+    whatsapp: "~",
+    emailSupport: "~", 
+    closeOurTeam: "~",
   },
   icon: {
     eyePassword: "~iconShowHidePassword",
@@ -102,4 +107,8 @@ module.exports = {
     I.click(this.buttons.createPIN);
 
   },
+
+  closeBottomSheet(){
+    I.click(this.buttons.closeOurTeam);
+  }
 }

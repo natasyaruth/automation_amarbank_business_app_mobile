@@ -19,17 +19,23 @@ When("I choose other", () => {
     createPINPage.goToOtherMenu();
 });
 
-Then("I go to page other", () => {});
-Then("I can see change password and create transaction pin", () => {});
+Then("I go to page other ", () => {
+    I.waitForElement(createPINPage.buttons.changepPassword,5);
+    I.waitForElement(createPINPage.buttons.createPIN,5);
+});
 
 When("I click create transaction pin", () => {
     createPINPage.goToCreatePIN();
 });
 
-Then("I directly go to page Create New PIN", () => {});
+Then("I will see bottom sheet call our team", () => {
+    I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman',5);
+    I.see(createPINPage.buttons.whatsapp);
+    I.see(createPINPage.buttons.emailSupport);
+    createPINPage.closeBottomSheet();
 
-Then("I directly go to page call our team", () => {});
-When("I can see change password and change transaction pin", () => {});
+});
+
 When("I choose menu Transfer from main dashboard", () => {
     I.click("Go To Transfer");
 });
@@ -53,7 +59,6 @@ When("I submit my password", () => {
 Then("I should see pop up message {string}", async (expectedMessage) => {
     I.waitForText(expectedMessage, 10);
     createPINPage.tryAgain();
-
     createPINPage.inputPassword(globalVariable.login.password);
     createPINPage.submitPassword();
     I.waitForElement(createPINPage.fields.newPIN, 10);
@@ -62,7 +67,6 @@ Then("I should see pop up message {string}", async (expectedMessage) => {
 When("I submit incorrect password twice", () => {
     createPINPage.inputPassword(dummyPswrd);
     createPINPage.submitPassword();
-
     I.waitForText("Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir", 10);
     createPINPage.tryAgain();
 
@@ -115,7 +119,6 @@ Then("I will not see my password", ()=>{
 When("I input new PIN with {string}", (newPin)=>{
     I.waitForText("Buat PIN Baru", 10);
     createPINPage.inputPIN(newPin);
-
     globalVariable.createPin.newPin = newPin;
 });
 
@@ -160,4 +163,13 @@ Then("My PIN successfully created", ()=>{
 Then("I will directly go to Friend list page", ()=>{
     createPINPage.continueAfterCreatePin();
     // add waiting button friendlist
-})
+}),
+
+Then("I will go back to page other", () => {
+    I.see(createPINPage.buttons.changepPassword);
+    I.see(createPINPage.buttons.changePIN);
+});
+
+Then("I will see toastbar {string}", (successPINMessage) => {
+    I.see(successPINMessage);
+});
