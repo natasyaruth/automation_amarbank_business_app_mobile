@@ -1,10 +1,10 @@
 @kybSubmitFormBusinessOwnersCompany
-Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
-    In order to opening my Giro account with legality business type PT Perusahaan in SMB
+Feature: Account Opening KYB CV - Submit Business Directors
+    In order to opening my Giro account with legality business type CV in SMB
     As a customer
     I want to submit list business director as part of the KYB Process
 
-    Background: User choose legality business type PT Perusahaan
+    Background: User choose legality business type CV
         Given I am a registered customer with following details:
             | userID   | ruthec01              |
             | password | 1234Test              |
@@ -16,7 +16,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will direct to dashboard
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose legality business type 'company'
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
@@ -67,9 +67,68 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    Scenario: Submit one business director successfully business type PT Perusahaan
+    Scenario: Submit one business director successfully business type CV
         Given I am a customer who has submitted my business profile
         And I am the only one director
         When I submit business director list
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
+
+    Scenario: Submit more than one business director successfully business type CV
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | ADRI GINANJAR       |
+            | email    | adri@trash-mail.com |
+            | nik      | 3133021710820021    |
+        And I save data director
+        And I validate my second director
+        And I submit business director list
+        And I validate all the data in the confirmation list
+        And I confirm my director lists
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address
+
+    Scenario: Delete director for business type CV
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I delete the director
+        And I confirm to delete the director
+        Then I will notify director successfully deleted
+        And I will not be able to see the deleted data director  
+
+    Scenario: Delete director and then submit for business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | ADRI GINANJAR       |
+            | email    | adri@trash-mail.com |
+            | nik      | 3133021710820021    |
+        And I save data director
+        And I validate my second director
+        And I delete the director
+        And I confirm to delete the director
+        And I submit business director list
+        And I validate all the data in the confirmation list
+        And I confirm my director lists
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address      

@@ -17,6 +17,12 @@ module.exports = {
         eKTPNumber: "",
         fullName:"",
     },
+    formDirector:{
+        fullName: "",
+        email:"",
+        nik:"",
+        numberOfDirectors: 0
+    },
     createPin:{
         newPin:""
     },
