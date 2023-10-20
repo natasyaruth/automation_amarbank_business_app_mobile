@@ -68,7 +68,7 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
 
-  continueAfterCreatePin() {
+  continueAfterCreatePin(){
     I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },
@@ -91,4 +91,4 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
   },
 
-}
+  }
