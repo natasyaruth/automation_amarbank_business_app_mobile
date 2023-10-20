@@ -70,6 +70,85 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
     Scenario: Submit one business director successfully business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         And I am the only one director
-        When I submit business director list
+        When I submit business director
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address
+
+    Scenario: Submit more than one business director successfully business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | ADRI GINANJAR       |
+            | email    | adri@trash-mail.com |
+            | nik      | 3133021710820021    |
+        And I save data director
+        And I validate my second director
+        And I submit business director list
+        And I validate all the data in the confirmation list
+        And I confirm my director lists
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address
+
+    Scenario: Delete director for business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I delete the director
+        And I confirm to delete the director
+        Then I will notify director successfully deleted
+        And I will not be able to see the deleted data director
+
+    Scenario: Delete director and then submit for business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | ADRI GINANJAR       |
+            | email    | adri@trash-mail.com |
+            | nik      | 3133021710820021    |
+        And I save data director
+        And I validate my second director
+        And I delete the director
+        And I confirm to delete the director
+        And I submit business director list
+        And I validate all the data in the confirmation list
+        And I confirm my director lists
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address
+
+    Scenario: Update director for business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I update data director
+        And I fill business director data as followings:
+            | fullName | TRYSE REZZA          |
+            | email    | tryse@trash-mail.com |
+            | nik      | 3155021710820021     |
+        And I confirm to update data director
+        And I validate my second director
+        And I submit business director list
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
