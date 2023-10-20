@@ -5,15 +5,12 @@ module.exports = {
     password: "~textFieldPassword",
     newPIN: "~textFieldPin",
     otpcode: "~textFieldOtp",
-    confirmPIN: ~"textFieldPin",
   },
   buttons: {
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
-    otherMenu: ~"",
-    createPIN: ~"",
   },
   icon: {
     eyePassword: "~iconShowHidePassword",
@@ -94,12 +91,4 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
   },
 
-  goToOtherMenu(){
-    I.click(this.buttons.otherMenu);
-  },
-
-  goToCreatePIN(){
-    I.click(this.buttons.createPIN);
-
-  },
 }
