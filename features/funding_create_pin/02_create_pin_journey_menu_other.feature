@@ -1,4 +1,5 @@
 @createPINfromOther
+@createPINfromOther
 Feature: User create PIN
     In order to transfer
     As a customer

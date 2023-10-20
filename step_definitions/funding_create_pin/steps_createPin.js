@@ -39,9 +39,28 @@ Then("I will see bottom sheet call our team", () => {
     createPINPage.closeBottomSheet();
 });
 
+Given("Given I am a customer who wants to create PIN from menu other", () => {});
+
+When("When I choose other", () => {});
+
 When("I choose menu Transfer from main dashboard", () => {
     I.click("Go To Transfer");
 });
+
+Then("Then I go to page other", () => {
+    createPINPage.goToOtherMenu();
+});
+
+Then("I can see change password and create transaction pin", () => {});
+Then("I directly go to page Create New PIN", () => {});
+
+Then("I click create transaction pin", (){
+    createPINPage.goToOtherMenu
+});
+
+Then("Then I directly go to page call our team", () => {});
+
+Then("I can see change password and change transaction pin", () => {});
 
 Then("I will directly to Create New PIN page", () => {
     I.waitForText("Buat PIN Transaksi", 10);
