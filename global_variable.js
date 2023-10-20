@@ -24,10 +24,4 @@ module.exports = {
         bankName:"",
         receiverName:"",
     },
-    transfer:{
-        amount:"",
-        category: "",
-        note:"",
-        service:"",
-    },
 }
