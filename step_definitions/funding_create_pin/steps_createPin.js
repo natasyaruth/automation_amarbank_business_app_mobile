@@ -13,14 +13,14 @@ Given("I don't have a PIN", () => { });
 
 Given("I am a customer who wants to create PIN from menu other",() => {});
 
-When("I don't have a PIN", () => {});
+Given("I don't have a PIN", () => {});
 
 When("I choose other", () => {
     createPINPage.goToOtherMenu();
 });
 
 Then("I go to page other ", () => {
-    I.waitForElement(createPINPage.buttons.changepPassword,5);
+    I.waitForElement(createPINPage.buttons.changePassword,5);
     I.waitForElement(createPINPage.buttons.createPIN,5);
 });
 
@@ -29,8 +29,7 @@ When("I click create transaction pin", () => {
 });
 
 Then("I will see bottom sheet call our team", () => {
-    I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman',5);
-    I.see(createPINPage.buttons.whatsapp);
+    I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman',5);    
     I.see(createPINPage.buttons.emailSupport);
     createPINPage.closeBottomSheet();
 
@@ -166,10 +165,9 @@ Then("I will directly go to Friend list page", ()=>{
 }),
 
 Then("I will go back to page other", () => {
-    I.see(createPINPage.buttons.changepPassword);
+    I.waitForElement(createPINPage.buttons.changePassword,5);
     I.see(createPINPage.buttons.changePIN);
+    I.waitForElement(createPINPage.toastbar.successPin);
 });
 
-Then("I will see toastbar {string}", (successPINMessage) => {
-    I.see(successPINMessage);
-});
+

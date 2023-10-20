@@ -1,5 +1,5 @@
 @createPINfromOther
-Feature: User create PIN
+Feature: User create PIN from other menu
     In order to transfer
     As a customer
     I want to be able to create transcation pin from menu other
@@ -107,8 +107,7 @@ Feature: User create PIN
         And I input OTP
         Then My PIN successfully created
         And I will go back to page other
-        And I will see toastbar "PIN transaksi berhasil dibuat"
-
+       
     Scenario: User wants to change transcation PIN
         Given I am a customer who wants to change PIN from menu other
         When I choose other

@@ -14,9 +14,8 @@ module.exports = {
     close: "~buttonClose",
     otherMenu: "~",
     createPIN: "~",
-    changepPassword: "~",
+    changePassword: "~",
     changePIN: "~",
-    whatsapp: "~",
     emailSupport: "~", 
     closeOurTeam: "~",
   },
@@ -26,6 +25,9 @@ module.exports = {
   messageErrorFields: {
     errorPIN: "~textErrorPin",
     errorOTPcode: "~textErrorOtp",
+  },
+  toastbar: {
+    successPin: "~",
   },
 
   submitPassword() {
@@ -110,5 +112,5 @@ module.exports = {
 
   closeBottomSheet(){
     I.click(this.buttons.closeOurTeam);
-  }
+  },  
 }
