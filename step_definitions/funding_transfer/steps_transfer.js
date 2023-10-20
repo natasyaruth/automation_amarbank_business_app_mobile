@@ -10,11 +10,12 @@ const {
 When("I choose category {string}", (category) => {
     I.wait(2)
     transferPage.chooseCategory(category);
+    globalVariable.transfer.category = category;
 });
 
 When("I close bottom sheet category", (category) => {
     I.wait(2);    
-    I.assertEqual(actualService,globalVariable.transferPage.category);
+    I.assertEqual(actualService,globalVariable.transfer.category);
 });
 
 When("I input amount higher than active balance", async () => {
@@ -30,13 +31,13 @@ Then("I can see message {string}", async (messageError) => {
 
 When("I input amount {string}", (amount) => {
     transferPage.inputAmountTransfer(amount);
-    globalVariable.transferPage.amount = amount;
+    globalVariable.transfer.amount = amount;
 
 });
 
 When("I input notes with {string}", (notes) => {
     transferPage.fillNotes(notes); 
-    globalVariable.transferPage.note = notes;
+    globalVariable.transfer.note = notes;
 });
 
 Then("I see message {string}", async(errorMessageNotes) =>{
@@ -68,7 +69,7 @@ When("I click transfer", () => {
 Then("I will directly go to page confirmation transfer", async () => {
     I.waitForElement(transferPage.texts.amount,10);
     const actualAmount = await transferPage.getAmountConfirmation();
-    I.assertEqual(actualAmount, "Rp. "+globalVariable.transferPage.amount);
+    I.assertEqual(actualAmount, "Rp. "+globalVariable.transfer.amount);
 
     I.waitForElement(transferPage.texts.service,10);
     const actualService = await transferPage.getServiceMethod();
@@ -77,11 +78,11 @@ Then("I will directly go to page confirmation transfer", async () => {
 
     I.waitForElement(transferPage.texts.category,10);
     const actualCategory = await transferPage.getCategory();
-    I.assertEqual(actualCategory,globalVariable.transferPage.category);
+    I.assertEqual(actualCategory,globalVariable.transfer.category);
     
     I.waitForElement(transferPage.texts.note,10);
     const actualnotes = await transferPage.getNotes();
-    I.assertEqual(actualnotes,globalVariable.transferPage.note);
+    I.assertEqual(actualnotes,globalVariable.transfer.note);
 });
 
 When("I input wrong PIN", () => {
@@ -93,8 +94,9 @@ Then("I will be able to see message error {string}", async (expectedMessageError
     I.assertEqual(actualerrorPINmessage,expectedMessageErrorPIN);
 });
 
-When("I input PIN", (Pin) => {
-    transferPage.inputPin(PIN);
+When("I input PIN {string}", (Pin) => {
+    I.waitForText("Masukkan PIN Transaksi",5);
+    transferPage.inputPin(Pin);    
 }),
 
 When("I click transfer now", () => {
@@ -104,20 +106,19 @@ When("I click transfer now", () => {
 Then("I successfully transferred without notes", () => {
     I.see(transferPage.texts.status);
     I.see('Transfer Keluar');
-    I.see("Rp. "+globalVariable.transferPage.amount);
+    I.see("Rp. "+globalVariable.transfer.amount);
     I.waitForElement(transferPage.buttons.copy,10);   
-    I.dontSee(globalVariable.transferPage.note);
+    I.dontSee(globalVariable.transfer.note);
     I.see(transferPage.buttons.share); 
-    I.waitForElement(transferPage.buttons.close);
-    
+    I.waitForElement(transferPage.buttons.close);    
 });
 
 Then("Then I successfully transferred", () => {
     I.see(transferPage.texts.status);
     I.see('Transfer Keluar');
-    I.see("Rp. "+globalVariable.transferPage.amount);
+    I.see("Rp. "+globalVariable.transfer.amount);
     I.waitForElement(transferPage.buttons.copy,10);   
-    I.see(global_variable.transfer.notes);
+    I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
     I.waitForElement(transferPage.buttons.close);
 });
@@ -125,17 +126,17 @@ Then("Then I successfully transferred", () => {
 When("I will directly go to page confirmation transfer between Amar Bank", async () => {
     I.waitForElement(transferPage.texts.amount,10);
     const actualAmount = await transferPage.getAmountConfirmation();
-    I.assertEqual(actualAmount, "Rp. "+globalVariable.transferPage.amount);   
+    I.assertEqual(actualAmount, "Rp. "+globalVariable.transfer.amount);   
 
     I.see(transferPage.texts.total);
 
     I.waitForElement(transferPage.texts.category,10);
     const actualCategory = await transferPage.getCategory();
-    I.assertEqual(actualCategory,globalVariable.transferPage.category);
+    I.assertEqual(actualCategory,globalVariable.transfer.category);
     
     I.waitForElement(transferPage.texts.note,10);
     const actualnotes = await transferPage.getNotes();
-    I.assertEqual(actualnotes,globalVariable.transferPage.note);
+    I.assertEqual(actualnotes,globalVariable.transfer.note);
 
     I.dontSee(globalVariable.transfer.service);
 });
@@ -143,9 +144,9 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
 Then("Then I successfully transferred between Amar Bank", () => {
     I.see(transferPage.texts.status);
     I.see('Transfer Keluar');
-    I.see("Rp. "+globalVariable.transferPage.amountt);
+    I.see("Rp. "+globalVariable.transfer.amountt);
     I.waitForElement(transferPage.buttons.copy,10);   
-    I.see(global_variable.transfer.notes);
+    I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
     I.waitForElement(transferPage.buttons.close);
 });

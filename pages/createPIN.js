@@ -1,16 +1,24 @@
-const { I } = inject();
-
 module.exports = {
   fields: {
     password: "~textFieldPassword",
     newPIN: "~textFieldPin",
     otpcode: "~textFieldOtp",
+    confirmPIN: ~"textFieldPin",
   },
   buttons: {
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
+    otherMenu: ~"",
+    createPIN: ~"",
+    otherMenu: "~",
+    createPIN: "~",
+    changepPassword: "~",
+    changePIN: "~",
+    whatsapp: "~",
+    emailSupport: "~", 
+    closeOurTeam: "~",
   },
   icon: {
     eyePassword: "~iconShowHidePassword",
@@ -18,8 +26,11 @@ module.exports = {
   messageErrorFields: {
     errorPIN: "~",
     errorOTPcode: "~",
+    errorPIN: "~textErrorPin",
+    errorOTPcode: "~textErrorOtp",
   },
-
+  
+  
   submitPassword() {
     I.waitForElement(this.buttons.next, 5);
     I.click(this.buttons.submitpassword);
@@ -76,7 +87,6 @@ module.exports = {
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
-
   getRandomNumberPin() {
     const randomNumbers = [];
     for (let i = 0; i < 6; i++) {
@@ -91,4 +101,15 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
   },
 
+  goToOtherMenu(){
+    I.click(this.buttons.otherMenu);
+  },
+
+  goToCreatePIN(){
+    I.click(this.buttons.createPIN);
+  },
+
+  closeBottomSheet(){
+    I.click(this.buttons.closeOurTeam);
+  },
 }

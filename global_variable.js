@@ -24,11 +24,10 @@ module.exports = {
         bankName:"",
         receiverName:"",
     },
-    transferPage: {
+    transfer:{
+        amount:"",
         category: "",
-        note: "",
-        amount: "",
-        service: "",
-
+        note:"",
+        service:"",
     },
 }
