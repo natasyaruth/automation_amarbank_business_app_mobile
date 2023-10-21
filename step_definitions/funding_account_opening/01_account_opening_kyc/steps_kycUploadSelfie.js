@@ -15,7 +15,7 @@ Given("my information about my account opening is {string}", async (expectedInfo
 });
 
 When("I upload my selfie photo", async () => {
-    I.waitForElement(uploadSelfiePage.buttons.takePhoto, 10)
+    I.wait(7);
     await 
     resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
@@ -31,6 +31,17 @@ Then("I will directing to page submit Data Personal", async () => {
     I.seeElement(formPersonalDataPage.fields.motherName);
     I.seeElement(formPersonalDataPage.fields.npwp);
     I.dontSeeElement(formPersonalDataPage.dropDowns.purposeAccount);
+
+    await 
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will directing to page submit Data Personal individual", async () => {
+    I.waitForElement(formPersonalDataPage.buttons.savePersonalData, 10);
+    I.seeElement(formPersonalDataPage.dropDowns.lastEducation);
+    I.seeElement(formPersonalDataPage.fields.motherName);
+    I.seeElement(formPersonalDataPage.fields.npwp);
+    I.seeElement(formPersonalDataPage.dropDowns.purposeAccount);
 
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

@@ -62,6 +62,10 @@ When("I save data director", () => {
     formBusinessOwnerPage.addDirector();
 });
 
+When("I update data director", () => {
+    formBusinessOwnerPage.chooseUpdateDirector();
+});
+
 When("I delete the director", () => {
     formBusinessOwnerPage.chooseDeleteDirector();
 });
@@ -72,6 +76,11 @@ When("I confirm to delete the director", () => {
     I.see(globalVariable.registration.email);
     I.see(globalVariable.formKtp.eKTPNumber);
     formBusinessOwnerPage.confirmDeleteDirector();
+});
+
+When("I confirm to update data director", () => {
+    I.see("Simpan");
+    formBusinessOwnerPage.saveUpdateDirector();
 });
 
 When("I validate my first director", async () => {
@@ -111,6 +120,10 @@ Then("I will notify director successfully deleted", ()=>{
     I.waitForText("Direktur berhasil dihapus", 10);
 });
 
+Then("I will notify director successfully updated", ()=>{
+    I.waitForText("Direktur berhasil disimpan", 10);
+});
+
 Then("I will notify business director list has successfully submitted", ()=>{
     I.waitForText("Daftar Direktur berhasil disimpan", 10);
 });
@@ -126,5 +139,13 @@ Then ("I will not be able to see the deleted data director", async ()=>{
     I.dontSee(globalVariable.formDirector.fullName);
     I.dontSee(globalVariable.formDirector.email);
     I.dontSee(globalVariable.formDirector.nik);
+    await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then ("I will see the updated director", async ()=>{
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
+    I.see(globalVariable.formDirector.fullName);
+    I.see(globalVariable.formDirector.email);
+    I.see(globalVariable.formDirector.nik);
     await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
