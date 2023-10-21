@@ -6,11 +6,11 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruth1ed7              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | ruth7f25          |
+            | password | 1234Test          |
+            | email    | ud@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruth1ed7 |
+            | userID   | ruth7f25 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -20,11 +20,11 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172024112840005          |
-            | fullName      | NADYA SAMANTHA            |
-            | placeOfBirth  | MEDAN                     |
+            | eKtpNumber    | 3171020610790004          |
+            | fullName      | USAHA DAGANG              |
+            | placeOfBirth  | JAKARTA                   |
             | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
+            | gender        | Perempuan                 |
             | address       | Jl. Durian Runtuh No. 13  |
             | rt            | 01                        |
             | rw            | 05                        |
@@ -58,12 +58,12 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
+            | businessName      | USAHA DAGANG    |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
+            | npwp              | 988283213036000 |
+            | nib               | 912910111111234 |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I submit business owner list
@@ -81,4 +81,5 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
-        Then I will directing to page upload require documents for business
+        Then I will directing to page upload require documents for business individual
+        And I can close the page so that I can back to main dashboard

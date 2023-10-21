@@ -6,11 +6,11 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID   | ruth67b0              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | ruth66fa                     |
+            | password | 1234Test                     |
+            | email    | pt_perorangan@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruth67b0 |
+            | userID   | ruth66fa |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -20,8 +20,8 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3171012702730001          |
-            | fullName      | NADYA SAMANTHA            |
+            | eKtpNumber    | 3171020612930006          |
+            | fullName      | PT PERORANGAN             |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
             | gender        | Laki-laki                 |
@@ -58,7 +58,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
+            | businessName      | PT PERORANGAN   |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
@@ -81,4 +81,5 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
-        Then I will directing to page upload require documents for business
+        Then I will directing to page upload require documents for business individual
+        And I can close the page so that I can back to main dashboard
