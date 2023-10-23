@@ -83,7 +83,7 @@ Then("I choose transfer service SKN", () => {
 });
 
 When("I click transfer", () => {
-    transferPage.processTransfer();
+    transferPage.processTransfer(); 
 });
 
 Then("I will directly go to page confirmation transfer", async () => {
