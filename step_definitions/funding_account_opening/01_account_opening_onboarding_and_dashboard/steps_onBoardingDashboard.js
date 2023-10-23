@@ -74,3 +74,27 @@ Then("I will directing to main dashboard with card loan application and account 
     I.see("Dapatkan benefit seperti Gratis Biaya Admin, Transaksi Real-Time, dan keuntungan lainnya");
     I.seeElement(onboardingAccOpeningPage.buttons.openAccount); 
 });
+
+When ("I see page {string}", (pageName) =>{
+    onboardingAccOpeningPage.validatePage(pageName);
+});
+
+Then("I will see card continue to data personal", () =>{
+    I.waitForText("Lengkapi Data Personal", 10);
+    I.seeElement(onboardingAccOpeningPage.buttons.completeData);
+});
+
+Then("I will see card continue to data personal", () =>{
+    I.waitForText("Lengkapi Data Personal", 10);
+    I.seeElement(onboardingAccOpeningPage.buttons.completeData);
+});
+
+Then("I will see card continue to data business", () =>{
+    I.waitForText("Lengkapi Data Bisnis", 10);
+    I.seeElement(onboardingAccOpeningPage.buttons.completeData);
+});
+
+Then ("I can continue to page {string}", (pageName) =>{
+    onboardingAccOpeningPage.continueCompleteData();
+    onboardingAccOpeningPage.validatePage(pageName);
+});

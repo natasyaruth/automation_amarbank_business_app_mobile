@@ -12,6 +12,7 @@ Feature: Account Opening Main Dashboard
             | userID   | ruth17a5 |
             | password | Test1234 |
         And I click login
+        And I click later
         And I will direct to dashboard
         And I choose Giro Account
 
