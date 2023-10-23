@@ -3,6 +3,11 @@ const { I } = inject();
 module.exports = {
 
   async requestOTP(phoneNumber) {
+
+    I.haveRequestHeaders(secret({
+      Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+    }));
+
     const response = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/otp/request/sms", {
       phone: phoneNumber,
     });
@@ -16,6 +21,11 @@ module.exports = {
   },
  
   async getOTP(phoneNumber){
+
+    I.haveRequestHeaders(secret({
+      Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+    }));
+
     const response = await I.sendGetRequest("https://dev-smb-user.otoku.io/api/v1/otp/find/sms?phone="+phoneNumber);
 
     I.seeResponseCodeIsSuccessful();
@@ -29,6 +39,11 @@ module.exports = {
   },
 
   async getUserID(email){
+
+    I.haveRequestHeaders(secret({
+      Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+    }));
+
     const response = await I.sendGetRequest("https://dev-smb-user.otoku.io/api/v1/user/find/"+email);
 
     I.seeResponseCodeIsSuccessful();
@@ -39,6 +54,11 @@ module.exports = {
   },
 
   async resetLimitRequestOtp(phoneNumber){
+
+    I.haveRequestHeaders(secret({
+      Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+    }));
+    
     const response = await I.sendDeleteRequest("https://dev-smb-user.otoku.io/api/v1/otp/reset?phone="+phoneNumber);
 
     I.seeResponseCodeIsSuccessful();

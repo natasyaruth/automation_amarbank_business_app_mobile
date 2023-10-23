@@ -4,6 +4,7 @@ const {
     registrationPage,
     forgotPasswordPage,
     loginPage,
+    onboardingAccOpeningPage,
     globalVariable } = inject();
 
 Given("I am a customer who has failed to login {string} times with following details:", (countValue, table) => {
@@ -52,7 +53,10 @@ When("I click login", () => {
 });
 
 Then("I will direct to dashboard", () => {
-    I.waitForText("Dashboard Screen", 10);
+    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+    onboardingAccOpeningPage.chooseLater();
+    onboardingAccOpeningPage.goToTabBusiness();
+    I.waitForText("Dashboard Screen");
 });
 
 Given("I am an unregistered customer trying to login", () => {

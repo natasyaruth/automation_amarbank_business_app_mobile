@@ -1,9 +1,13 @@
+const { tabs } = require("./loanDashboard");
+
 const { I } = inject();
 
 module.exports = {
   buttons: {
     giroAccount: "~buttonOpenGiroAccount",
-    later: "~buttonLater",
+    openLoan: "~btnToLoan",
+    openAccount: "~btnOpenAccount",
+    later: "~buttonBackLoan",
     next: "~buttonNext",
   },
   radioButtons: {
@@ -12,6 +16,17 @@ module.exports = {
     individualBusiness: "~optionPTPerorangan",
     ud: "~optionUD",
     individual: "~optionIndividu",
+  },
+  texts:{
+    userId: "~txtUserName",
+    titleCardAccOpening: "~txtTitleCard",
+    descCardAccOpening: "~txtDescCard",
+  },
+  tabs: {
+    home: "~tabHome",
+    business: "~tabBusiness",
+    callCenter: "~tabCallCenter",
+    others: "~tabOthers"
   },
 
   chooseLegalityBusinessType(type) {
@@ -69,6 +84,22 @@ module.exports = {
       default:
         throw new Error("State name is not recognize, please refer to this list:");
     }
+  },
+
+  chooseLater(){
+    // I.waitForElement(this.buttons.later, 10);
+    // I.click(this.buttons.later);
+    I.waitForText("Nanti Saja", 10);
+    I.click("Nanti Saja");
+  },
+
+  goToTabBusiness(){
+    I.click(this.tabs.business);
+  },
+
+  async getUserId(){
+    I.waitForElement(this.texts.userId, 10);
+    return await I.grabTextFrom(this.texts.userId);
   }
 
 }

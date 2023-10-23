@@ -9,6 +9,7 @@ const {
   whitelistDao,
   otpDao,
   changePhoneNumberPage,
+  onboardingAccOpeningPage,
   globalVariable,
 } = inject();
 
@@ -61,6 +62,8 @@ When("I registering the account", () => {
 });
 
 Then("my account should be created", () => {
+  I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+  onboardingAccOpeningPage.chooseLater();
   I.waitForText("Dashboard Screen", 10);
   // check dashboard step
 });

@@ -28,6 +28,8 @@ module.exports = {
   },
 
   fillNewAddress(domicileAddress){
+    I.waitForElement(this.fields.address, 10);
+
     const information = Object.keys(domicileAddress);
     
     for(let i=0;i<information.length;i++){
@@ -38,7 +40,9 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
         ){
         I.setText(this.fields[fieldName], value);
-
+        if(fieldName === "rw"){
+          I.swipeUp(this.fields[fieldName], 500, 800);
+        }  
       } else if (
         Object.keys(this.dropDown).indexOf(fieldName) !== -1
         ){
@@ -51,8 +55,11 @@ module.exports = {
         I.click(this.dropDownSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.setText(this.fields.search, value);
+        I.wait(1);
         I.click(this.dropDownSearch.firstItem);
-        I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
+        if(fieldName !== "village"){
+          I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
+        }
       } else{
         throw new Error(information[i]+" not found, please check again data naming");
       }

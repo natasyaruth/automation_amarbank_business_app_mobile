@@ -12,6 +12,7 @@ Feature: Account login
       | userID   | rutha013 |
       | password | 1234Test |
     And I click login
+    And I click later
     Then I will direct to dashboard
 
   @login @C76892
