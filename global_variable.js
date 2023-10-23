@@ -32,5 +32,8 @@ module.exports = {
     },
     transfer:{
         amount:"",
+        service:"",
+        note:"",
+        category:"",
     },
 }

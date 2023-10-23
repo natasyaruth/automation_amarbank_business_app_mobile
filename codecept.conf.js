@@ -117,6 +117,8 @@ exports.config = {
     loanDisbursementPage: "./pages/loanDisbursement.js",
 
     friendListPage: "./pages/friendList.js",
+
+    transferPage: "./pages/transfer.js",
   },
   settings:{
     logging: {
