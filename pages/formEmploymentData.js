@@ -16,6 +16,10 @@ module.exports = {
     closeBottomSheet: "~buttonClose",
     continue: "~buttonNext",
   },
+  checkBox:{
+    termsAndCondition: "~checkBoxPrivacyPolicy",
+    rights: "~checkBoxRight",
+  },
 
   async fillEmploymentData(employmentData){
     const information = Object.keys(employmentData);

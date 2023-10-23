@@ -3,7 +3,9 @@ const { I } = inject();
 module.exports = {
   buttons: {
     giroAccount: "~buttonOpenGiroAccount",
-    later: "~buttonLater",
+    openLoan: "~btnToLoan",
+    openAccount: "~btnOpenAccount",
+    later: "~buttonBackLoan",
     next: "~buttonNext",
   },
   radioButtons: {
@@ -12,6 +14,17 @@ module.exports = {
     individualBusiness: "~optionPTPerorangan",
     ud: "~optionUD",
     individual: "~optionIndividu",
+  },
+  texts:{
+    userId: "~txtUserName",
+    titleCardAccOpening: "~txtTitleCard",
+    descCardAccOpening: "~txtDescCard",
+  },
+  tab: {
+    home: "~tabHome",
+    business: "~tabBusiness",
+    callCenter: "~tabCallCenter",
+    others: "~tabOthers"
   },
 
   chooseLegalityBusinessType(type) {
@@ -69,6 +82,15 @@ module.exports = {
       default:
         throw new Error("State name is not recognize, please refer to this list:");
     }
+  },
+
+  chooseLater(){
+    I.click(this.buttons.later);
+  },
+
+  async getUserId(){
+    I.waitForElement(this.texts.userId, 10);
+    return await I.grabTextFrom(this.texts.userId);
   }
 
 }
