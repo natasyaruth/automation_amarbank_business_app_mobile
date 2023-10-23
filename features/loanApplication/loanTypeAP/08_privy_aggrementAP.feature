@@ -1,4 +1,4 @@
-Feature: Submit Loan Type AR until sign privy
+Feature: Submit Loan Type AP until sign privy
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
@@ -12,7 +12,7 @@ Feature: Submit Loan Type AR until sign privy
         And I click login
         Then I successed go to dashbord
 
-    Scenario: User validate Limit Loan Activation Approved
+    Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
         Then I select first list card loan approved

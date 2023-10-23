@@ -1,4 +1,4 @@
-Feature: Submit Loan Type PO Status is Approved
+Feature: Submit Loan Type PO Status is Expired
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
@@ -12,8 +12,7 @@ Feature: Submit Loan Type PO Status is Approved
         And I click login
         Then I successed go to dashbord
 
-    @C83807 @LoanApp
-    Scenario: User success fill data buyer and submit the loan
+    Scenario: User PO success fill data buyer and submit the loan
         Given I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -65,7 +64,7 @@ Feature: Submit Loan Type PO Status is Approved
         # section trigered status loan
         And user trigered api change status loan is approved
 
-    Scenario: User validate Limit Loan Activation Expired
+    Scenario: User PO validate Limit Loan Activation Expired
         Given I have been access history loan limit to see status "Selesai"
         When I access menu bar limit with status "Selesai"
         Then I select first list card loan expired

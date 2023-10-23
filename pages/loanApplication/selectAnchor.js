@@ -20,7 +20,9 @@ module.exports = {
         dateYearNextField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[3]'},
         anchorName: "~textFieldSupplierName",
         industryTypeField: "~textFieldSupplierType",
-        industryTypeList1: {xpath: '(//android.widget.TextView[@content-desc="itemIndustryType"])[1]'}
+        industryTypeList1: {xpath: '(//android.widget.TextView[@content-desc="itemIndustryType"])[1]'},
+        PICNameField: "~textFieldPicName",
+        PICNumberField: "~textFieldPicNumber"
     },
     buttons: {
         chooseBtn: "~buttonChoose",
@@ -34,7 +36,9 @@ module.exports = {
     messageErrorFields: {
         anchorNameField: "~textMsgNameError",
         industryTypeField: "~textMsgTypeError",
-        dateField: "~textMsgStartDateError"
+        dateField: "~textMsgStartDateError",
+        PICNameField: "~textErrorPicName",
+        PICNumberField: "~textErrorPicNumber"
     },
 
     // Function for call the id component

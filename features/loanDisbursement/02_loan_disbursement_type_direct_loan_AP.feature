@@ -109,5 +109,5 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
  Scenario: Continue Disburse The Loan With Status Rejected Process After "Perhitungan Pencairan"
   Given I have been on "Perhitungan pencairan page"
   When I continue to input PIN page
-  And system will direct to "Invoice Tidak Disetujui"
+  Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page

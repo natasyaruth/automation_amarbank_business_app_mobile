@@ -44,7 +44,9 @@ Feature: Select the Anchor
         And user should see error "Nama supplier wajib diisi" in the below of field "anchorNameField"
         And user should see error "Tipe industri wajib diisi" in the below of field "industryTypeField"
         And user should see error "Tanggal bekerjasama wajib diisi" in the below of field "dateField"
-
+        And user should see error "Nama perwakilan wajib diisi" in the below of field "PICNameField"
+        And user should see error "Nomor Hp / Telepon wajib diisi" in the below of field "PICNumberField"
+        
     @C83809 @LoanApp
     Scenario: User success fill data other anchor
         Given user on the anchor page
@@ -53,4 +55,6 @@ Feature: Select the Anchor
         And user fill a field "anchorName" with "UD Dagangan"
         When user select industry type
         And user select the date cooperating
+        And user fill a field "PICNameField" with "Budi"
+        And user fill a field "PICNumberField" with "08123456789"
         Then user click button next

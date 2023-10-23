@@ -1,5 +1,3 @@
-const loanDisbursement = require("../../pages/loanDisbursement");
-
 const { I, loginPage, loanDashboardPage, loanDisbursementPage } = inject();
 
 const globalVar = {
@@ -14,7 +12,7 @@ Given('I have been on Loan Dashboard to checking if customer have any past due d
  loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
 });
 When('I click button "Gunakan Limit" in card type Loan AP - Direct Loan', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAPDirectLoan();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAPDirectLoan();
 });
 
 Then('I have any past due date', () => {
@@ -22,7 +20,7 @@ Then('I have any past due date', () => {
 });
 
 Then('I direct to pay the bill limit section', async () => {
- await loanDisbursement.validateSectionHavePastDueDate();
+ await loanDisbursementPage.validateSectionHavePastDueDate();
 });
 
 //Scenario: Validate request loan disbursement for type Loan AP - Direct Loan when customer don't have any past due date
@@ -33,7 +31,7 @@ Given('I have been on Loan Dashboard to checking if customer do not have any pas
 });
 
 When('I click button "Gunakan Limit" in card type Loan AP - Direct Loan', () => {
- loanDisbursement.usingLimitLoanDisbursementTypeAPDirectLoan();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeAPDirectLoan();
 });
 
 Then('I do not have any past due date', () => {
@@ -41,7 +39,8 @@ Then('I do not have any past due date', () => {
 });
 
 Then('I direct to page for checking Loan Tenor', async () => {
- await loanDisbursementPage.validateSectionHaveNotPastDueDate()
+ await loanDisbursementPage.validateSectionHaveNotPastDueDate();
+
 });
 
 // Scenario: Validate request loan disbursement for type Direct Loan AP when Loan Tenor More Than Facility Due Date
@@ -229,43 +228,46 @@ Given('I have been in invoice detail to continue disbursement', () => {
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
  loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
- loanDisbursementPage.goToUploadDocument();
- loanDisbursementPage.takePicture();
- loanDisbursementPage.validateInvoiceConfirmation();
 });
 
 When('I continue to disburse the invoice with invoice amount less or equal than available limit', () => {
-
+ loanDisbursementPage.grabtextAvailableLimitDirectAP();
 });
 
-Then('I should be see "Perhitungan Pencairan" page', () => {
-
+Then('I should be see "Perhitungan Pencairan" page', async () => {
+ await loanDisbursementPage.fillingInvoiceDetailLessorEqualThanAvailableLimit();
 });
 
 // Scenario: Validate Section After Continue Disbursement with Case Invoice Amount More Than Available Limit
 Given('I have  been in invoice detail to continue disbursement', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
 });
 
 When('I continue to disburse the invoice with invoice amount more than available limit', () => {
-
+ loanDisbursementPage.fillingInvoiceMoreThanAvailableLimit();
 });
 
-Then('I should be see "Limit tidak mencukupi" section', () => {
-
+Then('I should be see "Limit tidak mencukupi" section', async () => {
+ await loanDisbursementPage.fillingInvoiceDetailMoreThanAvailableLimit();
 });
 
 Then('I back to the "Konfirmasii Page" after close the section', () => {
-
+ loanDisbursementPage.closeSectionInsufficientLimit();
 });
 
 // Scenario: Continue Disburse The Loan With Status Success After "Perhitungan Pencairan" Has Been Displayed With PIN is True
 Given('I have been on "Perhitungan pencairan page"', () => {
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
+ loanDisbursementPage.grabtextAvailableLimitDirectAP();
 
 });
 
-When('I continue disburse the loan and the status is Done', () => {
-
+When('I continue disburse the loan and the status is Done', async () => {
+ await loanDisbursementPage.fillingInvoiceDetailLessorEqualThanAvailableLimit();
 });
 
 Then('continue to input PIN page', () => {
@@ -273,7 +275,7 @@ Then('continue to input PIN page', () => {
 });
 
 Then('system will direct to "Pengiriman PDC(Cek Mundur)" page', () => {
-
+ loanDisbursementPage.isInvoiceAccbyAmarBank();
 });
 
 Then('system show "Segera Kirim PDC" after close the success page and back to the loan dashboard', () => {
@@ -282,18 +284,21 @@ Then('system show "Segera Kirim PDC" after close the success page and back to th
 
 // Scenario: Continue Disburse The Loan With Status Waiting After "Perhitungan Pencairan" Has Been Displayed With PIN is True
 Given('I have been on "Perhitungan pencairan page"', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
+ loanDisbursementPage.grabtextAvailableLimitDirectAP();
 });
 
-When('I continue disburse the loan and the status is process waiting', () => {
-
+When('I continue disburse the loan and the status is process waiting', async () => {
+ await loanDisbursementPage.fillingInvoiceDetailLessorEqualThanAvailableLimit();
 });
 
 Then('continue to input PIN page', () => {
 
 });
 Then('system will direct to "Proses Pengecekan Invoice"', () => {
-
+ loanDisbursementPage.isInvoiceAccbyAmarBank();
 });
 
 Then('system show "Proses Pengecekan Invoice" after close the waiting page and back to the loan dashboard', () => {
@@ -302,17 +307,22 @@ Then('system show "Proses Pengecekan Invoice" after close the waiting page and b
 
 // Scenario: Continue Disburse The Loan With Status Rejected Process After "Perhitungan Pencairan"
 Given('I have been on "Perhitungan pencairan page"', () => {
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanAPDirectLoan();
+ loanDisbursementPage.grabtextAvailableLimitDirectAP();
 
 });
 
-When('I continue to input PIN page', () => {
-
+When('I continue to input PIN page', async () => {
+ await loanDisbursementPage.fillingInvoiceDetailLessorEqualThanAvailableLimit();
 });
 
 Then('system will direct to "Invoice Tidak Disetujui"', () => {
-
+ loanDisbursementPage.isInvoiceAccbyAmarBank();
 });
 
 Then('system will be direct to the dashboard after close the page', () => {
-
+ loanDisbursementPage.closeRejectInvoiceNotAccept();
 });
+

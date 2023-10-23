@@ -56,6 +56,8 @@ module.exports = {
   },
 
   fillInformation(ktpData){
+    I.waitForElement(this.fields.eKtpNumber, 10);
+    
     const information = Object.keys(ktpData);
     for(let i=0;i<information.length;i++){
       const fieldName = information[i];
@@ -88,7 +90,7 @@ module.exports = {
         I.swipeDown(this.text.year, 3000, 4000);
         I.click(this.buttons.chooseDate);  
         I.waitForInvisible(this.buttons.chooseDate, 10);
-        I.swipeUp(this.fields.address, 800, 500);
+        I.swipeUp(this.datePicker.dateOfBirth, 800, 500);
       } else{
         throw new Error(information[i]+" not found, please check again data naming");
       }

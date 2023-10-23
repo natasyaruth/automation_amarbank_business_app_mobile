@@ -12,7 +12,7 @@ Feature: Submit Loan Type AR until sign privy
         And I click login
         Then I successed go to dashbord
 
-    Scenario: User validate Limit Loan Activation Approved
+    Scenario: User AR validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
         Then I select first list card loan approved
