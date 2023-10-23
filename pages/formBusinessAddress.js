@@ -10,7 +10,9 @@ module.exports = {
   },
   buttons: {
     openAccount: "~buttonOpenAccount",
-    closeBottomSheet: "~buttonClose"
+    closeBottomSheet: "~buttonClose",
+    email: "~buttonDirectEmail",
+    closePage: "~buttonClose",
   },
   dropDownsSearch:{
     province: "~textFieldProvince",
@@ -80,5 +82,9 @@ module.exports = {
     I.waitForElement(this.buttons.openAccount, 10);
     I.click(this.buttons.openAccount);
   },
+
+  closePageUploadDoc(){
+    I.click(this.buttons.closePage);
+  }
 
 }

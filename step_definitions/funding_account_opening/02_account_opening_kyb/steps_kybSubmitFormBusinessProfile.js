@@ -36,7 +36,7 @@ Then("I will notify my business profile has successfully submitted", () => {
 
 Then("I will directing to page business owner", async () => {
     I.waitForText("Pemilik bisnis", 10);
-    I.dontSee("Silahkan menambah Daftar Direktur sesuai akta");
+    I.dontSee("Anda wajib menambah direktur sesuai akta");
 
     I.see(globalVariable.formKtp.fullName);
     I.see(globalVariable.formKtp.eKTPNumber);
@@ -49,7 +49,7 @@ Then("I will directing to page business owner", async () => {
 
 Then("I will directing to page director list", async () => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
-    I.see("Silahkan menambah Daftar Direktur sesuai akta");
+    I.see("Anda wajib menambah direktur sesuai akta");
 
     I.see(globalVariable.formKtp.fullName);
     I.see(globalVariable.formKtp.eKTPNumber);
