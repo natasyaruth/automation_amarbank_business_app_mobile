@@ -59,7 +59,8 @@ Then("I can see BI Fast, SKN and RTGS", () => {
     I.waitForElement(transferPage.radioButtons.methodBifast,5);
     I.waitForElement(transferPage.radioButtons.methodRtol,5);
     I.waitForElement(transferPage.radioButtons.methodSkn,5);
-    
+});
+
 Then("I can see SKN and RTGS", () => {
     I.waitForElement(transferPage.radioButtons.methodRtgs,5);
     I.waitForElement(transferPage.radioButtons.methodSkn,5);
