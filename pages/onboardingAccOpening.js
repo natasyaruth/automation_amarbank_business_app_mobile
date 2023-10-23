@@ -1,6 +1,6 @@
 const { tabs } = require("./loanDashboard");
 
-const { 
+const {
   I,
   uploadKtpPage,
   uploadSelfiePage,
@@ -10,7 +10,7 @@ const {
   formEmploymentDataPage,
   formBusinessAddressPage,
   formBusinessProfilePage,
-  formBusinessOwnerPage 
+  formBusinessOwnerPage
 } = inject();
 
 module.exports = {
@@ -20,7 +20,12 @@ module.exports = {
     openAccount: "~btnOpenAccount",
     later: "~buttonBackLoan",
     next: "~buttonNext",
-    completeData: "~btnCompleteData"
+    completeData: "~btnCompleteData",
+    close: "~btnClose",
+    invitedDirectors: "~btnOpenInvited",
+    completeDoc: "~btnOpenDoc",
+    refresh: "~btnRefresh",
+    cardInvited: "~btnCard"
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -29,10 +34,17 @@ module.exports = {
     ud: "~optionUD",
     individual: "~optionIndividu",
   },
-  texts:{
+  texts: {
     userId: "~txtUserName",
     titleCardAccOpening: "~txtTitleCard",
     descCardAccOpening: "~txtDescCard",
+    invitedName: "~txtInvitedName",
+    email: "~txtEmailName",
+    progress: "~txtProgress",
+    status: "~",
+    ktp: "~txtPhoto",
+    verification: "~txtVerifData",
+    selfie: "~txtSelfie",
   },
   tabs: {
     home: "~tabHome",
@@ -100,29 +112,71 @@ module.exports = {
         I.waitForElement(formBusinessAddressPage.fields.address, 10);
         I.wait(3);
         break;
+      case "Upload Document Business":
+        I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        break;
+      case "Registration Director":
+        I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        break;  
       default:
         throw new Error("Page name is not recognize");
     }
   },
 
-  chooseLater(){
+  chooseLater() {
     // I.waitForElement(this.buttons.later, 10);
     // I.click(this.buttons.later);
     I.waitForText("Nanti Saja", 10);
     I.click("Nanti Saja");
   },
 
-  goToTabBusiness(){
+  goToTabBusiness() {
     I.click(this.tabs.business);
   },
 
-  async getUserId(){
+  async getUserId() {
     I.waitForElement(this.texts.userId, 10);
     return await I.grabTextFrom(this.texts.userId);
   },
 
-  continueCompleteData(){
+  continueCompleteData() {
     I.click(this.buttons.completeData);
   },
-  
+
+  continueCompleteDoc() {
+    I.click(this.buttons.completeDoc);
+  },
+
+  continueCompleteRegistrationDirectors() {
+    I.click(this.buttons.invitedDirectors);
+  },
+
+  closePageUploadDoc(){
+    I.click(this.buttons.close);
+  },
+
+  async getInvitedDirectorName(){
+    return await I.grabTextFrom(this.texts.invitedName);
+  },
+
+  async getInvitedDirectorEmail(){
+    return await I.grabTextFrom(this.texts.email);
+  },
+
+  openDetailRegistrationDirector(){
+    I.click(this.buttons.cardInvited);
+  },
+
+  async getStatus(){
+    return await I.grabTextFrom(this.texts.status);
+  },
+
+  async getProgress(){
+    return await I.grabTextFrom(this.texts.progress);
+  },
+
+  async getTextDetail(idText){
+    return await I.grabTextFrom(this.texts[idText]);
+  },
+
 }
