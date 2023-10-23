@@ -69,7 +69,9 @@ Then("I choose transfer service BIFAST", () => {
     transferPage.chooseBifast();
 });
 
-Then("I choose transfer service SKN", () => {});
+Then("I choose transfer service SKN", () => {
+    transferPage.chooseSkn();
+});
 
 When("I click transfer", () => {
     transferPage.processTransfer();
@@ -92,15 +94,6 @@ Then("I will directly go to page confirmation transfer", async () => {
     I.waitForElement(transferPage.texts.note,10);
     const actualnotes = await transferPage.getNotes();
     I.assertEqual(actualnotes,globalVariable.transfer.note);
-});
-
-When("I input wrong PIN", () => {
-    transferPage.inputPin("923879");
-});
-
-Then("I will be able to see message error {string}", async (expectedMessageErrorPIN) => {
-    let actualerrorPINmessage = await transferPage.getMessageErrorPIN();
-    I.assertEqual(actualerrorPINmessage,expectedMessageErrorPIN);
 });
 
 When("I input PIN {string}", (Pin) => {
@@ -158,6 +151,26 @@ Then("Then I successfully transferred between Amar Bank", () => {
     I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
     I.waitForElement(transferPage.buttons.close);
+});
+
+When("I input wrong PIN", () => {
+    transferPage.inputPin(dummyPin);
+});
+
+Then("I see Pin message error {string}", async (ExpectedMessageErrorPIN) => {
+    let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
+    I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+});
+
+Then("Then I see Pin message error for click twice {string}", async (expectedMessageErrorPIN) => {
+    let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
+    I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+    I.waitForText(transferPage.messageErrors.warningErrorPin,10);
+});
+
+Then("My PIN transaction will be temporary blocked for 30 minutes", () => {
+    I.waitForText("PIN Transaksimu Terblokir", 10);
+    I.see("Terdapat kesalahan memasukkan PIN sebanyak 3 kali sehingga fitur transfer diblokir selama 30 menit");
 });
 
 

@@ -14,8 +14,7 @@ module.exports = {
     category: "~textCategory",
     subCategory: "~textSubCategory",
     note: "~textNote",
-    warningErrorPin: "~textWarningPin",
-    blockedPin: "~textBlockPin",
+    
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -49,6 +48,8 @@ module.exports = {
     amount: "~textFieldErrorNominal",
     notes: "~textFieldErrorNote",
     pin: "~textFieldErrorPIN",
+    warningErrorPin: "~textWarningPin",
+    blockedPin: "~textBlockPin",
   },
 
   inputAmountTransfer(amount){
@@ -96,12 +97,12 @@ module.exports = {
     return await I.grabTextFrom(this.texts.note);
   },
 
-  async getWarningPIN(){
-    return await I.grabTextFrom(this.texts.warningErrorPin);
+  async getMessageWarningPIN(){
+    return await I.grabTextFrom(this.messageErrors.warningErrorPin);
   },
 
   async getMessageBlockedPin(){
-    return await I.grabTextFrom(this.texts.blockedPin);
+    return await I.grabTextFrom(this.messageErrors.blockedPin);
   },
 
   chooseCategory(category){

@@ -29,5 +29,6 @@ module.exports = {
         category: "",
         note:"",
         service:"",
+        pin: "",
     },
 }
