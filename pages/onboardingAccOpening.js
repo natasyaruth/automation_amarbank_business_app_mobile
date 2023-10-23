@@ -1,3 +1,5 @@
+const { tabs } = require("./loanDashboard");
+
 const { I } = inject();
 
 module.exports = {
@@ -20,7 +22,7 @@ module.exports = {
     titleCardAccOpening: "~txtTitleCard",
     descCardAccOpening: "~txtDescCard",
   },
-  tab: {
+  tabs: {
     home: "~tabHome",
     business: "~tabBusiness",
     callCenter: "~tabCallCenter",
@@ -85,7 +87,14 @@ module.exports = {
   },
 
   chooseLater(){
-    I.click(this.buttons.later);
+    // I.waitForElement(this.buttons.later, 10);
+    // I.click(this.buttons.later);
+    I.waitForText("Nanti Saja", 10);
+    I.click("Nanti Saja");
+  },
+
+  goToTabBusiness(){
+    I.click(this.tabs.business);
   },
 
   async getUserId(){
