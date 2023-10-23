@@ -23,15 +23,15 @@ exports.config = {
       appiumV2: true,
       app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator",
+      // device: "emulator",
       path: "/",
       desiredCapabilities: {
         platformName: "Android",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        deviceName: "emulator-5554",
-        appPackage: "id.co.amarbank.smb",
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        // deviceName: "emulator-5554",
+        // appPackage: "id.co.amarbank.smb",
+        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
         newCommandTimeout: 300,
       }
@@ -133,7 +133,7 @@ exports.config = {
       "./features/funding_account_opening/01_account_opening_kyc/*.feature",
       "./features/funding_account_opening/02_account_opening_kyb/*.feature",
       // "./features/funding_transfer/*.feature",
-      // "./features/funding_create_pin/*.feature",
+       "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
 
     ],

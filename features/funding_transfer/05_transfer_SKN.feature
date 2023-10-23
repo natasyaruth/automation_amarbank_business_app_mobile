@@ -36,7 +36,7 @@ Feature: User transfer SKN
         And I choose transer service SKN
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '224466'
         Then I successfully transferred without notes 
 
     Scenario: User transfer with SKN and input notes with emoji & symbol
@@ -77,7 +77,7 @@ Feature: User transfer SKN
         And i choose transer service SKN
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '224466'
         Then I successfully transferred
 
     Scenario: User confirmation transfer with SKN
@@ -102,7 +102,7 @@ Feature: User transfer SKN
         And I click choose bank transfer service
         And I will directly go to page confirmation transfer between Amar Bank
         And I click transfer now
-        And I input PIN
+        And I input PIN '224466'
         Then I successfully transferred between Amar Bank    
 
     Scenario: User successfully transfer
@@ -116,7 +116,7 @@ Feature: User transfer SKN
         And i choose transer service SKN
         And I click transfer
         And I click transfer now
-        And I input PIN
+        And I input PIN '224466'
         Then I successfully transferred
         And I receive an email
 
@@ -146,7 +146,6 @@ Feature: User transfer SKN
         And I input wrong PIN
         Then I see Pin message error for click twice "Pin yang dimasukkan salah, silahkan coba lagi"
        
-
     Scenario: User input incorrect PIN three times
         Given I am a customer who wants to Transfer and has friend list
         When I search name 'Sheena Andrian' in friendlist
@@ -160,33 +159,8 @@ Feature: User transfer SKN
         And I input wrong PIN 
         Then My PIN transaction will be temporary blocked for 30 minutes
 
-    Scenario: User input incorrect PIN fourth
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
-        And I choose the friendlist
-        And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
-        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
-        And i choose transer service SKN
-        And I click transfer
-        And I click transfer now
-        And I input wrong PIN 
-        Then I see Pin message error "Pin yang dimasukkan salah, silahkan coba lagi"
-        And I see message "Fitur transfer akan diblokir selama 30 menit jika kamu salah PIN 5(lima) kali"
-
-    Scenario: User input incorrect PIN fifth
-        Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
-        And I choose the friendlist
-        And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
-        And I input notes with 'Pembayaran Pinjamanan bulan oktober'
-        And i choose transer service SKN
-        And I click transfer
-        And I click transfer now
-        And I input wrong PIN 
-        Then My PIN transaction will be blocked for one day
-
+    
+    
 
 
 

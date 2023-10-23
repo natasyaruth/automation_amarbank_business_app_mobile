@@ -160,17 +160,21 @@ When("I input wrong PIN", () => {
 Then("I see Pin message error {string}", async (ExpectedMessageErrorPIN) => {
     let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
     I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+    transferPage.inputPin(dummyPin);
 });
 
 Then("Then I see Pin message error for click twice {string}", async (expectedMessageErrorPIN) => {
     let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
     I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
-    I.waitForText(transferPage.messageErrors.warningErrorPin,10);
+    I.waitForText(transferPage.messageErrors.warningErrorPin, 10);
+    transferPage.inputPin(dummyPin);
 });
 
 Then("My PIN transaction will be temporary blocked for 30 minutes", () => {
     I.waitForText("PIN Transaksimu Terblokir", 10);
-    I.see("Terdapat kesalahan memasukkan PIN sebanyak 3 kali sehingga fitur transfer diblokir selama 30 menit");
+    I.waitForText(transferPage.messageErrors.blockedPin,10);
+    createPINPage.closeSheetBlocked();
+    transferPage.backToDashboard();
 });
 
 

@@ -29,7 +29,6 @@ module.exports = {
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
     checkMethod: "~buttonChangeMethod",
-    clooseBottomLocked: "~buttonClose",
     backToDashboard: "~buttonBackToDashboard",
     callCenter:"~buttonCallCenter",
 
