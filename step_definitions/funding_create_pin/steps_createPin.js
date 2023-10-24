@@ -27,6 +27,7 @@ Then("I go to page other ", () => {
 When("I click create transaction pin", () => {
     createPINPage.goToCreatePIN();
 });
+
 Then("I will see bottom sheet call our team", () => {
     I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman', 5);
     I.see(createPINPage.buttons.whatsapp);
@@ -137,6 +138,7 @@ When("I input new PIN with {string}", (newPin)=>{
 
 When("I input incorrect confirmation new PIN", () => {
     I.waitForText("Konfirmasi PIN Baru", 10);
+    
 When("I input confirmation new PIN", () => {
 When("I input incorrect confirmation new PIN", ()=>{
     I.waitForText("Konfirmasi PIN Baru", 10);
