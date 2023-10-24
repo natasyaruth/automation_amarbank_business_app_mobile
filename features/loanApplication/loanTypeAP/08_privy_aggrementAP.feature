@@ -20,16 +20,27 @@ Feature: Submit Loan Type AP until sign privy
         And user validate content limit approved page
         And user click accept the limit offer
         And user should see text view "Dokumen Surat Kuasa" on bottom sheet "titleSuratKuasa"
-        And user should see terms and condition before signing Surat Kuasa
-        And user click button "Download" Dokumen Surat Kuasa in the bellow of field "buttonDownload"
-        And user click button "Nanti Saja" Dokumen Surat Kuasa in the bellow of field "buttonLater"
-        And user click button close on bottom sheet
-        And user on tnc sign digital with privy page
-        And user should see countdown timer is showing
-        And user validate anountion information about privy
-        And user validate anountion prepare the documents
-        And user click button view additional document
-        And user validate bottom sheet anountion "AP"
+        And user should see label tnc information download surat kuasa
+        And user should see step "first" download surat kuasa
+        And user should see step "two" download surat kuasa
+        And user should see step "three" download surat kuasa
+        And user should see step "four" download surat kuasa
+        And user click button Download Dokumen Surat Kuasa
+        And user validate tosh message success download
+        And user click field Download Surat Kuasa
+        And user click button Nanti Saja Dokumen Surat Kuasa
+        And user click field Download Surat Kuasa
+        And user click button close on bottom sheet 
+        And user click icon information Tanda Tangan Digital via Privy
+        And user validate text view information privy
+        And user validate text view prepare document
+        And user click checkbox tnc
+        ##And user on tnc sign digital with privy page
+        ##And user should see countdown timer is showing
+        ##And user validate anountion information about privy
+        ##And user validate anountion prepare the documents
+        ##And user click button view additional document
+        ##And user validate bottom sheet anountion "AP"
         And user should see digital signature privy aggrement page
         And user should see tnc privy page
         And user click button read and sign

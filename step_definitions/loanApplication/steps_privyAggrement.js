@@ -3,15 +3,6 @@ const { I, privyAggrementPage} = inject();
 Given(/user click accept the limit offer/, () => {
     privyAggrementPage.clickBtnAcceptLimitOffer();
 });
-Given(/user click button close on bottom sheet/, () => {
-    privyAggrementPage.clickBtnClose();
-});
-Given(/user click button download dokumen surat kuasa/, () => {
-    privyAggrementPage.clickBtnDownload();
-});
-Given(/user click button nanti saja dokumen surat kuasa/, () => {
-    privyAggrementPage.clickBtnLater();
-});
 Given(/user on tnc sign digital with privy page/, () => {
     privyAggrementPage.viewTncWithPrivyPage();
 });
@@ -74,3 +65,39 @@ Then(/user validate subtitle waiting check status \"([^\"]*)\" on field \"([^\"]
 Then(/user click button check status/, () => {
     privyAggrementPage.clickBtnCheckStatus();
 })
+
+// enhancement screen tnc sign privy
+Then(/user should see step \"([^\"]*)\" download surat kuasa/, (stepType) => {
+    I.wait(2);
+    privyAggrementPage.validateStepDownloadSuratKuasa(stepType);
+});
+Then(/user click button Download Dokumen Surat Kuasa/, () => {
+    privyAggrementPage.clickBtnDownload();
+});
+Then(/user click button Nanti Saja Dokumen Surat Kuasa/, () => {
+    privyAggrementPage.clickBtnLater();
+});
+Then(/user click button close on bottom sheet /, () => {
+    privyAggrementPage.clickBtnClose();
+});
+Then(/user click field Download Surat Kuasa/, () => {
+    privyAggrementPage.clickBtnInfoDownload();
+});
+Then(/user click icon information Tanda Tangan Digital via Privy/, () => {
+    privyAggrementPage.clickBtnInfoSignPrivy();
+});
+Then(/user validate text view prepare document/, () => {
+    privyAggrementPage.clickDocumentRequirement();
+});
+Then(/user validate tosh message success download/, ()=>{
+    privyAggrementPage.validateToshMessage();
+});
+Then(/user validate text view information privy/, ()=>{
+    privyAggrementPage.validateInformationPrivy();
+});
+Then(/user validate text view prepare document/, ()=>{
+    privyAggrementPage.validatePrepareDocument();
+});
+Then(/user click checkbox tnc /, () => {
+    privyAggrementPage.clickcheckBox();
+});

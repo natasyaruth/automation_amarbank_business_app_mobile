@@ -27,6 +27,13 @@ module.exports = {
     titleWaitingLimitActivation: { xpath: '//android.widget.TextView[contains(@text, "Proses Aktivasi Limit Pinjaman")]' },
     subTitleWaitingLimitActivation: { xpath: '//android.widget.TextView[contains(@text, "Mohon menunggu, butuh 1-3 menit untuk mengaktivasi layanan pinjaman.")]' },
     titleSuratKuasa: { xpath: '//android.widget.TextView[contains(@text, "Download Surat Kuasa")]' },
+    textViewStepFirst: { xpath: '//android.widget.TextView[contains(@text, "Klik Tombol Download")]' },
+    textViewStepTwo: { xpath: '//android.widget.TextView[contains(@text, "Isi informasi yang dibutuhkan")]' },
+    textViewStepThree: { xpath: '//android.widget.TextView[contains(@text, "Print & Tanda Tangan")]' },
+    textViewStepFour: { xpath: '//android.widget.TextView[contains(@text, "Kirimkan Surat Kuasa")]' },
+    textViewInformationPrivy: { xpath: '//android.widget.TextView[contains(@text, "Saya menyetujui menggunakan Tanda Tangan Digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat.")]' },
+    textViewPrepareDocument: { xpath: '//android.widget.TextView[contains(@text, "Persiapkan dokumen tambahan yang dibutuhkan saat mencairkan limit.")]' },
+    toastSuratKuasa: { xpath: '//android.widget.TextView[contains(@text, "Surat kuasa sudah berhasil diunduh. Mohon segera isi dan kirim")]' }
   },
   buttons: {
     btnClose: "~buttonClose",
@@ -38,11 +45,14 @@ module.exports = {
     btnCheckStatus: "",
     btnAcceptLimitOffer: "",
     btnDownload: "~buttonDownload",
-    btnLater: "~buttonLater"
+    btnLater: "~buttonLater",
+    btnInfoDownload: "~buttonInfoDownload",
+    btnInfoSignPrivy: "~buttonInfoSignPrivy",
+    btnDocumentRequirement: "~buttonDocumentRequirement"
 
   },
   checkBox: {
-    cbTnC: ""
+    cbTnC: "~checkbox"
   },
 
   // async getString() {
@@ -138,6 +148,22 @@ module.exports = {
     I.wait(2);
     I.click(this.buttons.btnLater);
   },
+  clickBtnInfoDownload() {
+    I.wait(2);
+    I.click(this.buttons.btnInfoDownload);
+  },
+  clickBtnInfoSignPrivy() {
+    I.wait(2);
+    I.click(this.buttons.btnInfoSignPrivy);
+  },
+  clickDocumentRequirement() {
+    I.wait(2);
+    I.click(this.buttons.btnDocumentRequirement);
+  },
+  clickcheckBox() {
+    I.wait(2);
+    I.click(this.checkBox.cbTnC);
+  },
   async validateBottomSheetContent(loanType) {
     I.wait(2);
     switch (loanType) {
@@ -189,6 +215,53 @@ module.exports = {
   clickBtnNextOnPrivy(){
     I.wait(2);
     I.click(this.buttons.btnNextOnPrivy);
+  },
+  async validateStepDownloadSuratKuasa(stepType) {
+    I.wait(2);
+    switch (stepType) {
+      case 'first':
+        I.wait(2);
+        I.seeElement(this.textView.textViewStepFirst);
+        I.seeElement(this.textView.titleSuratKuasa);
+        let actualValueFirst = await I.grabAttributeFrom(this.textView.textViewStepFirst, "text");
+        I.assertEqual(actualValueFirst, "Klik Tombol Download");
+      break;
+      case 'two':
+        I.wait(2);
+        I.seeElement(this.textView.textViewStepTwo);
+        I.seeElement(this.textView.titleSuratKuasa);
+        let actualValueTwo = await I.grabAttributeFrom(this.textView.textViewStepTwo, "text");
+        I.assertEqual(actualValueTwo, "Isi informasi yang dibutuhkan");
+      break;
+      case 'three':
+        I.wait(2);
+        I.seeElement(this.textView.textViewStepThree);
+        I.seeElement(this.textView.titleSuratKuasa);
+        let actualValueThree = await I.grabAttributeFrom(this.textView.textViewStepThree, "text");
+        I.assertEqual(actualValueThree, "Print & Tanda Tangan");
+      break;
+      case 'four':
+        I.wait(2);
+        I.seeElement(this.textView.textViewStepFour);
+        I.seeElement(this.textView.titleSuratKuasa);
+        let actualValueFour = await I.grabAttributeFrom(this.textView.textViewStepFour, "text");
+        I.assertEqual(actualValueFour, "Kirimkan Surat Kuasa");
+      break;
+    }
+  },
+  async validateToshMessage(){
+    I.wait(3);
+    let actualValue = await I.grabAttributeFrom(this.textView.toastSuratKuasa, 'text');
+    I.assertEqual(actualValue, "Surat kuasa sudah berhasil diunduh. Mohon segera isi dan kirim");
+  },
+  async validateInformationPrivy(){
+    I.wait(3);
+    let actualValue = await I.grabAttributeFrom(this.textView.textViewInformationPrivy, 'text');
+    I.assertEqual(actualValue, "Saya menyetujui menggunakan Tanda Tangan Digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat.");
+  },
+  async validatePrepareDocument(){
+    I.wait(3);
+    let actualValue = await I.grabAttributeFrom(this.textView.textViewPrepareDocument, 'text');
+    I.assertEqual(actualValue, "Persiapkan dokumen tambahan yang dibutuhkan saat mencairkan limit.");
   }
-
 }
