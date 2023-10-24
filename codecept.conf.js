@@ -23,7 +23,7 @@ exports.config = {
       appiumV2: true,
       //app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator-5554",
+      device: "emulator",
       path: "/",
       //port: 4444,
       desiredCapabilities: {
@@ -32,9 +32,9 @@ exports.config = {
         deviceName: "Pixel 2 API 31",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
         newCommandTimeout: 300,
       }

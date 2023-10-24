@@ -173,5 +173,3 @@ Then("I will go back to page other", () => {
     I.see(createPINPage.buttons.changePIN);
     I.waitForElement(createPINPage.toastbar.successPin);
 });
-
-
