@@ -138,9 +138,9 @@ When("I input new PIN with {string}", (newPin)=>{
 
 When("I input incorrect confirmation new PIN", () => {
     I.waitForText("Konfirmasi PIN Baru", 10);
-    
+        
 When("I input confirmation new PIN", () => {
-    
+
 When("I input incorrect confirmation new PIN", ()=>{
     I.waitForText("Konfirmasi PIN Baru", 10);
     
