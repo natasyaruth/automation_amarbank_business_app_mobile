@@ -12,6 +12,7 @@ Feature: Account Opening Main Dashboard
             | userID   | ruth17a5 |
             | password | Test1234 |
         And I click login
+        And I click later
         And I will direct to dashboard
         And I choose Giro Account
 
@@ -463,3 +464,4 @@ Feature: Account Opening Main Dashboard
         And I close page upload document
         Then I will see card continue to complete upload document business and registration director list
         And I can continue to page 'Registration Director'
+        And I can see details registration director
