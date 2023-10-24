@@ -170,23 +170,22 @@ When ("I input incorrect OTP", ()=>{
     I.see("Masukkan Kode OTP");
     createPINPage.inputOTP("111111");
 });
-When("I input OTP", () => {
+
 When("I input OTP",()=>{
 When("I input OTP",()=>{
     // step to get OTP code from email using API
     createPINPage.inputOTP();
 });
-Then("My PIN successfully created", () => {
+Then("My PIN successfully created", () => {});
 Then("My PIN successfully created", ()=>{
     I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
 });
-Then("I will directly go to Friend list page", () => {
+Then("I will directly go to Friend list page", () => {});
 Then("I will directly go to Friend list page", ()=>{
     createPINPage.continueAfterCreatePin();
     // add waiting button friendlist
-}):
-    
-});
+});    
+
 Then("I will go back to page other", () => {
     I.see(createPINPage.buttons.changepPassword);
     I.see(createPINPage.buttons.changePIN);
