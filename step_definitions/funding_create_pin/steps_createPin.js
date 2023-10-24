@@ -150,11 +150,11 @@ When("I input confirmation new PIN", ()=>{
     I.waitForText("Konfirmasi PIN Baru", 10);
     createPINPage.inputPIN(globalVariable.createPin.newPin);
 });
-Then("I will see message error {string} in the below of field confirmation pin", async (expectedMessageError)=>{
+Then("I will see message error {string} in the below of field confirmation pin", async (expectedMessageError)=> {
 
 Then("I will see message error {string} in the below of field confirmation pin", async (expectedMessageError)=>{
     let actualMessageError = await createPINPage.getMessageErrorPIN();
-    I.assertEqual(actualMessageError,expectedMessageError);
+    I.assertEqual(actualMessageError, expectedMessageError);
 });
 Then("I will see message error {string} in the below of field otp code", async (expectedMessageError)=>{
 
@@ -162,7 +162,7 @@ Then("I will see message error {string} in the below of field otp code", async (
     let actualMessageError = await createPINPage.getMessageErrorOTP();
     I.assertEqual(actualMessageError, expectedMessageError);
 });
-When ("I input incorrect OTP", ()=>{
+When ("I input incorrect OTP", () => {
 
 When ("I input incorrect OTP", ()=>{
     I.waitForText("Verifikasi E-mail", 10);
@@ -170,13 +170,13 @@ When ("I input incorrect OTP", ()=>{
 
     createPINPage.inputOTP("111111");
 });
-When("I input OTP",()=>{
+When("I input OTP", () => {
 
 When("I input OTP",()=>{
     // step to get OTP code from email using API
     createPINPage.inputOTP();
 });
-Then("My PIN successfully created", ()=>{
+Then("My PIN successfully created", () => {
 
 Then("My PIN successfully created", ()=>{
     I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
