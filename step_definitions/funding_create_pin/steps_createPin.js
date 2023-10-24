@@ -1,10 +1,12 @@
 const { button } = require("../../pages/otpConfirmation");
+
 const {
     I,
     createPINPage,
     headerPage,
     globalVariable,
 } = inject();
+
 const dummyPswrd = "Ruth!@#$$";
 Given("I am a customer who wants to create PIN", () => { });
 Given("I don't have a PIN", () => { });
@@ -13,12 +15,15 @@ When("I don't have a PIN", () => { });
 When("I choose other", () => {
     createPINPage.goToOtherMenu();
 });
+
 Then("I go to page other ", () => {
+
 Then("I go to page other ", () => {    
     Then("I can see change password and create transaction pin", () => { });
     I.waitForElement(createPINPage.buttons.changepPassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
+
 When("I click create transaction pin", () => {
     createPINPage.goToCreatePIN();
 });
@@ -28,11 +33,13 @@ Then("I will see bottom sheet call our team", () => {
     I.see(createPINPage.buttons.emailSupport);
     createPINPage.closeBottomSheet();
 });
+
 Then("I will see bottom sheet call our team", () => {
     I.see(createPINPage.buttons.changepPassword);
     I.see(createPINPage.buttons.changePIN);
     createPINPage.closeBottomSheet();
 });
+
 Given("Given I am a customer who wants to create PIN from menu other", () => { });
 When("When I choose other", () => {
     createPINPage.goToOtherMenu();
@@ -40,6 +47,7 @@ When("When I choose other", () => {
 When("I choose menu Transfer from main dashboard", () => {
     I.click("Go To Transfer");
 });
+
 Then("I go to page other ", () => {
     Then("I can see change password and create transaction pin", () => { });
     I.waitForElement(createPINPage.buttons.changepPassword, 5);
@@ -126,6 +134,7 @@ When("I input new PIN with {string}", (newPin)=>{
     createPINPage.inputPIN(newPin);
     globalVariable.createPin.newPin = newPin;
 });
+
 When("I input incorrect confirmation new PIN", () => {
     I.waitForText("Konfirmasi PIN Baru", 10);
 When("I input confirmation new PIN", () => {
@@ -180,6 +189,7 @@ Then("I will go back to page other", () => {
     I.see(createPINPage.buttons.changePIN);
     I.waitForElement(createPINPage.toastbar.successPin);
 });
+
 Then("I will see toastbar {string}", (successPINMessage) => {
     I.see(successPINMessage);
 });
