@@ -15,15 +15,15 @@ module.exports = {
         subTitleBottomSheet: { xpath: '//android.widget.TextView[contains(@text, "Pengajuanmu akan segera diproses oleh tim Amar Bank")]' },
         descriptionBottomSheet: { xpath: '//android.widget.TextView[contains(@text, "Proses verifikasi pinjaman juga mencakup pembuatan rekening giro secara otomatis.")]' },
         loanProcessPage : {xpath: '//android.widget.TextView[contains(@text, "Pengajuanmu Sedang Diproses Tim Kami")]'},
-        titleDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Pengecekan Dokumen")]'},
         statusCurrentProcess: {xpath: '//android.widget.TextView[contains(@text, "Proses saat ini")]'},
         wordingDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Dokumen sudah berhasil dikirim, Tim kami akan memprosesnya.")]'},
-        titleAnalystCreditField: {xpath: '//android.widget.TextView[contains(@text, "Analisa Kredit")]'},
         statusProcessComplete: {xpath: '//android.widget.TextView[contains(@text, "Proses selesai")]'},
         wordingAnalystCreditField: {xpath: '//android.widget.TextView[contains(@text, "Hasil analisa kredit akan menentukan limit pinjaman yang Anda gunakan untuk transaksi dengan supplier.")]'},
-        titleLastStepField: "",
-        statusLastStepField: "",
-        wordingLastStepField: ""
+        wordingLastStepField: "",
+        titleDocumentField: {xpath: '//android.widget.TextView[contains(@text, "Pengecekan Dokumen")]'},
+        titleAnalystCreditField: {xpath: '//android.widget.TextView[contains(@text, "Analisa Kredit")]'},
+        titleLastStepField: {xpath: '//android.widget.TextView[contains(@text, "Langkah Terakhir")]'},
+        progressBarLoan: ""
     },
     buttons: {
         btnViewDocument: "",
@@ -118,5 +118,31 @@ module.exports = {
                 I.assertEqual(valueComplete, "Proses selesai");
             break;
         }
-    }
+    },
+    async validateLoanProcess(stepType) {
+        I.wait(2);
+        switch (stepType) {
+          case 'Pengecekan Dokumen':
+            I.wait(2);
+            I.seeElement(this.fields.titleDocumentField);
+            I.seeElement(this.fields.progressBarLoan);
+            let actualValueDocument = await I.grabAttributeFrom(this.fields.titleDocumentField, "text");
+            I.assertEqual(actualValueDocument, "Pengecekan Dokumen");
+          break;
+          case 'Analisa Kredit':
+            I.wait(2);
+            I.seeElement(this.fields.titleAnalystCreditField);
+            I.seeElement(this.fields.progressBarLoan);
+            let actualValueAnalyst = await I.grabAttributeFrom(this.fields.titleAnalystCreditField, "text");
+            I.assertEqual(actualValueAnalyst, "Analisa Kredit");
+          break;
+          case 'Langkah Terakhir':
+            I.wait(2);
+            I.seeElement(this.fields.titleLastStepField);
+            I.seeElement(this.fields.progressBarLoan);
+            let actualValueLast = await I.grabAttributeFrom(this.fields.titleLastStepField, "text");
+            I.assertEqual(actualValueLast, "Langkah Terakhir");
+          break;
+        }
+    },    
 }
