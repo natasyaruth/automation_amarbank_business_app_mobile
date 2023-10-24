@@ -6,11 +6,11 @@ Feature: Loan Disbursement for Loan Type AR
 
  Background: Login with registered account
   Given I am a registered customer with following details:
-   | userID   | rutha013 |
-   | password | 1234Test |
+   | userID   | bots2912   |
+   | password | TestSmb123 |
   When I filling in form login with the following details:
-   | userID   | rutha013 |
-   | password | 1234Test |
+   | userID   | bots2912   |
+   | password | TestSmb123 |
   And I click login
   Then I will direct to dashboard
 
@@ -109,7 +109,5 @@ Feature: Loan Disbursement for Loan Type AR
  Scenario: Continue Disburse The Loan With Status Rejected Process After "Perhitungan Pencairan"
   Given I have been on "Perhitungan pencairan page"
   When I continue to input PIN page
-  And system will direct to "Invoice Tidak Disetujui"
+  Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page
-
-
