@@ -14,6 +14,7 @@ module.exports = {
     category: "~textCategory",
     subCategory: "~textSubCategory",
     note: "~textNote",
+    
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -28,6 +29,9 @@ module.exports = {
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
     checkMethod: "~buttonChangeMethod",
+    backToDashboard: "~buttonBackToDashboard",
+    callCenter:"~buttonCallCenter",
+
   },
   cards: {
     category: "~itemCategory",
@@ -35,14 +39,16 @@ module.exports = {
   }, 
   radioButtons:{
     methodRtol: "~optionRTOL",
-    methodSkn: "~optionSKN",
     methodRtgs: "~optionRTGS",
-    methodBifast: "~optionBifast"
+    methodBifast: "~optionBifast",
+    methodSkn: "~optionSKN",
   },
   messageErrors: {
     amount: "~textFieldErrorNominal",
     notes: "~textFieldErrorNote",
     pin: "~textFieldErrorPIN",
+    warningErrorPin: "~textWarningPin",
+    blockedPin: "~textBlockPin",
   },
 
   inputAmountTransfer(amount){
@@ -88,6 +94,14 @@ module.exports = {
 
   async getNotes(){
     return await I.grabTextFrom(this.texts.note);
+  },
+
+  async getMessageWarningPIN(){
+    return await I.grabTextFrom(this.messageErrors.warningErrorPin);
+  },
+
+  async getMessageBlockedPin(){
+    return await I.grabTextFrom(this.messageErrors.blockedPin);
   },
 
   chooseCategory(category){
@@ -136,5 +150,13 @@ module.exports = {
 
   shareReceipt(){
     I.click(this.buttons.share);
-  }
+  },
+
+  backToDashboard(){
+    I.click(this.buttons.backToDashboard);
+  },
+
+  callAmarTeamService(){
+    I.click(this.buttons.callCenter);
+  },
 }
