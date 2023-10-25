@@ -37,6 +37,9 @@ module.exports = {
     buttonSaveForLater: "~buttonSaveForLater",
     buttonVerify: "~buttonVerify",
     buttonNext: "~buttonNext",
+    //Type PO 
+    buttonAddNewSupplier: "~buttonAddNewSupplier",
+    buttonSelectSupplier: "~buttonSelectSupplier",
   },
 
   cards: {
@@ -524,9 +527,20 @@ module.exports = {
     I.click(this.buttons.buttonUseLimit);
   },
 
+  async goToDataSupplier() {
+    const showListDataSupplier = await I.click(this.buttons.buttonInputSupplier);
+    if (showListDataSupplier) {
+      I.wait(this.buttons.buttonAddNewSupplier);
+      I.seeElement(this.buttons.buttonAddNewSupplier);
+      I.seeElement(this.buttons.buttonSelectSupplier);
+    } else {
+      I.wait(this.textFields.textFieldSearchBank);
+      I.seeElement(this.textFields.textFieldSearchBank);
+    }
+  },
+
 
   //Loan Type AR
-
   usingLimitLoanDisbursementTypeLoanAR() {
     I.seeElement(this.cards.cardLimitAR);
     I.waitForElement(this.buttons.buttonUseLimit);
@@ -548,6 +562,18 @@ module.exports = {
       I.fillField(this.textFields.textFieldNominal, text);
       I.fillField('01/09/2023');
     });
+  },
+
+  validateInvoiceConfirmationDetailTypePO() {
+    I.see('Dokumen Invoice');
+    I.see('Nominal Invoice');
+    I.see('Nomor Invoice');
+    I.see('Tanggal Invoice');
+    I.see('Masa Berlaku Invoice');
+    I.see('Rekening Supplier');
+    I.seeElement(this.buttons.buttonInputSupplier);
+    I.seeElement(this.buttons.buttonDisburse);
+    I.seeElement(this.buttons.buttonComplaint);
   },
 
 }
