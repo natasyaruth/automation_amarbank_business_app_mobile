@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const { I, headerPage} = inject();
+const { I, headerPage, onboardingAccOpeningPage} = inject();
 
 module.exports = {
 
@@ -110,7 +110,10 @@ module.exports = {
 
     reloadPageAfterResetState() {
         headerPage.clickButtonBack();
-        I.waitForText("Dashboard Screen", 10)
+        I.waitForElement(onboardingAccOpeningPage.tabs.business, 10)
+        I.wait(1);
+        I.click(onboardingAccOpeningPage.tabs.business);
+        I.waitForText("Go To KYC", 10);
         I.click("Go To KYC");
     },
 }
