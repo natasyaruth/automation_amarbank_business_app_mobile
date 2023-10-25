@@ -41,6 +41,14 @@ Given("I am a registered customer with following details:", (table) => {
     }
 });
 
+Given("I am a registered customer invited business with following details:", (table) => {
+    welcomePage.clickButtonLogin();
+
+    const account = table.parse().rowsHash();
+    globalVariable.login.password = account["password"];
+    globalVariable.login.userID = account["userID"];
+});
+
 When("I filling in form login with the following details:",
     (table) => {
         const account = table.parse().rowsHash();
@@ -150,6 +158,7 @@ When("I click logout", () => {
 Then("I click button loan dashboard", () => {
     loginPage.clickBtnOnBoardingPage();
 });
+
 Then("I should see checkbox remember me is checked", () => {
     I.waitForText("Masuk Akun", 10);
     I.seeAttributesOnElements(
