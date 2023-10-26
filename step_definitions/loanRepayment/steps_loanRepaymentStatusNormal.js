@@ -15,7 +15,7 @@ When('I am validating the list card repayment with status Normal', async () => {
 });
 
 Then('I should be see the closest active bill with status Normal', () => {
-
+ loanRepaymentPage.validateColorStatusNormal();
 });
 
 // Scenario: Validate Alert Text After Loan Disbursement was Successfull
@@ -33,4 +33,16 @@ Then('I should be see alert text that loan was successfull disbursed', async () 
 
 Then('I should not be see the alert text loan was successfull after I close the section', () => {
  loanRepaymentPage.closeInformationTextLoanHasBeenSuccessedDisbursed();
+});
+
+// Scenario: Accessing History Detail to See All On Process Bill Activity
+Given('I have been on loan dashboard to see all on process bill activity', () => {
+ loanDashboardPage.goToLoanDashboard();
+});
+When('I access "Lihat Semua"', async () => {
+ await loanRepaymentPage.goToHistoryBill();
+});
+
+Then('I should be direct to the history bill with filter on process', async () => {
+ await loanRepaymentPage.validateIfMoreThan1Repayment();
 });

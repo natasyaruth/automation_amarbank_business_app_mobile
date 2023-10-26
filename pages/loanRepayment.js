@@ -12,6 +12,10 @@ module.exports = {
     buttonDetail: "~buttonDetail",
   },
 
+  texts: {
+    nominalBill: "~nominalBill",
+  },
+
   // Status Normal
   async validateCardStatusNormalRepayment() {
     try {
@@ -49,6 +53,27 @@ module.exports = {
   closeInformationTextLoanHasBeenSuccessedDisbursed() {
     I.seeElement(this.buttons.buttonClose);
     I.click(this.buttons.buttonClose);
+  },
+
+  async goToHistoryBill() {
+    try {
+      await I.waitForElement(this.buttons.buttonSeeAllBills);
+      console.log('Button See All Bills is exist');
+      I.click(this.buttons.buttonSeeAllBills);
+      I.seeElement(this.buttons.filterOngoing);
+    } catch (error) {
+      console.log('Button See All Bills is not exist');
+    }
+  },
+
+  async validateIfMoreThan1Repayment() {
+    I.seeElement(this.buttons.itemBill);
+    let count = await I.grabNumberOfVisibleElements(this.buttons.itemBill);
+    if (count > 1) {
+      console.log('Bill card more than one item');
+    } else {
+      console.log('Bill card only one item');
+    }
   },
 
   // Status Due Date
@@ -105,6 +130,28 @@ module.exports = {
     }
   },
 
+  async accessDetailForDueDate3() {
+    I.see('3 hari lagi');
+    let nominalBill = await I.grabTextFrom(this.texts.nominalBill);
+    I.click(this.buttons.buttonSeeAllBills);
+    I.waitForElement(this.buttons.itemBill);
+    let nominalBillDetails = await I.grabTextFrom(this.texts.nominalBillDetails);
+    if (nominalBillDetails === nominalBillDetails) {
+      console.log('Nominal bill is equal');
+      I.click(this.buttons.itemBill);
+    } else {
+      console.log('Nominal bill is not equal');
+    }
+  },
+
+  validateBillDateDueDate3() {
+    I.see('Detail Tagihan');
+    I.see('Tagihan Akan Di Autodebet Dalam');
+    I.see('3 hari lagi');
+    I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+    I.seeElement(this.buttons.buttonDetail);
+
+  },
   //Status Failed
   async validateCardStatusFailed() {
     try {

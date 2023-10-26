@@ -8,6 +8,9 @@ const {
 Given("I am a customer want to open Giro Account", () => {
 });
 
+Given("I am a invited customer wants to complete my KYC data", () => {
+});
+
 Given("I see information and benefit of Giro Account", () => {
     I.waitForText("Apa kebutuhan Anda saat ini?", 10);
     I.see("Dapatkan Rekening Giro");
@@ -103,6 +106,11 @@ Then ("I can continue to page {string}", (pageName) =>{
 
 When("I close page upload document", ()=>{
     onboardingAccOpeningPage.closePageUploadDoc();
+});
+
+When("I continue to register my KYC data", ()=>{
+    onboardingAccOpeningPage.continueToKYC();
+    I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
 });
 
 Then("I will see card continue to complete upload document business", () =>{

@@ -7,6 +7,7 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
+        companyName: "",
     },
     login: {
         password: "",
