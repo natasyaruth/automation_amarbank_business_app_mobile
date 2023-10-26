@@ -25,4 +25,8 @@ Feature: Loan Repayment For Status Normal
   Then I should be see alert text that loan was successfull disbursed
   And I should not be see the alert text loan was successfull after I close the section
 
+ Scenario: Accessing History Detail to See All On Process Bill Activity
+  Given I have been on loan dashboard to see all on process bill activity
+  When I access "Lihat Semua"
+  Then I should be direct to the history bill with filter on process
 
