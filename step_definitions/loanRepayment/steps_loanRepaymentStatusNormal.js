@@ -15,7 +15,7 @@ When('I am validating the list card repayment with status Normal', async () => {
 });
 
 Then('I should be see the closest active bill with status Normal', () => {
-
+ loanRepaymentPage.validateColorStatusNormal();
 });
 
 // Scenario: Validate Alert Text After Loan Disbursement was Successfull
