@@ -146,6 +146,7 @@ exports.config = {
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_user_invited/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
