@@ -119,8 +119,10 @@ exports.config = {
     friendListPage: "./pages/friendList.js",
 
     transferPage: "./pages/transfer.js",
+
+    limitActivePage: "./pages/loanApplication/limitActive.js",
   },
-  settings:{
+  settings: {
     logging: {
       level: 'warn',
     },
@@ -139,15 +141,15 @@ exports.config = {
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
       "./features/funding_account_opening/01_account_opening_onboarding_and_dashboard/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       // "./features/funding_transfer/*.feature",
       // "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
@@ -176,6 +178,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
+      "./step_definitions/loanApplication/steps_limitActive.js",
     ],
   },
   plugins: {
