@@ -12,11 +12,8 @@ Given("I am a customer who has completed my KYC process", () => {
 });
 
 When("I continue to process KYB", () => {
-    // I.waitForElement(formEmploymentDataPage.buttons.continueToKYB, 10);
-    // formEmploymentDataPage.continueToKYB();
-    headerPage.clickButtonBack();
-    I.waitForText("Dashboard Screen", 10)
-    I.click("Go To KYB")
+    I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
+    formEmploymentDataPage.continueToKYB();
 });
 
 When("I fill my business profile as followings:", (table) => {

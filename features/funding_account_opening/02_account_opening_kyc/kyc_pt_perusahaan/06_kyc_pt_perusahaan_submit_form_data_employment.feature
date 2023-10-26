@@ -12,8 +12,8 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
             | userID   | ruth0ba7 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
@@ -36,9 +36,9 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
+            | lastEducation | SMA             |
+            | motherName    | NADYA LAMUSU    |
+            | npwp          | 121785542123321 |
         And I submit my personal data details
         And I choose my new domicile address
         And I fill new domicile details as followings:

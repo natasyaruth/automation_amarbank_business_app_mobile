@@ -6,15 +6,15 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ruthf552                     |
+            | userID   | nady9968                     |
             | password | 1234Test                     |
             | email    | pt_perusahaan@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruthf552 |
+            | userID   | nady9968 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
