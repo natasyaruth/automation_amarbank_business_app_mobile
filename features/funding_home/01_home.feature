@@ -13,8 +13,8 @@ Feature: User Should See Transaction History
         And I click login
         Then I will direct to dashboard
 
-    Scenario: User has no friend list
-        Given I am a customer who wants to Transfer and has no friend list
-        When I choose menu Transfer from main dashboard
-        Then I will direct to Friend list Page
-        And I can see message "Belum ada Nama Penerima"
+    Scenario: User want see a history transaction
+        Given I am on home page
+        When I should see button history on saldo card
+        Then I want to click button history transaction
+        And I will redirect to history transaction page
