@@ -6,16 +6,16 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth6eb7              |
-            | password | Test1234              |
+            | userID   | ruth6eb7            |
+            | password | Test1234            |
             | email    | ruth@trash-mail.com |
         And I filling in form login with the following details:
             | userID   | ruth6eb7 |
             | password | Test1234 |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
-        # And I choose Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
         And I choose legality business type 'cv'
         And I submit my legality type
         And I upload my eKTP photo

@@ -6,11 +6,11 @@ Feature: Loan Disbursement for Loan Type AP
 
   Background: Login with registered account
     Given I am a registered customer with following details:
-      | userID   | rutha013 |
-      | password | 1234Test |
+      | userID   | botseb19   |
+      | password | TestSmb123 |
     When I filling in form login with the following details:
-      | userID   | rutha013 |
-      | password | 1234Test |
+      | userID   | botseb19   |
+      | password | TestSmb123 |
     And I click login
     Then I will direct to dashboard
 

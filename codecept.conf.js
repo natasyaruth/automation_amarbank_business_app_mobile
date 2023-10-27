@@ -23,7 +23,7 @@ exports.config = {
       appiumV2: true,
       //app: "./assets/app/app-debug.apk",
       platform: "Android",
-      device: "emulator-5554",
+      device: "emulator",
       path: "/",
       //port: 4444,
       desiredCapabilities: {
@@ -121,6 +121,8 @@ exports.config = {
     transferPage: "./pages/transfer.js",
 
     limitActivePage: "./pages/loanApplication/limitActive.js",
+    
+    loanRepaymentPage: "./pages/loanRepayment.js",
   },
   settings: {
     logging: {
@@ -146,13 +148,15 @@ exports.config = {
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_user_invited/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       // "./features/funding_transfer/*.feature",
-      // "./features/funding_create_pin/*.feature",
+      "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
+      "./features/loanRepayment/*.feature",
 
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
@@ -179,6 +183,10 @@ exports.config = {
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
     ],
   },
   plugins: {
@@ -202,13 +210,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-      pattern: "wait.*",
-      timeout: 0
-    },
-    {
-      pattern: "amOnPage",
-      timeout: 0
-    }
+    pattern: "wait.*",
+    timeout: 0
+  },
+  {
+    pattern: "amOnPage",
+    timeout: 0
+  }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

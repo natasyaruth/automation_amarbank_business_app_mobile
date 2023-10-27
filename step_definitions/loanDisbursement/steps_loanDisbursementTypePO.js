@@ -102,71 +102,84 @@ Then('I back to the anchor detail', () => {
 
 // Scenario: Take Picture to Upload Invoice Type PO
 Given('I have been on anchor detail to take picture', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 
 When('I upload invoice document', () => {
-
+ loanDisbursementPage.goToUploadDocument();
 });
 
 When('I take the picture', () => {
-
+ loanDisbursementPage.takePicture();
 });
 
 Then('Document invoice will be showed in "Konfirmasi Invoice"', () => {
-
+ loanDisbursementPage.validateInvoiceConfirmationDetailTypePO();
 });
 
 // Scenario: Click button Close in Section Upload Invoice
 Given('I have been on anchor detail', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 
 When('I upload invoice document', () => {
-
+ loanDisbursementPage.goToUploadDocument();
 });
 Then('I close the upload invoice document section', () => {
-
+ loanDisbursementPage.closeUploadInvoiceSection();
 });
 
 // Scenario: Upload Invoice Picture From Gallery With Type PO
 Given('I have been on anchor detail to upload invoice mount from gallery', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 When('I upload invoice document', () => {
-
+ loanDisbursementPage.goToUploadDocument();
 });
 
 When('I upload from galery', () => {
-
+ loanDisbursementPage.getInvoicePhotosFromGallery();
 });
 
 Then('Document invoice will be showed in "Konfirmasi Invoice" page', () => {
-
+ loanDisbursementPage.validateInvoiceConfirmationAfterUploadPhotoFromGallery();
 });
 
 // Scenario: Upload Invoice Picture From Gallery With Condition Failed to Upload
 Given('I have been on anchor detail to upload invoice mount from gallery', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
 });
 When('I upload invoice document', () => {
-
+ loanDisbursementPage.goToUploadDocument();
 });
 
 When('I upload from gallery', () => {
-
+ loanDisbursementPage.takePicture();
 });
 
 Then('show "Upload Invoice Gagal"', () => {
-
+ loanDisbursementPage.validateFailedUploadPhoto();
 });
 
 // Scenario: Reuploaded Invoice Document
 Given('I have been upload invoice document with status failed upload', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
+ loanDisbursementPage.goToUploadDocument();
+ loanDisbursementPage.takePicture();
+ loanDisbursementPage.validateFailedUploadPhoto();
 });
 When('I reupload invoice', () => {
-
+ loanDisbursementPage.reUploadInvoiceDocument();
 });
 
 Then('invoice will upload', () => {
@@ -174,37 +187,47 @@ Then('invoice will upload', () => {
 });
 
 Then('show Invoice document in "Konfirmasi Invoice"', () => {
-
+ loanDisbursementPage.validateInvoiceConfirmationDetailTypePO();
 });
 
 // Scenario: Continue to Payment When Detail Invoice are Empty
 Given('I have been in "Konfirmasi Invoice" page to continue payment with detail invoice are Empty', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
+ loanDisbursementPage.goToUploadDocument();
+ loanDisbursementPage.takePicture();
+ loanDisbursementPage.validateInvoiceConfirmation();
 });
 
 When('I keep "Nominal invoice" is empty', () => {
-
+ loanDisbursementPage.keepAmountInvoiceisEmpty();
 });
 
 When('I keep "Tanggal Invoice" is empty', () => {
-
+ loanDisbursementPage.keepFieldDateisEmpty();
 });
 
 When('I continue payment', () => {
-
+ loanDisbursementPage.keepEmptyInvoiceDetail();
 });
 
 Then('I should be see the error message of "Nominal invoice" and "Tanggal Invoice"', () => {
-
+ loanDisbursementPage.validateErrorMessageDetailInvoiceareEmpty();
 });
 
 // Scenario: Validate Empty Data Supplier Section
 Given('I have been in "Konfirmasi Invoice" to validate empty data supplier section', () => {
-
+ loanDashboardPage.goToHistory();
+ loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDashboardPage.validateLoanTypeofLoanPO();
+ loanDisbursementPage.goToUploadDocument();
+ loanDisbursementPage.takePicture();
+ loanDisbursementPage.validateInvoiceConfirmation();
 });
 
-When('continue to input data Supplier', () => {
-
+When('continue to input data Supplier', async () => {
+ await loanDisbursementPage.goToDataSupplier();
 });
 
 Then('I should be see list of bank name of Supplier', () => {
@@ -212,6 +235,69 @@ Then('I should be see list of bank name of Supplier', () => {
 });
 
 Then('I should be see field of search bank name', () => {
+ I.seeElement(loanDisbursementPage, (this.textFields.textFieldSearchBank));
+});
+
+// Scenario: Continue to Payment When Detail Invoice are Empty in Loan Type PO
+Given('I have been in "Konfirmasi Invoice" page to continue payment with detail invoice are Empty in Loan Type PO', () => {
+
+});
+When('I keep "Nominal invoice" is empty', () => {
+
+});
+When('I keep "Tanggal Invoice" is empty', () => {
+
+});
+When('I select supplier list', () => {
+
+});
+When('I continue payment', () => {
+
+});
+Then('I should be see the error message of "Nominal invoice" and "Tanggal Invoice"', () => {
+
+});
+
+// Scenario: Adding Supplier List
+Given('I have been in "Konfirmasi Invoice" page to adding supplier list', () => {
+
+});
+
+When('I access supplier list', () => {
+
+});
+
+When('I adding supplier list', () => {
+
+});
+
+Then('Supplier list will be show in "Konfirmasi Invoice" page', () => {
+
+});
+
+// Scenario: Validate Section After Continue Disbursement with Case Invoice Amount Less or Equal Than Available Limit
+Given('I have been in invoice detail to continue disbursement', () => {
+
+});
+When('I continue to disburse the invoice with invoice amount less or equal than available limit', () => {
+
+});
+Then('I should be see "Perhitungan Pencairan" page', () => {
+
+});
+
+// Scenario: Validate Section After Continue Disbursement with Case Invoice Amount More Than Available Limit
+Given('I have  been in invoice detail to continue disbursement', () => {
+
+});
+
+When('I continue to disburse the invoice with invoice amount more than available limit', () => {
+
+});
+Then('I should be see "Limit tidak mencukupi" section', () => {
+
+});
+Then('I back to the "Konfirmasi Invoice Page" after close the section', () => {
 
 });
 

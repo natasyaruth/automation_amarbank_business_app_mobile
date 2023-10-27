@@ -1,4 +1,4 @@
-@accountOpeningOnBoarding
+@accountOpeningDashboard
 Feature: Account Opening Main Dashboard
     In order to opening my Giro account in SMB
     As a customer
@@ -12,7 +12,8 @@ Feature: Account Opening Main Dashboard
             | userID   | ruth17a5 |
             | password | Test1234 |
         And I click login
-        And I will direct to dashboard
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
 
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
@@ -463,3 +464,4 @@ Feature: Account Opening Main Dashboard
         And I close page upload document
         Then I will see card continue to complete upload document business and registration director list
         And I can continue to page 'Registration Director'
+        And I can see details registration director

@@ -33,7 +33,7 @@ Feature: User transfer BIFAST
         And I input amount '55.000.000'
         And I choose category "Pembayaran"        
         And I click choose bank transfer service
-        And I choose transer service 'BI FAST'
+        And I choose transer service BI FAST
         And I click transfer
         And I click transfer now
         And I input PIN

@@ -6,11 +6,11 @@ Feature: Loan Disbursement for Loan Type PO
 
  Background: Login with registered account
   Given I am a registered customer with following details:
-   | userID   | rutha013 |
-   | password | 1234Test |
+   | userID   | bots691c   |
+   | password | TestSmb123 |
   When I filling in form login with the following details:
-   | userID   | rutha013 |
-   | password | 1234Test |
+   | userID   | bots691c   |
+   | password | TestSmb123 |
   And I click login
   Then I will direct to dashboard
 
@@ -86,6 +86,31 @@ Feature: Loan Disbursement for Loan Type PO
   When continue to input data Supplier
   Then I should be see list of bank name of Supplier
   And I should be see field of search bank name
+
+ Scenario: Continue to Payment When Detail Invoice are Empty in Loan Type PO
+  Given I have been in "Konfirmasi Invoice" page to continue payment with detail invoice are Empty in Loan Type PO
+  When I keep "Nominal invoice" is empty
+  And I keep "Tanggal Invoice" is empty
+  And I select supplier list
+  And I continue payment
+  Then I should be see the error message of "Nominal invoice" and "Tanggal Invoice"
+
+ Scenario: Adding Supplier List
+  Given I have been in "Konfirmasi Invoice" page to adding supplier list
+  When I access supplier list
+  And I adding supplier list
+  Then Supplier list will be show in "Konfirmasi Invoice" page
+
+ Scenario: Validate Section After Continue Disbursement with Case Invoice Amount Less or Equal Than Available Limit
+  Given I have been in invoice detail to continue disbursement
+  When I continue to disburse the invoice with invoice amount less or equal than available limit
+  Then I should be see "Perhitungan Pencairan" page
+
+ Scenario: Validate Section After Continue Disbursement with Case Invoice Amount More Than Available Limit
+  Given I have  been in invoice detail to continue disbursement
+  When I continue to disburse the invoice with invoice amount more than available limit
+  Then I should be see "Limit tidak mencukupi" section
+  Then I back to the "Konfirmasi Invoice Page" after close the section
 
  Scenario: Continue Disburse The Loan Type PO With Status Success After "Perhitungan Pencairan" Has Been Displayed With PIN is True
   Given I have been on "Perhitungan pencairan page" loan type PO

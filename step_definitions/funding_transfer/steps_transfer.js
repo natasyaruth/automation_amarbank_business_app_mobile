@@ -1,3 +1,4 @@
+const { radioButton } = require("../../pages/loanApplication/selectLoanAmountTenor");
 
 const {
     I,
@@ -54,6 +55,21 @@ Then("I can see BI Fast and RTOL", () => {
     I.waitForElement(transferPage.radioButtons.methodBifast,5);
 });
 
+Then("I can see BI Fast, SKN and RTGS", () => {
+    I.waitForElement(transferPage.radioButtons.methodBifast,5);
+    I.waitForElement(transferPage.radioButtons.methodRtol,5);
+    I.waitForElement(transferPage.radioButtons.methodSkn,5);
+});
+
+Then("I can see SKN and RTGS", () => {
+    I.waitForElement(transferPage.radioButtons.methodRtgs,5);
+    I.waitForElement(transferPage.radioButtons.methodSkn,5);
+});
+
+Then("I choose transfer service RTGS", () => {
+    transferPage.chooseRtgs();
+});
+
 Then("I choose transfer service RTOL", () => {
     transferPage.chooseRtol();
 });
@@ -62,8 +78,12 @@ Then("I choose transfer service BIFAST", () => {
     transferPage.chooseBifast();
 });
 
+Then("I choose transfer service SKN", () => {
+    transferPage.chooseSkn();
+});
+
 When("I click transfer", () => {
-    transferPage.processTransfer();
+    transferPage.processTransfer(); 
 });
 
 Then("I will directly go to page confirmation transfer", async () => {
@@ -83,15 +103,6 @@ Then("I will directly go to page confirmation transfer", async () => {
     I.waitForElement(transferPage.texts.note,10);
     const actualnotes = await transferPage.getNotes();
     I.assertEqual(actualnotes,globalVariable.transfer.note);
-});
-
-When("I input wrong PIN", () => {
-    transferPage.inputPin("923879");
-});
-
-Then("I will be able to see message error {string}", async (expectedMessageErrorPIN) => {
-    let actualerrorPINmessage = await transferPage.getMessageErrorPIN();
-    I.assertEqual(actualerrorPINmessage,expectedMessageErrorPIN);
 });
 
 When("I input PIN {string}", (Pin) => {
@@ -149,6 +160,30 @@ Then("Then I successfully transferred between Amar Bank", () => {
     I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
     I.waitForElement(transferPage.buttons.close);
+});
+
+When("I input wrong PIN", () => {
+    transferPage.inputPin(dummyPin);
+});
+
+Then("I see Pin message error {string}", async (ExpectedMessageErrorPIN) => {
+    let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
+    I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+    transferPage.inputPin(dummyPin);
+});
+
+Then("Then I see Pin message error for click twice {string}", async (expectedMessageErrorPIN) => {
+    let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
+    I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+    I.waitForText(transferPage.messageErrors.warningErrorPin, 10);
+    transferPage.inputPin(dummyPin);
+});
+
+Then("My PIN transaction will be temporary blocked for 30 minutes", () => {
+    I.waitForText("PIN Transaksimu Terblokir", 10);
+    I.waitForText(transferPage.messageErrors.blockedPin,10);
+    createPINPage.closeSheetBlocked();
+    transferPage.backToDashboard();
 });
 
 
