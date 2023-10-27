@@ -120,6 +120,8 @@ exports.config = {
 
     transferPage: "./pages/transfer.js",
 
+    limitActivePage: "./pages/loanApplication/limitActive.js",
+    
     loanRepaymentPage: "./pages/loanRepayment.js",
   },
   settings: {
@@ -180,6 +182,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
+      "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",

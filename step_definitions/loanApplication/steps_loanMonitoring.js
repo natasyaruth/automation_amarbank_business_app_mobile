@@ -1,3 +1,5 @@
+const loanMonitoringProcess = require("../../pages/loanApplication/loanMonitoringProcess");
+
 const { I, loanMonitoringProcessPage } = inject();
 
 // Feature(/Checking Monitoring Process/)
@@ -39,4 +41,8 @@ When(/user validate section checking document \"([^\"]*)\" on field \"([^\"]*)\"
     I.wait(2);
     let actualValue = await loanMonitoringProcessPage.getTextFieldSuccessCompleteData(fieldName);
     I.assertEqual(actualValue, expectedValue);
+});
+Then(/user on monitoring \"([^\"]*)\" loan process page/, (stepType) => {
+    I.wait(2);
+    loanMonitoringProcessPage.validateLoanProcess(stepType);
 });
