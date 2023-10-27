@@ -1,4 +1,4 @@
-@accountOpeningOnBoarding
+@accountOpeningDashboard
 Feature: Account Opening Main Dashboard
     In order to opening my Giro account in SMB
     As a customer
@@ -12,8 +12,8 @@ Feature: Account Opening Main Dashboard
             | userID   | ruth17a5 |
             | password | Test1234 |
         And I click login
-        And I click later
-        And I will direct to dashboard
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
 
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP

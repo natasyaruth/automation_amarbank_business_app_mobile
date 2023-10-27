@@ -1,23 +1,22 @@
-@kycUploadSelfieUD
-Feature: Account Opening KYC UD - Upload Selfie Photo
+@kycUserInvited
+Feature: Account Opening KYC - User Invited
   In order to opening my Giro account with legality business type UD in SMB
   As a customer
   I want to upload my selfie photo as part of the KYC Process
 
   Background: User choose legality business type UD
-    Given I am a registered customer with following details:
-      | userID   | ruth2e57 |
-      | password | 1234Test |
-    And I filling in form login with the following details:
-      | userID   | ruth2e57 |
-      | password | 1234Test |
+    Given I am a registered customer business invited with following details:
+      | userID   | ruth17a5 |
+      | password | Test1234 |
+    When I filling in form login with the following details:
+      | userID   | ruth17a5 |
+      | password | Test1234 |
     And I click login
-    And I will directing to Hook 1 Onboarding Account Opening
-    And I swipe to card Giro Account
-    And I choose Giro Account
-    And I choose legality business type 'ud'
-    And I submit my legality type
-    And I upload my eKTP photo
+    And I continue to register my KYC data
+
+  Scenario: User invited complete KYC
+    Given I am a invited customer wants to complete my KYC data
+    When I upload my eKTP photo
     And I fill all information identity details as followings:
       | eKtpNumber    | 3175044501980004          |
       | fullName      | NADYA LAROSA              |
@@ -34,11 +33,5 @@ Feature: Account Opening KYC UD - Upload Selfie Photo
       | religion      | Katolik                   |
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
-
-  Scenario: Upload selfie image successfully business type UD
-    Given I am a customer who has submitted my information identity details
-    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'
-    When I upload my selfie photo
-    Then I will notify my photo selfie has successfully submitted
-    And I will directing to page submit Data Personal
-    
+    And I upload my selfie photo
+    Then I will notify that my personal data details needs to be verified first

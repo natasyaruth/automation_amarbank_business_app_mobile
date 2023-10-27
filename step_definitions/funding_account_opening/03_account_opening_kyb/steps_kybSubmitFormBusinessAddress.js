@@ -62,4 +62,7 @@ Then("I will directing to page upload require documents for business individual"
 Then("I can close the page so that I can back to main dashboard", async () => {
     formBusinessAddressPage.closePageUploadDoc();
     I.waitForText("Dashboard Screen", 10);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

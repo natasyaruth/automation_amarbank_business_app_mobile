@@ -11,7 +11,7 @@ Given('I have been on loan dashboard', () => {
 });
 
 When('I am validating the list card repayment with status Failed', async () => {
- loanDisbursementPage.validateCardStatusFailed();
+ loanRepaymentPage.validateCardStatusFailed();
 });
 
 Then('I should be see the closest active bill with status Failed', () => {
