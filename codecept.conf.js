@@ -121,6 +121,12 @@ exports.config = {
     transferPage: "./pages/transfer.js",
 
     limitActivePage: "./pages/loanApplication/limitActive.js",
+
+    businessLoanPage: "./pages/loanApplication/businessLoan.js",
+
+    pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
+
+    confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
     
     loanRepaymentPage: "./pages/loanRepayment.js",
   },
@@ -167,7 +173,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/loanApplication/steps_privyAggrement.js",
       "./step_definitions/loanApplication/steps_uploadDocLoan.js",
-      "./step_definitions/funding_account_creation/steps_forgotPassword.js",
+      "./step_definitions/funding_account_crebusinessloanlimitation/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js",
       "./step_definitions/funding_account_opening/01_account_opening_onboarding_and_dashboard/steps_onBoardingDashboard.js",
@@ -183,6 +189,9 @@ exports.config = {
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
+      "./step_definitions/loanApplication/steps_businessLoan.js",
+      "./step_definitions/loanApplication/steps_pdcDelivery.js",
+      "./step_definitions/loanApplication/steps_confirmInvoice.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
