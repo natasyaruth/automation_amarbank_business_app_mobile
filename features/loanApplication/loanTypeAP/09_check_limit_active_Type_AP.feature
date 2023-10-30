@@ -12,6 +12,9 @@ I am able to verify limit active loan type AP and direct AP in history page
                         | userID   | rutha013 |
                         | password | 1234Test |
                 And I click login
+                And I click later
+                Then I will direct to dashboard
+                And I click menu tab testing
                 Then I will direct to dashboard
 
         Scenario: Validate Card Limit For Type Loan AP

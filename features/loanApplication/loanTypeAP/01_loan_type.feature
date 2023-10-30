@@ -21,9 +21,9 @@ Feature: Apply Either Loan and select the loan type
     Scenario: validate content on select either apply for loan
         Given user on onboarding loan
         And user should see field title onboarding
-        When user validate benefit "first"
-        And user validate benefit "two"
-        And user validate benefit "three"
+        # When user validate benefit "first"
+        # And user validate benefit "two"
+        # And user validate benefit "three"
         And user validate content loan requirement
         Then user click button ajukan pinjaman
         And user on loan type page

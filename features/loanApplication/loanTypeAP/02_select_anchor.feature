@@ -31,7 +31,7 @@ Feature: Select the Anchor
     @C83808 @LoanApp
     Scenario: User can select anchor on the list
         Given user on the anchor page
-        And user fill search anchor "Kumarat"
+        And user fill search anchor "PT Tirta Investama"
         When user select result of search
         And user on anchor cooperating page
         Then user select the date cooperating
