@@ -6,22 +6,22 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | rutha4f9          |
-            | password | 1234Test          |
-            | email    | cv@trash-mail.com |
+            | userID   | ruth6eb7            |
+            | password | Test1234            |
+            | email    | ruth@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | rutha4f9 |
-            | password | 1234Test |
+            | userID   | ruth6eb7 |
+            | password | Test1234 |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'cv'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174042412760012         |
-            | fullName      | PT CV                    |
+            | eKtpNumber    | 3175062603811003         |
+            | fullName      | PT CV SATU               |
             | placeOfBirth  | MEDAN                    |
             | dateOfBirth   | 11/11/1995               |
             | gender        | Laki-laki                |
@@ -31,8 +31,8 @@ Feature: Account Opening KYB CV - Submit Business Address
             | province      | ACEH                     |
             | city          | KAB. ACEH TIMUR          |
             | district      | DARUL AMAN               |
-            | village       | KEMUNING V               |
-            | religion      | Buddha                   |
+            | village       |                          |
+            | religion      | Budha                    |
             | maritalStatus | Belum Kawin              |
         And I submit my information identity details
         And I upload my selfie photo
@@ -43,14 +43,14 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I submit my personal data details
         And I choose my new domicile address
         And I fill new domicile details as followings:
-            | typeResidence | Kantor                   |
-            | address       | JL. Karel Tandean NO. 27 |
-            | rt            | 11                       |
-            | rw            | 14                       |
-            | province      | SUMATERA BARAT           |
-            | city          | KAB. PESISIR SELATAN     |
-            | district      | LINGGO SARI BAGANTI      |
-            | village       | AIR HAJI BARAT           |
+            | typeResidence | Rumah                     |
+            | address       | JL. KS TUBUN NO. 27       |
+            | rt            | 01                        |
+            | rw            | 01                        |
+            | province      | DKI JAKARTA               |
+            | city          | KOTA ADM. JAKARTA SELATAN |
+            | district      | PANCORAN                  |
+            | village       | PANCORAN                  |
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |

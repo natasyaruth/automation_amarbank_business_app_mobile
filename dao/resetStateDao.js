@@ -110,10 +110,8 @@ module.exports = {
 
     reloadPageAfterResetState() {
         headerPage.clickButtonBack();
-        I.waitForElement(onboardingAccOpeningPage.tabs.business, 10)
+        I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.wait(1);
-        I.click(onboardingAccOpeningPage.tabs.business);
-        I.waitForText("Go To KYC", 10);
-        I.click("Go To KYC");
+        onboardingAccOpeningPage.continueCompleteData();
     },
 }

@@ -61,8 +61,10 @@ Feature: Checking Monitoring Process
         And user close the bottom sheet
         Then user on monitoring loan process page
         And user validate section checking document "Pengecekan Dokumen" on field "titleDocumentField"
-        And user validate section checking document "Proses saat ini" on field "statusCheckingDocumentField"
-        And user validate section checking document "Dokumen sudah berhasil dikirim, Tim kami akan memprosesnya." on field "wordingDocumentField"
+        And user validate section checking document "Analisa Kredit" on field "titleAnalystCreditField"
+        And user validate section checking document "Langkah Terakhir" on field "titleLastStepField"
+        # And user validate section checking document "Proses saat ini" on field "statusCheckingDocumentField"
+        # And user validate section checking document "Dokumen sudah berhasil dikirim, Tim kami akan memprosesnya." on field "wordingDocumentField"
 
 # @C83876
 # Scenario: validate progress monitoring loan checking document

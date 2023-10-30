@@ -13,8 +13,8 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | userID   | ruthec01 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'cv'
         And I submit my legality type
@@ -107,7 +107,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I delete the director
         And I confirm to delete the director
         Then I will notify director successfully deleted
-        And I will not be able to see the deleted data director  
+        And I will not be able to see the deleted data director
 
     Scenario: Delete director and then submit for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
@@ -131,7 +131,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I validate all the data in the confirmation list
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
-        And I will directing to page business address    
+        And I will directing to page business address
 
     Scenario: Update director for business type CV
         Given I am a customer who has submitted my business profile
@@ -169,4 +169,4 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I validate all the data in the confirmation list
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
-        And I will directing to page business address       
+        And I will directing to page business address

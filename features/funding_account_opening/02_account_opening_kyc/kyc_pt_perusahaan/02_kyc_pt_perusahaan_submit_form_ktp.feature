@@ -12,8 +12,8 @@ Feature: Account Opening KYC PT Perusahaan - Submit Form KTP
       | userID   | ruth5a50 |
       | password | 1234Test |
     And I click login
-    Then I will direct to dashboard
-    When I swipe to card Giro Account
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I swipe to card Giro Account
     And I choose Giro Account
     And I choose legality business type 'company'
     And I submit my legality type
