@@ -200,6 +200,7 @@ module.exports = {
     }
   },
 
+
   async goToDetailRepaymentInfoLoanAP() {
     try {
       await I.waitForText('Supplier');
@@ -247,6 +248,22 @@ module.exports = {
       console.log('Bill Repayment not for Loan Type AR');
     }
   },
+
+  //Status The Day Due Date
+  async validateCardStatusTheDayDueDateRepayment() {
+    try {
+      await I.waitForText('Tagihan Terdekat');
+      console.log('Card Repayment Status Due Date is exists');
+      I.seeInTitle("Pinjaman Bisnis");
+      I.see("Tagihan Aktif");
+      I.see("Tagihan Terdekat");
+      I.seeElement(this.buttons.buttonSeeAllBills);
+      I.see("Akan di autodebet secara otomatis");
+    } catch (error) {
+      console.log('Card Repayment Status Due Date does not exist');
+    }
+  },
+
 
   //Status Failed
   async validateCardStatusFailed() {
