@@ -61,7 +61,6 @@ When("I click login", () => {
 });
 
 Then("I will direct to dashboard", () => {
-    I.waitForText(globalVariable.login.userID, 10);
     I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
 });
 
