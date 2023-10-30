@@ -73,3 +73,6 @@ Then(/I should see text view value note transfer\"([^\"]*)\"/, (trfType) => {
 Then(/I want to click button share/, () => {
     homePage.clickBtnShare();
 });
+Then(/I click menu tab testing/, () => {
+    homePage.clickTabTesting();
+});

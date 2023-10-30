@@ -11,7 +11,9 @@ Feature: Select the Anchor
             | userID   | niza59ce  |
             | password | Feb042017 |
         And I click login
-        Then I successed go to dashbord
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
         And I click button loan dashboard
         And user click button ajukan pinjaman
         And user on loan type page
@@ -46,7 +48,7 @@ Feature: Select the Anchor
         And user should see error "Tanggal bekerjasama wajib diisi" in the below of field "dateField"
         And user should see error "Nama perwakilan wajib diisi" in the below of field "PICNameField"
         And user should see error "Nomor Hp / Telepon wajib diisi" in the below of field "PICNumberField"
-        
+
     @C83809 @LoanApp
     Scenario: User success fill data other anchor
         Given user on the anchor page
