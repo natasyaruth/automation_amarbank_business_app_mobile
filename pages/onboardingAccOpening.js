@@ -67,8 +67,10 @@ module.exports = {
   },
 
   continueToKYC() {
-    I.waitForElement(this.buttons.next, 10);
-    I.click(this.buttons.next);
+    // I.waitForElement(this.buttons.next, 10);
+    // I.click(this.buttons.next);
+    I.waitForText("Selanjutnya", 10);
+    I.click("Selanjutnya");
   },
 
   validatePage(pageName) {
@@ -127,7 +129,13 @@ module.exports = {
   },
 
   goToTabBusiness() {
+    I.waitForElement(this.tabs.business, 10);
     I.click(this.tabs.business);
+  },
+
+  goToTabOthers(){
+    I.waitForElement(this.tabs.others, 10);
+    I.click(this.tabs.others);
   },
 
   async getUserId() {

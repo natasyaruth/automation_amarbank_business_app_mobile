@@ -120,6 +120,8 @@ exports.config = {
 
     transferPage: "./pages/transfer.js",
 
+    homePage: "./pages/homePage.js",
+
     limitActivePage: "./pages/loanApplication/limitActive.js",
 
     businessLoanPage: "./pages/loanApplication/businessLoan.js",
@@ -162,6 +164,7 @@ exports.config = {
       // "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
+      "./features/funding_home/*.feature",
       "./features/loanRepayment/*.feature",
 
     ],
@@ -189,6 +192,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
+      "./step_definitions/funding_home/steps_home.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",
