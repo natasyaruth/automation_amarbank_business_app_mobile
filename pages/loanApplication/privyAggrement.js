@@ -264,3 +264,4 @@ module.exports = {
     let actualValue = await I.grabAttributeFrom(this.textView.textViewPrepareDocument, 'text');
     I.assertEqual(actualValue, "Persiapkan dokumen tambahan yang dibutuhkan saat mencairkan limit.");
   }
+}

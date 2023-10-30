@@ -12,7 +12,9 @@ Feature: Apply Either Loan and select the loan type
             | userID   | niza59ce  |
             | password | Feb042017 |
         And I click login
-        Then I successed go to dashbord
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
         And I click button loan dashboard
 
     @C83802 @LoanApp
