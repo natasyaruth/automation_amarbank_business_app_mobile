@@ -3,10 +3,10 @@ const {
     onboardingAccOpeningPage,
     uploadKtpPage,
     resetStateDao,
+    headerPage,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {
-    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
 });
 
 Given("I am a invited customer wants to complete my KYC data", () => {
@@ -30,6 +30,10 @@ Given("I see information and benefit of Giro Account", () => {
 
 When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
+});
+
+When("I back to dashboard",()=>{
+    headerPage.clickButtonBack();
 });
 
 When("I choose legality business type {string}", (businessType) => {
@@ -160,4 +164,10 @@ Then("I can see details registration director", async () => {
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will notify that my personal data details needs to be verified in main dashboard", ()=>{
+    I.waitForText("Perbankan Giro", 10);
+    I.see("Menunggu verifikasi data selesai");
+    I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
 });

@@ -114,4 +114,11 @@ module.exports = {
         I.wait(1);
         onboardingAccOpeningPage.continueCompleteData();
     },
+
+    reloadPageUserInvitedAfterResetState() {
+        headerPage.clickButtonBack();
+        I.waitForText("Selanjutnya", 10);
+        I.wait(1);
+        I.click("Selanjutnya");
+    },
 }
