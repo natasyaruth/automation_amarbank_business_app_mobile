@@ -6,11 +6,11 @@ Feature: Account Opening Main Dashboard
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID   | johnbf89 |
+            | password | 1234Test |
         When I filling in form login with the following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID   | johnbf89 |
+            | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -87,7 +87,7 @@ Feature: Account Opening Main Dashboard
         And I back to dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'
-        
+
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -119,7 +119,7 @@ Feature: Account Opening Main Dashboard
         And I back to dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
-
+     
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -191,7 +191,7 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I back to dashboard
         Then I will see card continue to data business
-        And I can continue to page 'Data Business Profile'
+        And I can continue to page 'Continue Process KYB'
 
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account

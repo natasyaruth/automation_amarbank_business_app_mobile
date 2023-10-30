@@ -31,6 +31,15 @@ When("I upload my eKTP photo", async () => {
     resetStateDao.reloadPageAfterResetState();
 });
 
+When("I upload invited user eKTP photo", async () => {
+    I.waitForText("Ambil Foto eKTP Anda", 10);
+    await
+    resetStateDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
+    await 
+    resetStateDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.reloadPageUserInvitedAfterResetState();
+});
+
 Then("I will directing to page submit form KTP", async () => {
     I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
     await 
