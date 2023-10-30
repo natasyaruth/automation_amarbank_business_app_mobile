@@ -264,31 +264,55 @@ module.exports = {
     }
   },
 
+  async accessCardDetailForDueDate1() {
+    let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
+    I.click(this.buttons.buttonSeeAllBills);
+    I.waitForElement(this.buttons.itemBill);
+    I.assertEqual(this.texts.textCountDownBill, '1 hari lagi');
+    let nominalBillDetail = await I.grabTextFrom(this.texts.textNominalBillDetail);
+    if (nominalBill === nominalBillDetail) {
+      console.log('Nominal bill is equal');
+      I.click(this.buttons.itemBill);
 
-  //Status Failed
-  async validateCardStatusFailed() {
-    try {
-      await I.waitForText('Tagihan Terdekat');
-      console.log('Card Repayment status Failed is exists');
-      I.seeInTitle("Pinjaman Bisnis");
-      I.see("Tagihan Aktif");
-      I.see("Tagihan Terdekat");
-      I.seeElement(this.buttons.buttonSeeAllBills);
-      I.see('Lewat');
-
-      I.see("Autodebet gagal, pastikan saldo mencukupi.");
-    } catch (error) {
-      console.log('Card Repayment Status Failed does not exist');
+    } else {
+      console.log('Nominal bill is not equal');
     }
   },
 
+  validateBillDateDueDate1inMorning() {
+    I.see('Detail Tagihan');
+    I.see('Tagihan Akan Di Autodebet Dalam');
+    I.see('1 hari lagi');
+    I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+    I.seeElement(this.buttons.buttonCopy);
+    I.seeElement(this.buttons.buttonDetail);
+    I.seeElement(this.buttons.buttonComplaint);
+
+
+  //Status Failed
+  async validateCardStatusFailed() {
+      try {
+        await I.waitForText('Tagihan Terdekat');
+        console.log('Card Repayment status Failed is exists');
+        I.seeInTitle("Pinjaman Bisnis");
+        I.see("Tagihan Aktif");
+        I.see("Tagihan Terdekat");
+        I.seeElement(this.buttons.buttonSeeAllBills);
+        I.see('Lewat');
+
+        I.see("Autodebet gagal, pastikan saldo mencukupi.");
+      } catch (error) {
+        console.log('Card Repayment Status Failed does not exist');
+      }
+    },
+
   async validateColorStatusNormal() {
-    let color = await I.executeScript(function () {
-      return window.getComputedStyle(document.querySelector('my_css_selector')).backgroundColor;
-    });
-  },
+      let color = await I.executeScript(function () {
+        return window.getComputedStyle(document.querySelector('my_css_selector')).backgroundColor;
+      });
+    },
 
-  // Status Success
+    // Status Success
 
 
-}
+  }

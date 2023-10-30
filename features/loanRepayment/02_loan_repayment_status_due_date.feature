@@ -14,6 +14,7 @@ Feature: Loan Repayment For Status Due Date
   And I click login
   Then I will direct to dashboard
 
+ @3DAYDUEDATE
  Scenario: Validate List Repayment in Loan dashboard with Status Due Date
   Given I have been on loan dashboard with status Due Date D-3
   When I am validating the list card repayment with status Due Date D-3
@@ -55,6 +56,7 @@ Feature: Loan Repayment For Status Due Date
   When I access the detail
   Then I should be see the loan type of AR
 
+ @THEDAYDUEDATE
  Scenario: Validate List Repayment in Loan dashboard with Status The Day Due Date
   Given I have been on loan dashboard with status The Day Due Date
   When I am validating the list card repayment with status The Day Due Date
@@ -70,3 +72,28 @@ Feature: Loan Repayment For Status Due Date
   When I am accessing the card with status the day due date
   And I am accessing the detail to see the payment info from any loan type
   Then I should be see the payment info from loan type AP or Direct AP or PO or AR
+
+ Scenario: Calling the Call Center
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan"
+  When I call the call Center
+  Then the call center is opened
+
+ Scenario: Validate Bill Information With Type Loan AP
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type AP
+
+ Scenario: Validate Bill Information With Type Loan Direct AP
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of Direct AP
+
+ Scenario: Validate Bill Information With Type PO
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of PO
+
+ Scenario: Validate Bill Information With Type AR
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of AR
