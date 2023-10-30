@@ -10,10 +10,15 @@ module.exports = {
     itemBill: "~itemBill",
     buttonCopy: "~buttonCopy",
     buttonDetail: "~buttonDetail",
+    buttonComplaint: "~buttonComplaint",
   },
 
   texts: {
-    nominalBill: "~nominalBill",
+    textNominalBill: "~textNominalBill",
+    textCountDownBill: "~textCountDownBill",
+    textCountDownBillDetail: "~textCountDownBillDetail",
+    textNominalBillDetail: "~textNominalBillDetail",
+    textInvoiceNumber: "~textInvoiceNumber",
   },
 
   // Status Normal
@@ -130,15 +135,16 @@ module.exports = {
     }
   },
 
-  async accessDetailForDueDate3() {
-    I.see('3 hari lagi');
-    let nominalBill = await I.grabTextFrom(this.texts.nominalBill);
+  async accessCardDetailForDueDate3() {
+    let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
     I.click(this.buttons.buttonSeeAllBills);
     I.waitForElement(this.buttons.itemBill);
-    let nominalBillDetails = await I.grabTextFrom(this.texts.nominalBillDetails);
-    if (nominalBillDetails === nominalBillDetails) {
+    I.assertEqual(this.texts.textCountDownBill, '3 hari lagi');
+    let nominalBillDetail = await I.grabTextFrom(this.texts.textNominalBillDetail);
+    if (nominalBill === nominalBillDetail) {
       console.log('Nominal bill is equal');
       I.click(this.buttons.itemBill);
+
     } else {
       console.log('Nominal bill is not equal');
     }
@@ -149,9 +155,99 @@ module.exports = {
     I.see('Tagihan Akan Di Autodebet Dalam');
     I.see('3 hari lagi');
     I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+    I.seeElement(this.buttons.buttonCopy);
     I.seeElement(this.buttons.buttonDetail);
+    I.seeElement(this.buttons.buttonComplaint);
 
   },
+  goTolinkComplaint() {
+    I.click(this.buttons.buttonComplaint);
+
+  },
+  goToBillInformation() {
+    I.click(this.buttons.buttonBillInformation);
+    I.see('Info Pembayaran');
+  },
+
+  closeBillInformation() {
+    I.seeElement(this.buttons.buttonBillInformation.buttonClose);
+    I.click(this.buttons.buttonClose);
+  },
+
+  validateBillRepayment() {
+    let loanType = 3;
+    switch (loanType) {
+      // Loan Type AP
+      case 1:
+        I.waitForText('Supplier');
+        I.see('Supplier');
+        I.seeElement(this.buttons.buttonCopy);
+        break;
+      // Loan Type AR
+      case 2:
+        I.waitForText('Buyer');
+        I.see('Buyer');
+        I.seeElement(this.buttons.buttonCopy);
+        break;
+      // Loan Type PO
+      case 3:
+        I.waitForText('Pemilik Proyek');
+        I.see('Pemilik Proyek');
+        I.seeElement(this.buttons.buttonCopy);
+        break;
+      default:
+        console.error(error);
+    }
+  },
+
+  async goToDetailRepaymentInfoLoanAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AP');
+    }
+  },
+
+  async goToDetailRepaymentInfoLoanDirectAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type Direct AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type Direct AP');
+    }
+  },
+
+  async goToDetailRepaymentInfoLoanPO() {
+    try {
+      await I.waitForText('Pemilik Proyek');
+      console.log('Bill Repayment for Loan Type PO');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Supplier');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type PO');
+    }
+  },
+
+  async goToDetailRepaymentInfoLoanAR() {
+    try {
+      await I.waitForText('Buyer');
+      console.log('Bill Repayment for Loan Type AR');
+      I.see('Info Pembayaran');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
+
   //Status Failed
   async validateCardStatusFailed() {
     try {

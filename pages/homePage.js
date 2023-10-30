@@ -45,6 +45,13 @@ module.exports = {
         textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' }
     },
+    menu: {
+        tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]"},
+        tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]"},
+        tabCallCenter: "~tabCallCenter",
+        tabBusiness: "~tabBusiness",
+        tabHome: "~tabHome"
+    },
 
     viewUserName() {
         I.wait(2);
@@ -238,6 +245,10 @@ module.exports = {
         I.click(this.buttons.btnShare);
         I.wait(3);
         I.sendDeviceKeyEvent(4);
+    },
+    clickTabTesting(){
+        I.wait(2);
+        I.click(this.menu.tabTesting);
     }
 
 }

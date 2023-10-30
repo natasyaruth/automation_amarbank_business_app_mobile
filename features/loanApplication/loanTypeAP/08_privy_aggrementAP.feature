@@ -10,6 +10,9 @@ Feature: Submit Loan Type AP until sign privy
             | userID   | botseb19  |
             | password | TestSmb123 |
         And I click login
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
         Then I successed go to dashbord
 
     Scenario: User AP validate Limit Loan Activation Approved

@@ -11,6 +11,7 @@ Feature: User Should See Transaction History
             | userID   | ruth17a5 |
             | password | Test1234 |
         And I click login
+        And I click later
         Then I will direct to dashboard
 
     Scenario: User want see a history transaction
