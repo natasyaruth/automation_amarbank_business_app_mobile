@@ -287,32 +287,33 @@ module.exports = {
     I.seeElement(this.buttons.buttonCopy);
     I.seeElement(this.buttons.buttonDetail);
     I.seeElement(this.buttons.buttonComplaint);
+  },
 
 
   //Status Failed
   async validateCardStatusFailed() {
-      try {
-        await I.waitForText('Tagihan Terdekat');
-        console.log('Card Repayment status Failed is exists');
-        I.seeInTitle("Pinjaman Bisnis");
-        I.see("Tagihan Aktif");
-        I.see("Tagihan Terdekat");
-        I.seeElement(this.buttons.buttonSeeAllBills);
-        I.see('Lewat');
+    try {
+      await I.waitForText('Tagihan Terdekat');
+      console.log('Card Repayment status Failed is exists');
+      I.seeInTitle("Pinjaman Bisnis");
+      I.see("Tagihan Aktif");
+      I.see("Tagihan Terdekat");
+      I.seeElement(this.buttons.buttonSeeAllBills);
+      I.see('Lewat');
 
-        I.see("Autodebet gagal, pastikan saldo mencukupi.");
-      } catch (error) {
-        console.log('Card Repayment Status Failed does not exist');
-      }
-    },
+      I.see("Autodebet gagal, pastikan saldo mencukupi.");
+    } catch (error) {
+      console.log('Card Repayment Status Failed does not exist');
+    }
+  },
 
   async validateColorStatusNormal() {
-      let color = await I.executeScript(function () {
-        return window.getComputedStyle(document.querySelector('my_css_selector')).backgroundColor;
-      });
-    },
+    let color = await I.executeScript(function () {
+      return window.getComputedStyle(document.querySelector('my_css_selector')).backgroundColor;
+    });
+  },
 
-    // Status Success
+  // Status Success
 
 
-  }
+}
