@@ -24,12 +24,11 @@ exports.config = {
       //app: "./assets/app/app-debug.apk",
       platform: "Android",
       device: "emulator",
-      path: "/",
+      path: "/wd/hub",
       //port: 4444,
       desiredCapabilities: {
         platformName: "Android",
         platformVersion: "12.0",
-        deviceName: "Pixel 2 API 31",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         deviceName: "emulator-5554",
@@ -201,6 +200,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
+      "./step_definitions/funding_home/steps_home.js"
     ],
   },
   plugins: {

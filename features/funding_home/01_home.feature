@@ -1,3 +1,4 @@
+@HistoryTrx
 Feature: User Should See Transaction History
     In home
     As a customer
@@ -5,10 +6,10 @@ Feature: User Should See Transaction History
 
     Background: User must login to home dashboard
         Given I am a registered customer with following details:
-            | userID   | ruth17a5 |
+            | userID   | pang6f17 |
             | password | Test1234 |
         When I filling in form login with the following details:
-            | userID   | ruth17a5 |
+            | userID   | pang6f17 |
             | password | Test1234 |
         And I click login
         And I click later
