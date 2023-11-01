@@ -6,11 +6,11 @@ Feature: Apply Either Loan and select the loan type
 
     Background:
         Given I am a registered customer with following details:
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         When I filling in form login with the following details:
-            | userID   | niza59ce  |
-            | password | Feb042017 |
+            | userID   | bots2912  |
+            | password | TestSmb123 |
         And I click login
         And I click later
         Then I will direct to dashboard
