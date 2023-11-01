@@ -300,7 +300,8 @@ module.exports = {
       I.see("Tagihan Terdekat");
       I.seeElement(this.buttons.buttonSeeAllBills);
       I.see('Lewat');
-
+      I.seeElement(this.texts.textCountDownBill);
+      I.seeElement(this.texts.textNominalBill);
       I.see("Autodebet gagal, pastikan saldo mencukupi.");
     } catch (error) {
       console.log('Card Repayment Status Failed does not exist');
@@ -313,7 +314,36 @@ module.exports = {
     });
   },
 
-  // Status Success
+  async accessCardDetailForStatusFailed() {
+    let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
+    I.click(this.buttons.buttonSeeAllBills);
+    I.waitForElement(this.buttons.itemBill);
+    I.click(this.buttons.filterOngoing);
+    I.assertEqual(this.texts.textCountDownBill, 'lewat 1 hari');
+    let nominalBillDetail = await I.grabTextFrom(this.texts.textNominalBillDetail);
+    if (nominalBill === nominalBillDetail) {
+      console.log('Nominal bill is equal');
+      I.click(this.buttons.itemBill);
+    } else {
+      console.log('Nominal bill is not equal');
+    }
+  },
 
+  // Status Success
+  async accessCardDetailForStatusFailed() {
+    let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
+    I.click(this.buttons.buttonSeeAllBills);
+    I.waitForElement(this.buttons.itemBill);
+    I.click(this.buttons.filterOngoing);
+    I.dontSeeElement(this.texts.textCountDownBill);
+    I.see('Tagihan berhasil dibayar');
+    let nominalBillDetail = await I.grabTextFrom(this.texts.textNominalBillDetail);
+    if (nominalBill === nominalBillDetail) {
+      console.log('Nominal bill is equal');
+      I.click(this.buttons.itemBill);
+    } else {
+      console.log('Nominal bill is not equal');
+    }
+  },
 
 }
