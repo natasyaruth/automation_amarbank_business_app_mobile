@@ -330,7 +330,7 @@ module.exports = {
   },
 
   // Status Success
-  async accessCardDetailForStatusFailed() {
+  async accessCardDetailForStatusSuccess() {
     let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
     I.click(this.buttons.buttonSeeAllBills);
     I.waitForElement(this.buttons.itemBill);

@@ -15,11 +15,6 @@ Feature: Loan Repayment For Status Failed
   Then I will direct to dashboard
 
  Scenario: Validate List Repayment in Loan dashboard with Status Failed
-  Given I have been on loan dashboard
-  When I am validating the list card repayment with status Failed
-  Then I should be see the closest active bill with status Failed
-
- Scenario: Validate List Repayment in Loan dashboard with Status Failed
   Given I have been on loan dashboard with status Failed
   When I am validating the list card repayment with status Failed
   Then I should be see the closest active bill with status Failed
@@ -34,3 +29,28 @@ Feature: Loan Repayment For Status Failed
   When I am accessing the card with status failed
   And I am accessing the detail to see the payment info from any loan type with status failed
   Then I should be see the payment info from loan type AP or Direct AP or PO or AR in status failed
+
+ Scenario: Calling the Call Center
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan"
+  When I call the call Center
+  Then the call center is opened
+
+ Scenario: Validate Bill Information With Type Loan AP
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type AP
+
+ Scenario: Validate Bill Information With Type Loan Direct AP
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of Direct AP
+
+ Scenario: Validate Bill Information With Type PO
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of PO
+
+ Scenario: Validate Bill Information With Type AR
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+  When I access the detail
+  Then I should be see the loan type of AR
