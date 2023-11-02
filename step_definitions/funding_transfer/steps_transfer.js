@@ -8,6 +8,10 @@ const {
     globalVariable,
 } = inject();
 
+When("I choose the friendlist", ()=> {
+    I.click(friendListPage.cards.friendList);
+});
+
 When("I choose category {string}", (category) => {
     I.wait(2)
     transferPage.chooseCategory(category);
@@ -81,6 +85,8 @@ Then("I choose transfer service BIFAST", () => {
 Then("I choose transfer service SKN", () => {
     transferPage.chooseSkn();
 });
+
+
 
 When("I click transfer", () => {
     transferPage.processTransfer(); 
