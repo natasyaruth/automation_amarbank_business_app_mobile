@@ -9,7 +9,7 @@ module.exports = {
         textFieldTitleHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Maaf, Untuk saat ini kami belum melayani pinjaman di Medan.")]'},
         textFieldDescriptionHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Tidak perlu khawatir, kami akan mempertimbangkan untuk memperluas wilayah pelayanan pinjaman dikota/kabupaten Anda.")]'},
         textFieldSuccesCompleteData: {xpath: '//android.widget.TextView[contains(@text, "Terima kasih telah melengkapi Data Diri")]'},
-        textFieldTnc: "~textTnc"
+        textFieldTnc: "~textTnc",
     },
     fields: {
         amountLoanField: "~textFieldLoan",

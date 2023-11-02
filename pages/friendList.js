@@ -1,8 +1,10 @@
+const { I } = inject();
+
 module.exports = {
     fields: {
-      searchFriend: "~textFieldSearch",
+      searchFriendName: "~textFieldSearch",
       accountNumber: "~textFieldAccountNumber",
-      searchBankName: "~textFieldSearchBank",
+      searchBank: "~textFieldSearch",
       notes: "~textFieldNote",
     },
     cards: {
@@ -14,6 +16,7 @@ module.exports = {
       checkAccount: "~buttonInquiry",
       next: "~buttonNext",
       closeBottomSheetBankName: "~buttonClose",
+      
     },
     dropDowns: {
       listBankName: "~dropDownFieldListBank",
@@ -23,7 +26,7 @@ module.exports = {
     },
     text: {
       receiverName: "~textReceiverName",
-      bankName: "~textBankName",
+      bankName: "~textBank",
     },
     checkBox: {
       saveFriendList: "~checkBoxSaveReceiver",
@@ -32,9 +35,8 @@ module.exports = {
       accountNumber: "~textFieldErrorAccountNumber",
     },
   
-    fillSearchFriendlist(friendname) {
-      I.waitForElement(this.fields.searchFriend, 10);
-      I.setText(this.fields.searchFriend, friendname);
+    fillSearchFriendlist(friendListname) {      
+      I.setText(this.fields.searchFriendName, friendListname);
       I.hideDeviceKeyboard();
     },
   
@@ -42,22 +44,22 @@ module.exports = {
       I.click(this.buttons.closeBottomSheetBankName);
     },
   
-    addNewFriendList() {
-      I.waitForElement(this.buttons.newFriendlist, 10);
+    addNewFriendList(){
+      I.waitForElement(this.buttons.newFriendlist,10);
       I.click(this.buttons.newFriendlist);
     },
   
     chooseListBank(){
+      I.waitForElement(this.dropDowns.listBankName,10);
       I.click(this.dropDowns.listBankName);
-      I.waitForElement(this.buttons.closeBottomSheetBankName, 10);
     },
-  
+      
     chooseBank(){
       I.click(this.dropDowns.firstItem);
     },
   
-    searchBankName(bankname) {
-      I.setText(this.fields.searchBankName, bankname);
+    searchBankName(bankName) {
+      I.setText(this.fields.searchBank, bankName);
       I.hideDeviceKeyboard();
     },
   
@@ -71,16 +73,16 @@ module.exports = {
     },
   
     async saveFriendlist() {
-      const isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
-  
+      I.wait(10);
+      let isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
       if (isChecked === "false") {
         I.click(this.checkBox.saveFriendList);
       }
     },
   
     async unSavedFriendlist() {
-      const isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
-  
+      I.wait(10);
+      let isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
       if (isChecked === "true") {
         I.click(this.checkBox.saveFriendList);
       }
@@ -98,7 +100,7 @@ module.exports = {
       return await I.grabTextFrom(this.text.bankName);
     },
   
-    getValueAccNumber(){
+    async getValueAccNumber(){
       return I.grabTextFromField(this.fields.accountNumber);
     },
   

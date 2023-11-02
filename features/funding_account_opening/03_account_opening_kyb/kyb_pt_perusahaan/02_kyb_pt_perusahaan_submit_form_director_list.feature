@@ -13,8 +13,8 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
             | userID   | ruthec01 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
@@ -169,4 +169,4 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         And I validate all the data in the confirmation list
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
-        And I will directing to page business address 
+        And I will directing to page business address

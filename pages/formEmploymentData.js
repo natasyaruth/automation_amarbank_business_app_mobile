@@ -15,10 +15,14 @@ module.exports = {
     saveEmploymentData: "~buttonSaveWorkData",
     closeBottomSheet: "~buttonClose",
     continue: "~buttonNext",
+    continueDashboard: {xpath: '//android.view.View[@content-desc="buttonNext"]'}
   },
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",
     rights: "~checkBoxRight",
+  },
+  scrollView: {
+    scroll: {xpath: "//android.widget.ScrollView",}
   },
 
   async fillEmploymentData(employmentData){
@@ -65,6 +69,6 @@ module.exports = {
   },
 
   continueToDashboard(){
-    I.click(this.buttons.continue);
+    I.click(this.buttons.continueDashboard);
   }
 }

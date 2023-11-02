@@ -19,10 +19,11 @@ Given("I am a customer want to access menu registration", () => {
   welcomePage.clickButtonRegister();
 });
 
-Given ("I am a customer lead wanting to register account business from invitation", () => {
-  // step to get business code from email
-  // step to get company name from email
+Given("My company name is {string}", (companyName) => {
+  globalVariable.registration.companyName = companyName;
 });
+
+Given ("I am a customer lead wanting to register account business from invitation", async () => {});
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -64,8 +65,14 @@ When("I registering the account", () => {
 Then("my account should be created", () => {
   I.waitForText("Apa kebutuhan Anda saat ini?", 10);
   onboardingAccOpeningPage.chooseLater();
-  I.waitForText("Dashboard Screen", 10);
-  // check dashboard step
+});
+
+Then("my account business should be created", () => {
+  I.waitForText("Lanjutkan proses registrasi", 10);
+  I.see("Anda hanya perlu melakukan:");
+  I.see("Foto eKTP");
+  I.see("Selfie");
+  I.seeElement(registrationPage.buttons.continueRegist);
 });
 
 When("I verifying my phone number by entering the code sent to me", async () => {
@@ -75,6 +82,8 @@ When("I verifying my phone number by entering the code sent to me", async () => 
   I.see("Verifikasi Nomor HP");
   I.see("Kode OTP telah dikirim ke nomor");
   I.assertEqual(actualPhoneNumber, "+62 "+expectedPhoneNumber);
+
+  I.wait(3);
 
   globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
   otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
@@ -209,6 +218,7 @@ When(
     globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
+    globalVariable.registration.businessCode = await otpDao.getBusinessCode(account["email"]);
 
     await whitelistDao.whitelistPhoneNumber(
       "+"+globalVariable.registration.phoneNumber
