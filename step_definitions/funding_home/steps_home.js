@@ -30,10 +30,8 @@ Then(/I want to click button start date/, () => {
 Then(/I should see form date displayed/, () => {
     homePage.viewFormDate();
 });
-Then(/I choose the start date \"([^\"]*)\"/, (Date) => {
-    homePage.selectDayDate(Date);
-    homePage.selectDayDate(Date);
-    homePage.selectMonthDate(Date);
+Then(/I choose the start date \"([^\"]*)\" with tap \"([^\"]*)\"/, (Date,Qty) => {
+    homePage.selectDayDate(Date,Qty);
     homePage.selectMonthDate(Date);
     homePage.clickBtnChoose();
 });
@@ -61,14 +59,17 @@ Then(/I should see reference number value \"([^\"]*)\"/, (trfType) => {
 Then(/I want to copied reference number value/, () => {
     homePage.clickBtnCopied();
 });
-Then(/I should see text view value date transfer\"([^\"]*)\"/, (trfType) => {
+Then(/I should see text view value date transfer \"([^\"]*)\"/, (trfType) => {
     homePage.shouldSeeTextViewDate(trfType);
 });
-Then(/I should see text view value time transfer\"([^\"]*)\"/, (trfType) => {
+Then(/I should see text view value time transfer \"([^\"]*)\"/, (trfType) => {
     homePage.shouldSeeTextViewTime(trfType);
 });
-Then(/I should see text view value note transfer\"([^\"]*)\"/, (trfType) => {
+Then(/I should see text view value note transfer \"([^\"]*)\"/, (trfType) => {
     homePage.shouldSeeTextViewNoted(trfType);
+});
+Then(/I should see text view value category transfer \"([^\"]*)\"/, (trfType) => {
+    homePage.shouldSeeTextViewCategory(trfType);
 });
 Then(/I want to click button share/, () => {
     homePage.clickBtnShare();
