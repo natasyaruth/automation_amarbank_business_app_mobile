@@ -15,7 +15,6 @@ Feature: User create PIN
         And I click login
         Then I will direct to dashboard
 
-    @test123
     Scenario: User wants to Transfer but doesn't have PIN
         Given I am a customer who wants to create PIN
         And I don't have a PIN

@@ -1,4 +1,4 @@
-@createPINfromOther
+
 Feature: User create PIN from other menu
     In order to transfer
     As a customer
