@@ -25,7 +25,6 @@ exports.config = {
       platform: "Android",
       // device: "emulator",
       path: "/",
-      //port: 4444,
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
@@ -204,6 +203,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
+      "./step_definitions/funding_home/steps_home.js"
     ],
   },
   plugins: {

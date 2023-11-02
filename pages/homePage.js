@@ -1,5 +1,6 @@
 const { default: AndroidUiautomator2Driver } = require("appium-uiautomator2-driver");
 const WebDriver = require("codeceptjs/lib/helper/WebDriver");
+const { click } = require("wd/lib/commands");
 
 const { I } = inject();
 
@@ -17,8 +18,8 @@ module.exports = {
         yearPrev: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[1]" },
         yearSelected: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[2]" },
         yearNext: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[3]" },
-        listTransferOut: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]"},
-        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[2]"}
+        listTransferOut: { xpath: "(//android.view.View[@content-desc='itemHistory'])[2]" },
+        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]" }
     },
     buttons: {
         historyBtn: "~btnHistory",
@@ -38,31 +39,33 @@ module.exports = {
         textViewTrfIn: { xpath: '//android.widget.TextView[contains(@text, "Transfer Masuk")]' },
         textViewRefNumberOut: { xpath: '//android.widget.TextView[contains(@text, "1234567890")]' },
         textViewRefNumberIn: { xpath: '//android.widget.TextView[contains(@text, "1234567890")]' },
-        textViewDateOut: { xpath: '//android.widget.TextView[contains(@text, "03 September 2023")]' },
-        textViewDateIn: { xpath: '//android.widget.TextView[contains(@text, "03 September 2023")]' },
-        textViewTimeOut: { xpath: '//android.widget.TextView[contains(@text, "12:00")]' },
-        textViewTimeIn: { xpath: '//android.widget.TextView[contains(@text, "12:00")]' },
-        textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
-        textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' }
+        textViewDateOut: { xpath: '//android.widget.TextView[contains(@text, "01 November 2023")]' },
+        textViewDateIn: { xpath: '//android.widget.TextView[contains(@text, "01 November 2023")]' },
+        textViewTimeOut: { xpath: '//android.widget.TextView[contains(@text, "1:40 PM")]' },
+        textViewTimeIn: { xpath: '//android.widget.TextView[contains(@text, "1:43 PM")]' },
+        textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "Test RTOL")]' },
+        textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
+        textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
+        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' }
     },
     menu: {
-        tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]"},
-        tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]"},
+        tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
+        tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]" },
         tabCallCenter: "~tabCallCenter",
         tabBusiness: "~tabBusiness",
         tabHome: "~tabHome"
     },
 
     viewUserName() {
-        I.wait(2);
+        I.wait(7);
         I.seeElement(this.fields.userField);
     },
     clickBtnHistory() {
-        I.wait(2);
+        I.wait(3);
         I.click(this.buttons.historyBtn);
     },
     async viewPageHistoryTransaction() {
-        I.wait(2);
+        I.wait(3);
         let actualValue = await I.grabAttributeFrom(this.textFields.textViewHistoryTrxPage, "text");
         I.assertEqual(actualValue, "Riwayat Transaksi")
     },
@@ -81,36 +84,35 @@ module.exports = {
     clicBtnClose() {
         I.click(this.buttons.btnClose);
     },
-    selectDayDate(Date) {
-        I.wait(3);
-        switch (Date) {
-            case 'Previous':
-                I.wait(2);
-                I.click(this.fields.dayPrev);
+    selectDayDate(Date, Qty) {
+        for (let click = 1; click <= Qty; click++) {
+            I.wait(2);
+            switch (Date) {
+                case 'Previous':
+                    I.click(this.fields.dayPrev);
             break;
-            case 'Selected':
-                I.wait(2);
-                I.click(this.fields.daySelected);
+                case 'Selected':
+                    I.click(this.fields.daySelected);
             break;
-            case 'Next':
-                I.wait(2);
-                I.click(this.fields.dayNext);
+                case 'Next':
+                    I.click(this.fields.dayNext);
             break;
+            }
         }
     },
     selectMonthDate(Date) {
         I.wait(3);
         switch (Date) {
             case 'Previous':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthPrev);
             break;
             case 'Selected':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthSelected);
             break;
             case 'Next':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthNext);
             break;
         }
@@ -132,29 +134,29 @@ module.exports = {
             break;
         }
     },
-    viewFormDate(){
+    viewFormDate() {
         I.wait(2);
         I.seeElement(this.textFields.textViewSelectDate);
     },
-    clicFieldStartDate(){
+    clicFieldStartDate() {
         I.click(this.fields.startDateField);
     },
-    clicFieldEndDate(){
+    clicFieldEndDate() {
         I.click(this.fields.endDateField);
     },
-    clickBtnChoose(){
+    clickBtnChoose() {
         I.wait(2);
         I.click(this.buttons.btnChoose);
     },
-    clickBtnCancel(){
+    clickBtnCancel() {
         I.wait(2);
         I.click(this.buttons.btnCancel);
     },
-    clickBtnOk(){
+    clickBtnOk() {
         I.wait(2);
         I.click(this.buttons.btnOk);
     },
-    async validateTextViewTransfer(trfType){
+    async validateTextViewTransfer(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -171,7 +173,7 @@ module.exports = {
             break;
         }
     },
-    async clickListTransfer(trfType){
+    async clickListTransfer(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -180,11 +182,11 @@ module.exports = {
             break;
             case 'in':
                 I.wait(2);
-                I.click(this.fields.listTransferOut);
+                I.click(this.fields.listTransferIn);
             break;
         }
     },
-    async shouldSeeTextViewRefNumber(trfType){
+    async shouldSeeTextViewRefNumber(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -197,11 +199,11 @@ module.exports = {
             break;
         }
     },
-    clickBtnCopied(){
+    clickBtnCopied() {
         I.wait(2);
         I.click(this.buttons.btnCopied);
     },
-    async shouldSeeTextViewDate(trfType){
+    async shouldSeeTextViewDate(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -214,7 +216,7 @@ module.exports = {
             break;
         }
     },
-    async shouldSeeTextViewTime(trfType){
+    async shouldSeeTextViewTime(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -227,7 +229,7 @@ module.exports = {
             break;
         }
     },
-    async shouldSeeTextViewNoted(trfType){
+    async shouldSeeTextViewNoted(trfType) {
         I.wait(2);
         switch (trfType) {
             case 'out':
@@ -240,13 +242,26 @@ module.exports = {
             break;
         }
     },
-    clickBtnShare(){
+    async shouldSeeTextViewCategory(trfType) {
+        I.wait(2);
+        switch (trfType) {
+            case 'out':
+                I.wait(2);
+                I.seeElement(this.textFields.textViewCatOut);
+            break;
+            case 'in':
+                I.wait(2);
+                I.seeElement(this.textFields.textViewCatIn);
+            break;
+        }
+    },
+    clickBtnShare() {
         I.wait(2);
         I.click(this.buttons.btnShare);
         I.wait(3);
         I.sendDeviceKeyEvent(4);
     },
-    clickTabTesting(){
+    clickTabTesting() {
         I.wait(2);
         I.click(this.menu.tabTesting);
     }
