@@ -4,12 +4,15 @@ Feature: Submit Loan Type AP Status is Approved
 
     Background:
         Given I am a registered customer with foll
-            | userID   | botseb19   |
+            | userID   | botseb19  |
             | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | botseb19   |
+            | userID   | botseb19  |
             | password | TestSmb123 |
         And I click login
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
         Then I successed go to dashbord
 
     Scenario: Validate Business Loan For Type Loan AP
