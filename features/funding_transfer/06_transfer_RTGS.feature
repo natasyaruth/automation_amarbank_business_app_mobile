@@ -18,7 +18,7 @@ Feature: User transfer RTGS
     
     Scenario: User transfer detail with RTGS
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '1.000.000.000'
         And I choose category "Pembayaran"       
@@ -29,7 +29,7 @@ Feature: User transfer RTGS
 
     Scenario: User transfer with RTGS with empty notes
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '2.000.000.000'
         And I choose category "Pembayaran"        
@@ -42,7 +42,7 @@ Feature: User transfer RTGS
 
     Scenario: User transfer with RTGS and input notes with emoji & symbol
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '2.000.000.000'
         And I choose category "Pembayaran"        
@@ -52,7 +52,7 @@ Feature: User transfer RTGS
 
     Scenario: User Transfer RTGS and input notes more than 50 char
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"       
@@ -62,14 +62,14 @@ Feature: User transfer RTGS
 
      Scenario: User Transfer with amount < Rp.10.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '9.000'
         Then I see error message "Nilai Transfer minimal Rp.10.000"
 
     Scenario: User Transfer RTGS with amount = Rp.2.000.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '1.000.000.000'
         And I choose category "Pembayaran"       
@@ -83,7 +83,7 @@ Feature: User transfer RTGS
 
     Scenario: User confirmation transfer with RTGS
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '2.000.000.000'
         And I choose category "Pembayaran"
@@ -95,7 +95,7 @@ Feature: User transfer RTGS
 
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Aleena Andrian' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '2.000.000.000'
         And I choose category "Pembayaran"        
@@ -108,7 +108,7 @@ Feature: User transfer RTGS
 
     Scenario: User successfully transfer
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -123,7 +123,7 @@ Feature: User transfer RTGS
 
     Scenario: User input incorrect PIN once
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '2.000.000.000'
         And I choose category "Pembayaran"        
@@ -136,7 +136,7 @@ Feature: User transfer RTGS
 
     Scenario: User input incorrect PIN twice
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -149,7 +149,7 @@ Feature: User transfer RTGS
        
     Scenario: User input incorrect PIN third
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        

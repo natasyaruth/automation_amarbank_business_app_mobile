@@ -17,7 +17,7 @@ Feature: User transfer RTOL
 
     Scenario: User close buttom sheet category transaction
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I choose category 'Pembayaran'
         And I close bottom sheet category
@@ -25,14 +25,14 @@ Feature: User transfer RTOL
 
     Scenario: User input amount higher than active balance
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount higher than active balance
         Then I can see message "saldo aktif tidak mencukupi"
 
     Scenario: User transfer detail with RTOL
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -43,7 +43,7 @@ Feature: User transfer RTOL
 
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -54,7 +54,8 @@ Feature: User transfer RTOL
         Then I will directly go to page confirmation transfer
 
     Scenario: User transfer with RTOL and input wrong PIN
-        When I search name 'Nurul Septariani' in friendlist
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"        
@@ -68,7 +69,7 @@ Feature: User transfer RTOL
 
       Scenario: User transfer with RTOL with empty notes
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '50.000.000'
         And I choose category "Pembayaran"       
@@ -81,7 +82,7 @@ Feature: User transfer RTOL
 
     Scenario: User transfer with RTOL and input notes with emoji and symbol
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '50.000.000'
         And I choose category "Pembayaran"        
@@ -91,7 +92,7 @@ Feature: User transfer RTOL
 
     Scenario: User Transfer RTOL with amount = Rp.20.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '20.000.000'
         And I choose category "Pembayaran"        
@@ -105,7 +106,7 @@ Feature: User transfer RTOL
 
     Scenario: User Transfer RTOL with amount = Rp.50.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '100.000.000'
         And I choose category "Pembayaran"        
@@ -119,7 +120,7 @@ Feature: User transfer RTOL
 
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '50.000.000'
         And I choose category "Pembayaran"        
@@ -131,7 +132,8 @@ Feature: User transfer RTOL
         Then I successfully transferred between Amar Bank 
 
     Scenario: User successfully transfer
-        When I search name 'Nurul Septariani' in friendlist
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"        
