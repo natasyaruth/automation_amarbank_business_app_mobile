@@ -21,11 +21,10 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      //app: "./assets/app/app-debug.apk",
+      app: "./assets/app/app-debug.apk",
       platform: "Android",
       device: "emulator",
-      path: "/wd/hub",
-      //port: 4444,
+      path: "/",
       desiredCapabilities: {
         platformName: "Android",
         platformVersion: "12.0",

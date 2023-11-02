@@ -57,15 +57,15 @@ module.exports = {
     },
 
     viewUserName() {
-        I.wait(5);
+        I.wait(7);
         I.seeElement(this.fields.userField);
     },
     clickBtnHistory() {
-        I.wait(2);
+        I.wait(3);
         I.click(this.buttons.historyBtn);
     },
     async viewPageHistoryTransaction() {
-        I.wait(2);
+        I.wait(3);
         let actualValue = await I.grabAttributeFrom(this.textFields.textViewHistoryTrxPage, "text");
         I.assertEqual(actualValue, "Riwayat Transaksi")
     },
@@ -104,15 +104,15 @@ module.exports = {
         I.wait(3);
         switch (Date) {
             case 'Previous':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthPrev);
             break;
             case 'Selected':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthSelected);
             break;
             case 'Next':
-                I.wait(2);
+                I.wait(1);
                 I.click(this.fields.monthNext);
             break;
         }
@@ -247,11 +247,11 @@ module.exports = {
         switch (trfType) {
             case 'out':
                 I.wait(2);
-                I.seeElement(this.textFields.textViewNoteOut);
+                I.seeElement(this.textFields.textViewCatOut);
             break;
             case 'in':
                 I.wait(2);
-                I.seeElement(this.textFields.textViewNoteIn);
+                I.seeElement(this.textFields.textViewCatIn);
             break;
         }
     },
