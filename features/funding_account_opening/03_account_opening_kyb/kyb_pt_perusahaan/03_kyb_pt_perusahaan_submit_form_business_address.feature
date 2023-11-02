@@ -6,11 +6,11 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | nady9968                     |
-            | password | 1234Test                     |
-            | email    | pt_perusahaan@trash-mail.com |
+            | userID   | ptpe1425                        |
+            | password | 1234Test                        |
+            | email    | pt_perusahaan120@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | nady9968 |
+            | userID   | ptpe1425 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,20 +20,20 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3175025608860004        |
-            | fullName      | PT PERUSAHAAN           |
-            | placeOfBirth  | PEKANBARU               |
-            | dateOfBirth   | 11/11/1995              |
-            | gender        | Laki-laki               |
-            | address       | Jl. Durian kamu No. 14  |
-            | rt            | 00                      |
-            | rw            | 00                      |
-            | province      | DKI JAKARTA             |
-            | city          | KOTA ADM. JAKARTA BARAT |
-            | district      | GROGOL PETAMBURAN       |
-            | village       | TANJUNG DUREN UTARA     |
-            | religion      | Islam                   |
-            | maritalStatus | Kawin                   |
+            | eKtpNumber    | 3174054512910013                  |
+            | fullName      | PT PERUSAHAAN INTEGRATE DUA PULUH |
+            | placeOfBirth  | PEKANBARU                         |
+            | dateOfBirth   | 11/11/1995                        |
+            | gender        | Laki-laki                         |
+            | address       | Jl. Durian kamu No. 14            |
+            | rt            | 00                                |
+            | rw            | 00                                |
+            | province      | DKI JAKARTA                       |
+            | city          | KOTA ADM. JAKARTA BARAT           |
+            | district      | GROGOL PETAMBURAN                 |
+            | village       | TANJUNG DUREN UTARA               |
+            | religion      | Islam                             |
+            | maritalStatus | Kawin                             |
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
@@ -41,16 +41,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121780042123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
@@ -58,13 +49,13 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT PERUSAHAAN   |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | businessName      | PT PERUSAHAAN INTEGRATE DUA PULUH |
+            | industry          | Jasa                              |
+            | businessField     | Restoran                          |
+            | monthlyIncome     | 30 - 50 juta                      |
+            | npwp              | 906283213036000                   |
+            | nib               | 9129106701234                     |
+            | businessDateStart | 10/10/2010                        |
         And I submit my business profile
         And I submit business director list
 

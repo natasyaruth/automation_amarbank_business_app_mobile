@@ -72,9 +72,9 @@ When("I delete the director", () => {
 
 When("I confirm to delete the director", () => {
     I.waitForText("Apakah Anda akan menghapus direktur?", 10);
-    I.see(globalVariable.formKtp.fullName);
-    I.see(globalVariable.registration.email);
-    I.see(globalVariable.formKtp.eKTPNumber);
+    I.see(globalVariable.formDirector.fullName);
+    I.see(globalVariable.formDirector.email);
+    I.see(globalVariable.formDirector.nik);
     formBusinessOwnerPage.confirmDeleteDirector();
 });
 
@@ -83,9 +83,10 @@ When("I confirm to update data director", () => {
     formBusinessOwnerPage.saveUpdateDirector();
 });
 
-When("I validate my first director", async () => {
+When("I validate my first director", () => {
     I.waitForText("Direktur berhasil ditambah", 10);
-    await formBusinessOwnerPage.swipeToButtonSaveListDirectors();
+    I.wait(3);
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
@@ -99,9 +100,9 @@ When("I validate all the data in the confirmation list", async () => {
     I.see("Jumlah Direktur "+numberOfDirectors+" orang.");  
 });
   
-When("I validate my second director", async ()=>{
+When("I validate my second director", ()=>{
     I.waitForText("Direktur berhasil ditambah", 10);
-    await formBusinessOwnerPage.swipeToButtonSaveListDirectors();
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);

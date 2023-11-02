@@ -9,7 +9,7 @@ module.exports = {
     address: "~textFieldAddress",
     rt: "~textFieldRT",
     rw: "~textFieldRW",
-    search: "~tag"
+    search: "~textFieldSearch"
   },
   buttons: {
     saveEktp: "~buttonSaveEktpData",
