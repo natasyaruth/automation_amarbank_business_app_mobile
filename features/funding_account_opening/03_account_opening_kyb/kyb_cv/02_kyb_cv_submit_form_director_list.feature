@@ -1,4 +1,4 @@
-
+@kybSubmitFormBusinessOwnersCV
 Feature: Account Opening KYB CV - Submit Business Directors
     In order to opening my Giro account with legality business type CV in SMB
     As a customer
@@ -6,12 +6,12 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth9fe2            |
-            | password | Test1234            |
-            | email    | ruth@trash-mail.com |
+            | userID   | ruth44f1               |
+            | password | 1234Test               |
+            | email    | ruth.testing@email.com |
         And I filling in form login with the following details:
-            | userID   | ruth9fe2 |
-            | password | Test1234 |
+            | userID   | ruth44f1 |
+            | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -20,7 +20,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172021710820021          |
+            | eKtpNumber    | 3192021710820021          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -65,7 +65,6 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @kybSubmitFormBusinessOwnersCV
     Scenario: Submit more than one business director successfully business type CV
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -120,7 +119,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I delete the director
         And I confirm to delete the director
         And I submit business director list
-        And I validate all the data in the confirmation list
+        And I validate deleted data should be not in the confirmation list
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
@@ -157,6 +156,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | fullName | TRYSE REZZA          |
             | email    | tryse@trash-mail.com |
             | nik      | 3155021710820021     |
+        And I confirm to update data director    
         And I submit business director list
         And I validate all the data in the confirmation list
         And I confirm my director lists

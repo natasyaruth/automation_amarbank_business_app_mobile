@@ -43,6 +43,13 @@ module.exports = {
     });
   },
 
+  clearAllFieldDirector(){
+    I.waitForElement(this.fields.fullName, 10);
+    I.clearField(this.fields.fullName);
+    I.clearField(this.fields.email);
+    I.clearField(this.fields.nik);
+  },
+
   addListDirector() {
     I.waitForElement(this.buttons.addListDirector, 10);
     I.click(this.buttons.addListDirector);
