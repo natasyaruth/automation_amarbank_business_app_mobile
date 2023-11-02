@@ -64,6 +64,7 @@ When("I save data director", () => {
 
 When("I update data director", () => {
     formBusinessOwnerPage.chooseUpdateDirector();
+    formBusinessOwnerPage.clearAllFieldDirector();
 });
 
 When("I delete the director", () => {
@@ -93,11 +94,20 @@ When("I validate my first director", () => {
     I.see(globalVariable.formDirector.nik);
 });
 
-When("I validate all the data in the confirmation list", async () => {
-    const numberOfDirectors = globalVariable.formDirector.numberOfDirectors + 1;
-
+When("I validate all the data in the confirmation list", () => {
     I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-    I.see("Jumlah Direktur "+numberOfDirectors+" orang.");  
+    
+    I.see(globalVariable.formDirector.fullName);
+    I.see(globalVariable.formDirector.email);
+    I.see(globalVariable.formDirector.nik);
+});
+
+When("I validate deleted data should be not in the confirmation list", ()=>{
+    I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
+    
+    I.dontSee(globalVariable.formDirector.fullName);
+    I.dontSee(globalVariable.formDirector.email);
+    I.dontSee(globalVariable.formDirector.nik);
 });
   
 When("I validate my second director", ()=>{

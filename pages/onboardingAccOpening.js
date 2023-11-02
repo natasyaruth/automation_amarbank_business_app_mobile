@@ -67,10 +67,8 @@ module.exports = {
   },
 
   continueToKYC() {
-    // I.waitForElement(this.buttons.next, 10);
-    // I.click(this.buttons.next);
-    I.waitForText("Selanjutnya", 10);
-    I.click("Selanjutnya");
+    I.waitForElement(this.buttons.next, 10);
+    I.click(this.buttons.next);
   },
 
   validatePage(pageName) {
