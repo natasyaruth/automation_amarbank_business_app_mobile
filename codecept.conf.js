@@ -21,7 +21,7 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      app: "./assets/app/app-debug.apk",
       platform: "Android",
       device: "emulator",
       path: "/",
@@ -36,6 +36,7 @@ exports.config = {
         appPackage: "id.co.amarbank.smb",
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
+        newCommandTimeout: 300,
       }
     },
     ChaiWrapper: {
