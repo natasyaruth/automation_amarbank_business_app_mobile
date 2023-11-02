@@ -173,3 +173,7 @@ Then("I will notify that my personal data details needs to be verified in main d
     I.see("Menunggu verifikasi data selesai");
     I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
 });
+
+Then("I will see card continue to complete registration user invited", ()=>{
+    onboardingAccOpeningPage.continueToKYC();
+});

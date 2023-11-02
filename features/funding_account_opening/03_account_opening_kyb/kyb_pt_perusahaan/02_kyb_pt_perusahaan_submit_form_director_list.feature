@@ -1,4 +1,3 @@
-@kybSubmitFormBusinessOwnersCompany
 Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
     In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer
@@ -41,16 +40,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
@@ -74,6 +64,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
+    @kybSubmitFormBusinessOwnersCompany01
     Scenario: Submit more than one business director successfully business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
