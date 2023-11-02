@@ -57,6 +57,7 @@ module.exports = {
 
   fillInformation(ktpData){
     I.waitForElement(this.fields.eKtpNumber, 10);
+    I.wait(3);
     
     const information = Object.keys(ktpData);
     for(let i=0;i<information.length;i++){
@@ -76,8 +77,9 @@ module.exports = {
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
         ){
+        I.wait(1);  
         I.click(this.dropDownsSearch[fieldName]);
-        I.waitForElement(this.buttons.closeBottomSheet, 10);
+        I.waitForElement(this.dropDownsSearch.firstItem, 10);
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);

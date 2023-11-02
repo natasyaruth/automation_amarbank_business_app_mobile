@@ -11,6 +11,9 @@ Feature: Select the Loan Amount and Tenor
             | userID   | niza59ce  |
             | password | Feb042017 |
         And I click login
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
         Then I successed go to dashbord
         And I click button loan dashboard
         And user click button ajukan pinjaman

@@ -21,22 +21,21 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      //app: "./assets/app/app-debug.apk",
+      app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      device: "emulator",
+      // device: "emulator",
       path: "/",
-      //port: 4444,
       desiredCapabilities: {
         platformName: "Android",
-        platformVersion: "12.0",
-        deviceName: "Pixel 2 API 31",
+        // platformVersion: "12.0",
+        // deviceName: "Pixel 2 API 31",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        deviceName: "emulator-5554",
-        appPackage: "id.co.amarbank.smb",
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        // deviceName: "emulator-5554",
+        // appPackage: "id.co.amarbank.smb",
+        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
-        newCommandTimeout: 300,
+        // newCommandTimeout: 300,
       }
     },
     ChaiWrapper: {
@@ -119,8 +118,20 @@ exports.config = {
     friendListPage: "./pages/friendList.js",
 
     transferPage: "./pages/transfer.js",
+
+    homePage: "./pages/homePage.js",
+
+    limitActivePage: "./pages/loanApplication/limitActive.js",
+
+    businessLoanPage: "./pages/loanApplication/businessLoan.js",
+
+    pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
+
+    confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
+    
+    loanRepaymentPage: "./pages/loanRepayment.js",
   },
-  settings:{
+  settings: {
     logging: {
       level: 'warn',
     },
@@ -132,7 +143,7 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: ["./features/*.feature",
-      "./features/loanApplication/loanTypeAP/*.feature",
+      // "./features/loanApplication/loanTypeAP/*.feature",
       "./features/loanApplication/loanTypeAR/*.feature",
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanApplication/loanTypePO/*.feature",
@@ -148,9 +159,12 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
-      // "./features/funding_transfer/*.feature",
-       "./features/funding_create_pin/*.feature",
+      "./features/funding_transfer/*.feature",
+      "./features/funding_create_pin/*.feature",
+      "./features/funding_transfer/friend_list.feature",
       "./features/loanDisbursement/*.feature",
+      "./features/funding_home/*.feature",
+      "./features/loanRepayment/*.feature",
 
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
@@ -161,6 +175,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/loanApplication/steps_privyAggrement.js",
       "./step_definitions/loanApplication/steps_uploadDocLoan.js",
+      //"./step_definitions/funding_account_crebusinessloanlimitation/steps_forgotPassword.js",
       "./step_definitions/funding_account_creation/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js",
@@ -174,8 +189,21 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessOwner.js",
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/funding_transfer/steps_friend_list.js",
+      "./step_definitions/funding_transfer/steps_transfer.js",
+      "./step_definitions/funding_create_pin/steps_createPin.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
+      "./step_definitions/funding_home/steps_home.js",
+      "./step_definitions/loanApplication/steps_limitActive.js",
+      "./step_definitions/loanApplication/steps_businessLoan.js",
+      "./step_definitions/loanApplication/steps_pdcDelivery.js",
+      "./step_definitions/loanApplication/steps_confirmInvoice.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
+      "./step_definitions/funding_home/steps_home.js"
     ],
   },
   plugins: {
@@ -199,13 +227,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-      pattern: "wait.*",
-      timeout: 0
-    },
-    {
-      pattern: "amOnPage",
-      timeout: 0
-    }
+    pattern: "wait.*",
+    timeout: 0
+  },
+  {
+    pattern: "amOnPage",
+    timeout: 0
+  }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

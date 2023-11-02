@@ -6,12 +6,13 @@ Feature: User transfer RTOL
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | ruth17a5 |
+            | userID   | pang6f17 |
             | password | Test1234 |
         When I filling in form login with the following details:
-            | userID   | ruth17a5 |
+            | userID   | pang6f17 |
             | password | Test1234 |
         And I click login
+        And I click later
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
 

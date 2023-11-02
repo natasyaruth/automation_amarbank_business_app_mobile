@@ -12,9 +12,9 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
             | userID   | ruth1ed7 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
-        # And I choose Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I upload my eKTP photo

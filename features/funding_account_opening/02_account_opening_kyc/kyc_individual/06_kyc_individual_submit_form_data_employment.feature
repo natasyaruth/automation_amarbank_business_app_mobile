@@ -6,21 +6,21 @@ Feature: Account Opening KYC Individual - Submit Data Employment
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID   | ruthd643 |
+            | userID   | athie398 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruthd643 |
+            | userID   | athie398 |
             | password | 1234Test |
         And I click login
-        Then I will direct to dashboard
-        When I swipe to card Giro Account
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
         And I choose Giro Account
         And I choose legality business type 'individual'
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3171020805780003          |
-            | fullName      | INDIVIDUAL                |
+            | eKtpNumber    | 3174014312940001          |
+            | fullName      | ATHINA INDIVIDUAL REJECT  |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
             | gender        | Laki-laki                 |
@@ -60,8 +60,8 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | sourceIncome  | Gaji Bulanan         |
             | monthlyIncome | 5 - 10 juta          |
             | industry      | Pemerintahan         |
-            | companyName   | AMARBANK             |
+            | companyName   | KEMENDAGRI           |
         And I agree with the terms and condition
         And I allow company to store my data
-        And I submit my employment data
+        And I submit my employment data individual
         Then I will notify that my personal data details needs to be verified first

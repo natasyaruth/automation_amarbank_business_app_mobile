@@ -13,6 +13,7 @@ module.exports = {
     createAccount: "~buttonCreateAccount",
     backRegist: "~buttonBackRegist",
     confirm: "~buttonConfirm",
+    continueRegist: "~btnNext",
   },
   messageErrorFields:{
     fullName: "~textMsgErrorFullName",
@@ -131,5 +132,9 @@ module.exports = {
   goToPrivacyPolicyPage() {
     I.swipeUp(this.buttons.createAccount, 10000, 3000);
     I.click(this.links.privacyPolicy);
+  },
+
+  continueRegistration(){
+    I.click(this.buttons.continueRegist);
   },
 };

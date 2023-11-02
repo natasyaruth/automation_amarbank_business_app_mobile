@@ -196,7 +196,7 @@ Given('I have been in "Konfirmasi Invoice" page to continue payment with detail 
  loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
  loanDisbursementPage.goToUploadDocument();
  loanDisbursementPage.takePicture();
- loanDisbursementPage.validateFailedUploadPhoto();
+ loanDisbursementPage.validateInvoiceConfirmation();
 });
 
 When('I keep "Nominal invoice" is empty', () => {

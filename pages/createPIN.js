@@ -24,14 +24,15 @@ module.exports = {
   },
   messageErrorFields: {
     errorPIN: "~textErrorPin",
-    errorOTPcode: "~textErrorOtp",
+    errorPassword: "~textErrorPassword",
+    
   },
   toastbar: {
     successPin: "~",
   },
 
   submitPassword() {
-    I.waitForElement(this.buttons.next, 5);
+    I.waitForElement(this.buttons.submitpassword, 5);
     I.click(this.buttons.submitpassword);
   },
 
@@ -51,7 +52,7 @@ module.exports = {
   },
 
   inputPIN(pin) {
-    I.waitForElement(this.fields.pin, 5);
+    I.waitForElement(this.fields.newPIN, 5);
     I.setText(this.fields.newPIN, pin)
   },
 
@@ -60,12 +61,7 @@ module.exports = {
     I.setText(this.fields.newPIN, confirmationPIN);
   },
 
-  inputOTP(OTPcode) {
-    I.waitForElement(this.fields.otpcode, 5);
-    I.setText(this.fields.otpcode, OTPcode);
-  },
-
-  nexttoTransferPage() {
+    nexttoTransferPage() {
     I.click(this.buttons.nextpagetransfer);
   },
 
@@ -77,8 +73,8 @@ module.exports = {
     I.waitForElement(this.messageErrorFields.errorPIN, 5);
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
-
-  continueAfterCreatePin(){
+  
+    continueAfterCreatePin(){
     I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },

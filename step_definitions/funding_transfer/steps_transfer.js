@@ -40,6 +40,10 @@ When("I input amount {string}", (amount) => {
 
 });
 
+When("I search name {string} in friendlist", (friendListname) => {
+    transferPage.fillSearchFriendlist(friendListname);
+});
+
 When("I input notes with {string}", (notes) => {
     transferPage.fillNotes(notes); 
     globalVariable.transfer.note = notes;
