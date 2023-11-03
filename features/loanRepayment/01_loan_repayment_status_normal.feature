@@ -15,7 +15,7 @@ Feature: Loan Repayment For Status Normal
   Then I will direct to dashboard
 
  Scenario: Validate List Repayment in Loan dashboard with Status Normal
-  Given I have been on loan dashboard
+  Given I have been on loan dashboard with status Normal
   When I am validating the list card repayment with status Normal
   Then I should be see the closest active bill with status Normal
 
