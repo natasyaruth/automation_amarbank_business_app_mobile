@@ -1,6 +1,6 @@
 @loanRepayment
 Feature: Loan Repayment For Status Failed
- In order to test Loan Disbursement
+ In order to test Loan Repayment
  As a customer
  I am able to processing loan repayment for loan type AP, Direct AP, PO, and AR with status failed repayment
 
