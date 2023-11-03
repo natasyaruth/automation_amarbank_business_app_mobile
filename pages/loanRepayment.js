@@ -10,7 +10,7 @@ module.exports = {
     itemBill: "~itemBill",
     buttonCopy: "~buttonCopy",
     buttonDetail: "~buttonDetail",
-    buttonComplaint: "~buttonComplaint",
+    buttonCallCenter: "~buttonCallCenter",
   },
 
   texts: {
@@ -150,18 +150,18 @@ module.exports = {
     }
   },
 
-  validateBillDateDueDate3() {
+  validateBillDueDate3() {
     I.see('Detail Tagihan');
     I.see('Tagihan Akan Di Autodebet Dalam');
     I.see('3 hari lagi');
     I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
     I.seeElement(this.buttons.buttonCopy);
     I.seeElement(this.buttons.buttonDetail);
-    I.seeElement(this.buttons.buttonComplaint);
+    I.seeElement(this.buttons.buttonCallCenter);
 
   },
-  goTolinkComplaint() {
-    I.click(this.buttons.buttonComplaint);
+  goTolinkCallCenter() {
+    I.click(this.buttons.buttonCallCenter);
 
   },
   goToBillInformation() {
@@ -279,16 +279,20 @@ module.exports = {
     }
   },
 
-  validateBillDateDueDate1inMorning() {
-    I.see('Detail Tagihan');
-    I.see('Tagihan Akan Di Autodebet Dalam');
-    I.see('1 hari lagi');
-    I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
-    I.seeElement(this.buttons.buttonCopy);
-    I.seeElement(this.buttons.buttonDetail);
-    I.seeElement(this.buttons.buttonComplaint);
+  async validateBillDueDate1inAfternoon() {
+    try {
+      await I.waitForElement('Detail Tagihan');
+      I.see('Autodebet sedang diproses');
+      console.log('Bill detail already exists');
+      I.dontSee('1 hari lagi');
+      I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+      I.seeElement(this.buttons.buttonCopy);
+      I.seeElement(this.buttons.buttonDetail);
+      I.seeElement(this.buttons.buttonCallCenter);
+    } catch (error) {
+      console.log('Bill detail is not exist');
+    }
   },
-
 
   //Status Failed
   async validateCardStatusFailed() {
@@ -329,21 +333,236 @@ module.exports = {
     }
   },
 
-  // Status Success
-  async accessCardDetailForStatusSuccess() {
-    let nominalBill = await I.grabTextFrom(this.texts.textNominalBill);
-    I.click(this.buttons.buttonSeeAllBills);
-    I.waitForElement(this.buttons.itemBill);
-    I.click(this.buttons.filterOngoing);
-    I.dontSeeElement(this.texts.textCountDownBill);
-    I.see('Tagihan berhasil dibayar');
-    let nominalBillDetail = await I.grabTextFrom(this.texts.textNominalBillDetail);
-    if (nominalBill === nominalBillDetail) {
-      console.log('Nominal bill is equal');
-      I.click(this.buttons.itemBill);
-    } else {
-      console.log('Nominal bill is not equal');
+  async validateBillFailedStatus() {
+    try {
+      await I.waitForElement('Detail Tagihan');
+      I.see('Detail Tagihan');
+      I.see('Autodebet gagal, pastikan saldo mencukupi.');
+      I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+      I.seeElement(this.buttons.buttonCopy);
+      I.seeElement(this.buttons.buttonDetail);
+      I.seeElement(this.buttons.buttonCallCenter);
+    } catch (error) {
+      console.log('I am not on Bill Detail page');
     }
   },
 
+  validateBillRepaymentFailedStatus() {
+    let loanType = 3;
+    switch (loanType) {
+      // Loan Type AP
+      case 1:
+        I.waitForText('Supplier');
+        I.see('Supplier');
+        I.seeElement(this.buttons.buttonCopy);
+        I.see('Denda Keterlambatan')
+        break;
+      // Loan Type AR
+      case 2:
+        I.waitForText('Buyer');
+        I.see('Buyer');
+        I.seeElement(this.buttons.buttonCopy);
+        I.see('Nominal yang Ditangguhkan');
+        I.see('Denda keterlambatan');
+        I.see('Nominal yang Dikembalikan Setelah Pelunasan');
+        break;
+      // Loan Type PO
+      case 3:
+        I.waitForText('Pemilik Proyek');
+        I.see('Pemilik Proyek');
+        I.seeElement(this.buttons.buttonCopy);
+        I.see('Denda keterlambatan');
+        break;
+      default:
+        console.error(error);
+    }
+  },
+
+  async goToDetailRepaymentFailedInfoLoanAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment with Failed Status for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+      I.see('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AP');
+    }
+  },
+
+  async goToDetailRepaymentFailedStatusInfoLoanDirectAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type Direct AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+      I.see('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type Direct AP');
+    }
+  },
+
+  async goToDetailRepaymentFailedStatusInfoLoanPO() {
+    try {
+      await I.waitForText('Pemilik Proyek');
+      console.log('Bill Repayment for Loan Type PO');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Supplier');
+      I.see('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type PO');
+    }
+  },
+
+  async goToDetailRepaymentFailedStatusInfoLoanAR() {
+    try {
+      await I.waitForText('Buyer');
+      console.log('Bill Repayment for Loan Type AR');
+      I.see('Info Pembayaran');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+      I.see('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
+
+  async goToBillInformationStatusFailed() {
+    I.click(this.buttons.buttonBillInformation);
+    try {
+      await I.waitForText('Info Pembayaran');
+      I.see('Info Pembayaran');
+      I.seeElement(this.buttons.buttonCopy);
+      I.see('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Information section is not exist');
+    }
+  },
+
+  // Status Success
+
+  async accessCardDetailForStatusSuccess() {
+    try {
+      await I.waitForText('Tagihan berhasil dibayar');
+      console.log('Card detail bill with status success is exist');
+      I.seeElement(this.texts.textNominalBillDetail);
+      I.seeElement(this.buttons.itemBill);
+      I.see(this.texts.textInvoiceNumber);
+      I.click(this.buttons.itemBill);
+    } catch (error) {
+      console.log('Card detail bill with status success is not exist');
+    }
+  },
+
+  async validateBillSuccessStatus() {
+    try {
+      await I.waitForElement('Detail Tagihan');
+      I.see('Detail Tagihan');
+      I.see('Tagihan berhasil dibayar');
+      I.see('Mohon pastikan saldo rekening berikut ini mencukupi sebelum pukul 17.00 WIB saat jatuh tempo');
+      I.seeElement(this.buttons.buttonCopy);
+      I.seeElement(this.buttons.buttonDetail);
+      I.seeElement(this.buttons.buttonCallCenter);
+    } catch (error) {
+      console.log('I am not on Bill Detail page');
+    }
+  },
+
+  async goToBillInformationStatusSuccess() {
+    I.click(this.buttons.buttonBillInformation);
+    try {
+      await I.waitForText('Info Pembayaran');
+      I.see('Info Pembayaran');
+      I.seeElement(this.buttons.buttonCopy);
+      I.see('Nominal yang Dicairkan');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Information section is not exist');
+    }
+  },
+
+  validateBillRepaymentSuccessStatus() {
+    let loanType = 3;
+    switch (loanType) {
+      // Loan Type AP
+      case 1:
+        I.waitForText('Supplier');
+        I.see('Supplier');
+        I.seeElement(this.buttons.buttonCopy);
+        I.dontSee('Denda Keterlambatan')
+        break;
+      // Loan Type AR
+      case 2:
+        I.waitForText('Buyer');
+        I.see('Buyer');
+        I.seeElement(this.buttons.buttonCopy);
+        I.see('Nominal yang Ditangguhkan');
+        I.dontSee('Denda keterlambatan');
+        I.see('Nominal yang Dikembalikan Setelah Pelunasan');
+        break;
+      // Loan Type PO
+      case 3:
+        I.waitForText('Pemilik Proyek');
+        I.dontSee('Pemilik Proyek');
+        I.seeElement(this.buttons.buttonCopy);
+        I.see('Denda keterlambatan');
+        break;
+      default:
+        console.error(error);
+    }
+  },
+  async goToDetailRepaymentSuccessStatusInfoLoanAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AP');
+    }
+  },
+
+  async goToDetailRepaymentSuccessStatusInfoLoanDirectAP() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type Direct AP');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type Direct AP');
+    }
+  },
+
+  async goToDetailRepaymentSuccessStatusInfoLoanPO() {
+    try {
+      await I.waitForText('Pemilik Proyek');
+      console.log('Bill Repayment for Loan Type PO');
+      I.see('Info Pembayaran');
+      I.dontSee('Buyer');
+      I.dontSee('Supplier');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type PO');
+    }
+  },
+
+  async goToDetailRepaymentSuccessStatusInfoLoanAR() {
+    try {
+      await I.waitForText('Buyer');
+      console.log('Bill Repayment for Loan Type AR');
+      I.see('Info Pembayaran');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
 }

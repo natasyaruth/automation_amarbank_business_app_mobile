@@ -26,7 +26,7 @@ When('I access the detail of status due date d - 3 from the first row', async ()
 });
 Then('I should be see the bill detail page of status due date d - 3', async () => {
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 // Scenario: Accessing "Lihat Detail" to See The Payment Info From Any Loan Tipe with Status Due Date D - 3
@@ -37,7 +37,7 @@ Given('I am on history bill with filter "Sedang Berjalan"', async () => {
 });
 
 When('I am accessing the card with status due date', () => {
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 When('I am accessing the detail to see the payment info from any loan type', () => {
@@ -55,7 +55,7 @@ Given('I have been on history card "Tagihan" with filter "Sedang Berjalan"', asy
  loanDashboardPage.goToLoanDashboard();
  await loanRepaymentPage.validateCardStatusDueDateRepayment();
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 When('I call the call Center', () => {
@@ -73,7 +73,7 @@ Given('I have been on history card "Tagihan" with filter "Sedang Berjalan" to se
  loanDashboardPage.goToLoanDashboard();
  await loanRepaymentPage.validateCardStatusDueDateRepayment();
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 
 });
 
@@ -91,7 +91,7 @@ Given('I have been on history card "Tagihan" with filter "Sedang Berjalan" to se
  loanDashboardPage.goToLoanDashboard();
  await loanRepaymentPage.validateCardStatusDueDateRepayment();
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 When('I access the detail', () => {
@@ -108,7 +108,7 @@ Given('I have been on history card "Tagihan" with filter "Sedang Berjalan" to se
  loanDashboardPage.goToLoanDashboard();
  await loanRepaymentPage.validateCardStatusDueDateRepayment();
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 When('I access the detail', () => {
@@ -125,7 +125,7 @@ Given('I have been on history card "Tagihan" with filter "Sedang Berjalan" to se
  loanDashboardPage.goToLoanDashboard();
  await loanRepaymentPage.validateCardStatusDueDateRepayment();
  await loanRepaymentPage.accessCardDetailForDueDate3();
- loanRepaymentPage.validateBillDateDueDate3();
+ loanRepaymentPage.validateBillDueDate3();
 });
 
 When('I access the detail', () => {
@@ -160,7 +160,7 @@ When('I access the detail of status due date the day from the first row', async 
 
 Then('I should be see the bill detail page of status the day due date', async () => {
  await loanRepaymentPage.accessCardDetailForDueDate1();
- loanRepaymentPage.validateBillDateDueDate1inMorning();
+ loanRepaymentPage.validateBillDueDate1inMorning();
 });
 
 // Scenario: Accessing "Lihat Detail" to See The Payment Info From Any Loan Tipe with Status The Day Due Date
@@ -170,7 +170,7 @@ Given('I am on history bill with filter "Sedang Berjalan"', async () => {
  await loanRepaymentPage.accessCardDetailForDueDate1();
 });
 When('I am accessing the card with status the day due date', () => {
- loanRepaymentPage.validateBillDateDueDate1inMorning();
+ loanRepaymentPage.validateBillDueDate1inMorning();
 
 });
 When('I am accessing the detail to see the payment info from any loan type', () => {

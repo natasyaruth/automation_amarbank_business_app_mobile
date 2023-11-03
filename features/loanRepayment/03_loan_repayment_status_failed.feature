@@ -25,32 +25,32 @@ Feature: Loan Repayment For Status Failed
   Then I should be see the bill detail page of status failed
 
  Scenario: Accessing "Lihat Detail" to See The Payment Info From Any Loan Tipe with Status Failed
-  Given I am on history bill with filter "Sedang Berjalan" in status Failed
+  Given I am on history bill with filter "Sedang Berjalan" and status Failed
   When I am accessing the card with status failed
   And I am accessing the detail to see the payment info from any loan type with status failed
   Then I should be see the payment info from loan type AP or Direct AP or PO or AR in status failed
 
- Scenario: Calling the Call Center
-  Given I have been on history card "Tagihan" with filter "Sedang Berjalan"
-  When I call the call Center
+ Scenario: Calling the Call Center in Detail Status Failed
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" and Status Failed
+  When I call the call Center in Detail Bill Failed Status
   Then the call center is opened
 
- Scenario: Validate Bill Information With Type Loan AP
-  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
-  When I access the detail
-  Then I should be see the loan type AP
+ Scenario: Validate Bill Information With Type Loan AP Status Failed
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status failed
+  When I access the detail of billing information status failed
+  Then I should be see the loan type AP status failed
 
- Scenario: Validate Bill Information With Type Loan Direct AP
-  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
-  When I access the detail
-  Then I should be see the loan type of Direct AP
+ Scenario: Validate Bill Information With Type Loan Direct AP Status Failed
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status failed
+  When I access the detail bill information with status failed
+  Then I should be see the loan type of Direct AP status failed
 
- Scenario: Validate Bill Information With Type PO
-  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
-  When I access the detail
-  Then I should be see the loan type of PO
+ Scenario: Validate Bill Information With Type PO Status Failed
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status failed
+  When I access the detail bill information with status failed
+  Then I should be see the loan type of PO status failed
 
- Scenario: Validate Bill Information With Type AR
-  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
-  When I access the detail
-  Then I should be see the loan type of AR
+ Scenario: Validate Bill Information With Type AR Status Failed
+  Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status failed
+  When I access the detail bill information with status failed
+  Then I should be see the loan type of AR status failed
