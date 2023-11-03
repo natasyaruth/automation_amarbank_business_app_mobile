@@ -12,8 +12,7 @@ Feature: User add friend list
         When I filling in form login with the following details:
             | userID   | mohaf6df |
             | password | Test1234 |
-        And I click login
-        And I click later
+        And I click login        
         Then I will direct to dashboard
 
     @friendlist02
@@ -97,7 +96,7 @@ Feature: User add friend list
         And I can choose Bank name
         And I search 'Bank Amar (Senyumku)' in search box bank name
         And I tap on bank name
-        And I input account number '1602000011'
+        And I input account number '1602000018'
         And I click on check
         And I check on the checkbox save as friend list
         And I process to transfer detail
@@ -108,5 +107,5 @@ Feature: User add friend list
     Scenario: User has friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        Then I will direct to Friend list page
+        Then I will go to Friend list page
         And I can see list of friends

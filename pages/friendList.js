@@ -33,6 +33,7 @@ module.exports = {
     },
     messageError: {
       accountNumber: "~textFieldErrorAccountNumber",
+      errorPassword: "~textErrorPassword",
     },
   
     fillSearchFriendlist(friendListname) {      
@@ -73,7 +74,7 @@ module.exports = {
     },
   
     async saveFriendlist() {
-      I.wait(10);
+      I.wait(5);
       let isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
       if (isChecked === "false") {
         I.click(this.checkBox.saveFriendList);
@@ -81,7 +82,7 @@ module.exports = {
     },
   
     async unSavedFriendlist() {
-      I.wait(10);
+      I.wait(5);
       let isChecked = await I.grabAttributeFrom(this.checkBox.saveFriendList, "checked");
       if (isChecked === "true") {
         I.click(this.checkBox.saveFriendList);

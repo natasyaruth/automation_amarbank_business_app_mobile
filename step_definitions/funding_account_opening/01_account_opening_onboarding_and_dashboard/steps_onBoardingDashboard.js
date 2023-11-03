@@ -49,7 +49,7 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
-When("I click later", () => {
+When("I click later", () => {    
     onboardingAccOpeningPage.chooseLater();
 });
 

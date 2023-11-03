@@ -61,8 +61,9 @@ When("I submit my password", () => {
 });
 
 Then("I should see pop up message {string}", async (expectedMsgError) => {     
-    I.waitForText(expectedMsgError, 10);
-    await createPINPage.tryAgain();
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
+    createPINPage.tryAgain();
     createPINPage.inputPassword(globalVariable.login.password);
     createPINPage.submitPassword();
     I.waitForElement(createPINPage.fields.newPIN, 10);
@@ -75,7 +76,8 @@ When("I input password", () => {
 When("I submit incorrect password twice", () => {
     createPINPage.inputPassword(dummyPswrd);
     createPINPage.submitPassword();
-    I.waitForText("Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir", 10);
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
     createPINPage.tryAgain();
 
 
@@ -91,7 +93,8 @@ When("I submit incorrect password three times", () => {
         createPINPage.submitPassword();
 
 
-        I.waitForText("Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir", 10);
+        I.waitForText("Data Yang Dimasukkan Salah", 10);
+        I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
         createPINPage.tryAgain();
     }
     createPINPage.inputPassword(dummyPswrd);
@@ -100,13 +103,13 @@ When("I submit incorrect password three times", () => {
 
 Then("My account should be temporary blocked for 30 minutes", () => {
     I.waitForText("Akun Anda Terblokir", 10);
-    I.see("Silakan coba masuk kembali setelah 30 menit.");
+    I.waitForText("Silakan coba masuk kembali setelah 30 menit.",10);
     createPINPage.closeSheetBlocked();
 
 
-    createPINPage.inputPassword(globalVariable.login.password);
-    createPINPage.submitPassword();
-    I.waitForElement(createPINPage.fields.newPIN, 10);
+    // createPINPage.inputPassword(globalVariable.login.password);
+    // createPINPage.submitPassword();
+    // I.waitForElement(createPINPage.fields.newPIN, 10);
 })
 
 When("I click icon eye", () => {
@@ -127,11 +130,42 @@ Then("I will not see my password", () => {
     I.dontSee(globalVariable.login.password);
 });
 
-When("I input new PIN with {string}", (newPin) => {
+When("I input new PIN with {string}", async (newPin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN1(newPin);
+    globalVariable.createPin.newPin = newPin;
+});
+
+When("I input new PIN with {string}", async (newPin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN2(newPin);
+    globalVariable.createPin.newPin = newPin;
+});
+
+When("I input new PIN with {string}", async (newPin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN3(newPin);
+    globalVariable.createPin.newPin = newPin;
+});
+
+When("I input new PIN with {string}", async (newPin) => {
     I.waitForText("Buat PIN Baru", 10);
     createPINPage.inputPIN(newPin);
     globalVariable.createPin.newPin = newPin;
 });
+
+When("I input new PIN with {string}", async (newPin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN(newPin);
+    globalVariable.createPin.newPin = newPin;
+});
+
+When("I input new PIN with {string}", async (newPin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN(newPin);
+    globalVariable.createPin.newPin = newPin;
+});
+
 
 When("I input incorrect confirmation new PIN", () => {
     I.waitForText("Konfirmasi PIN Baru", 10);

@@ -28,12 +28,12 @@ exports.config = {
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
-        // deviceName: "Pixel 2 API 31",
+        //deviceName: "LJS44TROSWBYNN49",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        //appPackage: "id.co.amarbank.smb",
+        //appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
         // newCommandTimeout: 300,
       }
@@ -155,6 +155,7 @@ exports.config = {
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_user_invited/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
@@ -175,7 +176,6 @@ exports.config = {
       "./step_definitions/loanApplication/steps_loanMonitoring.js",
       "./step_definitions/loanApplication/steps_privyAggrement.js",
       "./step_definitions/loanApplication/steps_uploadDocLoan.js",
-      //"./step_definitions/funding_account_crebusinessloanlimitation/steps_forgotPassword.js",
       "./step_definitions/funding_account_creation/steps_forgotPassword.js",
       "./step_definitions/loanDashboard/loanDashboard.js",
       "./step_definitions/loanDashboard/historyPage.js",
@@ -203,7 +203,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
-      "./step_definitions/funding_home/steps_home.js"
+      
     ],
   },
   plugins: {
