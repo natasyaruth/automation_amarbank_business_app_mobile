@@ -21,21 +21,20 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      // app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      // device: "emulator",
-      path: "/",
+      device: "emulator",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
-        // platformVersion: "12.0",
+        platformVersion: "12.0",
         // deviceName: "Pixel 2 API 31",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
-        autoGrantPermissions: true,
-        // newCommandTimeout: 300,
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb.dev",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        autoGrantPermissions: true
       }
     },
     ChaiWrapper: {
@@ -161,7 +160,7 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/*.feature",
-      "./features/funding_transfer/friend_list.feature",
+      // "./features/funding_transfer/friend_list.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
       "./features/loanRepayment/*.feature",
@@ -202,8 +201,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
-      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
-      "./step_definitions/funding_home/steps_home.js"
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js"
     ],
   },
   plugins: {
