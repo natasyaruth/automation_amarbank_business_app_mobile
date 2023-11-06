@@ -14,6 +14,7 @@ module.exports = {
     },
 
     clickButtonBack(){
+        I.waitForElement(this.buttons.back, 10);
         I.click(this.buttons.back);
     },
     goToCallCenter(){

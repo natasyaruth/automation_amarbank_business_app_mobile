@@ -6,7 +6,7 @@ module.exports = {
     address: "~fieldAddress",
     rt: "~fieldRt",
     rw: "~fieldRw",
-    search: "~tag",
+    search: "~textFieldSearch",
   },
   dropDown:{
     typeResidence: "~fieldTypeResidence",
@@ -71,11 +71,13 @@ module.exports = {
   },
 
   chooseNewDomicile(){
+    I.waitForElement(this.radioButtons.newAddress, 10);
     I.click(this.radioButtons.newAddress);
     I.waitForElement(this.dropDown.typeResidence, 10);
   },
 
   chooseKtpDomicile(){
+    I.waitForElement(this.radioButtons.ktpAddress, 10);
     I.click(this.radioButtons.ktpAddress);
   }
 }

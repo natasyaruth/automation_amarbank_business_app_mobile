@@ -64,6 +64,7 @@ When("I save data director", () => {
 
 When("I update data director", () => {
     formBusinessOwnerPage.chooseUpdateDirector();
+    formBusinessOwnerPage.clearAllFieldDirector();
 });
 
 When("I delete the director", () => {
@@ -72,9 +73,9 @@ When("I delete the director", () => {
 
 When("I confirm to delete the director", () => {
     I.waitForText("Apakah Anda akan menghapus direktur?", 10);
-    I.see(globalVariable.formKtp.fullName);
-    I.see(globalVariable.registration.email);
-    I.see(globalVariable.formKtp.eKTPNumber);
+    I.see(globalVariable.formDirector.fullName);
+    I.see(globalVariable.formDirector.email);
+    I.see(globalVariable.formDirector.nik);
     formBusinessOwnerPage.confirmDeleteDirector();
 });
 
@@ -83,25 +84,35 @@ When("I confirm to update data director", () => {
     formBusinessOwnerPage.saveUpdateDirector();
 });
 
-When("I validate my first director", async () => {
+When("I validate my first director", () => {
     I.waitForText("Direktur berhasil ditambah", 10);
-    await formBusinessOwnerPage.swipeToButtonSaveListDirectors();
+    I.wait(3);
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
     I.see(globalVariable.formDirector.nik);
 });
 
-When("I validate all the data in the confirmation list", async () => {
-    const numberOfDirectors = globalVariable.formDirector.numberOfDirectors + 1;
-
+When("I validate all the data in the confirmation list", () => {
     I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-    I.see("Jumlah Direktur "+numberOfDirectors+" orang.");  
+    
+    I.see(globalVariable.formDirector.fullName);
+    I.see(globalVariable.formDirector.email);
+    I.see(globalVariable.formDirector.nik);
+});
+
+When("I validate deleted data should be not in the confirmation list", ()=>{
+    I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
+    
+    I.dontSee(globalVariable.formDirector.fullName);
+    I.dontSee(globalVariable.formDirector.email);
+    I.dontSee(globalVariable.formDirector.nik);
 });
   
-When("I validate my second director", async ()=>{
+When("I validate my second director", ()=>{
     I.waitForText("Direktur berhasil ditambah", 10);
-    await formBusinessOwnerPage.swipeToButtonSaveListDirectors();
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);

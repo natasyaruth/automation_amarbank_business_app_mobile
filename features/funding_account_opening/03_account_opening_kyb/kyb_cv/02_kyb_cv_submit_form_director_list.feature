@@ -1,4 +1,4 @@
-@kybSubmitFormBusinessOwnersCompany
+@kybSubmitFormBusinessOwnersCV
 Feature: Account Opening KYB CV - Submit Business Directors
     In order to opening my Giro account with legality business type CV in SMB
     As a customer
@@ -6,11 +6,11 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruthec01              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | ruth44f1               |
+            | password | 1234Test               |
+            | email    | ruth.testing@email.com |
         And I filling in form login with the following details:
-            | userID   | ruthec01 |
+            | userID   | ruth44f1 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,7 +20,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172021710820021          |
+            | eKtpNumber    | 3192021710820021          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -41,16 +41,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
@@ -128,7 +119,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I delete the director
         And I confirm to delete the director
         And I submit business director list
-        And I validate all the data in the confirmation list
+        And I validate deleted data should be not in the confirmation list
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
@@ -165,6 +156,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | fullName | TRYSE REZZA          |
             | email    | tryse@trash-mail.com |
             | nik      | 3155021710820021     |
+        And I confirm to update data director    
         And I submit business director list
         And I validate all the data in the confirmation list
         And I confirm my director lists

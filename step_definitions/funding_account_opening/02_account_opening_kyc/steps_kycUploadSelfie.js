@@ -21,6 +21,14 @@ When("I upload my selfie photo", async () => {
     resetStateDao.reloadPageAfterResetState();
 });
 
+When("I upload invited user selfie photo", async () => {
+    I.wait(7);
+    await 
+    resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+    headerPage.clickButtonBack();
+    onboardingAccOpeningPage.chooseLater()
+});
+
 Then("I will notify my photo selfie has successfully submitted", () =>{
     I.waitForText("Foto diri berhasil dikirim", 10);
 });
