@@ -13,6 +13,7 @@ Given("I am a customer who has completed my KYC process", () => {
 
 When("I continue to process KYB", () => {
     I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
+    I.swipeUp(formEmploymentDataPage.buttons.continue, 500, 500);
     formEmploymentDataPage.continueToKYB();
 });
 

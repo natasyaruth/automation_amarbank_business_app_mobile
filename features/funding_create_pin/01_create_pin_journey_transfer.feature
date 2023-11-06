@@ -12,8 +12,7 @@ Feature: User create PIN
         When I filling in form login with the following details:
             | userID   | nuru8580|
             | password | 1234Test |
-        And I click login
-        And I click later
+        And I click login        
         Then I will direct to dashboard
 
     @createpin01 
@@ -67,10 +66,22 @@ Feature: User create PIN
         When I choose menu Transfer from main dashboard
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
-        And I input incorrect confirmation new PIN
+        And I input new PIN with '1'
+        And I input new PIN with '2'
+        And I input new PIN with '3'
+        And I input new PIN with '4'
+        And I input new PIN with '5'
+        And I input new PIN with '6'
+        And I input incorrect confirmation new PIN '1';
+        And I input incorrect confirmation new PIN '2';
+        And I input incorrect confirmation new PIN '1';
+        And I input incorrect confirmation new PIN '2';
+        And I input incorrect confirmation new PIN '1';
+        And I input incorrect confirmation new PIN '2';
+
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
+    @scenario08
         Scenario: User Successfully Get Email for OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard

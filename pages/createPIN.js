@@ -3,7 +3,7 @@ const { I } = inject();
 module.exports = {
   fields: {
     password: "~textFieldPassword",
-    newPIN: "~textFieldPin",
+    newPIN: "~textFieldPin", 
     otpcode: "~textFieldOtp",
     confirmPIN: ~"textFieldPin",
   },
@@ -23,10 +23,9 @@ module.exports = {
     eyePassword: "~iconShowHidePassword",
   },
   messageErrorFields: {
-    errorPIN: "~textErrorPin",
-    errorPassword: "~textErrorPassword",
-    
+    errorPIN: "~textErrorPin",         
   },
+
   toastbar: {
     successPin: "~",
   },
@@ -51,10 +50,19 @@ module.exports = {
     I.click(this.buttons.close);
   },
 
-  inputPIN(pin) {
+  inputPIN(pin) {    
     I.waitForElement(this.fields.newPIN, 5);
-    I.setText(this.fields.newPIN, pin)
+    I.setText(this.fields.newPIN, pin1);
+    I.hideDeviceKeyboard();
   },
+
+  // async inputPIN() {
+    // I.wait(5);
+    // let newPin ='123456';
+    // for (let i=0; i < newPin.length; i++) {
+      // await I.setText(this.fields.newPIN, newPin[i]);
+    // }
+  // },
 
   inputConfirmationPIN(confirmationPIN) {
     I.waitForText("Konfirmasi PIN Baru", 10);
@@ -73,6 +81,8 @@ module.exports = {
     I.waitForElement(this.messageErrorFields.errorPIN, 5);
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
+
+  
   
     continueAfterCreatePin(){
     I.waitForElement(this.buttons.nextpagetransfer, 10);

@@ -49,7 +49,7 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
-When("I click later", () => {
+When("I click later", () => {    
     onboardingAccOpeningPage.chooseLater();
 });
 
@@ -172,4 +172,8 @@ Then("I will notify that my personal data details needs to be verified in main d
     I.waitForText("Perbankan Giro", 10);
     I.see("Menunggu verifikasi data selesai");
     I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
+});
+
+Then("I will see card continue to complete registration user invited", ()=>{
+    onboardingAccOpeningPage.continueToKYC();
 });

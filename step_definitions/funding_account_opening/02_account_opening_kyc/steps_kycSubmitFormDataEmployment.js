@@ -2,7 +2,6 @@ const {
     I,
     formEmploymentDataPage,
     formBusinessProfilePage,
-    resetStateDao,
     globalVariable
 } = inject();
 
@@ -41,9 +40,6 @@ Then ("I will notify that I already fill my personal details data", async ()=>{
     I.see("Debit Card");
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
-
-    await 
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then ("I will notify that my personal data details needs to be verified first", async ()=>{
@@ -51,7 +47,4 @@ Then ("I will notify that my personal data details needs to be verified first", 
     I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
-
-    await 
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

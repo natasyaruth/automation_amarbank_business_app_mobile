@@ -120,8 +120,7 @@ Then("I can't see toastbar {string}", (expectedMessageError)=>{
     I.dontSee(expectedMessageError);
 });
 
-Then("I can see toastbar {string}", (messageInfo)=>{
-    I.wait(5);
+Then("I can see toastbar {string}", (messageInfo)=>{    
     I.see(messageInfo);
 });
 
@@ -144,4 +143,8 @@ Then("name of receiver should be added in friendlist", ()=>{
     friendListPage.fillSearchFriendlist(globalVariable.friendList.receiverName);
     I.wait(1);
     I.seeElement(friendListPage.cards.friendList);
+});
+
+When("I will go to Friend list page", ()=>{
+    I.waitForText("Daftar Penerima", 10)
 });
