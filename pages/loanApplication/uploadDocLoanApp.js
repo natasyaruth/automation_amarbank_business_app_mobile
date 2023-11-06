@@ -7,7 +7,7 @@ module.exports = {
     listCardLoanApproved: "",
     listCardLoanRejected: "",
     textProgressBar: "~textUploadProgress",
-    progressBar: "~progressBar"
+    progressBar: "~progressBar",
 
   },
   buttons: {

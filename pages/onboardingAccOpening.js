@@ -1,5 +1,3 @@
-const { tabs } = require("./loanDashboard");
-
 const {
   I,
   uploadKtpPage,
@@ -20,7 +18,7 @@ module.exports = {
     openAccount: "~btnOpenAccount",
     later: "~buttonBackLoan",
     next: "~buttonNext",
-    completeData: "~btnCompleteData",
+    completeData: "~btnDropoff",
     close: "~btnClose",
     invitedDirectors: "~btnOpenInvited",
     completeDoc: "~btnOpenDoc",
@@ -69,8 +67,10 @@ module.exports = {
   },
 
   continueToKYC() {
-    I.waitForElement(this.buttons.next, 10);
-    I.click(this.buttons.next);
+    // I.waitForElement(this.buttons.next, 10);
+    // I.click(this.buttons.next);
+    I.waitForText("Selanjutnya", 10);
+    I.click("Selanjutnya");
   },
 
   validatePage(pageName) {
@@ -124,14 +124,18 @@ module.exports = {
   },
 
   chooseLater() {
-    // I.waitForElement(this.buttons.later, 10);
-    // I.click(this.buttons.later);
-    I.waitForText("Nanti Saja", 10);
-    I.click("Nanti Saja");
+    I.waitForElement(this.buttons.later, 10);
+    I.click(this.buttons.later);
   },
 
   goToTabBusiness() {
+    I.waitForElement(this.tabs.business, 10);
     I.click(this.tabs.business);
+  },
+
+  goToTabOthers(){
+    I.waitForElement(this.tabs.others, 10);
+    I.click(this.tabs.others);
   },
 
   async getUserId() {

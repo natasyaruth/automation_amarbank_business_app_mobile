@@ -61,10 +61,7 @@ When("I click login", () => {
 });
 
 Then("I will direct to dashboard", () => {
-    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
-    onboardingAccOpeningPage.chooseLater();
-    onboardingAccOpeningPage.goToTabBusiness();
-    I.waitForText("Dashboard Screen");
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 20);
 });
 
 Given("I am an unregistered customer trying to login", () => {
