@@ -67,10 +67,8 @@ module.exports = {
   },
 
   continueToKYC() {
-    // I.waitForElement(this.buttons.next, 10);
-    // I.click(this.buttons.next);
-    I.waitForText("Selanjutnya", 10);
-    I.click("Selanjutnya");
+    I.waitForElement(this.buttons.next, 10);
+    I.click(this.buttons.next);
   },
 
   validatePage(pageName) {
@@ -96,6 +94,10 @@ module.exports = {
         I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
         I.wait(3);
         break;
+      case "Continue Process KYB":
+        I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
+        I.wait(3);
+        break;
       case "Data Business Profile":
         I.waitForElement(formBusinessProfilePage.fields.businessName, 10);
         I.wait(3);
@@ -117,7 +119,7 @@ module.exports = {
         break;
       case "Registration Director":
         I.waitForElement(formBusinessAddressPage.buttons.email, 10);
-        break;  
+        break;
       default:
         throw new Error("Page name is not recognize");
     }
@@ -133,7 +135,7 @@ module.exports = {
     I.click(this.tabs.business);
   },
 
-  goToTabOthers(){
+  goToTabOthers() {
     I.waitForElement(this.tabs.others, 10);
     I.click(this.tabs.others);
   },
@@ -155,31 +157,31 @@ module.exports = {
     I.click(this.buttons.invitedDirectors);
   },
 
-  closePageUploadDoc(){
+  closePageUploadDoc() {
     I.click(this.buttons.close);
   },
 
-  async getInvitedDirectorName(){
+  async getInvitedDirectorName() {
     return await I.grabTextFrom(this.texts.invitedName);
   },
 
-  async getInvitedDirectorEmail(){
+  async getInvitedDirectorEmail() {
     return await I.grabTextFrom(this.texts.email);
   },
 
-  openDetailRegistrationDirector(){
+  openDetailRegistrationDirector() {
     I.click(this.buttons.cardInvited);
   },
 
-  async getStatus(){
+  async getStatus() {
     return await I.grabTextFrom(this.texts.status);
   },
 
-  async getProgress(){
+  async getProgress() {
     return await I.grabTextFrom(this.texts.progress);
   },
 
-  async getTextDetail(idText){
+  async getTextDetail(idText) {
     return await I.grabTextFrom(this.texts[idText]);
   },
 

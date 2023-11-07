@@ -3,7 +3,7 @@ const { I } = inject();
 module.exports = {
   fields: {
     password: "~textFieldPassword",
-    newPIN: "~textFieldPin",
+    newPIN: "~textFieldPin", 
     otpcode: "~textFieldOtp",
     confirmPIN: ~"textFieldPin",
   },
@@ -23,15 +23,15 @@ module.exports = {
     eyePassword: "~iconShowHidePassword",
   },
   messageErrorFields: {
-    errorPIN: "~textErrorPin",
-    errorOTPcode: "~textErrorOtp",
+    errorPIN: "~textErrorPin",         
   },
+
   toastbar: {
     successPin: "~",
   },
 
   submitPassword() {
-    I.waitForElement(this.buttons.next, 5);
+    I.waitForElement(this.buttons.submitpassword, 5);
     I.click(this.buttons.submitpassword);
   },
 
@@ -50,22 +50,26 @@ module.exports = {
     I.click(this.buttons.close);
   },
 
-  inputPIN(pin) {
-    I.waitForElement(this.fields.pin, 5);
-    I.setText(this.fields.newPIN, pin)
+  inputPIN(pin) {    
+    I.waitForElement(this.fields.newPIN, 5);
+    I.setText(this.fields.newPIN, pin1);
+    I.hideDeviceKeyboard();
   },
+
+  // async inputPIN() {
+    // I.wait(5);
+    // let newPin ='123456';
+    // for (let i=0; i < newPin.length; i++) {
+      // await I.setText(this.fields.newPIN, newPin[i]);
+    // }
+  // },
 
   inputConfirmationPIN(confirmationPIN) {
     I.waitForText("Konfirmasi PIN Baru", 10);
     I.setText(this.fields.newPIN, confirmationPIN);
   },
 
-  inputOTP(OTPcode) {
-    I.waitForElement(this.fields.otpcode, 5);
-    I.setText(this.fields.otpcode, OTPcode);
-  },
-
-  nexttoTransferPage() {
+    nexttoTransferPage() {
     I.click(this.buttons.nextpagetransfer);
   },
 
@@ -78,7 +82,9 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
 
-  continueAfterCreatePin(){
+  
+  
+    continueAfterCreatePin(){
     I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },

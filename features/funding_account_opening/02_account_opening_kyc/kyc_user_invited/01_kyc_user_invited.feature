@@ -5,21 +5,21 @@ Feature: Account Opening KYC - User Invited
   I want to upload my selfie photo as part of the KYC Process
 
   Background: User choose legality business type UD
-    Given I am a registered customer business invited with following details:
-      | userID   | ruth17a5 |
-      | password | Test1234 |
+    Given I am a registered customer invited business with following details:
+      | userID   | joha3b62 |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | ruth17a5 |
-      | password | Test1234 |
+      | userID   | joha3b62 |
+      | password | 1234Test |
     And I click login
     And I continue to register my KYC data
 
   Scenario: User invited complete KYC
     Given I am a invited customer wants to complete my KYC data
-    When I upload my eKTP photo
+    When I upload invited user eKTP photo
     And I fill all information identity details as followings:
-      | eKtpNumber    | 3175044501980004          |
-      | fullName      | NADYA LAROSA              |
+      | eKtpNumber    | 3174034313750003          |
+      | fullName      | JOHAN HOPKINS             |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |
       | gender        | Laki-laki                 |
@@ -33,5 +33,5 @@ Feature: Account Opening KYC - User Invited
       | religion      | Katolik                   |
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
-    And I upload my selfie photo
-    Then I will notify that my personal data details needs to be verified first
+    And I upload invited user selfie photo
+    Then I will notify that my personal data details needs to be verified in main dashboard
