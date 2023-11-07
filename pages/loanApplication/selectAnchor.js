@@ -119,5 +119,10 @@ module.exports = {
         I.click(this.fields.industryTypeField);
         I.wait(5);
         I.click(this.fields.industryTypeList1);
+    },
+    scrollToViewTextError(){
+        //I.swipeDown(this.messageErrorFields.PICNumberField);
+        I.wait(2);
+        I.performSwipe({x:575,y:1653},{x:575,y:1265});
     }
 }

@@ -43,6 +43,9 @@ const {I, selectAnchorPage} = inject();
         let actualValue = await selectAnchorPage.getMessageErrorFieldOnOtherAnchor(fieldName);
         I.assertEqual(actualValue, expectedValue);
     });
+    Then(/user scroll to view eror pic number/,()=>{
+        selectAnchorPage.scrollToViewTextError();
+    }); 
 
 // Scenario(/User success fill data other anchor/)
     // Given(/user on anchor cooperating page/,()=>{

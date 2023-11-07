@@ -23,12 +23,12 @@ exports.config = {
       appiumV2: true,
       app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      // device: "emulator",
-      path: "/",
+      device: "emulator",
+      path: "/wd/hub",
+      //port: 4444,
       desiredCapabilities: {
         platformName: "Android",
-        // platformVersion: "12.0",
-        //deviceName: "LJS44TROSWBYNN49",
+        platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         // deviceName: "emulator-5554",
@@ -128,7 +128,7 @@ exports.config = {
     pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
 
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
-    
+
     loanRepaymentPage: "./pages/loanRepayment.js",
   },
   settings: {
@@ -150,16 +150,16 @@ exports.config = {
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
       "./features/funding_account_opening/01_account_opening_onboarding_and_dashboard/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
-      "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perorangan/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_pt_perusahaan/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/kyc_ud/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_user_invited/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
-      "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_cv/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/*.feature",
       "./features/funding_transfer/friend_list.feature",
@@ -203,7 +203,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
-      
+
     ],
   },
   plugins: {
