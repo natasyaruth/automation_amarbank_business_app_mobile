@@ -8,11 +8,11 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Ruth Natasya            |
-      | email           | cobalagi@trash-mail.com |
-      | mobileNumber    | 86990253620             |
-      | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
+      | fullName        | PT PERUSAHAAN KYC DELETE        |
+      | email           | pt_perusahaan501@trash-mail.com |
+      | mobileNumber    | 80090254501                     |
+      | password        | 1234Test                        |
+      | confirmPassword | 1234Test                        |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id

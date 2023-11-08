@@ -6,11 +6,11 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | rutha4f9          |
-            | password | 1234Test          |
-            | email    | cv@trash-mail.com |
+            | userID   | cvin7ee1             |
+            | password | 1234Test             |
+            | email    | cv125@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | rutha4f9 |
+            | userID   | cvin7ee1 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,20 +20,20 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3172034512910007         |
-            | fullName      | Maria Tambunan           |
-            | placeOfBirth  | MEDAN                    |
-            | dateOfBirth   | 11/11/1995               |
-            | gender        | Perempuan                |
-            | address       | Jl. Durian Runtuh No. 13 |
-            | rt            | 01                       |
-            | rw            | 05                       |
-            | province      | ACEH                     |
-            | city          | KAB. ACEH TIMUR          |
-            | district      | DARUL AMAN               |
-            | village       |                          |
-            | religion      | Budha                    |
-            | maritalStatus | Belum Kawin              |
+            | eKtpNumber    | 3175014812810010            |
+            | fullName      | CV INTEGRATE DUA PULUH LIMA |
+            | placeOfBirth  | MEDAN                       |
+            | dateOfBirth   | 11/11/1995                  |
+            | gender        | Perempuan                   |
+            | address       | Jl. Durian Runtuh No. 13    |
+            | rt            | 01                          |
+            | rw            | 05                          |
+            | province      | ACEH                        |
+            | city          | KAB. ACEH TIMUR             |
+            | district      | DARUL AMAN                  |
+            | village       |                             |
+            | religion      | Budha                       |
+            | maritalStatus | Belum Kawin                 |
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
@@ -49,19 +49,19 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | MAKCIAK         |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | businessName      | CV INTEGRATE DUA PULUH LIMA |
+            | industry          | Jasa                        |
+            | businessField     | Restoran                    |
+            | monthlyIncome     | 30 - 50 juta                |
+            | npwp              | 906283213036000             |
+            | nib               | 9129106701234               |
+            | businessDateStart | 10/10/2010                  |
         And I submit my business profile
         And I click add business director
         And I fill business director data as followings:
-            | fullName | ADRI GINANJAR                |
-            | email    | adri.ginanjar@trash-mail.com |
-            | nik      | 3175025312960003             |
+            | fullName | COKI PARDEDE                |
+            | email    | coki.pardede@trash-mail.com |
+            | nik      | 3175064412930004            |
         And I save data director
         And I validate my first director
         And I click add business director
@@ -74,6 +74,7 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I submit business director list
         And I confirm my director lists
 
+    @C96560
     Scenario: Submit form Business Address successfully business type CV
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

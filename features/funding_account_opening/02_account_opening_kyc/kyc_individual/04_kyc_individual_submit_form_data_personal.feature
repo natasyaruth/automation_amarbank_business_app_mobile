@@ -6,11 +6,11 @@ Feature: Account Opening KYC Individual - Submit Data Personal
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruthfe15 |
-            | password | Test1234 |
+            | userID   | ruth07f9 |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruthfe15 |
-            | password | Test1234 |
+            | userID   | ruth07f9 |
+            | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -36,6 +36,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         And I submit my information identity details
         And I upload my selfie photo
 
+    @C96526
     Scenario: Submit form Data Personal successfully business type Individual
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:

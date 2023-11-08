@@ -97,7 +97,6 @@ module.exports = {
 
   swipeToButtonSaveListDirectors() {
     I.performSwipe({x: 1000, y: 1000},{x: 100, y: 100});
-    I.wait(2);
   },
 
   confirmListDirectors() {

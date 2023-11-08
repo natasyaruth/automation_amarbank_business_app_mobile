@@ -57,9 +57,11 @@ module.exports = {
         I.setText(this.fields.search, value);
         I.wait(1);
         I.click(this.dropDownSearch.firstItem);
+        
         if(fieldName !== "village"){
           I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
         }
+
       } else{
         throw new Error(information[i]+" not found, please check again data naming");
       }

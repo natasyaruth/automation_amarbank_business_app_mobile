@@ -48,6 +48,7 @@ Feature: Account Opening KYB UD - Submit Business Profile
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
 
+    @C96572
     Scenario: Submit form Business Profile successfully business type UD
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
