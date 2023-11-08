@@ -50,7 +50,7 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
-When("I click later", () => {
+When("I click later", () => {    
     onboardingAccOpeningPage.chooseLater();
 });
 
@@ -81,6 +81,8 @@ Then("I will directing to main dashboard with card loan application and account 
     I.see("Perbankan Bisnis Premium");
     I.see("Dapatkan benefit seperti Gratis Biaya Admin, Transaksi Real-Time, dan keuntungan lainnya");
     I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
+    I.click(onboardingAccOpeningPage.tabs.home);
+
 });
 
 When("I see page {string}", (pageName) => {

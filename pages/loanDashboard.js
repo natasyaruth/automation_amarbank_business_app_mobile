@@ -102,9 +102,9 @@ module.exports = {
     try {
       await I.seeElement(this.cards.cardOffer);
       console.log('Element exists');
-    I.see('Segera Setujui Penawaran Pinjaman');
+      I.see('Segera Setujui Penawaran Pinjaman');
       I.see('Setujui Pinjaman Sebelum:');
-    I.see('Pinjaman yang ditawarkan:');
+      I.see('Pinjaman yang ditawarkan:');
     } catch (error) {
       console.log('Element does not exist');
     }
@@ -235,6 +235,11 @@ module.exports = {
     I.click(this.tabs.tabBill);
   },
 
+  goToStatusDoneinTabBills() {
+    I.seeElement(this.filters.filterbyOnDone);
+    I.click(this.filters.filterbyOnDone);
+  },
+
   validateTabBills() {
     I.seeElement(this.checkBoxs.checkBoxInvoice);
     I.seeElement(this.buttons.buttonPayBill);
@@ -324,7 +329,7 @@ module.exports = {
     } catch (error) {
       console.log('Element does not exist');
     }
-  }, 
+  },
 
   async validateLoanTypeofLoanAPDirectLoan() {
     try {
@@ -342,7 +347,7 @@ module.exports = {
     try {
       await I.seeElement(this.cards.cardLimitPO);
       console.log('Element exists');
-    I.seeElement(this.cards.cardLimitPO);
+      I.seeElement(this.cards.cardLimitPO);
       // I.see('Upload Invoice Untuk Dibayar');
       // I.see('Bayar Invoice');
     } catch (error) {

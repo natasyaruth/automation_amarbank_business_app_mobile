@@ -1,4 +1,4 @@
-@LoanApp
+
 Feature: Select the Anchor AR
     As a customer lead
     I want to select the anchor
@@ -20,13 +20,13 @@ Feature: Select the Anchor AR
         And user on loan schema "AR"
         And user click button select the schema
 
-    @C83807 @LoanApp
+   
     Scenario: user search anchor is not found AR
         Given user on the anchor page
         When user fill search anchor "testingaja"
         Then user validate anchor is not found
 
-    @C83808 @LoanApp
+    
     Scenario: User can select anchor on the list AR
         Given user on the anchor page
         And user fill search anchor "Kumarat"
@@ -35,7 +35,7 @@ Feature: Select the Anchor AR
         Then user select the date cooperating
         And user back to list anchor page
 
-    @C83809 @LoanApp
+    
     Scenario: User validate error field on form another anchor AR
         Given user on the anchor page
         When user click icon other anchor
@@ -47,7 +47,7 @@ Feature: Select the Anchor AR
         And user should see error "Nama perwakilan wajib diisi" in the below of field "PICNameField"
         And user should see error "Nomor Hp / Telepon wajib diisi" in the below of field "PICNumberField"
         
-    @C83809 @LoanApp
+    
     Scenario: User success fill data other anchor AR
         Given user on the anchor page
         When user click icon other anchor

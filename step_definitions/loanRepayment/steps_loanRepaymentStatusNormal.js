@@ -6,7 +6,7 @@ const globalVar = {
 };
 
 // Scenario: Validate List Repayment in Loan dashboard with Status Normal
-Given('I have been on loan dashboard', () => {
+Given('I have been on loan dashboard with status Normal', () => {
  loanDashboardPage.goToLoanDashboard();
 });
 
@@ -23,7 +23,7 @@ Given('I have been got Successfull disbursement', () => {
 
 });
 
-When('I go to loan dashboard', () => {
+When('I go to loan dashboard to validate alert text after Loan Disbursement was Successfull', () => {
  loanDashboardPage.goToLoanDashboard();
 });
 
