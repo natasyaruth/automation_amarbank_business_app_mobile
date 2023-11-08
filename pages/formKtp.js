@@ -83,7 +83,11 @@ module.exports = {
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);
-        I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+
+        if(fieldName !== "village"){
+          I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+        }
+
       }  else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
         ){

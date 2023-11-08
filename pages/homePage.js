@@ -1,7 +1,3 @@
-const { default: AndroidUiautomator2Driver } = require("appium-uiautomator2-driver");
-const WebDriver = require("codeceptjs/lib/helper/WebDriver");
-const { click } = require("wd/lib/commands");
-
 const { I } = inject();
 
 module.exports = {

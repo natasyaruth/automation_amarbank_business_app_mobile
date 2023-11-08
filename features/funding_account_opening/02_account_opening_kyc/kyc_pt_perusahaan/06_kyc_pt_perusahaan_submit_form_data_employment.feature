@@ -6,11 +6,11 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | nataf8ec |
+            | password | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | nataf8ec |
+            | password | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -43,6 +43,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
         And I choose my domicile address same with my identity information
         And I submit my domicile address
 
+    @C96543
     Scenario: Submit form Data Employment successfully business type PT Perusahaan
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

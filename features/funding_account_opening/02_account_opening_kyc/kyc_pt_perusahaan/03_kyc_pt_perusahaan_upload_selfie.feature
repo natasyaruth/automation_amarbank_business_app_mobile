@@ -6,10 +6,10 @@ Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
 
   Background: User choose legality business type PT Perusahaan
     Given I am a registered customer with following details:
-      | userID   | ruth5a50 |
+      | userID   | ruth0aea |
       | password | 1234Test |
     And I filling in form login with the following details:
-      | userID   | ruth5a50 |
+      | userID   | ruth0aea |
       | password | 1234Test |
     And I click login
     And I will directing to Hook 1 Onboarding Account Opening
@@ -35,6 +35,7 @@ Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
 
+  @C96539
   Scenario: Upload selfie image successfully business type PT Perusahaan
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'

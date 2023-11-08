@@ -38,6 +38,7 @@ When("I back to dashboard",()=>{
 
 When("I choose legality business type {string}", (businessType) => {
     onboardingAccOpeningPage.chooseLegalityBusinessType(businessType);
+    globalVariable.onBoarding.legality = businessType;
 });
 
 When("I submit my legality type", () => {

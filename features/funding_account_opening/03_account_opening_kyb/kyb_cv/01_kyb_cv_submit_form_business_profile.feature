@@ -6,11 +6,11 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth6eb7            |
-            | password | Test1234            |
-            | email    | ruth@trash-mail.com |
+            | userID   | ruth289c           |
+            | password | Test1234           |
+            | email    | fakemail@email.com |
         And I filling in form login with the following details:
-            | userID   | ruth6eb7 |
+            | userID   | ruth289c |
             | password | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -48,6 +48,7 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
 
+    @C96553
     Scenario: Submit form Business Profile successfully business type CV
         Given I am a customer who has completed my KYC process
         When I continue to process KYB

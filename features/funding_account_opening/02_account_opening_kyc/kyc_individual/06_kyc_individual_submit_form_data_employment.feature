@@ -6,10 +6,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID   | ruthbad8 |
+            | userID   | ruth07f9 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruthbad8 |
+            | userID   | ruth07f9 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -19,20 +19,20 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3173036612850003          |
-            | fullName      | ATHINA INDIVIDUAL         |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
+            | eKtpNumber    | 3175064412930004                    |
+            | fullName      | INDIVIDUAL INTEGRATE DUA PULUH SATU |
+            | placeOfBirth  | MEDAN                               |
+            | dateOfBirth   | 11/11/1995                          |
+            | gender        | Laki-laki                           |
+            | address       | Jl. Durian Runtuh No. 13            |
+            | rt            | 01                                  |
+            | rw            | 05                                  |
+            | province      | DKI JAKARTA                         |
+            | city          | KOTA ADM. JAKARTA SELATAN           |
+            | district      | KEBAYORAN BARU                      |
+            | village       | SENAYAN                             |
+            | religion      | Katolik                             |
+            | maritalStatus | Belum Kawin                         |
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
@@ -44,6 +44,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose my domicile address same with my identity information
         And I submit my domicile address
 
+    @C96529
     Scenario: Submit form Data Employment successfully business type Individual
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:
