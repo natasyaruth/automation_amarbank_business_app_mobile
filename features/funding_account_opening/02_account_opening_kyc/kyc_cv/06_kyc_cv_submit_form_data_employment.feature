@@ -6,10 +6,10 @@ Feature: Account Opening KYC CV - Submit Data Employment
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth6d79 |
+            | userID   | ruth07f9 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth6d79 |
+            | userID   | ruth07f9 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -40,18 +40,10 @@ Feature: Account Opening KYC CV - Submit Data Employment
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
 
+    @C96522
     Scenario: Submit form Data Employment successfully business type CV
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

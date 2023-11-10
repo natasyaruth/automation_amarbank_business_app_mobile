@@ -41,16 +41,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
@@ -67,6 +58,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
+    @C96562
     Scenario: Submit form Business owner successfully business type PT Perorangan
         Given I am a customer who has submitted my business profile
         And I am the only one business owner

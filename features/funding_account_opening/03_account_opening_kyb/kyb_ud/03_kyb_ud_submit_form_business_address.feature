@@ -6,11 +6,11 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruthec01              |
-            | password | 1234Test              |
-            | email    | ruth01@trash-mail.com |
+            | userID   | udteea44             |
+            | password | 1234Test             |
+            | email    | ud201@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ruthec01 |
+            | userID   | udteea44 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,8 +20,8 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174091110860003          |
-            | fullName      | TESTING                   |
+            | eKtpNumber    | 3171046509920002          |
+            | fullName      | UD TERBARU KYC TIGA      |
             | placeOfBirth  | JAKARTA                   |
             | dateOfBirth   | 11/11/1995                |
             | gender        | Perempuan                 |
@@ -41,16 +41,7 @@ Feature: Account Opening KYB UD - Submit Business Address
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
@@ -58,16 +49,17 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | USAHA DAGANG    |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 988283213036000 |
-            | nib               | 912910111111234 |
-            | businessDateStart | 10/10/2010      |
+            | businessName      | UD TERBARU KYC TIGA |
+            | industry          | Jasa                |
+            | businessField     | Restoran            |
+            | monthlyIncome     | 30 - 50 juta        |
+            | npwp              | 988283213036000     |
+            | nib               | 912910111111234     |
+            | businessDateStart | 10/10/2010          |
         And I submit my business profile
         And I submit business owner list
 
+    @C96574
     Scenario: Submit form Business Address successfully business type UD
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

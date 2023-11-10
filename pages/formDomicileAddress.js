@@ -6,7 +6,7 @@ module.exports = {
     address: "~fieldAddress",
     rt: "~fieldRt",
     rw: "~fieldRw",
-    search: "~tag",
+    search: "~textFieldSearch",
   },
   dropDown:{
     typeResidence: "~fieldTypeResidence",
@@ -57,9 +57,11 @@ module.exports = {
         I.setText(this.fields.search, value);
         I.wait(1);
         I.click(this.dropDownSearch.firstItem);
+        
         if(fieldName !== "village"){
           I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
         }
+
       } else{
         throw new Error(information[i]+" not found, please check again data naming");
       }
@@ -71,11 +73,13 @@ module.exports = {
   },
 
   chooseNewDomicile(){
+    I.waitForElement(this.radioButtons.newAddress, 10);
     I.click(this.radioButtons.newAddress);
     I.waitForElement(this.dropDown.typeResidence, 10);
   },
 
   chooseKtpDomicile(){
+    I.waitForElement(this.radioButtons.ktpAddress, 10);
     I.click(this.radioButtons.ktpAddress);
   }
 }

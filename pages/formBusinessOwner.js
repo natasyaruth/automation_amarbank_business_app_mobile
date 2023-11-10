@@ -10,6 +10,7 @@ module.exports = {
   buttons: {
     addListDirector: "~buttonAdd",
     closeBottomSheet: "~buttonClose",
+    closeConfirm: "~buttonCloseConfirm",
     saveListDirectors: "~buttonSaveListDirector",
     addDirector: "~buttonAddDirector",
     updateDirector: "~buttonAddDirector",
@@ -40,6 +41,13 @@ module.exports = {
       I.setText(this.fields[key], directorInformation[key]);
       I.hideDeviceKeyboard();
     });
+  },
+
+  clearAllFieldDirector(){
+    I.waitForElement(this.fields.fullName, 10);
+    I.clearField(this.fields.fullName);
+    I.clearField(this.fields.email);
+    I.clearField(this.fields.nik);
   },
 
   addListDirector() {
@@ -80,7 +88,6 @@ module.exports = {
   saveListDirectors() {
     I.waitForElement(this.buttons.saveListDirectors, 10);
     I.click(this.buttons.saveListDirectors);
-    I.waitForElement(this.buttons.closeBottomSheet, 10);
   },
 
   saveDirector() {
@@ -88,32 +95,12 @@ module.exports = {
     I.click(this.buttons.saveListDirectors);
   },
 
-  async swipeToButtonSaveListDirectors() {
-    const locateScroll = locate(this.scrollView.scroll);
-    const isVisible = await I.grabNumberOfVisibleElements(this.buttons.saveListDirectors);
-
-    if (isVisible === 0) {
-      I.swipeTo(
-        this.buttons.saveListDirectors,
-        locateScroll,
-        "up",
-        100,
-        500,
-        800
-      );
-    }
+  swipeToButtonSaveListDirectors() {
+    I.performSwipe({x: 1000, y: 1000},{x: 100, y: 100});
   },
 
   confirmListDirectors() {
-    const locateScroll = locate(this.scrollView.scroll);
-    I.swipeTo(
-      this.buttons.confirmation,
-      locateScroll,
-      "up",
-      100,
-      500,
-      800
-    );
+    I.waitForElement(this.buttons.closeConfirm, 10);
     I.click(this.buttons.confirmation);
   },
 

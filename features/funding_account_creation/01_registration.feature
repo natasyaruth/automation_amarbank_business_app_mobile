@@ -8,11 +8,11 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Raihan Suwanto        |
-      | email           | raihan@trash-mail.com |
-      | mobileNumber    | 89588883349           |
-      | password        | 1234Test              |
-      | confirmPassword | 1234Test              |
+      | fullName        | PT PERUSAHAAN KYC DELETE        |
+      | email           | pt_perusahaan501@trash-mail.com |
+      | mobileNumber    | 80090254501                     |
+      | password        | 1234Test                        |
+      | confirmPassword | 1234Test                        |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
@@ -195,14 +195,14 @@ Feature: Account registration
   @C81400
   Scenario: Create account business with business code from invitation email
     Given I am a customer lead wanting to register account business from invitation
-    And My company name is 'PT ABC'
+    And My company name is 'PT CV INTEGRATE SEBELAS'
     When I choose menu registration
     And I filling in my account business information with the following details:
-      | fullName        | Natasya Ruth           |
-      | email           | ruth.natasya@email.com |
-      | mobileNumber    | 8975656998             |
-      | password        | 1234Test               |
-      | confirmPassword | 1234Test               |
+      | fullName        | Johan Hopkins                |
+      | email           | johan.hopkins@trash-mail.com |
+      | mobileNumber    | 8776230006                   |
+      | password        | 1234Test                     |
+      | confirmPassword | 1234Test                     |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id

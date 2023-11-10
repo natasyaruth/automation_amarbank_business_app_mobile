@@ -41,22 +41,14 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
             | motherName    | NADYA LAMUSU    |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
         And I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
 
+    @C96564
     Scenario: Submit form Business Profile successfully business type PT Perusahaan
         Given I am a customer who has completed my KYC process
         When I continue to process KYB

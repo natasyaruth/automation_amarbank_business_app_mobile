@@ -6,11 +6,11 @@ Feature: Account Opening KYC UD - Submit Data Employment
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruth2e57 |
-            | password | 1234Test |
+            | userID   | ruth2322 |
+            | password | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2e57 |
-            | password | 1234Test |
+            | userID   | ruth2322 |
+            | password | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -40,18 +40,10 @@ Feature: Account Opening KYC UD - Submit Data Employment
             | motherName    | NADYA FITRI     |
             | npwp          | 121785542123321 |
         And I submit my personal data details
-        And I choose my new domicile address
-        And I fill new domicile details as followings:
-            | typeResidence | Rumah                     |
-            | address       | JL. KS TUBUN NO. 27       |
-            | rt            | 01                        |
-            | rw            | 01                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | PANCORAN                  |
-            | village       | PANCORAN                  |
+        And I choose my domicile address same with my identity information
         And I submit my domicile address
 
+    @C96551
     Scenario: Submit form Data Employment successfully business type UD
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

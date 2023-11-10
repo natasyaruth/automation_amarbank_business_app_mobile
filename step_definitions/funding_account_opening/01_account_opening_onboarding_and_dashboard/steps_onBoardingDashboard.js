@@ -3,10 +3,10 @@ const {
     onboardingAccOpeningPage,
     uploadKtpPage,
     resetStateDao,
+    headerPage,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {
-    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
 });
 
 Given("I am a invited customer wants to complete my KYC data", () => {
@@ -32,8 +32,13 @@ When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
 });
 
+When("I back to dashboard",()=>{
+    headerPage.clickButtonBack();
+});
+
 When("I choose legality business type {string}", (businessType) => {
     onboardingAccOpeningPage.chooseLegalityBusinessType(businessType);
+    globalVariable.onBoarding.legality = businessType;
 });
 
 When("I submit my legality type", () => {
@@ -45,7 +50,7 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
-When("I click later", () => {
+When("I click later", () => {    
     onboardingAccOpeningPage.chooseLater();
 });
 
@@ -76,6 +81,8 @@ Then("I will directing to main dashboard with card loan application and account 
     I.see("Perbankan Bisnis Premium");
     I.see("Dapatkan benefit seperti Gratis Biaya Admin, Transaksi Real-Time, dan keuntungan lainnya");
     I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
+    I.click(onboardingAccOpeningPage.tabs.home);
+
 });
 
 When("I see page {string}", (pageName) => {
@@ -160,4 +167,14 @@ Then("I can see details registration director", async () => {
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will notify that my personal data details needs to be verified in main dashboard", ()=>{
+    I.waitForText("Perbankan Giro", 10);
+    I.see("Menunggu verifikasi data selesai");
+    I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
+});
+
+Then("I will see card continue to complete registration user invited", ()=>{
+    onboardingAccOpeningPage.continueToKYC();
 });

@@ -6,7 +6,7 @@ module.exports = {
     address: "~textFieldAddress",
     rt: "~textFieldRT",
     rw: "~textFieldRW",
-    search: "~tag",
+    search: "~textFieldSearch",
   },
   buttons: {
     openAccount: "~buttonOpenAccount",
@@ -63,14 +63,18 @@ module.exports = {
   },
 
   async checkTnC(){
+
+    I.waitForElement(this.checkBox.termsAndCondition,10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.termsAndCondition, "checked");
-    console.log(isChecked);
+
     if(isChecked === "false"){
       I.click(this.checkBox.termsAndCondition);
     }
   },
 
   async checkRights(){
+
+    I.waitForElement(this.checkBox.rights,10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.rights, "checked");
 
     if(isChecked === "false"){
