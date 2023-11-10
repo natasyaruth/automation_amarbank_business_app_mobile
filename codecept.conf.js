@@ -128,8 +128,11 @@ exports.config = {
     pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
 
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
+
+    invitationBusinessPage: "./pages/loanApplication/invitationBusiness.js",
     
     loanRepaymentPage: "./pages/loanRepayment.js",
+
   },
   settings: {
     logging: {
@@ -196,6 +199,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",
       "./step_definitions/loanApplication/steps_confirmInvoice.js",
+      "./step_definitions/loanApplication/steps_invitationBusiness.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
