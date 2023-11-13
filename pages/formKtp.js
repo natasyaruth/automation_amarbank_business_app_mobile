@@ -103,9 +103,23 @@ module.exports = {
     }
   },
 
+  fillField(fieldName, value){
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName){
+    I.clearField(this.fields[fieldName]);
+  },
+
   saveKtpData(){
     I.waitForElement(this.buttons.saveEktp, 10);
     I.click(this.buttons.saveEktp);
   },
+
+  async getMessageError (fieldName) {
+    I.waitForElement(this.messageErrorField[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorField[fieldName]);
+},
 
 }
