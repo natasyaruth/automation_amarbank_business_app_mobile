@@ -3,7 +3,6 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
-  @testing_onboarding_01
   Scenario: Validate wording carousel onboarding
     Given I am a customer open app amarbank business
     When I see carousel onboarding
