@@ -19,6 +19,12 @@ Then(/user click button setujui penawaran /, () =>{
 Then(/user click button close/, () =>{
     invitationBusinessPage.clickBtnClose();
 });
+Then(/user click button next on invitation business page/, () =>{
+    invitationBusinessPage.clickBtnNext();
+});
+Then(/user click button back on invitation business page/, () =>{
+    invitationBusinessPage.clickBtnBack();
+});
 
 // screen data confirm
 Given(/user on select loan amount page/,()=>{

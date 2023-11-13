@@ -26,16 +26,26 @@ module.exports = {
     textTnc: "~textTnc",
     textErrorTnc: "~textErrorTnc",
     textLoanSchemaAP: "~textTitle",
-    textLoanSchemaAR: "~textTitle"
+    textLoanSchemaAR: "~textTitle",
+    businessname: "~textFieldBusinessName",
+    errorbusinessname: "textErrorBusinessName",
+    businesstype: "~textFieldBusinessType",
+    representativename: "~textFieldBusinessPic",
+    errorrepresentativename: "~textErrorBusinessPic",
+    representativenamenumber: "~textFieldBusinessPicNumber",
+    errorrepresentativenamenumber: "~textErrorBusinessPicNumber",
+    businessstartdate: "~textFieldBusinessStartDate",
+    businessworkstartdate: "~textFieldWorkStartDate"
   },
   checkBox: {
-    checkboxtnc: "~checkboxTnc",
+    checkboxtnc: "~checkboxTnc"
   },
   buttons: {
     btnSchema: "~buttonSchema",
     btnAccept: "~buttonAccept",
     btnClose: "~buttonClose",
-    btnNext: "~buttonNext"
+    btnNext: "~buttonNext",
+    btnBack: "~buttonBack"
   },
   
   //
@@ -79,6 +89,9 @@ module.exports = {
   },
 
   //
+  clickcheckBox(){
+    I.click(this.checkBox.checkboxtnc);
+  },
   clickBtnSchema(){
     I.wait(2);
     I.click(this.buttons.btnSchema);
@@ -95,7 +108,8 @@ module.exports = {
     I.wait(2);
     I.click(this.buttons.btnNext);
   },
-  clickcheckBox(){
-    I.click(this.checkBox.checkboxtnc);
+  clickBtnBack(){
+    I.wait(2);
+    I.click(this.buttons.btnBack);
   },
 }
