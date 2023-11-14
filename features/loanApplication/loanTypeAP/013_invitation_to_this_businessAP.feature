@@ -25,7 +25,7 @@ Feature: Submit Loan Type AP Status is Approved
                 And user click back to invitation page
                 And user click button accept offer
 
-    Scenario: User successfully fills in data confirmation AP
+    Scenario: User successfully fills in data confirmation AP to this
                 Given I have been on the Business Loan Dashboard to see the loan types from AP Loans
                 And user click button accept offer
                 Given user on confirmation page
@@ -34,3 +34,24 @@ Feature: Submit Loan Type AP Status is Approved
                 And user click checkbox tnc
                 And user validate wording tnc
                 And user click button next on invitation business page
+
+    Scenario: User successfully fills in data confirmation AP to 1
+                Given I have been on the Business Loan Dashboard to see the loan types from AP Loans
+                And user click button accept offer
+                Given user on confirmation page
+                And user fill a field "BusinessName" with "PT Avil Group Indonesia"
+                When user select business type
+                And user fill a field "RepresentativeName" with "Albert"
+                And user fill a field "RepresentativeNameNumber" with "81212341234"
+                And user click business start date
+                And user click Work start date
+                And user click button next on invitation business page
+                And user click button back on invitation business page
+
+    Scenario: User validate error field on data confirmation AP to 1
+                Given I have been on the Business Loan Dashboard to see the loan types from AP Loans
+                Then user click button next 
+                And user should see error "Nama bisnis wajib diisi" in the below of field "textErrorBusinessName"
+                And user should see error "Nama perwakilan wajib diisi" in the below of field "textErrorBusinessPic"
+                And user should see error "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"
+
