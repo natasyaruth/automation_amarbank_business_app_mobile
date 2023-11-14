@@ -25,19 +25,22 @@ Feature: Submit Loan Type AR Status is Approved
                 And user click back to invitation page
                 And user click button accept offer
 
-    Scenario: User successfully fills in data confirmation AR to this
+    Scenario: User successfully fills in data confirmation AR to 1
                 Given I have been on the Business Loan Dashboard to see the loan types from AR Loans
                 And user click button accept offer
                 Given user on confirmation page
-                And user fill a field "PICNameField" with "Budi"
-                And user fill a field "PICNumberField" with "08123456789"
-                And user click checkbox tnc
-                And user validate wording tnc
+                And user fill a field "BusinessName" with "PT Avil Group Indonesia"
+                When user select business type
+                And user fill a field "RepresentativeName" with "Albert"
+                And user fill a field "RepresentativeNameNumber" with "81212341234"
+                And user click business start date
+                And user click Work start date
                 And user click button next on invitation business page
                 And user click back to invitation page
 
-    Scenario: User validate error field on data confirmation AR to this
+    Scenario: User validate error field on data confirmation AR to 1
                 Given I have been on the Business Loan Dashboard to see the loan types from AR Loans
                 Then user click button next 
+                And user should see error field "Nama bisnis wajib diisi" in the below of field "textErrorBusinessName"
                 And user should see error field "Nama perwakilan wajib diisi" in the below of field "textErrorBusinessPic"
-                And user should see error field "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"
+                And user should see error field "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"             

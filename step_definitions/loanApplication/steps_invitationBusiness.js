@@ -24,12 +24,12 @@ Then(/user click button close/, () =>{
 Then(/user click button next on invitation business page/, () =>{
     invitationBusinessPage.clickBtnNext();
 });
-Then(/user click button back on invitation business page/, () =>{
+Then(/user click back to invitation page/, () =>{
     invitationBusinessPage.clickBtnBack();
 });
 
 // screen data confirm
-Given(/user on select loan amount page/,()=>{
+Given(/I have been on the Business Loan Dashboard to see the loan types from AP Loans/,()=>{
     invitationBusinessPage.viewDataConfirmationPage();
 });
 Then(/user click button next/, () =>{
