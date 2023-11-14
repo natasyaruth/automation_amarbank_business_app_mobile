@@ -15,6 +15,25 @@ When("I fill my personal data details as followings:",
   }
 );
 
+When("I fill field {string} with {string} in form Data Personal", (fieldName, valueField) => {
+    formPersonalDataPage.fillField(fieldName, valueField);
+});
+
+When("I fill form Data Personal except field {string}", (fieldName) => {
+    const account = {
+        lastEducation: "SMA",
+        motherName: "NADYA LAMUSU",
+        purposeAccount: "Pinjaman",
+    };
+
+    delete account[fieldName];
+    formPersonalDataPage.fillPersonalData(account);
+});
+
+When("I clear the field {string} in form Data Personal", (fieldName) => {
+    formPersonalDataPage.clearField(fieldName);
+});
+
 When("I submit my personal data details", () =>{
     formPersonalDataPage.savePersonalData();
 });
@@ -26,4 +45,14 @@ Then("I will direct to page domicile address", async () => {
     
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I shouldn't see message error in the below of field {string} in form Data Personal", (fieldName) => {
+    I.dontSee(formPersonalDataPage.messageErrorFields[fieldName]);
+});
+
+Then("I should see message error {string} in the below of field {string} in form Data Personal", async (fieldName, expectedMsgError) => {
+    I.wait(1);
+    let actualMsgError = await formPersonalDataPage.getMessageError(fieldName);
+    I.assertEqual(actualMsgError, expectedMsgError);
 });

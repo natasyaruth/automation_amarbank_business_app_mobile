@@ -21,6 +21,34 @@ When("I fill my employment details as followings:", async (table)=>{
     }
 });
 
+When ("I fill my company name with {string}", (companyName)=>{
+    I.swipeUp(formEmploymentDataPage.dropDowns.industry, 500, 500);
+    formEmploymentDataPage.fillFieldCompany(companyName);
+});
+
+When("I fill form Data Employment except field {string}", (fieldName) => {
+    const account = {
+        workType: "Pegawai Negeri Sipil",
+        sourceIncome: "Gaji Bulanan",
+        monthlyIncome: "5 - 10 juta",
+        industry: "Pemerintahan",
+        companyName: "KEMENDAGRI"
+    };
+
+    delete account[fieldName];
+
+    formKtpPage.fillInformation(account);
+    I.performSwipe({y:500},{y:-10});
+});
+
+When("I swipe to field {string} in form Data Employment", (fieldName) => {
+    if (
+        fieldName === "workType" 
+    ) {
+        I.performSwipe({y:-10},{y:500});
+    }
+});
+
 When("I submit my employment data", ()=>{
     formEmploymentDataPage.saveEmploymentData();
     I.wait(3);
@@ -51,4 +79,10 @@ Then ("I will notify that my personal data details needs to be verified first", 
     I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
+});
+
+Then("I should see message error {string} in the below of field {string} in form Data Employment", async (fieldName, expectedMsgError) => {
+    I.wait(1);
+    let actualMsgError = await formEmploymentDataPage(fieldName);
+    I.assertEqual(actualMsgError, expectedMsgError);
 });

@@ -53,7 +53,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
       |             | city         | Kota/Kabupaten |
       |             | district     | Kecamatan      |
       |             | village      | Desa/Kelurahan |
-
+                
   Scenario Outline: Verifying eKTP number with invalid value in form KTP
     Given I am a customer who has uploaded my eKTP photo
     When I fill field 'eKtpNumber' with '<Value>' in form KTP

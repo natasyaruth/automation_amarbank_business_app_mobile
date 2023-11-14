@@ -30,6 +30,63 @@ When("I submit my domicile address", () =>{
     formDomicileAddressPage.saveDomicileAddress();
 });
 
+When("I fill field {string} with {string} in form New Domicile Address", (fieldName, valueField) => {
+    I.performSwipe({y:-10},{y:1000});
+    formDomicileAddressPage.fillField(fieldName, valueField);
+});
+
+When("I fill form New Domicile Address except field {string}", (fieldName) => {
+    const account = {
+        address: "Jl. Durian Runtuh No. 13",
+        rt: "01",
+        rw: "05",
+        province: "DKI JAKARTA",
+        city: "KOTA ADM. JAKARTA SELATAN",
+        district: "KEBAYORAN BARU",
+        village: "SENAYAN",
+    };
+
+    delete account[fieldName];
+
+    if (
+        fieldName === "province"
+    ) {
+
+        delete account["city"];
+        delete account["district"];
+        delete account["village"];
+
+    } else if (
+        fieldName === "city"
+    ) {
+
+        delete account["district"];
+        delete account["village"];
+
+    } else if (
+        fieldName === "district"
+    ) {
+        delete account["village"];
+    }
+
+    I.performSwipe({y:-10},{y:1000});
+    formDomicileAddressPage.fillNewAddress(account);
+});
+
+When("I clear the field {string} in form New Domicile Address", (fieldName) => {
+    formDomicileAddressPage.clearValue(fieldName);
+});
+
+Then("I shouldn't see message error in the below of field {string} in form New Domicile Address", (fieldName) => {
+    I.dontSee(formDomicileAddressPage.messageErrorFields[fieldName]);
+});
+
+Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (fieldName, expectedMsgError) => {
+    I.wait(1);
+    let actualMsgError = await formDomicileAddressPage.getMessageError(fieldName);
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
 Then("I will notify my domicile address has successfully submitted", () => {
     I.waitForText("Alamat tempat tinggal berhasil disimpan", 10);
 });
