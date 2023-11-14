@@ -51,7 +51,7 @@ Feature: Submit Loan Type AP Status is Approved
     Scenario: User validate error field on data confirmation AP to 1
                 Given I have been on the Business Loan Dashboard to see the loan types from AP Loans
                 Then user click button next 
-                And user should see error "Nama bisnis wajib diisi" in the below of field "textErrorBusinessName"
-                And user should see error "Nama perwakilan wajib diisi" in the below of field "textErrorBusinessPic"
-                And user should see error "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"
+                And user should see error field "Nama bisnis wajib diisi" in the below of field "textErrorBusinessName"
+                And user should see error field "Nama perwakilan wajib diisi" in the below of field "textErrorBusinessPic"
+                And user should see error field "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"
 

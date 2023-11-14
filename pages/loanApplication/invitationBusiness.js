@@ -61,6 +61,13 @@ module.exports = {
     I.seeElement(this.textView[fieldName]);
     return await I.grabTextFrom(this.textView[fieldName]);
 },
+async getMessageErrorField (fieldName) {
+  if(Object.keys(this.textField).indexOf(fieldName) === -1){
+    throw new Error('Field ${fieldName} is not found');
+  }
+  I.seeElement(this.textField[fieldName]);
+  return await I.grabTextFrom(this.textField[fieldName]);
+},
 
   //
   viewDataConfirmationPage(){

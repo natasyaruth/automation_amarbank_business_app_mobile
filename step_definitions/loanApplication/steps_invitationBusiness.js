@@ -47,3 +47,8 @@ Then(/user switch page ap ar \"([^\"]*)\"/,()=>{
     I.wait(2);
     invitationBusinessPage.validateInviteBusinessPage();
 });
+When(/user should see error field \"([^\"]*)\" in the below of field \"([^\"]*)\"/,async(expectedValue, fieldName)=>{
+    I.wait(2);
+    let actualValue = await invitationBusinessPage.getMessageErrorField(fieldName);
+    I.assertEqual(actualValue, expectedValue);
+});
