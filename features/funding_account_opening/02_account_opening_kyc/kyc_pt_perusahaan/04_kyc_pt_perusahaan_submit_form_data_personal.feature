@@ -6,11 +6,11 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Personal
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | ruth15ff |
+            | password | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | ruth15ff |
+            | password | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -36,6 +36,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Personal
         And I submit my information identity details
         And I upload my selfie photo
 
+    @C96540
     Scenario: Submit form Data Personal successfully business type PT Perusahaan
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:

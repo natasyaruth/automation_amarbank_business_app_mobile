@@ -6,10 +6,10 @@ Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
 
   Background: User choose legality business type PT Perorangan
     Given I am a registered customer with following details:
-      | userID   | ruthec01 |
+      | userID   | ruth07f9 |
       | password | 1234Test |
     And I filling in form login with the following details:
-      | userID   | ruthec01 |
+      | userID   | ruth07f9 |
       | password | 1234Test |
     And I click login
     And I will directing to Hook 1 Onboarding Account Opening
@@ -17,7 +17,8 @@ Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
     And I choose Giro Account
     And I choose legality business type 'individualBusiness'
     And I submit my legality type
-    
+
+  @C96530
   Scenario: Upload eKTP photo successfully business type PT Perorangan
     Given I am a customer who has selected the business type PT Perorangan
     When I upload my eKTP photo

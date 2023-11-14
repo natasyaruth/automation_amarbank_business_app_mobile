@@ -3,16 +3,25 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
+  Scenario: Validate wording carousel onboarding
+    Given I am a customer open app amarbank business
+    When I see carousel onboarding
+    And I validate wording funding business
+    And I swipe to next carousel
+    And I validate wording financial management
+    And I swipe to next carousel
+    And I validate wording financial and data privacy
+
   @registration1 @C75459
   Scenario: Create a new account
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Ruth Natasya            |
-      | email           | cobalagi@trash-mail.com |
-      | mobileNumber    | 86990253620             |
-      | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
+      | fullName        | Ruth Nat                 |
+      | email           | ruth.coba@trash-mail.com |
+      | mobileNumber    | 80090004501              |
+      | password        | 1234Test                 |
+      | confirmPassword | 1234Test                 |
     And I registering the account
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
@@ -207,6 +216,22 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
     Then my account business should be created
+
+  @C81402
+  Scenario: Create account business with business unregistered code
+    Given I am a customer lead wanting to register account business from invitation
+    When I choose menu registration
+    And I am filling field 'email' with 'test.automate@trash-mail.com'
+    And I am filling field 'businessCode' with 'xxyy11'
+    Then I should see message error 'Kode bisnis tidak valid, periksa e-mail kembali' in the below of field 'businessCode'
+
+  @C81403
+  Scenario: Create account business with email that is not belong to the business code
+    Given I am a customer lead wanting to register account business from invitation
+    When I choose menu registration
+    And I am filling field 'email' with 'test@trash-mail.com'
+    And I am filling field 'businessCode' with 'a85694'
+    Then I should see message error 'E-mail tidak sesuai dengan kode bisnis.' in the below of field 'email'
 
   @registration1 @C81401
   Scenario: Verifying field business code has been filled and then empty the field

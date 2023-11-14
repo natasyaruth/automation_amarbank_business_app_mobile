@@ -83,7 +83,11 @@ module.exports = {
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);
-        I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+
+        if(fieldName !== "village"){
+          I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+        }
+
       }  else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
         ){
@@ -99,9 +103,23 @@ module.exports = {
     }
   },
 
+  fillField(fieldName, value){
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName){
+    I.clearField(this.fields[fieldName]);
+  },
+
   saveKtpData(){
     I.waitForElement(this.buttons.saveEktp, 10);
     I.click(this.buttons.saveEktp);
   },
+
+  async getMessageError (fieldName) {
+    I.waitForElement(this.messageErrorField[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorField[fieldName]);
+},
 
 }
