@@ -1,4 +1,3 @@
-
 Scenario: User receive email and check email content
         Given I am a customer who wants to create PIN 
         When I choose other

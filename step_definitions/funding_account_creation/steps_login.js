@@ -61,6 +61,7 @@ When("I click login", () => {
 });
 
 Then("I will direct to dashboard", () => {
+    I.wait(8);
     I.waitForElement(onboardingAccOpeningPage.tabs.business, 20);
 });
 

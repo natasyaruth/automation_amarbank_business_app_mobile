@@ -17,7 +17,7 @@ Feature: User transfer SKN
     
     Scenario: User transfer detail with SKN
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"       
@@ -28,7 +28,7 @@ Feature: User transfer SKN
 
     Scenario: User transfer with SKN with empty notes
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -41,7 +41,7 @@ Feature: User transfer SKN
 
     Scenario: User transfer with SKN and input notes with emoji & symbol
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -51,7 +51,7 @@ Feature: User transfer SKN
 
     Scenario: User Transfer SKN and input notes more than 50 char
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"       
@@ -61,14 +61,14 @@ Feature: User transfer SKN
 
      Scenario: User Transfer with amount < Rp.10.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '9.000'
         Then I see error message "Nilai Transfer minimal Rp.10.000"
 
     Scenario: User Transfer SKN with amount = Rp.1.000.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '1.000.000.000'
         And I choose category "Pembayaran"       
@@ -82,7 +82,7 @@ Feature: User transfer SKN
 
     Scenario: User confirmation transfer with SKN
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"
@@ -94,7 +94,7 @@ Feature: User transfer SKN
 
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Aleena Andrian' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -107,7 +107,7 @@ Feature: User transfer SKN
 
     Scenario: User successfully transfer
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -122,7 +122,7 @@ Feature: User transfer SKN
 
     Scenario: User input incorrect PIN once
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -135,7 +135,7 @@ Feature: User transfer SKN
 
     Scenario: User input incorrect PIN twice
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
@@ -148,7 +148,7 @@ Feature: User transfer SKN
        
     Scenario: User input incorrect PIN three times
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Sheena Andrian' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
         And I choose category "Pembayaran"        
