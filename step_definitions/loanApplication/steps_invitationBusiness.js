@@ -4,10 +4,12 @@ const { I, invitationBusinessPage} = inject();
 Given(/I have been on the Business Loan Dashboard to see the loan types from AP Loans/,()=>{
     invitationBusinessPage.viewInvitationPage();
 });
-When(/user should see text view title card \"([^\"]*)\" on field card \"([^\"]*)\"/,()=>{
-    invitationBusinessPage.viewInvitationPage();
+When(/user should see text view title card \"([^\"]*)\" on field card \"([^\"]*)\"/,async(expectedValue, fieldName)=>{
+    I.wait(2);
+    let actualValue = await invitationBusinessPage.getTextFieldTittle(fieldName);
+    I.assertEqual(actualValue, expectedValue);
 });
-Then(/user should see text body card \"([^\"]*)\" in field \"([^\"]*)\"/,(loanSchema)=>{
+Then(/user should see element text view card \"([^\"]*)\"/,(loanSchema)=>{
     invitationBusinessPage.validateInviteBusinessPage(loanSchema);
 });
 Then(/user click button lihat skema pinjaman/, () =>{

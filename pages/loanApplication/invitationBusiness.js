@@ -44,6 +44,13 @@ module.exports = {
     I.seeElement(this.textView.headerInvite01);
     I.seeElement(this.textView.headerInvite02);
   },
+  async getTextFieldTittle (fieldName) {
+    if(Object.keys(this.textView).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.textView[fieldName]);
+    return await I.grabTextFrom(this.textView[fieldName]);
+},
 
   //
   viewDataConfirmationPage(){
