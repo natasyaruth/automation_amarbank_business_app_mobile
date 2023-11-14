@@ -44,3 +44,10 @@ Feature: Submit Loan Type AR Status is Approved
                 And user should see error field "Nama bisnis wajib diisi" in the below of field "textErrorBusinessName"
                 And user should see error field "Nama perwakilan wajib diisi" in the below of field "textErrorBusinessPic"
                 And user should see error field "Nomor perwakilan wajib diisi" in the below of field "textErrorBusinessPicNumber"             
+
+    Scenario: User validate error field on reason AR to 1
+                Given I have been on the Business Loan Dashboard to see the loan types from AR Loans 
+                Then user click button accept offer  
+                And user fill a field "ReasonNotApproved" with "Tulis disini..."
+                And user should see error field "Alasan wajib diisi" in the below of field "textErrorReason"
+                And user click button send reason

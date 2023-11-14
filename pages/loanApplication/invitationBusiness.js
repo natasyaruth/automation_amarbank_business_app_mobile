@@ -35,7 +35,9 @@ module.exports = {
     representativenamenumber: "~textFieldBusinessPicNumber",
     errorrepresentativenamenumber: "~textErrorBusinessPicNumber",
     businessstartdate: "~textFieldBusinessStartDate",
-    businessworkstartdate: "~textFieldWorkStartDate"
+    businessworkstartdate: "~textFieldWorkStartDate",
+    ReasonNotApproved: "~textFieldReason",
+    ErrorReasonNotApproved: "~textErrorReason"
   },
   checkBox: {
     checkboxtnc: "~checkboxTnc"
@@ -45,7 +47,8 @@ module.exports = {
     btnAccept: "~buttonAccept",
     btnClose: "~buttonClose",
     btnNext: "~buttonNext",
-    btnBack: "~buttonBack"
+    btnBack: "~buttonBack",
+    btnSend: "~buttonSend"
   },
   
   //
@@ -125,5 +128,9 @@ async getMessageErrorField (fieldName) {
   clickBtnBack(){
     I.wait(2);
     I.click(this.buttons.btnBack);
+  },
+  clickBtnSend(){
+    I.wait(2);
+    I.click(this.buttons.btnSend);
   },
 }
