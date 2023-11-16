@@ -77,14 +77,20 @@ When("I clear the field {string} in form New Domicile Address", (fieldName) => {
     formDomicileAddressPage.clearValue(fieldName);
 });
 
-Then("I shouldn't see message error in the below of field {string} in form New Domicile Address", (fieldName) => {
+Then("I shouldn't see message error in the below of field {string} in form New Domicile Address", async (fieldName) => {
     I.dontSee(formDomicileAddressPage.messageErrorFields[fieldName]);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (fieldName, expectedMsgError) => {
     I.wait(1);
     let actualMsgError = await formDomicileAddressPage.getMessageError(fieldName);
     I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will notify my domicile address has successfully submitted", () => {
