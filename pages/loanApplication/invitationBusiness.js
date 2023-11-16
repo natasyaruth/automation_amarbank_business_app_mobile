@@ -48,7 +48,8 @@ module.exports = {
     btnClose: "~buttonClose",
     btnNext: "~buttonNext",
     btnBack: "~buttonBack",
-    btnSend: "~buttonSend"
+    btnSend: "~buttonSend",
+    btnError: "~buttonErrorPlatformTryAgain"
   },
   
   //
@@ -132,5 +133,9 @@ async getMessageErrorField (fieldName) {
   clickBtnSend(){
     I.wait(2);
     I.click(this.buttons.btnSend);
+  },
+  clickBtnError(){
+    I.wait(2);
+    I.click(this.buttons.btnError);
   },
 }

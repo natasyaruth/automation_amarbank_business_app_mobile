@@ -51,3 +51,9 @@ Feature: Submit Loan Type AR Status is Approved
                 And user fill a field "ReasonNotApproved" with "Tulis disini..."
                 And user should see error field "Alasan wajib diisi" in the below of field "textErrorReason"
                 And user click button send reason
+
+    Scenario: User validate internet connection lost AR to 1
+                Given I have been on the Business Loan Dashboard to see the loan types from AR Loans 
+                And user see no connection
+                And user click button try again
+                And user click back to invitation page

@@ -30,6 +30,9 @@ Then(/user click back to invitation page/, () =>{
 Then(/user click button send reason/, () =>{
     invitationBusinessPage.clickBtnSend();
 });
+Then(/user click button try again/, () =>{
+    invitationBusinessPage.clickBtnError();
+});
 
 // screen data confirm
 Given(/I have been on the Business Loan Dashboard to see the loan types from AP Loans/,()=>{
