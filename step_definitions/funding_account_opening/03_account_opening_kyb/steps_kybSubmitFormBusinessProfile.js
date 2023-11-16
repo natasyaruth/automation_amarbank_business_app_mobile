@@ -28,6 +28,62 @@ When("I submit my business profile", () => {
     formBusinessProfilePage.saveBusinessProfile();
 });
 
+When("I fill field {string} with {string} in form Business Profile", (fieldName, valueField) => {
+    if (fieldName === "npwp") {
+        I.swipeUp(formBusinessProfilePage.fields[fieldName], 500, 1000);
+    }
+    formBusinessProfilePage.fillField(fieldName, valueField);
+});
+
+When("I fill form Business Profile except field {string}", (fieldName) => {
+    const account = {
+        businessName: "PT. ABCD",
+        industry: "Jasa",
+        businessField: "Restoran",
+        monthlyIncome: "30 - 50 juta",
+        npwp: "906283213036000",
+        nib: "9129106701234",
+        businessDateStart: "10/10/2010",
+    };
+
+    delete account[fieldName];
+
+    formBusinessProfilePage.fillBusinessProfile(account);
+});
+
+When("I clear the field {string} in form Business Profile", (fieldName) => {
+    formBusinessProfilePage.clearField(fieldName);
+});
+
+When("I swipe to field {string} in form Business Profile", (fieldName) => {
+    if (
+        fieldName === "businessName"
+    ) {
+        I.performSwipe({ y: 500 }, { y: -10 });
+    }
+});
+
+Then("I shouldn't see message error in the below of field {string} in form Business Profile", async (fieldName) => {
+    let infoBusinessName = "Nama bisnis sesuai dengan dokumen legalitas";
+
+    if (fieldName === "businessName") {
+
+        let messageField = await formBusinessProfilePage.getMessageError(fieldName);
+        I.assertEqual(messageField, infoBusinessName);
+
+    } else {
+
+        I.waitForInvisible(formBusinessProfilePage.messageErrorFields[fieldName]);
+    }
+});
+
+Then("I should see message error {string} in the below of field {string} in form Business Profile", async (fieldName, expectedMsgError) => {
+    I.wait(1);
+    let actualMsgError = await formBusinessProfile.getMessageError(fieldName);
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+
 Then("I will notify my business profile has successfully submitted", () => {
     I.waitForText("Profil bisnis berhasil disimpan", 10)
 });

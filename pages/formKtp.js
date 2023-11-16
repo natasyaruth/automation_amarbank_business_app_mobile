@@ -118,8 +118,8 @@ module.exports = {
   },
 
   async getMessageError (fieldName) {
-    I.waitForElement(this.messageErrorField[fieldName], 2);
-    return await I.grabTextFrom(this.messageErrorField[fieldName]);
+    I.waitForElement(this.messageErrorFields[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
 },
 
 }
