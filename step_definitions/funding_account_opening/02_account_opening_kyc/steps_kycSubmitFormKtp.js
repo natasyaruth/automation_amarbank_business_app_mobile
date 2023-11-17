@@ -95,14 +95,20 @@ When("I swipe to field {string} in form KTP", (fieldName) => {
     }
 });
 
-Then("I shouldn't see message error in the below of field {string} in form KTP", (fieldName) => {
+Then("I shouldn't see message error in the below of field {string} in form KTP", async (fieldName) => {
     I.dontSee(formKtpPage.messageErrorFields[fieldName]);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should see message error {string} in the below of field {string} in form KTP", async (fieldName, expectedMsgError) => {
     I.wait(1);
     let actualMsgError = await formKtpPage.getMessageError(fieldName);
     I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will notify my information identity details has successfully submitted", () => {

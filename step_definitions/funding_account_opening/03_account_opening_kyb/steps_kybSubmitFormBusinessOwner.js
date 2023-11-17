@@ -50,12 +50,58 @@ When("I fill business director data as followings:", async (table) => {
     globalVariable.formDirector.nik = informationDirector["nik"];
 
     await whitelistDao.whitelistEmail(
-      globalVariable.formDirector.email
+        globalVariable.formDirector.email
     );
 
     formBusinessOwnerPage.fillFormAddDirector(informationDirector);
 
     globalVariable.formDirector.numberOfDirectors = counterDirector++;
+});
+
+When("I fill field {string} with {string} in form Add Director", (fieldName, valueField) => {
+    formBusinessOwnerPage.fillField(fieldName, valueField);
+});
+
+When("I fill form Add Director except field {string}", (fieldName) => {
+    const account = {
+        fullName: "Dhani Aditya",
+        email: "dhani.aditya@trash-mail.com",
+        nik: "6633021710820021",
+    };
+
+    delete account[fieldName];
+
+    formBusinessOwnerPage.fillFormAddDirector(account);
+});
+
+When("I clear the field {string} in form Add Director", (fieldName) => {
+    formBusinessOwnerPage.clearField(fieldName);
+});
+
+Then("I shouldn't see message error in the below of field {string} in form Add Director", async (fieldName) => {
+    let nikInformation = "Daftar Direktur lain akan menerima email registrasi";
+
+    if (fieldName === "password") {
+
+        let messageField = await formBusinessOwnerPage.getMessageError(fieldName);
+        I.assertEqual(messageField, nikInformation);
+
+    } else {
+
+        I.waitForInvisible(formBusinessOwnerPage.messageErrorFields[fieldName], 10);
+    }
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I should see message error {string} in the below of field {string} in form Add Director", async (fieldName, expectedMsgError) => {
+    I.wait(1);
+    let actualMsgError = await formBusinessOwnerPage.getMessageError(fieldName);
+    I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I save data director", () => {
@@ -96,21 +142,21 @@ When("I validate my first director", () => {
 
 When("I validate all the data in the confirmation list", () => {
     I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-    
+
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
     I.see(globalVariable.formDirector.nik);
 });
 
-When("I validate deleted data should be not in the confirmation list", ()=>{
+When("I validate deleted data should be not in the confirmation list", () => {
     I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-    
+
     I.dontSee(globalVariable.formDirector.fullName);
     I.dontSee(globalVariable.formDirector.email);
     I.dontSee(globalVariable.formDirector.nik);
 });
-  
-When("I validate my second director", ()=>{
+
+When("I validate my second director", () => {
     I.waitForText("Direktur berhasil ditambah", 10);
     formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 
@@ -122,30 +168,30 @@ When("I validate my second director", ()=>{
 When("I confirm my director lists", () => {
     formBusinessOwnerPage.confirmListDirectors();
 });
-  
-Then("I will notify business owner list has successfully submitted", ()=>{
+
+Then("I will notify business owner list has successfully submitted", () => {
     I.waitForText("Pemilik bisnis berhasil disimpan", 10);
 });
-  
-Then("I will notify director successfully deleted", ()=>{
+
+Then("I will notify director successfully deleted", () => {
     I.waitForText("Direktur berhasil dihapus", 10);
 });
 
-Then("I will notify director successfully updated", ()=>{
+Then("I will notify director successfully updated", () => {
     I.waitForText("Direktur berhasil disimpan", 10);
 });
 
-Then("I will notify business director list has successfully submitted", ()=>{
+Then("I will notify business director list has successfully submitted", () => {
     I.waitForText("Daftar Direktur berhasil disimpan", 10);
 });
-  
-Then ("I will directing to page business address", async ()=>{
+
+Then("I will directing to page business address", async () => {
     I.waitForElement(formBusinessAddressPage.fields.address, 10);
 
     await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then ("I will not be able to see the deleted data director", async ()=>{
+Then("I will not be able to see the deleted data director", async () => {
     I.waitForElement(formBusinessOwnerPage.buttons.saveListDirectors);
     I.dontSee(globalVariable.formDirector.fullName);
     I.dontSee(globalVariable.formDirector.email);
@@ -153,7 +199,7 @@ Then ("I will not be able to see the deleted data director", async ()=>{
     await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then ("I will see the updated director", async ()=>{
+Then("I will see the updated director", async () => {
     formBusinessOwnerPage.swipeToButtonSaveListDirectors();
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);

@@ -47,12 +47,18 @@ Then("I will direct to page domicile address", async () => {
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I shouldn't see message error in the below of field {string} in form Data Personal", (fieldName) => {
+Then("I shouldn't see message error in the below of field {string} in form Data Personal", async (fieldName) => {
     I.dontSee(formPersonalDataPage.messageErrorFields[fieldName]);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Data Personal", async (fieldName, expectedMsgError) => {
     I.wait(1);
     let actualMsgError = await formPersonalDataPage.getMessageError(fieldName);
     I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

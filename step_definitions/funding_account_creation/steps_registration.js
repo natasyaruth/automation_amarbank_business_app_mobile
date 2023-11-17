@@ -191,7 +191,7 @@ Then("I shouldn't see message error in the below of field {string}", async (fiel
 
   } else {
 
-    I.waitForInvisible(registrationPage.messageErrorFields[fieldName]);
+    I.waitForInvisible(registrationPage.messageErrorFields[fieldName], 10);
   }
 
 });

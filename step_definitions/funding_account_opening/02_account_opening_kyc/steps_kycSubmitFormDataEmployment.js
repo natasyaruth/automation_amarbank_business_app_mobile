@@ -85,4 +85,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.wait(1);
     let actualMsgError = await formEmploymentDataPage(fieldName);
     I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
