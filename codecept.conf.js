@@ -128,6 +128,8 @@ exports.config = {
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
 
     loanRepaymentPage: "./pages/loanRepayment.js",
+
+    hookOnBoardingPage: "./pages/hookOnboarding/hookOnboarding.js",
   },
   settings: {
     logging: {
@@ -161,6 +163,7 @@ exports.config = {
       "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
+      "./features/funding_home/01_MainDashboard_Hook1/*.feature",
       "./features/loanRepayment/*.feature",
 
     ],
@@ -198,7 +201,8 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
-      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js"
+      "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
+      "./step_definitions/funding_home/steps_onboarding.js"
     ],
   },
   plugins: {
