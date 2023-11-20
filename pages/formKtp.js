@@ -67,6 +67,9 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
         I.setText(this.fields[fieldName], value);
+        if (fieldName === "placeOfBirth") {
+          I.swipeUp(this.datePicker.dateOfBirth, 500, 500);
+        }
 
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
@@ -93,10 +96,10 @@ module.exports = {
       ) {
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
-        I.swipeDown(this.text.year, 3000, 4000);
+        I.swipeDown(this.text.year, 3000, 3000);
         I.click(this.buttons.chooseDate);
         I.waitForInvisible(this.buttons.chooseDate, 10);
-        I.swipeUp(this.datePicker.dateOfBirth, 800, 500);
+        I.swipeUp(this.datePicker.dateOfBirth, 500, 700);
       } else {
         throw new Error(information[i] + " not found, please check again data naming");
       }

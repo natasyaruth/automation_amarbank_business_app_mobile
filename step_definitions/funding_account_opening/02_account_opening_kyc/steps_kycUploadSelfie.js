@@ -21,6 +21,13 @@ When("I upload my selfie photo", async () => {
     resetStateDao.reloadPageAfterResetState();
 });
 
+When("I skip flow upload selfie photo", async ()=>{
+    I.wait(7);
+    await
+        resetStateDao.resetStateFlow(5, globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.reloadPageAfterResetState();
+});
+
 When("I upload invited user selfie photo", async () => {
     I.wait(7);
     await 

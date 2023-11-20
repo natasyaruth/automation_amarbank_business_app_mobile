@@ -16,9 +16,10 @@ module.exports = {
     closeBottomSheet: "~buttonClose",
   },
   messageErrorFields: {
-    lastEducation: "~textErrorLastEducation",
-    motherName: "~textErrorMotherName",
-    purposeAccount: "~textErrorPurposeAccount",
+    lastEducation: "~texfieldErrorLastEdu",
+    motherName: "~texfieldErrorMotherName",
+    purposeAccount: "~texfieldErrorMotherName",
+    npwp: "~textfieldErrorNpwp",
   },
 
   async fillPersonalData(personalData) {
@@ -31,11 +32,12 @@ module.exports = {
       if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.fields[fieldName], 10);
         I.setText(this.fields[fieldName], value);
-
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.dropDowns[fieldName], 10);
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
 
@@ -58,8 +60,8 @@ module.exports = {
   },
 
   fillField(fieldName, value) {
-    I.waitForElement(this.field[fieldName], 10);
-    I.setText(this.field[fieldName], value);
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
   },
 
   clearField(fieldName) {
