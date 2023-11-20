@@ -4,7 +4,16 @@ const {
     resetStateDao,
     globalVariable } = inject();
 
-Given("I am a customer who has uploaded my eKTP photo", () => { });
+Given("I am a customer want to fill my information identity details", async () => { 
+    await
+        resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.reloadPageAfterResetState();
+});
+
+Given("I am a customer who has uploaded my eKTP photo", async () => { 
+    resetStateDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.reloadPageAfterResetState();
+});
 
 When("I fill all information identity details as followings:",
     async (table) => {
@@ -20,9 +29,17 @@ When("I submit my information identity details", () => {
     formKtpPage.saveKtpData();
 });
 
+When("I skip step upload eKTP photo", async () => {
+    await
+        resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.reloadPageAfterResetState();
+});
+
 When("I fill field {string} with {string} in form KTP", (fieldName, valueField) => {
-    if (fieldName === "address") {
-        I.swipeUp(formKtpPage.fields[fieldName], 500, 1000);
+    if (fieldName === "address" ||
+        fieldName === "rt" ||
+        fieldName === "rw") {
+        I.swipeUp(formKtpPage.fields.address, 500, 1500);
     }
     formKtpPage.fillField(fieldName, valueField);
 });
@@ -78,20 +95,19 @@ When("I clear the field {string} in form KTP", (fieldName) => {
 When("I swipe to field {string} in form KTP", (fieldName) => {
     if (
         fieldName === "eKtpNumber" ||
-        fieldName === "fullName"   ||
+        fieldName === "fullName" ||
         fieldName === "placeOfBirth" ||
         fieldName === "dateOfBirth" ||
-        fieldName === "gender" 
+        fieldName === "gender"
     ) {
-        I.performSwipe({y:1000},{y:-10});
-        I.performSwipe({y:1000},{y:-10});
+        I.swipeDown(formKtpPage.dropDownsSearch.city, 1000, 1000);
+        I.swipeDown(formKtpPage.datePicker.dateOfBirth, 1000, 1000);
     } else if (
         fieldName === "address" ||
         fieldName === "rt" ||
-        fieldName === "rw" ||
-        fieldName === "province" 
+        fieldName === "rw"
     ) {
-        I.performSwipe({y:1000},{y:-10});
+        I.swipeDown(formKtpPage.dropDownsSearch.city, 500, 1000);
     }
 });
 
@@ -99,16 +115,18 @@ Then("I shouldn't see message error in the below of field {string} in form KTP",
     I.dontSee(formKtpPage.messageErrorFields[fieldName]);
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I should see message error {string} in the below of field {string} in form KTP", async (fieldName, expectedMsgError) => {
+Then("I should see message error {string} in the below of field {string} in form KTP", async (expectedMsgError, fieldName) => {
     I.wait(1);
-    let actualMsgError = await formKtpPage.getMessageError(fieldName);
+    let textMsgError = await formKtpPage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
+
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will notify my information identity details has successfully submitted", () => {
