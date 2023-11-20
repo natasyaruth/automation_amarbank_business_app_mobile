@@ -5,11 +5,11 @@ Feature: User Should See Transaction Hi
 
     Background: User must login to home da
         Given I am a registered customer w
-            | userID   | pang6f17 |
-            | password | Test1234 |
+            | userID   | botse324 |
+            | password | TestSmb123 |
         When I filling in form login with
-            | userID   | pang6f17 |
-            | password | Test1234 |
+            | userID   | botse324 |
+            | password | TestSmb123 |
         And I click login
 
     Scenario: User want see a onboarding card and validate the wording
@@ -24,4 +24,4 @@ Feature: User Should See Transaction Hi
         When I click later
         And user on main dashboard default
         Then user should see text button "Ajukan Pinjaman" on field "btnLoan"
-        And user should see text button "Buka Rekening Giro" on field "btnOpenAccount"
+        And user should see text button "Buka Rekening Giro" on field "btnTextOpenAccount"

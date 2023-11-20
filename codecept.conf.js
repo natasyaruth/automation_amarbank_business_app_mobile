@@ -165,6 +165,7 @@ exports.config = {
       "./features/funding_home/*.feature",
       "./features/funding_home/01_MainDashboard_Hook1/*.feature",
       "./features/loanRepayment/*.feature",
+      "./features/funding_home/02_MainDashboard_DropOff/*.feature",
 
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
