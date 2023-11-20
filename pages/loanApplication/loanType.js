@@ -2,7 +2,7 @@ const { I } = inject();
 
 module.exports = {
     textField: {
-        textTitleOnboarding: {xpath: '//android.widget.TextView[contains(@text, "Pinjaman Untuk Bisnis")]'},
+        textTitleOnboardingLoan: {xpath: '(//android.widget.TextView[@content-desc="textTitleLoanOnBoardingPage1"])[1]'},
         textBenefit1: {xpath: '//android.widget.TextView[contains(@text, "Bunga Kompetitif")]'},
         textBenefit2: {xpath: '//android.widget.TextView[contains(@text, "Proses Cepat dan Mudah")]'},
         textBenefit3: {xpath: '//android.widget.TextView[contains(@text, "Perbankan Bisnis Premium")]'},
@@ -36,7 +36,7 @@ module.exports = {
         I.seeElement(this.textField.textTitleOnboarding);
     },
     viewPageOnBoarding(){
-        I.seeElement(this.textField.textTitleOnboarding);
+        I.seeElement(this.textField.textTitleOnboardingLoan);
     },
 
     validateContentLoanRequirement(){
