@@ -35,22 +35,22 @@ Feature: Loan Repayment For Status Success
   When I call the call Center
   Then the call center is opened
 
- Scenario: Validate Bill Information With Type Loan AP
+ Scenario: Validate Bill Information With Type Loan AP Sucess
   Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
   When I access the detail
   Then I should be see the loan type AP
 
- Scenario: Validate Bill Information With Type Loan Direct AP
+ Scenario: Validate Bill Information With Type Loan Direct AP Sucess
   Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
   When I access the detail
   Then I should be see the loan type of Direct AP
 
- Scenario: Validate Bill Information With Type PO
+ Scenario: Validate Bill Information With Type PO Sucess
   Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
   When I access the detail
   Then I should be see the loan type of PO
 
- Scenario: Validate Bill Information With Type AR
+ Scenario: Validate Bill Information With Type AR Sucess
   Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
   When I access the detail
   Then I should be see the loan type of AR

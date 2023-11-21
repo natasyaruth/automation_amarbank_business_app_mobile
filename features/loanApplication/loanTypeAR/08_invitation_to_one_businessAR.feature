@@ -15,7 +15,7 @@ Feature: Submit Loan Type AR Status is Approved
         And I click menu tab testing
         Then I successed go to dashbord
 
-    Scenario: Validate Invitation to This Business For Type Loan AR
+    Scenario: Validate Invitation to one This Business For Type Loan AR
                 Given I have been on the Business Loan Dashboard to see the loan types from AR Loans
                 When user should see text view title card "Selamat!" on field card "titleInvitationBusiness01"
                 And user should see text view title card "Anda diundang untuk pengajuan pinjaman bisnis melalui Amar Bank Bisnis" on field card "titleInvitationBusiness02"
