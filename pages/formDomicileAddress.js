@@ -27,14 +27,14 @@ module.exports = {
     newAddress: "~checkboxNewAddress"
   },
   messageErrorFields: {
-    address: "~textErrorAddress",
-    rt: "~textErrorRT",
-    rw: "~textErrorRW",
-    province: "~textErrorProvince",
-    city: "~textErrorCity",
-    village: "~textErrorVillage",
-    district: "~textErrorDistrict",
-    religion: "~textErrorReligion",
+    address: "~fieldErrorAddress",
+    rt: "~fieldErrorRt",
+    rw: "~fieldErrorRw",
+    province: "~fieldErrorProvince",
+    city: "~fieldErrorCity",
+    village: "~fieldErrorVillage",
+    district: "~fieldErrorDistrict",
+    religion: "~fieldErrorReligion",
   },
 
   fillNewAddress(domicileAddress) {
@@ -50,8 +50,10 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
         I.setText(this.fields[fieldName], value);
-        if (fieldName === "rw") {
-          I.swipeUp(this.fields[fieldName], 500, 800);
+        if (fieldName === "rw" ||
+            fieldName === "rt") {
+              
+          I.swipeUp(this.fields[fieldName], 800, 1000);
         }
       } else if (
         Object.keys(this.dropDown).indexOf(fieldName) !== -1
@@ -64,13 +66,13 @@ module.exports = {
       ) {
         I.click(this.dropDownSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
-        I.setText(this.fields.search, value);
-        I.wait(1);
-        I.click(this.dropDownSearch.firstItem);
 
         if (fieldName !== "village") {
-          I.swipeUp(this.dropDownSearch[fieldName], 500, 1000);
+          I.setText(this.fields.search, value);
         }
+
+        I.wait(1);
+        I.click(this.dropDownSearch.firstItem);
 
       } else {
         throw new Error(information[i] + " not found, please check again data naming");

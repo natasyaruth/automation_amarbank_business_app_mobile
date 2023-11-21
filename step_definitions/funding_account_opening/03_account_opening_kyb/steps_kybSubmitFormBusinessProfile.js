@@ -29,7 +29,8 @@ When("I submit my business profile", () => {
 });
 
 When("I fill field {string} with {string} in form Business Profile", (fieldName, valueField) => {
-    if (fieldName === "npwp") {
+    if (fieldName === "npwp" ||
+        fieldName === "nib") {
         I.swipeUp(formBusinessProfilePage.fields[fieldName], 500, 1000);
     }
     formBusinessProfilePage.fillField(fieldName, valueField);
@@ -57,9 +58,10 @@ When("I clear the field {string} in form Business Profile", (fieldName) => {
 
 When("I swipe to field {string} in form Business Profile", (fieldName) => {
     if (
-        fieldName === "businessName"
+        fieldName === "businessName" ||
+        fieldName === "industry"
     ) {
-        I.performSwipe({ y: 500 }, { y: -10 });
+        I.swipeDown(formBusinessProfilePage.fields.businessField, 600, 900);
     }
 });
 
@@ -77,16 +79,17 @@ Then("I shouldn't see message error in the below of field {string} in form Busin
     }
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I should see message error {string} in the below of field {string} in form Business Profile", async (fieldName, expectedMsgError) => {
+Then("I should see message error {string} in the below of field {string} in form Business Profile", async (expectedMsgError, fieldName) => {
     I.wait(1);
-    let actualMsgError = await formBusinessProfile.getMessageError(fieldName);
+    let textMsgError = await formBusinessProfilePage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 
