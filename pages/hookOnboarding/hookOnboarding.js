@@ -25,7 +25,8 @@ module.exports = {
     textCard: {
         textCardNextOpeningAccount: { xpath: '//android.widget.TextView[contains(@text, "Lanjutkan Pembuatan Rekening Giro")]' },
         textCardNextCompletedDoc: { xpath: '//android.widget.TextView[contains(@text, "Mohon lengkapi Dokumen yang dibutuhkan")]' },
-        textCardInvetedUserDireksi: "~txtTitleOpenInvited"
+        textCardInvetedUserDireksi: "~txtTitleOpenInvited",
+        textCardWaitVerifyData: { xpath: '//android.widget.TextView[contains(@text, "Menunggu verifikasi data selesai")]' },
     },
     buttons: {
         btnLoan: "~btnToLoan",

@@ -49,3 +49,16 @@ Feature: User Should See Transaction Hi
         And user back to main dashboard
         And user click button invited user
         And user should see invited user account opening only page
+
+    Scenario: User validate drop off main dashboard waiting invited user in account opening only
+        Given user on main dashboard default
+        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        And user should see text card "Menunggu proses registrasi Daftar Direksi lainnya" on field "textCardInvetedUserDireksi"
+        And user should see text button "Lihat Daftar Direksi" on field "btnTextDropOffAccOpeningOnlyInvitedUser"
+        And user click button invited user
+        And user should see invited user account opening only page
+
+    Scenario: User validate drop off main dashboard waiting data verification in account opening only
+        Given user on main dashboard default
+        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        And user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
