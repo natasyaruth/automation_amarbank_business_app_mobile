@@ -1,14 +1,14 @@
+@LoanApp
 Feature: Checking Loan Type AP and Direct AP with Status Active
-In order to checking limit active for loan type AP and Direct AP
         As a customer
-I am able to verify limit active loan type AP and direct AP in history page
+        I am able to verify limit active loan type AP and direct AP in history page
 
         Background: Login with registered account
                 Given I am a registered customer with following details:
-                        | userID   | botseb19  |
+                        | userID   | botseb19   |
                         | password | TestSmb123 |
                 When I filling in form login with the following details:
-                        | userID   | botseb19  |
+                        | userID   | botseb19   |
                         | password | TestSmb123 |
                 And I click login
                 And I click later

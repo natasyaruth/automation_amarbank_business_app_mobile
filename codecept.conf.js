@@ -21,7 +21,7 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      // app: "./assets/app/app-development-debug.apk",
       platform: "Android",
       device: "emulator",
       path: "/wd/hub",
@@ -31,9 +31,9 @@ exports.config = {
         platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb.dev",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        deviceName: "emulator-5554",
+        appPackage: "id.co.amarbank.smb.dev",
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true,
         // newCommandTimeout: 300,
       }
@@ -146,9 +146,8 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: ["./features/*.feature",
-      // "./features/loanApplication/loanTypeAP/*.feature",
+      "./features/loanApplication/loanTypeAP/*.feature",
       "./features/loanApplication/loanTypeAR/*.feature",
-      "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
