@@ -25,7 +25,6 @@ exports.config = {
       platform: "Android",
       device: "emulator",
       path: "/wd/hub",
-      //port: 4444,
       desiredCapabilities: {
         platformName: "Android",
         platformVersion: "12.0",
@@ -34,8 +33,7 @@ exports.config = {
         deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.dev",
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
-        autoGrantPermissions: true,
-        // newCommandTimeout: 300,
+        autoGrantPermissions: true
       }
     },
     ChaiWrapper: {
@@ -133,6 +131,7 @@ exports.config = {
     
     loanRepaymentPage: "./pages/loanRepayment.js",
 
+    hookOnBoardingPage: "./pages/hookOnboarding/hookOnboarding.js",
   },
   settings: {
     logging: {
@@ -166,9 +165,12 @@ exports.config = {
       "./features/funding_create_pin/01_create_pin_journey_transfer.feature",
       "./features/funding_create_pin/02_create_pin_journey_menu_other.feature",
       "./features/funding_transfer/friend_list.feature",
+      "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
+      "./features/funding_home/01_MainDashboard_Hook1/*.feature",
       "./features/loanRepayment/*.feature",
+      "./features/funding_home/02_MainDashboard_DropOff/*.feature",
 
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
@@ -207,7 +209,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
-
+      "./step_definitions/funding_home/steps_onboarding.js"
     ],
   },
   plugins: {

@@ -30,6 +30,56 @@ When("I submit my domicile address", () =>{
     formDomicileAddressPage.saveDomicileAddress();
 });
 
+When("I swipe to field {string} in form New Domicile Address",()=>{
+    if (
+        fieldName === "address"
+    ) {
+        I.swipeDown(formDomicileAddressPage.fields.rt, 500, 500);
+    }
+});
+
+When("I fill field {string} with {string} in form New Domicile Address", (fieldName, valueField) => {
+    I.swipeUp(formDomicileAddressPage.fields.address, 500, 500);
+    formDomicileAddressPage.fillField(fieldName, valueField);
+});
+
+When("I fill form New Domicile Address except field {string}", (fieldName) => {
+    const account = {
+        address: "Jl. Durian Runtuh No. 13",
+        rt: "01",
+        rw: "05",
+        province: "DKI JAKARTA",
+        city: "KOTA ADM. JAKARTA SELATAN",
+        district: "KEBAYORAN BARU",
+        village: "S",
+    };
+
+    delete account[fieldName];
+    
+    formDomicileAddressPage.fillNewAddress(account);
+});
+
+When("I clear the field {string} in form New Domicile Address", (fieldName) => {
+    formDomicileAddressPage.clearValue(fieldName);
+});
+
+Then("I shouldn't see message error in the below of field {string} in form New Domicile Address", async (fieldName) => {
+    I.dontSee(formDomicileAddressPage.messageErrorFields[fieldName]);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (expectedMsgError, fieldName) => {
+    I.wait(1);
+    let textMsgError = await formDomicileAddressPage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
+    I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
 Then("I will notify my domicile address has successfully submitted", () => {
     I.waitForText("Alamat tempat tinggal berhasil disimpan", 10);
 });

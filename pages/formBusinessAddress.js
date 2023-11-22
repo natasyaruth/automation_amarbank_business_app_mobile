@@ -89,6 +89,20 @@ module.exports = {
 
   closePageUploadDoc(){
     I.click(this.buttons.closePage);
-  }
+  },
+
+  fillField(fieldName, value) {
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName) {
+    I.clearField(this.fields[fieldName]);
+  },
+
+  async getMessageError(fieldName) {
+    I.waitForElement(this.messageErrorFields[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
 
 }

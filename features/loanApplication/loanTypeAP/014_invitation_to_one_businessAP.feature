@@ -18,7 +18,7 @@ Feature: Submit Loan Type AP Status is Approved
 
     @LoanApp
     Scenario: Validate Invitation to This Business For Type Loan AP
-        Given I have been on the Business Loan Dashboard to see the loan types from AP Loans
+        Given I have been on the Business Loan Dashboard to see the loan types from AP Loan
         When user should see text view title card "Selamat!" on field card "titleInvitationBusiness01"
         And user should see text view title card "Anda diundang untuk pengajuan pinjaman bisnis melalui Amar Bank Bisnis" on field card "titleInvitationBusiness02"
         Then user should see element text view card "AP"

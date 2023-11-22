@@ -17,7 +17,7 @@ Feature: User transfer BIFAST
     
     Scenario: User transfer detail with BI FAST
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -28,7 +28,7 @@ Feature: User transfer BIFAST
 
     Scenario: User transfer with BIFAST with empty notes
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"        
@@ -41,7 +41,7 @@ Feature: User transfer BIFAST
 
     Scenario: User transfer with BIFAST and input notes with emoji & symbol
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"        
@@ -51,7 +51,7 @@ Feature: User transfer BIFAST
 
     Scenario: User Transfer BIFAST and input notes more than 50 char
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       
@@ -61,14 +61,14 @@ Feature: User transfer BIFAST
 
      Scenario: User Transfer with amount < Rp.10.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '9.000'
         Then I see error message "Nilai Transfer minimal Rp.10.000"
 
     Scenario: User Transfer BIFAST with amount = Rp.100.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '100.000.000'
         And I choose category "Pembayaran"       
@@ -82,7 +82,7 @@ Feature: User transfer BIFAST
 
     Scenario: User Transfer BIFAST with amount = Rp.250.000.000
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '250.000.000'
         And I choose category "Pembayaran"       
@@ -96,7 +96,7 @@ Feature: User transfer BIFAST
 
     Scenario: User confirmation transfer with BI FAST
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"
@@ -108,7 +108,7 @@ Feature: User transfer BIFAST
 
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Aleena Andrian' in friendlist
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '50.000.000'
         And I choose category "Pembayaran"        
@@ -121,7 +121,7 @@ Feature: User transfer BIFAST
 
     Scenario: User successfully transfer
         Given I am a customer who wants to Transfer and has friend list
-        When I search name 'Nurul Septariani' in friendlist
+       When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
         And I choose category "Pembayaran"       

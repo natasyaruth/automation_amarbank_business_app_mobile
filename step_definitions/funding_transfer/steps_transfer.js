@@ -8,6 +8,10 @@ const {
     globalVariable,
 } = inject();
 
+When("I choose the friendlist", ()=> {
+    I.click(friendListPage.cards.friendList);
+});
+
 When("I choose category {string}", (category) => {
     I.wait(2)
     transferPage.chooseCategory(category);
@@ -25,9 +29,10 @@ When("I input amount higher than active balance", async () => {
     transferPage.inputAmountTransfer(amount);
 });
 
-Then("I can see message {string}", async (messageError) => {
-    let actualMessageError = await transferPage.getMessageErrorAmount();
-    I.assertEqual(actualMessageError, messageError);
+Then("I should see error message {string} in field {string}", async (expectedValue, fieldName) => {
+    I.wait(2);
+    let actualMessageError = await transferPage.getMessageErrorFieldOnOnInquiryTransfer(fieldName);
+    I.assertEqual(actualMessageError, expectedValue);
 });
 
 When("I input amount {string}", (amount) => {
@@ -36,15 +41,19 @@ When("I input amount {string}", (amount) => {
 
 });
 
+When("I search name {string} in friendlist", (friendListname) => {
+    transferPage.fillSearchFriendlist(friendListname);
+});
+
 When("I input notes with {string}", (notes) => {
     transferPage.fillNotes(notes); 
     globalVariable.transfer.note = notes;
 });
 
-Then("I see message {string}", async(errorMessageNotes) =>{
-    let actualMessageErrorNotes = await transferPage.getMessageErrorNotes();
-    I.assertEqual(actualMessageErrorNotes,errorMessageNotes);
-});
+// Then("I see message {string}", async(errorMessageNotes) =>{
+    // let actualMessageErrorNotes = await transferPage.getMessageErrorNotes();
+    // I.assertEqual(actualMessageErrorNotes,errorMessageNotes);
+// });
 
 When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
@@ -81,6 +90,8 @@ Then("I choose transfer service BIFAST", () => {
 Then("I choose transfer service SKN", () => {
     transferPage.chooseSkn();
 });
+
+
 
 When("I click transfer", () => {
     transferPage.processTransfer(); 
@@ -186,6 +197,21 @@ Then("My PIN transaction will be temporary blocked for 30 minutes", () => {
     transferPage.backToDashboard();
 });
 
+Then("I am on receiver list page", () => {
+    transferPage.viewPageFriendList();
+});
+
+Then("I choose menu Transfer from main dashboard", () => {
+    transferPage.clickSectionBtnTransfer();
+});
+
+Then("I am on Transfer methode list page", () => {
+    transferPage.viewPageTrfMethodeList();
+});
+
+Then("I am on page transfer confirmation", () => {
+    transferPage.viewPageTrfMethodeList();
+});
 
 
 

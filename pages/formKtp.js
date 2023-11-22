@@ -17,23 +17,23 @@ module.exports = {
     backFromDate: "~buttonCancel",
     closeBottomSheet: "~buttonClose"
   },
-  dropDowns:{
+  dropDowns: {
     gender: "~textFieldGender",
     religion: "~textFieldReligion",
     maritalStatus: "~textFieldMaritalStatus",
-    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View[1]"},
+    firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View[1]" },
   },
-  dropDownsSearch:{
+  dropDownsSearch: {
     province: "~textFieldProvince",
     city: "~textFieldCity",
     village: "~textFieldVillage",
     district: "~textFieldDistrict",
-    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
+    firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View" },
   },
-  datePicker:{
+  datePicker: {
     dateOfBirth: "~textFieldDateOfBirth",
   },
-  messageErrorFields:{
+  messageErrorFields: {
     eKtpNumber: "~textErrorEktpNumber",
     fullName: "~textErrorName",
     placeOfBirth: "~textErrorPlaceOfBirth",
@@ -49,63 +49,80 @@ module.exports = {
     maritalStatus: "~textErrorMaritalStatus",
     dateOfBirth: "~textErrorDateOfBirth",
   },
-  text:{
+  text: {
     date: "~textDate",
     month: "~textMonth",
     year: "~textYear",
   },
 
-  fillInformation(ktpData){
+  fillInformation(ktpData) {
     I.waitForElement(this.fields.eKtpNumber, 10);
     I.wait(3);
-    
+
     const information = Object.keys(ktpData);
-    for(let i=0;i<information.length;i++){
+    for (let i = 0; i < information.length; i++) {
       const fieldName = information[i];
       const value = ktpData[fieldName];
-      if(
+      if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
-        ){
+      ) {
         I.setText(this.fields[fieldName], value);
+        if (fieldName === "placeOfBirth") {
+          I.swipeUp(this.datePicker.dateOfBirth, 500, 500);
+        }
 
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
-        ){
+      ) {
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.click(value);
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
-        ){
-        I.wait(1);  
+      ) {
+        I.wait(1);
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.dropDownsSearch.firstItem, 10);
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);
 
-        if(fieldName !== "village"){
+        if (fieldName !== "village") {
           I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
         }
 
-      }  else if (
+      } else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
-        ){
+      ) {
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
-        I.swipeDown(this.text.year, 3000, 4000);
-        I.click(this.buttons.chooseDate);  
+        I.swipeDown(this.text.year, 3000, 3000);
+        I.click(this.buttons.chooseDate);
         I.waitForInvisible(this.buttons.chooseDate, 10);
-        I.swipeUp(this.datePicker.dateOfBirth, 800, 500);
-      } else{
-        throw new Error(information[i]+" not found, please check again data naming");
+        I.swipeUp(this.datePicker.dateOfBirth, 500, 700);
+      } else {
+        throw new Error(information[i] + " not found, please check again data naming");
       }
     }
   },
 
-  saveKtpData(){
+  fillField(fieldName, value) {
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName) {
+    I.clearField(this.fields[fieldName]);
+  },
+
+  saveKtpData() {
     I.waitForElement(this.buttons.saveEktp, 10);
     I.click(this.buttons.saveEktp);
+  },
+
+  async getMessageError(fieldName) {
+    I.waitForElement(this.messageErrorFields[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
 }
