@@ -21,7 +21,7 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      // app: "./assets/app/app-development-debug.apk",
       platform: "Android",
       device: "emulator",
       path: "/wd/hub",
@@ -127,6 +127,8 @@ exports.config = {
 
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
 
+    invitationBusinessPage: "./pages/loanApplication/invitationBusiness.js",
+    
     loanRepaymentPage: "./pages/loanRepayment.js",
 
     hookOnBoardingPage: "./pages/hookOnboarding/hookOnboarding.js",
@@ -160,6 +162,9 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       "./features/funding_transfer/*.feature",
+      "./features/funding_create_pin/01_create_pin_journey_transfer.feature",
+      "./features/funding_create_pin/02_create_pin_journey_menu_other.feature",
+      "./features/funding_transfer/friend_list.feature",
       "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
@@ -199,6 +204,7 @@ exports.config = {
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",
       "./step_definitions/loanApplication/steps_confirmInvoice.js",
+      "./step_definitions/loanApplication/steps_invitationBusiness.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusDueDate.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
