@@ -27,8 +27,8 @@ module.exports = {
     rw: "~textErrorRW",
     province: "~textErrorProvince",
     city: "~textErrorCity",
-    village: "~textFieldVillage",
-    district: "~textFieldDistrict",
+    village: "~textErrorVillage",
+    district: "~textErrorDistrict",
   },
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",

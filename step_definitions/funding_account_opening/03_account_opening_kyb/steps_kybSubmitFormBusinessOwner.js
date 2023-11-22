@@ -79,25 +79,28 @@ When("I clear the field {string} in form Add Director", (fieldName) => {
 });
 
 Then("I shouldn't see message error in the below of field {string} in form Add Director", async (fieldName) => {
+    I.wait(1);
     let nikInformation = "Daftar Direktur lain akan menerima email registrasi";
 
-    if (fieldName === "password") {
+    if (fieldName === "email") {
 
         let messageField = await formBusinessOwnerPage.getMessageError(fieldName);
         I.assertEqual(messageField, nikInformation);
 
     } else {
 
-        I.waitForInvisible(formBusinessOwnerPage.messageErrorFields[fieldName], 10);
+        I.dontSee(formBusinessOwnerPage.messageErrorFields[fieldName]);
     }
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I should see message error {string} in the below of field {string} in form Add Director", async (fieldName, expectedMsgError) => {
+Then("I should see message error {string} in the below of field {string} in form Add Director", async (expectedMsgError, fieldName) => {
     I.wait(1);
-    let actualMsgError = await formBusinessOwnerPage.getMessageError(fieldName);
+    let textMsgError = await formBusinessOwnerPage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
+
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await

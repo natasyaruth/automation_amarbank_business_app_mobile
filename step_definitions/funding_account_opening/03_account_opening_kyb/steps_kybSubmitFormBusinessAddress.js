@@ -8,6 +8,8 @@ const {
 
 Given("I am a customer who has submitted business owner list", () => { });
 
+Given("has submitted business owner list", () => { });
+
 When("I fill my business address as followings:", (table) => {
     I.waitForElement(formBusinessAddressPage.fields.address, 10);
 
@@ -72,10 +74,9 @@ When("I swipe to field {string} in form Business Address", (fieldName) => {
     if (
         fieldName === "address" ||
         fieldName === "rt" ||
-        fieldName === "rw" ||
-        fieldName === "province" 
+        fieldName === "rw" 
     ) {
-        I.performSwipe({y:1000},{y:-10});
+        I.swipeDown(formBusinessAddressPage.dropDownsSearch.city, 800, 1000);
     }
 });
 
@@ -86,9 +87,10 @@ Then("I shouldn't see message error in the below of field {string} in form Busin
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I should see message error {string} in the below of field {string} in form Business Address", async (fieldName, expectedMsgError) => {
+Then("I should see message error {string} in the below of field {string} in form Business Address", async (expectedMsgError, fieldName) => {
     I.wait(1);
-    let actualMsgError = await formBusinessAddressPage.getMessageError(fieldName);
+    let textMsgError = await formBusinessAddressPage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
@@ -97,7 +99,7 @@ Then("I should see message error {string} in the below of field {string} in form
 
 When("I submit my business address", () => {
     formBusinessAddressPage.openAccount();
-})
+});
 
 Then("I will directing to page upload require documents for business", () => {
     I.waitForText("Pembentukan Rekening Sedang Diproses Tim Kami", 10);
@@ -132,10 +134,7 @@ Then("I will directing to page upload require documents for business individual"
     I.see("Verifikasi Data");
 });
 
-Then("I can close the page so that I can back to main dashboard", async () => {
+Then("I can close the page so that I can back to main dashboard", () => {
     formBusinessAddressPage.closePageUploadDoc();
     I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
-
-    // await
-    // resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
