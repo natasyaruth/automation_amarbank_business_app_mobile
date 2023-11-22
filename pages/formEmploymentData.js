@@ -25,11 +25,11 @@ module.exports = {
     scroll: {xpath: "//android.widget.ScrollView",}
   },
   messageErrorFields: {
-    workType: "~textErrorWork",
-    sourceIncome: "~textErrorSourceIncome",
-    monthlyIncome: "~textErrorMonthlyIncome",
-    industry: "~textErrorIndustry",
-    companyName: "~textErrorCompany",
+    workType: "~fieldErrorWork",
+    sourceIncome: "~fieldErrorSourceIncome",
+    monthlyIncome: "~fieldErrorMonthlyIncome",
+    industry: "~fieldErrorIndustry",
+    companyName: "~fieldErrorCompany",
   },
 
   async fillEmploymentData(employmentData){

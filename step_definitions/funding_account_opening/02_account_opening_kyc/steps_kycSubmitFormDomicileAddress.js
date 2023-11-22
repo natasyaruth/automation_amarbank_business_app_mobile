@@ -30,8 +30,16 @@ When("I submit my domicile address", () =>{
     formDomicileAddressPage.saveDomicileAddress();
 });
 
+When("I swipe to field {string} in form New Domicile Address",()=>{
+    if (
+        fieldName === "address"
+    ) {
+        I.swipeDown(formDomicileAddressPage.fields.rt, 500, 500);
+    }
+});
+
 When("I fill field {string} with {string} in form New Domicile Address", (fieldName, valueField) => {
-    I.performSwipe({y:-10},{y:1000});
+    I.swipeUp(formDomicileAddressPage.fields.address, 500, 500);
     formDomicileAddressPage.fillField(fieldName, valueField);
 });
 
@@ -43,33 +51,11 @@ When("I fill form New Domicile Address except field {string}", (fieldName) => {
         province: "DKI JAKARTA",
         city: "KOTA ADM. JAKARTA SELATAN",
         district: "KEBAYORAN BARU",
-        village: "SENAYAN",
+        village: "S",
     };
 
     delete account[fieldName];
-
-    if (
-        fieldName === "province"
-    ) {
-
-        delete account["city"];
-        delete account["district"];
-        delete account["village"];
-
-    } else if (
-        fieldName === "city"
-    ) {
-
-        delete account["district"];
-        delete account["village"];
-
-    } else if (
-        fieldName === "district"
-    ) {
-        delete account["village"];
-    }
-
-    I.performSwipe({y:-10},{y:1000});
+    
     formDomicileAddressPage.fillNewAddress(account);
 });
 
@@ -84,9 +70,10 @@ Then("I shouldn't see message error in the below of field {string} in form New D
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (fieldName, expectedMsgError) => {
+Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (expectedMsgError, fieldName) => {
     I.wait(1);
-    let actualMsgError = await formDomicileAddressPage.getMessageError(fieldName);
+    let textMsgError = await formDomicileAddressPage.getMessageError(fieldName);
+    let actualMsgError = textMsgError.trimEnd();
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
