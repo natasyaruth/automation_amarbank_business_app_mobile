@@ -27,13 +27,19 @@ module.exports = {
         textCardNextCompletedDoc: { xpath: '//android.widget.TextView[contains(@text, "Mohon lengkapi Dokumen yang dibutuhkan")]' },
         textCardInvetedUserDireksi: "~txtTitleOpenInvited",
         textCardWaitVerifyData: { xpath: '//android.widget.TextView[contains(@text, "Menunggu verifikasi data selesai")]' },
+        textCardActivityLoan: { xpath: '//android.widget.TextView[contains(@text, "Aktivitas Pinjaman")]' },
+        textCardValueProcess: { xpath: '//android.widget.TextView[contains(@text, "1")]' },
+        textCardProcess: { xpath: '//android.widget.TextView[contains(@text, "Proses")]' },
+        textCardContinueProcessLoan: "~txtTitleDropoff",
     },
     buttons: {
         btnLoan: "~btnToLoan",
         btnBack: "~btnBack",
+        btnClose: "~buttonClose",
         btnOpenAccount: "~btnOpenAccount",
         btnOpenInvited: "~btnOpenInvited",
         btnOpenDoc: "~btnOpenDoc",
+        btnDirectToHistoryLoan: "~directToHistoryLoan",
         btnTextOpenAccount: { xpath: '//android.widget.TextView[contains(@text, "Buka Rekening Giro")]' },
         btnDropOffAccOpeningOnly: "~btnDropoff",
         btnTextDropOffAccOpeningOnlyKyc: { xpath: '//android.widget.TextView[contains(@text, "Lanjut Lengkapi Data Personal")]' },
@@ -66,6 +72,14 @@ module.exports = {
     clickBackButton(){
         I.wait(2);
         I.click(this.buttons.btnBack);
+    },
+    clickDirectButtonLoan(){
+        I.wait(2);
+        I.click(this.buttons.btnDirectToHistoryLoan);
+    },
+    clickBtnClose(){
+        I.wait(2);
+        I.click(this.buttons.btnClose);
     },
     async validationTextViewOnboarding() {
         I.wait(2);
