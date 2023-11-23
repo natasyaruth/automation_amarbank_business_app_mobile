@@ -66,18 +66,18 @@ Feature: Account Opening KYC Individual - Submit Form KTP
       |             | 31730 601860007    | Nomor KTP tidak sesuai format       |
       |             | 31730356018607     | Nomor KTP harus 16 digit            |
       |             | 317303560186000712 | Nomor KTP harus 16 digit            |
-      |             | 417303560186000712 | Nomor KTP tidak boleh diawail 0 & 4 |
+      |             | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
 
   Scenario Outline: Verifying full name with invalid value in form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'fullName' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'fullName' in form KTP
     Examples:                                                                 ❸
-      | testRailTag | Value                                                                                        | Message                                                                        |
-      |             | 31245                                                                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      |             | Ruth Natasya 1                                                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      |             | Ruth Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      |             | Ru                                                                                           | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      | testRailTag | Value                                               | Message                                                                        |
+      |             | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      |             | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      |             | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      |             | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
 
   Scenario: Verifying field fullname contain with special char (.-,')
     Given I am a customer want to fill my information identity details

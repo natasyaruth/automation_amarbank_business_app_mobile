@@ -6,11 +6,11 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth8094                     |
-            | password | 1234Test                     |
-            | email    | ruth.hutauruk@amarbank.co.id |
+            | userID   | ruth0c1c              |
+            | password | 1234Test              |
+            | email    | rut.testing@email.com |
         And I filling in form login with the following details:
-            | userID   | ruth8094 |
+            | userID   | ruth0c1c |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -18,7 +18,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I choose Giro Account
         And I choose legality business type 'cv'
         And I submit my legality type
-        And I upload my eKTP photo
+        And I skip step upload eKTP photo
         And I fill all information identity details as followings:
             | eKtpNumber    | 3192851710820021          |
             | fullName      | NADYA LAROSA              |
@@ -35,7 +35,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | religion      | Katolik                   |
             | maritalStatus | Belum Kawin               |
         And I submit my information identity details
-        And I upload my selfie photo
+        And I skip flow upload selfie photo
         And I fill my personal data details as followings:
             | lastEducation | SMA             |
             | motherName    | NADYA LAMUSU    |
@@ -88,16 +88,17 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I fill field 'fullName' with '<Value>' in form Add Director
         Then I should see message error '<Message>' in the below of field 'fullName' in form Add Director
         Examples:                                                                 ❸
-            | testRailTag | Value                                                                                        | Message                                                                        |
-            |             | 31245                                                                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            |             | Ruth Natasya 1                                                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            |             | Ruth Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 100 karakter                                 |
-            |             | Ru                                                                                           | Nama lengkap minimal 3 & maksimal 100 karakter                                 |
+            | testRailTag | Value                                               | Message                                                                        |
+            |             | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            |             | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            |             | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            |             | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            |             |                                                     | Nama lengkap wajib diisi                                                       |
 
     Scenario: Verifying field full name contain with special char and number
         Given I am a customer who has submitted my business profile
         When I click add business director
-        And I fill field 'fullName' with 'John Doe S.Kom, M\'Kom- 11233' in form Add Director
+        And I fill field 'fullName' with 'John Doe S.Kom, M\'Kom-' in form Add Director
         Then I shouldn't see message error in the below of field 'fullName' in form Add Director
 
     Scenario Outline: Verifying email with invalid value in form Add Director
@@ -117,13 +118,14 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I fill field 'nik' with '<Value>' in form Add Director
         Then I should see message error '<Message>' in the below of field 'nik' in form Add Director
         Examples:                                                                 ❸
-            | testRailTag | Value              | Message                       |
-            |             | 31730aa601860007   | Nomor KTP tidak sesuai format |
-            |             | 31730@!601860007   | Nomor KTP tidak sesuai format |
-            |             | 31730 601860007    | Nomor KTP tidak sesuai format |
-            |             | 31730356018607     | Nomor KTP harus 16 digit      |
-            |             | 317303560186000712 | Nomor KTP harus 16 digit      |
-            |             | 417303560186000712 | Nomor KTP harus 16 digit      |
+            | testRailTag | Value              | Message                             |
+            |             | 31730aa601860007   | Nomor KTP tidak sesuai format       |
+            |             | 31730@!601860007   | Nomor KTP tidak sesuai format       |
+            |             | 31730 601860007    | Nomor KTP tidak sesuai format       |
+            |             | 31730356018607     | Nomor KTP harus 16 digit            |
+            |             | 317303560186000712 | Nomor KTP harus 16 digit            |
+            |             | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
+            |             |                    | Nomor KTP wajib diisi               |
 
     @C96554
     Scenario: Submit one business director successfully business type CV
