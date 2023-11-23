@@ -44,3 +44,9 @@ Then(/user click button invited user/, () => {
 Then(/user should see invited user account opening only page/, () => {
     hookOnBoardingPage.viewPageInvitedUser();
 });
+Then(/user click button direct history loan/, () => {
+    hookOnBoardingPage.clickDirectButtonLoan();
+});
+Then(/user close form upload doc/, () => {
+    hookOnBoardingPage.clickBtnClose();
+});

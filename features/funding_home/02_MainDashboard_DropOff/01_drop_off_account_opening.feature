@@ -1,7 +1,7 @@
-Feature: User Should See Transaction Hi
-    In home
+Feature: User Should See Main Dashboard Drop Off For Account Opening
+    In main dashboard
     As a customer
-    I need to see history transaction
+    I need to see main dashbord status
 
     Background: User must login to home da
         Given I am a registered customer w
@@ -34,7 +34,7 @@ Feature: User Should See Transaction Hi
         When user should see text button "Ajukan Pinjaman" on field "btnLoan"
         And user should see text button "Lihat Semua Dokumen" on field "btnTextDropOffAccOpeningOnlyUploadDoc"
         And user should see text card "Mohon lengkapi Dokumen yang dibutuhkan" on field "textCardNextCompletedDoc"
-        Then user click button drop off
+        Then user click button open document
         And user should see upload doc account opening only page
 
     Scenario: User validate drop off main dashboard upload document in account opening only and waiting invited user
@@ -61,4 +61,4 @@ Feature: User Should See Transaction Hi
     Scenario: User validate drop off main dashboard waiting data verification in account opening only
         Given user on main dashboard default
         When user should see text button "Ajukan Pinjaman" on field "btnLoan"
-        And user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
+        Then user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
