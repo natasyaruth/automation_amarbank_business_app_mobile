@@ -132,6 +132,8 @@ exports.config = {
     loanRepaymentPage: "./pages/loanRepayment.js",
 
     hookOnBoardingPage: "./pages/hookOnboarding/hookOnboarding.js",
+
+    mainActivePage: "./pages/hookOnboarding/mainActive.js",
   },
   settings: {
     logging: {
@@ -171,6 +173,7 @@ exports.config = {
       "./features/funding_home/01_MainDashboard_Hook1/*.feature",
       "./features/loanRepayment/*.feature",
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
+      "./features/funding_home/03_MainDashboard_Active/*.feature",
 
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
@@ -209,7 +212,8 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusFailed.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
-      "./step_definitions/funding_home/steps_onboarding.js"
+      "./step_definitions/funding_home/steps_onboarding.js",
+      "./step_definitions/funding_home/steps_main_active.js"
     ],
   },
   plugins: {

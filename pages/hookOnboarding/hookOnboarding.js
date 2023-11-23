@@ -17,6 +17,7 @@ module.exports = {
         textViewBenefit5: { xpath: '//android.widget.TextView[contains(@text, "Debit Card")]' },
         textViewMainDashboardDefaultTitle: "~txtTitleCard",
         textViewMainDashboardDefaultDesc: "~txtDescCard",
+        textViewUserName: "~txtUserName",
         textViewPersonalDataPage: { xpath: '//android.widget.TextView[contains(@text, "Data Personal")]' },
         textViewBusinessDataPage: { xpath: '//android.widget.TextView[contains(@text, "Data Bisnis")]' },
         textViewUploadDocPage: { xpath: '//android.widget.TextView[contains(@text, "Upload dokumen-dokumen sebagai berikut:")]' },
@@ -52,6 +53,10 @@ module.exports = {
     // function for call the id component
     viewCardOnBoardingAccOpening() {
         I.seeElement(this.textView.textTitleOnboardingAccOpening);
+    },
+    viewMainDashboard() {
+        I.wait(2);
+        I.seeElement(this.textView.textViewUserName);
     },
     viewPagePersonalData() {
         I.wait(2);

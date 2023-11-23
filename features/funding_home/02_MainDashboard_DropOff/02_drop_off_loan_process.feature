@@ -14,7 +14,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And I click later
 
     Scenario: User validate drop off main dashboard loan process on waiting kyc
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         When user should see text card "1" on field "textCardValueProcess"
         When user should see text card "Proses" on field "textCardProcess"
@@ -24,7 +24,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see personal data page
 
     Scenario: User validate drop off main dashboard loan process on waiting kyb
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         When user should see text card "1" on field "textCardValueProcess"
         When user should see text card "Proses" on field "textCardProcess"
@@ -34,7 +34,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see business data page
 
     Scenario: User validate drop off main dashboard loan process on waiting upload document
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
@@ -48,7 +48,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see upload doc account opening only page
 
     Scenario: User validate drop off main dashboard loan process on waiting upload document and invited user
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
@@ -67,7 +67,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see invited user account opening only page
 
     Scenario: User validate drop off main dashboard loan process on waiting invited user
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
@@ -81,7 +81,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see invited user account opening only page
 
     Scenario: User validate drop off main dashboard loan process on waiting invited user
-        Given user on main dashboard default
+        Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
