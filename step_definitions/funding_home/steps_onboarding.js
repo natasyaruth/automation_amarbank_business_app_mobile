@@ -16,6 +16,9 @@ Then(/user should see text button \"([^\"]*)\" on field \"([^\"]*)\"/,async(expe
 When(/user on main dashboard default/, () => {
     hookOnBoardingPage.viewMainDashboardDefault();
 });
+When(/user on main dashboard/, () => {
+    hookOnBoardingPage.viewMainDashboard();
+});
 Then(/user click button drop off/, () => {
     hookOnBoardingPage.clickBtnDropOff();
 });
