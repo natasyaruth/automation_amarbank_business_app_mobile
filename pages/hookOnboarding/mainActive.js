@@ -38,7 +38,7 @@ module.exports = {
         I.seeElement(this.buttons.btnHistory);
         I.seeElement(this.buttons.btnTransfer);
     },
-    async   viewCardRejectAccountCreation(){
+    async viewCardRejectAccountCreation(){
         I.wait(2);
         let actualValue = await I.grabAttributeFrom(this.textView.companyName, "text");
         I.assertEqual(actualValue, "Pembuatan Rekening Ditolak");
