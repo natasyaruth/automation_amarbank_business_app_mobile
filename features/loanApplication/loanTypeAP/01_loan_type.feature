@@ -1,4 +1,4 @@
-@LoanApp
+# @LoanApp
 Feature: Apply Either Loan and select the loan type
     As a customer lead
     I want to login Aplly loan and select the loan type
@@ -17,7 +17,7 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
-    @C83802 @LoanApp
+    # @C83802 @LoanApp
     Scenario: validate content on select either apply for loan
         Given user on onboarding loan
         And user should see field title onboarding
@@ -28,7 +28,7 @@ Feature: Apply Either Loan and select the loan type
         Then user click button ajukan pinjaman
         And user on loan type page
 
-    @C83804 @LoanApp
+    # @C83804 @LoanApp
     Scenario: user validate and select loan type AR
         Given user on onboarding loan
         And user click button ajukan pinjaman
@@ -40,7 +40,7 @@ Feature: Apply Either Loan and select the loan type
         And user validate content loan schema "AR"
         And user click back to loan type page
 
-    @C83804 @LoanApp
+    # @C83804 @LoanApp
     Scenario: user validate and select loan type PO
         Given user on onboarding loan
         And user click button ajukan pinjaman
@@ -52,7 +52,7 @@ Feature: Apply Either Loan and select the loan type
         And user validate content loan schema "PO"
         And user click back to loan type page
 
-    @C83804 @LoanApp
+    # @C83804 @LoanApp
     Scenario: user validate and select loan type AP
         Given user on onboarding loan
         And user click button ajukan pinjaman

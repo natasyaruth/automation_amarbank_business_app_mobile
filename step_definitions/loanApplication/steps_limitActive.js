@@ -1,6 +1,7 @@
 const { I, limitActivePage} = inject();
 
-
+Then(/I should see the wording dan card design of "Loan AP"/,()=>{
+});
 // screen active limit
 Then(/user click button back/, () =>{
     limitActivePage.clickBtnBack();

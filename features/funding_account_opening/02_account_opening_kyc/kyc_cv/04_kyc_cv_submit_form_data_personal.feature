@@ -6,10 +6,10 @@ Feature: Account Opening KYC CV - Submit Data Personal
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
+            | userID   | ruth2a1e |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
+            | userID   | ruth2a1e |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -36,6 +36,7 @@ Feature: Account Opening KYC CV - Submit Data Personal
         And I submit my information identity details
         And I upload my selfie photo
 
+    @C96519
     Scenario: Submit form Data Personal successfully business type CV
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:

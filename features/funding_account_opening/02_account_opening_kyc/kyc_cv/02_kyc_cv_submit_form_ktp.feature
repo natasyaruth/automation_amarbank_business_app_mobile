@@ -6,10 +6,10 @@ Feature: Account Opening KYC CV - Submit Form KTP
 
   Background: User choose legality business type CV
     Given I am a registered customer with following details:
-      | userID   | ruth5a50 |
+      | userID   | ruth07f9 |
       | password | 1234Test |
     And I filling in form login with the following details:
-      | userID   | ruth5a50 |
+      | userID   | ruth07f9 |
       | password | 1234Test |
     And I click login
     And I will directing to Hook 1 Onboarding Account Opening
@@ -19,6 +19,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
+  @C96517
   Scenario: Submit form KTP successfully business type CV
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

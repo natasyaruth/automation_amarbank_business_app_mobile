@@ -97,12 +97,25 @@ module.exports = {
 
   swipeToButtonSaveListDirectors() {
     I.performSwipe({x: 1000, y: 1000},{x: 100, y: 100});
-    I.wait(2);
   },
 
   confirmListDirectors() {
     I.waitForElement(this.buttons.closeConfirm, 10);
     I.click(this.buttons.confirmation);
+  },
+
+  fillField(fieldName, value) {
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName) {
+    I.clearField(this.fields[fieldName]);
+  },
+
+  async getMessageError(fieldName) {
+    I.waitForElement(this.messageErrorFields[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
 }

@@ -24,6 +24,13 @@ module.exports = {
   scrollView: {
     scroll: {xpath: "//android.widget.ScrollView",}
   },
+  messageErrorFields: {
+    workType: "~fieldErrorWork",
+    sourceIncome: "~fieldErrorSourceIncome",
+    monthlyIncome: "~fieldErrorMonthlyIncome",
+    industry: "~fieldErrorIndustry",
+    companyName: "~fieldErrorCompany",
+  },
 
   async fillEmploymentData(employmentData){
     const information = Object.keys(employmentData);
@@ -60,6 +67,11 @@ module.exports = {
     }
   },
 
+  fillFieldCompany(value){
+     I.waitForElement(this.field.companyName, 10);
+     I.setText(this.field.companyName, value);
+  },
+
   saveEmploymentData(){
     I.click(this.buttons.saveEmploymentData);
   },
@@ -70,5 +82,14 @@ module.exports = {
 
   continueToDashboard(){
     I.click(this.buttons.continueDashboard);
-  }
+  },
+
+  clearFieldCompany(){
+    I.clearField(this.field.companyName);
+  },
+
+  async getMessageError(fieldName){
+    I.waitForElement(this.messageErrorFields[fieldName], 10);
+    return I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
 }

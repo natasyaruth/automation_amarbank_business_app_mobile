@@ -14,6 +14,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I click login
         And I continue to register my KYC data
 
+    @C96611
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a invited customer wants to complete my KYC data
         When I see page 'Upload eKTP'
@@ -21,6 +22,7 @@ Feature: Account Opening Main Dashboard User Invited
         Then I will see card continue to complete registration user invited
         And I can continue to page 'Upload eKTP'
 
+    @C96612
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a invited customer wants to complete my KYC data
         When I upload my eKTP photo
@@ -29,6 +31,7 @@ Feature: Account Opening Main Dashboard User Invited
         Then I will see card continue to complete registration user invited
         And I can continue to page 'Data KTP'
 
+    @C96613
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a invited customer wants to complete my KYC data
         When I upload my eKTP photo

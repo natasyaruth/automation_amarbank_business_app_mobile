@@ -27,8 +27,8 @@ module.exports = {
     rw: "~textErrorRW",
     province: "~textErrorProvince",
     city: "~textErrorCity",
-    village: "~textFieldVillage",
-    district: "~textFieldDistrict",
+    village: "~textErrorVillage",
+    district: "~textErrorDistrict",
   },
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",
@@ -63,14 +63,18 @@ module.exports = {
   },
 
   async checkTnC(){
+
+    I.waitForElement(this.checkBox.termsAndCondition,10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.termsAndCondition, "checked");
-    console.log(isChecked);
+
     if(isChecked === "false"){
       I.click(this.checkBox.termsAndCondition);
     }
   },
 
   async checkRights(){
+
+    I.waitForElement(this.checkBox.rights,10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.rights, "checked");
 
     if(isChecked === "false"){
@@ -85,6 +89,20 @@ module.exports = {
 
   closePageUploadDoc(){
     I.click(this.buttons.closePage);
-  }
+  },
+
+  fillField(fieldName, value) {
+    I.waitForElement(this.fields[fieldName], 10);
+    I.setText(this.fields[fieldName], value);
+  },
+
+  clearField(fieldName) {
+    I.clearField(this.fields[fieldName]);
+  },
+
+  async getMessageError(fieldName) {
+    I.waitForElement(this.messageErrorFields[fieldName], 2);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
 
 }

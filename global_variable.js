@@ -9,6 +9,9 @@ module.exports = {
         userID: "",
         companyName: "",
     },
+    onBoarding:{
+        legality: "",
+    },
     login: {
         password: "",
         userID: "",

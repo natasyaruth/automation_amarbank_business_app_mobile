@@ -13,7 +13,9 @@ const {
   globalVariable,
 } = inject();
 
-Given("I am a customer lead wanting to open a new account", () => {});
+Given("I am a customer open app amarbank business", () => { });
+
+Given("I am a customer lead wanting to open a new account", () => { });
 
 Given("I am a customer want to access menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -23,22 +25,46 @@ Given("My company name is {string}", (companyName) => {
   globalVariable.registration.companyName = companyName;
 });
 
-Given ("I am a customer lead wanting to register account business from invitation", async () => {});
+Given("I am a customer lead wanting to register account business from invitation", async () => { });
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();
+});
+
+When("I see carousel onboarding", () => {
+  I.waitForElement(welcomePage.buttons.login, 10);
+});
+
+When("I swipe to next carousel", () => {
+  I.performSwipe({ x: 500 }, { x: -100 });
+  I.wait(1);
+});
+
+When("I validate wording funding business", () => {
+  I.see("Dapatkan Pendaanan untuk Bisnis Anda");
+  I.see("Menyediakan fasilitas pinjaman untuk mendapatkan modal usaha dan pengembangan bisnis Anda")
+});
+
+When("I validate wording financial management", () => {
+  I.see("Kelola Keuangan Bisnis Anda");
+  I.see("Menyediakan rekening bisnis dengan fitur pemrosesan transaksi, pengelolaan kas, dan laporan keuangan khusus.")
+});
+
+When("I validate wording financial and data privacy", () => {
+  I.see("Kami menjaga keamanan data & finansial Anda");
+  I.see("Kami berkomitmen untuk menjaga keamanan data dan finansial Anda yang menjadi prioritas utama.")
 });
 
 When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
 
     await whitelistDao.whitelistPhoneNumber(
-      "+"+globalVariable.registration.phoneNumber
+      "+" + globalVariable.registration.phoneNumber
     );
 
     await whitelistDao.whitelistEmail(
@@ -81,7 +107,7 @@ When("I verifying my phone number by entering the code sent to me", async () => 
 
   I.see("Verifikasi Nomor HP");
   I.see("Kode OTP telah dikirim ke nomor");
-  I.assertEqual(actualPhoneNumber, "+62 "+expectedPhoneNumber);
+  I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
 
   I.wait(3);
 
@@ -89,7 +115,7 @@ When("I verifying my phone number by entering the code sent to me", async () => 
   otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
 });
 
-When ("I verifying my phone number by entering the wrong code", async () =>{
+When("I verifying my phone number by entering the wrong code", async () => {
   otpConfirmationPage.isOpen();
   otpConfirmationPage.fillInOtpCode("000000");
 });
@@ -109,13 +135,13 @@ When("I verifying my email by login by user id", async () => {
   verificationEmailPage.loginWithUserId(globalVariable.registration.userID, globalVariable.registration.password, globalVariable.registration.email);
 });
 
-Given ("I am a customer had been registering the account with the following details:", async (table) => {
+Given("I am a customer had been registering the account with the following details:", async (table) => {
   const account = table.parse().rowsHash();
-  globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+  globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
   globalVariable.registration.email = account["email"];
 
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVariable.registration.phoneNumber
+    "+" + globalVariable.registration.phoneNumber
   );
 
   await whitelistDao.whitelistEmail(
@@ -148,11 +174,11 @@ Then(
   }
 );
 
-Then ("I shouldn't see message error in the below of field {string}", async (fieldName) => {
+Then("I shouldn't see message error in the below of field {string}", async (fieldName) => {
   let infoFieldPassword = "Min. 8 karakter dari huruf besar, kecil & angka";
   let infoFieldBusinessCode = "Jika tidak ada, kosongkan kode bisnis.";
 
-  if(fieldName === "password"){
+  if (fieldName === "password") {
 
     let messageField = await registrationPage.getMessageErrorFieldRegistration(fieldName);
     I.assertEqual(messageField, infoFieldPassword);
@@ -165,7 +191,7 @@ Then ("I shouldn't see message error in the below of field {string}", async (fie
 
   } else {
 
-    I.waitForInvisible(registrationPage.messageErrorFields[fieldName]);
+    I.waitForInvisible(registrationPage.messageErrorFields[fieldName], 10);
   }
 
 });
@@ -215,13 +241,13 @@ When(
   "I filling in my account business information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
     globalVariable.registration.businessCode = await otpDao.getBusinessCode(account["email"]);
 
     await whitelistDao.whitelistPhoneNumber(
-      "+"+globalVariable.registration.phoneNumber
+      "+" + globalVariable.registration.phoneNumber
     );
 
     await whitelistDao.whitelistEmail(
@@ -230,21 +256,21 @@ When(
 
     registrationPage.fillInAccountInformation(account);
     registrationPage.fillFieldRegistration("businessCode", globalVariable.registration.businessCode);
-    globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];  
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.password = account["password"];
 
     registrationPage.clickCreateAccountButton();
 
     let actualPhoneNumber = await registrationPage.getValueInformation('mobileNumber');
     let actualCompanyName = await registrationPage.getValueInformation('companyName');
-    
-    I.assertEqual(actualPhoneNumber, "+62 "+account['mobileNumber']);
+
+    I.assertEqual(actualPhoneNumber, "+62 " + account['mobileNumber']);
     I.assertEqual(actualCompanyName, globalVariable.registration.companyName);
   }
 );
 
-When ("I click icon eye in {string} field", (fieldName) => {
-  if(fieldName === "password"){
+When("I click icon eye in {string} field", (fieldName) => {
+  if (fieldName === "password") {
     registrationPage.clickIconEyePassword();
   } else if (fieldName === "confirmPassword") {
     registrationPage.clickIconEyeConfirmPassword();
@@ -271,18 +297,18 @@ When("I click link privacy and policy", () => {
   registrationPage.goToPrivacyPolicyPage();
 });
 
-When ("I click call center", () => {
+When("I click call center", () => {
   headerPage.goToCallCenter();
 });
 
-Then ("I will see helping center via whatsapp and email", () => {
+Then("I will see helping center via whatsapp and email", () => {
   I.waitForElement(headerPage.cards.whatsApp, 5);
   I.waitForElement(headerPage.cards.email, 5);
 
   headerPage.closeCallCenter();
 });
 
-Then ("I will directing to page login", ()=>{
+Then("I will directing to page login", () => {
   I.waitForText("Masuk Akun", 10);
   I.seeElement(headerPage.buttons.back);
   I.seeElement(loginPage.fields.userID);
@@ -331,34 +357,34 @@ Then("I will direct to page onboarding", () => {
   I.seeElement(welcomePage.buttons.registration);
 });
 
-When ("I let the otp code expire", ()=>{
+When("I let the otp code expire", () => {
   I.wait(63);
   I.waitForElement(otpConfirmationPage.links.resendOTP, 10);
 });
 
-When("I verifying my phone number by entering the wrong code five times", () =>{
+When("I verifying my phone number by entering the wrong code five times", () => {
   otpConfirmationPage.isOpen();
-  for(let attempts=1;attempts<6;attempts++){
+  for (let attempts = 1; attempts < 6; attempts++) {
     otpConfirmationPage.fillInOtpCode("123456");
     I.wait(2);
   }
 });
 
-When("I verifying my phone number by entering the wrong code four times", () =>{
+When("I verifying my phone number by entering the wrong code four times", () => {
   otpConfirmationPage.isOpen();
-  for(let attempts=1;attempts<5;attempts++){
+  for (let attempts = 1; attempts < 5; attempts++) {
     otpConfirmationPage.fillInOtpCode("123456");
     otpConfirmationPage.clearFieldOTP();
     I.wait(1);
   }
 });
 
-Then ("I cannot change my phonenumber", () =>{
+Then("I cannot change my phonenumber", () => {
   I.dontSee("Salah input Nomor HP?");
   I.dontSeeElement(otpConfirmationPage.links.changePhoneNumber);
 });
 
-Then ("I should be notified that I can reverify the phone number tomorrow", async () => {
+Then("I should be notified that I can reverify the phone number tomorrow", async () => {
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -375,28 +401,28 @@ Then ("I should be notified that I can reverify the phone number tomorrow", asyn
 
   const hours = tomorrowDate.getHours();
   const minutes = tomorrowDate.getMinutes();
-  const currentTime = hours.toString().padStart(2, '0')+":"+minutes.toString().padStart(2, '0');
+  const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
 
   let actualMsgError = await otpConfirmationPage.getMessageError();
 
-  I.assertEqual(actualMsgError, "Kode OTP dikirim kembali pada: tanggal "+formattedDay+
-  " "+months[month]+" "+year+", pukul "+currentTime);
+  I.assertEqual(actualMsgError, "Kode OTP dikirim kembali pada: tanggal " + formattedDay +
+    " " + months[month] + " " + year + ", pukul " + currentTime);
 
   I.dontSeeElement(otpConfirmationPage.links.resendOTP);
   await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
 });
 
-When ("I choose change phonenumber", () =>{
+When("I choose change phonenumber", () => {
   otpConfirmationPage.isOpen();
   otpConfirmationPage.clickChangePhoneNumber();
   I.waitForText("Ubah Nomor HP", 5);
   I.seeElement(headerPage.buttons.back);
 });
 
-When ("I change my phonenumber into {string}", async (newPhoneNumber) => {
-  globalVariable.registration.phoneNumber = "62"+newPhoneNumber
+When("I change my phonenumber into {string}", async (newPhoneNumber) => {
+  globalVariable.registration.phoneNumber = "62" + newPhoneNumber
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVariable.registration.phoneNumber
+    "+" + globalVariable.registration.phoneNumber
   );
 
   changePhoneNumberPage.fillFieldNewPhoneNumber(newPhoneNumber);
@@ -404,13 +430,13 @@ When ("I change my phonenumber into {string}", async (newPhoneNumber) => {
   I.waitForText("Verifikasi Nomor HP", 10);
 });
 
-When ("I resend the OTP", () =>{
+When("I resend the OTP", () => {
   I.waitForElement(otpConfirmationPage.links.resendOTP, 63);
   otpConfirmationPage.resendOTP();
   I.waitForInvisible(otpConfirmationPage.links.resendOTP, 5);
 });
 
-When ("I will directing to page verification email", async () => {
+When("I will directing to page verification email", async () => {
   I.waitForText("Verifikasi Email", 10);
   I.see("Segera Cek E-mail");
   I.see("Kami telah mengirim User ID ke e-mail:");
@@ -419,57 +445,58 @@ When ("I will directing to page verification email", async () => {
   I.assertEqual(actualEmail, globalVariable.registration.email);
 });
 
-When ("I filling new phonenumber with my old phonenumber", async () =>{
+When("I filling new phonenumber with my old phonenumber", async () => {
   let oldPhoneNumber = (await changePhoneNumberPage.getOldPhoneNumber()).substring(4);
 
   changePhoneNumberPage.fillFieldNewPhoneNumber(oldPhoneNumber);
 });
 
-Then ("I should see message error {string} in the below of field new phonenumber", async (expectedMsgError) => {
+Then("I should see message error {string} in the below of field new phonenumber", async (expectedMsgError) => {
+  I.wait(1);
   let actualMsgError = await changePhoneNumberPage.getMessageErrorNewPassword();
   I.assertEqual(actualMsgError, expectedMsgError);
 });
 
-When ("I filling new phonenumber with {string}", (phoneNumber) => {
+When("I filling new phonenumber with {string}", (phoneNumber) => {
   changePhoneNumberPage.fillFieldNewPhoneNumber(phoneNumber);
 });
 
-Then ("I will direct to page verification phonenumber",  () => {
+Then("I will direct to page verification phonenumber", () => {
   I.waitForText("Verifikasi Nomor HP", 5);
   I.see("Kode OTP telah dikirim ke nomor");
 });
 
-When ("I get my first OTP", async () => {
+When("I get my first OTP", async () => {
   globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 });
 
-Then ("I will get new OTP different with my first OTP",  async () => {
+Then("I will get new OTP different with my first OTP", async () => {
   let newOtp = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 
   I.assertNotEqual(newOtp, globalVariable.registration.otpCode);
   globalVariable.registration.otpCode = newOtp;
 });
 
-Then ("I will see attempt left {string}", (leftAttempt) => {
+Then("I will see attempt left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
 });
 
-Given ("I've requested OTP {string} times", (timesAttempt) => {
+Given("I've requested OTP {string} times", (timesAttempt) => {
   I.wait(3)
-  for(let i = 0;i<timesAttempt;i++){
+  for (let i = 0; i < timesAttempt; i++) {
     I.waitForElement(otpConfirmationPage.links.resendOTP, 70);
     otpConfirmationPage.resendOTP();
     I.waitForInvisible(otpConfirmationPage.links.resendOTP, 5);
   }
 });
 
-Given ("I am a customer had been registering and verify phonenumber with following details:", async (table) => {
+Given("I am a customer had been registering and verify phonenumber with following details:", async (table) => {
   const account = table.parse().rowsHash();
-  globalVariable.registration.phoneNumber = "62"+account["mobileNumber"];
+  globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
   globalVariable.registration.email = account["email"];
 
   await whitelistDao.whitelistPhoneNumber(
-    "+"+globalVariable.registration.phoneNumber
+    "+" + globalVariable.registration.phoneNumber
   );
 
   await whitelistDao.whitelistEmail(
@@ -481,16 +508,16 @@ Given ("I am a customer had been registering and verify phonenumber with followi
   registrationPage.clickCreateAccountButton();
   registrationPage.clickButtonConfirm();
 
-  I.waitForText("Verifikasi Nomor HP", 10);  
+  I.waitForText("Verifikasi Nomor HP", 10);
   otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
 
-  verificationEmailPage.isOpen();  
+  verificationEmailPage.isOpen();
 });
 
-When ("I resend email verification", () =>{
+When("I resend email verification", () => {
   verificationEmailPage.clickResendEmailLink();
 });
 
-When ("I will notify that resend email is successfully", () =>{
+When("I will notify that resend email is successfully", () => {
   I.waitForText("E-mail berhasil dikirim.");
 });
