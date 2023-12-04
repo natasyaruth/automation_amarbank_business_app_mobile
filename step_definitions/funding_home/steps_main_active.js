@@ -6,6 +6,12 @@ Then(/user should see company name on card saldo/, () => {
 Then(/user should see individu name on card saldo/, () => {
     mainActivePage.viewCardBalanceIndividu();
 });
+Then(/user should see acc creation name on card saldo/, () => {
+    mainActivePage.viewCardRejectAccountCreation();
+});
+Then(/user should see loan application name on card saldo/, () => {
+    mainActivePage.viewCardRejectLoanApplication();
+});
 Then(/user should see card balance/, () => {
     mainActivePage.viewCardBalanceAccoount();
 });
