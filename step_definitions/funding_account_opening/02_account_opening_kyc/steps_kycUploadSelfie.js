@@ -2,6 +2,7 @@ const {
     I,
     formKtpPage,
     resetStateDao,
+    uploadDao,
     formPersonalDataPage,
     uploadSelfiePage,
     globalVariable } = inject();
@@ -17,7 +18,7 @@ Given("my information about my account opening is {string}", async (expectedInfo
 When("I upload my selfie photo", async () => {
     I.wait(7);
     await 
-    resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+    uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
 });
 
@@ -31,7 +32,7 @@ When("I skip flow upload selfie photo", async ()=>{
 When("I upload invited user selfie photo", async () => {
     I.wait(7);
     await 
-    resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+    uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     headerPage.clickButtonBack();
     onboardingAccOpeningPage.chooseLater()
 });

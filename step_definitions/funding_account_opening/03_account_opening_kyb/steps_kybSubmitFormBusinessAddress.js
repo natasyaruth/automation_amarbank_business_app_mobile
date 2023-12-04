@@ -3,6 +3,7 @@ const {
     formBusinessAddressPage,
     onboardingAccOpeningPage,
     resetStateDao,
+    uploadBusinessDocPage,
     globalVariable
 } = inject();
 
@@ -110,9 +111,9 @@ Then("I will directing to page upload require documents for business", () => {
     I.see("Akta Perusahaan");
     I.see("SK Kemenkumham");
     I.see("NPWP Perusahaan");
-    I.see("upload dokumen melalui:");
+    I.see("Atau upload dokumen melalui:");
 
-    I.dontSeeElement("Upload Dokumen");
+    I.seeElement(uploadBusinessDocPage.buttons.uploadDocument);
     I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data dan Daftar Direktur");
 });
@@ -127,9 +128,9 @@ Then("I will directing to page upload require documents for business individual"
     I.dontSee("Akta Perusahaan");
     I.dontSee("SK Kemenkumham");
     I.dontSee("NPWP Perusahaan");
-    I.see("upload dokumen melalui:");
+    I.see("Atau upload dokumen melalui:");
 
-    I.dontSeeElement("Upload Dokumen");
+    I.seeElement(uploadBusinessDocPage.buttons.uploadDocument);
     I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data");
 });

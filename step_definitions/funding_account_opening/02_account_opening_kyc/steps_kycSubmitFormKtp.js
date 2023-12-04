@@ -2,16 +2,20 @@ const {
     I,
     formKtpPage,
     resetStateDao,
+    uploadDao,
     globalVariable } = inject();
 
-Given("I am a customer want to fill my information identity details", async () => { 
+Given("I am a customer want to fill my information identity details", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
 });
 
-Given("I am a customer who has uploaded my eKTP photo", async () => { 
-    resetStateDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+Given("I am a customer who has uploaded my eKTP photo", async () => {
+    await
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
+    await
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
 });
 

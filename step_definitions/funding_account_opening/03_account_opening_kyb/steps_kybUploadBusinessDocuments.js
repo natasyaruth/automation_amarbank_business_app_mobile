@@ -39,30 +39,19 @@ When("I see files that need to be uploaded for type individual company", () => {
     I.see("Format file PDF maximal 10MB");
 });
 
-When("I upload document {string}", (typeDoc) => {
-    const path = '.data/businessDoc.pdf';
-
-    uploadBusinessDocPage.uploadOneDocument(typeDoc, path);
-    I.waitForText("Dokumen berhasil dikirim", 10);
-    I.wait(3);
+When("I upload document {string}", async (typeDoc) => {
+    await
+        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
 });
 
-When("I upload all document business for type company", () => {
-    uploadBusinessDocPage.uploadAllDocumentCompany();
+When("I upload all document business for type company", async () => {
+    await
+        uploadBusinessDocPage.uploadAllDocumentCompany(globalVariable.login.userID, globalVariable.login.password);
 });
 
-When("I upload all document business for type individual company", () => {
-    uploadBusinessDocPage.uploadAllDocumentIndividualCompany();
-});
-
-When("I upload document with size more than 10MB", () => {
-    const path = '.data/businessDocMoreThan10MB.pdf';
-    uploadBusinessDocPage.uploadOneDocument(typeDoc, path);
-});
-
-When("I upload document with file other than PDF", () => {
-    const path = '.data/selfie.jpg';
-    uploadBusinessDocPage.uploadOneDocument(typeDoc, path);
+When("I upload all document business for type individual company", async () => {
+    await
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I click link call center in page upload document", () => {
@@ -92,5 +81,5 @@ Then("I will not see additional information in the top of section", () => {
 });
 
 Then("I will see document {string} still exists", (typeDoc) => {
-    I.waitForText(typeDoc+".pdf", 10);
+    I.waitForText(typeDoc + ".pdf", 10);
 });

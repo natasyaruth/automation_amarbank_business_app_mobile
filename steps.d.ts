@@ -45,6 +45,8 @@ type loanRepaymentPage = typeof import('./pages/loanRepayment.js');
 type hookOnBoardingPage = typeof import('./pages/hookOnboarding/hookOnboarding.js');
 type mainActivePage = typeof import('./pages/hookOnboarding/mainActive.js');
 type uploadBusinessDocPage = typeof import('./pages/uploadBusinessDoc.js');
+type profilePage = typeof import('./pages/profile.js');
+type uploadDao = typeof import('./dao/uploadDao.js');
 
 declare namespace CodeceptJS {
   interface SupportObject { 
@@ -93,6 +95,8 @@ declare namespace CodeceptJS {
     hookOnBoardingPage: hookOnBoardingPage, 
     mainActivePage:mainActivePage,
     uploadBusinessDocPage:uploadBusinessDocPage,
+    profilePage: profilePage,
+    uploadDao: uploadDao,
   }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}

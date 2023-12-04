@@ -3,6 +3,7 @@ const {
     formEmploymentDataPage,
     formBusinessProfilePage,
     resetStateDao,
+    uploadDao,
     globalVariable
 } = inject();
 
@@ -10,12 +11,12 @@ Given("I am a customer who has submitted my domicile address", () => { });
 
 Given("I am a customer who has uploaded my eKTP photo and selfie", async () => {
     await
-        resetStateDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
-        resetStateDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
     I.wait(2);
     await
-        resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Given("I want to submit my employment data", () => { });
