@@ -92,6 +92,7 @@ Then("I will direct to page Data Employment", async () => {
     I.dontSeeElement(formEmploymentDataPage.field.companyName);
     I.dontSeeElement(formEmploymentDataPage.checkBox.rights);
     I.dontSeeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+    
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

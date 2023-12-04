@@ -27,7 +27,7 @@ exports.config = {
       path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
-        platformVersion: "12.0",
+        // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         deviceName: "emulator-5554",
@@ -126,14 +126,15 @@ exports.config = {
     pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
 
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
-
     invitationBusinessPage: "./pages/loanApplication/invitationBusiness.js",
-    
+
     loanRepaymentPage: "./pages/loanRepayment.js",
 
     hookOnBoardingPage: "./pages/hookOnboarding/hookOnboarding.js",
 
     mainActivePage: "./pages/hookOnboarding/mainActive.js",
+
+    uploadBusinessDocPage: "./pages/uploadBusinessDoc.js",
   },
   settings: {
     logging: {
@@ -197,6 +198,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessProfile.js",
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessOwner.js",
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybSubmitFormBusinessAddress.js",
+      "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybUploadBusinessDocuments.js",
       "./step_definitions/funding_transfer/steps_friend_list.js",
       "./step_definitions/funding_transfer/steps_transfer.js",
       "./step_definitions/funding_create_pin/steps_createPin.js",
@@ -213,7 +215,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusNormal.js",
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
       "./step_definitions/funding_home/steps_onboarding.js",
-      "./step_definitions/funding_home/steps_main_active.js"
+      "./step_definitions/funding_home/steps_main_active.js",
     ],
   },
   plugins: {
@@ -237,13 +239,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-    pattern: "wait.*",
-    timeout: 0
-  },
-  {
-    pattern: "amOnPage",
-    timeout: 0
-  }
+      pattern: "wait.*",
+      timeout: 0
+    },
+    {
+      pattern: "amOnPage",
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

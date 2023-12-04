@@ -6,11 +6,11 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth0c1c              |
-            | password | 1234Test              |
-            | email    | rut.testing@email.com |
+            | userID   | nata5ff1                |
+            | password | 1234Test                |
+            | email    | natasyaruth03@gmail.com |
         And I filling in form login with the following details:
-            | userID   | ruth0c1c |
+            | userID   | nata5ff1 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -49,13 +49,13 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | COBA COBA       |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | businessName      | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry          | Jasa                                  |
+            | businessField     | Restoran                              |
+            | monthlyIncome     | 30 - 50 juta                          |
+            | npwp              | 906283213036000                       |
+            | nib               | 9129106701234                         |
+            | businessDateStart | 10/10/2010                            |
         And I submit my business profile
         And I click add business director
         And I fill business director data as followings:
@@ -66,9 +66,9 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I validate my first director
         And I click add business director
         And I fill business director data as followings:
-            | fullName | TRYSE REZZA                |
-            | email    | tryse.rezza@trash-mail.com |
-            | nik      | 3171036412910007           |
+            | fullName | TRETAN UNIVERSE                |
+            | email    | tretanuniverse1@trash-mail.com |
+            | nik      | 3171036412910007               |
         And I save data director
         And I validate my second director
         And I submit business director list

@@ -113,7 +113,7 @@ Then("I will directing to page upload require documents for business", () => {
     I.see("upload dokumen melalui:");
 
     I.dontSeeElement("Upload Dokumen");
-    I.see("support@amarbiz.co.id");
+    I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data dan Daftar Direktur");
 });
 
@@ -130,11 +130,11 @@ Then("I will directing to page upload require documents for business individual"
     I.see("upload dokumen melalui:");
 
     I.dontSeeElement("Upload Dokumen");
-    I.see("support@amarbiz.co.id");
+    I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data");
 });
 
 Then("I can close the page so that I can back to main dashboard", () => {
     formBusinessAddressPage.closePageUploadDoc();
-    I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
 });

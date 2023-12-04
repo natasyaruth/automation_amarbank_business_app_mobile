@@ -44,10 +44,56 @@ type ChaiWrapper = import('codeceptjs-chai');
 type loanRepaymentPage = typeof import('./pages/loanRepayment.js');
 type hookOnBoardingPage = typeof import('./pages/hookOnboarding/hookOnboarding.js');
 type mainActivePage = typeof import('./pages/hookOnboarding/mainActive.js');
+type uploadBusinessDocPage = typeof import('./pages/uploadBusinessDoc.js');
 
 declare namespace CodeceptJS {
-  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, forgotPasswordPage: forgotPasswordPage, uploadDocLoanPage: uploadDocLoanPage, loanDashboardPage: loanDashboardPage, privyAggrementPage: privyAggrementPage, onboardingAccOpeningPage: onboardingAccOpeningPage, uploadKtpPage: uploadKtpPage, formKtpPage: formKtpPage, resetStateDao: resetStateDao, globalVariable: globalVariable, uploadSelfiePage: uploadSelfiePage, formPersonalDataPage: formPersonalDataPage, formDomicileAddressPage: formDomicileAddressPage, formEmploymentDataPage: formEmploymentDataPage, formBusinessProfilePage: formBusinessProfilePage, formBusinessOwnerPage: formBusinessOwnerPage, formBusinessAddressPage: formBusinessAddressPage, createPINPage: createPINPage, 
-    loanDisbursementPage: loanDisbursementPage, friendListPage: friendListPage, transferPage: transferPage, limitActivePage: limitActivePage, businessLoanPage: businessLoanPage, pdcDeliveryPage: pdcDeliveryPage, confirmInvoicePage: confirmInvoicePage, invitationBusinessPage: invitationBusinessPage, loanRepaymentPage: loanRepaymentPage, homePage: homePage, hookOnBoardingPage: hookOnBoardingPage, mainActivePage:mainActivePage}
+  interface SupportObject { 
+    I: I, 
+    current: any, 
+    registrationPage: registrationPage, 
+    otpConfirmationPage: otpConfirmationPage, 
+    loginPage: loginPage, 
+    welcomePage: welcomePage, 
+    changePhoneNumberPage: changePhoneNumberPage, 
+    headerPage: headerPage, 
+    whitelistDao: whitelistDao, 
+    verificationEmailPage: verificationEmailPage, 
+    otpDao: otpDao, 
+    loanTypePage: loanTypePage, 
+    selectAnchorPage: selectAnchorPage, 
+    selectLoanAmountPage: selectLoanAmountPage, 
+    loanMonitoringProcessPage: loanMonitoringProcessPage, 
+    forgotPasswordPage: forgotPasswordPage, 
+    uploadDocLoanPage: uploadDocLoanPage, 
+    loanDashboardPage: loanDashboardPage, 
+    privyAggrementPage: privyAggrementPage, 
+    onboardingAccOpeningPage: onboardingAccOpeningPage, 
+    uploadKtpPage: uploadKtpPage, 
+    formKtpPage: formKtpPage, 
+    resetStateDao: resetStateDao, 
+    globalVariable: globalVariable, 
+    uploadSelfiePage: uploadSelfiePage, 
+    formPersonalDataPage: formPersonalDataPage, 
+    formDomicileAddressPage: formDomicileAddressPage, 
+    formEmploymentDataPage: formEmploymentDataPage, 
+    formBusinessProfilePage: formBusinessProfilePage, 
+    formBusinessOwnerPage: formBusinessOwnerPage, 
+    formBusinessAddressPage: formBusinessAddressPage, 
+    createPINPage: createPINPage, 
+    loanDisbursementPage: loanDisbursementPage, 
+    friendListPage: friendListPage, 
+    transferPage: transferPage, 
+    limitActivePage: limitActivePage, 
+    businessLoanPage: businessLoanPage, 
+    pdcDeliveryPage: pdcDeliveryPage, 
+    confirmInvoicePage: confirmInvoicePage, 
+    invitationBusinessPage: invitationBusinessPage, 
+    loanRepaymentPage: loanRepaymentPage, 
+    homePage: homePage, 
+    hookOnBoardingPage: hookOnBoardingPage, 
+    mainActivePage:mainActivePage,
+    uploadBusinessDocPage:uploadBusinessDocPage,
+  }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}
   namespace Translation {
