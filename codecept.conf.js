@@ -126,6 +126,7 @@ exports.config = {
     pdcDeliveryPage: "./pages/loanApplication/pdcDelivery.js",
 
     confirmInvoicePage: "./pages/loanApplication/confirmInvoice.js",
+
     invitationBusinessPage: "./pages/loanApplication/invitationBusiness.js",
 
     loanRepaymentPage: "./pages/loanRepayment.js",
@@ -135,6 +136,10 @@ exports.config = {
     mainActivePage: "./pages/hookOnboarding/mainActive.js",
 
     uploadBusinessDocPage: "./pages/uploadBusinessDoc.js",
+
+    profilePage: "./pages/profile.js",
+
+    uploadDao: "./dao/uploadDao.js",
   },
   settings: {
     logging: {
@@ -216,6 +221,7 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
       "./step_definitions/funding_home/steps_onboarding.js",
       "./step_definitions/funding_home/steps_main_active.js",
+      "./step_definitions/funding_home/steps_profile.js",
     ],
   },
   plugins: {
