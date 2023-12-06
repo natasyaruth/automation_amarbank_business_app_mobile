@@ -2,13 +2,14 @@ const {
     I,
     formPersonalDataPage,
     formDomicileAddressPage,
+    uploadDao,
     resetStateDao,
     globalVariable } = inject();
 
 Given("I am a customer who has uploaded my selfie photo", async () => {
     I.wait(7);
     await
-        resetStateDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
  });
 

@@ -29,7 +29,8 @@ module.exports = {
         btnCancel: "~buttonCancel",
         btnOk: "~buttonOk",
         btnCopied: "~buttonCopy",
-        btnShare: "~buttonShare"
+        btnShare: "~buttonShare",
+        btnTransfer: "~btnTransfer",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
