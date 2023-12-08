@@ -44,10 +44,11 @@ module.exports = {
         textViewDateIn: { xpath: '//android.widget.TextView[contains(@text, "01 November 2023")]' },
         textViewTimeOut: { xpath: '//android.widget.TextView[contains(@text, "1:40 PM")]' },
         textViewTimeIn: { xpath: '//android.widget.TextView[contains(@text, "1:43 PM")]' },
-        textNoteOut: { xpath: '//android.widget.TextView[contains(@text, "Test RTOL")]' },
-        textNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
+        textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "Test RTOL")]' },
+        textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
-        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' }
+        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
+        textNote: "~textNote" 
     },
     menu: {
         tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
@@ -235,11 +236,11 @@ module.exports = {
         switch (trfType) {
             case 'out':
                 I.wait(2);
-                I.seeElement(this.textFields.textNoteOut);
+                I.seeElement(this.textFields.textViewNoteOut);
             break;
             case 'in':
                 I.wait(2);
-                I.seeElement(this.textFields.textNoteIn);
+                I.seeElement(this.textFields.textViewNoteIn);
             break;
         }
     },
