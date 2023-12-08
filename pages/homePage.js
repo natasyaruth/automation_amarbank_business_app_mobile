@@ -47,7 +47,8 @@ module.exports = {
         textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "Test RTOL")]' },
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
-        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' }
+        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
+        textNote: "~textNote" 
     },
     menu: {
         tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
@@ -240,6 +241,19 @@ module.exports = {
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewNoteIn);
+            break;
+        }
+    },
+    async shouldSeeTextViewNoted(trfType) {
+        I.wait(2);
+        switch (trfType) {
+            case 'out':
+                I.wait(2);
+                I.seeElement(this.textFields.textNote);
+            break;
+            case 'in':
+                I.wait(2);
+                I.seeElement(this.textFields.textNote);
             break;
         }
     },
