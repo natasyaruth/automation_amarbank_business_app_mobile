@@ -244,6 +244,19 @@ module.exports = {
             break;
         }
     },
+    async shouldSeeTextViewNoted(trfType) {
+        I.wait(2);
+        switch (trfType) {
+            case 'out':
+                I.wait(2);
+                I.seeElement(this.textFields.textNote);
+            break;
+            case 'in':
+                I.wait(2);
+                I.seeElement(this.textFields.textNote);
+            break;
+        }
+    },
     async shouldSeeTextViewCategory(trfType) {
         I.wait(2);
         switch (trfType) {
