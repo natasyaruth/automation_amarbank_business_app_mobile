@@ -11,6 +11,7 @@ module.exports = {
     },
     onBoarding:{
         legality: "",
+        status: "",
     },
     login: {
         password: "",
