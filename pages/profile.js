@@ -4,7 +4,7 @@ module.exports = {
   buttons: {
     copyAccNumber: "~btnCopyAccountNumber",
     btnProfile: "~tabBusiness",
-    documentProcuration: "~btnDownload",
+    documentProcuration: "~buttonPowerAttorney",
     documentBusiness: "~buttonBusinessDoc",
     documentGiro: "~buttonGiroDoc",
     downloadNib: "~buttonDownloadNib",
