@@ -54,5 +54,6 @@ Feature: User Should See Detail Transaction History
         And I should see text view value date transfer "in"
         And I should see text view value time transfer "in"
         Then I should see text view value category transfer "in"
+        And I should see text view value note transfer "in"
         And I want to click button share
         And I want to click button close
