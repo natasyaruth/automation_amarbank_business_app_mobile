@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // const { error } = require("codeceptjs-testrail/lib/output");
+=======
+>>>>>>> bfb78d36262888d8b69068f1e749893008efa61b
 const { I } = inject();
 
 module.exports = {

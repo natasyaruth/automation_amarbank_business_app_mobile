@@ -61,7 +61,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseDoc = await I.sendPostRequest("https://dev-smb-user.otoku.io//api/v1/user/business/docs/"+enumDoc, secret({
+        const responseDoc = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc, secret({
             fileFormat: "pdf",
             file: base64File,
         }));

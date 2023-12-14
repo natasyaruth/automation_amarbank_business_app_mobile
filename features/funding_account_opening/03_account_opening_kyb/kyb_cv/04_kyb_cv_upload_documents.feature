@@ -19,7 +19,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I submit my legality type
         And I skip step upload eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3175080601830002          |
+            | eKtpNumber    | 3175044401830002          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -122,7 +122,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I click link call center in page upload document
         Then I will see bottom sheet with email contact
 
-    Scenario: Upload All document business type CV 
+    Scenario: Upload All document business type CV
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address
         When I click button upload document
