@@ -1,4 +1,4 @@
-const { error } = require("codeceptjs-testrail/lib/output");
+// const { error } = require("codeceptjs-testrail/lib/output");
 const { I } = inject();
 
 module.exports = {
