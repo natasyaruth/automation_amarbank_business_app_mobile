@@ -140,6 +140,8 @@ exports.config = {
     profilePage: "./pages/profile.js",
 
     uploadDao: "./dao/uploadDao.js",
+
+    accountDeletionPage: "./pages/accountDeletion.js",
   },
   settings: {
     logging: {
