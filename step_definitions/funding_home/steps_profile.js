@@ -21,6 +21,11 @@ When("I will see card account {string}", (typeAccount) => {
     ){
         I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 10);
 
+    } else if (
+        typeAccount === "on process"
+    ){
+        I.waitForText("Lanjutkan Pembuatan Rekening Giro", 10);
+
     } 
     globalVariable.onBoarding.status = typeAccount;
 });
