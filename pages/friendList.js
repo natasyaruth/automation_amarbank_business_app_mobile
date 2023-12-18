@@ -36,7 +36,8 @@ module.exports = {
       errorPassword: "~textErrorPassword",
     },
   
-    fillSearchFriendlist(friendListname) {      
+    fillSearchFriendlist(friendListname) {  
+      I.waitForElement(this.fields.searchFriendName, 10);    
       I.setText(this.fields.searchFriendName, friendListname);
       I.hideDeviceKeyboard();
     },

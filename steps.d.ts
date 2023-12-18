@@ -33,7 +33,7 @@ type createPINPage = typeof import('./pages/createPIN.js');
 type loanDisbursementPage = typeof import('./pages/loanDisbursement.js');
 type friendListPage = typeof import('./pages/friendList.js');
 type transferPage = typeof import('./pages/transfer.js');
-type homePage = typeof import('./pages/homePage.js');
+type transactionHistoryPage = typeof import('./pages/transactionHistory.js');
 type limitActivePage = typeof import('./pages/loanApplication/limitActive.js');
 type businessLoanPage = typeof import('./pages/loanApplication/businessLoan.js');
 type pdcDeliveryPage = typeof import('./pages/loanApplication/pdcDelivery.js');
@@ -46,6 +46,7 @@ type uploadBusinessDocPage = typeof import('./pages/uploadBusinessDoc.js');
 type profilePage = typeof import('./pages/profile.js');
 type uploadDao = typeof import('./dao/uploadDao.js');
 type accountDeletionPage = typeof import('./pages/accountDeletion.js');
+type amountDetailPage = typeof import('./pages/amountDetail.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
@@ -92,13 +93,14 @@ declare namespace CodeceptJS {
     confirmInvoicePage: confirmInvoicePage, 
     invitationBusinessPage: invitationBusinessPage, 
     loanRepaymentPage: loanRepaymentPage, 
-    homePage: homePage, 
+    transactionHistoryPage: transactionHistoryPage, 
     hookOnBoardingPage: hookOnBoardingPage, 
     mainActivePage:mainActivePage,
     uploadBusinessDocPage:uploadBusinessDocPage,
     profilePage: profilePage,
     uploadDao: uploadDao,
     accountDeletionPage: accountDeletionPage,
+    amountDetailPage: amountDetailPage,
   }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}

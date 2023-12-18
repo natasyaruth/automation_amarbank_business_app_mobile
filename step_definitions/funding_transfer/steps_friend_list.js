@@ -1,7 +1,3 @@
-const { field } = require("codeceptjs/lib/locator");
-const { dropDown } = require("../../pages/formDomicileAddress");
-const { cards } = require("../../pages/header");
-
 const{
     I,
     globalVariable,
@@ -43,10 +39,7 @@ Then("I can see message on friend list page {string}", (messageInfo)=>{
 });
 
 When("I input name {string} from the search box", (friendListName)=>{
-    // I.see("Cari nama penerima");
-    I.waitForElement(friendListPage.fields.searchFriendName, 5);
-    I.setText(friendListPage.fields.searchFriendName, friendListName);
-    I.hideDeviceKeyboard();
+    friendListPage.fillSearchFriendlist(friendListName);
 });
 
 Then("I find name {string} from the list", (friendListName)=>{

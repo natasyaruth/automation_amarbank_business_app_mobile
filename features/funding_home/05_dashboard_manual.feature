@@ -3,6 +3,8 @@ Feature: Manual Check Dashboard
   As a QA
   I need to create test case before execute testing manual
 
+  # ACCOUNT DELETION
+
   Scenario: Verify account deletion with incorrect password 5 times
     Given I am a registered customer with following details:
       | userID   | autocaea |
@@ -43,3 +45,212 @@ Feature: Manual Check Dashboard
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
+
+  # BLOCKING AMOUNT
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount > 500.000 in account individual
+    Given I am a customer and my individual account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 600.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 600.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 600.000,-
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount < 500.000 in account individual
+    Given I am a customer and my individual account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 400.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount > 1.000.000 in account business
+    Given I am a customer and my business account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 1.100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.100.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.100.000,-
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount < 1.000.000 in account business
+    Given I am a customer and my business account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 900.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 900.000,-
+    And my total amount is Rp 900.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 900.000,-
+    And my total amount is Rp 900.000,-
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount 100.000 gradually in account individual
+    Given I am a customer and my individual account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 100.000,-
+    And my total amount is Rp 100.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 100.000,-
+    And my total amount is Rp 100.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 200.000,-
+    And my total amount is Rp 200.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 200.000,-
+    And my total amount is Rp 200.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 300.000,-
+    And my total amount is Rp 300.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 300.000,-
+    And my total amount is Rp 300.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 500.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 500.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 600.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 600.000,-
+
+  Scenario: Validate active amount, blocking amount and total amount after receive amount 100.000 gradually in account business
+    Given I am a customer and my individual account recently accepted from CRM SMB
+    When I receive amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 100.000,-
+    And my total amount is Rp 100.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 100.000,-
+    And my total amount is Rp 100.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 200.000,-
+    And my total amount is Rp 200.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 200.000,-
+    And my total amount is Rp 200.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 300.000,-
+    And my total amount is Rp 300.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 300.000,-
+    And my total amount is Rp 300.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 400.000,-
+    And my total amount is Rp 400.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 500.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 500.000,-
+    And my total amount is Rp 500.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 600.000,-
+    And my total amount is Rp 600.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 600.000,-
+    And my total amount is Rp 600.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 700.000,-
+    And my total amount is Rp 700.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 700.000,-
+    And my total amount is Rp 700.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 800.000,-
+    And my total amount is Rp 800.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 800.000,-
+    And my total amount is Rp 800.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 900.000,-
+    And my total amount is Rp 900.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 900.000,-
+    And my total amount is Rp 900.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.000.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 0,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.000.000,-
+    When I receive again amount or top up amount Rp 100.000,-
+    And I access main Dashboard
+    Then I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.100.000,-
+    And I click detail amount
+    And I will see my active amount is Rp 100.000,-
+    And my blocking amount is Rp 1.000.000,-
+    And my total amount is Rp 1.100.000,-
