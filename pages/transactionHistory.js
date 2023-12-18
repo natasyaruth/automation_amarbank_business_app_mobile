@@ -1,7 +1,3 @@
-const { default: AndroidUiautomator2Driver } = require("appium-uiautomator2-driver");
-const WebDriver = require("codeceptjs/lib/helper/WebDriver");
-const { click } = require("wd/lib/commands");
-
 const { I } = inject();
 
 module.exports = {
@@ -48,7 +44,7 @@ module.exports = {
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
         textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
-        textNote: "~textNote" 
+        textNote: "~textNote"
     },
     menu: {
         tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
@@ -92,13 +88,13 @@ module.exports = {
             switch (Date) {
                 case 'Previous':
                     I.click(this.fields.dayPrev);
-            break;
+                    break;
                 case 'Selected':
                     I.click(this.fields.daySelected);
-            break;
+                    break;
                 case 'Next':
                     I.click(this.fields.dayNext);
-            break;
+                    break;
             }
         }
     },
@@ -108,15 +104,15 @@ module.exports = {
             case 'Previous':
                 I.wait(1);
                 I.click(this.fields.monthPrev);
-            break;
+                break;
             case 'Selected':
                 I.wait(1);
                 I.click(this.fields.monthSelected);
-            break;
+                break;
             case 'Next':
                 I.wait(1);
                 I.click(this.fields.monthNext);
-            break;
+                break;
         }
     },
     selectYearDate(Date) {
@@ -125,15 +121,15 @@ module.exports = {
             case 'Previous':
                 I.wait(2);
                 I.click(this.fields.yearPrev);
-            break;
+                break;
             case 'Selected':
                 I.wait(2);
                 I.click(this.fields.yearSelected);
-            break;
+                break;
             case 'Next':
                 I.wait(2);
                 I.click(this.fields.yearNext);
-            break;
+                break;
         }
     },
     viewFormDate() {
@@ -166,13 +162,13 @@ module.exports = {
                 I.seeElement(this.textFields.textViewTrfOut);
                 let textValueOut = await I.grabAttributeFrom(this.textFields.textViewTrfOut, "text");
                 I.assertEqual(textValueOut, "Transfer Keluar");
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewTrfIn);
                 let textValueIn = await I.grabAttributeFrom(this.textFields.textViewTrfIn, "text");
                 I.assertEqual(textValueIn, "Transfer Masuk");
-            break;
+                break;
         }
     },
     async clickListTransfer(trfType) {
@@ -181,11 +177,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.click(this.fields.listTransferOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.click(this.fields.listTransferIn);
-            break;
+                break;
         }
     },
     async shouldSeeTextViewRefNumber(trfType) {
@@ -194,11 +190,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewRefNumberOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewRefNumberIn);
-            break;
+                break;
         }
     },
     clickBtnCopied() {
@@ -211,11 +207,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewDateOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewDateIn);
-            break;
+                break;
         }
     },
     async shouldSeeTextViewTime(trfType) {
@@ -224,11 +220,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewTimeOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewTimeIn);
-            break;
+                break;
         }
     },
     async shouldSeeTextViewNoted(trfType) {
@@ -237,11 +233,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewNoteOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewNoteIn);
-            break;
+                break;
         }
     },
     async shouldSeeTextViewNoted(trfType) {
@@ -250,11 +246,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textNote);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textNote);
-            break;
+                break;
         }
     },
     async shouldSeeTextViewCategory(trfType) {
@@ -263,11 +259,11 @@ module.exports = {
             case 'out':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewCatOut);
-            break;
+                break;
             case 'in':
                 I.wait(2);
                 I.seeElement(this.textFields.textViewCatIn);
-            break;
+                break;
         }
     },
     clickBtnShare() {

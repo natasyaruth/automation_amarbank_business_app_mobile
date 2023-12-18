@@ -1,7 +1,3 @@
-const { messageErrorField } = require("../../pages/changePhoneNumber");
-const { button } = require("../../pages/otpConfirmation");
-const { messageErrorFields } = require("../../pages/registration");
-
 const {
     I,
     createPINPage,

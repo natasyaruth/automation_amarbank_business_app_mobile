@@ -1,5 +1,3 @@
-const { radioButton } = require("../../pages/loanApplication/selectLoanAmountTenor");
-
 const {
     I,
     transferPage,
@@ -9,11 +7,11 @@ const {
 } = inject();
 
 When("I choose the friendlist", ()=> {
+    I.wait(1);
     I.click(friendListPage.cards.friendList);
 });
 
 When("I choose category {string}", (category) => {
-    I.wait(2)
     transferPage.chooseCategory(category);
     globalVariable.transfer.category = category;
 });
@@ -38,7 +36,6 @@ Then("I should see error message {string} in field {string}", async (expectedVal
 When("I input amount {string}", (amount) => {
     transferPage.inputAmountTransfer(amount);
     globalVariable.transfer.amount = amount;
-
 });
 
 When("I search name {string} in friendlist", (friendListname) => {
@@ -91,8 +88,6 @@ Then("I choose transfer service SKN", () => {
     transferPage.chooseSkn();
 });
 
-
-
 When("I click transfer", () => {
     transferPage.processTransfer(); 
 });
@@ -117,11 +112,12 @@ Then("I will directly go to page confirmation transfer", async () => {
 });
 
 When("I input PIN {string}", (Pin) => {
-    I.waitForText("Masukkan PIN Transaksi",5);
+    I.waitForText("Masukkan PIN Transaksi", 10);
     transferPage.inputPin(Pin);    
 }),
 
 When("I click transfer now", () => {
+    I.waitForText("Konfirmasi Transfer", 10);
     transferPage.confirmTransfer();
 });
 
@@ -136,13 +132,17 @@ Then("I successfully transferred without notes", () => {
 });
 
 Then("Then I successfully transferred", () => {
-    I.see(transferPage.texts.status);
+    I.waitForElement(transferPage.texts.status, 10);
     I.see('Transfer Keluar');
     I.see("Rp. "+globalVariable.transfer.amount);
-    I.waitForElement(transferPage.buttons.copy,10);   
+    I.see(transferPage.buttons.copy);   
     I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
-    I.waitForElement(transferPage.buttons.close);
+    I.see(transferPage.buttons.close);
+});
+
+When ("I close page detail transfer", () => {
+    transferPage.closePageAfterTransfer();
 });
 
 When("I will directly go to page confirmation transfer between Amar Bank", async () => {
