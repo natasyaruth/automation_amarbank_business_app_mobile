@@ -26,7 +26,8 @@ module.exports = {
   buttons: {
     methodTransfer: "~buttonChoseMethod",
     refresh: "~buttonRefresh",
-    closeSubCategory: "~buttonClose",    
+    closeSubCategory: "~buttonClose", 
+    closeDetailTransferPage: "~buttonClose",    
     transfer: "~buttonTransfer",
     sectionBtnTrf: "~btnTransfer",
     copy: "~buttonCopy",
@@ -118,6 +119,7 @@ module.exports = {
   },
 
   chooseCategory(category){
+    I.waitForElement(this.dropdownLists.category, 10);
     I.click(this.dropdownLists.category);
     I.waitForElement(this.buttons.closeSubCategory, 10);
     I.click(category);
@@ -129,10 +131,12 @@ module.exports = {
   },
 
   chooseMethodTransfer(){
+    I.waitForElement(this.buttons.methodTransfer, 10);
     I.click(this.buttons.methodTransfer);
   },
 
   chooseRtol(){
+    I.waitForElement(this.radioButtons.methodRtol, 10);
     I.click(this.radioButtons.methodRtol);
   },
 
@@ -149,6 +153,7 @@ module.exports = {
   },
 
   processTransfer(){
+    I.waitForElement(this.buttons.transfer, 10);
     I.click(this.buttons.transfer);
   },
 
@@ -172,20 +177,28 @@ module.exports = {
   callAmarTeamService(){
     I.click(this.buttons.callCenter);
   },
+
   viewPageFriendList(){
     I.wait(3);
     I.seeElement(this.fields.receiverListPage);
   },
+
   viewPageTrfMethodeList(){
     I.wait(3);
     I.seeElement(this.fields.transferMethodePage);
   },
+
   viewPageConfirmTrf(){
     I.wait(3);
     I.seeElement(this.fields.confirmTrfPage);
   },
+
   clickSectionBtnTransfer(){
     I.wait(2);
     I.click(this.buttons.sectionBtnTrf);
-  }
+  },
+
+  closePageAfterTransfer(){
+    I.click(this.buttons.closeDetailTransferPage);
+  },
 }

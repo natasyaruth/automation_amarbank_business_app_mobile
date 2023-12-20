@@ -117,7 +117,7 @@ exports.config = {
 
     transferPage: "./pages/transfer.js",
 
-    homePage: "./pages/homePage.js",
+    transactionHistoryPage: "./pages/transactionHistory.js",
 
     limitActivePage: "./pages/loanApplication/limitActive.js",
 
@@ -140,6 +140,10 @@ exports.config = {
     profilePage: "./pages/profile.js",
 
     uploadDao: "./dao/uploadDao.js",
+
+    accountDeletionPage: "./pages/accountDeletion.js",
+
+    amountDetailPage: "./pages/amountDetail.js",
   },
   settings: {
     logging: {

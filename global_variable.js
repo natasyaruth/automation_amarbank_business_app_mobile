@@ -41,4 +41,9 @@ module.exports = {
         note:"",
         category:"",
     },
+    dashboard:{
+        activeAmount: "",
+        blockingAmount: "",
+        totalAmount: "",
+    },
 }
