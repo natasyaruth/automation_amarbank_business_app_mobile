@@ -144,6 +144,8 @@ exports.config = {
     accountDeletionPage: "./pages/accountDeletion.js",
 
     amountDetailPage: "./pages/amountDetail.js",
+
+    documentManagementPage: "./pages/loanApplication/documentManagement.js",
   },
   settings: {
     logging: {
@@ -225,6 +227,7 @@ exports.config = {
       "./step_definitions/funding_home/steps_onboarding.js",
       "./step_definitions/funding_home/steps_main_active.js",
       "./step_definitions/funding_home/steps_profile.js",
+      "./step_definitions/loanApplication/steps_documentManagement.js",
     ],
   },
   plugins: {
