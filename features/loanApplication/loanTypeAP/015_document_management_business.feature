@@ -19,7 +19,7 @@ Feature: Submit Loan Type AP Status is Approved
     @LoanApp
     Scenario: Document Management to Type Business For Type Loan AP
         Given I have been on the Business Loan Dashboard to see the loan types from AP Loan
-        And user click menu tab profil 
+        When user click menu tab profil 
         And user on profil page
         And user select download surat kuasa
         And user select dokumen bisnis
