@@ -11,7 +11,9 @@ module.exports = {
     btnGiro: "~buttonGiroDoc",
     btnLoan: "~buttonLoanDoc",
     btnSelectLoan: "~buttonSelectLoan",
-    btnDownload: "~buttonDownload"
+    btnDownload: "~buttonDownload",
+    btnDownloadSuratKuasa: "~buttonPowerAttorney",
+    btnDokumenBisnis: "~buttonBusinessDoc"
   },
 
   //
@@ -20,8 +22,14 @@ module.exports = {
     I.seeElement(this.textView.textViewPinjaman01);
     I.seeElement(this.textView.textViewPinjaman02);
   },
-
-  //
+  clickBtnDownloadSuratKuasa(){
+    I.wait(2);
+    I.click(this.buttons.btnDownloadSuratKuasa);
+  },
+  clickBtnDokumenBisnis(){
+    I.wait(2);
+    I.click(this.buttons.btnDokumenBisnis);
+  },
   clickBtnGiro(){
     I.wait(2);
     I.click(this.buttons.btnGiroDoc);
