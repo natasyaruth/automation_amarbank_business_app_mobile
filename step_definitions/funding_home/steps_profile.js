@@ -1,5 +1,5 @@
 const { I,
-    homePage,
+    transactionHistoryPage,
     globalVariable,
     profilePage,
     headerPage,
@@ -9,7 +9,7 @@ When("I will see card account {string}", (typeAccount) => {
     if(
         typeAccount === "active"
     ){
-        I.waitForElement(homePage.buttons.historyBtn, 10);
+        I.waitForElement(transactionHistoryPage.buttons.historyBtn, 10);
 
     } else if (
         typeAccount === "on verification"
