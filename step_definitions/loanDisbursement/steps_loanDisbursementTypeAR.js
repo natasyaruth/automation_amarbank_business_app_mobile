@@ -6,9 +6,11 @@ const globalVar = {
 };
 
 // Scenario: Validate request loan disbursement for type Loan AR when customer have any past due date
-Given('I have been on Loan Dashboard to checking if customer Loan AR have any past due date', () => {
+Given('I have been on Loan Dashboard to checking if customer Loan AR have any past due date', async () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
+ loanDisbursementPage.scrollToViewTextCardAR();
  loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
 });
 When('I click button "Gunakan Limit" in card type Loan AR', () => {
@@ -79,33 +81,39 @@ Then('I direct to anchor detail page', () => {
 });
 
 // Scenario: Validate Loan Program Information for Type Loan AR
-Given('I have been in anchor detail page for type Loan AR', () => {
+Given('I have been in anchor detail for type AR', async () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
- loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.scrollToViewTextCardAR();
+ await loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeLoanAR();
 });
 
-When('I click "Info Selengkapnya" in limit card', () => {
+When('I click "Info Selengkapnya" in limit card for type AR', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
-Then('I should be see loan program information section for that card has anchor', () => {
+Then('I should be see loan program information section for that card has anchor for type AR', () => {
  loanDisbursementPage.validateProgramLoanInformationAR();
 });
 
-Then('I close the loan information section', () => {
+Then('I close the loan information section for type AR', () => {
  loanDisbursementPage.closeProgramLoanInformation();
 });
 
-Then('I back to the anchor detail', () => {
+Then('I back to the anchor detail for type AR', () => {
  I.dontSee('Informasi Program Pinjaman');
 });
 
 // Scenario: Take Picture to Upload Invoice Type Loan AR
-Given('I have been on anchor detail to take picture', () => {
+Given('I have been on anchor detail to take picture', async () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
- loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.scrollToViewTextCardAR();
+ await loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeLoanAR();
 });
 
 When('I upload invoice document', () => {
@@ -120,10 +128,13 @@ Then('Document invoice will be showed in "Konfirmasi Invoice"', () => {
 });
 
 // Scenario: Click button Close in Section Upload Invoice
-Given('I have been on anchor detail', () => {
+Given('I have been on anchor detail', async () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
- loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.scrollToViewTextCardAR();
+ await loanDashboardPage.validateLoanTypeofLoanARDirectLoan();
+ loanDisbursementPage.usingLimitLoanDisbursementTypeLoanAR();
 });
 When('I upload invoice document', () => {
  loanDisbursementPage.goToUploadDocument();

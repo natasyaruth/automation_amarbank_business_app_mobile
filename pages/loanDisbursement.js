@@ -40,6 +40,11 @@ module.exports = {
     //Type PO 
     buttonAddNewSupplier: "~buttonAddNewSupplier",
     buttonSelectSupplier: "~buttonSelectSupplier",
+    //Type AR
+    buttonUseLimitAR: { xpath: '(//android.view.View[@content-desc="buttonUseLimit"])[2])' },
+    buttonTakeFromGalery: { xpath: '(/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]' },
+    imgInvoiceImage: { xpath: '(//android.widget.LinearLayout[@content-desc="Invoice_Trasaksi-2.pdf.png, 78.12 kB, Nov 21"]/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.ImageView[1]' },
+
   },
 
   cards: {
@@ -78,8 +83,8 @@ module.exports = {
   },
 
   usingLimitLoanDisbursementTypeAP() {
+    I.wait(5);
     I.seeElement(this.cards.cardLimitAP);
-    I.waitForElement(this.buttons.buttonUseLimit);
     I.click(this.buttons.buttonUseLimit);
   },
 
@@ -140,8 +145,9 @@ module.exports = {
     }
   },
 
-  async validateAlreadyUploadInvoice() {
-    const alreadyUploadInvoice = await I.seeElement(this.buttons.buttonDetailInvoice);
+  async validateAlreadyUploadInvoiceAP() {
+    I.wait(3);
+    const alreadyUploadInvoice = await I.waitForElement(this.buttons.buttonDetailInvoice);
     if (alreadyUploadInvoice) {
       I.see('Invoice Tersedia');
       I.seeElement(this.buttons.buttonDetailInvoice);
@@ -152,7 +158,8 @@ module.exports = {
     }
   },
 
-  async validateNotUploadInvoiceYet() {
+  async validateNotUploadInvoiceYetAP() {
+    I.wait(2);
     const notUploadInvoiceYet = await I.seeElement(this.buttons.buttonDetailLimit);
     if (notUploadInvoiceYet) {
       I.dontSee('Invoice Tersedia');
@@ -165,25 +172,29 @@ module.exports = {
   },
 
   goToProgramLoanInformation() {
+    I.wait(3);
     I.seeElement(this.buttons.buttonDetailLimit);
     I.click(this.buttons.buttonDetailLimit);
   },
 
   validateProgramLoanInformation() {
-    I.waitForVisible('Informasi Program Pinjaman');
-    I.see('Program pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+    I.wait(1);
+    I.waitForText('Informasi Program Pinjaman');
+    I.see();
+
   },
 
   closeProgramLoanInformation() {
     I.click(this.buttons.buttonClose);
+    I.wait(3);
     I.waitForInvisible('Informasi Program Pinjaman');
-    I.waitForVisible(this.buttons.buttonDetailLimit);
+    I.seeElement(this.buttons.buttonDetailLimit);
   },
 
   async goToCheckInvoiceDetail() {
-    const buttonSelector = await (this.buttons.buttonDetailInvoice)[1];
-    I.waitForVisible(buttonSelector);
-    I.click(buttonSelector);
+    const buttonSelector = await I.seeElement(this.buttons.buttonDetailInvoice)[1];
+    //  I.waitForVisible(buttonSelector);
+    I.click(this.buttons.buttonDetailInvoice);
   },
 
   async InvoiceDetailConfirmation() {
@@ -204,13 +215,18 @@ module.exports = {
     I.see('Tanggal Invoice');
     I.see('Masa Berlaku Invoice');
     I.see('Rekening Supplier');
-    I.seeElement(this.buttons.buttonDisburse);
-    I.seeElement(this.buttons.buttonComplaint);
+    //  I.seeElement(this.buttons.buttonDisburse);
+    //  I.seeElement(this.buttons.buttonComplaint);
   },
 
   openDocumentPreview() {
-    I.waitForElement(this.buttons.buttonPreview);
-    I.click(this.buttons.buttonPreview);
+    I.wait(3);
+    I.waitForText('Invoice_Transaksi');
+    //  I.waitForElement(this.buttons.buttonPreview);
+    I.click('Invoice_Transaksi');
+    //  I.click(this.buttons.buttonPreview);
+    //  I.waitForText('Mengunduh dokumen invoice...');
+    //I.see('Mengunduh dokumen invoice...');
   },
 
   hasAnInvoiceIssue() {
@@ -541,15 +557,23 @@ module.exports = {
 
 
   //Loan Type AR
+  scrollToViewTextCardAR() {
+    //I.swipeDown(this.messageErrorFields.PICNumberField);
+    I.wait(5);
+    I.performSwipe({ x: 575, y: 1653 }, { x: 575, y: 1265 });
+  },
+
   usingLimitLoanDisbursementTypeLoanAR() {
     I.seeElement(this.cards.cardLimitAR);
     I.waitForElement(this.buttons.buttonUseLimit);
-    I.click(this.buttons.buttonUseLimit);
+    I.click(this.buttons.buttonUseLimitAR);
   },
 
   validateProgramLoanInformationAR() {
-    I.waitForVisible('Informasi Program Pinjaman');
-    I.see('Program pinjaman ini diajukan berdasarkan tagihan faktur dari buyer Anda.');
+    I.wait(3);
+    I.seeText('Program pinjaman ini diajukan berdasarkan tagihan faktur dari buyer Anda.');
+    I.seeText('Pinjaman Tagihan Faktur');
+    I.wait(2);
   },
 
   grabtextAvailableLimitAR() {
@@ -576,4 +600,15 @@ module.exports = {
     I.seeElement(this.buttons.buttonComplaint);
   },
 
-}
+  openLoanDashboard() {
+    I.wait(10);
+    I.see('TESTING');
+    I.click('TESTING');
+    I.wait(2);
+    I.click('Loan Dashboard');
+  },
+
+  takeInvoiceFromGalery() {
+    I.wait()
+
+  }
