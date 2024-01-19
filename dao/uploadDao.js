@@ -61,7 +61,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseDoc = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc, secret({
+        const responseDoc = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/business/docs/" + enumDoc, secret({
             fileFormat: "pdf",
             file: base64File,
         }));
@@ -93,6 +93,93 @@ module.exports = {
         return {
             status: responseDeviceData.status,
             data: responseDeviceData.data
+        }
+    },
+
+    async submitDataPersonalIndividual(lastEducation, motherName, purposeAccount, userID, password) {
+
+        const base64File = this.loadImageAsBase64('./data/npwp.png');
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile", secret({
+            accountOpeningReason: purposeAccount,
+            lastEducation: lastEducation,
+            motherName: motherName,
+            npwpFileFormat: "jpg",
+            npwpNumber: base64File
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
+    async submitDataPersonalBusiness(lastEducation, motherName, userID, password) {
+
+        const base64File = this.loadImageAsBase64('./data/npwp.png');
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile", secret({
+            lastEducation: lastEducation,
+            motherName: motherName,
+            npwpFileFormat: "jpg",
+            npwpNumber: base64File
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
+    async submitIdentityDetails(ktpData, userID, password) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile/ktp", secret({
+            ktpnumber: ktpData["ktpnumber"],
+            ktpname: ktpData["ktpname"],
+            birthplace: ktpData["birthplace"],
+            dateofbirth: ktpData["dateofbirth"],
+            gender: ktpData["gender"],
+            bloodtype: ktpData["bloodtype"],
+            religion: ktpData["religion"],
+            maritalstatus: ktpData["maritalstatus"],
+            province: ktpData["province"],
+            city: ktpData["city"],
+            district: ktpData["district"],
+            village: ktpData["village"],
+            rt: ktpData["rt"],
+            rw: ktpData["rw"],
+            ktpaddress: ktpData["ktpaddress"],
+            postalcode: ktpData["postalcode"],
+            job: ktpData["job"],
+            nationality: ktpData["nationality"],
+            noWincoreProvince: ktpData["noWincoreProvince"],
+            noWincoreCity: ktpData["noWincoreCity"],
+            noWincoreDistrict: ktpData["noWincoreDistrict"],
+            noWincoreVillage: ktpData["noWincoreVillage"],
+            expiryDate: ktpData["expiryDate"],
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
         }
     },
 }

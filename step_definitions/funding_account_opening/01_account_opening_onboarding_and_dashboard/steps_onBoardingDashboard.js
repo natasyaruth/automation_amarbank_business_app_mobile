@@ -21,11 +21,12 @@ Given("I see information and benefit of Giro Account", () => {
     I.see("Layanan perbankan bisnis premium untuk memantau usaha Anda.");
 
     I.see("Benefit");
-    I.see("Gratis Biaya Admin");
+    I.dontSee("Gratis Biaya Admin");
     I.see("Transaksi Real-Time");
     I.see("Semua Proses dari Hp Anda");
     I.see("Multiple User");
-    I.see("Debit Card");
+    I.dontSee("Debit Card");
+    I.see("Pilih Rekening Giro");
 });
 
 When("I swipe to card Giro Account", () => {
@@ -54,9 +55,21 @@ When("I click later", () => {
     onboardingAccOpeningPage.chooseLater();
 });
 
+When("I choose Giro Account Corporate", () => {    
+    onboardingAccOpeningPage.openGiroAccountCorporate();
+});
+
+When("I choose Giro Account MSME", () => {    
+    onboardingAccOpeningPage.openGiroAccountMsme();
+});
+
 Then("I will directing to page legality business", () => {
     I.waitForText("Pilih salah satu tipe bisnis Anda", 10);
     I.wait(2);
+});
+
+Then("I can choose type account giro", () => {
+    onboardingAccOpeningPage.openGiroAccount();
 });
 
 Then("I will directing to page capture eKTP with information {string}", async (expectedInfo) => {
@@ -81,8 +94,7 @@ Then("I will directing to main dashboard with card loan application and account 
     I.see("Perbankan Bisnis Premium");
     I.see("Dapatkan benefit seperti Gratis Biaya Admin, Transaksi Real-Time, dan keuntungan lainnya");
     I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
-    I.click(onboardingAccOpeningPage.tabs.home);
-
+    I.see("Pilih Rekening Giro");
 });
 
 When("I see page {string}", (pageName) => {
@@ -177,4 +189,96 @@ Then("I will notify that my personal data details needs to be verified in main d
 
 Then("I will see card continue to complete registration user invited", ()=>{
     onboardingAccOpeningPage.continueToKYC();
+});
+
+When("I update my last journey step to {string}", async (stepName)=>{
+    await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will see details info of giro account MSME", async () => {
+    I.waitForText("Silahkan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
+    I.see("Pilih Rekening Giro");
+    
+    // CHECKING ADMIN FEE
+    I.see("Biaya Admin");
+
+    const actualAdminFee = onboardingAccOpeningPage.getAdminFeeMsme();
+    I.assertEqual(actualAdminFee, "FREE");
+
+    // CHECKING MIN BALANCE
+    I.see("Saldo Minimum");
+
+    const actualMinBalance = onboardingAccOpeningPage.getMinBalanceMsme();
+    I.assertEqual(actualMinBalance, "FREE");
+
+    // CHECKING MIN BALANCE FEE
+    I.see("Biaya Saldo Minimum");
+
+    const actualMinBalanceFee = onboardingAccOpeningPage.getMinCostMsme();
+    I.assertEqual(actualMinBalanceFee, "FREE");
+
+    // CHECKING DORMANT FEE
+    I.see("Biaya Dorman");
+
+    const actualDormantFee = onboardingAccOpeningPage.getDormantFeeMsme();
+    I.assertEqual(actualDormantFee, "FREE");
+
+    // CHECKING CHECK BOOK FEE
+    I.see("Biaya Cetak Cek / Bilyet Giro");
+
+    const actualCheckBookFee = onboardingAccOpeningPage.getCheckBookFeeMsme();
+    I.assertEqual(actualCheckBookFee, "Rp290rb");
+
+    // CHECKING LOAN LIMIT
+    I.see("Dapatkan Limit Pinjaman");
+
+    const actualLoanLimit = onboardingAccOpeningPage.getLoanLimitMsme();
+    I.assertEqual(actualLoanLimit, "Sampai Rp5 Milyar");
+
+    I.see("Buka Giro");
+    I.seeElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
+    I.see("*Biaya dapat berubah sewaktu-waktu sesuai ketentuan Bank")
+
+});
+
+Then("I will see details info of giro account Corporate", async () => {
+
+    // CHECKING ADMIN FEE
+    I.see("Biaya Admin");
+
+    const actualAdminFee = onboardingAccOpeningPage.getAdminFeeCorporate();
+    I.assertEqual(actualAdminFee, "FREE");
+
+    // CHECKING MIN BALANCE
+    I.see("Saldo Minimum");
+
+    const actualMinBalance = onboardingAccOpeningPage.getMinBalanceMsme();
+    I.assertEqual(actualMinBalance, "Rp500rb - Rp1jt");
+
+    // CHECKING MIN BALANCE FEE
+    I.see("Biaya Saldo Minimum");
+
+    const actualMinBalanceFee = onboardingAccOpeningPage.getMinCostMsme();
+    I.assertEqual(actualMinBalanceFee, "Rp1.000");
+
+    // CHECKING DORMANT FEE
+    I.see("Biaya Dorman");
+
+    const actualDormantFee = onboardingAccOpeningPage.getDormantFeeMsme();
+    I.assertEqual(actualDormantFee, "Rp500");
+
+    // CHECKING CHECK BOOK FEE
+    I.see("Biaya Cetak Cek / Bilyet Giro");
+
+    const actualCheckBookFee = onboardingAccOpeningPage.getCheckBookFeeMsme();
+    I.assertEqual(actualCheckBookFee, "Rp290rb");
+
+    // CHECKING LOAN LIMIT
+    I.see("Dapatkan Limit Pinjaman");
+
+    const actualLoanLimit = onboardingAccOpeningPage.getLoanLimitMsme();
+    I.assertEqual(actualLoanLimit, "Diatas Rp5 Milyar");
+
+    I.see("Buka Giro");
+    I.seeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
 });

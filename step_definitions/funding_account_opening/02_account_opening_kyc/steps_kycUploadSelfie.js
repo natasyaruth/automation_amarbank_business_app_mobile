@@ -16,10 +16,8 @@ Given("my information about my account opening is {string}", async (expectedInfo
 });
 
 When("I upload my selfie photo", async () => {
-    I.wait(7);
     await 
     uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
 });
 
 When("I skip flow upload selfie photo", async ()=>{
@@ -45,7 +43,7 @@ Then("I will directing to page submit Data Personal", async () => {
     I.waitForElement(formPersonalDataPage.buttons.savePersonalData, 10);
     I.seeElement(formPersonalDataPage.dropDowns.lastEducation);
     I.seeElement(formPersonalDataPage.fields.motherName);
-    I.seeElement(formPersonalDataPage.fields.npwp);
+    I.seeElement(formPersonalDataPage.buttons.uploadNpwp);
     I.dontSeeElement(formPersonalDataPage.dropDowns.purposeAccount);
 
     await 
@@ -56,8 +54,8 @@ Then("I will directing to page submit Data Personal individual", async () => {
     I.waitForElement(formPersonalDataPage.buttons.savePersonalData, 10);
     I.seeElement(formPersonalDataPage.dropDowns.lastEducation);
     I.seeElement(formPersonalDataPage.fields.motherName);
-    I.seeElement(formPersonalDataPage.fields.npwp);
     I.seeElement(formPersonalDataPage.dropDowns.purposeAccount);
+    I.seeElement(formPersonalDataPage.buttons.uploadNpwp);
 
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
