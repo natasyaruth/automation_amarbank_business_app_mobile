@@ -14,19 +14,21 @@ Feature: Loan Repayment For Status Normal
   And I click login
   Then I will direct to dashboard
 
+ @C98089
  Scenario: Validate List Repayment in Loan dashboard with Status Normal
   Given I have been on loan dashboard with status Normal
   When I am validating the list card repayment with status Normal
   Then I should be see the closest active bill with status Normal
 
+ @C98090
  Scenario: Validate Alert Text After Loan Disbursement was Successfull
   Given I have been got Successfull disbursement
   When I go to loan dashboard
   Then I should be see alert text that loan was successfull disbursed
   And I should not be see the alert text loan was successfull after I close the section
 
+ @C98091
  Scenario: Accessing History Detail to See All On Process Bill Activity
   Given I have been on loan dashboard to see all on process bill activity
   When I access "Lihat Semua"
   Then I should be direct to the history bill with filter on process
-
