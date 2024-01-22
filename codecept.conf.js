@@ -214,6 +214,8 @@ exports.config = {
       "./step_definitions/funding_create_pin/steps_createPin.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",
+      "./step_definitions/loanDisbursement/steps_loanDisbursementTypePO.js",
+      "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAR.js",
       "./step_definitions/funding_home/steps_home.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanApplication/steps_businessLoan.js",
@@ -251,13 +253,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-      pattern: "wait.*",
-      timeout: 0
-    },
-    {
-      pattern: "amOnPage",
-      timeout: 0
-    }
+    pattern: "wait.*",
+    timeout: 0
+  },
+  {
+    pattern: "amOnPage",
+    timeout: 0
+  }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

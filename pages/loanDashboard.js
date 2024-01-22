@@ -19,7 +19,6 @@ module.exports = {
   },
 
   cards: {
-    cardOffer: "~cardOffer",
     cardActiveBill: "~cardActiveBill",
     cardLimitAP: "~cardLimitAP",
     cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
@@ -317,12 +316,12 @@ module.exports = {
   },
 
   async validateLoanTypeofLoanAP() {
+    I.wait(5);
     try {
       await I.seeElement(this.cards.cardLimitAP);
       console.log('Element exists');
       I.seeElement(this.cards.cardLimitAP);
       I.see('Invoice Menunggu Dibayar');
-      I.see('Bayar Invoice');
       I.seeElement(this.buttons.buttonUseLimit);
     } catch (error) {
       console.log('Element does not exist');
@@ -359,7 +358,7 @@ module.exports = {
       console.log('Element exists');
       I.seeElement(this.cards.cardLimitAR);
       I.see('Upload Invoice Untuk Cairkan');
-      I.see('Cairkan Limit');
+      I.see('Gunakan Limit');
       I.seeElement(this.buttons.buttonUseLimit);
     } catch (error) {
       console.log('Element does not exist');

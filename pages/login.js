@@ -10,8 +10,9 @@ module.exports = {
     tryAgain: "~buttonTryAgain",
     reactivation: "~buttonReactivation",
     close: "~buttonClose",
-    callCenter: "~buttonCallCenter", 
-    onboardingPage: {xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]'},
+    callCenter: "~buttonCallCenter",
+    onboardingPage: { xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]' },
+    tabOthers: "~tabOthers",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -92,7 +93,7 @@ module.exports = {
     I.waitForInvisible(this.buttons.tryAgain, 2);
   },
 
-  clickBtnOnBoardingPage(){
+  clickBtnOnBoardingPage() {
     I.wait(5);
     I.click(this.buttons.onboardingPage);
   },
