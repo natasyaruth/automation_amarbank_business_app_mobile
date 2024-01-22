@@ -1,15 +1,15 @@
 
 Feature: Checking Loan Type AP and Direct AP with Status Active
-In order to checking limit active for loan type AP and Direct AP
+        In order to checking limit active for loan type AP and Direct AP
         As a customer
-I am able to verify limit active loan type AP and direct AP in history page
+        I am able to verify limit active loan type AP and direct AP in history page
 
         Background: Login with registered account
                 Given I am a registered customer with following details:
-                        | userID   | botseb19  |
+                        | userID   | botseb19   |
                         | password | TestSmb123 |
                 When I filling in form login with the following details:
-                        | userID   | botseb19  |
+                        | userID   | botseb19   |
                         | password | TestSmb123 |
                 And I click login
                 And I click later
@@ -30,8 +30,8 @@ I am able to verify limit active loan type AP and direct AP in history page
                 And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
                 And user click button lihat pinjaman
 
-        # Scenario: Validate Card Limit For Type Loan AP Direct Loan
-        #         Given I have been on Loan Dashboard to see the loan type of Loan AP Direct Loan
-        #         When I validate the card of "Loan AP direct loan"
-        #         Then I should see the wording dan card design of "Loan AP Direct Loan"
+# Scenario: Validate Card Limit For Type Loan AP Direct Loan
+#         Given I have been on Loan Dashboard to see the loan type of Loan AP Direct Loan
+#         When I validate the card of "Loan AP direct loan"
+#         Then I should see the wording dan card design of "Loan AP Direct Loan"
 

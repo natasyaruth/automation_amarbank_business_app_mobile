@@ -6,7 +6,8 @@ module.exports = {
     },
     buttons:{
         back: "~buttonBack",
-        close: "~buttonCloseCallCenter"
+        close: "~buttonCloseCallCenter",
+        closeWebView: "~",
     },
     cards:{
         whatsApp: "~cardWhatsApp",
@@ -29,5 +30,8 @@ module.exports = {
     closeCallCenter(){
         I.click(this.buttons.close);
         I.waitForInvisible(this.buttons.close, 5);
+    },
+    closeWebView(){
+        I.click(this.buttons.closeWebView);
     }
 }

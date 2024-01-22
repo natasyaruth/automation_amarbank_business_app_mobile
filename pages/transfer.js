@@ -5,6 +5,9 @@ module.exports = {
     amount: "~textFieldNominal",
     notes: "~textFieldNote",
     pin: "~textFieldPIN",
+    receiverListPage: { xpath: '//android.widget.TextView[contains(@text, "Daftar Penerima")]' },
+    transferMethodePage: { xpath: '//android.widget.TextView[contains(@text, "Layanan Transfer")]' },
+    confirmTrfPage: { xpath: '//android.widget.TextView[contains(@text, "Konfirmasi Transfer")]' },
   },
   texts: {
     balance: "~textBalance",
@@ -23,8 +26,10 @@ module.exports = {
   buttons: {
     methodTransfer: "~buttonChoseMethod",
     refresh: "~buttonRefresh",
-    closeSubCategory: "~buttonClose",    
+    closeSubCategory: "~buttonClose", 
+    closeDetailTransferPage: "~buttonClose",    
     transfer: "~buttonTransfer",
+    sectionBtnTrf: "~btnTransfer",
     copy: "~buttonCopy",
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
@@ -43,17 +48,26 @@ module.exports = {
     methodBifast: "~optionBifast",
     methodSkn: "~optionSKN",
   },
-  messageErrors: {
+  messageErrorFields: {
     amount: "~textFieldErrorNominal",
     notes: "~textFieldErrorNote",
     pin: "~textFieldErrorPIN",
     warningErrorPin: "~textWarningPin",
     blockedPin: "~textBlockPin",
+    dropDownErrorField: "~dropDownErrorSubCategory",
   },
 
   inputAmountTransfer(amount){
     I.waitForElement(this.fields.amount, 10);
     I.setText(this.fields.amount, amount);
+  },
+
+  async getMessageErrorFieldOnOnInquiryTransfer (fieldName) {
+    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+      throw new Error('Field ${fieldName} is not found');
+    }
+    I.seeElement(this.messageErrorFields[fieldName]);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
   async getMessageErrorField(fieldName){
@@ -105,6 +119,7 @@ module.exports = {
   },
 
   chooseCategory(category){
+    I.waitForElement(this.dropdownLists.category, 10);
     I.click(this.dropdownLists.category);
     I.waitForElement(this.buttons.closeSubCategory, 10);
     I.click(category);
@@ -116,10 +131,12 @@ module.exports = {
   },
 
   chooseMethodTransfer(){
+    I.waitForElement(this.buttons.methodTransfer, 10);
     I.click(this.buttons.methodTransfer);
   },
 
   chooseRtol(){
+    I.waitForElement(this.radioButtons.methodRtol, 10);
     I.click(this.radioButtons.methodRtol);
   },
 
@@ -136,6 +153,7 @@ module.exports = {
   },
 
   processTransfer(){
+    I.waitForElement(this.buttons.transfer, 10);
     I.click(this.buttons.transfer);
   },
 
@@ -158,5 +176,29 @@ module.exports = {
 
   callAmarTeamService(){
     I.click(this.buttons.callCenter);
+  },
+
+  viewPageFriendList(){
+    I.wait(3);
+    I.seeElement(this.fields.receiverListPage);
+  },
+
+  viewPageTrfMethodeList(){
+    I.wait(3);
+    I.seeElement(this.fields.transferMethodePage);
+  },
+
+  viewPageConfirmTrf(){
+    I.wait(3);
+    I.seeElement(this.fields.confirmTrfPage);
+  },
+
+  clickSectionBtnTransfer(){
+    I.wait(2);
+    I.click(this.buttons.sectionBtnTrf);
+  },
+
+  closePageAfterTransfer(){
+    I.click(this.buttons.closeDetailTransferPage);
   },
 }

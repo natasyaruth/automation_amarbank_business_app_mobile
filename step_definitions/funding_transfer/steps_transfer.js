@@ -1,5 +1,3 @@
-const { radioButton } = require("../../pages/loanApplication/selectLoanAmountTenor");
-
 const {
     I,
     transferPage,
@@ -8,8 +6,12 @@ const {
     globalVariable,
 } = inject();
 
+When("I choose the friendlist", ()=> {
+    I.wait(1);
+    I.click(friendListPage.cards.friendList);
+});
+
 When("I choose category {string}", (category) => {
-    I.wait(2)
     transferPage.chooseCategory(category);
     globalVariable.transfer.category = category;
 });
@@ -25,15 +27,19 @@ When("I input amount higher than active balance", async () => {
     transferPage.inputAmountTransfer(amount);
 });
 
-Then("I can see message {string}", async (messageError) => {
-    let actualMessageError = await transferPage.getMessageErrorAmount();
-    I.assertEqual(actualMessageError, messageError);
+Then("I should see error message {string} in field {string}", async (expectedValue, fieldName) => {
+    I.wait(2);
+    let actualMessageError = await transferPage.getMessageErrorFieldOnOnInquiryTransfer(fieldName);
+    I.assertEqual(actualMessageError, expectedValue);
 });
 
 When("I input amount {string}", (amount) => {
     transferPage.inputAmountTransfer(amount);
     globalVariable.transfer.amount = amount;
+});
 
+When("I search name {string} in friendlist", (friendListname) => {
+    transferPage.fillSearchFriendlist(friendListname);
 });
 
 When("I input notes with {string}", (notes) => {
@@ -41,10 +47,10 @@ When("I input notes with {string}", (notes) => {
     globalVariable.transfer.note = notes;
 });
 
-Then("I see message {string}", async(errorMessageNotes) =>{
-    let actualMessageErrorNotes = await transferPage.getMessageErrorNotes();
-    I.assertEqual(actualMessageErrorNotes,errorMessageNotes);
-});
+// Then("I see message {string}", async(errorMessageNotes) =>{
+    // let actualMessageErrorNotes = await transferPage.getMessageErrorNotes();
+    // I.assertEqual(actualMessageErrorNotes,errorMessageNotes);
+// });
 
 When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
@@ -106,11 +112,12 @@ Then("I will directly go to page confirmation transfer", async () => {
 });
 
 When("I input PIN {string}", (Pin) => {
-    I.waitForText("Masukkan PIN Transaksi",5);
+    I.waitForText("Masukkan PIN Transaksi", 10);
     transferPage.inputPin(Pin);    
 }),
 
 When("I click transfer now", () => {
+    I.waitForText("Konfirmasi Transfer", 10);
     transferPage.confirmTransfer();
 });
 
@@ -125,13 +132,17 @@ Then("I successfully transferred without notes", () => {
 });
 
 Then("Then I successfully transferred", () => {
-    I.see(transferPage.texts.status);
+    I.waitForElement(transferPage.texts.status, 10);
     I.see('Transfer Keluar');
     I.see("Rp. "+globalVariable.transfer.amount);
-    I.waitForElement(transferPage.buttons.copy,10);   
+    I.see(transferPage.buttons.copy);   
     I.see(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);    
-    I.waitForElement(transferPage.buttons.close);
+    I.see(transferPage.buttons.close);
+});
+
+When ("I close page detail transfer", () => {
+    transferPage.closePageAfterTransfer();
 });
 
 When("I will directly go to page confirmation transfer between Amar Bank", async () => {
@@ -186,6 +197,21 @@ Then("My PIN transaction will be temporary blocked for 30 minutes", () => {
     transferPage.backToDashboard();
 });
 
+Then("I am on receiver list page", () => {
+    transferPage.viewPageFriendList();
+});
+
+Then("I choose menu Transfer from main dashboard", () => {
+    transferPage.clickSectionBtnTransfer();
+});
+
+Then("I am on Transfer methode list page", () => {
+    transferPage.viewPageTrfMethodeList();
+});
+
+Then("I am on page transfer confirmation", () => {
+    transferPage.viewPageTrfMethodeList();
+});
 
 
 

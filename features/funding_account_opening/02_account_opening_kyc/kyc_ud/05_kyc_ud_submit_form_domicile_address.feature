@@ -6,11 +6,11 @@ Feature: Account Opening KYC UD - Submit Domicile Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | ruth2322 |
+            | password | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0ba7 |
-            | password | 1234Test |
+            | userID   | ruth2322 |
+            | password | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -41,6 +41,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
             | npwp          | 121785542123321 |
         And I submit my personal data details
 
+    @C96549
     Scenario: Submit form Domicile address same with KTP successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -48,6 +49,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
+    @C96550
     Scenario: Submit form Domicile address with new address successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

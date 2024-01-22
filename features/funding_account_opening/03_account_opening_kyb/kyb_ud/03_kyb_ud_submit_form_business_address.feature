@@ -6,11 +6,11 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | usah47d6             |
+            | userID   | udteea44             |
             | password | 1234Test             |
-            | email    | ud121@trash-mail.com |
+            | email    | ud201@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | usah47d6 |
+            | userID   | udteea44 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,20 +20,20 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174056512940004                      |
-            | fullName      | USAHA DAGANG INTEGRATE DUA PULUH SATU |
-            | placeOfBirth  | JAKARTA                               |
-            | dateOfBirth   | 11/11/1995                            |
-            | gender        | Perempuan                             |
-            | address       | Jl. Durian Runtuh No. 13              |
-            | rt            | 01                                    |
-            | rw            | 05                                    |
-            | province      | DKI JAKARTA                           |
-            | city          | KOTA ADM. JAKARTA SELATAN             |
-            | district      | KEBAYORAN BARU                        |
-            | village       | SENAYAN                               |
-            | religion      | Katolik                               |
-            | maritalStatus | Belum Kawin                           |
+            | eKtpNumber    | 3171046509920002          |
+            | fullName      | UD TERBARU KYC TIGA      |
+            | placeOfBirth  | JAKARTA                   |
+            | dateOfBirth   | 11/11/1995                |
+            | gender        | Perempuan                 |
+            | address       | Jl. Durian Runtuh No. 13  |
+            | rt            | 01                        |
+            | rw            | 05                        |
+            | province      | DKI JAKARTA               |
+            | city          | KOTA ADM. JAKARTA SELATAN |
+            | district      | KEBAYORAN BARU            |
+            | village       | SENAYAN                   |
+            | religion      | Katolik                   |
+            | maritalStatus | Belum Kawin               |
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
@@ -49,16 +49,17 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | USAHA DAGANG INTEGRATE DUA PULUH SATU |
-            | industry          | Jasa                                  |
-            | businessField     | Restoran                              |
-            | monthlyIncome     | 30 - 50 juta                          |
-            | npwp              | 988283213036000                       |
-            | nib               | 912910111111234                       |
-            | businessDateStart | 10/10/2010                            |
+            | businessName      | UD TERBARU KYC TIGA |
+            | industry          | Jasa                |
+            | businessField     | Restoran            |
+            | monthlyIncome     | 30 - 50 juta        |
+            | npwp              | 988283213036000     |
+            | nib               | 912910111111234     |
+            | businessDateStart | 10/10/2010          |
         And I submit my business profile
         And I submit business owner list
 
+    @C96574
     Scenario: Submit form Business Address successfully business type UD
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

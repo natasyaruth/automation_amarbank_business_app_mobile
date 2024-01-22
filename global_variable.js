@@ -9,6 +9,10 @@ module.exports = {
         userID: "",
         companyName: "",
     },
+    onBoarding:{
+        legality: "",
+        status: "",
+    },
     login: {
         password: "",
         userID: "",
@@ -36,5 +40,10 @@ module.exports = {
         service:"",
         note:"",
         category:"",
+    },
+    dashboard:{
+        activeAmount: "",
+        blockingAmount: "",
+        totalAmount: "",
     },
 }

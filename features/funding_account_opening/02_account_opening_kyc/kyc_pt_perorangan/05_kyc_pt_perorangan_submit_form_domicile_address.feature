@@ -6,10 +6,10 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID   | ruth1ed7 |
+            | userID   | ruth100f |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth1ed7 |
+            | userID   | ruth100f |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -41,6 +41,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
             | npwp          | 121785542123321 |
         And I submit my personal data details
 
+    @C96534
     Scenario: Submit form Domicile address same with KTP successfully business type PT Perorangan
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -48,6 +49,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
+    @C96535
     Scenario: Submit form Domicile address with new address successfully business type PT Perorangan
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

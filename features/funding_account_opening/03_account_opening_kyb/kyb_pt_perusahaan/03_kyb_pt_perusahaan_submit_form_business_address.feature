@@ -6,11 +6,11 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID   | ptpe1425                        |
+            | userID   | ptpeff9b                        |
             | password | 1234Test                        |
-            | email    | pt_perusahaan120@trash-mail.com |
+            | email    | pt_perusahaan401@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | ptpe1425 |
+            | userID   | ptpeff9b |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -20,20 +20,20 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174054512910013                  |
-            | fullName      | PT PERUSAHAAN INTEGRATE DUA PULUH |
-            | placeOfBirth  | PEKANBARU                         |
-            | dateOfBirth   | 11/11/1995                        |
-            | gender        | Laki-laki                         |
-            | address       | Jl. Durian kamu No. 14            |
-            | rt            | 00                                |
-            | rw            | 00                                |
-            | province      | DKI JAKARTA                       |
-            | city          | KOTA ADM. JAKARTA BARAT           |
-            | district      | GROGOL PETAMBURAN                 |
-            | village       | TANJUNG DUREN UTARA               |
-            | religion      | Islam                             |
-            | maritalStatus | Kawin                             |
+            | eKtpNumber    | 3173074702850001                         |
+            | fullName      | PT PERUSAHAAN TERBARU KYC INVITED REJECT |
+            | placeOfBirth  | PEKANBARU                                |
+            | dateOfBirth   | 11/11/1995                               |
+            | gender        | Laki-laki                                |
+            | address       | Jl. Durian kamu No. 14                   |
+            | rt            | 00                                       |
+            | rw            | 00                                       |
+            | province      | DKI JAKARTA                              |
+            | city          | KOTA ADM. JAKARTA BARAT                  |
+            | district      | GROGOL PETAMBURAN                        |
+            | village       | TANJUNG DUREN UTARA                      |
+            | religion      | Islam                                    |
+            | maritalStatus | Kawin                                    |
         And I submit my information identity details
         And I upload my selfie photo
         And I fill my personal data details as followings:
@@ -49,16 +49,32 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I submit my employment data
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT PERUSAHAAN INTEGRATE DUA PULUH |
-            | industry          | Jasa                              |
-            | businessField     | Restoran                          |
-            | monthlyIncome     | 30 - 50 juta                      |
-            | npwp              | 906283213036000                   |
-            | nib               | 9129106701234                     |
-            | businessDateStart | 10/10/2010                        |
+            | businessName      | PT PERUSAHAAN TERBARU KYC INVITED REJECT |
+            | industry          | Jasa                                     |
+            | businessField     | Restoran                                 |
+            | monthlyIncome     | 30 - 50 juta                             |
+            | npwp              | 906283213036000                          |
+            | nib               | 9129106701234                            |
+            | businessDateStart | 10/10/2010                               |
         And I submit my business profile
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | TRETAN MUSLIM                |
+            | email    | tretan.muslim@trash-mail.com |
+            | nik      | 3175094112940002             |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | TRYSE REZZA                |
+            | email    | tryse.rezza@trash-mail.com |
+            | nik      | 3171036412910007           |
+        And I save data director
+        And I validate my second director
         And I submit business director list
+        And I confirm my director lists
 
+    @C96571
     Scenario: Submit form Business Address successfully business type PT Perusahaan
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:
