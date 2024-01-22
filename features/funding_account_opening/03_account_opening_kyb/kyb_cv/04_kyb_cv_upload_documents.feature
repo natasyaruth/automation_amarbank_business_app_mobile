@@ -53,7 +53,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
@@ -113,7 +112,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
@@ -175,7 +173,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
@@ -232,7 +229,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
@@ -289,7 +285,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
@@ -374,7 +369,6 @@ Feature: Account Opening KYB CV - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         When I click button upload document

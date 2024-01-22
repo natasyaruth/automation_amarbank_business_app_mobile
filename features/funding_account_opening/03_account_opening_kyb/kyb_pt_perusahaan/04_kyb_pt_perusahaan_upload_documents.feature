@@ -81,7 +81,6 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
 

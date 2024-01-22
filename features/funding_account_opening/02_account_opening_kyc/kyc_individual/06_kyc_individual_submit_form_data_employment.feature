@@ -130,8 +130,6 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | monthlyIncome | 5 - 10 juta          |
             | industry      | Pemerintahan         |
             | companyName   | KEMENDAGRI           |
-        And I agree with the terms and condition
         And I allow company to store my data
-        And I allow to agree to use my digital signature through Privy.id
         And I submit my employment data individual
         Then I will notify that my personal data details needs to be verified first

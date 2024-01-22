@@ -190,8 +190,16 @@ Then("I will notify business director list has successfully submitted", () => {
 
 Then("I will directing to page business address", async () => {
     I.waitForElement(formBusinessAddressPage.fields.address, 10);
+    I.seeElement(formBusinessAddressPage.checkBox.rights);
+    I.dontSeeElement(formBusinessAddressPage.checkBox.termsAndCondition);
+    I.dontSeeElement(formBusinessAddressPage.checkBox.privy);
 
-    await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.dontSee("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
+    I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will not be able to see the deleted data director", async () => {
@@ -199,7 +207,8 @@ Then("I will not be able to see the deleted data director", async () => {
     I.dontSee(globalVariable.formDirector.fullName);
     I.dontSee(globalVariable.formDirector.email);
     I.dontSee(globalVariable.formDirector.nik);
-    await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see the updated director", async () => {
@@ -207,5 +216,6 @@ Then("I will see the updated director", async () => {
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
     I.see(globalVariable.formDirector.nik);
-    await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
