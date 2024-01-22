@@ -39,6 +39,7 @@ type businessLoanPage = typeof import('./pages/loanApplication/businessLoan.js')
 type pdcDeliveryPage = typeof import('./pages/loanApplication/pdcDelivery.js');
 type confirmInvoicePage = typeof import('./pages/loanApplication/confirmInvoice.js');
 type invitationBusinessPage = typeof import('./pages/loanApplication/invitationBusiness.js');
+type documentManagementPage = typeof import('./pages/loanApplication/documentManagement.js');
 type loanRepaymentPage = typeof import('./pages/loanRepayment.js');
 type hookOnBoardingPage = typeof import('./pages/hookOnboarding/hookOnboarding.js');
 type mainActivePage = typeof import('./pages/hookOnboarding/mainActive.js');
@@ -92,6 +93,7 @@ declare namespace CodeceptJS {
     pdcDeliveryPage: pdcDeliveryPage, 
     confirmInvoicePage: confirmInvoicePage, 
     invitationBusinessPage: invitationBusinessPage, 
+    documentManagementPage: documentManagementPage, 
     loanRepaymentPage: loanRepaymentPage, 
     transactionHistoryPage: transactionHistoryPage, 
     hookOnBoardingPage: hookOnBoardingPage, 

@@ -4,108 +4,126 @@ Feature: Loan Disbursement for Loan Type AP
   As a customer
   I am able to processing loan disbursement for type AP
 
-  Background: Login with registered account
+  Background: User must login to home dashboard
     Given I am a registered customer with following details:
-      | userID   | botseb19   |
-      | password | TestSmb123 |
+      | userID   | trys5524 |
+      | password | Eca12345 |
     When I filling in form login with the following details:
-      | userID   | botseb19   |
-      | password | TestSmb123 |
+      | userID   | trys5524 |
+      | password | Eca12345 |
     And I click login
+    And I click later
     Then I will direct to dashboard
 
+  @C98019
   Scenario: Validate request loan disbursement for type Loan AP when customer have any past due date
-    Given I have been on Loan Dashboard to checking if customer have any past due date
+    Given I have been on Loan Dashboard to checking if customer have any past due date in type AP
     When I click button "Gunakan Limit" in card type Loan AP
-    And I have any past due date
-    Then I direct to pay the bill limit section
+    And I have any past due date in type AP
+    Then I direct to pay the bill limit section in type AP
 
+  @C98020
   Scenario: Validate request loan disbursement for type Loan AP when customer don't have any past due date
-    Given I have been on Loan Dashboard to checking if customer don't have any past due date
+    Given I have been on Loan Dashboard to checking if customer don't have any past due date in type AP
     When I click button "Gunakan Limit" in card type Loan AP
-    And I don't have any past due date
-    Then I direct to page for checking Loan Tenor
+    And I don't have any past due date in type AP
+    Then I direct to page for checking Loan Tenor in type AP
 
+  @C98021
   Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor More Than Facility Due Date
     Given I have been on Loan Dashboard to checking if loan tenor more than Facility due date
     When I click button "Gunakan Limit" in card type Loan AP
     And system check that loan tenor more than facility due date
     Then I direct to "Pengajuan Anda Melebihi Batas Aktif Fasilitas" section
 
+  @C98022
   Scenario: Validate request loan disbursement for type Loan AP when Loan Tenor Less Than or Equal With Facility Due Date
     Given I have been on Loan Dashboard to checking if loan tenor less than or equal with Facility due date
     When I click button "Gunakan Limit" in card type Loan AP
     And system check that loan tenor less than or equal with facility due date
     Then I direct to anchor detail page
 
+  @C98023
   Scenario: Validate request loan disbursement for type Loan AP when Anchor Have Not Uploaded Invoice Yet
     Given I have been on Loan Dashboard to checking if anchor have not uploaded invoice yet
     When I click button "Gunakan Limit" in card type Loan AP
     And system check that anchor have not uploaded invoice yet
     Then I should be see anchor has card is empty in anchor detail page
 
+  @C98024
   Scenario: Validate request loan disbursement for type Loan AP when Anchor Already Upload Invoice
     Given I have been on Loan Dashboard to checking if anchor already upload invoice
     When I click button "Gunakan Limit" in card type Loan AP
     And system check that anchor already upload invoice
     Then I should be see anchor has card in anchor detail page
 
-  Scenario: Validate page Loan Program Information
-    Given I have been in anchor detail page to validate loan program information
-    When I click button "Info Selanjutnya"
-    Then I should be see Program Loan Information
+  @C98025
+  Scenario: Validate page Loan Program Information for type AP
+    Given I have been in anchor detail page to validate loan program information for type AP
+    When I click button "Info Selanjutnya" for type AP
+    Then I should be see Program Loan Information for type AP
 
-  Scenario: Close Section Loan Program Infomation
-    Given I have been in anchor detail page to close the loan program information section
-    When I click button "Info Selanjutnya"
-    And I click Close button
-    Then Loan Program Information should be dissapear
-    And Back to the Anchor detail page
+  @C98026
+  Scenario: Close Section Loan Program Infomation for type AP
+    Given I have been in anchor detail page to close the loan program information section for type AP
+    When I click button "Info Selanjutnya" for type AP
+    And I click Close button for type AP
+    Then Loan Program Information should be dissapear for type AP
+    And Back to the Anchor detail page for type AP
 
-  Scenario: Access Invoice Card Confirmation Detail
-    Given I have been in anchor detail page
-    When I click button detail invoice for the first row
-    Then I should be see Invoice Confirmation page
-    And I should be see detail invoice
+  @C98027
+  Scenario: Access Invoice Card Confirmation Detail for type AP
+    Given I have been in anchor detail page for type AP
+    When I click button detail invoice for the first row for type AP
+    Then I should be see Invoice Confirmation page for type AP
+    And I should be see detail invoice for type AP
 
+  @C98028
   Scenario: Open Document Invoice Transaction Page
     Given I have been in detail invoice to open invoice transaction detail
     When I open invoice document card
     Then the document will appears
 
+  @C98029
   Scenario: Open Link "Klik disini" to Send Note if There are Any Problems
     Given I have been in detail invoice to send limit disbursement
     When I have any issue
     Then show section "Invoice Tidak Sesuai"
     And back to the confirmation invoice detail after close section
 
+  @C98030
   Scenario: Send notes "Invoice Tidak Sesuai"
     Given I have been been in detail invoice to report my invoice issue
     When I input invoice issue
     Then show toastbar "Kendala invoice sudah dilaporkan"
     And button Continue Disbursement Calculations is dissapear
 
+  @C98031
   Scenario: Send Disbursement Calculations When Limit is Insufficient
     Given I have been in detail invoice to send disbursement calculation when limit is Insufficient
     When I click button "lanjut perhitungan pencairan"
     Then show section limit is insufficient
     And back to the confirmation invoice detail after I close the section
 
+  @C98032
   Scenario: Send Disbursement Calculations When Disbursement Amount More Than 2 Billion
     Given I have been in detail invoice to send disbursement calculation when disbursement amount more than 2 Billion
     When I click button "lanjut perhitungan pencairan"
     Then show disbursement calculation page if amount more than 2 billion
 
+  @C98033
   Scenario: Send Disbursement Calculations When Disbursement Amount Less or Equal than 2 Billion
     Given I have been in detail invoice to send disbursement calculation when disbursement amount less or equal than 2 Billion
     When I click button "lanjut perhitungan pencairan"
     Then show disbursement calculation page if amount more than 2 billion
 
+  @C98034
   Scenario: Continue Disburse The Loan When The PIN Has Not Been Created
     Given I haven been in calculation page of amount
     When I click button continue disburse loan with PIN has not been Created
     Then direct to the created PIN
 
+  @C98035
   Scenario: Continue Disburse The Loan When Input False Pin
     Given I haven been in calculation page of amount
     When I click button continue disburse loan with input false PIN
@@ -115,13 +133,13 @@ Feature: Loan Disbursement for Loan Type AP
       | 1234 | Pin salah silakan ulangi |
       |      | Pin wajib diisi          |
 
+  @C98036
   Scenario: Continue Disburse The Loan When Input True Pin
     Given I haven been in calculation page of amount
     When I click button continue disburse loan with input true PIN
     Then I should be see the page of delivery PDC
     And The address should be copied after I click button copy
     And back to the main dashboard after I close the section
-
 
 
 

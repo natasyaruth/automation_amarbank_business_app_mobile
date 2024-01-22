@@ -7,6 +7,7 @@ const globalVar = {
 
 // Scenario: Validate request loan disbursement for type Loan PO when customer have any past due date
 Given('I have been on Loan Dashboard to checking if customer Loan PO have any past due date', () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
  loanDashboardPage.validateLoanTypeofLoanPO();
@@ -78,25 +79,27 @@ Then('I direct to anchor detail page', () => {
 });
 
 // Scenario: Validate Loan Program Information for Type Loan PO
-Given('I have been in anchor detail page for type Loan PO', () => {
+Given('I have been in anchor detail page to validate loan program information for type Loan PO', async () => {
+ loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
- loanDashboardPage.validateLoanTypeofLoanPO();
+ await loanDashboardPage.validateLoanTypeofLoanPO();
+ loanDisbursementPage.usingLimitLoanDisbursementTypePO();
 });
 
-When('I click "Info Selengkapnya" in limit card', () => {
+When('I click "Info Selengkapnya" in limit card for type Loan PO', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
-Then('I should be see loan program information section for that card has anchor', () => {
+Then('I should be see loan program information section for that card has anchor for type Loan PO', () => {
  loanDisbursementPage.validateProgramLoanInformation();
 });
 
-Then('I close the loan information section', () => {
+Then('I close the loan information section for type Loan PO', () => {
  loanDisbursementPage.closeProgramLoanInformation();
 });
 
-Then('I back to the anchor detail', () => {
+Then('I back to the anchor detail for type Loan PO', () => {
  I.dontSee('Informasi Program Pinjaman');
 });
 

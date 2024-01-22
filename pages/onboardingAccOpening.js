@@ -63,7 +63,7 @@ module.exports = {
     home: "~tabHome",
     business: "~tabBusiness",
     callCenter: "~tabCallCenter",
-    others: "~tabOthers"
+    others: "~tabOthers",
   },
 
   chooseLegalityBusinessType(type) {
