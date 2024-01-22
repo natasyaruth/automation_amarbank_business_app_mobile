@@ -37,6 +37,16 @@ module.exports = {
     mobileNumber: "~labelPhoneNumber",
     companyName: "~labelCompanyName",
   },
+  checkButton:{
+    firstPdp: "~cbShareValidInfo",
+    secondPdp: "~cbShareToOthers",
+    thirdPdp: "~cbReceiveInfoProduct",
+  },
+  text:{
+    firstPdpText: "Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada Bank sebagai syarat penggunaan produk atau layanan Bank.",
+    secondPdpText: "Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank.",
+    thirdPdpText: "Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank.",
+  },
 
   fillInAccountInformation(accountInformation) {
     Object.keys(accountInformation).forEach((key) => {

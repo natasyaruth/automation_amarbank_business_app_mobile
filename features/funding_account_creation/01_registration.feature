@@ -240,6 +240,33 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
+  @consentPDP 
+  Scenario: Verifying the button "Buat Akun" with checked 2 mandatory PDP checklist
+    Given I am a customer want to access menu registration
+    When I checked the 2 mandatory PDP checklists
+    Then I should see button 'Buat Akun' will enable
+  
+  @consentPDP 
+  Scenario: Verifying the button "Buat Akun" with unchecked 2 mandatory PDP checklist and checked optional checklist
+    Given I am a customer want to access menu registration
+    When I unchecked the 2 mandatory PDP checklists
+    And I checked the optional PDP checklist
+    Then I should see button 'Buat Akun' will disable
+
+  @consentPDP 
+  Scenario: Go to "Verifikasi No. HP" page after click button "Buat Akun" on PDP Page
+    Given I am a customer want to access menu registration
+    When I checked the 2 mandatory PDP checklists
+    And I click button 'Buat Akun'
+    Then I should go to 'Verifikasi No. HP' page
+    And I get email including the information about PDP that i checked before
+
+  @consentPDP 
+  Scenario: Validate wording content on 3 PDP content
+    Given I am a customer want to access menu registration
+    When I am on page PDP consent
+    Then I see text 'consentText1', 'consentText2' and 'consentText3'
+
   @verificationPhoneNumber @C76006
   Scenario: Verifying phone number with wrong OTP code
     Given I am a customer had been registering the account with the following details:
