@@ -85,6 +85,10 @@ Then(/I click menu tab testing/, () => {
 
 // Amount detail
 
+Given("I wait until my account name {string} displayed", (name) => {
+    I.waitForText(name, 30);
+});
+
 When("I click detail amount", () => {
     amountDetailPage.openDetailAmount();
     I.waitForText("Saldo Rekening Giro", 10);
@@ -136,7 +140,6 @@ Then("I will see my detail active, blocking and total amount are Rp 0", async ()
     I.see("Saldo tidak dapat digunakan untuk transaksi");
 
     I.see("Total Saldo");
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Seluruh total saldo yang ada di Amar Bank Bisnis");
     I.see("Rincian Perhitungan Total Saldo:");
     I.see("Saldo Aktif");
