@@ -23,19 +23,24 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I see information and benefit of Giro Account
         And I choose Giro Account
-        Then I will directing to page legality business
+        Then I will see details info of giro account MSME
+        And I will see details info of giro account Corporate
 
     @C96592
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         When I click later
         Then I will directing to main dashboard with card loan application and account opening
+        And I can choose type account giro
+        And I will see details info of giro account MSME
+        And I will see details info of giro account Corporate
 
     @C96593
     Scenario: User choose legality business type PT Perusahaan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'company'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
@@ -45,6 +50,7 @@ Feature: Account Opening Onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'cv'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
@@ -54,6 +60,7 @@ Feature: Account Opening Onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account Corporate
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
@@ -63,6 +70,7 @@ Feature: Account Opening Onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account Corporate
         And I choose legality business type 'ud'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
@@ -72,6 +80,7 @@ Feature: Account Opening Onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
@@ -83,3 +92,11 @@ Feature: Account Opening Onboarding
         And I choose Giro Account
         And I click button back in the header page
         Then I will directing to Hook 1 Onboarding Account Opening
+
+    Scenario: Back to dashboard from page legality type
+        Given I am a customer want to open Giro Account
+        When I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I click button back in the header page
+        Then I will directing to main dashboard with card loan application and account opening

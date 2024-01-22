@@ -3,11 +3,10 @@ const {
     formDomicileAddressPage,
     formEmploymentDataPage,
     resetStateDao,
+    uploadDao,
     globalVariable } = inject();
 
-Given ("I am a customer who has submitted my personal data details", () =>{
-    I.wait(7);
-});    
+Given ("I am a customer who has submitted my personal data details", () =>{});
 
 When("I fill new domicile details as followings:", 
     async (table) => { 
@@ -92,6 +91,7 @@ Then("I will direct to page Data Employment", async () => {
     I.dontSeeElement(formEmploymentDataPage.field.companyName);
     I.dontSeeElement(formEmploymentDataPage.checkBox.rights);
     I.dontSeeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+    I.dontSeeElement(formEmploymentDataPage.checkBox.privy);
     
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
@@ -110,8 +110,10 @@ Then("I will direct to page Data Employment Individual", async () => {
     I.seeElement(formEmploymentDataPage.field.companyName);
     I.seeElement(formEmploymentDataPage.checkBox.rights);
     I.seeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+    I.seeElement(formEmploymentDataPage.checkBox.privy);
     I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
     I.see("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
+    I.see("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
     
     await 
     resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

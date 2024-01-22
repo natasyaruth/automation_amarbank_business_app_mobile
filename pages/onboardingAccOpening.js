@@ -8,7 +8,8 @@ const {
   formEmploymentDataPage,
   formBusinessAddressPage,
   formBusinessProfilePage,
-  formBusinessOwnerPage
+  formBusinessOwnerPage,
+  resetStateDao,
 } = inject();
 
 module.exports = {
@@ -23,7 +24,9 @@ module.exports = {
     invitedDirectors: "~btnOpenInvited",
     completeDoc: "~btnOpenDoc",
     refresh: "~btnRefresh",
-    cardInvited: "~btnCard"
+    cardInvited: "~btnCard",
+    giroAccountCorporate: "~smeBtnOpenGiro",
+    giroAccountMsme: "~bbBtnOpenGiro",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -43,6 +46,18 @@ module.exports = {
     ktp: "~txtPhoto",
     verification: "~txtVerifData",
     selfie: "~txtSelfie",
+    adminFeeSme: "~smeAdminFee",
+    adminFeeCorporate: "~bbAdminFee",
+    minBalanceSme: "~smeMinBalance",
+    minBalanceCorporate: "~bbMinBalance",
+    minCostSme: "~smeMinCost",
+    minCostCorporate: "~bbMinCost",
+    dormantFeeSme: "~smeDormantFee",
+    dormantFeeCorporate: "~bbDormantFee",
+    checkBookFeeSme: "~smeCheckbookFee",
+    checkBookFeeCorporate: "~bbCheckbookFee",
+    loanLimitSme: "~smeLoanLimit",
+    loanLimitCorporate: "~bbLoanLimit",
   },
   tabs: {
     home: "~tabHome",
@@ -64,6 +79,16 @@ module.exports = {
   openGiroAccount() {
     I.waitForElement(this.buttons.giroAccount, 10);
     I.click(this.buttons.giroAccount);
+  },
+
+  openGiroAccountMsme() {
+    I.waitForElement(this.buttons.giroAccountMsme, 10);
+    I.click(this.buttons.giroAccountMsme);
+  },
+
+  openGiroAccountCorporate() {
+    I.waitForElement(this.buttons.giroAccountCorporate, 10);
+    I.click(this.buttons.giroAccountCorporate);
   },
 
   continueToKYC() {
@@ -119,6 +144,37 @@ module.exports = {
         break;
       case "Registration Director":
         I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        break;
+      default:
+        throw new Error("Page name is not recognize");
+    }
+  },
+
+  async updateStep(stepName, userID, password) {
+    switch (stepName) {
+      case "Upload eKTP":
+        await resetStateDao.resetStateFlow(3, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Data KTP":
+        await resetStateDao.resetStateFlow(4, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Upload Selfie":
+        await resetStateDao.resetStateFlow(5, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Data Personal":
+        await resetStateDao.resetStateFlow(7, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Data Domicile Address":
+        await resetStateDao.resetStateFlow(8, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Data Employment":
+        await resetStateDao.resetStateFlow(9, userID, password);
+        resetStateDao.reloadPageAfterResetState();
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -183,6 +239,54 @@ module.exports = {
 
   async getTextDetail(idText) {
     return await I.grabTextFrom(this.texts[idText]);
+  },
+
+  async getAdminFeeCorporate() {
+    return await I.grabTextFrom(this.texts.adminFeeCorporate);
+  },
+
+  async getAdminFeeMsme() {
+    return await I.grabTextFrom(this.texts.adminFeeSme);
+  },
+
+  async getMinBalanceCorporate() {
+    return await I.grabTextFrom(this.texts.minBalanceCorporate);
+  },
+
+  async getMinBalanceMsme() {
+    return await I.grabTextFrom(this.texts.minBalanceSme);
+  },
+
+  async getMinCostCorporate() {
+    return await I.grabTextFrom(this.texts.minCostCorporate);
+  },
+
+  async getMinCostMsme() {
+    return await I.grabTextFrom(this.texts.minCostSme);
+  },
+
+  async getDormantFeeCorporate() {
+    return await I.grabTextFrom(this.texts.dormantFeeSme);
+  },
+
+  async getDormantFeeMsme() {
+    return await I.grabTextFrom(this.texts.dormantFeeSme);
+  },
+
+  async getCheckBookFeeCorporate() {
+    return await I.grabTextFrom(this.texts.checkBookFeeCorporate);
+  },
+
+  async getCheckBookFeeMsme() {
+    return await I.grabTextFrom(this.texts.checkBookFeeSme);
+  },
+
+  async getLoanLimitCorporate() {
+    return await I.grabTextFrom(this.texts.loanLimitCorporate);
+  },
+
+  async getLoanLimitMsme() {
+    return await I.grabTextFrom(this.texts.loanLimitSme);
   },
 
 }

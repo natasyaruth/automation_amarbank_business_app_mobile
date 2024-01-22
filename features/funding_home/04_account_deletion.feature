@@ -6,11 +6,11 @@ Feature: Account Deletion
     @C101644
     Scenario: Close in page how to delete account and important information
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -23,11 +23,11 @@ Feature: Account Deletion
     @C101645
     Scenario: Close in page verification account delete
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -41,12 +41,12 @@ Feature: Account Deletion
     @C101646
     Scenario: Close in page input reason account delete
         Given I am a registered customer with following details:
-            | userID   | stag76ee                     |
-            | password | Test1234                     |
-            | email    | ruth.hutauruk@amarbank.co.id |
+            | userID   | autocaea                                 |
+            | password | 1234Test                                 |
+            | email    | auto.integrate.upload.doc@trash-mail.com |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -62,11 +62,11 @@ Feature: Account Deletion
     @C101647
     Scenario: Verify account deletion with incorrect password
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -81,11 +81,11 @@ Feature: Account Deletion
     # @C101648
     # Scenario: Input password and then delete
     #     Given I am a registered customer with following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I click login
     #     And I click later
     #     And I will see card account 'active'
@@ -99,11 +99,11 @@ Feature: Account Deletion
     # @C101649
     # Scenario: User unmask and mask password
     #     Given I am a registered customer with following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I click login
     #     And I click later
     #     And I will see card account 'active'
@@ -119,11 +119,11 @@ Feature: Account Deletion
 
     Scenario Outline: Input reason delete account with invalid value
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -143,11 +143,11 @@ Feature: Account Deletion
     @C101653
     Scenario: Input reason delete account with alphanumeric and special char
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -162,11 +162,11 @@ Feature: Account Deletion
     # @C101653
     # Scenario: Input reason delete account and then delete
     #     Given I am a registered customer with following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I click login
     #     And I click later
     #     And I will see card account 'active'
@@ -183,11 +183,11 @@ Feature: Account Deletion
     # @C101655
     # Scenario: Submit request account deletion with reason empty
     #     Given I am a registered customer with following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag76ee |
-    #         | password | Test1234 |
+    #         | userID   | autocaea |
+    #         | password | 1234Test |
     #     And I click login
     #     And I click later
     #     And I will see card account 'active'
@@ -202,11 +202,11 @@ Feature: Account Deletion
     @C101656
     Scenario: Delete account active Individual
         Given I am a registered customer with following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag76ee |
-            | password | Test1234 |
+            | userID   | autocaea |
+            | password | 1234Test |
         And I click login
         And I click later
         And I will see card account 'active'
@@ -225,10 +225,10 @@ Feature: Account Deletion
     @C101657
     Scenario: Delete account on process Individual
         Given I am a registered customer with following details:
-            | userID   | stag302d |
+            | userID   | ruth152d |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag302d |
+            | userID   | ruth152d |
             | password | 1234Test |
         And I click login
         And I click later
@@ -248,10 +248,10 @@ Feature: Account Deletion
     @C101658
     Scenario: Delete account on verification Individual
         Given I am a registered customer with following details:
-            | userID   | stag9a38 |
+            | userID   | auto4424 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag9a38 |
+            | userID   | auto4424 |
             | password | 1234Test |
         And I click login
         And I click later
@@ -271,10 +271,10 @@ Feature: Account Deletion
     # @C101659
     # Scenario: Access menu delete account after process delete account active Individual
     #     Given I am a registered customer with following details:
-    #         | userID   | stag9a38 |
+    #         | userID   | autocaea |
     #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag9a38 |
+    #         | userID   | autocaea |
     #         | password | 1234Test |
     #     And I click login
     #     And I click later
@@ -288,10 +288,10 @@ Feature: Account Deletion
     @C101660
     Scenario: Delete account active Business
         Given I am a registered customer with following details:
-            | userID   | stag6cf7 |
+            | userID   | autofb2c |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stag6cf7 |
+            | userID   | autofb2c |
             | password | 1234Test |
         And I click login
         And I click later
@@ -311,10 +311,10 @@ Feature: Account Deletion
     @C101661
     Scenario: Delete account on process Business
         Given I am a registered customer with following details:
-            | userID   | stagc6ce |
+            | userID   | auto436d |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stagc6ce |
+            | userID   | auto436d |
             | password | 1234Test |
         And I click login
         And I click later
@@ -334,10 +334,10 @@ Feature: Account Deletion
     @C101662
     Scenario: Delete account on verification Business
         Given I am a registered customer with following details:
-            | userID   | stagdfb7 |
+            | userID   | auto79e2 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | stagdfb7 |
+            | userID   | auto79e2 |
             | password | 1234Test |
         And I click login
         And I click later
@@ -357,10 +357,10 @@ Feature: Account Deletion
     # @C101663
     # Scenario: Access menu delete account after process delete account active Business
     #     Given I am a registered customer with following details:
-    #         | userID   | stag6cf7 |
+    #         | userID   | autofb2c |
     #         | password | 1234Test |
     #     And I filling in form login with the following details:
-    #         | userID   | stag6cf7 |
+    #         | userID   | autofb2c |
     #         | password | 1234Test |
     #     And I click login
     #     And I click later

@@ -17,31 +17,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Employment
         And I choose Giro Account
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173012606890020          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
+        And I update my last journey step to 'Data Domicile Address'
 
     @C96536
     Scenario: Submit form Data Employment successfully business type PT Perorangan

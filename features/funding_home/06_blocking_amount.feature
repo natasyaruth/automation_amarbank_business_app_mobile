@@ -63,35 +63,35 @@ Feature: Blocking amount
 
     @blocking_amount
     Scenario: Validate active amount, blocking amount and total amount after transfer using account individual active
-        # Given I am a registered customer with following details:
-        #     | userID   | auto20bf |
-        #     | password | 1234Test |
-        # And I filling in form login with the following details:
-        #     | userID   | auto20bf |
-        #     | password | 1234Test |
-        # And I click login
-        # And I click later
+        Given I am a registered customer with following details:
+            | userID   | auto20bf |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | auto20bf |
+            | password | 1234Test |
+        And I click login
+        And I click later
         # And I wait until my account name 'NADYA LAROSA' displayed
-        # And I will see my active, blocking and total amount
-        # When I choose menu Transfer from main dashboard
-        # And I input name 'Surya Edwin' from the search box
-        # And I choose the friendlist
-        # And I input amount '50000'
-        # And I choose category 'Pembayaran'
-        # And I click choose bank transfer service
-        # And I choose transfer service RTOL
-        # And I click transfer
-        # And I click transfer now
+        And I will see my active, blocking and total amount
+        When I choose menu Transfer from main dashboard
+        And I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I input amount '50000'
+        And I choose category 'Pembayaran'
+        And I click choose bank transfer service
+        And I choose transfer service RTOL
+        And I click transfer
+        And I click transfer now
         And I input PIN '111111'
-        # And I successfully transferred
-        # And I close page detail transfer
-        # Then I will see my active amount decreased
-        # And my blocking amount still Rp. 500.000
-        # And my total amount increased
-        # And I click detail amount
-        # And I will see my active amount detail decreased
-        # And my blocking amount detail still Rp. 500.000
-        # And my total amount detail increased
+        And I successfully transferred
+        And I close page detail transfer
+        Then I will see my active amount decreased
+        And my blocking amount still Rp. 500.000
+        And my total amount increased
+        And I click detail amount
+        And I will see my active amount detail decreased
+        And my blocking amount detail still Rp. 500.000
+        And my total amount detail increased
 
     Scenario: Validate active amount, blocking amount and total amount after transfer using account business active
         Given I am a registered customer with following details:
