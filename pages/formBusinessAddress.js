@@ -34,6 +34,7 @@ module.exports = {
     termsAndCondition: "~checkBoxPrivacyPolicy",
     rights: "~checkBoxRight",
     privy: "~checkBoxPrivy",
+    loan: "~checkBoxLoan",
   },
 
   fillBusinessAddress(businessAddress){

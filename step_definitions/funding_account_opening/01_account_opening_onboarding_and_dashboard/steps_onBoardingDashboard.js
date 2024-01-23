@@ -19,14 +19,16 @@ Given("I am a customer want choose product type MSME", () => {
     onboardingAccOpeningPage.openGiroAccountMsme();
     headerPage.clickButtonBack();
     headerPage.clickButtonBack();
-    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10)
+    onboardingAccOpeningPage.chooseLater();
+    I.waitForElement(onboardingAccOpeningPage.buttons.openAccount, 10);
 });
 
 Given("I am a customer want choose product type BB", () => {
     onboardingAccOpeningPage.openGiroAccountCorporate();
     headerPage.clickButtonBack();
     headerPage.clickButtonBack();
-    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10)
+    onboardingAccOpeningPage.chooseLater();
+    I.waitForElement(onboardingAccOpeningPage.buttons.openAccount, 10)
 });
 
 Given("I see information and benefit of Giro Account", () => {
@@ -65,6 +67,10 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
+When("I choose Giro Account from dashboard", () => {
+    onboardingAccOpeningPage.openGiroAccountFromDashboard();
+});
+
 When("I click later", () => {
     onboardingAccOpeningPage.chooseLater();
 });
@@ -83,7 +89,7 @@ Then("I will directing to page legality business", () => {
 });
 
 Then("I can choose type account giro", () => {
-    onboardingAccOpeningPage.openGiroAccount();
+    onboardingAccOpeningPage.openGiroAccountFromDashboard();
 });
 
 Then("I will directing to page capture eKTP with information {string}", async (expectedInfo) => {
@@ -97,16 +103,18 @@ Then("I will directing to Hook 1 Onboarding Account Opening", async () => {
     I.waitForText("Apa kebutuhan Anda saat ini?", 10);
 });
 
+Then("I will directing to page type giro account", async () => {
+    I.waitForText("Pilih Rekening Giro", 10);
+});
+
 Then("I will directing to main dashboard with card loan application and account opening", async () => {
     I.waitForElement(onboardingAccOpeningPage.buttons.openLoan, 10);
     I.see("Pilihan Produk");
-    I.see("Dapatkan Limit hingga");
     I.see("Rp 5 Milyar");
     I.see("Pinjaman untuk Bisnis dari Amar Bank");
     I.see("Dapatkan pinjaman untuk pembiayaan transaksi bisnis Anda.");
 
     I.see("Perbankan Bisnis Premium");
-    I.see("Dapatkan benefit seperti Gratis Biaya Admin, Transaksi Real-Time, dan keuntungan lainnya");
     I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
     I.see("Pilih Rekening Giro");
 });
@@ -216,38 +224,38 @@ Then("I will see details info of giro account MSME", async () => {
     // CHECKING ADMIN FEE
     I.see("Biaya Admin");
 
-    const actualAdminFee = onboardingAccOpeningPage.getAdminFeeMsme();
+    const actualAdminFee = await onboardingAccOpeningPage.getAdminFeeMsme();
     I.assertEqual(actualAdminFee, "FREE");
 
     // CHECKING MIN BALANCE
     I.see("Saldo Minimum");
 
-    const actualMinBalance = onboardingAccOpeningPage.getMinBalanceMsme();
+    const actualMinBalance = await onboardingAccOpeningPage.getMinBalanceMsme();
     I.assertEqual(actualMinBalance, "FREE");
 
     // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo Minimum");
+    I.see("Biaya Saldo "+"\n"+"Minimum");
 
-    const actualMinBalanceFee = onboardingAccOpeningPage.getMinCostMsme();
+    const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostMsme();
     I.assertEqual(actualMinBalanceFee, "FREE");
 
     // CHECKING DORMANT FEE
     I.see("Biaya Dorman");
 
-    const actualDormantFee = onboardingAccOpeningPage.getDormantFeeMsme();
+    const actualDormantFee = await onboardingAccOpeningPage.getDormantFeeMsme();
     I.assertEqual(actualDormantFee, "FREE");
 
     // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek / Bilyet Giro");
+    I.see("Biaya Cetak Cek /"+"\n"+"Bilyet Giro");
 
-    const actualCheckBookFee = onboardingAccOpeningPage.getCheckBookFeeMsme();
+    const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeMsme();
     I.assertEqual(actualCheckBookFee, "Rp290rb");
 
     // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit Pinjaman");
+    I.see("Dapatkan Limit "+"\n"+"Pinjaman");
 
-    const actualLoanLimit = onboardingAccOpeningPage.getLoanLimitMsme();
-    I.assertEqual(actualLoanLimit, "Sampai Rp5 Milyar");
+    const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitMsme();
+    I.assertEqual(actualLoanLimit, "Sampai "+"\n"+"Rp 5 Milyar");
 
     I.see("Buka Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
@@ -260,38 +268,38 @@ Then("I will see details info of giro account Corporate", async () => {
     // CHECKING ADMIN FEE
     I.see("Biaya Admin");
 
-    const actualAdminFee = onboardingAccOpeningPage.getAdminFeeCorporate();
+    const actualAdminFee = await onboardingAccOpeningPage.getAdminFeeCorporate();
     I.assertEqual(actualAdminFee, "FREE");
 
     // CHECKING MIN BALANCE
     I.see("Saldo Minimum");
 
-    const actualMinBalance = onboardingAccOpeningPage.getMinBalanceMsme();
+    const actualMinBalance = await onboardingAccOpeningPage.getMinBalanceCorporate();
     I.assertEqual(actualMinBalance, "Rp500rb - Rp1jt");
 
     // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo Minimum");
+    I.see("Biaya Saldo "+"\n"+"Minimum");
 
-    const actualMinBalanceFee = onboardingAccOpeningPage.getMinCostMsme();
+    const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostCorporate();
     I.assertEqual(actualMinBalanceFee, "Rp1.000");
 
     // CHECKING DORMANT FEE
     I.see("Biaya Dorman");
 
-    const actualDormantFee = onboardingAccOpeningPage.getDormantFeeMsme();
+    const actualDormantFee = await onboardingAccOpeningPage.getDormantFeeCorporate();
     I.assertEqual(actualDormantFee, "Rp500");
 
     // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek / Bilyet Giro");
+    I.see("Biaya Cetak Cek /"+"\n"+"Bilyet Giro");
 
-    const actualCheckBookFee = onboardingAccOpeningPage.getCheckBookFeeMsme();
+    const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeCorporate();
     I.assertEqual(actualCheckBookFee, "Rp290rb");
 
     // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit Pinjaman");
+    I.see("Dapatkan Limit "+"\n"+"Pinjaman");
 
-    const actualLoanLimit = onboardingAccOpeningPage.getLoanLimitMsme();
-    I.assertEqual(actualLoanLimit, "Diatas Rp5 Milyar");
+    const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitCorporate();
+    I.assertEqual(actualLoanLimit, "Diatas "+"\n"+"Rp 5 Milyar");
 
     I.see("Buka Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);

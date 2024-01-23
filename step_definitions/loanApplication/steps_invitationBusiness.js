@@ -12,9 +12,9 @@ When(/user should see text view title card \"([^\"]*)\" on field card \"([^\"]*)
 Then(/user should see element text view card \"([^\"]*)\"/,(loanSchema)=>{
     invitationBusinessPage.validateInviteBusinessPage(loanSchema);
 });
-Then(/user click button lihat skema pinjaman/, () =>{
-    invitationBusinessPage.clickBtnSchema();
-});
+// Then(/user click button lihat skema pinjaman/, () =>{
+//     invitationBusinessPage.clickBtnSchema();
+// });
 Then(/user click button setujui penawaran /, () =>{
     invitationBusinessPage.clickBtnAccept();
 });

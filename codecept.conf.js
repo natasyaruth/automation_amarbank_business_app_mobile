@@ -185,7 +185,7 @@ exports.config = {
       "./features/loanRepayment/*.feature",
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
-
+      "./features/main_feature/loan_app_journey/01_Registration.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",

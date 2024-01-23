@@ -292,23 +292,23 @@ Feature: Account Opening KYB CV - Upload Document Business
         Then I will see bottom sheet with email contact
 
     Scenario: Upload All document business type CV
-        Given Given I am a registered customer with following details:
-            | userID   | nata5ff1                |
-            | password | 1234Test                |
-            | email    | natasyaruth03@gmail.com |
+        Given I am a registered customer with following details:
+            | userID   | alfife18               |
+            | password | 1234Test               |
+            | email    | product.type@gmail.com |
         And I filling in form login with the following details:
-            | userID   | nata5ff1 |
+            | userID   | alfife18 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
-        And I choose Giro Account Corporate
+        And I choose Giro Account MSME
         And I choose legality business type 'cv'
         And I submit my legality type
         And I skip step upload eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3175044401830002          |
+            | eKtpNumber    | 3171047103790001          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |
@@ -324,10 +324,9 @@ Feature: Account Opening KYB CV - Upload Document Business
             | maritalStatus | Belum Kawin               |
         And I submit my information identity details
         And I skip flow upload selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
+        And I submit my personal data details business and upload my npwp as followings:
+            | lastEducation  | SMA           |
+            | motherName     | NADYA LAMUSU  |
         And I submit my personal data details
         And I choose my domicile address same with my identity information
         And I submit my domicile address
@@ -345,22 +344,22 @@ Feature: Account Opening KYB CV - Upload Document Business
             | nib               | 9129106701234                         |
             | businessDateStart | 10/10/2010                            |
         And I submit my business profile
-        And I click add business director
-        And I fill business director data as followings:
-            | fullName | COKI PARDEDE                |
-            | email    | coki.pardede@trash-mail.com |
-            | nik      | 3175064412930004            |
-        And I save data director
-        And I validate my first director
-        And I click add business director
-        And I fill business director data as followings:
-            | fullName | TRETAN UNIVERSE                |
-            | email    | tretanuniverse1@trash-mail.com |
-            | nik      | 3171036412910007               |
-        And I save data director
-        And I validate my second director
+        # And I click add business director
+        # And I fill business director data as followings:
+        #     | fullName | COKI PARDEDE                |
+        #     | email    | coki.pardede@trash-mail.com |
+        #     | nik      | 3175064412930004            |
+        # And I save data director
+        # And I validate my first director
+        # And I click add business director
+        # And I fill business director data as followings:
+        #     | fullName | TRETAN UNIVERSE                |
+        #     | email    | tretanuniverse1@trash-mail.com |
+        #     | nik      | 3171036412910007               |
+        # And I save data director
+        # And I validate my second director
         And I submit business director list
-        And I confirm my director lists
+        # And I confirm my director lists
         And I fill my business address as followings:
             | address  | Jl. Gambir Belok Kiri No. 10 |
             | rt       | 000                          |

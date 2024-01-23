@@ -5,17 +5,14 @@ Feature: Account Opening Onboarding
     I want to choose Giro Account and my legality business type
 
     Background: User has registered and login to dashboard
-        Given I am a customer lead wanting to open a new account
-        When I choose menu registration
-        And I filling in my account information with the following details:
-            | fullName        | Ruth Natasya        |
-            | email           | test@trash-mail.com |
-            | mobileNumber    | 89566662249         |
-            | password        | 1234Test            |
-            | confirmPassword | 1234Test            |
-        And I registering the account
-        And I verifying my phone number by entering the code sent to me
-        And I verifying my email by login by user id
+        Given I am a registered customer with following details:
+            | userID   | ruth07f9 |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | ruth07f9 |
+            | password | 1234Test |
+        And I click login
+        And I will directing to Hook 1 Onboarding Account Opening
 
     @C96591
     Scenario: User choose Giro Account
@@ -93,10 +90,18 @@ Feature: Account Opening Onboarding
         And I click button back in the header page
         Then I will directing to Hook 1 Onboarding Account Opening
 
-    Scenario: Back to dashboard from page legality type
+    Scenario: Back to dashboard from page legality type entry point hook
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
         And I click button back in the header page
-        Then I will directing to main dashboard with card loan application and account opening
+        Then I will directing to page type giro account
+
+    Scenario: Back to dashboard from page legality type entry point dashboard
+        Given I am a customer want to open Giro Account
+        When I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account Corporate
+        And I click button back in the header page
+        Then I will directing to page type giro account
