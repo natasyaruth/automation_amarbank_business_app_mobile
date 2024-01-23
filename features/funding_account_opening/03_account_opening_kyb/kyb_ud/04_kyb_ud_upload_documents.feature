@@ -58,7 +58,6 @@ Feature: Account Opening KYB UD - Submit Business Address
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I submit business owner list
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
 

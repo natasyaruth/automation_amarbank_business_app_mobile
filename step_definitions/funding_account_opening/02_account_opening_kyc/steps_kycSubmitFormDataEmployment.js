@@ -120,3 +120,41 @@ Then("I should see message error {string} in the below of field {string} in form
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
+
+Then("I will see checkbox Rights & Policy, T&C about loan and Privy", async () => {
+    I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+    I.swipeUp(
+        formEmploymentDataPage.dropDowns.monthlyIncome,
+        1000,
+        1000
+    );
+
+    I.seeElement(formEmploymentDataPage.checkBox.rights);
+    I.seeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+    I.seeElement(formEmploymentDataPage.checkBox.privy);
+    I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.see("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
+    I.see("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
+    
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
+    I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+    I.swipeUp(
+        formEmploymentDataPage.dropDowns.monthlyIncome,
+        1000,
+        1000
+    );
+
+    I.seeElement(formEmploymentDataPage.checkBox.rights);
+    I.seeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+    I.dontSeeElement(formEmploymentDataPage.checkBox.privy);
+    I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.see("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
+    I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});

@@ -15,6 +15,20 @@ Given("I am a invited customer wants to complete my KYC data", () => {
 Given("I am a customer want to open Giro Account later", () => {
 });
 
+Given("I am a customer want choose product type MSME", () => {
+    onboardingAccOpeningPage.openGiroAccountMsme();
+    headerPage.clickButtonBack();
+    headerPage.clickButtonBack();
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10)
+});
+
+Given("I am a customer want choose product type BB", () => {
+    onboardingAccOpeningPage.openGiroAccountCorporate();
+    headerPage.clickButtonBack();
+    headerPage.clickButtonBack();
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10)
+});
+
 Given("I see information and benefit of Giro Account", () => {
     I.waitForText("Apa kebutuhan Anda saat ini?", 10);
     I.see("Dapatkan Rekening Giro");
@@ -33,7 +47,7 @@ When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
 });
 
-When("I back to dashboard",()=>{
+When("I back to dashboard", () => {
     headerPage.clickButtonBack();
 });
 
@@ -51,15 +65,15 @@ When("I choose Giro Account", () => {
     onboardingAccOpeningPage.openGiroAccount();
 });
 
-When("I click later", () => {    
+When("I click later", () => {
     onboardingAccOpeningPage.chooseLater();
 });
 
-When("I choose Giro Account Corporate", () => {    
+When("I choose Giro Account Corporate", () => {
     onboardingAccOpeningPage.openGiroAccountCorporate();
 });
 
-When("I choose Giro Account MSME", () => {    
+When("I choose Giro Account MSME", () => {
     onboardingAccOpeningPage.openGiroAccountMsme();
 });
 
@@ -181,24 +195,24 @@ Then("I can see details registration director", async () => {
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I will notify that my personal data details needs to be verified in main dashboard", ()=>{
+Then("I will notify that my personal data details needs to be verified in main dashboard", () => {
     I.waitForText("Perbankan Giro", 10);
     I.see("Menunggu verifikasi data selesai");
     I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
 });
 
-Then("I will see card continue to complete registration user invited", ()=>{
+Then("I will see card continue to complete registration user invited", () => {
     onboardingAccOpeningPage.continueToKYC();
 });
 
-When("I update my last journey step to {string}", async (stepName)=>{
+When("I update my last journey step to {string}", async (stepName) => {
     await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see details info of giro account MSME", async () => {
     I.waitForText("Silahkan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
     I.see("Pilih Rekening Giro");
-    
+
     // CHECKING ADMIN FEE
     I.see("Biaya Admin");
 

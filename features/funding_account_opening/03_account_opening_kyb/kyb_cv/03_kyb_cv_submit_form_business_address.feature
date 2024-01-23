@@ -132,7 +132,6 @@ Feature: Account Opening KYB CV - Submit Business Address
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         Then I will directing to page upload require documents for business

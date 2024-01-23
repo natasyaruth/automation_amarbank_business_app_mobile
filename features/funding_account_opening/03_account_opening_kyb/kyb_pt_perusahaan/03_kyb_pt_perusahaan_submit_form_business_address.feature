@@ -58,7 +58,6 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         Then I will directing to page upload require documents for business
