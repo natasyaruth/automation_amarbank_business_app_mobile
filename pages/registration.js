@@ -131,20 +131,20 @@ module.exports = {
   },
 
   clickCheckboxPDPMandatory(){
-    I.waitForElement(this.checkButton.firstPdp);
+    I.waitForElement(this.checkButton.firstPdp, 5);
     I.checkOption(this.checkButton.firstPdp);
     I.checkOption(this.checkButton.secondPdp);
     I.wait(5);
   },
 
   clickCheckboxPDPOptional(){
-    I.waitForElement(this.checkButton.firstPdp);
+    I.waitForElement(this.checkButton.firstPdp, 5);
     I.checkOption(this.checkButton.thirdPdp);
     I.wait(5);
   },
 
   clickButtonCreateAccountPdp(buttonName){
-    I.waitForElement(this.buttons.createAccountPDP);
+    I.waitForElement(this.buttons.createAccountPDP, 5);
     I.click(this.buttons[buttonName]);
     I.wait(5);
   },
