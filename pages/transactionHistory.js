@@ -47,7 +47,7 @@ module.exports = {
         textNote: "~textNote"
     },
     menu: {
-        tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
+        tabTesting: { xpath: "(//android.view.View[@content-desc='tabHome'])[2]" },
         tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]" },
         tabCallCenter: "~tabCallCenter",
         tabBusiness: "~tabBusiness",
@@ -273,7 +273,7 @@ module.exports = {
         I.sendDeviceKeyEvent(4);
     },
     clickTabTesting() {
-        I.wait(2);
+        I.waitForElement(this.menu.tabTesting, 10);
         I.click(this.menu.tabTesting);
     }
 

@@ -25,8 +25,8 @@ module.exports = {
     completeDoc: "~btnOpenDoc",
     refresh: "~btnRefresh",
     cardInvited: "~btnCard",
-    giroAccountCorporate: "~smeBtnOpenGiro",
-    giroAccountMsme: "~bbBtnOpenGiro",
+    giroAccountCorporate: "~bbBtnOpenGiro",
+    giroAccountMsme: "~smeBtnOpenGiro",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -79,6 +79,11 @@ module.exports = {
   openGiroAccount() {
     I.waitForElement(this.buttons.giroAccount, 10);
     I.click(this.buttons.giroAccount);
+  },
+
+  openGiroAccountFromDashboard() {
+    I.waitForElement(this.buttons.openAccount, 10);
+    I.click(this.buttons.openAccount);
   },
 
   openGiroAccountMsme() {
@@ -266,7 +271,7 @@ module.exports = {
   },
 
   async getDormantFeeCorporate() {
-    return await I.grabTextFrom(this.texts.dormantFeeSme);
+    return await I.grabTextFrom(this.texts.dormantFeeCorporate);
   },
 
   async getDormantFeeMsme() {

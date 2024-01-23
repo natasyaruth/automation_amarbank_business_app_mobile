@@ -15,6 +15,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'individual'
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'

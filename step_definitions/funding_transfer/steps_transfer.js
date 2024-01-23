@@ -131,8 +131,8 @@ Then("I successfully transferred without notes", () => {
     I.waitForElement(transferPage.buttons.close);    
 });
 
-Then("Then I successfully transferred", () => {
-    I.waitForElement(transferPage.texts.status, 10);
+Then("I successfully transferred", () => {
+    I.waitForElement(transferPage.texts.category, 10);
     I.see('Transfer Keluar');
     I.see("Rp. "+globalVariable.transfer.amount);
     I.see(transferPage.buttons.copy);   

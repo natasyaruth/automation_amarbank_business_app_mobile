@@ -19,6 +19,7 @@ module.exports = {
   },
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",
+    loan: "~checkBoxLoan",
     rights: "~checkBoxRight",
     privy: "~checkBoxPrivy",
   },
