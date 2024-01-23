@@ -521,3 +521,47 @@ When("I resend email verification", () => {
 When("I will notify that resend email is successfully", () => {
   I.waitForText("E-mail berhasil dikirim.");
 });
+
+When("I checked the 2 mandatory PDP checklists", () => {
+  registrationPage.clickCheckboxPDPMandatory();
+});
+
+When("I unchecked the 2 mandatory PDP checklists", () => {
+  
+});
+
+When("I checked the optional PDP checklist", () => {
+  registrationPage.clickCheckboxPDPOptional();
+});
+
+When("I click button {string}", (buttonName) => {
+  registrationPage.clickButtonCreateAccountPdp(buttonName);
+});
+
+When("I am on page PDP consent", () => {
+  I.see("Persetujuan Penggunaan Data dan Informasi Pribadi");
+});
+
+Then("I should see button Buat Akun will enable", () => {
+  I.seeElement(registrationPage.buttons.createAccountPDP);
+});
+
+Then("I should see button Buat Akun will disable", () => {
+  I.dontSeeElement(registrationPage.buttons.createAccountPDP);
+});
+
+Then("I should go to Verifikasi No. HP page", () => {
+  I.see("Verifikasi Nomor HP");
+  I.see("Masukkan Kode OTP");
+});
+
+Then("I get email including the information about PDP that i checked before", () => {
+  
+});
+
+Then("I see text consent PDP", () => {
+  I.wait(3);
+  I.see(registrationPage.text.firstPdpText);
+  I.see(registrationPage.text.secondPdpText);
+  I.see(registrationPage.text.thirdPdpText);
+});

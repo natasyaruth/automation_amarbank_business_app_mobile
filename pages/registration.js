@@ -11,6 +11,7 @@ module.exports = {
   },
   buttons: {
     createAccount: "~buttonCreateAccount",
+    createAccountPDP: "~btnCreateAccount",
     backRegist: "~buttonBackRegist",
     confirm: "~buttonConfirm",
     continueRegist: "~btnNext",
@@ -127,6 +128,25 @@ module.exports = {
     I.waitForElement(this.buttons.confirm);
     I.click(this.buttons.confirm);
     I.waitForInvisible(this.buttons.confirm, 10);
+  },
+
+  clickCheckboxPDPMandatory(){
+    I.waitForElement(this.checkButton.firstPdp);
+    I.checkOption(this.checkButton.firstPdp);
+    I.checkOption(this.checkButton.secondPdp);
+    I.wait(5);
+  },
+
+  clickCheckboxPDPOptional(){
+    I.waitForElement(this.checkButton.firstPdp);
+    I.checkOption(this.checkButton.thirdPdp);
+    I.wait(5);
+  },
+
+  clickButtonCreateAccountPdp(buttonName){
+    I.waitForElement(this.buttons.createAccountPDP);
+    I.click(this.buttons[buttonName]);
+    I.wait(5);
   },
 
   goToLoginPage() {
