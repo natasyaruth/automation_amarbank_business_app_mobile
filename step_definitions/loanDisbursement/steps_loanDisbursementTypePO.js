@@ -359,3 +359,15 @@ Then('system will direct to "Invoice Tidak Disetujui"', () => {
 Then('system will be direct to the dashboard after close the page', () => {
 
 });
+
+Then('user select invoice number', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+   
+Then('user select invoice date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+   
+Then('User select invoice due date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});

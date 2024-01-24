@@ -128,3 +128,12 @@ Feature: Loan Disbursement for Loan Type AR
   When I continue to input PIN page
   Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page
+
+  @C98089
+ Scenario: Open Document Invoice Transaction Page
+   Given I have been in detail invoice to open invoice transaction detail
+   When I open invoice document card
+   Then the document will appears
+   And user select invoice number
+   And user select invoice date
+   And User select invoice due date
