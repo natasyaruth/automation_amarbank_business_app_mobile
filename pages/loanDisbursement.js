@@ -492,6 +492,59 @@ module.exports = {
     }
   },
 
+  async ValidateDisbursementDetails() {
+    const DisbursementDetails = await I.See('Limit Tersedia');
+    if (DisbursementDetails) {
+      I.see('Pencairan 70% dari nilai invoice');
+    }
+  },
+
+  async ValidateDisbursementCalculationsWhenInvoiceValue100() {
+    const InvoiceValue100 = await I.See('Perhitungan Pencairan');
+    if (InvoiceValue100) {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 100%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    } else {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 100%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    }
+  },
+
+  async ValidateDisbursementCalculationsWhenInvoiceValue80() {
+    const InvoiceValue80 = await I.See('Perhitungan Pencairan');
+    if (InvoiceValue80) {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 80%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    } else {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 80%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    }
+  },
+
   closeSectionInsufficientLimit() {
     I.seeElement(this.buttons.buttonDismiss);
     I.waitForVisible(this.buttons.buttonContinuePay);
