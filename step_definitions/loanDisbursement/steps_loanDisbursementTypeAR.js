@@ -357,3 +357,15 @@ Then('user should see field "Total Bunga" in the below of field "textInterestFee
 Then('user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"', () => {
  loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue80();
 });
+
+Then('user select invoice number', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+   
+Then('user select invoice date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+   
+Then('User select invoice due date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});

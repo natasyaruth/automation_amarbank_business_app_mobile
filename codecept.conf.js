@@ -21,18 +21,18 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      // app: "./assets/app/app-development-debug.apk",
+      app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      device: "emulator",
-      path: "/wd/hub",
+      // device: "emulator",
+      path: "/",
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        deviceName: "emulator-5554",
-        appPackage: "id.co.amarbank.smb.dev",
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        // deviceName: "emulator-5554",
+        // appPackage: "id.co.amarbank.smb.dev",
+        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true
       }
     },

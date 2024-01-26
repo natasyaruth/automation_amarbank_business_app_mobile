@@ -252,6 +252,18 @@ Then('user should see field "Biaya Administrasi 3%" in the below of field "textA
  loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue80();
 });
 
+Then('user select invoice number', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
+Then('user select invoice date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
+Then('User select invoice due date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
 // // Scenario: Send notes "Invoice Tidak Sesuai"
 // Given('I have been been in detail invoice to report my invoice issue', () => {
 //  loanDashboardPage.goToHistory();

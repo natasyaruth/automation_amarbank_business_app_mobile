@@ -83,6 +83,9 @@ Feature: Loan Disbursement for Loan Type AP
     Given I have been in detail invoice to open invoice transaction detail
     When I open invoice document card
     Then the document will appears
+    And user select invoice number
+    And user select invoice date
+    And User select invoice due date
 
   @C98029
   Scenario: Open Link "Klik disini" to Send Note if There are Any Problems

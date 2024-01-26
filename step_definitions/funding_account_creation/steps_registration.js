@@ -546,8 +546,9 @@ Then("I should see button Buat Akun will enable", () => {
   I.seeElement(registrationPage.buttons.createAccountPDP);
 });
 
-Then("I should see button Buat Akun will disable", () => {
-  I.dontSeeElement(registrationPage.buttons.createAccountPDP);
+Then("I should see button Buat Akun will disable",async () => {
+  //I.seeElement(registrationPage.buttons.createAccountPDP);
+  await registrationPage.checkTnC();
 });
 
 Then("I should go to Verifikasi No. HP page", () => {
@@ -561,7 +562,7 @@ Then("I get email including the information about PDP that i checked before", ()
 
 Then("I see text consent PDP", () => {
   I.wait(3);
-  I.see(registrationPage.text.firstPdpText);
-  I.see(registrationPage.text.secondPdpText);
-  I.see(registrationPage.text.thirdPdpText);
+  I.seeElement(registrationPage.text.firstPdpText);
+  I.seeElement(registrationPage.text.secondPdpText);
+  I.seeElement(registrationPage.text.thirdPdpText);
 });

@@ -240,7 +240,7 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
-  @consentPDP 
+  @consentPDP1 
   Scenario: Verifying the button "Buat Akun" with checked 2 mandatory PDP checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -253,7 +253,7 @@ Feature: Account registration
     And I checked the 2 mandatory PDP checklists
     Then I should see button Buat Akun will enable
   
-  @consentPDP 
+  @consentPDP2
   Scenario: Verifying the button "Buat Akun" with unchecked 2 mandatory PDP checklist and checked optional checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -267,7 +267,7 @@ Feature: Account registration
     And I checked the optional PDP checklist
     Then I should see button Buat Akun will disable
 
-  @consentPDP 
+  @consentPDP3 
   Scenario: Go to "Verifikasi No. HP" page after click button "Buat Akun" on PDP Page
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -282,7 +282,7 @@ Feature: Account registration
     Then I should go to Verifikasi No. HP page
     And I get email including the information about PDP that i checked before
 
-  @consentPDP 
+  @consentPDP4 
   Scenario: Validate wording content on 3 PDP content
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
