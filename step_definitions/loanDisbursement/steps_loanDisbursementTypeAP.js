@@ -220,6 +220,18 @@ Then('back to the confirmation invoice detail after close section', () => {
  loanDisbursementPage.closeInvoiceIssuePage();
 });
 
+Then('user select invoice number', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
+Then('user select invoice date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
+Then('User select invoice due date', () => {
+ loanDisbursementPage.validateFieldInvoice();
+});
+
 // // Scenario: Send notes "Invoice Tidak Sesuai"
 // Given('I have been been in detail invoice to report my invoice issue', () => {
 //  loanDashboardPage.goToHistory();
