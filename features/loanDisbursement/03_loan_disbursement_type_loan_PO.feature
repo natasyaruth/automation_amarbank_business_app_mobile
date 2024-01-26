@@ -152,6 +152,28 @@ Feature: Loan Disbursement for Loan Type PO
   Then system will direct to "Invoice Tidak Disetujui"
   And system will be direct to the dashboard after close the page
 
+ @C98073
+ Scenario: Validate Disbursement Details
+  Given I have been on "Limit Tersedia"
+  When user should see field "invoice percentage disbursement"
+  Then user field LTV can be various static 80%
+
+ @C98074
+ Scenario: Validate Disbursement Calculations When Invoice Value 100%
+  Given I have been on "Perhitungan pencairan page"
+  When user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"
+  When user should see field "Total Bunga" in the below of field "textInterestFee"
+  When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+  Then show amount disbursement calculation page if invoice value 100%
+
+ @C98075
+ Scenario: Validate Disbursement Calculations When Invoice Value 80%
+  Given I have been on "Perhitungan pencairan page"
+  When user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"
+  When user should see field "Total Bunga" in the below of field "textInterestFee"
+  When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+  Then show amount disbursement calculation page if invoice value 80%
+
 @C98073
  Scenario: Open Document Invoice Transaction Page
   Given I have been in detail invoice to open invoice transaction detail

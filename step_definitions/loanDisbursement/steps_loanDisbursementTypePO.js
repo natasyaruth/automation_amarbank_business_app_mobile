@@ -360,6 +360,38 @@ Then('system will be direct to the dashboard after close the page', () => {
 
 });
 
+Then('user should see field "invoice percentage disbursement"', () => {
+ loanDisbursementPage.ValidateDisbursementDetails();
+});
+   
+Then('user field LTV can be various static 80%', () => {
+ loanDisbursementPage.ValidateDisbursementDetails();
+});
+
+Then('user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue100();
+});
+
+Then('user should see field "Total Bunga" in the below of field "textInterestFee"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue100();
+});
+
+Then('user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue100();
+});
+
+Then('user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue80();
+});
+   
+Then('user should see field "Total Bunga" in the below of field "textInterestFee"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue80();
+});
+   
+Then('user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"', () => {
+ loanDisbursementPage.ValidateDisbursementCalculationsWhenInvoiceValue80();
+});
+
 Then('user select invoice number', () => {
  loanDisbursementPage.validateFieldInvoice();
 });
