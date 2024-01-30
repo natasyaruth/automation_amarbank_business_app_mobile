@@ -66,6 +66,8 @@ module.exports = {
     textFieldInvoiceNo: "~textFieldInvoiceNo",
     textFieldInvoiceDate: "~textFieldInvoiceDate",
     textFieldInvoiceDueDate: "~textFieldInvoiceDueDate",
+    textFieldPicName: "~textFieldPicName",
+    textFieldPicNumber: "~textFieldPicNumber",
   },
 
   toastBars: {
@@ -81,8 +83,8 @@ module.exports = {
     textAdminFee: "~textAdminFee",
     textAvailableAmount: "~textAvailableAmount",
     textBlockedAmount: "~textBlockedAmount",
-    textFieldPicName: "~textFieldPicName",
-    textFieldPicNumber: "~textFieldPicNumber",
+    titleFundingAmount: "~titleFundingAmount",
+    titleInvoiceAmount: "~titleInvoiceAmount",
   },
 
   usingLimitLoanDisbursementTypeAP() {
@@ -326,14 +328,17 @@ module.exports = {
 
   validateSendPDCPage() {
     I.waitForText('Pengiriman PDC (Cek Mundur');
-    I.see('Segera mengirimkan PDC sebagai jaminan ke alamay berikut');
+    I.see('Segera mengirimkan PDC sebagai jaminan ke alamat berikut');
     I.see('Alamat Pengiriman');
     I.see('RDTX Square Lt.11, Jl. Prof. DR. Satrio No.164, RT.4/RW.4, Karet Semanggi, Setiabudi, Jakarta Selatan 12930')
     I.seeElement(this.buttons.buttonCopy);
     I.see('Penerima');
     I.see('Amar Bank (Digital SMB team');
-    I.see('Pastikan isi nominal pada PDC (cek mundur) sesuai dengan nominal invoice');
-    I.see('Nominal Invoice');
+    I.see('Pastikan isi nominal pada PDC (cek mundur) sesuai dengan nominal pinjaman');
+    I.see('Nominal Pinjaman');
+    I.see('Upload bukti pembayaran selisih pencairan ke supplier*');
+    I.see('Nominal');
+    I.see('Supplier');
     I.seeElement(this.buttons.buttonClose);
   },
 

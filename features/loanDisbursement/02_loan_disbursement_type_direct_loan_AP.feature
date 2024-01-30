@@ -138,7 +138,7 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
  @C98055
  Scenario: Validate Disbursement Calculations When Invoice Value 100%
   Given I have been on "Perhitungan pencairan page"
-  When user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"
+  When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
   When user should see field "Total Bunga" in the below of field "textInterestFee"
   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
   Then show amount disbursement calculation page if invoice value 100%
@@ -146,7 +146,7 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
  @C98056
  Scenario: Validate Disbursement Calculations When Invoice Value 80%
   Given I have been on "Perhitungan pencairan page"
-  When user should see field "Nominal Pinjaman" in the below of field "textInvoiceAmount"
+  When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
   When user should see field "Total Bunga" in the below of field "textInterestFee"
   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
   Then show amount disbursement calculation page if invoice value 80%
