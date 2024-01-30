@@ -174,7 +174,7 @@ Feature: Loan Disbursement for Loan Type PO
   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
   Then show amount disbursement calculation page if invoice value 80%
 
-@C98073
+ @C98076
  Scenario: Open Document Invoice Transaction Page
   Given I have been in detail invoice to open invoice transaction detail
    When I open invoice document card
