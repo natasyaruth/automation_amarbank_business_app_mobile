@@ -30,15 +30,15 @@ Given('I am a customer who want to download e-Statement based on the latest mont
 });
 
 When('I click button e-Statement download', () => {
-    transactionHistoryPage.clicBtnDownloadeStatement();
+    transactionHistoryPage.clickBtnDownloadeStatement();
 });
 
 When('I choose the latest month to download e-Statement', () => {
-    transactionHistoryPage.clicBtnLatesteStatement();
+    transactionHistoryPage.clickBtnLatesteStatement();
 });
 
 Then('The e-Statement downloaded', () => {
-    transactionHistoryPage.viewAlertBar();
+    transactionHistoryPage.viewSuccessAlertBar();
 });
 
 Then('Receive notification email', () => {
@@ -56,10 +56,10 @@ Then('Notification e-Statement not exist will appear', () => {
 
 // Scenario: Show alert bar when success download e-Statement
 Then('Alert bar success will appear', async () => {
-    await transactionHistoryPage.checkAlertBar();
+    await transactionHistoryPage.viewSuccessAlertBar();
 });
 
 // Scenario: Show alert bar when failed download e-Statement
 Then('Alert bar failed will appear', async () => {
-    await transactionHistoryPage.checkAlertBar();
+    await transactionHistoryPage.viewSuccessAlertBar();
 });
