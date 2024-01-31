@@ -27,6 +27,9 @@ module.exports = {
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",
+        btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])[1]" },
+        btneStatementLatest: { xpath: "(//android.view.View[@content-desc='buttonRequest0'])" },
+        btnCloseeStatement: "~buttonClose",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -44,7 +47,9 @@ module.exports = {
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
         textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
-        textNote: "~textNote"
+        textNote: "~textNote",
+        textViewFailedAlert: { xpath: '//android.widget.TextView[@text="Sedang terjadi kesalahan sistem."]' },
+        textViewSuccessAlert: { xpath: '//android.widget.TextView[@text="e-Statement akan dikirimkan ke email test@email.com"]' },
     },
     menu: {
         tabTesting: { xpath: "(//android.view.View[@content-desc='tabHome'])[2]" },
@@ -71,6 +76,47 @@ module.exports = {
         I.wait(2);
         I.seeElement(this.buttons.historyBtn);
     },
+
+    viewButtonDownloadEStatement(){
+        I.wait(2);
+        I.seeElement(this.buttons.btneStatementDownload);
+    },
+
+    clicBtnDownloadeStatement() {
+        I.wait(2);
+        I.click(this.buttons.btneStatementDownload);
+    },
+
+    clicBtnLatesteStatement() {
+        I.wait(2);
+        I.click(this.buttons.btneStatementLatest);
+    },
+
+    validationeStatementNotExist(){
+        I.wait(5);
+        I.see("e-Statement belum ada")
+    },
+
+    // viewAlertBar(){
+    //     I.waitForVisible(this.textFields.textViewFailedAlert);
+    // },
+
+    async checkAlertBar(){
+
+        I.waitForElement(this.textFields.textViewFailedAlert,3);
+        let isFailed = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "text");
+    
+        if(isFailed === "Sedang terjadi kesalahan sistem."){
+          console.log("Sistem tidak dapat mencetak e-Statement.");
+          //return true;
+        }
+    
+        else{
+          console.log("e-Statement sudah di download");
+          //return true;
+        }
+      },
+
     clicBtnFilter() {
         I.wait(2);
         I.click(this.buttons.btnFilterHistoryTrx);
