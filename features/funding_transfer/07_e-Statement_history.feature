@@ -5,11 +5,11 @@ Feature: User open e-Statement History
 
 
     Background: User has registered and login to dashboard
-        Given I am a registered  customer with following details:
-            | userID   | raih1d29 |
+        Given I am a registered customer with following details:
+            | userID   | mukl8e4d |
             | password | 1234Test |
         When I filling in form login with the following details:
-            | userID   | raih1d29 |
+            | userID   | mukl8e4d |
             | password | 1234Test |
         And I click login
         And I will direct to dashboard

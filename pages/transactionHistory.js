@@ -48,8 +48,8 @@ module.exports = {
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
         textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
         textNote: "~textNote",
-        textViewFailedAlert: { xpath: '//android.widget.TextView[@text="Sedang terjadi kesalahan sistem."]' },
-        textViewSuccessAlert: { xpath: '//android.widget.TextView[@text="e-Statement akan dikirimkan ke email test@email.com"]' },
+        textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
+        textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
     },
     menu: {
         tabTesting: { xpath: "(//android.view.View[@content-desc='tabHome'])[2]" },
@@ -82,12 +82,12 @@ module.exports = {
         I.seeElement(this.buttons.btneStatementDownload);
     },
 
-    clicBtnDownloadeStatement() {
+    clickBtnDownloadeStatement() {
         I.wait(2);
         I.click(this.buttons.btneStatementDownload);
     },
 
-    clicBtnLatesteStatement() {
+    clickBtnLatesteStatement() {
         I.wait(2);
         I.click(this.buttons.btneStatementLatest);
     },
@@ -97,9 +97,21 @@ module.exports = {
         I.see("e-Statement belum ada")
     },
 
-    // viewAlertBar(){
-    //     I.waitForVisible(this.textFields.textViewFailedAlert);
-    // },
+    async viewSuccessAlertBar(){
+
+        I.waitForElement(this.textFields.textViewFailedAlert,5);
+        let isAlert = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "bounds");
+    
+        if(isAlert === "[77,2055][143,2121]"){
+          console.log("Sistem tidak dapat mencetak e-Statement.");
+          //return true;
+        }
+    
+        else{
+          console.log("e-Statement sudah di download");
+          //return true;
+        }
+      },
 
     async checkAlertBar(){
 
