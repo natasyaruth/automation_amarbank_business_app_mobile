@@ -12,6 +12,8 @@ Given("I am a customer who wants to create PIN", () => { });
 
 Given("I am a customer who wants to create PIN from menu other", () => { });
 
+Given("I am a customer who wants to change PIN from menu other", () => { });
+
 When("I don't have a PIN", () => { });
 
 When("I choose other", () => {
@@ -20,12 +22,16 @@ When("I choose other", () => {
 
 Then("I go to page other ", () => {
     Then("I can see change password and create transaction pin", () => { });
-    I.waitForElement(createPINPage.buttons.changepPassword, 5);
+    I.waitForElement(createPINPage.buttons.changePassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
 
 When("I click create transaction pin", () => {
     createPINPage.goToCreatePIN();
+});
+
+When("I click change transaction pin", () => {
+    createPINPage.goToChangePIN();
 });
 
 Then("I will see bottom sheet call our team", () => {
@@ -39,9 +45,17 @@ When("I choose menu Transfer from main dashboard", () => {
     I.click("Transfer");
 });
 
+When("I click button Buat PIN", () => {
+    createPINPage.clickPopUpCreatePIN();
+});
+
+When("pop up Buat PIN will appear", () => {
+    createPINPage.popupCreatePIN();
+});
+
 Then("I will directly to Create New PIN page", () => {
-    I.waitForText("Buat PIN Transaksi", 10);
-    I.see("Sebelum buat PIN Transaksi, masukkan password Amar Bank kamu");
+    I.waitForText("Buat PIN", 10);
+    I.see("Silakan masukkan password Amar Bank Bisnis kamu");
     I.waitForElement(createPINPage.icon, 10);
     I.waitForElement(createPINPage.fields.password, 10);
     I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
@@ -51,14 +65,22 @@ When("I input incorrect password", () => {
     createPINPage.inputPassword(dummyPswrd);
 });
 
+When("I input incorrect old pin", () => {
+    
+});
+
 When("I submit my password", () => {
     I.wait(5);
     createPINPage.submitPassword();
 });
 
+When("I submit my old pin", () => {
+    I.wait(5);
+});
+
 Then("I should see pop up message {string}", async (expectedMsgError) => {     
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
+    I.waitForText("Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun", 10);
     createPINPage.tryAgain();
     createPINPage.inputPassword(globalVariable.login.password);
     createPINPage.submitPassword();
@@ -73,7 +95,7 @@ When("I submit incorrect password twice", () => {
     createPINPage.inputPassword(dummyPswrd);
     createPINPage.submitPassword();
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
+    I.waitForText("Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun", 10);
     createPINPage.tryAgain();
 
 
@@ -90,23 +112,29 @@ When("I submit incorrect password three times", () => {
 
 
         I.waitForText("Data Yang Dimasukkan Salah", 10);
-        I.waitForText("Jika 3 kali salah akun Anda akan terblokir.", 10);
+        I.waitForText("Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun", 10);
         createPINPage.tryAgain();
     }
     createPINPage.inputPassword(dummyPswrd);
     createPINPage.submitPassword();
 });
 
-Then("My account should be temporary blocked for 30 minutes", () => {
-    I.waitForText("Akun Anda Terblokir", 10);
-    I.waitForText("Silakan coba masuk kembali setelah 30 menit.",10);
-    createPINPage.closeSheetBlocked();
+// Then("My account should be temporary blocked for 30 minutes", () => {
+//     I.waitForText("Akun Anda Terblokir", 10);
+//     I.waitForText("Silakan coba masuk kembali setelah 30 menit.",10);
+//     createPINPage.closeSheetBlocked();
 
 
-    // createPINPage.inputPassword(globalVariable.login.password);
-    // createPINPage.submitPassword();
-    // I.waitForElement(createPINPage.fields.newPIN, 10);
-})
+//     // createPINPage.inputPassword(globalVariable.login.password);
+//     // createPINPage.submitPassword();
+//     // I.waitForElement(createPINPage.fields.newPIN, 10);
+// })
+
+Then("I should see pop up message {string}", () => {
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText("Anda akan langsung diarahkan ke halaman Masuk Akun",10);
+    createPINPage.clickButtonUnderstand();
+});
 
 When("I click icon eye", () => {
     createPINPage.clickEyePassword();
@@ -195,6 +223,10 @@ When("I input incorrect OTP", () => {
     createPINPage.inputOTP("111111");
 });
 
+When("User will receive email for otp", () => {
+    
+});
+
 When("I input OTP", () => {
     // step to get OTP code from email using API
     createPINPage.inputOTP();
@@ -209,8 +241,8 @@ Then("I will directly go to Friend list page", () => {
     // add waiting button friendlist
 });
 
-Then("I will go back to page other", () => {
-    I.see(createPINPage.buttons.changepPassword);
+Then("I will go back to other page", () => {
+    I.see(createPINPage.buttons.changePassword);
     I.see(createPINPage.buttons.changePIN);
 
 });

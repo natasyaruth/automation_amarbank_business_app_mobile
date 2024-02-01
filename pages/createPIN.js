@@ -12,6 +12,8 @@ module.exports = {
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
+    creatPINPopUp: "~",
+    understand: "~",
     otherMenu: "~",
     createPIN: "~",
     changePassword: "~",
@@ -64,6 +66,20 @@ module.exports = {
     // }
   // },
 
+  popupCreatePIN() {
+    I.waitForText("Buat PIN", 10);
+    I.seeElement(this.buttons.creatPINPopUp);
+  },
+
+  clickButtonUnderstand(){
+    I.waitForElement(this.buttons.understand);
+    I.click(this.buttons.understand);
+  },
+
+  clickPopUpCreatePIN(){
+    I.click(this.buttons.creatPINPopUp);
+  },
+
   inputConfirmationPIN(confirmationPIN) {
     I.waitForText("Konfirmasi PIN Baru", 10);
     I.setText(this.fields.newPIN, confirmationPIN);
@@ -113,6 +129,11 @@ module.exports = {
 
   goToCreatePIN(){
     I.click(this.buttons.createPIN);
+
+  },
+
+  goToChangePIN(){
+    I.click(this.buttons.changePIN);
 
   },
 
