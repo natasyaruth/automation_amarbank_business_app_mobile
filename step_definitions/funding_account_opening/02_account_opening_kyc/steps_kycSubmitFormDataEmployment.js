@@ -83,13 +83,14 @@ When("I clear field company name", () => {
 Then("I will notify that I already fill my personal details data", async () => {
     I.waitForText("Terima kasih telah melengkapi Data Diri", 10);
     I.see("Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pembentukan rekening");
-    I.see("Perbankan Bisnis Premium");
-    I.see("Dengan melengkapi Data Bisnis, Anda akan mendapatkan fitur perbankan bisnis premium (rekening giro) dari Bank Amar");
-    I.see("Gratis Biaya Admin");
+    I.dont("Digital Banking untuk Bisnis");
+    I.see("Dengan melengkapi Data Bisnis, Anda akan mendapatkan fitur Digital Banking (rekening giro) dari Bank Amar");
+    I.see("Bebas Biaya Admin Bulanan");
     I.see("Transaksi Real-Time");
     I.see("Semua Proses dari Hp Anda");
-    I.see("Multiple User");
-    I.see("Debit Card");
+    I.dontSee("Multiple User");
+    I.dontSee("Debit Card");
+    I.see("e-Statement");
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
