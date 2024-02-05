@@ -12,6 +12,10 @@ module.exports = {
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
+    cancel: "~buttonCancel",
+    btnTransfer: "~btnTransfer",
+    back: "~",
+    btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~",
     understand: "~",
     otherMenu: "~",
@@ -69,6 +73,27 @@ module.exports = {
   popupCreatePIN() {
     I.waitForText("Buat PIN", 10);
     I.seeElement(this.buttons.creatPINPopUp);
+  },
+
+  popupCancelCreatePIN() {
+    I.waitFor(5);
+    I.seeElement(this.buttons.cancel);
+    I.seeElement(this.buttons.close);
+  },
+
+  clickButtonClose(){
+    I.waitForElement(this.buttons.close);
+    I.click(this.buttons.close);
+  },
+
+  clickButtonBack(){
+    I.waitForElement(this.buttons.back);
+    I.click(this.buttons.back);
+  },
+
+  clickButtonCancel(){
+    I.waitForElement(this.buttons.cancel);
+    I.click(this.buttons.cancel);
   },
 
   clickButtonUnderstand(){

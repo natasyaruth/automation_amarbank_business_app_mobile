@@ -144,6 +144,17 @@ Feature: User create PIN from other menu
         And I input confirmation new PIN
         And I input incorrect OTP
         Then I will see message error "Kode OTP yang Anda masukkan salah"
+    
+    Scenario: User input incorrect OTP
+        Given I am a customer who wants to create PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I input password
+        And I submit my password
+        And I input new PIN with "123456"
+        And I input confirmation new PIN
+        And I input expired OTP
+        Then I will see message error "Kode OTP yang Anda masukkan expired"
 
     Scenario: User input incorrect old pin once
         Given I am a customer who wants to change PIN from menu other

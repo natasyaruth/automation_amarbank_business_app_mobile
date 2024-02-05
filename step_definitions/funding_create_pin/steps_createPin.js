@@ -49,8 +49,12 @@ When("I click button Buat PIN", () => {
     createPINPage.clickPopUpCreatePIN();
 });
 
-When("pop up Buat PIN will appear", () => {
+When("I see pop up Buat PIN", () => {
     createPINPage.popupCreatePIN();
+});
+
+When("I click button Kembali ke Dashboard", () => {
+    createPINPage.clickButtonClose();
 });
 
 Then("I will directly to Create New PIN page", () => {
@@ -154,6 +158,10 @@ Then("I will not see my password", () => {
     I.dontSee(globalVariable.login.password);
 });
 
+Then("I should direct to Dashboard", () => {
+    I.seeElement(createPINPage.buttons.btnTransfer);
+});
+
 When("I input new PIN with {string}", async (newPin) => {
     I.waitForText("Buat PIN Baru", 10);
     createPINPage.inputPIN1(newPin);
@@ -223,13 +231,54 @@ When("I input incorrect OTP", () => {
     createPINPage.inputOTP("111111");
 });
 
+When("I input expired OTP", () => {
+    I.waitForText("Verifikasi E-mail", 10);
+    I.see("Masukkan Kode OTP");
+
+
+    createPINPage.inputOTP("111111");
+});
+
 When("User will receive email for otp", () => {
     
 });
 
+
 When("I input OTP", () => {
     // step to get OTP code from email using API
     createPINPage.inputOTP();
+});
+
+When("I click button Close", () => {
+    createPINPage.clickButtonClose();
+});
+
+When("I should see close confirmation pop up", () => {
+    createPINPage.popupCancelCreatePIN();
+});
+
+When("I click button Tidak Jadi", () => {
+    createPINPage.clickButtonClose();
+});
+
+When("I click button Ya Batalkan", () => {
+    createPINPage.clickButtonCancel();
+});
+
+When("I click button back", () => {
+    createPINPage.clickButtonBack();
+});
+
+Then("I should back to page fill PIN", () => {
+    I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
+});
+
+Then("I should stay on page fill PIN", () => {
+    I.waitForText("Buat PIN Baru", 10);
+});
+
+Then("I should stay on page fill password", () => {
+    I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
 });
 
 Then("My PIN successfully created", () => {
