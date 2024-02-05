@@ -37,10 +37,11 @@ Given("I see information and benefit of Giro Account", () => {
     I.see("Layanan perbankan bisnis premium untuk memantau usaha Anda.");
 
     I.see("Benefit");
-    I.dontSee("Gratis Biaya Admin");
+    I.see("Bebas Biaya Admin Bulanan");
     I.see("Transaksi Real-Time");
     I.see("Semua Proses dari Hp Anda");
-    I.see("Multiple User");
+    I.see("e-Statement");
+    I.dontSee("Multiple User");
     I.dontSee("Debit Card");
     I.see("Pilih Rekening Giro");
 });
