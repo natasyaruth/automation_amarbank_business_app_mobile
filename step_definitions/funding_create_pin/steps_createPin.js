@@ -80,7 +80,7 @@ When("I submit my password", () => {
 });
 
 When("I submit my old pin", () => {
-    I.wait(10);
+    
 });
 
 Then("I should see pop up message {string}", async (expectedMsgError) => {     
