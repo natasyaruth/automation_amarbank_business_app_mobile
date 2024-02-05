@@ -14,10 +14,10 @@ module.exports = {
     close: "~buttonClose",
     cancel: "~buttonCancel",
     btnTransfer: "~btnTransfer",
-    back: "~",
+    back: "buttonBack",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~",
-    understand: "~",
+    understand: "~buttonUnderstand",
     otherMenu: "~",
     createPIN: "~",
     changePassword: "~",
@@ -58,7 +58,7 @@ module.exports = {
 
   inputPIN(pin) {    
     I.waitForElement(this.fields.newPIN, 5);
-    I.setText(this.fields.newPIN, pin1);
+    I.setText(this.fields.newPIN, pin);
     I.hideDeviceKeyboard();
   },
 
@@ -76,9 +76,8 @@ module.exports = {
   },
 
   popupCancelCreatePIN() {
-    I.waitFor(5);
-    I.seeElement(this.buttons.cancel);
-    I.seeElement(this.buttons.close);
+    I.waitForElement(this.buttons.cancel, 10);
+    I.waitForElement(this.buttons.close, 10);
   },
 
   clickButtonClose(){

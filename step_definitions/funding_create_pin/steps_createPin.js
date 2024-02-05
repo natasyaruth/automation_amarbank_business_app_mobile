@@ -6,6 +6,7 @@ const {
 } = inject();
 
 const dummyPswrd = "Ruth!@#$$";
+const dummyPIN = "121212";
 
 
 Given("I am a customer who wants to create PIN", () => { });
@@ -45,15 +46,15 @@ When("I choose menu Transfer from main dashboard", () => {
     I.click("Transfer");
 });
 
-When("I click button Buat PIN", () => {
+When("I click button Create PIN", () => {
     createPINPage.clickPopUpCreatePIN();
 });
 
-When("I see pop up Buat PIN", () => {
+When("I see pop up Create PIN", () => {
     createPINPage.popupCreatePIN();
 });
 
-When("I click button Kembali ke Dashboard", () => {
+When("I click button Back ke Dashboard", () => {
     createPINPage.clickButtonClose();
 });
 
@@ -70,7 +71,7 @@ When("I input incorrect password", () => {
 });
 
 When("I input incorrect old pin", () => {
-    
+    createPINPage.inputPIN(dummyPIN);
 });
 
 When("I submit my password", () => {
@@ -79,7 +80,7 @@ When("I submit my password", () => {
 });
 
 When("I submit my old pin", () => {
-    I.wait(5);
+    I.wait(10);
 });
 
 Then("I should see pop up message {string}", async (expectedMsgError) => {     
@@ -257,11 +258,11 @@ When("I should see close confirmation pop up", () => {
     createPINPage.popupCancelCreatePIN();
 });
 
-When("I click button Tidak Jadi", () => {
+When("I click button Cancel", () => {
     createPINPage.clickButtonClose();
 });
 
-When("I click button Ya Batalkan", () => {
+When("I click button yes, cancel it", () => {
     createPINPage.clickButtonCancel();
 });
 

@@ -20,16 +20,16 @@ Feature: User create PIN
         Given I am a customer who wants to create PIN
         And I don't have a PIN
         When I choose menu Transfer from main dashboard
-        When I see pop up Buat PIN
-        When I click button Buat PIN 
+        When I see pop up Create PIN
+        When I click button Create PIN 
         Then I will directly to Create New PIN page
 
     @createpin02
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN 
+        And I see pop up Create PIN
+        And I click button Create PIN 
         And I input incorrect password
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
@@ -38,8 +38,8 @@ Feature: User create PIN
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
@@ -47,8 +47,8 @@ Feature: User create PIN
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I submit incorrect password three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I directly go to page login
@@ -57,8 +57,8 @@ Feature: User create PIN
     Scenario: User want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I click icon eye
         Then I will see my password
@@ -67,8 +67,8 @@ Feature: User create PIN
     Scenario: User don't want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I click icon eye twice
         Then I will not see my password
@@ -77,8 +77,8 @@ Feature: User create PIN
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I input new PIN with '1'
@@ -100,8 +100,8 @@ Feature: User create PIN
     Scenario: User Successfully Get Email for OTP and create PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I input new pin
@@ -114,8 +114,8 @@ Feature: User create PIN
     Scenario: User Successfully Get Email for OTP and input incorrect OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I input new pin
@@ -127,8 +127,8 @@ Feature: User create PIN
     Scenario: User Successfully Get Email for OTP and input expired OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I input new pin
@@ -140,59 +140,59 @@ Feature: User create PIN
     Scenario: Back to main dashbord in pop up create PIN Transaction
         Given I am a customer who wants back to dashboard 
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Kembali ke Dashboard 
+        And I see pop up Create PIN
+        And I click button Back ke Dashboard 
         Then I should direct to Dashboard
     
     Scenario: Close page Pin Transaction in page fill password
         Given I am a customer who wants wants to create PIN 
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I click button Close
         And I should see close confirmation pop up
-        And I click button Ya Batalkan
+        And I click button yes, cancel it
         Then I should direct to Dashboard
 
     Scenario: Cancel close page Pin Transaction in page fill password
         Given I am a customer who wants wants to create PIN 
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I click button Close
         And I should see close confirmation pop up
-        And I click button Tidak Jadi
+        And I click button Cancel
         Then I should stay on page fill password
     
     Scenario: Close page Pin Transaction in page fill PIN
         Given I am a customer who wants wants to create PIN 
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I click button Close
         And I should see close confirmation pop up
-        And I click button Ya Batalkan
+        And I click button yes, cancel it
         Then I should direct to Dashboard
 
     Scenario: Cancel close page Pin Transaction in page fill PIN
         Given I am a customer who wants wants to create PIN 
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I click button Close
         And I should see close confirmation pop up
-        And I click button Tidak Jadi
+        And I click button Cancel
         Then I should stay on page fill PIN
 
     Scenario: Back to page input PIN from confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
-        And I see pop up Buat PIN
-        And I click button Buat PIN
+        And I see pop up Create PIN
+        And I click button Create PIN
         And I input password
         And I submit my password
         And I input new pin
