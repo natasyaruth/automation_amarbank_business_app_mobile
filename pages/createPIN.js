@@ -8,6 +8,7 @@ module.exports = {
     confirmPIN: ~"textFieldPin",
   },
   buttons: {
+    login: "~buttonLogin",
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
@@ -15,6 +16,7 @@ module.exports = {
     cancel: "~buttonCancel",
     btnTransfer: "~btnTransfer",
     back: "buttonBack",
+    forgotPIN: "~",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~",
     understand: "~buttonUnderstand",
@@ -90,6 +92,11 @@ module.exports = {
     I.click(this.buttons.back);
   },
 
+  clickButtonForgotPIN(){
+    I.waitForElement(this.buttons.forgotPIN);
+    I.click(this.buttons.forgotPIN);
+  },
+
   clickButtonCancel(){
     I.waitForElement(this.buttons.cancel);
     I.click(this.buttons.cancel);
@@ -147,8 +154,22 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
   },
 
+  async getEmailValue(){
+    let email = await I.grabTextFrom(this.label.email);
+    return email
+  },
+
+  fillInOtpCode(otpCode) {
+    I.fillField(this.fields.otpcode, otpCode);
+    I.hideDeviceKeyboard();
+  },
+
   goToOtherMenu(){
     I.click(this.buttons.otherMenu);
+  },
+
+  goToLoginPage(){
+    I.waitForElement(this.buttons.login, 10);
   },
 
   goToCreatePIN(){
@@ -164,4 +185,5 @@ module.exports = {
   closeBottomSheet(){
     I.click(this.buttons.closeOurTeam);
   },  
+
 }
