@@ -15,31 +15,10 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'ud'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3174090101780017          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
-        And I submit my personal data details
+        And I update my last journey step to 'Data Personal'
 
     @C96549
     Scenario: Submit form Domicile address same with KTP successfully business type UD

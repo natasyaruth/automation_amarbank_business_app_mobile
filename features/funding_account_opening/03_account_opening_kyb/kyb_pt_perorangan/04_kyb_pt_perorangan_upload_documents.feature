@@ -15,6 +15,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I upload my eKTP photo
@@ -65,7 +66,6 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
 

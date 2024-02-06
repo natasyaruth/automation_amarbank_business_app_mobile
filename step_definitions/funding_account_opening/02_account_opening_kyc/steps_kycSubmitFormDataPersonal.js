@@ -13,12 +13,7 @@ Given("I am a customer who has uploaded my selfie photo", async () => {
     resetStateDao.reloadPageAfterResetState();
  });
 
-Given("I am a customer want to fill my personal details", async () => {
-    I.wait(7);
-    await
-        resetStateDao.resetStateFlow(5, globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
-});
+Given("I am a customer want to fill my personal details", async () => {});
 
 When("I fill my personal data details as followings:",
     async (table) => {
@@ -37,7 +32,6 @@ When("I fill form Data Personal except field {string}", async (fieldName) => {
         lastEducation: "SMA",
         motherName: "NADYA LAMUSU",
         purposeAccount: "Pinjaman",
-        npwp: "121785542123321",
     };
 
     delete account[fieldName];
@@ -50,6 +44,37 @@ When("I clear the field {string} in form Data Personal", (fieldName) => {
 
 When("I submit my personal data details", () => {
     formPersonalDataPage.savePersonalData();
+});
+
+When("I submit my personal data details individual and upload my npwp as followings:", async (table) => {
+    const personalData = table.parse().rowsHash();
+    
+    await uploadDao.submitDataPersonalIndividual(
+        personalData["lastEducation"],
+        personalData["motherName"],
+        personalData["purposeAccount"],
+        globalVariable.login.userID,
+        globalVariable.login.password
+    );
+
+    resetStateDao.reloadPageAfterResetState();
+});
+
+When("I submit my personal data details business and upload my npwp as followings:", async (table) => {
+    const personalData = table.parse().rowsHash();
+    
+    await uploadDao.submitDataPersonalBusiness(
+        personalData["lastEducation"],
+        personalData["motherName"],
+        globalVariable.login.userID,
+        globalVariable.login.password
+    );
+
+    resetStateDao.reloadPageAfterResetState();
+});
+
+Then("I will notify my personal details has successfully submitted",()=>{
+    I.waitForText("Data diri berhasil disimpan", 10);
 });
 
 Then("I will direct to page domicile address", async () => {

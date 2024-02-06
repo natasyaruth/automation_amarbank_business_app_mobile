@@ -16,37 +16,10 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account Corporate
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173074702850001                         |
-            | fullName      | PT PERUSAHAAN TERBARU KYC INVITED REJECT |
-            | placeOfBirth  | PEKANBARU                                |
-            | dateOfBirth   | 11/11/1995                               |
-            | gender        | Laki-laki                                |
-            | address       | Jl. Durian kamu No. 14                   |
-            | rt            | 00                                       |
-            | rw            | 00                                       |
-            | province      | DKI JAKARTA                              |
-            | city          | KOTA ADM. JAKARTA BARAT                  |
-            | district      | GROGOL PETAMBURAN                        |
-            | village       | TANJUNG DUREN UTARA                      |
-            | religion      | Islam                                    |
-            | maritalStatus | Kawin                                    |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121780042123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         When I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT PERUSAHAAN TERBARU KYC INVITED REJECT |
@@ -85,7 +58,6 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         Then I will directing to page upload require documents for business

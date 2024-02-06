@@ -14,12 +14,13 @@ module.exports = {
   buttons: {
     savePersonalData: "~buttonSavePersonalData",
     closeBottomSheet: "~buttonClose",
+    uploadNpwp: "~buttonUploadNpwp",
   },
   messageErrorFields: {
     lastEducation: "~texfieldErrorLastEdu",
     motherName: "~texfieldErrorMotherName",
-    purposeAccount: "~texfieldErrorMotherName",
-    npwp: "~textfieldErrorNpwp",
+    purposeAccount: "~textfieldErrorPurpose",
+    npwp: "~textErrorNpwp",
   },
 
   async fillPersonalData(personalData) {

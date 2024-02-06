@@ -35,7 +35,7 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I Input incorrect password
         And I submit my password
-        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir"
+        Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
 
     Scenario: User input incorrect password twice
@@ -44,7 +44,7 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I Input incorrect password
         And I submit my password twice
-        Then I should see pop up message "Data yang dimasukkan salah. Jika 3 kali salah akun Anda akan terblokir"
+        Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
 
     Scenario: User input incorrect password three times
@@ -53,8 +53,8 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I Input incorrect password
         And I submit my password three times
-        Then I should see pop up message "Akun Anda Terblokir selama 30 menit"
-
+        Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
+        And I directly go to page login
 
     Scenario: User want to see their password
         Given I am a customer who wants to create PIN from menu other
@@ -77,7 +77,7 @@ Feature: User create PIN from other menu
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN from menu other
         When I choose other
-        And I click create transcation pin
+        And I click create transaction pin
         And I input password
         And I submit my password
         And I input new PIN with "123456"
@@ -88,7 +88,7 @@ Feature: User create PIN from other menu
     Scenario: User input incorrect OTP
         Given I am a customer who wants to create PIN from menu other
         When I choose other
-        And I click create transcation pin
+        And I click create transaction pin
         And I input password
         And I submit my password
         And I input new PIN with "123456"
@@ -99,19 +99,74 @@ Feature: User create PIN from other menu
     Scenario: User Successfully Create New PIN
         Given I am a customer who wants to create PIN from menu other
         When I choose other
-        And I click create transcation pin
+        And I click create transaction pin
         And I input password
         And I submit my password
         And I input new PIN
         And I input confirmation new PIN
         And I input OTP
-        Then My PIN successfully created
-        And I will go back to page other
+        Then I will go back to other page
        
     Scenario: User wants to change transcation PIN
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        And I click create transaction pin
+        And I input new PIN
+        And I input confirmation new PIN
+        And I input OTP
+        Then I will go back to other page
+    
+    Scenario: User wants to changes pin from menu other
+        Given I am a customer who wants to change PIN from menu other
+        When I choose other
         And I click change transaction pin
-        Then I will see bottom sheet call our team
-        And I can see change password and change transaction pin
+        Then I will directly to Create New PIN page
+    
+    
+    Scenario: User input incorrect confirmation PIN
+        Given I am a customer who wants to change PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I input password
+        And I submit my password
+        And I input new PIN with "123456"
+        And I input incorrect confirmation new PIN
+        Then I will see message error "PIN yang dimasukkan tidak sesuai"
 
+    Scenario: User input expired OTP
+        Given I am a customer who wants to create PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I input password
+        And I submit my password
+        And I input new PIN with "123456"
+        And I input confirmation new PIN
+        And I input expired OTP
+        Then I will see message error "Kode OTP yang Anda masukkan expired"
+
+    Scenario: User input incorrect old pin once
+        Given I am a customer who wants to change PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I Input incorrect old pin
+        And I submit my old pin
+        Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
+
+
+    Scenario: User input incorrect old pin twice
+        Given I am a customer who wants to create PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I Input incorrect old pin
+        And I submit my old pin twice
+        Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
+
+
+    Scenario: User input incorrect old pin three times
+        Given I am a customer who wants to create PIN from menu other
+        When I choose other
+        And I click change transaction pin
+        And I Input incorrect old pin
+        And I submit my old pin three times
+        Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
+        And I directly go to page login

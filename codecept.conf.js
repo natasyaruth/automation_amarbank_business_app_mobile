@@ -21,18 +21,18 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      // app: "./assets/app/app-development-debug.apk",
+      app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      device: "emulator",
-      path: "/wd/hub",
+      // device: "emulator",
+      path: "/",
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        deviceName: "emulator-5554",
-        appPackage: "id.co.amarbank.smb.dev",
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        // deviceName: "emulator-5554",
+        // appPackage: "id.co.amarbank.smb.dev",
+        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true
       }
     },
@@ -185,7 +185,7 @@ exports.config = {
       "./features/loanRepayment/*.feature",
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
-
+      "./features/main_feature/loan_app_journey/01_Registration.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
@@ -211,6 +211,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/03_account_opening_kyb/steps_kybUploadBusinessDocuments.js",
       "./step_definitions/funding_transfer/steps_friend_list.js",
       "./step_definitions/funding_transfer/steps_transfer.js",
+      "./step_definitions/funding_transfer/steps_eStatement.js",
       "./step_definitions/funding_create_pin/steps_createPin.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",

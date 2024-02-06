@@ -55,6 +55,8 @@ Feature: Select the Anchor AR
         And user fill a field "anchorName" with "UD Dagangan"
         When user select industry type
         And user select the date cooperating
+        And user should see error "Nama Perwakilan Buyer *" in the below of field "textFieldPicName"
+        And user should see error "Nomor HP / Telepon Perwakilan Buyer *" in the below of field "textFieldPicNumber"
         And user fill a field "PICNameField" with "Budi"
         And user fill a field "PICNumberField" with "08123456789"
         Then user click button next

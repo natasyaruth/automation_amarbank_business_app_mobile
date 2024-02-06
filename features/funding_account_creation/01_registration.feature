@@ -240,6 +240,61 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
+  @consentPDP1 
+  Scenario: Verifying the button "Buat Akun" with checked 2 mandatory PDP checklist
+    Given I am a customer want to access menu registration
+    When I filling in my account information with the following details:
+      | fullName        | barat daya              |
+      | email           | baratdaya01@yopmail.com |
+      | mobileNumber    | 85765114480             |
+      | password        | 1234Test                |
+      | confirmPassword | 1234Test                |
+    And I registering the account
+    And I checked the 2 mandatory PDP checklists
+    Then I should see button Buat Akun will enable
+  
+  @consentPDP2
+  Scenario: Verifying the button "Buat Akun" with unchecked 2 mandatory PDP checklist and checked optional checklist
+    Given I am a customer want to access menu registration
+    When I filling in my account information with the following details:
+      | fullName        | barat daya              |
+      | email           | baratdaya01@yopmail.com |
+      | mobileNumber    | 85765114480             |
+      | password        | 1234Test                |
+      | confirmPassword | 1234Test                |
+    And I registering the account
+    And I unchecked the 2 mandatory PDP checklists
+    And I checked the optional PDP checklist
+    Then I should see button Buat Akun will disable
+
+  @consentPDP3 
+  Scenario: Go to "Verifikasi No. HP" page after click button "Buat Akun" on PDP Page
+    Given I am a customer want to access menu registration
+    When I filling in my account information with the following details:
+      | fullName        | barat daya              |
+      | email           | baratdaya01@yopmail.com |
+      | mobileNumber    | 85765114480             |
+      | password        | 1234Test                |
+      | confirmPassword | 1234Test                |
+    And I registering the account
+    When I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'
+    Then I should go to Verifikasi No. HP page
+    And I get email including the information about PDP that i checked before
+
+  @consentPDP4 
+  Scenario: Validate wording content on 3 PDP content
+    Given I am a customer want to access menu registration
+    When I filling in my account information with the following details:
+      | fullName        | barat daya              |
+      | email           | baratdaya01@yopmail.com |
+      | mobileNumber    | 85765114480             |
+      | password        | 1234Test                |
+      | confirmPassword | 1234Test                |
+    And I registering the account
+    When I am on page PDP consent
+    Then I see text consent PDP 
+
   @verificationPhoneNumber @C76006
   Scenario: Verifying phone number with wrong OTP code
     Given I am a customer had been registering the account with the following details:

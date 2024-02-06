@@ -27,6 +27,9 @@ module.exports = {
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",
+        btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])[1]" },
+        btneStatementLatest: { xpath: "(//android.view.View[@content-desc='buttonRequest0'])" },
+        btnCloseeStatement: "~buttonClose",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -44,10 +47,12 @@ module.exports = {
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
         textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
-        textNote: "~textNote"
+        textNote: "~textNote",
+        textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
+        textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
     },
     menu: {
-        tabTesting: { xpath: "(//android.view.View[@content-desc='tabOthers'])[2]" },
+        tabTesting: { xpath: "(//android.view.View[@content-desc='tabHome'])[2]" },
         tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]" },
         tabCallCenter: "~tabCallCenter",
         tabBusiness: "~tabBusiness",
@@ -71,6 +76,59 @@ module.exports = {
         I.wait(2);
         I.seeElement(this.buttons.historyBtn);
     },
+
+    viewButtonDownloadEStatement(){
+        I.wait(2);
+        I.seeElement(this.buttons.btneStatementDownload);
+    },
+
+    clickBtnDownloadeStatement() {
+        I.wait(2);
+        I.click(this.buttons.btneStatementDownload);
+    },
+
+    clickBtnLatesteStatement() {
+        I.wait(2);
+        I.click(this.buttons.btneStatementLatest);
+    },
+
+    validationeStatementNotExist(){
+        I.wait(5);
+        I.see("e-Statement belum ada")
+    },
+
+    async viewSuccessAlertBar(){
+
+        I.waitForElement(this.textFields.textViewFailedAlert,5);
+        let isAlert = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "bounds");
+    
+        if(isAlert === "[77,2055][143,2121]"){
+          console.log("Sistem tidak dapat mencetak e-Statement.");
+          //return true;
+        }
+    
+        else{
+          console.log("e-Statement sudah di download");
+          //return true;
+        }
+      },
+
+    async checkAlertBar(){
+
+        I.waitForElement(this.textFields.textViewFailedAlert,3);
+        let isFailed = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "text");
+    
+        if(isFailed === "Sedang terjadi kesalahan sistem."){
+          console.log("Sistem tidak dapat mencetak e-Statement.");
+          //return true;
+        }
+    
+        else{
+          console.log("e-Statement sudah di download");
+          //return true;
+        }
+      },
+
     clicBtnFilter() {
         I.wait(2);
         I.click(this.buttons.btnFilterHistoryTrx);
@@ -273,7 +331,7 @@ module.exports = {
         I.sendDeviceKeyEvent(4);
     },
     clickTabTesting() {
-        I.wait(2);
+        I.waitForElement(this.menu.tabTesting, 10);
         I.click(this.menu.tabTesting);
     }
 

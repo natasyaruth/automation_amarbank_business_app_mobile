@@ -15,6 +15,7 @@ Feature: Account Opening Main Dashboard
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
 
     @C96599
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
@@ -42,23 +43,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
+        And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
         And I back to dashboard
         Then I will see card continue to data personal
@@ -69,24 +54,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
+        And I update my last journey step to 'Upload Selfie'
         And I see page 'Data Personal'
         And I back to dashboard
         Then I will see card continue to data personal
@@ -97,29 +65,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
+        And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
         And I back to dashboard
         Then I will see card continue to data personal
@@ -130,31 +76,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
+        And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
         And I back to dashboard
         Then I will see card continue to data personal
@@ -165,35 +87,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I see page 'Data Business Profile'
         And I back to dashboard
@@ -205,35 +99,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'ud'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
@@ -254,35 +120,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
@@ -303,35 +141,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
@@ -353,35 +163,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
@@ -414,35 +196,7 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3173035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation  | SMA             |
-            | motherName     | NADYA LAMUSU    |
-            | npwp           | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |

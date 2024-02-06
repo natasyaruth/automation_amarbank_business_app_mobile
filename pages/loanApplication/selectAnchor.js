@@ -71,7 +71,7 @@ module.exports = {
         I.assertEqual(actualValueSubTitle, 'Supplier belum terdaftar atau periksa kembali nama suplier yang anda cari');
     },
     selectAnchorList(){
-        I.seeElement(this.fields.anchorSearchResult);
+        I.waitForElement(this.fields.anchorSearchResult, 10);
         I.click(this.fields.anchorSearchResult);
     },
     viewAnchorCooperatingPage(){
@@ -79,7 +79,7 @@ module.exports = {
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
     },
     selectDateCooperating(){
-        I.seeElement(this.fields.dateField);
+        I.waitForElement(this.fields.dateField, 10);
         I.click(this.fields.dateField);
         I.wait(2);
         I.performSwipe({x:394, y:1040},{x:394, y:1137});

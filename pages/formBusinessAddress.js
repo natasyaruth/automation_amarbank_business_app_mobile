@@ -33,6 +33,8 @@ module.exports = {
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",
     rights: "~checkBoxRight",
+    privy: "~checkBoxPrivy",
+    loan: "~checkBoxLoan",
   },
 
   fillBusinessAddress(businessAddress){
@@ -69,6 +71,16 @@ module.exports = {
 
     if(isChecked === "false"){
       I.click(this.checkBox.termsAndCondition);
+    }
+  },
+
+  async checkPrivy(){
+
+    I.waitForElement(this.checkBox.privy,10);
+    const isChecked = await I.grabAttributeFrom(this.checkBox.privy, "checked");
+
+    if(isChecked === "false"){
+      I.click(this.checkBox.privy);
     }
   },
 

@@ -163,7 +163,7 @@ module.exports = {
 
   inputPin(pin){
     I.waitForElement(this.fields.pin, 10);
-    I.setText(this.fields.pin, pin);
+    I.fillField(this.fields.pin, pin);
     I.hideDeviceKeyboard();
   },
 

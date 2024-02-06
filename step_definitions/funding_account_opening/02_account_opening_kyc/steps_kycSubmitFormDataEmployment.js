@@ -2,6 +2,7 @@ const {
     I,
     formEmploymentDataPage,
     formBusinessProfilePage,
+    formBusinessAddressPage,
     resetStateDao,
     uploadDao,
     globalVariable
@@ -82,13 +83,14 @@ When("I clear field company name", () => {
 Then("I will notify that I already fill my personal details data", async () => {
     I.waitForText("Terima kasih telah melengkapi Data Diri", 10);
     I.see("Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pembentukan rekening");
-    I.see("Perbankan Bisnis Premium");
-    I.see("Dengan melengkapi Data Bisnis, Anda akan mendapatkan fitur perbankan bisnis premium (rekening giro) dari Bank Amar");
-    I.see("Gratis Biaya Admin");
+    I.dont("Digital Banking untuk Bisnis");
+    I.see("Dengan melengkapi Data Bisnis, Anda akan mendapatkan fitur Digital Banking (rekening giro) dari Bank Amar");
+    I.see("Bebas Biaya Admin Bulanan");
     I.see("Transaksi Real-Time");
     I.see("Semua Proses dari Hp Anda");
-    I.see("Multiple User");
-    I.see("Debit Card");
+    I.dontSee("Multiple User");
+    I.dontSee("Debit Card");
+    I.see("e-Statement");
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
@@ -116,6 +118,60 @@ Then("I should see message error {string} in the below of field {string} in form
     let textMsgError = await formEmploymentDataPage.getMessageError(fieldName);
     let actualMsgError = textMsgError.trimEnd();
     I.assertEqual(actualMsgError, expectedMsgError);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will see checkbox Rights & Policy, T&C about loan and Privy", async () => {
+    const legalityType = globalVariable.onBoarding.legality;
+
+    if (
+        legalityType === "individual"
+    ) {
+        I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+        I.swipeUp(
+            formEmploymentDataPage.dropDowns.monthlyIncome,
+            1000,
+            1000
+        );
+    } else {
+        I.waitForElement(formBusinessAddressPage.fields.address, 10);
+    }
+
+    I.seeElement(formEmploymentDataPage.checkBox.rights);
+    I.seeElement(formEmploymentDataPage.checkBox.loan);
+    I.seeElement(formEmploymentDataPage.checkBox.privy);
+    I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.see("Saya menyetujui Syarat & Ketentuan dalam pengajuan pinjaman dari PT. Bank Amar Indonesia Tbk .");
+    I.see("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
+    const legalityType = globalVariable.onBoarding.legality;
+
+    if (
+        legalityType === "individual"
+    ) {
+        I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+        I.swipeUp(
+            formEmploymentDataPage.dropDowns.monthlyIncome,
+            1000,
+            1000
+        );
+    } else {
+        I.waitForElement(formBusinessAddressPage.fields.address, 10);
+    }
+
+    I.seeElement(formEmploymentDataPage.checkBox.rights);
+    I.seeElement(formEmploymentDataPage.checkBox.loan);
+    I.dontSeeElement(formEmploymentDataPage.checkBox.privy);
+    I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.see("Saya menyetujui Syarat & Ketentuan dalam pengajuan pinjaman dari PT. Bank Amar Indonesia Tbk .");
+    I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

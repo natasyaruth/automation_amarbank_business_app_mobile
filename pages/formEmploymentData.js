@@ -19,7 +19,9 @@ module.exports = {
   },
   checkBox:{
     termsAndCondition: "~checkBoxPrivacyPolicy",
+    loan: "~checkBoxLoan",
     rights: "~checkBoxRight",
+    privy: "~checkBoxPrivy",
   },
   scrollView: {
     scroll: {xpath: "//android.widget.ScrollView",}
@@ -42,11 +44,13 @@ module.exports = {
       if(
         Object.keys(this.field).indexOf(fieldName) !== -1
         ){
+        I.waitForElement(this.field[fieldName], 10);
         I.setText(this.field[fieldName], value);
 
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
         ){
+        I.waitForElement(this.dropDowns[fieldName], 10);  
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
 

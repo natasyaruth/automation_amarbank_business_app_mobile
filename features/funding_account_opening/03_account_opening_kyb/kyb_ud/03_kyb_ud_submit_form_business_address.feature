@@ -16,37 +16,10 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'ud'
         And I submit my legality type
-        And I upload my eKTP photo
-        And I fill all information identity details as followings:
-            | eKtpNumber    | 3171046509920002          |
-            | fullName      | UD TERBARU KYC TIGA      |
-            | placeOfBirth  | JAKARTA                   |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Perempuan                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
-        And I submit my information identity details
-        And I upload my selfie photo
-        And I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
-        And I submit my personal data details
-        And I choose my domicile address same with my identity information
-        And I submit my domicile address
-        And I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
+        And I update my last journey step to 'Data Employment'
         When I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | UD TERBARU KYC TIGA |
@@ -70,7 +43,6 @@ Feature: Account Opening KYB UD - Submit Business Address
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
         Then I will directing to page upload require documents for business individual

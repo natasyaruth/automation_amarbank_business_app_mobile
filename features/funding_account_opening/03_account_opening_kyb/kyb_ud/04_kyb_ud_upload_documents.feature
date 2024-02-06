@@ -15,6 +15,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
+        And I choose Giro Account MSME
         And I choose legality business type 'ud'
         And I submit my legality type
         And I upload my eKTP photo
@@ -57,7 +58,6 @@ Feature: Account Opening KYB UD - Submit Business Address
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I submit business owner list
-        And I agree with the terms and condition
         And I allow company to store my data
         And I submit my business address
 

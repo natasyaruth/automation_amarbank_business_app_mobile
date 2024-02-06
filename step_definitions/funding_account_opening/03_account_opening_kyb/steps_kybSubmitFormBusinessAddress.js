@@ -26,6 +26,10 @@ When("I allow company to store my data", async () => {
     await formBusinessAddressPage.checkRights();
 });
 
+When("I allow to agree to use my digital signature through Privy.id", async () => {
+    await formBusinessAddressPage.checkPrivy();
+});
+
 When("I fill field {string} with {string} in form Business Address", (fieldName, valueField) => {
     formBusinessAddressPage.fillField(fieldName, valueField);
 });
