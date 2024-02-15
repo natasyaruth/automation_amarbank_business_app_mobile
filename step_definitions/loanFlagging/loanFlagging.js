@@ -1,4 +1,4 @@
-const loanFlagging = require("../pages/loanFlagging");
+const loanFlagging = require("../../pages/loanFlagging");
 
 const{
     I,
