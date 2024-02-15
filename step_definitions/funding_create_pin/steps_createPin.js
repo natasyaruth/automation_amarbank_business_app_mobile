@@ -35,6 +35,23 @@ When("I click change transaction pin", () => {
     createPINPage.goToChangePIN();
 });
 
+When("I click link forgot pin", () => {
+    createPINPage.clickButtonForgotPIN();
+});
+
+When("I input OTP", async () => {
+    I.wait(3);
+    //verificationEmailPage.isOpen();
+  
+    I.see("Kode OTP telah dikirim ke e-mail");
+  
+    //let actualEmail = await createPINPage.getEmailValue();
+    //I.assertEqual(actualEmail, globalVariable.registration.email);
+    I.wait(3);
+    globalVariable.registration.otpCode = await otpDao.getOTPbyEmail(globalVariable.registration.email);
+    createPINPage.fillInOtpCode(globalVariable.registration.otpCode);
+    });
+
 Then("I will see bottom sheet call our team", () => {
     I.waitForText('Kami Akan membantu Anda dalam pembentukan rekening ataupun pinjaman', 5);
     I.see(createPINPage.buttons.whatsapp);
@@ -298,4 +315,8 @@ Then("I will go back to other page", () => {
 });
 Then("I will see toastbar {string}", (successPINMessage) => {
     I.see(successPINMessage);
+});
+
+Then("I directly go to page login", () => {
+    createPINPage.goToLoginPage();
 });
