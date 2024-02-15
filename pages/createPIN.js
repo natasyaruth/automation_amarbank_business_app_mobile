@@ -8,10 +8,18 @@ module.exports = {
     confirmPIN: ~"textFieldPin",
   },
   buttons: {
+    login: "~buttonLogin",
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
+    cancel: "~buttonCancel",
+    btnTransfer: "~btnTransfer",
+    back: "buttonBack",
+    forgotPIN: "~",
+    btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
+    creatPINPopUp: "~",
+    understand: "~buttonUnderstand",
     otherMenu: "~",
     createPIN: "~",
     changePassword: "~",
@@ -52,7 +60,7 @@ module.exports = {
 
   inputPIN(pin) {    
     I.waitForElement(this.fields.newPIN, 5);
-    I.setText(this.fields.newPIN, pin1);
+    I.setText(this.fields.newPIN, pin);
     I.hideDeviceKeyboard();
   },
 
@@ -63,6 +71,45 @@ module.exports = {
       // await I.setText(this.fields.newPIN, newPin[i]);
     // }
   // },
+
+  popupCreatePIN() {
+    I.waitForText("Buat PIN", 10);
+    I.seeElement(this.buttons.creatPINPopUp);
+  },
+
+  popupCancelCreatePIN() {
+    I.waitForElement(this.buttons.cancel, 10);
+    I.waitForElement(this.buttons.close, 10);
+  },
+
+  clickButtonClose(){
+    I.waitForElement(this.buttons.close);
+    I.click(this.buttons.close);
+  },
+
+  clickButtonBack(){
+    I.waitForElement(this.buttons.back);
+    I.click(this.buttons.back);
+  },
+
+  clickButtonForgotPIN(){
+    I.waitForElement(this.buttons.forgotPIN);
+    I.click(this.buttons.forgotPIN);
+  },
+
+  clickButtonCancel(){
+    I.waitForElement(this.buttons.cancel);
+    I.click(this.buttons.cancel);
+  },
+
+  clickButtonUnderstand(){
+    I.waitForElement(this.buttons.understand);
+    I.click(this.buttons.understand);
+  },
+
+  clickPopUpCreatePIN(){
+    I.click(this.buttons.creatPINPopUp);
+  },
 
   inputConfirmationPIN(confirmationPIN) {
     I.waitForText("Konfirmasi PIN Baru", 10);
@@ -107,8 +154,22 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
   },
 
+  async getEmailValue(){
+    let email = await I.grabTextFrom(this.label.email);
+    return email
+  },
+
+  fillInOtpCode(otpCode) {
+    I.fillField(this.fields.otpcode, otpCode);
+    I.hideDeviceKeyboard();
+  },
+
   goToOtherMenu(){
     I.click(this.buttons.otherMenu);
+  },
+
+  goToLoginPage(){
+    I.waitForElement(this.buttons.login, 10);
   },
 
   goToCreatePIN(){
@@ -116,7 +177,13 @@ module.exports = {
 
   },
 
+  goToChangePIN(){
+    I.click(this.buttons.changePIN);
+
+  },
+
   closeBottomSheet(){
     I.click(this.buttons.closeOurTeam);
   },  
+
 }

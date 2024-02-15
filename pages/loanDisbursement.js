@@ -63,6 +63,11 @@ module.exports = {
     textFieldAccountNo: "~textFieldAccountNo",
     textFieldSupplierName: "~textFieldSupplierName",
     textFieldPhone: "~textFieldPhone",
+    textFieldInvoiceNo: "~textFieldInvoiceNo",
+    textFieldInvoiceDate: "~textFieldInvoiceDate",
+    textFieldInvoiceDueDate: "~textFieldInvoiceDueDate",
+    textFieldPicName: "~textFieldPicName",
+    textFieldPicNumber: "~textFieldPicNumber",
   },
 
   toastBars: {
@@ -78,6 +83,8 @@ module.exports = {
     textAdminFee: "~textAdminFee",
     textAvailableAmount: "~textAvailableAmount",
     textBlockedAmount: "~textBlockedAmount",
+    titleFundingAmount: "~titleFundingAmount",
+    titleInvoiceAmount: "~titleInvoiceAmount",
   },
 
   usingLimitLoanDisbursementTypeAP() {
@@ -263,12 +270,18 @@ module.exports = {
     I.click(this.buttons.buttonDismiss);
   },
 
+  validateFieldInvoice() {
+    I.seeElement(this.textFields.textFieldInvoiceNo);
+    I.seeElement(this.textFields.textFieldInvoiceDate);
+    I.seeElement(this.textFields.textFieldInvoiceDueDate);
+  },
+
   async validateDisburseAmountPageMoreThan2Billion() {
     const disbursementAmountMoreThan2Billion = await I.See('Perhitungan Pencairan');
     if (disbursementAmountMoreThan2Billion) {
       I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
       I.see('Nominal Pinjaman');
-      I.see('Nominal Pencairan');
       I.see('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
@@ -277,8 +290,8 @@ module.exports = {
       I.see('Nominal yang Dicairkan');
     } else {
       I.see('Dana akan langsung dicairkan ke Supplier');
-      I.see('Nominal Pinjaman');
-      I.dontSee('Nominal Pencairan');
+      I.see('Nominal Invoice');  
+      I.dontSee('Nominal Pinjaman'); 
       I.dontSee('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
@@ -292,8 +305,8 @@ module.exports = {
     const disbursementAmountLessOrEqualThan2Billion = await I.See('Perhitungan Pencairan');
     if (disbursementAmountLessOrEqualThan2Billion) {
       I.see('Dana akan langsung dicairkan ke Supplier');
-      I.see('Nominal Pinjaman');
-      I.dontSee('Nominal Pencairan');
+      I.see('Nominal Invoice'); 
+      I.dontSee('Nominal Pinjaman'); 
       I.dontSee('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
@@ -302,8 +315,8 @@ module.exports = {
       I.see('Nominal yang Dicairkan');
     } else {
       I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice'); 
       I.see('Nominal Pinjaman');
-      I.see('Nominal Pencairan');
       I.see('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
@@ -315,14 +328,17 @@ module.exports = {
 
   validateSendPDCPage() {
     I.waitForText('Pengiriman PDC (Cek Mundur');
-    I.see('Segera mengirimkan PDC sebagai jaminan ke alamay berikut');
+    I.see('Segera mengirimkan PDC sebagai jaminan ke alamat berikut');
     I.see('Alamat Pengiriman');
-    I.see('Menara Standard Chartered Lt.11, Jl. Prof. DR. Satrio No.164, RT.4/RW.4, Karet Semanggi, Setiabudi, Jakarta Selatan 12930')
+    I.see('RDTX Square Lt.11, Jl. Prof. DR. Satrio No.164, RT.4/RW.4, Karet Semanggi, Setiabudi, Jakarta Selatan 12930')
     I.seeElement(this.buttons.buttonCopy);
     I.see('Penerima');
     I.see('Amar Bank (Digital SMB team');
     I.see('Pastikan isi nominal pada PDC (cek mundur) sesuai dengan nominal pinjaman');
     I.see('Nominal Pinjaman');
+    I.see('Upload bukti pembayaran selisih pencairan ke supplier*');
+    I.see('Nominal');
+    I.see('Supplier');
     I.seeElement(this.buttons.buttonClose);
   },
 
@@ -441,7 +457,7 @@ module.exports = {
       I.waitForElement(this.buttons.buttonDisburse);
       I.see('Perhitungan Pencairan');
       I.see('Dana akan langsung dicairkan ke Anda');
-      I.see('Nominal Pinjaman');
+      I.see('Nominal Invoice');
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
       I.see('Bunga per bulan');
@@ -480,7 +496,7 @@ module.exports = {
       I.waitForElement(this.buttons.buttonDisburse);
       I.see('Perhitungan Pencairan');
       I.see('Dana akan langsung dicairkan ke Anda');
-      I.see('Nominal Pinjaman');
+      I.see('Nominal Invoice');
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
       I.see('Bunga per bulan');
@@ -489,6 +505,59 @@ module.exports = {
       I.see('Nominal yang Dikembalikan Setelah Pelunasan');
       I.see('Sudah dipotong bunga + biaya admin dan akan dikembalikan setelah pelunasan ke rekening Anda');
       I.seeElement(this.buttons.buttonDisburse);
+    }
+  },
+
+  async ValidateDisbursementDetails() {
+    const DisbursementDetails = await I.See('Limit Tersedia');
+    if (DisbursementDetails) {
+      I.see('Pencairan 70% dari nilai invoice');
+    }
+  },
+
+  async ValidateDisbursementCalculationsWhenInvoiceValue100() {
+    const InvoiceValue100 = await I.See('Perhitungan Pencairan');
+    if (InvoiceValue100) {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 100%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    } else {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 100%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    }
+  },
+
+  async ValidateDisbursementCalculationsWhenInvoiceValue80() {
+    const InvoiceValue80 = await I.See('Perhitungan Pencairan');
+    if (InvoiceValue80) {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 80%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
+    } else {
+      I.see('Dana akan langsung dicairkan ke Supplier');
+      I.see('Nominal Invoice');
+      I.see('Nominal Pinjaman');
+      I.see('Pencairan 80%')
+      I.see('Total Bunga');
+      I.see('Biaya Administrasi 3%');
+      I.see('Jatuh Tempo');
+      I.see('Nominal yang Dicairkan');
     }
   },
 
@@ -506,8 +575,8 @@ module.exports = {
         I.seeElement(this.buttons.buttonCopy);
         I.see('Alamat Pengiriman');
         I.see('Penerima');
-        I.see('Pastikan isi nominal pada PDC (cek mundur sesuai dengan nominal pinjaman');
-        I.see('Nominal Pinjaman');
+        I.see('Pastikan isi nominal pada PDC (cek mundur sesuai dengan nominal invoice'); 
+        I.see('Nominal Invoice');
         break;
       case 2:
         I.waitForText('Invoice sedang diproses.Cek secara berkala');

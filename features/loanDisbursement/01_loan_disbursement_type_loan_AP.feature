@@ -83,6 +83,9 @@ Feature: Loan Disbursement for Loan Type AP
     Given I have been in detail invoice to open invoice transaction detail
     When I open invoice document card
     Then the document will appears
+    And user select invoice number
+    And user select invoice date
+    And User select invoice due date
 
   @C98029
   Scenario: Open Link "Klik disini" to Send Note if There are Any Problems
@@ -140,6 +143,28 @@ Feature: Loan Disbursement for Loan Type AP
     Then I should be see the page of delivery PDC
     And The address should be copied after I click button copy
     And back to the main dashboard after I close the section
+
+  @C98037
+  Scenario: Validate Disbursement Details
+   Given I have been on "Limit Tersedia"
+   When user should see field "invoice percentage disbursement"
+   Then user field LTV can be various static 80%
+
+  @C98038
+  Scenario: Validate Disbursement Calculations When Invoice Value 100%
+    Given I have been on "Perhitungan pencairan page"
+    When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
+    When user should see field "Total Bunga" in the below of field "textInterestFee"
+    When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+    Then show amount disbursement calculation page if invoice value 100%
+
+  @C98039
+  Scenario: Validate Disbursement Calculations When Invoice Value 80%
+    Given I have been on "Perhitungan pencairan page"
+    When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
+    When user should see field "Total Bunga" in the below of field "textInterestFee"
+    When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+    Then show amount disbursement calculation page if invoice value 80%  
 
 
 
