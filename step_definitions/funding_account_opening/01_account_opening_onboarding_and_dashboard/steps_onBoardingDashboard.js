@@ -18,6 +18,7 @@ Given("I am a customer want to open Giro Account later", () => {
 Given("I am a customer want choose product type MSME", () => {
     onboardingAccOpeningPage.openGiroAccountMsme();
     headerPage.clickButtonBack();
+    I.wait(2);
     headerPage.clickButtonBack();
     onboardingAccOpeningPage.chooseLater();
     I.waitForElement(onboardingAccOpeningPage.buttons.openAccount, 10);
@@ -34,7 +35,7 @@ Given("I am a customer want choose product type BB", () => {
 Given("I see information and benefit of Giro Account", () => {
     I.waitForText("Apa kebutuhan Anda saat ini?", 10);
     I.see("Dapatkan Rekening Giro");
-    I.see("Layanan perbankan bisnis premium untuk memantau usaha Anda.");
+    I.see("Layanan Digital Banking untuk mengelola bisnis Anda.");
 
     I.see("Benefit");
     I.see("Bebas Biaya Admin Bulanan");
@@ -304,4 +305,11 @@ Then("I will see details info of giro account Corporate", async () => {
 
     I.see("Buka Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
+});
+
+Then("product type same with I choose before", async () =>{
+
+    const actualProductType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
+
+    I.assertEqual(actualProductType, globalVariable.onBoarding.productType);
 });

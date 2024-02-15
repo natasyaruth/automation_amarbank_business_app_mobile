@@ -10,6 +10,7 @@ const {
   formBusinessProfilePage,
   formBusinessOwnerPage,
   resetStateDao,
+  globalVariable,
 } = inject();
 
 module.exports = {
@@ -73,7 +74,7 @@ module.exports = {
 
   swipeToCardGiroAccount() {
     I.waitForElement(this.buttons.giroAccount, 10);
-    I.swipeLeft(this.buttons.giroAccount, 1000, 2000);
+    I.swipeLeft(this.buttons.giroAccount, 1000, 2500);
   },
 
   openGiroAccount() {
@@ -89,11 +90,13 @@ module.exports = {
   openGiroAccountMsme() {
     I.waitForElement(this.buttons.giroAccountMsme, 10);
     I.click(this.buttons.giroAccountMsme);
+    globalVariable.onBoarding.productType = "MSME";
   },
 
   openGiroAccountCorporate() {
     I.waitForElement(this.buttons.giroAccountCorporate, 10);
     I.click(this.buttons.giroAccountCorporate);
+    globalVariable.onBoarding.productType = "CORP";
   },
 
   continueToKYC() {

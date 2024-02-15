@@ -37,10 +37,11 @@ Feature: Account Opening Onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I choose Giro Account MSME
+        And I choose Giro Account Corporate
         And I choose legality business type 'company'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
+        And product type same with I choose before
 
     @C96594
     Scenario: User choose legality business type CV
@@ -51,6 +52,7 @@ Feature: Account Opening Onboarding
         And I choose legality business type 'cv'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
+        And product type same with I choose before
 
     @C96595
     Scenario: User choose legality business type PT Perorangan
@@ -61,6 +63,7 @@ Feature: Account Opening Onboarding
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
+        And product type same with I choose before
 
     @C96596
     Scenario: User choose legality business type UD
@@ -71,6 +74,7 @@ Feature: Account Opening Onboarding
         And I choose legality business type 'ud'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
+        And product type same with I choose before
 
     @C96597
     Scenario: User choose legality business type Individu
@@ -81,6 +85,7 @@ Feature: Account Opening Onboarding
         And I choose legality business type 'individual'
         And I submit my legality type
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
+        And product type same with I choose before
 
     @C96598
     Scenario: Back to page onboarding account opening
@@ -89,6 +94,7 @@ Feature: Account Opening Onboarding
         And I choose Giro Account
         And I click button back in the header page
         Then I will directing to Hook 1 Onboarding Account Opening
+        And product type same with I choose before
 
     Scenario: Back to dashboard from page legality type entry point hook
         Given I am a customer want to open Giro Account
@@ -97,6 +103,7 @@ Feature: Account Opening Onboarding
         And I choose Giro Account Corporate
         And I click button back in the header page
         Then I will directing to page type giro account
+        And product type same with I choose before
 
     Scenario: Back to dashboard from page legality type entry point dashboard
         Given I am a customer want to open Giro Account
@@ -105,3 +112,4 @@ Feature: Account Opening Onboarding
         And I choose Giro Account Corporate
         And I click button back in the header page
         Then I will directing to page type giro account
+        And product type same with I choose before

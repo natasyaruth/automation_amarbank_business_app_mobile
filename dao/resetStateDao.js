@@ -50,4 +50,20 @@ module.exports = {
         I.wait(1);
         I.click("Selanjutnya");
     },
+
+    async getProductType(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken))
+
+        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            productType: responseProfile.data.productType,
+        };
+
+    },
 }
