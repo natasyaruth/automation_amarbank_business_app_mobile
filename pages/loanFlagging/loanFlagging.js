@@ -4,6 +4,7 @@ module.exports = {
 button: {
     btnApplyLoan: "~buttonStart",
     btnNext: "~buttonNext",
+    btnPinjaman: "~buttonPinjaman",
     },
 
 fields: {
@@ -43,7 +44,7 @@ selectLoanTypeList(selectLoanType){
     I.click(this.button.btnNext);
  },
 
- fillNominalPinjaman(){
+  fillNominalPinjaman(){
     I.setText(this.fields.inputNominal);  
 },
 
