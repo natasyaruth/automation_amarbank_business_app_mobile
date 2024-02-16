@@ -16,8 +16,8 @@ Feature: Account Opening Onboarding
 
     
     Scenario: User validate wording on Onboarding card lending
-        Given I am a customer who wants to open DSMB       
-        Then I can see update wording on Onboarding card lending
+        Given I am on Onboaring Loan   
+        Then I validate update wording on Onboarding card lending
         And I see Benefit of Apply Loan
 
     Scenario: User Update validation minimum Nominal Pinjaman
@@ -52,8 +52,13 @@ Feature: Account Opening Onboarding
         And I click on button Selanjutnya
         Then I continue to Corporate Page
 
-    
-
+    Scenario: User validate error field on form Loan Needs
+        Given I am on Onboarding Page
+        When I click Ajukan Pinjaman        
+        Then user click button next
+        And I see error "Jumlah pinjaman wajib diisi" in the below of field "inputNominal"
+        And I see error "Tenor pinjaman wajib diisi" in the below of field "tenor"
+        
     
 
 

@@ -1,4 +1,4 @@
-const loanFlagging = require("../pages/loanFlagging");
+const loanFlagging = require("../../pages/loanFlagging/loanFlagging");
 
 const{
     I,
@@ -13,7 +13,7 @@ Given ("I am a customer who wants to open DSMB", () => {    });
 
 Given(" I am on Onboarding Page", () => {});
 
-Then("I can see update wording on Onboarding card lending", () => {
+Then("I validate update wording on Onboarding card lending", () => {
     I.waitforText("Apa kebutuhan Anda saat ini?", 10);
     I.see("Dapatkan Limit Tinggi");
     I.see("Solusi Finansial Bisnis Anda");
