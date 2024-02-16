@@ -50,27 +50,28 @@ Feature: Apply Either Loan and select the loan type
         And I click on button Selanjutnya
         Then I continue to Corporate Page to select loan type
         
-    Scenario: User select loan type AP
-        Given I on Main dashboard
+     Scenario: User validate and select loan type AP
+        Given I am on Main dashboard
         When I click button Ajukan Pinjaman
         And I Input Nominal Pinjaman '6500000000'
         And I Input Tenor '90'
         And I click on button Selanjutnya
-        And I on loan type page
+        And I am on loan type page
+        And I validate wording loan type "AP"
         And I select loan type "AP"
         Then I click on Select the schema
-        And I am on loan Schema page "AP"
-
-    Scenario: User select loan type AR
-        Given I on Main dashboard
+       
+    Scenario: User validate and select loan type AR
+        Given I am on Main dashboard
         When I click button Ajukan Pinjaman
         And I Input Nominal Pinjaman '6500000000'
         And I Input Tenor '90'
         And I click on button Selanjutnya
-        And I on loan type page
+        And I am on loan type page
+        And I validate wording loan type "AR"
         And I select loan type "AR"
         Then I click on Select the schema
-        And I am on loan Schema page "AR"
+       
 
 
 

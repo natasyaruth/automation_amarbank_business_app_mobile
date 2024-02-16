@@ -57,18 +57,20 @@ When("I on loan type page", () => {
     loanTypePage.viewLoanTypePage();
 });
 
+When(/user validate wording loan type \"([^\"]*)\"/,(loanType)=>{
+    I.wait(2);
+    loanTypePage.validateLoanTypeList(loanType);
+});
+
 When(/I select loan type \"([^\"]*)\"/,(selectLoanType)=>{
     I.wait(2);
     loanTypePage.selectLoanTypeList(selectLoanType);
 });
 
 Then(" I click on Select the schema", () => {
-    loanTypePage.ClickNext();    
+    loanTypePage.clickNextButton();
 });
 
-When(/I am on loan schema \"([^\"]*)\"/,()=>{
-    I.wait(2);    
-    loanTypePage.validateLoanSchemPage();    
-});
+
 
 

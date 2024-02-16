@@ -24,6 +24,40 @@ radioButtons: {
         radioBtnAR: "~radioButtonAR",
 },
 
+validateLoanTypeList(loanType){
+    switch (loanType){
+        case 'AP':
+            I.seeElement(this.textField.textFieldLoanAP);
+        break;
+        case 'AR':
+            I.seeElement(this.textField.textFieldLoanAR);
+        break;
+        case 'PO':
+            I.seeElement(this.textField.textFieldLoanPO);
+        break;
+    }
+},
+
+viewLoanTypePage(){
+        I.seeElement(this.textField.textFieldLoanTypePage);
+    },
+    async validationBenefitText(benefitText){
+        switch (benefitText){
+            case 'first':
+                let hint = await I.grabAttributeFrom(this.textField.textBenefit1, 'text');
+                I.assertEqual(hint, 'Bunga Kompetitif');
+            break;
+            case 'two':
+                let actualValue = await I.grabAttributeFrom(this.textField.textBenefit2, 'text');
+                I.assertEqual(actualValue, 'Proses Cepat dan Mudah');
+            break;
+            case 'three':
+                let actual = await I.grabAttributeFrom(this.textField.textBenefit3, 'text');
+                I.assertEqual(actual, 'Perbankan Bisnis Premium');
+            break;
+        }
+    },
+    
 selectLoanTypeList(selectLoanType){
         switch (selectLoanType){
             case 'AP':
