@@ -57,7 +57,7 @@ When("I on loan type page", () => {
     loanTypePage.viewLoanTypePage();
 });
 
-When(/user validate wording loan type \"([^\"]*)\"/,(loanType)=>{
+When(/I validate wording loan type \"([^\"]*)\"/,(loanType)=>{
     I.wait(2);
     loanTypePage.validateLoanTypeList(loanType);
 });

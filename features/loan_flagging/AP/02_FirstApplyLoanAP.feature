@@ -12,7 +12,7 @@ Feature: Apply Either Loan and select the loan type
             | password | Eca12345|
         And I click login
         
-    Scenario: validate content on select either apply for loan
+    Scenario: validate content on Onboarding 
         Given I am on Main Dashboard
         When I see update wording on Onboarding card lending
         And I see Benefit of Apply Loan
