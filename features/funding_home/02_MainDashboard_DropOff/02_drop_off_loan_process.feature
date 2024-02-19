@@ -80,7 +80,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user click button invited user
         And user should see invited user account opening only page
 
-    Scenario: User validate drop off main dashboard loan process on waiting invited user
+    Scenario: User validate drop off main dashboard loan process on waiting invited user1
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
