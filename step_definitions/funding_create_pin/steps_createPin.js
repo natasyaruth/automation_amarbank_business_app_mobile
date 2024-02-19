@@ -75,7 +75,7 @@ When("I click button Back ke Dashboard", () => {
     createPINPage.clickButtonClose();
 });
 
-Then("I will directly to Create New PIN page", () => {
+Then("I will directly to Create New Transaction PIN page", () => {
     I.waitForText("Buat PIN", 10);
     I.see("Silakan masukkan password Amar Bank Bisnis kamu");
     I.waitForElement(createPINPage.icon, 10);

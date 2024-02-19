@@ -22,7 +22,7 @@ Feature: User create PIN
         When I choose menu Transfer from main dashboard
         When I see pop up Create PIN
         When I click button Create PIN 
-        Then I will directly to Create New PIN page
+        Then I will directly to Create New Transaction PIN page
 
     @createpin02
     Scenario: User input incorrect password once
