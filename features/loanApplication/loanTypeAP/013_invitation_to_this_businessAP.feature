@@ -4,10 +4,10 @@ Feature: Submit Loan Type AP Status is Approved
     I want to submit loan and Approved by VP of bussiness
 
     Background:
-        Given I am a registered customer with foll
+        Given I am a registered customer with following details:
             | userID   | botseb19   |
             | password | TestSmb123 |
-        When I filling in form login with the foll
+        When I filling in form login with the following details:
             | userID   | botseb19   |
             | password | TestSmb123 |
         And I click login
