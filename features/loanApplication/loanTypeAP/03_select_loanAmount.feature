@@ -1,4 +1,3 @@
-@LoanTenor
 Feature: Select the Loan Amount and Tenor
     As a customer lead
     I want to select Loan Amount and tenor
@@ -30,7 +29,6 @@ Feature: Select the Loan Amount and Tenor
         And user select the date cooperating
         And user click button next
 
-    @C83823 @LoanTenor
     Scenario: Validate Error Field on Select Loan Amount and Tenor Form
         Given user on select loan amount page
         When user click button next on select loan amount page
@@ -41,7 +39,6 @@ Feature: Select the Loan Amount and Tenor
         And user should see error "Maksimal pinjaman Rp5.000.000.000 (5 Miliar)" in the field "errorAmountLoanField"
         And user should see error "Setujui syarat dan ketentuan" in the field "agreetnc"
 
-    @C83823 @LoanTenor
     Scenario: Success Select Loan Amount and Tenor
         Given user on select loan amount page
         When user filling field "amountLoanField" with "200000000"
@@ -52,7 +49,6 @@ Feature: Select the Loan Amount and Tenor
         And user click button next on select loan amount page
         And user on legality business page
 
-    @C83824 @LoanTenor
     Scenario: Validate Error Field on legality business form
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
@@ -65,7 +61,6 @@ Feature: Select the Loan Amount and Tenor
         And user should see error "Jenis legalitas bisnis wajib dipilih" in the field "errorBussTypeField"
         And user should see error "Tanggal usaha berdiri wajib diisi" in the field "errorDateEstablishField"
 
-    @C83824 @LoanTenor
     Scenario: User success fill legality business form
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
@@ -83,7 +78,6 @@ Feature: Select the Loan Amount and Tenor
         And user click button next on legality business page
         And user on head office location page
 
-    @C83825 @LoanTenor
     Scenario: Validate Error Field on head office location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
@@ -104,7 +98,6 @@ Feature: Select the Loan Amount and Tenor
         When user click button next on head office location page
         Then user should see error "Lokasi bisnis wajib diisi" in the field "errorBussLocationField"
 
-    @C83825 @LoanTenor
     Scenario: Validate Loan Not available on business location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
@@ -127,7 +120,6 @@ Feature: Select the Loan Amount and Tenor
         And user should see new page head office location not provided
         And user click close button
 
-    @C83825 @LoanTenor
     Scenario: User Success Select Head Office Location
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"
@@ -148,7 +140,6 @@ Feature: Select the Loan Amount and Tenor
         And user click button next on head office location page
         And user on success apply loan page
 
-    @C83826 @LoanTenor
     Scenario: Validate Wording on Success Apply Loan Page
         Given user on select loan amount page
         And user filling field "amountLoanField" with "200000000"

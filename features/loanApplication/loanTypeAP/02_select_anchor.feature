@@ -1,4 +1,4 @@
-# @LoanApp
+
 Feature: Select the Anchor
     As a customer lead
     I want to select the anchor
@@ -22,13 +22,11 @@ Feature: Select the Anchor
         And user on loan schema "AP"
         And user click button select the schema
 
-    # @C83807 @LoanApp
     Scenario: user search anchor is not found
         Given user on the anchor page
         When user fill search anchor "testingaja"
         Then user validate anchor is not found
 
-    # @C83808 @LoanApp
     Scenario: User can select anchor lead on the list
         Given user on the anchor page
         And user fill search anchor "PT Tirta Investama"
@@ -37,7 +35,6 @@ Feature: Select the Anchor
         Then user select the date cooperating
         And user back to list anchor page
 
-#    @C83808 @LoanApp
     Scenario: User validate error field on form another anchor
         Given user on the anchor page
         When user click icon other anchor

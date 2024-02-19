@@ -1,4 +1,3 @@
-@LoanTenor
 Feature: Checking Monitoring Process
     As a customer lead
     I want to validation for processing apply loan
@@ -48,14 +47,12 @@ Feature: Checking Monitoring Process
         And user click button continue complete the data
         And user on success complete the data page
 
-    @C83876 @LoanTenor
     Scenario: validate success complete the data page
         Given user validate title "Terima kasih telah melengkapi Data Diri" on field "titleFieldSuccessCompleteData"
         And user validate subtitle "Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pengajuan pinjaman" on field "subTitleFieldSuccessCompleteData"
         When user validate header content perbankan premium bisnis
         Then user validate body content perbankan premium bisnis
 
-    @C83876 @LoanTenor
     Scenario: validate bottom sheet showing and loan processing page
         Given user click button next completed data
         And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"

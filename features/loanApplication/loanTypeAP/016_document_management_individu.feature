@@ -1,5 +1,5 @@
 @LoanApp
-Feature: Submit Loan Type AP Status is Approved
+Feature: Document Management Individu
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
