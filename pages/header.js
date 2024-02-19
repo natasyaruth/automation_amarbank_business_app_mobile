@@ -2,7 +2,8 @@ const { I } = inject();
 
 module.exports = {
     icon:{
-        callCenter: "~buttonCallCenter"
+        callCenter: "~buttonCallCenter",
+        help: "~buttonHelp",
     },
     buttons:{
         back: "~buttonBack",
@@ -20,6 +21,10 @@ module.exports = {
     },
     goToCallCenter(){
         I.click(this.icon.callCenter);
+    },
+    openHelpCenter(){
+        I.waitForElement(this.icon.help, 10);
+        I.click(this.icon.help);
     },
     openCardWhatsApp(){
         I.click(this.cards.whatsApp);
