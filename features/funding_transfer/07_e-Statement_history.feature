@@ -4,7 +4,6 @@ Feature: User open e-Statement History
     I want to see e-Statement History
 
     Scenario: User open transaction history
-        # Given I am a customer who want to open transaction history
         Given I am a registered customer with following details:
             | userID   | ruthdb25 |
             | password | 1234Test |
@@ -19,7 +18,6 @@ Feature: User open e-Statement History
     
 
     Scenario: Download e-Statement by the latest month
-        # Given I am a customer who want to download e-Statement based on the latest month
         Given I am a registered customer with following details:
             | userID   | ruthdb25 |
             | password | 1234Test |
@@ -36,7 +34,6 @@ Feature: User open e-Statement History
     
     
     Scenario: Download e-Statement when e-Statement not exist
-        # Given I am a customer who want to download e-Statement when e-Statement not exist
         Given I am a registered customer with following details:
             | userID   | lugi89fb |
             | password | 1234Test |
@@ -51,7 +48,6 @@ Feature: User open e-Statement History
     
     
     Scenario: Show alert bar when success download e-Statement
-        # Given I am a customer who want to download e-Statement based on the latest month
         Given I am a registered customer with following details:
             | userID   | ruthdb25 |
             | password | 1234Test |
@@ -67,7 +63,6 @@ Feature: User open e-Statement History
     
    
     Scenario: Show alert bar when failed download e-Statement
-        # Given I am a customer who want to download e-Statement based on the latest month
         Given I am a registered customer with following details:
             | userID   | ruthdb25 |
             | password | 1234Test |
