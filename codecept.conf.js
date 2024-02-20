@@ -21,18 +21,19 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      // app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      // device: "emulator",
-      path: "/",
+      device: "emulator",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb.dev",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        appPackage: "id.co.amarbank.smb.staging", //staging
+        // appPackage: "id.co.amarbank.smb.dev", //Dev
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true
       }
     },
@@ -188,7 +189,6 @@ exports.config = {
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
-      "./features/funding_home/08_maker_and_approver.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",

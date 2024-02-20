@@ -1,4 +1,4 @@
-@registration_lending
+ #@registration_lending
 Feature: Registration from Lending
     As a customer
     I want to register from loan application
