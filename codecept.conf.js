@@ -147,6 +147,8 @@ exports.config = {
     amountDetailPage: "./pages/amountDetail.js",
 
     documentManagementPage: "./pages/loanApplication/documentManagement.js",
+
+    approvalTransactionPage: "./pages/approvalTransaction.js",
   },
   settings: {
     logging: {
@@ -187,7 +189,6 @@ exports.config = {
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
-      "./features/main_feature/account_opening_only/*.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
@@ -256,13 +257,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-    pattern: "wait.*",
-    timeout: 0
-  },
-  {
-    pattern: "amOnPage",
-    timeout: 0
-  }
+      pattern: "wait.*",
+      timeout: 0
+    },
+    {
+      pattern: "amOnPage",
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"
