@@ -30,7 +30,7 @@ exports.config = {
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
+        deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.staging", //staging
         // appPackage: "id.co.amarbank.smb.dev", //Dev
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
@@ -189,6 +189,7 @@ exports.config = {
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
+      "./features/main_feature/account_opening_only/*.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
