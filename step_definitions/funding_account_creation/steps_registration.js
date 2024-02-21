@@ -59,7 +59,7 @@ When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = account["mobileNumber"] + "009";
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"] + "019";
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
 

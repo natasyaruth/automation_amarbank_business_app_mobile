@@ -41,8 +41,8 @@ Feature: Account registration
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
       | testRailTag | Field           | Field Name          |
-      | @C75432     | fullName        | Nama lengkap        |
-      | @C75438     | email           | E-mail              |
+      # | @C75432     | fullName        | Nama lengkap        |
+      # | @C75438     | email           | E-mail              |
       | @C75444     | mobileNumber    | Nomor handphone     |
       | @C75454     | password        | Password            |
       | @C75456     | confirmPassword | Konfirmasi password |

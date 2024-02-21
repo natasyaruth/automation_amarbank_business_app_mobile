@@ -30,7 +30,7 @@ exports.config = {
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        deviceName: "emulator-5554",
+        //deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.staging", //staging
         // appPackage: "id.co.amarbank.smb.dev", //Dev
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
