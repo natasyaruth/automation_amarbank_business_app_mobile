@@ -19,8 +19,8 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Natasya Lending         |
-      | email           | natasyaruth03@gmail.com |
-      | mobileNumber    | 81293628149             |
+      | email           | natasyaruth03@yopmail.com |
+      | mobileNumber    | 6281293628             |
       | password        | 1234Test                |
       | confirmPassword | 1234Test                |
     And I registering the account

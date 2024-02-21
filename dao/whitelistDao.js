@@ -7,7 +7,7 @@ module.exports = {
       Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
     }));
 
-    const response = await I.sendPostRequest("/address/whitelist/v1", {
+    const response = await I.sendPostRequest("https://staging-api-sms.otoku.io/address/whitelist/v1", {
       address: phoneNumber,
     });
 
@@ -27,7 +27,7 @@ module.exports = {
       Authorization: "Basic dHVuYWlrdW1vYmlsZToxOTNJN1Y1RVFU"
     }));
 
-    const response = await I.sendPostRequest("https://dev-api-notification.tunaiku.com/notification/whitelist", {
+    const response = await I.sendPostRequest("https://staging-api-notification.tunaiku.com/notification/whitelist", {
       contact_address: email,
     });
 
