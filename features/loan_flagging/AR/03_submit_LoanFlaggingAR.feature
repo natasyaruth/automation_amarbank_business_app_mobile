@@ -4,15 +4,15 @@ Feature: Submit Loan Type AP Status is Approved
 
     Background:
         Given I am a registered customer with foll
-            | userID   | trys5524 |
-            | password | Eca12345 |
+            | userID   | botseb19  |
+            | password | TestSmb123 |
         When I filling in form login with the foll
-            | userID   | trys5524  |
-            | password | Eca12345 |
+            | userID   | botseb19  |
+            | password | TestSmb123 |
         And I click login
         
 
-    Scenario: User AR success fill data buyer and submit the loan
+    Scenario: User AP success fill data buyer and submit the loan
         Given I on Main dashboard
         When I click button Ajukan Pinjaman
         And I Input Nominal Pinjaman '6500000000'
@@ -21,7 +21,7 @@ Feature: Submit Loan Type AP Status is Approved
         And I on loan type page
         And I select loan type "AR"
         And I click on Select the schema
-        And I search anchor "PT Xyz"      
+        And I search anchor "PT Tirta Investama"      
         And I select the date of cooperating
        And I tick on tick box        
         And I click button Kirim Pengajuan Pinjaman

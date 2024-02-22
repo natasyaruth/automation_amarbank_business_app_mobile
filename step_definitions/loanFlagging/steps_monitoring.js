@@ -4,7 +4,7 @@ const { I, loanMonitoringProcessPage } = inject();
 
 
 // Scenario(/validate success complete the data page/)
-Given(/user click button next completed data/,()=>{
+Given(/I click button next completed data/,()=>{
     loanMonitoringProcessPage.clickBtnNextCompletedData();
 });
 When(/I should see text bottom sheet \"([^\"]*)\" in field \"([^\"]*)\"/, async(expectedValue, fieldName) => {
