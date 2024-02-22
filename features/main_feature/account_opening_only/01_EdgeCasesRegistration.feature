@@ -25,12 +25,12 @@ Feature: Account registration
     And I am clearing the field '<Field>'
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
-      | testRailTag | Field           | Field Name          |
-    #   | @C75432     | fullName        | Nama lengkap        |
-    #   | @C75438     | email           | E-mail              |
-      | @C75444     | mobileNumber    | Nomor handphone     |
-      | @C75454     | password        | Password            |
-      | @C75456     | confirmPassword | Konfirmasi password |
+      | Field           | Field Name          |
+      | fullName        | Nama lengkap        |
+      | email           | E-mail              |
+      | mobileNumber    | Nomor handphone     |
+      | password        | Password            |
+      | confirmPassword | Konfirmasi password |
 
    
   Scenario Outline: Verifying one fields hasn't been filled by user
@@ -39,12 +39,12 @@ Feature: Account registration
     And I submit form registration
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
-      | testRailTag | Field           | Field Name          |
-      | @C75433     | fullName        | Nama lengkap        |
-      | @C75435     | email           | E-mail              |
-      | @C75446     | mobileNumber    | Nomor handphone     |
-      | @C75455     | password        | Password            |
-      | @C75457     | confirmPassword | Konfirmasi password |
+      | Field           | Field Name          |
+      | fullName        | Nama lengkap        |
+      | email           | E-mail              |
+      | mobileNumber    | Nomor handphone     |
+      | password        | Password            |
+      | confirmPassword | Konfirmasi password |
 
    
   Scenario Outline: Verifying full name with invalid value
@@ -52,12 +52,12 @@ Feature: Account registration
     When I am filling field 'fullName' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'fullName'
     Examples:                                                                 ❸
-      | testRailTag | Value                                                | Message                                                                        |
-      | @C75428     | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      | @C75429     | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      | @C75430     | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      | @C75431     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      | @C80637     |                                                      | Nama lengkap wajib diisi                                                       |
+      | Value                                                | Message                                                                        |
+      | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+      | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+      |                                                      | Nama lengkap wajib diisi                                                       |
 
    
   Scenario Outline: Verifying email with invalid value
@@ -65,10 +65,10 @@ Feature: Account registration
     When I am filling field 'email' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'email'
     Examples:                                                                 ❸
-      | testRailTag | Value                  | Message                    |
-      | @C75436     | ruth.natasyagmail.com  | E-mail tidak sesuai format |
-      | @C75439     | ruth natasya@gmail.com | E-mail tidak sesuai format |
-      | @C80639     |                        | E-mail wajib diisi         |
+      | Value                  | Message                    |
+      | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+      | ruth natasya@gmail.com | E-mail tidak sesuai format |
+      |                        | E-mail wajib diisi         |
 
   
   Scenario Outline: Verifying phone number with invalid value
@@ -76,13 +76,13 @@ Feature: Account registration
     When I am filling field 'mobileNumber' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'mobileNumber'
     Examples:                                                                 ❸
-      | testRailTag | Value         | Message                                                       |
-      | @C75440     | 89561r12367   | Nomor handphone wajib diisi                                   |
-      | @C75441     | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      | @C75442     | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      | @C75443     | 9678995676    | Nomor handphone tidak sesuai format                           |
-      | @C75445     | 8678 995676   | Nomor handphone wajib diisi                                   |
-      | @C80640     |               | Nomor handphone wajib diisi                                   |
+      | Value         | Message                                                       |
+      | 89561r12367   | Nomor handphone wajib diisi                                   |
+      | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+      | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+      | 9678995676    | Nomor handphone tidak sesuai format                           |
+      | 8678 995676   | Nomor handphone wajib diisi                                   |
+      |               | Nomor handphone wajib diisi                                   |
 
    
   Scenario: Verifying autotrim 0 after label +62 in field phonenumber
@@ -96,13 +96,13 @@ Feature: Account registration
     When I am filling field 'password' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'password'
     Examples:                                                                 ❸
-      | testRailTag | Value           | Message                                                       |
-      | @C75449     | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | @C75450     | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | @C75451     | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | @C75453     | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | @C75448     | Test1           | Password minimal 8 karakter                                   |
-      | @C80641     |                 | Password wajib diisi                                          |
+      | Value           | Message                                                       |
+      | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+      | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+      | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+      | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+      | Test1           | Password minimal 8 karakter                                   |
+      |                 | Password wajib diisi                                          |
 
    
   Scenario: Verifying field password contain with alphabeth, number and special character
@@ -116,9 +116,9 @@ Feature: Account registration
     When I am filling field 'confirmPassword' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'confirmPassword'
     Examples:                                                                 ❸
-      | testRailTag | Value           | Message                                        |
-      | @C75458     | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
-      | @C80643     |                 | Konfirmasi password wajib diisi                |
+      | Value           | Message                                        |
+      | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
+      |                 | Konfirmasi password wajib diisi                |
 
    
   Scenario: Verifying autotrim in field Full name
@@ -135,9 +135,9 @@ Feature: Account registration
     When I click icon eye in '<Field>' field
     Then I will not see my password 'Test1234' in the field
     Examples:
-      | testRailTag | Field           |
-      | @C75460     | password        |
-      | @C75461     | confirmPassword |
+      | Field           |
+      | password        |
+      | confirmPassword |
 
    
   Scenario: Access link login in page registration
@@ -164,43 +164,27 @@ Feature: Account registration
     Then I will see helping center via whatsapp and email
 
    
-#   Scenario: Back to page form registration from pop up confirmation
-#     Given I am a customer want to access menu registration
-#     When I filling in my account information with the following details:
-#       | fullName        | Natasya Ruth           |
-#       | email           | ruth.natasya@email.com |
-#       | mobileNumber    | 8975656998             |
-#       | password        | 1234Test               |
-#       | confirmPassword | 1234Test               |
-#     And I click button back to page registration
-#     Then I will direct to page registration with each fields still has values as following:
-#       | fullName        | Natasya Ruth           |
-#       | email           | ruth.natasya@email.com |
-#       | mobileNumber    | 8975656998             |
-#       | password        | 1234Test               |
-#       | confirmPassword | 1234Test               |
+  Scenario: Back to page form registration from pop up confirmation
+    Given I am a customer want to access menu registration
+    When I filling in my account information with the following details:
+      | fullName        | Natasya Ruth           |
+      | email           | ruth.natasya@email.com |
+      | mobileNumber    | 8975656998             |
+      | password        | 1234Test               |
+      | confirmPassword | 1234Test               |
+    And I click button back to page registration
+    Then I will direct to page registration with each fields still has values as following:
+      | fullName        | Natasya Ruth           |
+      | email           | ruth.natasya@email.com |
+      | mobileNumber    | 8975656998             |
+      | password        | 1234Test               |
+      | confirmPassword | 1234Test               |
 
    
-#   Scenario: Back to page Onboarding from page Registration
-#     Given I am a customer want to access menu registration
-#     When I click button back in the header page
-#     Then I will direct to page onboarding
-
-  
-#   Scenario: Create account business with business code from invitation email
-#     Given I am a customer lead wanting to register account business from invitation
-#     And My company name is 'PT CV INTEGRATE SEBELAS'
-#     When I choose menu registration
-#     And I filling in my account business information with the following details:
-#       | fullName        | Johan Hopkins                |
-#       | email           | johan.hopkins@trash-mail.com |
-#       | mobileNumber    | 8776230006                   |
-#       | password        | 1234Test                     |
-#       | confirmPassword | 1234Test                     |
-#     And I registering the account
-#     And I verifying my phone number by entering the code sent to me
-#     And I verifying my email by login by user id
-#     Then my account business should be created
+  Scenario: Back to page Onboarding from page Registration
+    Given I am a customer want to access menu registration
+    When I click button back in the header page
+    Then I will direct to page onboarding
 
   
   Scenario: Create account business with business unregistered code
@@ -224,268 +208,3 @@ Feature: Account registration
     When I am filling field 'businessCode' with 'XYZ123'
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
-
-   
-#   Scenario: Verifying the button "Buat Akun" with checked 2 mandatory PDP checklist
-#     Given I am a customer want to access menu registration
-#     When I filling in my account information with the following details:
-#       | fullName        | barat daya              |
-#       | email           | baratdaya01@yopmail.com |
-#       | mobileNumber    | 85765114480             |
-#       | password        | 1234Test                |
-#       | confirmPassword | 1234Test                |
-#     And I registering the account
-#     And I checked the 2 mandatory PDP checklists
-#     Then I should see button Buat Akun will enable
-  
-  
-#   Scenario: Verifying the button "Buat Akun" with unchecked 2 mandatory PDP checklist and checked optional checklist
-#     Given I am a customer want to access menu registration
-#     When I filling in my account information with the following details:
-#       | fullName        | barat daya              |
-#       | email           | baratdaya01@yopmail.com |
-#       | mobileNumber    | 85765114480             |
-#       | password        | 1234Test                |
-#       | confirmPassword | 1234Test                |
-#     And I registering the account
-#     And I unchecked the 2 mandatory PDP checklists
-#     And I checked the optional PDP checklist
-#     Then I should see button Buat Akun will disable
-
-   
-#   Scenario: Go to "Verifikasi No. HP" page after click button "Buat Akun" on PDP Page
-#     Given I am a customer want to access menu registration
-#     When I filling in my account information with the following details:
-#       | fullName        | barat daya              |
-#       | email           | baratdaya01@yopmail.com |
-#       | mobileNumber    | 85765114480             |
-#       | password        | 1234Test                |
-#       | confirmPassword | 1234Test                |
-#     And I registering the account
-#     When I checked the 2 mandatory PDP checklists
-#     And I click button 'createAccountPDP'
-#     Then I should go to Verifikasi No. HP page
-#     And I get email including the information about PDP that i checked before
-
-   
-#   Scenario: Validate wording content on 3 PDP content
-#     Given I am a customer want to access menu registration
-#     When I filling in my account information with the following details:
-#       | fullName        | barat daya              |
-#       | email           | baratdaya01@yopmail.com |
-#       | mobileNumber    | 85765114480             |
-#       | password        | 1234Test                |
-#       | confirmPassword | 1234Test                |
-#     And I registering the account
-#     When I am on page PDP consent
-#     Then I see text consent PDP 
-
-  
-#   Scenario: Verifying phone number with wrong OTP code
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81234567870        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I verifying my phone number by entering the wrong code
-#     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
-
-  
-#   Scenario: Verifying phone number with expired OTP code
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 89994567866        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I let the otp code expire
-#     And I verifying my phone number by entering the code sent to me
-#     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
-
-  
-#   Scenario: Verifying phone number with wrong OTP code five times
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 87539568672        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I verifying my phone number by entering the wrong code five times
-#     Then I should be notified that I can reverify the phone number tomorrow
-
-  
-#   Scenario: Create account with wrong code otp four times then input valid code
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya        |
-#       | email           | ruth@trash-mail.com |
-#       | mobileNumber    | 81230057898         |
-#       | password        | Test1234            |
-#       | confirmPassword | Test1234            |
-#     When I verifying my phone number by entering the wrong code four times
-#     And I verifying my phone number by entering the code sent to me
-#     Then I will directing to page verification email
-
-  
-#   Scenario: Create account with phone number has been updated on the verification page
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81240455100        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I choose change phonenumber
-#     And I change my phonenumber into '89577322178'
-#     And I resend the OTP
-#     And I verifying my phone number by entering the code sent to me
-#     Then I will directing to page verification email
-
-  
-#   Scenario: Change phonenumber with old phonenumber
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 89834567892        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I choose change phonenumber
-#     And I filling new phonenumber with my old phonenumber
-#     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
-
-  
-#   Scenario Outline: Verifying new phone number with invalid value
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | <Phone Number>     |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I choose change phonenumber
-#     And I filling new phonenumber with '<Value>'
-#     Then I should see message error '<Message>' in the below of field new phonenumber
-#     Examples:                                                                 ❸
-#       | testRailTag | Value         | Message                                                       | Phone Number |
-#       | @C88597     | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
-#       | @C88598     | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
-#       | @C88599     | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
-#       | @C88600     | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
-#       | @C88601     | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
-#       | @C88602     |               | Nomor handphone wajib diisi                                   | 81234567892  |
-
-  
-#   Scenario: Back to page Verification phonenumber from page change phonenumber
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81288567890        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I choose change phonenumber
-#     And I click button back in the header page
-#     Then I will direct to page verification phonenumber
-
-   
-#   Scenario: First attempt resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81193628993        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I get my first OTP
-#     And I resend the OTP
-#     Then I will get new OTP different with my first OTP
-#     And I will see attempt left '1/5'
-
-   
-#   Scenario: Second attempt resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 88793628993        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     And I've requested OTP '1' times
-#     When I get my first OTP
-#     And I resend the OTP
-#     Then I will get new OTP different with my first OTP
-#     And I will see attempt left '2/5'
-
-   
-#   Scenario: Third attempt resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 84493628993        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     And I've requested OTP '2' times
-#     When I get my first OTP
-#     And I resend the OTP
-#     Then I will get new OTP different with my first OTP
-#     And I will see attempt left '3/5'
-
-   
-#   Scenario: Fourth attempt resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81293508106        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     And I've requested OTP '3' times
-#     When I get my first OTP
-#     And I resend the OTP
-#     Then I will get new OTP different with my first OTP
-#     And I will see attempt left '4/5'
-
-   
-#   Scenario: Fifth attempt resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81273598106        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     And I've requested OTP '4' times
-#     When I get my first OTP
-#     And I resend the OTP
-#     Then I will get new OTP different with my first OTP
-#     And I will see attempt left '5/5'
-
-   
-#   Scenario: Resend OTP more than five times
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 89561339239        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     And I've requested OTP '5' times
-#     When I resend the OTP
-#     Then I should be notified that I can reverify the phone number tomorrow
-#     And I cannot change my phonenumber
-
-   
-#   Scenario: Verify state count attempt error when try to resend OTP
-#     Given I am a customer had been registering the account with the following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 89561338639        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I verifying my phone number by entering the wrong code four times
-#     And I resend the OTP
-#     And I verifying my phone number by entering the wrong code four times
-#     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
-
-  
-#   Scenario: Resend email verification
-#     Given I am a customer had been registering and verify phonenumber with following details:
-#       | fullName        | Ruth Natasya       |
-#       | email           | fakemail@email.com |
-#       | mobileNumber    | 81293697203        |
-#       | password        | Test1234           |
-#       | confirmPassword | Test1234           |
-#     When I resend email verification
-#     Then I will notify that resend email is successfully
