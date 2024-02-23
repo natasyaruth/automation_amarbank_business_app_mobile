@@ -93,10 +93,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
     @C96529
     Scenario: Submit form Data Employment successfully business type Individual
         Given I am a registered customer with following details:
-            | userID   | alfi379b |
+            | userID   | ruth2322 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | alfi379b |
+            | userID   | ruth2322 |
             | password | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
@@ -107,7 +107,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I submit my legality type
         And I upload my eKTP photo
         And I fill all information identity details as followings:
-            | eKtpNumber    | 3174056103550001          |
+            | eKtpNumber    | 3004056103550001          |
             | fullName      | NADYA LAROSA              |
             | placeOfBirth  | MEDAN                     |
             | dateOfBirth   | 11/11/1995                |

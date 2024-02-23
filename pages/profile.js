@@ -11,6 +11,7 @@ module.exports = {
     downloadDeed: "~buttonDownloadAkta",
     downloadSk: "~buttonDownloadSk",
     downloadNpwp: "~buttonDownloadNpwp",
+    transactionApprovalDetail: "~transactionApprovalDetail",
   },
 
   clickTabProfile() {
@@ -25,6 +26,11 @@ module.exports = {
   clickDocumentGiro(){
     I.waitForElement(this.buttons.documentGiro, 10);
     I.click(this.buttons.documentGiro);
-  }
+  },
+
+  openTransactionApproval(){
+    I.waitForElement(this.buttons.transactionApprovalDetail, 10);
+    I.click(this.buttons.transactionApprovalDetail);
+  },
 
 }

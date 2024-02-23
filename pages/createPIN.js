@@ -18,7 +18,7 @@ module.exports = {
     back: "buttonBack",
     forgotPIN: "~",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
-    creatPINPopUp: "~",
+    creatPINPopUp: "buttonCreatePin",
     understand: "~buttonUnderstand",
     otherMenu: "~",
     createPIN: "~",

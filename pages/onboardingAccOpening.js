@@ -10,6 +10,7 @@ const {
   formBusinessProfilePage,
   formBusinessOwnerPage,
   resetStateDao,
+  globalVariable,
 } = inject();
 
 module.exports = {
@@ -27,6 +28,8 @@ module.exports = {
     cardInvited: "~btnCard",
     giroAccountCorporate: "~bbBtnOpenGiro",
     giroAccountMsme: "~smeBtnOpenGiro",
+    openAllTransactionApproval: "~showAllBtn",
+    cardTransaction: "~transactionDetail",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -58,6 +61,11 @@ module.exports = {
     checkBookFeeCorporate: "~bbCheckbookFee",
     loanLimitSme: "~smeLoanLimit",
     loanLimitCorporate: "~bbLoanLimit",
+    transactionApprovalType: "~transactionApprovalType",
+    transactionRecipientName: "~transactionRecipientName",
+    transactionRecipientBank: "~transactionRecipientBank",
+    transactionDate: "~transactionDate",
+    transactionAmount: "~transactionAmount",
   },
   tabs: {
     home: "~tabHome",
@@ -73,7 +81,7 @@ module.exports = {
 
   swipeToCardGiroAccount() {
     I.waitForElement(this.buttons.giroAccount, 10);
-    I.swipeLeft(this.buttons.giroAccount, 1000, 2000);
+    I.swipeLeft(this.buttons.giroAccount, 1000, 2500);
   },
 
   openGiroAccount() {
@@ -89,11 +97,13 @@ module.exports = {
   openGiroAccountMsme() {
     I.waitForElement(this.buttons.giroAccountMsme, 10);
     I.click(this.buttons.giroAccountMsme);
+    globalVariable.onBoarding.productType = "MSME";
   },
 
   openGiroAccountCorporate() {
     I.waitForElement(this.buttons.giroAccountCorporate, 10);
     I.click(this.buttons.giroAccountCorporate);
+    globalVariable.onBoarding.productType = "CORP";
   },
 
   continueToKYC() {
@@ -293,5 +303,40 @@ module.exports = {
   async getLoanLimitMsme() {
     return await I.grabTextFrom(this.texts.loanLimitSme);
   },
+
+  openAllTransactionApproval (){
+    I.waitForElement(this.buttons.openAllTransactionApproval, 10);
+    I.click(this.buttons.openAllTransactionApproval);
+  },
+
+  openCardTransaction (){
+    I.waitForElement(this.buttons.cardTransaction, 10);
+    I.click(this.buttons.cardTransaction);
+  },
+
+  async getStatusTransaction(){
+    I.waitForElement(this.texts.transactionApprovalType, 10);
+    return I.grabTextFrom(this.texts.transactionApprovalType);
+  },
+
+  async getRecipientName(){
+    I.waitForElement(this.texts.transactionRecipientName, 10);
+    return I.grabTextFrom(this.texts.transactionRecipientName);
+  },
+
+  async getRecipientBankName(){
+    I.waitForElement(this.texts.transactionRecipientBank, 10);
+    return I.grabTextFrom(this.texts.transactionRecipientBank);
+  },
+
+  async getTransactionDate(){
+    I.waitForElement(this.texts.transactionDate, 10);
+    return I.grabTextFrom(this.texts.transactionDate);
+  },
+
+  async getAmountTransaction(){
+    I.waitForElement(this.texts.transactionAmount, 10);
+    return I.grabTextFrom(this.texts.transactionAmount);
+  }
 
 }

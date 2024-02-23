@@ -12,6 +12,7 @@ module.exports = {
     onBoarding:{
         legality: "",
         status: "",
+        productType: "",
     },
     login: {
         password: "",

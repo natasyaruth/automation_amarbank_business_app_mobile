@@ -21,18 +21,19 @@ exports.config = {
     Appium: {
       require: "./helpers/JetpackComposeHelper.js",
       appiumV2: true,
-      app: "./assets/app/app-development-debug.apk",
+      // app: "./assets/app/app-development-debug.apk",
       platform: "Android",
-      // device: "emulator",
-      path: "/",
+      device: "emulator",
+      path: "/wd/hub",
       desiredCapabilities: {
         platformName: "Android",
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
         // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb.dev",
-        // appActivity: "id.co.amarbank.smb.ui.MainActivity",
+        appPackage: "id.co.amarbank.smb.staging", //staging
+        // appPackage: "id.co.amarbank.smb.dev", //Dev
+        appActivity: "id.co.amarbank.smb.ui.MainActivity",
         autoGrantPermissions: true
       }
     },
@@ -146,6 +147,8 @@ exports.config = {
     amountDetailPage: "./pages/amountDetail.js",
 
     documentManagementPage: "./pages/loanApplication/documentManagement.js",
+
+    approvalTransactionPage: "./pages/approvalTransaction.js",
   },
   settings: {
     logging: {
@@ -254,13 +257,13 @@ exports.config = {
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
-    pattern: "wait.*",
-    timeout: 0
-  },
-  {
-    pattern: "amOnPage",
-    timeout: 0
-  }
+      pattern: "wait.*",
+      timeout: 0
+    },
+    {
+      pattern: "amOnPage",
+      timeout: 0
+    }
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing"

@@ -1,4 +1,4 @@
-@registration_lending
+ #@registration_lending
 Feature: Registration from Lending
     As a customer
     I want to register from loan application
@@ -135,4 +135,3 @@ Feature: Registration from Lending
         And I submit my business profile
         And I submit business director list
         Then I will see checkbox Rights & Policy and T&C about loan
-
