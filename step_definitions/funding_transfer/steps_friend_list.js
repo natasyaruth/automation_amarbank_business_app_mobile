@@ -10,14 +10,8 @@ Given("I am a customer who wants to Transfer and has no friend list",()=>{});
 
 Given("I am a customer who wants to Transfer and has friend list", ()=>{});
 
-Then("I choose menu Transfer from main dashboard", () => {    
-    I.waitForText("Transfer");
-    I.click("Transfer");      
-});
-
 When("I click Transfer to Receiver Name", ()=>{ 
-     friendListPage.addNewFriendList();
-       
+     friendListPage.addNewFriendList();   
 });
 
 When("I can choose Bank name", ()=>{

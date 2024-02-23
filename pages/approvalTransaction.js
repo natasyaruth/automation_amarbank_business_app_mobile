@@ -14,6 +14,7 @@ module.exports = {
     submitPassword: "~buttonNext",
     iconEyePassword: "~iconShowHidePassword",
     passwordIncorrect: "~passwordIncorrectBtn",
+    copy: "~buttonCopy",
   },
   texts: {
     transactionApprovalType: "~transactionApprovalType",
@@ -23,8 +24,10 @@ module.exports = {
     transactionAmount: "~transactionAmount",
     senderName: "~senderName",
     senderAccount: "~senderAccount",
+    senderBankName: "~senderBankName",
     recipientName: "~recipientName",
     recipientAccount: "~recipientAccount",
+    recipientBankName: "~recipientBankName",
     amountTransferOut: "~transferOut",
     nameCreatedBy: "~createdBy",
     referenceNumber: "~referenceNumber",
@@ -87,9 +90,9 @@ module.exports = {
     return I.grabTextFrom(this.texts.senderAccount);
   },
 
-  async getRecipientName() {
-    I.waitForElement(this.texts.recipientName, 10);
-    return I.grabTextFrom(this.texts.recipientName);
+  async getSenderBankName() {
+    I.waitForElement(this.texts.senderBankName, 10);
+    return I.grabTextFrom(this.texts.senderBankName);
   },
 
   async getRecipientAccountNumber() {
@@ -177,7 +180,7 @@ module.exports = {
     I.click(this.buttons.closeInfo);
   },
 
-  openDetailApprovalOnSanackbar() {
+  openDetailApprovalOnSnackbar() {
     I.waitForElement(this.links.seeDetailOnSnackbar, 10);
     I.click(this.links.seeDetailOnSnackbar);
   },
@@ -190,6 +193,10 @@ module.exports = {
   fillOtpCode(otp) {
     I.waitForElement(this.fields.otpCode, 10);
     I.setText(this.fields.otpCode, otp);
+  },
+
+  clearFieldOtp(){
+    I.clearField(this.fields.otpCode);
   },
 
   clickIconEyePassword() {

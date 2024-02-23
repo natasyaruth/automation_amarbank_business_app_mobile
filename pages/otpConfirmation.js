@@ -19,6 +19,7 @@ module.exports = {
   },
 
   async getPhoneNumber(){
+    I.waitForElement(this.label.phonenumber, 10);
     return await I.grabTextFrom(this.label.phonenumber);;
   },
 

@@ -139,9 +139,9 @@ module.exports = {
   },
 
   clickCreateAccountButton() {
-    //I.swipeUp(this.fields.confirmPassword, 500, 1000);
+    I.swipeUp(this.fields.confirmPassword, 500, 1000);
     I.scrollIntoView(this.buttons.createAccount);
-    //I.waitForInvisible(this.buttons.backRegist, 3);
+    // I.waitForInvisible(this.buttons.backRegist, 3);
     I.click(this.buttons.createAccount);
   },
 
