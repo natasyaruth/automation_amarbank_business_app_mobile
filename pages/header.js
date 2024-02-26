@@ -9,6 +9,7 @@ module.exports = {
         back: "~buttonBack",
         close: "~buttonCloseCallCenter",
         closeWebView: "~",
+        closePage: "~~buttonClose",
     },
     cards:{
         whatsApp: "~cardWhatsApp",
@@ -38,5 +39,9 @@ module.exports = {
     },
     closeWebView(){
         I.click(this.buttons.closeWebView);
+    },
+    closePage(){
+        I.waitForElement(this.buttons.closePage, 10);
+        I.click(this.buttons.closePage);
     }
 }

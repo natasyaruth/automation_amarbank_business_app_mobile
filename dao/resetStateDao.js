@@ -55,7 +55,7 @@ module.exports = {
         
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
-        I.amBearerAuthenticated(secret(bearerToken))
+        I.amBearerAuthenticated(secret(bearerToken));
 
         const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
@@ -63,6 +63,70 @@ module.exports = {
         return {
             status: responseProfile.status,
             productType: responseProfile.data.productType,
+        };
+
+    },
+
+    async getFullName(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            ktpName: responseProfile.data.profileKtp.ktpName,
+        };
+
+    },
+
+    async getPhoneNumber(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            phoneNumber: responseProfile.data.phoneNumber,
+        };
+
+    },
+
+    async getAccountNumber(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseBusinessDetails = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/business/details"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseBusinessDetails.status,
+            accountNumber: responseBusinessDetails.data.accountNumber,
+        };
+
+    },
+
+    async getCompanyName(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseBusinessDetails = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/business/details"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseBusinessDetails.status,
+            businessName: responseBusinessDetails.data.businessName,
         };
 
     },

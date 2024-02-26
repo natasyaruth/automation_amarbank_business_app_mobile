@@ -508,6 +508,9 @@ Given("I am a customer had been registering and verify phonenumber with followin
   registrationPage.clickCreateAccountButton();
   registrationPage.clickButtonConfirm();
 
+  registrationPage.clickCheckboxPDPMandatory();
+  registrationPage.clickButtonCreateAccountPdp("createAccountPDP");
+
   I.waitForText("Verifikasi Nomor HP", 10);
   otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
 

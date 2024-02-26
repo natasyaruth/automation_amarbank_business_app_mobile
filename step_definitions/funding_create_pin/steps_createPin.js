@@ -59,10 +59,6 @@ Then("I will see bottom sheet call our team", () => {
     createPINPage.closeBottomSheet();
 });
 
-When("I choose menu Transfer from main dashboard", () => {
-    I.click("Transfer");
-});
-
 When("I click button Create PIN", () => {
     createPINPage.clickPopUpCreatePIN();
 });
@@ -166,14 +162,6 @@ When("I click icon eye twice", () => {
     createPINPage.clickEyePassword();
     I.wait(1);
     createPINPage.clickEyePassword();
-});
-
-Then("I will see my password", () => {
-    I.see(globalVariable.login.password);
-});
-
-Then("I will not see my password", () => {
-    I.dontSee(globalVariable.login.password);
 });
 
 Then("I should direct to Dashboard", () => {

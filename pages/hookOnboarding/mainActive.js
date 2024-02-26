@@ -86,6 +86,10 @@ module.exports = {
     shouldSeeActivityLoan(){
         I.wait(2);
         I.seeElement(this.textView.textViewActivityLoan);
-    }
+    },
+    async getCompanyName(){
+        I.waitForElement(this.textView.companyName, 10);
+        return I.grabTextFrom(this.textView.companyName);
+    },
 
 }

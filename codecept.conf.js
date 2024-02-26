@@ -167,6 +167,7 @@ exports.config = {
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
+      "./features/funding_transfer/02_transfer_all_methode.feature",
       "./features/funding_account_opening/01_account_opening_onboarding_and_dashboard/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
@@ -235,6 +236,7 @@ exports.config = {
       "./step_definitions/funding_home/steps_main_active.js",
       "./step_definitions/funding_home/steps_profile.js",
       "./step_definitions/loanApplication/steps_documentManagement.js",
+      "./step_definitions/funding_home/steps_maker_and_approver.js",
     ],
   },
   plugins: {
