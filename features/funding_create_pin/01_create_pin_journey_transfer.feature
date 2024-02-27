@@ -1,4 +1,4 @@
-Feature: User create PIN
+Feature: User create PIN Journey Transfer
     In order to transfer
     As a customer
     I want to be able to create transaction pin

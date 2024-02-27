@@ -1,4 +1,4 @@
-Feature: User Should See Transaction Hi
+Feature: User Should See Hook OnBoarding
     In home
     As a customer
     I need to see history transaction

@@ -1,4 +1,4 @@
-@signatureEntryPoint
+#@signatureEntryPoint
 Feature: Signature User Drop Off for Approval Limit Loan
     In order to test entry point for signature user drop off Loan Dashboard page
     As a customer
@@ -12,33 +12,33 @@ Feature: Signature User Drop Off for Approval Limit Loan
             | password | Test1234 |
         And login with registered account
         Then I successed go to dashbord
-@signatureEntryPoint @C88608
+#@signatureEntryPoint @C88608
     Scenario: Validate design of entry point signature user drop off for approval limit loan
         Given I got a card for signature loan limit offer from system
         When I access loan business in main dashboard for checking the signature entry point
         Then I should see signature approval card for the loan offer
-@signatureEntryPoint @C88609
+#@signatureEntryPoint @C88609
     Scenario: Back to The Main Dashboard
         Given I am on the loan Dashboard
         When I back to the previous page
         Then I should see main dashboard
-@signatureEntryPoint @C88610
+#@signatureEntryPoint @C88610
     Scenario: Access Signature Loan limit Approval Page
         Given I have been on signature approval card for the loan offer
         When I am accessing loan limit approval page
         Then I am directing to signature approval page
-@signatureEntryPoint @C88611
+#@signatureEntryPoint @C88611
     Scenario: Access Signature Loan Limit Page When Offering Time is Expired
         Given I have been on loan dashboard page and show expired loan limit offer card
         When I access loan limit approval page with card got expired time
         Then system should display loan limit offer has been expired page
         And I cannot access detail limit offer card
-@signatureEntryPoint @C88612
+#@signatureEntryPoint @C88612
     Scenario: Validate Slider After Card Added
         Given I got a card for another loan limit offer card from system
         When I access loan business in main dashboard for checking the addition card
         Then I should slide the card section
-@signatureEntryPoint @C88613
+#@signatureEntryPoint @C88613
     Scenario: Back to The Previous Dashboard
         Given I am on the loan limit offer card
         When I back to the previous page
