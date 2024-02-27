@@ -140,7 +140,7 @@ Then("I successfully transferred without notes", () => {
 });
 
 Then("I successfully transferred", async () => {
-    I.waitForText("Transfer Berhasil", 10);
+    I.waitForText("Transfer Berhasil", 20);
 
     const actualSenderName = await transferPage.getSenderName();
     I.assertEqual(actualSenderName, globalVariable.dashboard.senderName);
@@ -164,9 +164,9 @@ Then("I successfully transferred", async () => {
     const actualAmount = numberString.join('');
     I.see("Rp " + actualAmount);
 
-    I.see(transferPage.buttons.copy);
-    I.see(transferPage.buttons.share);
-    I.see(transferPage.buttons.close);
+    I.waitForElement(transferPage.buttons.copy, 10);
+    I.waitForElement(transferPage.buttons.share, 10);
+    I.waitForElement(transferPage.buttons.closeDetailTransferPage, 10);
 });
 
 When("I close page detail transfer", () => {

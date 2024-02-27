@@ -5,13 +5,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate menu transaction approval with type individual
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | auto20bf |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | auto20bf |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
@@ -19,13 +18,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate menu transaction approval with type individual business
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | autoa645 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | autoa645 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         Then I will not see menu transaction approval
         And I will see menu download power of attorney
@@ -33,13 +31,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate menu transaction approval with type UD
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | autod015 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | autod015 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         Then I will not see menu transaction approval
         And I will see menu download power of attorney
@@ -47,34 +44,32 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate card maker after make transfer out with type business other than company and CV
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | ptpe5040 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | ptpe5040 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
         And I submit to next flow
         And I click transfer now
-        And I input PIN '111111'
+        And I input PIN '123456'
         And I successfully transferred
         And I close page detail transfer
         Then I don't see any card transaction in main dashboard
 
     Scenario: Validate page approval transaction empty state
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | ruth91fd |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | ruth91fd |
             | password | 1234Test |
         And I click login
-        And I click later
         And I don't see any card transaction in main dashboard
         When I click tab profile
         And I click menu transaction approval
@@ -86,15 +81,14 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate card maker after make transfer out with type business company or CV
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -110,26 +104,24 @@ Feature: Maker and Approver Transaction
 
     Scenario: Back to main dashboard from detail card maker
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card maker transaction
         And I close page detail transfer
         Then I will see card maker transaction
 
     Scenario: Back to page approve transaction from detail transaction waiting for approval
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I click waiting approval section
@@ -139,13 +131,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Back to menu profile from detail approval transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I will direct to page transaction approval
@@ -154,13 +145,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate card maker in approval transaction from main dashboard
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I see card maker transaction
         When I click see all approval transaction from main dashboard
         And I click waiting approval section
@@ -168,13 +158,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Back to main dashboard from detail approval transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I see card maker transaction
         When I click see all approval transaction from main dashboard
         And I click button back in the header page
@@ -182,13 +171,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Validate detail transaction need to approve
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -203,10 +191,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card approver transaction in main dashboard
         When I click card approver transaction
         Then I will direct to page waiting for approval from other director
@@ -214,13 +201,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Back to page approval transaction from detail transaction need to approve
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I click card approver transaction
@@ -229,26 +215,24 @@ Feature: Maker and Approver Transaction
 
     Scenario: Access call center in page detail transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         And I click card approver transaction
         And I click help center
         Then I will see helping center via whatsapp and email
 
     Scenario: Validate card approver after another director make transfer out
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -263,33 +247,31 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
         Then I will see card approver transaction in main dashboard
 
     Scenario: Back to main dashboard from detail card approver
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I close page detail transfer
         Then I will see card approver transaction
 
     Scenario: Input wrong password once when user want to approve transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input incorrect password for approver
@@ -298,13 +280,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Input wrong password more than 3 times when user want to approve transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input incorrect password for approver
@@ -323,13 +304,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Unmask password
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -338,13 +318,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Mask password
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -354,13 +333,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Close page input password entry point detail card from main dashboard
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I close page password for transaction approval
@@ -368,13 +346,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Close page input password entry point detail card from page transaction approval
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I click card approver transaction
@@ -385,13 +362,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Close page input password entry point card from page transaction approval
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I approve the transaction
@@ -401,13 +377,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Verifying wrong OTP code
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -416,13 +391,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Verifying expired OTP code
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -432,13 +406,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Verifying wrong OTP code five times
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -447,13 +420,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Resend OTP code
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -469,7 +441,6 @@ Feature: Maker and Approver Transaction
             | userID   | autocaea |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -478,13 +449,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Verifying wrong OTP code four times then input valid code
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | rota3159 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | rota3159 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -499,10 +469,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | rotacb82 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -512,13 +481,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Approve transaction from detail card maker
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -533,10 +501,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
@@ -548,13 +515,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Approve transaction from detail approval transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike2cf3 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -569,10 +535,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mich875d |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I approve the transaction
@@ -585,13 +550,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Reject transaction from detail card maker
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -606,10 +570,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click card approver transaction
         And I reject the transaction
         And I input password for approver
@@ -621,13 +584,12 @@ Feature: Maker and Approver Transaction
 
     Scenario: Reject transaction from detail approval transaction
         Given I am a registered customer with following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | mike1eb6 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -642,10 +604,9 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID   | autocaea |
+            | userID   | michb753 |
             | password | 1234Test |
         And I click login
-        And I click later
         When I click tab profile
         And I click menu transaction approval
         And I reject the transaction

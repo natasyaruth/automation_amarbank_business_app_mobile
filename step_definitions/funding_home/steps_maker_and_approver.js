@@ -21,7 +21,7 @@ Given("I see card maker transaction", async () => {
     globalVariable.dashboard.recipientName = await onboardingAccOpeningPage.getRecipientName();
     globalVariable.dashboard.recipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
     globalVariable.dashboard.date = await onboardingAccOpeningPage.getTransactionDate();
-    globalVariable.dashboard.amountTransaction = (await onboardingAccOpeningPage.getAmountTransaction()).replace(/[Rp.]/g, '');
+    globalVariable.dashboard.amountTransaction = (await onboardingAccOpeningPage.getAmountTransaction()).replace('/[Rp.]/g', '');
 });
 
 When("I click menu transaction approval", async () => {
@@ -102,7 +102,7 @@ When("I input OTP to approve transaction", async () => {
     I.see("Kode OTP telah dikirim ke nomor");
 
     const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace(/\s+/g, '').replace(/+/g, '');
+    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
 
     I.assertEqual("+" + actualPhoneNumber, phoneNumber);
 
@@ -134,7 +134,7 @@ When("I let the otp code for approve transaction expire", () => {
 
 When("I resend otp code to approve transaction", async ()=>{
     I.wait(3);
-    globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/\s+/g, '').replace(/-/g, '');
+    globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace('/\s+/g', '').replace('/-/g', '');
     globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
 
     I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
@@ -146,7 +146,7 @@ When("I resend otp code to approve transaction five times", async()=>{
     I.waitForText("Kode OTP", 10);
 
     I.wait(3);
-    globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/\s+/g, '').replace(/-/g, '');
+    globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace('/\s+/g', '').replace('/-/g', '');
 
     for (let x = 0; x < 5; x++) {
         I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
@@ -178,11 +178,11 @@ Then("I will not see menu document management", () => {
 
 Then("I will see menu download power of attorney", () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.see(profilePage.buttons.documentProcuration);
+    I.waitForElement(profilePage.buttons.documentProcuration, 10);
 });
 
 Then("I will see menu document management", () => {
-    I.see(profilePage.buttons.documentBusiness);
+    I.waitForElement(profilePage.buttons.documentBusiness, 10);
 });
 
 Then("I will see page transaction approval is empty", () => {
@@ -193,7 +193,7 @@ Then("I will see page transaction approval is empty", () => {
 Then("I don't see any card transaction in main dashboard", () => {
     I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.dontSee(approvalTransactionPage.buttons.openDetailTransaction);
+    I.dontSee(onboardingAccOpeningPage.buttons.openAllTransactionApproval);
     I.dontSee(onboardingAccOpeningPage.buttons.cardTransaction);
 });
 
@@ -216,7 +216,7 @@ Then("I will direct to page need approval from other director", async () => {
     I.seeElement(approvalTransactionPage.texts.senderBankName);
     globalVariable.transfer.senderBankName = await approvalTransactionPage.getSenderBankName();
 
-    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
+    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace('/\s+/g', '');
     const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
@@ -225,8 +225,8 @@ Then("I will direct to page need approval from other director", async () => {
 
     I.seeElement(approvalTransactionPage.texts.recipientBankName);
 
-    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
-    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace('/\s+/g', '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace('/\s+/g', '').replace('/-/g', ''));
 
     I.see("Transfer Keluar");
     const numberString = globalVariable.transfer.amount.toString().split('');
@@ -263,7 +263,7 @@ Then("I will direct to page waiting for approval from other director", async () 
     const actualSenderBankName = await approvalTransactionPage.getSenderBankName();
     I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
 
-    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
+    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace('/\s+/g', '');
     const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
@@ -273,8 +273,8 @@ Then("I will direct to page waiting for approval from other director", async () 
     const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
     I.assertEqual(actualReceiverBankName, globalVariable.dashboard.recipientBankName);
 
-    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
-    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace('/\s+/g', '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace('/\s+/g', '').replace('/-/g', ''));
 
     I.see("Transfer Keluar");
     const numberString = globalVariable.transfer.amount.toString().split('');
@@ -484,7 +484,7 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
-    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace(/\s+/g, '').replace(/+/g, '');
+    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
     await otpDao.resetLimitRequestOtp(globalVariable.registration.actualPhoneNumber);
 });
 
