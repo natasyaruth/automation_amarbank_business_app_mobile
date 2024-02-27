@@ -33,7 +33,7 @@ module.exports = {
     closeDetailTransferPage: "~buttonClose",    
     transfer: "~buttonTransfer",
     sectionBtnTrf: "~btnTransfer",
-    copy: "~buttonCopy",
+    copy: {xpath: "//android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[2]"},
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
     checkMethod: "~buttonChangeMethod",
