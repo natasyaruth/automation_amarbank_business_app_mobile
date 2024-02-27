@@ -1,4 +1,3 @@
-
 Feature: Select the Anchor AR
     As a customer lead
     I want to select the anchor

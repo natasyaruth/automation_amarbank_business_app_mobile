@@ -1,4 +1,4 @@
-Feature: Submit Loan Type AP Status is Approved
+Feature: PDC Delivery LoanType AP
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 

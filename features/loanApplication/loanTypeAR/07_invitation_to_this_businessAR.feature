@@ -1,4 +1,4 @@
-Feature: Submit Loan Type AR Status is Approved
+Feature: Invitation To This Business LoanType AR
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 

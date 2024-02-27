@@ -1,4 +1,4 @@
-Feature: Manual Check Dashboard
+Feature: Manual Check Manual Dashboard
   In order to execute testing manual in Dashboard
   As a QA
   I need to create test case before execute testing manual

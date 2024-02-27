@@ -1,4 +1,4 @@
-# @LoanApp
+
 Feature: Select the Anchor
     As a customer lead
     I want to select the anchor
@@ -22,13 +22,11 @@ Feature: Select the Anchor
         And user on loan schema "AP"
         And user click button select the schema
 
-    # @C83807 @LoanApp
     Scenario: user search anchor is not found
         Given user on the anchor page
         When user fill search anchor "testingaja"
         Then user validate anchor is not found
 
-    # @C83808 @LoanApp
     Scenario: User can select anchor lead on the list
         Given user on the anchor page
         And user fill search anchor "PT Tirta Investama"
@@ -37,7 +35,6 @@ Feature: Select the Anchor
         Then user select the date cooperating
         And user back to list anchor page
 
-#    @C83808 @LoanApp
     Scenario: User validate error field on form another anchor
         Given user on the anchor page
         When user click icon other anchor
@@ -50,13 +47,13 @@ Feature: Select the Anchor
         And user scroll to view eror pic number
         And user should see error "Nomor Hp / Telepon wajib diisi" in the below of field "PICNumberField"
 
-    ##Scenario: User success fill data other anchor
-        ##Given user on the anchor page
-        ##When user click icon other anchor
-        ##Given user on anchor cooperating page
-        ##And user fill a field "anchorName" with "UD Dagangan"
-        ##When user select industry type
-        ##And user select the date cooperating
-        ##And user fill a field "PICNameField" with "Budi"
-        ##And user fill a field "PICNumberField" with "08123456789"
-        ##Then user click button next
+    Scenario: User success fill data other anchor
+        Given user on the anchor page
+        When user click icon other anchor
+        Given user on anchor cooperating page
+        And user fill a field "anchorName" with "UD Dagangan"
+        When user select industry type
+        And user select the date cooperating
+        And user fill a field "PICNameField" with "Budi"
+        And user fill a field "PICNumberField" with "08123456789"
+        Then user click button next

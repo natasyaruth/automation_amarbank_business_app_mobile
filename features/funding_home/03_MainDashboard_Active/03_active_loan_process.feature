@@ -1,4 +1,4 @@
-Feature: User Should See Main Dashboard Active Card On Account Opening Individu
+Feature: User Should See Main Dashboard Active Card On Loan Process
     In main dashboard
     As a customer
     I need to see main dashbord status

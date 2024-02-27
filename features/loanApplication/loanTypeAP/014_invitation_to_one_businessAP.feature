@@ -1,5 +1,5 @@
 @LoanApp
-Feature: Submit Loan Type AP Status is Approved
+Feature: Invitation to one business Loan Type AP
     As a customer lead
     I want to submit loan and Approved by VP of bussiness
 
