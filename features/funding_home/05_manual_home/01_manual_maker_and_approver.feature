@@ -1,4 +1,4 @@
-Feature: Maker and Approver Transaction
+Feature: Maker and Approver Transaction Manual Cases
     In order to create transaction in business type company and CV
     As a director
     I want to approve or reject transaction from other director

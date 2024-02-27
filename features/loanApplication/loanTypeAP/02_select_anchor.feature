@@ -47,13 +47,13 @@ Feature: Select the Anchor
         And user scroll to view eror pic number
         And user should see error "Nomor Hp / Telepon wajib diisi" in the below of field "PICNumberField"
 
-    ##Scenario: User success fill data other anchor
-        ##Given user on the anchor page
-        ##When user click icon other anchor
-        ##Given user on anchor cooperating page
-        ##And user fill a field "anchorName" with "UD Dagangan"
-        ##When user select industry type
-        ##And user select the date cooperating
-        ##And user fill a field "PICNameField" with "Budi"
-        ##And user fill a field "PICNumberField" with "08123456789"
-        ##Then user click button next
+    Scenario: User success fill data other anchor
+        Given user on the anchor page
+        When user click icon other anchor
+        Given user on anchor cooperating page
+        And user fill a field "anchorName" with "UD Dagangan"
+        When user select industry type
+        And user select the date cooperating
+        And user fill a field "PICNameField" with "Budi"
+        And user fill a field "PICNumberField" with "08123456789"
+        Then user click button next
