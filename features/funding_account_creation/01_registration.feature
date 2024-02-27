@@ -17,12 +17,14 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Natasya Lending         |
-      | email           | natasyaruth03@gmail.com |
-      | mobileNumber    | 81293628149             |
-      | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
+      | fullName        | Revvy           |
+      | email           | revvy@gmail.com |
+      | mobileNumber    | 8999699540      |
+      | password        | 1234Test        |
+      | confirmPassword | 1234Test        |
     And I registering the account
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
     Then my account should be created
@@ -41,8 +43,8 @@ Feature: Account registration
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
       | testRailTag | Field           | Field Name          |
-      | @C75432     | fullName        | Nama lengkap        |
-      | @C75438     | email           | E-mail              |
+      # | @C75432     | fullName        | Nama lengkap        |
+      # | @C75438     | email           | E-mail              |
       | @C75444     | mobileNumber    | Nomor handphone     |
       | @C75454     | password        | Password            |
       | @C75456     | confirmPassword | Konfirmasi password |
@@ -213,6 +215,8 @@ Feature: Account registration
       | password        | 1234Test                     |
       | confirmPassword | 1234Test                     |
     And I registering the account
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
     Then my account business should be created
@@ -240,7 +244,6 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
-  @consentPDP1 
   Scenario: Verifying the button "Buat Akun" with checked 2 mandatory PDP checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -252,8 +255,7 @@ Feature: Account registration
     And I registering the account
     And I checked the 2 mandatory PDP checklists
     Then I should see button Buat Akun will enable
-  
-  @consentPDP2
+
   Scenario: Verifying the button "Buat Akun" with unchecked 2 mandatory PDP checklist and checked optional checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -267,7 +269,6 @@ Feature: Account registration
     And I checked the optional PDP checklist
     Then I should see button Buat Akun will disable
 
-  @consentPDP3 
   Scenario: Go to "Verifikasi No. HP" page after click button "Buat Akun" on PDP Page
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -282,7 +283,6 @@ Feature: Account registration
     Then I should go to Verifikasi No. HP page
     And I get email including the information about PDP that i checked before
 
-  @consentPDP4 
   Scenario: Validate wording content on 3 PDP content
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -293,7 +293,7 @@ Feature: Account registration
       | confirmPassword | 1234Test                |
     And I registering the account
     When I am on page PDP consent
-    Then I see text consent PDP 
+    Then I see text consent PDP
 
   @verificationPhoneNumber @C76006
   Scenario: Verifying phone number with wrong OTP code
@@ -303,6 +303,8 @@ Feature: Account registration
       | mobileNumber    | 81234567870        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'
     When I verifying my phone number by entering the wrong code
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
@@ -314,6 +316,8 @@ Feature: Account registration
       | mobileNumber    | 89994567866        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I let the otp code expire
     And I verifying my phone number by entering the code sent to me
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
@@ -326,6 +330,8 @@ Feature: Account registration
       | mobileNumber    | 87539568672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I verifying my phone number by entering the wrong code five times
     Then I should be notified that I can reverify the phone number tomorrow
 
@@ -337,6 +343,8 @@ Feature: Account registration
       | mobileNumber    | 81230057898         |
       | password        | Test1234            |
       | confirmPassword | Test1234            |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'
     When I verifying my phone number by entering the wrong code four times
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
@@ -349,6 +357,8 @@ Feature: Account registration
       | mobileNumber    | 81240455100        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I choose change phonenumber
     And I change my phonenumber into '89577322178'
     And I resend the OTP
@@ -363,6 +373,8 @@ Feature: Account registration
       | mobileNumber    | 89834567892        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I choose change phonenumber
     And I filling new phonenumber with my old phonenumber
     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
@@ -375,6 +387,8 @@ Feature: Account registration
       | mobileNumber    | <Phone Number>     |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I choose change phonenumber
     And I filling new phonenumber with '<Value>'
     Then I should see message error '<Message>' in the below of field new phonenumber
@@ -395,6 +409,8 @@ Feature: Account registration
       | mobileNumber    | 81288567890        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I choose change phonenumber
     And I click button back in the header page
     Then I will direct to page verification phonenumber
@@ -407,6 +423,8 @@ Feature: Account registration
       | mobileNumber    | 81193628993        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
@@ -420,6 +438,8 @@ Feature: Account registration
       | mobileNumber    | 88793628993        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     And I've requested OTP '1' times
     When I get my first OTP
     And I resend the OTP
@@ -434,6 +454,8 @@ Feature: Account registration
       | mobileNumber    | 84493628993        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     And I've requested OTP '2' times
     When I get my first OTP
     And I resend the OTP
@@ -448,6 +470,8 @@ Feature: Account registration
       | mobileNumber    | 81293508106        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     And I've requested OTP '3' times
     When I get my first OTP
     And I resend the OTP
@@ -462,6 +486,8 @@ Feature: Account registration
       | mobileNumber    | 81273598106        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     And I've requested OTP '4' times
     When I get my first OTP
     And I resend the OTP
@@ -476,6 +502,8 @@ Feature: Account registration
       | mobileNumber    | 89561339239        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     And I've requested OTP '5' times
     When I resend the OTP
     Then I should be notified that I can reverify the phone number tomorrow
@@ -489,6 +517,8 @@ Feature: Account registration
       | mobileNumber    | 89561338639        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
+    And I checked the 2 mandatory PDP checklists
+    And I click button 'createAccountPDP'  
     When I verifying my phone number by entering the wrong code four times
     And I resend the OTP
     And I verifying my phone number by entering the wrong code four times

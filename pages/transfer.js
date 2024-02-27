@@ -17,7 +17,10 @@ module.exports = {
     category: "~textCategory",
     subCategory: "~textSubCategory",
     note: "~textNote",
-    
+    senderName: {xpath: "//android.widget.ScrollView/android.widget.TextView[2]"},
+    senderAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[5]"},
+    receiverName: {xpath: "//android.widget.ScrollView/android.widget.TextView[6]"},
+    receiverAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[9]"},
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -30,13 +33,12 @@ module.exports = {
     closeDetailTransferPage: "~buttonClose",    
     transfer: "~buttonTransfer",
     sectionBtnTrf: "~btnTransfer",
-    copy: "~buttonCopy",
+    copy: {xpath: "//android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[2]"},
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
     checkMethod: "~buttonChangeMethod",
     backToDashboard: "~buttonBackToDashboard",
     callCenter:"~buttonCallCenter",
-
   },
   cards: {
     category: "~itemCategory",
@@ -135,6 +137,11 @@ module.exports = {
     I.click(this.buttons.methodTransfer);
   },
 
+  nextProcessTransfer(){
+    I.waitForElement(this.buttons.methodTransfer, 10);
+    I.click(this.buttons.methodTransfer);
+  },
+
   chooseRtol(){
     I.waitForElement(this.radioButtons.methodRtol, 10);
     I.click(this.radioButtons.methodRtol);
@@ -201,5 +208,21 @@ module.exports = {
 
   closePageAfterTransfer(){
     I.click(this.buttons.closeDetailTransferPage);
+  },
+
+  async getReceiverName(){
+    return I.grabTextFrom(this.texts.receiverName);
+  },
+
+  async getReceiverAccNnumber(){
+    return I.grabTextFrom(this.texts.receiverAccNumber);
+  },
+
+  async getSenderName(){
+    return I.grabTextFrom(this.texts.senderName);
+  },
+
+  async getSenderAccNnumber(){
+    return I.grabTextFrom(this.texts.senderAccNumber);
   },
 }

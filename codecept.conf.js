@@ -30,7 +30,7 @@ exports.config = {
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
+        //deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.staging", //staging
         // appPackage: "id.co.amarbank.smb.dev", //Dev
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
@@ -167,6 +167,7 @@ exports.config = {
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
+      "./features/funding_transfer/02_transfer_all_methode.feature",
       "./features/funding_account_opening/01_account_opening_onboarding_and_dashboard/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
@@ -189,6 +190,7 @@ exports.config = {
       "./features/funding_home/02_MainDashboard_DropOff/*.feature",
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
+      "./features/main_feature/account_opening_only/*.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
@@ -234,6 +236,7 @@ exports.config = {
       "./step_definitions/funding_home/steps_main_active.js",
       "./step_definitions/funding_home/steps_profile.js",
       "./step_definitions/loanApplication/steps_documentManagement.js",
+      "./step_definitions/funding_home/steps_maker_and_approver.js",
     ],
   },
   plugins: {

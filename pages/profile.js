@@ -15,6 +15,7 @@ module.exports = {
   },
 
   clickTabProfile() {
+    I.waitForElement(this.buttons.btnProfile, 20);
     I.click(this.buttons.btnProfile);
   },
 

@@ -36,7 +36,7 @@ When("I see carousel onboarding", () => {
 });
 
 When("I swipe to next carousel", () => {
-  I.performSwipe({ x: 500 }, { x: -100 });
+  I.performSwipe({ x: 1244, y: 1367}, { x: 246, y: 1367});
   I.wait(1);
 });
 
@@ -59,7 +59,7 @@ When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"] + "019";
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
 
@@ -507,6 +507,9 @@ Given("I am a customer had been registering and verify phonenumber with followin
   registrationPage.fillInAccountInformation(account);
   registrationPage.clickCreateAccountButton();
   registrationPage.clickButtonConfirm();
+
+  registrationPage.clickCheckboxPDPMandatory();
+  registrationPage.clickButtonCreateAccountPdp("createAccountPDP");
 
   I.waitForText("Verifikasi Nomor HP", 10);
   otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
