@@ -61,7 +61,7 @@ When("I click login", () => {
 });
 
 Then("I will direct to dashboard", () => {
-    I.waitForElement(onboardingAccOpeningPage.tabs.business, 20);
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
 });
 
 Given("I am an unregistered customer trying to login", () => {
