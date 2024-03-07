@@ -11,30 +11,28 @@ Feature: Apply Either Loan and select the loan
             | userID   | leed4a96|
             | password | Test12345 |
         And I click login
-        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        Then I will direct to dashboard
+        And I click menu tab testing
+        And I click button loan dashboard
         
 
- Scenario: User validate and select loan type AP Direct
-        Given I am on Main dashboard
-        When I click button Ajukan Pinjaman
-        And I Input Nominal Pinjaman '6500000000'
-        And I Input Tenor '90'
-        And I click on button Selanjutnya
-        And I am on loan type page        
+ Scenario: User validate and select loan type PO
+        Given I am on onboarding loan
+        When I click button ajukan pinjaman
+        And I Input Nominal Pinjaman '560000000'
+        And I Input Tenor '30'
+        And I select business location 'jabodetabek'     
+        And I click on button Selanjutnya              
         And I select loan type "AP"
-        And I click on Lihat Skema Pinjaman
-        And I am on loan schema "AP"
+        And I click button Lihat Skema Pinjaman
         And I click button select the schema
-        And I click icon other anchor
-        And I am on anchor cooperating page        
-        And I fill a field "anchorName" with "PT. Abcd"
-        When I select industry type
+        And I fill search anchor "PT.Emas"
+        And I select result of search        
         And I select the date cooperating
-        And I fill a field "PICNameField" with "Budi"
-        And I fill a field "PICNumberField" with "08123456789"
-        And I click button next
+        And I click button next       
         And I click button continue complete the data
-        And I choose legality business type 'company'
+         And I choose legality business type 'company'
         And I submit my legality type
         And I upload my eKTP photo
         And I will directing to page submit form KTP
@@ -53,7 +51,8 @@ Feature: Apply Either Loan and select the loan
       | village       | SENAYAN                   |
       | religion      | Katolik                   |
       | maritalStatus | Belum Kawin               |
-    And I submit my information identity details
+      And I submit my information identity details
+      And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
     And I upload my selfie photo
@@ -97,11 +96,8 @@ Feature: Apply Either Loan and select the loan
             | village  | PANCORAN                      |
     And I tick checkbox Rights & Policy 
     And I tick T&C about loan
+    And I tick Privy
     And I click button Send Apply Loan
     And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"    
     And I close the bottom sheet
 
-
-
-
-    

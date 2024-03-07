@@ -284,8 +284,9 @@ module.exports = {
       I.see('Nominal Invoice');
       I.see('Nominal Pinjaman');
       I.see('Pencairan 80%')
-      I.see('Jatuh Tempo');
+      I.see('Jatuh Tempo 90 hari');
       I.see('Total Bunga');
+      I.see('Bunga 15.6% per tahun');
       I.see('Bunga per bulan');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
@@ -464,7 +465,7 @@ module.exports = {
       I.see('Nominal Invoice');
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
-      I.see('Bunga per bulan');
+      I.see('Bunga per bulan 15.5 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
       I.see('Nominal yang Dikembalikan Setelah Pelunasan');
@@ -527,6 +528,7 @@ module.exports = {
       I.see('Nominal Pinjaman');
       I.see('Pencairan 100%')
       I.see('Total Bunga');
+      I.see('Bunga 15.6 %  per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');
@@ -550,6 +552,7 @@ module.exports = {
       I.see('Nominal Pinjaman');
       I.see('Pencairan 80%')
       I.see('Total Bunga');
+      I.see('Bunga 15.6 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');

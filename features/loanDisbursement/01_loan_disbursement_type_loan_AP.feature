@@ -61,7 +61,7 @@ Feature: Loan Disbursement for Loan Type AP
   Scenario: Validate page Loan Program Information for type AP
     Given I have been in anchor detail page to validate loan program information for type AP
     When I click buton "Gunakan Limit" in card type Loan AP
-    And I am n Anchor Detail Page
+    And I am on Anchor Detail Page
     And I click button "Info Selanjutnya" for type AP
     Then I should be see Program Loan Information for type AP
 
