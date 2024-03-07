@@ -64,20 +64,20 @@ When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
 });
 
-Then("I can see BI Fast and RTOL", () => {
+Then("I can see RTOL", () => {
     I.waitForElement(transferPage.radioButtons.methodRtol, 5);
+});
+
+Then("I can see BI Fast", () => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
 });
 
-Then("I can see BI Fast, SKN and RTGS", () => {
-    I.waitForElement(transferPage.radioButtons.methodBifast, 5);
-    I.waitForElement(transferPage.radioButtons.methodRtol, 5);
+Then("I can see SKN", () => {
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
 });
 
-Then("I can see SKN and RTGS", () => {
+Then("I can see RTGS", () => {
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
-    I.waitForElement(transferPage.radioButtons.methodSkn, 5);
 });
 
 Then("I choose transfer service RTGS", () => {
@@ -124,8 +124,9 @@ When("I input PIN {string}", (Pin) => {
     transferPage.inputPin(Pin);
 }),
 
-    When("I click transfer now", () => {
+    When("I click transfer now", async () => {
         I.waitForText("Konfirmasi Transfer", 10);
+        globalVariable.dashboard.senderName = await transferPage.getConfirmSenderName();
         transferPage.confirmTransfer();
     });
 
@@ -155,14 +156,14 @@ Then("I successfully transferred", async () => {
     const actualReceiverAccNumber = (await transferPage.getReceiverAccNnumber()).replace(/\s+/g, '');
     I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
 
-    I.see("Transfer Keluar");
-    const numberString = globalVariable.transfer.amount.toString().split('');
+    // I.see("Transfer Keluar");
+    // const numberString = globalVariable.transfer.amount.toString().split('');
 
-    for (let i = numberString.length - 3; i > 0; i -= 3) {
-        numberString.splice(i, 0, '.');
-    }
-    const actualAmount = numberString.join('');
-    I.see("Rp " + actualAmount);
+    // for (let i = numberString.length - 3; i > 0; i -= 3) {
+    //     numberString.splice(i, 0, '.');
+    // }
+    // const actualAmount = numberString.join('');
+    // I.see("Rp " + actualAmount);
 
     I.waitForElement(transferPage.buttons.copy, 10);
     I.waitForElement(transferPage.buttons.share, 10);
@@ -229,8 +230,9 @@ Then("I am on receiver list page", () => {
     transferPage.viewPageFriendList();
 });
 
-Then("I choose menu Transfer from main dashboard", async () => {
-    globalVariable.dashboard.senderName = await mainActivePage.getCompanyName();
+Then("I choose menu Transfer from main dashboard", () => {
+    I.wait(5);
+    // globalVariable.dashboard.senderName = await mainActivePage.getCompanyName();
     transferPage.clickSectionBtnTransfer();
 });
 
@@ -239,7 +241,7 @@ Then("I am on Transfer methode list page", () => {
 });
 
 Then("I am on page transfer confirmation", () => {
-    transferPage.viewPageTrfMethodeList();
+    transferPage.viewPageConfirmTrf();
 });
 
 

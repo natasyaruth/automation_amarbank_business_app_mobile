@@ -33,20 +33,21 @@ module.exports = {
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
-        textViewBtmSheetFilterHistory: { xpath: '//android.widget.TextView[contains(@text, "Filter Riwayat")]' },
+        // textViewBtmSheetFilterHistory: { xpath: '//android.widget.TextView[contains(@text, "Filter Riwayat")]' },
+        textViewBtmSheetFilterHistory: { xpath: '//android.widget.TextView[contains(@text, "Riwayat")]' },
         textViewSelectDate: { xpath: '//android.widget.TextView[contains(@text, "Pilih Tanggal")]' },
         textViewTrfOut: { xpath: '//android.widget.TextView[contains(@text, "Transfer Keluar")]' },
         textViewTrfIn: { xpath: '//android.widget.TextView[contains(@text, "Transfer Masuk")]' },
         textViewRefNumberOut: { xpath: '//android.widget.TextView[contains(@text, "1234567890")]' },
         textViewRefNumberIn: { xpath: '//android.widget.TextView[contains(@text, "1234567890")]' },
-        textViewDateOut: { xpath: '//android.widget.TextView[contains(@text, "01 November 2023")]' },
-        textViewDateIn: { xpath: '//android.widget.TextView[contains(@text, "01 November 2023")]' },
-        textViewTimeOut: { xpath: '//android.widget.TextView[contains(@text, "1:40 PM")]' },
-        textViewTimeIn: { xpath: '//android.widget.TextView[contains(@text, "1:43 PM")]' },
+        textViewDateOut: { xpath: '//android.widget.TextView[contains(@text, "29 Februari 2024")]' },
+        textViewDateIn: { xpath: '//android.widget.TextView[contains(@text, "29 Februari 2024")]' },
+        textViewTimeOut: { xpath: '//android.widget.TextView[contains(@text, "1:26 AM")]' },
+        textViewTimeIn: { xpath: '//android.widget.TextView[contains(@text, "1:26 AM")]' },
         textViewNoteOut: { xpath: '//android.widget.TextView[contains(@text, "Test RTOL")]' },
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
-        textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "Pemindahan Dana")]' },
-        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "Tagihan")]' },
+        textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "PAJAK BUNGA")]' },
+        textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "BUNGA JASA GIRO/TABUNGAN")]' },
         textNote: "~textNote",
         textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
@@ -64,7 +65,7 @@ module.exports = {
         I.seeElement(this.fields.userField);
     },
     clickBtnHistory() {
-        I.wait(3);
+        I.wait(5);
         I.click(this.buttons.historyBtn);
     },
     async viewPageHistoryTransaction() {

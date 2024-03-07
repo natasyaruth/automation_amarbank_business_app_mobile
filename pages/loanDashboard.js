@@ -115,7 +115,8 @@ module.exports = {
   validateApprovalLimitOfferStillRunning() {
     I.see('Pengajuan limit telah disetujui sebesar');
     I.see('Detail Biaya Pinjaman');
-    I.see('Bunga per Bulan 1.3%');
+    I.see('Tenor 180 hari')
+    I.see('Bunga per Tahun 1.3%');
     I.see('Biaya Administrasi 3%', 'Dikurangkan saat pencairan limit pinjaman');
     I.see('Denda Jika Terlambat Bayar 0.1%', 'Dihitung berdasarkan jumlah hari keterlambatan');
     I.see('Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank.')

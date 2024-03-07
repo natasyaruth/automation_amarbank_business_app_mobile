@@ -185,7 +185,8 @@ module.exports = {
   validateProgramLoanInformation() {
     I.wait(1);
     I.waitForText('Informasi Program Pinjaman');
-    I.see();
+    I.see('Tenor 30 hari');
+    I.see('Bunga per Tahun 15.6 % dikurangkan saat pembayaran invoice');
 
   },
 
@@ -283,8 +284,9 @@ module.exports = {
       I.see('Nominal Invoice');
       I.see('Nominal Pinjaman');
       I.see('Pencairan 80%')
-      I.see('Jatuh Tempo');
+      I.see('Jatuh Tempo 90 hari');
       I.see('Total Bunga');
+      I.see('Bunga 15.6% per tahun');
       I.see('Bunga per bulan');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
@@ -362,10 +364,13 @@ module.exports = {
     I.click(this.buttons.buttonUseLimit);
   },
 
+    
   validateAnchorDetail() {
     I.waitForElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonDetailLimit);
+    I.see('Limit Tersedia');
+    I.see('Tenor 30 Hari');
   },
 
   goToUploadDocument() {
@@ -460,7 +465,7 @@ module.exports = {
       I.see('Nominal Invoice');
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
-      I.see('Bunga per bulan');
+      I.see('Bunga per bulan 15.5 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
       I.see('Nominal yang Dikembalikan Setelah Pelunasan');
@@ -523,6 +528,7 @@ module.exports = {
       I.see('Nominal Pinjaman');
       I.see('Pencairan 100%')
       I.see('Total Bunga');
+      I.see('Bunga 15.6 %  per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');
@@ -546,6 +552,7 @@ module.exports = {
       I.see('Nominal Pinjaman');
       I.see('Pencairan 80%')
       I.see('Total Bunga');
+      I.see('Bunga 15.6 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');

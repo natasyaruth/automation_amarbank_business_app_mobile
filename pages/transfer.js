@@ -21,6 +21,7 @@ module.exports = {
     senderAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[5]"},
     receiverName: {xpath: "//android.widget.ScrollView/android.widget.TextView[6]"},
     receiverAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[9]"},
+    variableSenderConfirmationPage: {xpath: "//android.widget.TextView[2]"}
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -202,7 +203,7 @@ module.exports = {
   },
 
   clickSectionBtnTransfer(){
-    I.wait(2);
+    I.wait(5);
     I.click(this.buttons.sectionBtnTrf);
   },
 
@@ -224,5 +225,8 @@ module.exports = {
 
   async getSenderAccNnumber(){
     return I.grabTextFrom(this.texts.senderAccNumber);
+  },
+  async getConfirmSenderName(){
+    return I.grabTextFrom(this.texts.variableSenderConfirmationPage);
   },
 }

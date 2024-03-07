@@ -113,6 +113,11 @@ When('I click button "Gunakan Limit" in card type Loan AP', () => {
  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
+When('I am n Anchor Detail Page', () =>{
+loanDisbursementPage.validateAnchorDetail();
+});
+    
+
 When('system check that anchor already upload invoice', () => {
  I.wait(3);
 });
