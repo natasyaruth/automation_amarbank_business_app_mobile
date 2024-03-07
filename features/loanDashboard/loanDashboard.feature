@@ -23,6 +23,7 @@ In order to test Loan Dashboard page
         Scenario: Access Loan limit Approval Page
                 Given I have been on loan dashboard page and show a loan limit offer card
                 When I am accessing loan limit approval page
+                And I see loan offering page
                 And I approve loan limit
                 Then system should display this feature under development
 #@loanDash #@C88627

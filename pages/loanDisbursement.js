@@ -185,7 +185,8 @@ module.exports = {
   validateProgramLoanInformation() {
     I.wait(1);
     I.waitForText('Informasi Program Pinjaman');
-    I.see();
+    I.see('Tenor 30 hari');
+    I.see('Bunga per Tahun 15.6 % dikurangkan saat pembayaran invoice');
 
   },
 
@@ -362,10 +363,13 @@ module.exports = {
     I.click(this.buttons.buttonUseLimit);
   },
 
+    
   validateAnchorDetail() {
     I.waitForElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonDetailLimit);
+    I.see('Limit Tersedia');
+    I.see('Tenor 30 Hari');
   },
 
   goToUploadDocument() {
