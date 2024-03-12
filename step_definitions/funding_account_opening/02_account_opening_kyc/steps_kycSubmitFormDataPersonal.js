@@ -11,9 +11,9 @@ Given("I am a customer who has uploaded my selfie photo", async () => {
     await
         uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
- });
+});
 
-Given("I am a customer want to fill my personal details", async () => {});
+Given("I am a customer want to fill my personal details", async () => { });
 
 When("I fill my personal data details as followings:",
     async (table) => {
@@ -31,6 +31,8 @@ When("I fill form Data Personal except field {string}", async (fieldName) => {
     const account = {
         lastEducation: "SMA",
         motherName: "NADYA LAMUSU",
+        referenceName: "IBU SAYA",
+        referencePhoneNumber: "812343455677",
         purposeAccount: "Pinjaman",
     };
 
@@ -48,10 +50,12 @@ When("I submit my personal data details", () => {
 
 When("I submit my personal data details individual and upload my npwp as followings:", async (table) => {
     const personalData = table.parse().rowsHash();
-    
+
     await uploadDao.submitDataPersonalIndividual(
         personalData["lastEducation"],
         personalData["motherName"],
+        personalData["referenceName"],
+        personalData["referencePhoneNumber"],
         personalData["purposeAccount"],
         globalVariable.login.userID,
         globalVariable.login.password
@@ -62,10 +66,12 @@ When("I submit my personal data details individual and upload my npwp as followi
 
 When("I submit my personal data details business and upload my npwp as followings:", async (table) => {
     const personalData = table.parse().rowsHash();
-    
+
     await uploadDao.submitDataPersonalBusiness(
         personalData["lastEducation"],
         personalData["motherName"],
+        personalData["referenceName"],
+        personalData["referencePhoneNumber"],
         globalVariable.login.userID,
         globalVariable.login.password
     );
@@ -73,7 +79,7 @@ When("I submit my personal data details business and upload my npwp as following
     resetStateDao.reloadPageAfterResetState();
 });
 
-Then("I will notify my personal details has successfully submitted",()=>{
+Then("I will notify my personal details has successfully submitted", () => {
     I.waitForText("Data diri berhasil disimpan", 10);
 });
 
@@ -100,4 +106,8 @@ Then("I should see message error {string} in the below of field {string} in form
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will see phonenumber {string} in field reference number", (phonenumber) => {
+    I.waitForText(phonenumber, 5);
 });
