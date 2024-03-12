@@ -16,7 +16,7 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
-    @ms1
+    @nurultest
     Scenario: user choose type loan AP
         Given I am on onboarding loan
         And I click button ajukan pinjaman       
