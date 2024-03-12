@@ -3,12 +3,14 @@ const { I } = inject();
 module.exports = {
   fields: {
     userID: "~textFieldUserID",
+    email: "~textFieldEmail",
   },
   buttons: {
     resetPassword: "~buttonResetPassword",
     backPopUpConfirm: "~buttonBackUserID",
     checkEmail: "~buttonCheckEmail",
     confirm: "~buttonConfirm",
+    tryAgain: "~btnTryAgain",
   },
   link: {
     resendEmail: "~linkResendEmail",
@@ -19,11 +21,18 @@ module.exports = {
     email: "~textEmail"
   },
   messageErrorFields: {
-    userID: "~textMsgErrorUserID",
+    userID: "~textMsgErrorUserId",
+    email: "~textMsgErrorEmail"
   },
 
   fillUserID(txtValue) {
+    I.waitForElement(this.fields.userID, 10);
     I.setText(this.fields.userID, txtValue);
+  },
+
+  fillEmail(txtValue) {
+    I.waitForElement(this.fields.email, 10);
+    I.setText(this.fields.email, txtValue);
   },
 
   isOpen() {
@@ -46,9 +55,9 @@ module.exports = {
     I.click(this.buttons.backPopUpConfirm);
   },
   
-  async getMessageError() {
-    I.waitForElement(this.messageErrorFields.userID, 10);
-    return await I.grabTextFrom(this.messageErrorFields.userID);
+  async getMessageError(field) {
+    I.waitForElement(this.messageErrorFields[field], 10);
+    return await I.grabTextFrom(this.messageErrorFields[field]);
   },
 
   async getUserID() {
@@ -59,5 +68,15 @@ module.exports = {
   async getCompanyName() {
     I.waitForElement(this.text.companyName, 10);
     return await I.grabTextFrom(this.text.companyName);
+  },
+
+  clickTryAgain(){
+    I.waitForText("Coba Lagi", 10);
+    I.click(this.buttons.tryAgain);
+  },
+
+  clickUnderstand(){
+    I.waitForText("Mengerti", 10);
+    I.click(this.buttons.tryAgain);
   },
 }
