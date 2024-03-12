@@ -193,6 +193,7 @@ exports.config = {
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
       "./features/main_feature/account_opening_only/*.feature",
+      "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature"
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
