@@ -15,9 +15,8 @@ Feature: Apply Either Loan and select the loan type
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
-    
-    @nurultest
-    Scenario: user choose type loan AP
+
+    Scenario: user choose type loan AR Anchor
         Given I am on onboarding loan
         And I click button ajukan pinjaman       
         And I Input Nominal Pinjaman '2400000000'
@@ -27,7 +26,7 @@ Feature: Apply Either Loan and select the loan type
         And I select loan type "AP"
         And I click on Lihat Skema Pinjaman        
         And I click button select the schema
-        And I fill search anchor "PT Tirta Investama"
+        And I fill search anchor "CV. Karunia"
         And I select result of search        
         And I select the date cooperating  
         And I will see checkbox Rights & Policy, T&C about loan and Privy

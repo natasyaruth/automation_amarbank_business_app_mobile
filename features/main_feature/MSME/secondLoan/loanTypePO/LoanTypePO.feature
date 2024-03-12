@@ -15,26 +15,27 @@ Feature: Apply Either Loan and select the loan type
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
-    
-    @nurultest
-    Scenario: user choose type loan AP
+
+
+
+Scenario: User validate and select loan type PO
         Given I am on onboarding loan
-        And I click button ajukan pinjaman       
-        And I Input Nominal Pinjaman '2400000000'
-        And I Input Tenor '30'
-        And I select business location jabodetabek    
-        And I click on button Selanjutnya              
-        And I select loan type "AP"
-        And I click on Lihat Skema Pinjaman        
+        When I click button ajukan pinjaman
+        And I Input Nominal Pinjaman '8000000000'
+        And I Input Tenor '90'
+        And I select business location jabodetabek   
+        And I click button Selanjutnya              
+        And I select loan type "PO"
+        And I click button Lihat Skema Pinjaman
         And I click button select the schema
-        And I fill search anchor "PT Tirta Investama"
-        And I select result of search        
-        And I select the date cooperating  
+        And user fill a field "bowherName" with "UD Combo Box Fire"
+        And user select industry type
+        And user select the date cooperating
         And I will see checkbox Rights & Policy, T&C about loan and Privy
         And I click button Kirim Pengajuan Pinjaman
         And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
         And I should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
-        And user close the bottom sheet
+        And I close the bottom sheet
         And I am on user on monitoring loan process page
         And I click button Upload Dokumen     
         And I upload document "npwpOfComp"

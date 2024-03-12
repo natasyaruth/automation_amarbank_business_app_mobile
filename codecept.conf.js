@@ -88,6 +88,8 @@ exports.config = {
 
     onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
 
+    steps_SecondloanMSMEPage: "./pages/steps_SecondloanMSMEPage.js",
+
     uploadKtpPage: "./pages/uploadKtp.js",
 
     formKtpPage: "./pages/formKtp.js",
