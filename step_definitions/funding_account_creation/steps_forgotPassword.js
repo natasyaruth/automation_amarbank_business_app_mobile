@@ -22,12 +22,13 @@ Given("I am a customer has User ID {string} and company name {string}", (userID,
   globalVar.companyName = companyName;
 });
 
-Given("I am a customer with User ID {string} has already requested a password reset", (userID) => {
+Given("I am a customer with User ID {string} and email {string} has already requested a password reset", (userID, email) => {
   welcomePage.clickButtonLogin();
   loginPage.goToForgotPasswordPage();
   forgotPasswordPage.isOpen();
 
   forgotPasswordPage.fillUserID(userID);
+  forgotPasswordPage.fillEmail(email);
   forgotPasswordPage.clickButtonResetPassword();
 
   I.waitForText("Segera Cek E-mail", 10);
@@ -45,6 +46,10 @@ Given("I am a customer with User ID {string} and obtained from registration by b
 });
 
 Given("who has not received the reset password email", () => { });
+
+When("I input email for reset password with value {string}", (email) => {
+  forgotPasswordPage.fillEmail(email);
+});
 
 When("I am filling field User ID with {string}", (actualValue) => {
   forgotPasswordPage.fillUserID(actualValue);
@@ -78,8 +83,12 @@ When("I click button back from pop up reset password", async () => {
   forgotPasswordPage.backtoPageResetPassword()
 });
 
-Then("I should be notified {string}", async (expectedMsgError) => {
-  let actualMsgError = await forgotPasswordPage.getMessageError();
+When("I click try again to reset password", () => {
+  forgotPasswordPage.clickTryAgain();
+});
+
+Then("I should be notified {string} in the below of field {string}", async (expectedMsgError, field) => {
+  let actualMsgError = await forgotPasswordPage.getMessageError(field);
   I.assertEqual(actualMsgError, expectedMsgError);
 });
 
@@ -99,4 +108,23 @@ Then("I should be notified that email reset password has been successfully sent"
 
 Then("I should back to page reset password with field User ID still filled", () => {
   I.waitForText(globalVar.userID, 10);
+});
+
+Then("I will see pop up information reset password with text {string}", (wordingMsg) => {
+  I.waitForText("Data Yang Dimasukkan Salah", 10);
+  I.see(wordingMsg);
+});
+
+Then("I will see information about the reset password can be done in the next 10 minutes", ()=>{
+  const currentDate = new Date();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
+  const addMinutes = minutes + 10;
+
+  const currentTime = hours.toString().padStart(2, '0') + ":" + addMinutes.toString().padStart(2, '0');
+
+  I.waitForText("Mohon menunggu", 10);
+  I.see("Silahkan coba lagi pada pukul "+currentTime+" untuk melakukan Reset Password");
+  
+  forgotPasswordPage.clickUnderstand();
 });
