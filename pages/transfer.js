@@ -21,7 +21,11 @@ module.exports = {
     senderAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[5]"},
     receiverName: {xpath: "//android.widget.ScrollView/android.widget.TextView[6]"},
     receiverAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[9]"},
-    variableSenderConfirmationPage: {xpath: "//android.widget.TextView[2]"}
+    variableSenderConfirmationPage: {xpath: "//android.widget.TextView[2]"},
+    adminFeeRTOL: "~feeRTOL",
+    adminFeeBIFAST: "~feeBifast",
+    adminFeeRTGS: "~feeRTGS",
+    adminFeeSKN: "~feeSKN",
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -69,47 +73,57 @@ module.exports = {
     if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
       throw new Error('Field ${fieldName} is not found');
     }
-    I.seeElement(this.messageErrorFields[fieldName]);
+    I.waitForElement(this.messageErrorFields[fieldName], 10);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
   async getMessageErrorField(fieldName){
-    return await I.grabTextFrom(fieldName);
+    I.waitForElement(this.messageErrorFields[fieldName], 10)
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
   async getBalance(){
+    I.waitForElement(this.texts.balance, 10)
     return await I.grabTextFrom(this.texts.balance);
   },
 
   async getMessageErrorAmount(){
-    return await I.grabTextFrom(this.messageErrors.amount);
+    I.waitForElement(this.messageErrorFields.amount, 10)
+    return await I.grabTextFrom(this.messageErrorFields.amount);
   },
 
   async getMessageErrorPIN(){
-    return await I.grabTextFrom(this.messageErrors.pin);
+    I.waitForElement(this.messageErrorFields.pin, 10)
+    return await I.grabTextFrom(this.messageErrorFields.pin);
   },
 
   async getMessageErrorNotes(){
-    return await I.grabTextFrom(this.messageErrors.notes);
+    I.waitForElement(this.messageErrorFields.notes, 10);
+    return await I.grabTextFrom(this.messageErrorFields.notes);
   },
 
   async getAmountConfirmation(){
+    I.waitForElement(this.texts.amount, 10);
     return await I.grabTextFrom(this.texts.amount);
   },
 
   async getServiceMethod(){
+    I.waitForElement(this.texts.service, 10);
     return await I.grabTextFrom(this.texts.service);
   },
 
   async getTotal(){
+    I.waitForElement(this.texts.total, 10);
     return await I.grabTextFrom(this.texts.total);
   },
 
   async getCategory(){
+    I.waitForElement(this.texts.category, 10);
     return await I.grabTextFrom(this.texts.category);
   },
 
   async getNotes(){
+    I.waitForElement(this.texts.note, 10);
     return await I.grabTextFrom(this.texts.note);
   },
 
@@ -226,7 +240,28 @@ module.exports = {
   async getSenderAccNnumber(){
     return I.grabTextFrom(this.texts.senderAccNumber);
   },
+
   async getConfirmSenderName(){
     return I.grabTextFrom(this.texts.variableSenderConfirmationPage);
   },
+
+  async getAdminFeeRTOL(){
+    I.waitForElement(this.texts.adminFeeRTOL, 10);
+    return I.grabTextFrom(this.texts.adminFeeRTOL);
+  },
+
+  async getAdminFeeBIFAST(){
+    I.waitForElement(this.texts.adminFeeBIFAST, 10);
+    return I.grabTextFrom(this.texts.adminFeeBIFAST);
+  },
+
+  async getAdminFeeRTGS(){
+    I.waitForElement(this.texts.adminFeeRTGS, 10);
+    return I.grabTextFrom(this.texts.adminFeeRTGS);
+  },
+
+  async getAdminFeeSKN(){
+    I.waitForElement(this.texts.adminFeeSKN, 10);
+    return I.grabTextFrom(this.texts.adminFeeSKN);
+  }
 }

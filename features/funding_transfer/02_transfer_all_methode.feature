@@ -3,24 +3,19 @@ Feature: User transfer with all transfer methode
     As a customer
     I want to make transfer all methode
 
-
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            # | userID   | pang6f17 |
-            # | password | Test1234 |
-            | userID   | niza9813 |
-            | password | Test1234 |
+            | userID   | natace13 |
+            | password | 1234Test |
         When I filling in form login with the following details:
-            # | userID   | pang6f17 |
-            # | password | Test1234 |
-            | userID   | niza9813 |
-            | password | Test1234 |
+            | userID   | natace13 |
+            | password | 1234Test |
         And I click login
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         And I am on receiver list page
 
-    # @TR2710
+    @C96929
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -35,7 +30,7 @@ Feature: User transfer with all transfer methode
         And I click transfer
         And I am on page transfer confirmation
         
-    # @TR2711
+    @C96930
     Scenario: User transfer with RTOL and input wrong PIN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -50,7 +45,7 @@ Feature: User transfer with all transfer methode
         And I input wrong PIN
         Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
-    # @TR2712
+    @C96931
     Scenario: User Success Transfer RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -67,7 +62,7 @@ Feature: User transfer with all transfer methode
         And I input PIN '123456'
         Then I successfully transferred
 
-    # @TR2713
+    @C96932
     Scenario: User Success Transfer BiFast
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -84,7 +79,7 @@ Feature: User transfer with all transfer methode
         And I input PIN '123456'
         Then I successfully transferred
 
-    # @TR2714
+    @C96933
     Scenario: User Success Transfer SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -101,7 +96,7 @@ Feature: User transfer with all transfer methode
         And I input PIN '123456'
         Then I successfully transferred
 
-    # @TR2715
+    @C96934
     Scenario: User Success Transfer RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
