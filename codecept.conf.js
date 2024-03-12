@@ -88,8 +88,6 @@ exports.config = {
 
     onboardingAccOpeningPage: "./pages/onboardingAccOpening.js",
 
-    steps_SecondloanMSMEPage: "./pages/steps_SecondloanMSMEPage.js",
-
     uploadKtpPage: "./pages/uploadKtp.js",
 
     formKtpPage: "./pages/formKtp.js",
@@ -239,6 +237,12 @@ exports.config = {
       "./step_definitions/funding_home/steps_profile.js",
       "./step_definitions/loanApplication/steps_documentManagement.js",
       "./step_definitions/funding_home/steps_maker_and_approver.js",
+      "./step_definitions/loanFlagging/steps_SecondloanMSME.js",
+      "./step_definitions/loanFlagging/steps_firstloan.js",
+      "./step_definitions/loanFlagging/steps_loanFlagging.js",
+      "./step_definitions/loanFlagging/steps_monitoring.js",
+      "./step_definitions/loanFlagging/steps_selectAnchor.js",
+      "./step_definitions/loanFlagging/steps_submitLoan.js"
     ],
   },
   plugins: {
