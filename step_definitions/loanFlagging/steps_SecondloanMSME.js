@@ -15,7 +15,8 @@ const{
     formKtpPage,
     formPersonalDataPage,
     formDomicileAddressPage,
-    
+    loginPage,
+    loanDashboardPage,
 
 } = inject();
 
@@ -70,6 +71,7 @@ When(/I fill a field \"([^\"]*)\" with \"([^\"]*)\"/,(fieldName, actualValue)=>{
 When('I select industry type', () => {
     selectAnchorPage.selectIndustryType();
 });
+
 
 When('I select the date cooperating', () => {
     selectAnchorPage.selectDateCooperating();
