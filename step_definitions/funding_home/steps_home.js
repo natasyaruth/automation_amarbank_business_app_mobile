@@ -232,3 +232,30 @@ Then("my total amount detail increased", async () => {
 
     I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
 });
+
+Then ("I will see detail blocking amount coming from loan fee", ()=>{
+    I.waitForText("Saldo Tertahan", 10);
+    I.waitForText("Total Biaya Bunga pinjaman, jika Anda mempunyai pinjaman", 10);
+    I.waitForText("Saldo tidak dapat digunakan untuk transaksi", 10);
+});
+
+Then ("I will see information {string} in the below of field blocking amount", async (information)=>{
+    const actualInformation = await amountDetail.getinformationBlockingAmount();
+    I.assertEqual(actualInformation, information);
+});
+
+Then("I will see detail blocking amount coming from loan fee and minimum amount", ()=>{
+    I.waitForText("Saldo Tertahan", 10);
+    I.see("Saldo yang didebit dari:");
+    I.see("Saldo Minimum sebesar Rp500.000 (untuk individu)");
+    I.see("Saldo Minimum sebesar Rp1.000.000 (untuk PT Perusahaan, CV, PT Perorangan, UD)");
+    I.see("Total Biaya Bunga pinjaman, jika Anda mempunyai pinjaman");
+    I.see("Saldo tidak dapat digunakan untuk transaksi");
+});
+
+Then("I will not see information {string} in the below of field blocking amount", (information)=>{
+    I.waitForText("Saldo Rekening Giro", 10);
+
+    I.dontSeeElement(amountDetail.text.informationBlockingAmount);
+    I.dontSee(information);
+});
