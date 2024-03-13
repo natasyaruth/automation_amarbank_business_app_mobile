@@ -4,7 +4,9 @@ module.exports = {
 
   fields: {
     motherName: "~texfieldMotherName",
-    npwp: "~texfieldNpwp"
+    npwp: "~texfieldNpwp",
+    referencePhoneNumber: "~",
+    referenceName: "~",
   },
   dropDowns: {
     lastEducation: "~textfieldLastEdu",

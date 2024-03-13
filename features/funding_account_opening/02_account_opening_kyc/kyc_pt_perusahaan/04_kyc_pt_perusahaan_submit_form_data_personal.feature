@@ -24,7 +24,9 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Personal
     Scenario: Submit form Data Personal successfully business type PT Perusahaan
         Given I am a customer want to fill my personal details
         When I submit my personal data details business and upload my npwp as followings:
-            | lastEducation  | SMA           |
-            | motherName     | NADYA LAMUSU  |
+            | lastEducation        | SMA          |
+            | motherName           | NADYA LAMUSU |
+            | referenceName        | IBU SAYA     |
+            | referencePhoneNumber | 812343455677 |
         Then I will notify my personal details has successfully submitted
         And I will direct to page domicile address
