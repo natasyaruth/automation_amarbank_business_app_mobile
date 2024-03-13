@@ -78,12 +78,12 @@ selectLoanTypeList(selectLoanType){
     I.click(this.button.btnNext);
  },
 
-  fillNominalPinjaman(){
-    I.setText(this.fields.inputNominal);  
+fillNominalPinjaman(nominal){
+    I.setText(this.fields.inputNominal, nominal);  
 },
 
-fillTenor(){
-    I.setText(this.fields.inputTenor);
+fillTenor(tenor){
+    I.setText(this.fields.inputTenor, tenor);
 },
 
 async getMessageEmptyLoan() {

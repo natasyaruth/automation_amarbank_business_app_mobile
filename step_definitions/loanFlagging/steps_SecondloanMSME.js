@@ -3,7 +3,7 @@ const loanFlagging = require("../../pages/loanFlagging/loanFlagging");
 
 const{
     I,
-    globalVariable,    
+    globalVariable,
     headerPage,
     onboardingAccOpeningPage,
     loanFlaggingPage,
@@ -24,6 +24,7 @@ const{
 // Feature for loan AP Direct AR Direct
 
 Given('I click button loan dashboard', () => {
+    loanDashboardPage.goToLoanDashboard();
 });
 
 Then(/I click menu tab testing/, () => {
@@ -34,16 +35,16 @@ Given('I am on onboarding loan', () => {
     loanTypePage.viewPageOnBoarding();    
 });
 
-When('user click button "ajukan limit baru"', () => {
+When('user click button apply new limit', () => {
     I.wait(5);
-    loanTypePage.validationTextTittleOnboarding();
+    loanDashboardPage.applyNewLimitLoan();
 });
 
-When("I Input Nominal Pinjaman {string}", (nominalAP) => {
-    loanFlaggingPage.fillNominalPinjaman(nominalAP);
+When("user Input Nominal Pinjaman {string}", (nominal) => {
+    loanFlaggingPage.fillNominalPinjaman(nominal);
 });
 
-When("I Input Tenor {string}", (tenor) => {
+When("user Input Tenor {string}", (tenor) => {
     loanFlaggingPage.fillTenor(tenor);
 });
 
@@ -51,7 +52,7 @@ When('I select business location jabodetabek', () => {
     selectLoanAmountPage.selectJabodetabekLocation();
 });
 
-When ('I click on button Selanjutnya', () => {
+When ('user click on button Selanjutnya', () => {
     loanFlaggingPage.ClickNext();
 });
 

@@ -12,16 +12,16 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And I click login
         Then I successed go to dashbord
         Then I click menu tab testing
-        And I click button loan dashboard
+        # And I click button loan dashboard
 
     @emes1
     Scenario: User apply second loan AP direct type with flagging MSME
         Given I click button loan dashboard
         #section input nominal
-        When user click button "ajukan limit baru"
-        And user Input Nominal Pinjaman less than 5 billion
-        And user input loan tenor
-        And user click button "Selanjutnya"
+        When user click button apply new limit
+        And user Input Nominal Pinjaman "4000000000"
+        And user input loan tenor "30"
+        And user click on button Selanjutnya
         #section domicile office
         And user select domicile office
         And user click button "Selanjutnya" in page domicile office
