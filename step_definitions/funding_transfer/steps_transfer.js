@@ -55,45 +55,79 @@ When("I input notes with {string}", (notes) => {
     globalVariable.transfer.note = notes;
 });
 
-// Then("I see message {string}", async(errorMessageNotes) =>{
-// let actualMessageErrorNotes = await transferPage.getMessageErrorNotes();
-// I.assertEqual(actualMessageErrorNotes,errorMessageNotes);
-// });
-
 When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
 });
 
-Then("I can see RTOL", () => {
-    I.waitForElement(transferPage.radioButtons.methodRtol, 5);
+Then("I can see RTOL", async() => {
+    I.waitForElement(transferPage.radioButtons.methodRtol, 10);
+
+    const actualAdminFee = await transferPage.getAdminFeeRTOL();
+    I.assertEqual(actualAdminFee, "Rp 6.500");
 });
 
-Then("I can see BI Fast", () => {
+Then("I can see BI Fast", async() => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
+
+    const actualAdminFee = await transferPage.getAdminFeeBIFAST();
+    I.assertEqual(actualAdminFee, "Rp 2.500");
 });
 
-Then("I can see SKN", () => {
+Then("I can see SKN", async () => {
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
+
+    const actualAdminFee = await transferPage.getAdminFeeSKN();
+    I.assertEqual(actualAdminFee, "Rp 2.900");
 });
 
-Then("I can see RTGS", () => {
+Then("I can see RTGS", async () => {
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
+
+    const actualAdminFee = await transferPage.getAdminFeeRTGS();
+    I.assertEqual(actualAdminFee, "Rp 30.000");
+});
+
+Then("I can see BI Fast, SKN and RTGS", async ()=>{
+    I.waitForElement(transferPage.radioButtons.methodBifast, 5);
+    I.waitForElement(transferPage.radioButtons.methodSkn, 5);
+    I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
+
+    const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
+    const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
+    const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
+    I.assertEqual(actualAdminFeeBifast, "Rp 2.500");
+    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
+    I.assertEqual(actualAdminFeeRtgs, "Rp 30.000");
+});
+
+Then("I can see SKN and RTGS", async ()=>{
+    I.waitForElement(transferPage.radioButtons.methodSkn, 5);
+    I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
+
+    const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
+    const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
+    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
+    I.assertEqual(actualAdminFeeRtgs, "Rp 30.000");
 });
 
 Then("I choose transfer service RTGS", () => {
     transferPage.chooseRtgs();
+    globalVariable.transfer.adminFee = 30000;
 });
 
 Then("I choose transfer service RTOL", () => {
     transferPage.chooseRtol();
+    globalVariable.transfer.adminFee = 6500;
 });
 
 Then("I choose transfer service BIFAST", () => {
     transferPage.chooseBifast();
+    globalVariable.transfer.adminFee = 2500;
 });
 
 Then("I choose transfer service SKN", () => {
     transferPage.chooseSkn();
+    globalVariable.transfer.adminFee = 2900;
 });
 
 When("I click transfer", () => {
@@ -156,14 +190,17 @@ Then("I successfully transferred", async () => {
     const actualReceiverAccNumber = (await transferPage.getReceiverAccNnumber()).replace(/\s+/g, '');
     I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
 
-    // I.see("Transfer Keluar");
-    // const numberString = globalVariable.transfer.amount.toString().split('');
+    I.see("Transfer Keluar");
+    const numberAmount = parseInt(globalVariable.transfer.amount);
+    const actualTransferOut = numberAmount + globalVariable.transfer.adminFee;
 
-    // for (let i = numberString.length - 3; i > 0; i -= 3) {
-    //     numberString.splice(i, 0, '.');
-    // }
-    // const actualAmount = numberString.join('');
-    // I.see("Rp " + actualAmount);
+    const numberString = actualTransferOut.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const actualAmount = numberString.join('');
+    I.see("Rp " + actualAmount);
 
     I.waitForElement(transferPage.buttons.copy, 10);
     I.waitForElement(transferPage.buttons.share, 10);
@@ -192,15 +229,6 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
     I.dontSee(globalVariable.transfer.service);
 });
 
-Then("Then I successfully transferred between Amar Bank", () => {
-    I.see(transferPage.texts.status);
-    I.see('Transfer Keluar');
-    I.see("Rp. " + globalVariable.transfer.amountt);
-    I.waitForElement(transferPage.buttons.copy, 10);
-    I.see(globalVariable.transfer.note);
-    I.see(transferPage.buttons.share);
-    I.waitForElement(transferPage.buttons.close);
-});
 
 When("I input wrong PIN", () => {
     transferPage.inputPin(dummyPin);
@@ -243,16 +271,3 @@ Then("I am on Transfer methode list page", () => {
 Then("I am on page transfer confirmation", () => {
     transferPage.viewPageConfirmTrf();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
