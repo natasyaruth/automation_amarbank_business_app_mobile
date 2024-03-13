@@ -4,14 +4,19 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
 
     Background:
         Given I am a registered customer with following details:
-            | userID   | bots2912   |
-            | password | TestSmb123 |
+            # | userID   | bots2912   |
+            # | password | TestSmb123 |
+            | userID   | niza1356   |
+            | password | Test1234 |
         When I filling in form login with the following details:
-            | userID   | bots2912   |
-            | password | TestSmb123 |
+            # | userID   | bots2912   |
+            # | password | TestSmb123 |
+            | userID   | niza1356   |
+            | password | Test1234 |
         And I click login
         Then I successed go to dashbord
 
+    @emes8
     Scenario: User apply second loan PO direct type with flagging MSME
         Given I click button loan dashboard
         #section input nominal

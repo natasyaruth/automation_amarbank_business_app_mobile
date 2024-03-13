@@ -11,8 +11,10 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
             | password | Test1234 |
         And I click login
         Then I successed go to dashbord
+        Then I click menu tab testing
+        And I click button loan dashboard
 
-    @nurultest
+    @emes1
     Scenario: User apply second loan AP direct type with flagging MSME
         Given I click button loan dashboard
         #section input nominal

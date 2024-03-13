@@ -17,17 +17,25 @@ const{
     formDomicileAddressPage,
     loginPage,
     loanDashboardPage,
+    transactionHistoryPage,
 
 } = inject();
 
 // Feature for loan AP Direct AR Direct
 
+Given('I click button loan dashboard', () => {
+});
+
+Then(/I click menu tab testing/, () => {
+    transactionHistoryPage.clickTabTesting();
+});
+
 Given('I am on onboarding loan', () => {
     loanTypePage.viewPageOnBoarding();    
 });
 
-When('I click button ajukan pinjaman', () => {
-    I.wait(2);
+When('user click button "ajukan limit baru"', () => {
+    I.wait(5);
     loanTypePage.validationTextTittleOnboarding();
 });
 
@@ -156,4 +164,5 @@ When(/I fill search anchor \"([^\"]*)\"/,(txtValue)=>{
 When(/I select result of search/,()=>{
     selectAnchorPage.selectAnchorList();
 });
+
 
