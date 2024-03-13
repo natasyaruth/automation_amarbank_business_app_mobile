@@ -23,6 +23,9 @@ module.exports = {
         eKTPNumber: "",
         fullName:"",
     },
+    formPersonal:{
+        isUploadNpwp: true,
+    },
     formDirector:{
         fullName: "",
         email:"",

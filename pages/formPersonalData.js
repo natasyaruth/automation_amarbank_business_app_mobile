@@ -5,8 +5,8 @@ module.exports = {
   fields: {
     motherName: "~texfieldMotherName",
     npwp: "~texfieldNpwp",
-    referencePhoneNumber: "~",
-    referenceName: "~",
+    referencePhoneNumber: "~texfieldRelativesPhone",
+    referenceName: "~texfieldRelativesName",
   },
   dropDowns: {
     lastEducation: "~textfieldLastEdu",
@@ -23,6 +23,8 @@ module.exports = {
     motherName: "~texfieldErrorMotherName",
     purposeAccount: "~textfieldErrorPurpose",
     npwp: "~textErrorNpwp",
+    referencePhoneNumber: "~texfieldErrorRelativesPhone",
+    referenceName: "~texfieldErrorRelativesName",
   },
 
   async fillPersonalData(personalData) {

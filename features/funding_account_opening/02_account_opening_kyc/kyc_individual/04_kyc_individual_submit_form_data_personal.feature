@@ -30,7 +30,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
             |             | lastEducation        | Pendidikan terakhir       |
             |             | motherName           | Nama ibu kandung          |
             |             | purposeAccount       | Tujuan Pembuatan rekening |
-            |             | referencePhoneNumber | Nomor Handphone kerabat   |
+            |             | referencePhoneNumber | Nomor handphone kerabat   |
             |             | referenceName        | Nama kerabat              |
 
     Scenario: Verifying field mother name has been filled and then empty the fields
@@ -54,7 +54,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         When I fill field 'motherName' with 'John Doe S.Kom, M\'Kom-' in form Data Personal
         Then I shouldn't see message error in the below of field 'motherName' in form Data Personal
 
-    Scenario: Verifying relatives name with invalid value in form Data Personal
+    Scenario Outline: Verifying relatives name with invalid value in form Data Personal
         Given I am a customer want to fill my personal details
         When I fill field 'referenceName' with '<Value>' in form Data Personal
         Then I should see message error '<Message>' in the below of field 'referenceName' in form Data Personal
@@ -75,18 +75,18 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         When I fill field 'referenceName' with 'John Doe S.Kom, M\'Kom-' in form Data Personal
         Then I shouldn't see message error in the below of field 'referenceName' in form Data Personal
 
-    Scenario: Verifying phone number of relatives customer with invalid value
+    Scenario Outline: Verifying phone number of relatives customer with invalid value
         Given I am a customer want to fill my personal details
         When I fill field 'referencePhoneNumber' with '<Value>' in form Data Personal
         Then I should see message error '<Message>' in the below of field 'referencePhoneNumber' in form Data Personal
         Examples:                                                                 ❸
             | testRailTag | Value         | Message                                                       |
-            |             | 89561r12367   | Nomor handphone wajib diisi                                   |
+            |             | 89561r12367   | Nomor handphone tidak sesuai format                           |
             |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
             |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
             |             | 9678995676    | Nomor handphone tidak sesuai format                           |
-            |             | 8678 995676   | Nomor handphone wajib diisi                                   |
-            |             |               | Nomor handphone wajib diisi                                   |
+            |             | 8678 995676   | Nomor handphone tidak sesuai format                           |
+            |             |               | Nomor handphone kerabat wajib diisi                           |
 
     Scenario: Verifying autotrim 0 after label +62 in field relatives phonenumber
         Given I am a customer want to fill my personal details
@@ -101,8 +101,9 @@ Feature: Account Opening KYC Individual - Submit Data Personal
             | purposeAccount       | Pinjaman     |
             | referenceName        | IBU SAYA     |
             | referencePhoneNumber | 812343455677 |
+        And I don't upload my NPWP photo
         And I submit my personal data details
-        Then I should see message error 'NPWP Individu wajib diupload' in the below of field 'motherName' in form Data Personal
+        Then I should see message error 'NPWP Individu wajib diupload' in the below of field 'npwp' in form Data Personal
 
     @C96526
     Scenario: Submit form Data Personal successfully business type individual

@@ -46,6 +46,11 @@ When("I clear the field {string} in form Data Personal", (fieldName) => {
 
 When("I submit my personal data details", () => {
     formPersonalDataPage.savePersonalData();
+    if(
+        globalVariable.formPersonal.isUploadNpwp === false
+    ){
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    }
 });
 
 When("I submit my personal data details individual and upload my npwp as followings:", async (table) => {
@@ -77,6 +82,10 @@ When("I submit my personal data details business and upload my npwp as following
     );
 
     resetStateDao.reloadPageAfterResetState();
+});
+
+When("I don't upload my NPWP photo", ()=>{
+    globalVariable.formPersonal.isUploadNpwp = false;
 });
 
 Then("I will notify my personal details has successfully submitted", () => {
