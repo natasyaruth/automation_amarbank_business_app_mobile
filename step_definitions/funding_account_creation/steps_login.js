@@ -22,7 +22,7 @@ Given("I am a customer who has failed to login {string} times with following det
 Then("I successed go to dashbord", () => {
     ///dashboard still on development from mobile
     ///I.see('Selamat, akun Anda berhasil dibuat')
-    I.wait(2);
+    I.wait(10);
     // loginPage.fillInAccountInformation(account);
     // loginPage.clickLoginButton();
     // I.waitForText("Data Yang Dimasukkan Salah", 10);

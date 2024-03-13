@@ -59,8 +59,8 @@ When("I click choose bank transfer service", () => {
     transferPage.chooseMethodTransfer();
 });
 
-Then("I can see RTOL", async() => {
-    I.waitForElement(transferPage.radioButtons.methodRtol, 10);
+Then("I can see RTOL", async () => {
+    I.waitForElement(transferPage.radioButtons.methodRtol, 5);
 
     const actualAdminFee = await transferPage.getAdminFeeRTOL();
     I.assertEqual(actualAdminFee, "Rp 6.500");
@@ -68,7 +68,6 @@ Then("I can see RTOL", async() => {
 
 Then("I can see BI Fast", async() => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
-
     const actualAdminFee = await transferPage.getAdminFeeBIFAST();
     I.assertEqual(actualAdminFee, "Rp 2.500");
 });
@@ -76,8 +75,8 @@ Then("I can see BI Fast", async() => {
 Then("I can see SKN", async () => {
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
 
-    const actualAdminFee = await transferPage.getAdminFeeSKN();
-    I.assertEqual(actualAdminFee, "Rp 2.900");
+    const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
+    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
 });
 
 Then("I can see RTGS", async () => {
@@ -101,11 +100,14 @@ Then("I can see BI Fast, SKN and RTGS", async ()=>{
 });
 
 Then("I can see SKN and RTGS", async ()=>{
+    I.waitForElement(transferPage.radioButtons.methodBifast, 5);
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
 
+    const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
+    I.assertEqual(actualAdminFeeBifast, "Rp 2.500");
     I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
     I.assertEqual(actualAdminFeeRtgs, "Rp 30.000");
 });
