@@ -27,7 +27,7 @@ When('I am accessing loan limit approval page', () => {
     loanDashboardPage.goToApprovalLimitOffering();
 });
 
-And ('I see loan offering page', () => {
+Then('I see loan offering page', () => {
     loanDashboardPage.validateApprovalLimitOfferStillRunning();
 });
 

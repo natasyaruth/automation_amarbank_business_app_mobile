@@ -96,7 +96,7 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalIndividual(lastEducation, motherName, purposeAccount, userID, password) {
+    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount, userID, password) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
@@ -108,6 +108,8 @@ module.exports = {
             accountOpeningReason: purposeAccount,
             lastEducation: lastEducation,
             motherName: motherName,
+            referenceName: referenceName,
+            referencePhone: referencePhoneNumber,
             npwpFileFormat: "jpg",
             npwpNumber: base64File
         }));
@@ -120,7 +122,7 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalBusiness(lastEducation, motherName, userID, password) {
+    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber, userID, password) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
@@ -131,6 +133,8 @@ module.exports = {
         const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile", secret({
             lastEducation: lastEducation,
             motherName: motherName,
+            referenceName: referenceName,
+            referencePhone: referencePhoneNumber,
             npwpFileFormat: "jpg",
             npwpNumber: base64File
         }));

@@ -15,7 +15,8 @@ const{
     formKtpPage,
     formPersonalDataPage,
     formDomicileAddressPage,
-    
+    loginPage,
+    loanDashboardPage,
 
 } = inject();
 
@@ -55,7 +56,7 @@ When('I click on Lihat Skema Pinjaman', () => {
     loanTypePage.clickNextButton();
 });
 
-when('I click button select the schema', () => {
+When('I click button select the schema', () => {
     loanTypePage.clickNextButton();
 });
 
@@ -71,7 +72,8 @@ When('I select industry type', () => {
     selectAnchorPage.selectIndustryType();
 });
 
-when('I select the date cooperating', () => {
+
+When('I select the date cooperating', () => {
     selectAnchorPage.selectDateCooperating();
 });
 
