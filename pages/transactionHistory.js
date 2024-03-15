@@ -210,7 +210,7 @@ module.exports = {
         I.click(this.buttons.btnCancel);
     },
     clickBtnOk() {
-        I.wait(2);
+        I.wait(5);
         I.click(this.buttons.btnOk);
     },
     async validateTextViewTransfer(trfType) {

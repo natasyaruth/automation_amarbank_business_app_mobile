@@ -91,13 +91,25 @@ module.exports = {
         I.wait(2);
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
     },
+    // selectDateCooperating(){
+    //     I.waitForElement(this.fields.dateField, 10);
+    //     I.click(this.fields.dateField);
+    //     I.wait(2);
+    //     I.performSwipe({x:394, y:1040},{x:394, y:1137});
+    //     I.wait(2);
+    //     I.performSwipe({x:792, y:1026},{x:792, y:1153});
+    //     I.wait(2);
+    //     I.click(this.buttons.chooseBtn);
+    // },
     selectDateCooperating(){
-        I.waitForElement(this.fields.dateField, 10);
+        I.waitForElement(this.fields.dateField, 5);
         I.click(this.fields.dateField);
         I.wait(2);
-        I.performSwipe({x:394, y:1040},{x:394, y:1137});
+        I.click(this.fields.dateMonthPreviousField)
         I.wait(2);
-        I.performSwipe({x:792, y:1026},{x:792, y:1153});
+        I.click(this.fields.dateYearPreviousField);
+        I.wait(2);
+        I.click(this.fields.dateYearPreviousField);
         I.wait(2);
         I.click(this.buttons.chooseBtn);
     },

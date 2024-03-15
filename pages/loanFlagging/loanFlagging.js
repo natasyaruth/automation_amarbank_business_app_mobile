@@ -75,8 +75,9 @@ selectLoanTypeList(selectLoanType){
  },
 
  ClickNext(){
-    I.wait(5);
+    I.wait(2);
     I.click(this.button.btnNext);
+    I.wait(5);
  },
 
 fillNominalPinjaman(nominal){

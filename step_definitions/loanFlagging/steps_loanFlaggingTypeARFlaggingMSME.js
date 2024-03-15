@@ -52,9 +52,9 @@ When('user input business address', () => {
 
 });
 
-When('user select the date cooperating', () => {
+// When('user select the date cooperating', () => {
 
-});
+// });
 When('user click button next', () => {
 
 });

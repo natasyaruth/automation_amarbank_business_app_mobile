@@ -102,7 +102,6 @@ When('I select the date cooperating', () => {
 });
 
 When('user click button Kirim Pengajuan Pinjaman', () => {
-    I.wait(5);
     loanFlaggingPage.ClickNext();
 });
 
@@ -183,7 +182,7 @@ When(/I select result of search/,()=>{
 });
 
 When("user swipe to supplier", () => {
-    I.swipeUp(selectAnchorPage.fields.anchorAddress, 5000, 5000);
+    I.swipeUp(selectAnchorPage.fields.anchorAddress, 2000, 2000);
 });
 
 When("user agree with the terms and condition", async () => {

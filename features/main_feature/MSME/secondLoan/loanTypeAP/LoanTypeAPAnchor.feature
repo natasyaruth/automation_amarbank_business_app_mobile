@@ -22,16 +22,12 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user Input Nominal Pinjaman "4000000000"
         And user input loan tenor "30"
         And user click on button Selanjutnya
-        #section domicile office
-        And user select domicile office
-        And user click button Selanjutnya in page domicile office
         And user on loan type page
         #section select schema loan type
         When user select loan type "AP"
         And user click button lihat skema pinjaman AP
         And user click button select the schema
         #section select Anchor
-        # When user on s cooperating page
         And user click another anchor
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
@@ -45,10 +41,9 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user agree with the terms and condition
         And user allow to agree to use my digital signature through Privy.id
         When user click button Kirim Pengajuan Pinjaman
-        #section domicile office
-        And user select domicile office
-        And user click button "Selanjutnya" in page domicile office
-        Then direct to "Selamat, Pengajuan Berhasil Dikirim"
+        ##sectionn buttom sheet success
+        And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
+        When user should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
         And user want to click button ok
         # section upload document
         Given user on upload document page
