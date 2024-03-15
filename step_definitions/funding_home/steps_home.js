@@ -256,6 +256,6 @@ Then("I will see detail blocking amount coming from loan fee and minimum amount"
 Then("I will not see information {string} in the below of field blocking amount", (information)=>{
     I.waitForText("Saldo Rekening Giro", 10);
 
-    I.dontSeeElement(amountDetail.text.informationBlockingAmount);
+    I.dontSeeElement(amountDetailPage.text.informationBlockingAmount);
     I.dontSee(information);
 });
