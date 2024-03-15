@@ -24,8 +24,9 @@ Feature: Account Opening KYC CV - Submit Data Personal
     Scenario: Submit form Data Personal successfully business type CV
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:
-            | lastEducation | SMA             |
-            | motherName    | NADYA LAMUSU    |
-            | npwp          | 121785542123321 |
+            | lastEducation        | SMA             |
+            | motherName           | NADYA LAMUSU    |
+            | referenceName        | IBU SAYA        |
+            | referencePhoneNumber | 812343455677    |
         And I submit my personal data details
         Then I will direct to page domicile address

@@ -1,3 +1,4 @@
+@blocking_amount
 Feature: Blocking amount
     In order to detail amount of customer
     As a customer
@@ -61,7 +62,6 @@ Feature: Blocking amount
         And I click detail amount
         Then I will see my detail active, blocking and total amount are Rp 0
 
-    @blocking_amount
     Scenario: Validate active amount, blocking amount and total amount after transfer using account individual active
         Given I am a registered customer with following details:
             | userID   | auto20bf |
@@ -71,7 +71,7 @@ Feature: Blocking amount
             | password | 1234Test |
         And I click login
         And I click later
-        # And I wait until my account name 'NADYA LAROSA' displayed
+        And I wait until my account name 'NADYA LAROSA' displayed
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
         And I input name 'Surya Edwin' from the search box
@@ -124,3 +124,59 @@ Feature: Blocking amount
         And I will see my active amount detail decreased
         And my blocking amount detail still Rp. 1.000.000
         And my total amount detail increased
+
+    Scenario: Validate Wording blocking amount with account has Loan and product type MSME
+        Given I am a registered customer with following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I click login
+        And I click later
+        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee
+        And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account has Loan and product type CORP
+        Given I am a registered customer with following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I click login
+        And I click later
+        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee and minimum amount
+        And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account hasn’t Loan and product type MSME
+        Given I am a registered customer with following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I click login
+        And I click later
+        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee
+        And I will not see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account hasn’t Loan and product type CORP
+        Given I am a registered customer with following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I filling in form login with the following details:
+            | userID   | ptpe5040 |
+            | password | 1234Test |
+        And I click login
+        And I click later
+        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee and minimum amount
+        And I will not see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
