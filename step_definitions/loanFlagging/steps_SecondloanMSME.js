@@ -15,13 +15,9 @@ const{
     formKtpPage,
     formPersonalDataPage,
     formDomicileAddressPage,
-<<<<<<<< HEAD:step_definitions/loanApplication/steps_loanMSME.js
     loanMonitoringProcessPage,
-    
-========
     loginPage,
     loanDashboardPage,
->>>>>>>> 5df9b537534dd96983486d8c86c1c3e4689631ee:step_definitions/loanFlagging/steps_SecondloanMSME.js
 
 } = inject();
 
