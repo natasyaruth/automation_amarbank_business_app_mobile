@@ -19,6 +19,7 @@ const{
     loanDashboardPage,
     transactionHistoryPage,
     uploadBusinessDocPage,
+    uploadDocLoanPage,
 
 } = inject();
 
@@ -204,4 +205,8 @@ Then(/user want to click button ok/, () => {
 
 When("user click button Upload Dokumen", () => {
     uploadBusinessDocPage.clickUploadDocument();
+});
+
+When(/user upload document \"([^\"]*)\"/,(docType)=>{
+    uploadDocLoanPage.uploadDocuments(docType);
 });
