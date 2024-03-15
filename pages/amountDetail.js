@@ -10,6 +10,7 @@ module.exports = {
     activeBalance: "~txtActiveBalance",
     blockBalance: "~txtBlockBalance",
     totalBalance: "~txtTotalBalance",
+    informationBlockingAmount: "~"
   },
 
   clickIconEye(){
@@ -34,6 +35,11 @@ module.exports = {
   async getTotalAmount(){
     I.waitForElement(this.text.totalBalance, 10);
     return await I.grabTextFrom(this.text.totalBalance);
+  },
+
+  async getinformationBlockingAmount(){
+    I.waitForElement(this.text.informationBlockingAmount, 10);
+    return await I.grabTextFrom(this.text.informationBlockingAmount);
   },
 
 }

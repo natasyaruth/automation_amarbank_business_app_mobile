@@ -18,6 +18,7 @@ type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
 type onboardingAccOpeningPage = typeof import('./pages/onboardingAccOpening.js');
+// type steps_SecondloanMSME = typeof import('./pages/steps_SecondloanMSME.js');
 type uploadKtpPage = typeof import('./pages/uploadKtp.js');
 type formKtpPage = typeof import('./pages/formKtp.js');
 type resetStateDao = typeof import('./dao/resetStateDao.js');
@@ -73,6 +74,7 @@ declare namespace CodeceptJS {
     loanDashboardPage: loanDashboardPage,
     privyAggrementPage: privyAggrementPage,
     onboardingAccOpeningPage: onboardingAccOpeningPage,
+    // steps_SecondloanMSMEPage: steps_SecondloanMSMEPage,
     uploadKtpPage: uploadKtpPage,
     formKtpPage: formKtpPage,
     resetStateDao: resetStateDao,

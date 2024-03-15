@@ -23,6 +23,9 @@ module.exports = {
         eKTPNumber: "",
         fullName:"",
     },
+    formPersonal:{
+        isUploadNpwp: true,
+    },
     formDirector:{
         fullName: "",
         email:"",
@@ -39,13 +42,14 @@ module.exports = {
         friendListAccNumber: "",
     },
     transfer:{
-        amount:"",
+        amount:0,
         service:"",
         note:"",
         category:"",
         accountNumber: "",
         date: "",
         senderBankName: "",
+        adminFee: 0,
     },
     dashboard:{
         activeAmount: "",
