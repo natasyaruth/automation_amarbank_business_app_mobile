@@ -167,4 +167,3 @@ When(/I fill search anchor \"([^\"]*)\"/,(txtValue)=>{
 When(/I select result of search/,()=>{
     selectAnchorPage.selectAnchorList();
 });
-

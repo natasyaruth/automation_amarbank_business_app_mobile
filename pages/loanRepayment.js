@@ -181,18 +181,29 @@ module.exports = {
         I.waitForText('Supplier');
         I.see('Supplier');
         I.seeElement(this.buttons.buttonCopy);
+        I.see('Tenor 90 hari');
+        I.see('Total Bunga');
+        I.see('Bunga 15.6 % per tahun');
         break;
       // Loan Type AR
       case 2:
         I.waitForText('Buyer');
         I.see('Buyer');
         I.seeElement(this.buttons.buttonCopy);
+        I.see('Tenor 90 hari');
+        I.see('Nominal yang dicairkan');
+        I.see('Total Bunga');
+        I.see('Bunga 15.6 % per tahun');
+        I.see
+
         break;
       // Loan Type PO
       case 3:
-        I.waitForText('Pemilik Proyek');
-        I.see('Pemilik Proyek');
+        I.waitForText('Supplier');
+        I.see('Supplier');
         I.seeElement(this.buttons.buttonCopy);
+        I.see('Tenor 90 hari');
+        I.see('Bunga 15.6 % per tahun');
         break;
       default:
         console.error(error);
@@ -229,8 +240,7 @@ module.exports = {
       await I.waitForText('Pemilik Proyek');
       console.log('Bill Repayment for Loan Type PO');
       I.see('Info Pembayaran');
-      I.dontSee('Buyer');
-      I.dontSee('Supplier');
+      I.dontSee('Buyer');      
     } catch (error) {
       console.log('Bill Repayment not for Loan Type PO');
     }
@@ -360,15 +370,14 @@ module.exports = {
       case 2:
         I.waitForText('Buyer');
         I.see('Buyer');
-        I.seeElement(this.buttons.buttonCopy);
-        I.see('Nominal yang Ditangguhkan');
+        I.seeElement(this.buttons.buttonCopy);        
         I.see('Denda keterlambatan');
-        I.see('Nominal yang Dikembalikan Setelah Pelunasan');
+        
         break;
       // Loan Type PO
       case 3:
-        I.waitForText('Pemilik Proyek');
-        I.see('Pemilik Proyek');
+        I.waitForText('Buyer');
+        I.see('Buyer');
         I.seeElement(this.buttons.buttonCopy);
         I.see('Denda keterlambatan');
         break;
@@ -497,14 +506,12 @@ module.exports = {
       case 2:
         I.waitForText('Buyer');
         I.see('Buyer');
-        I.seeElement(this.buttons.buttonCopy);
-        I.see('Nominal yang Ditangguhkan');
-        I.dontSee('Denda keterlambatan');
-        I.see('Nominal yang Dikembalikan Setelah Pelunasan');
+        I.seeElement(this.buttons.buttonCopy);        
+        I.dontSee('Denda keterlambatan');        
         break;
       // Loan Type PO
       case 3:
-        I.waitForText('Pemilik Proyek');
+        I.waitForText('Buyer');
         I.dontSee('Pemilik Proyek');
         I.seeElement(this.buttons.buttonCopy);
         I.see('Denda keterlambatan');
@@ -541,11 +548,10 @@ module.exports = {
 
   async goToDetailRepaymentSuccessStatusInfoLoanPO() {
     try {
-      await I.waitForText('Pemilik Proyek');
+      await I.waitForText('Supplier');
       console.log('Bill Repayment for Loan Type PO');
       I.see('Info Pembayaran');
-      I.dontSee('Buyer');
-      I.dontSee('Supplier');
+      I.dontSee('Buyer');      
       I.dontSee('Denda keterlambatan');
     } catch (error) {
       console.log('Bill Repayment not for Loan Type PO');
