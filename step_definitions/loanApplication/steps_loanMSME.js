@@ -15,6 +15,7 @@ const{
     formKtpPage,
     formPersonalDataPage,
     formDomicileAddressPage,
+    loanMonitoringProcessPage,
     
 
 } = inject();
@@ -79,9 +80,9 @@ When('I click button next', () => {
     selectAnchorPage.clickNextBtnOnAnchorPage();
 });
 
-When('I click button continue complete the data', () => {
-    selectLoanAmountPage.validateCompletedDataSection();
-});
+//When('I click button continue complete the data', () => {
+    //selectLoanAmountPage.validateCompletedDataSection();
+//});
 
 When('I choose legality business type {string}', (businessType) => {
     onboardingAccOpeningPage.chooseLegalityBusinessType(businessType);
@@ -143,6 +144,16 @@ Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+When(/I should see text bottom sheet \"([^\"]*)\" in field \"([^\"]*)\"/, async(expectedValue, fieldName) => {
+    I.wait(2);
+    let actualValue = await loanMonitoringProcessPage.getTextFieldBottomSheet(fieldName);
+    I.assertEqual(actualValue, expectedValue);
+});
+
+When(/user close the bottom sheet/,()=>{
+    loanMonitoringProcessPage.clickCloseBtnBottomSheet();
 });
 
 //feature loan AP Anchor AR Anchor

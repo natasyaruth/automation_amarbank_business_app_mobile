@@ -20,12 +20,18 @@ In order to test Loan Dashboard page
                 Then I should see approve loan offer card
                 And I should see the button to apply for new limit loan
 #@loanDash #@C88626
-        Scenario: Access Loan limit Approval Page
+        Scenario: Access Loan limit Approval Page MSME
                 Given I have been on loan dashboard page and show a loan limit offer card
                 When I am accessing loan limit approval page
-                And I see loan offering page
-                And I approve loan limit
-                Then system should display this feature under development
+                And I see loan offering page MSME
+                Then I approve loan limit
+                        
+        Scenario: Access Loan limit Approval Page CORP with Biaya Admin and Provisi is displayed
+                Given I have been on loan dashboard page and show a loan limit offer card
+                When I am accessing loan limit approval page
+                And I see loan offering page CORP with admin and provisi is displayed
+                Then I approve loan limit
+
 #@loanDash #@C88627
         Scenario: Access Loan limit Approval Page When Offering Time is Expired
                 Given I have been on loan dashboard page and show expired loan limit offer card
