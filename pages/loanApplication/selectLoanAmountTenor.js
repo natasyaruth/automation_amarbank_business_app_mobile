@@ -4,7 +4,7 @@ module.exports = {
     textField:{
         textFieldLoanAmountPage: {xpath: '//android.widget.TextView[contains(@text, "Berapa kebutuhan pinjaman yang Anda butuhkan?")]'},
         textFieldLegalityBussPage: {xpath: '//android.widget.TextView[contains(@text, "Beri tahu kami jenis Legalitas Bisnis Anda")]'},
-        textFieldHeadOfficeLocationPage: {xpath: '//android.widget.TextView[contains(@text, "Dimana lokasi kantor pusat bisnis Anda berjalan?")]'},
+        textFieldHeadOfficeLocationPage: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh dana untuk membayar tagihan dari supplier")]'},
         textFieldSuccesApplyLoan: {xpath: '//android.widget.TextView[contains(@text, "Selamat, Anda memenuhi syarat untuk melakukan pengajuan pinjaman")]'},
         textFieldTitleHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Maaf, Untuk saat ini kami belum melayani pinjaman di Medan.")]'},
         textFieldDescriptionHeadOfficeNotFound: {xpath: '//android.widget.TextView[contains(@text, "Tidak perlu khawatir, kami akan mempertimbangkan untuk memperluas wilayah pelayanan pinjaman dikota/kabupaten Anda.")]'},

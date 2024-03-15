@@ -75,6 +75,7 @@ selectLoanTypeList(selectLoanType){
  },
 
  ClickNext(){
+    I.wait(5);
     I.click(this.button.btnNext);
  },
 

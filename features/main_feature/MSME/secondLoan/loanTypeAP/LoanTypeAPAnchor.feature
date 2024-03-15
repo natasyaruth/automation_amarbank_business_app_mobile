@@ -24,31 +24,32 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user click on button Selanjutnya
         #section domicile office
         And user select domicile office
-        And user click button "Selanjutnya" in page domicile office
+        And user click button Selanjutnya in page domicile office
         And user on loan type page
         #section select schema loan type
         When user select loan type "AP"
         And user click button lihat skema pinjaman AP
         And user click button select the schema
         #section select Anchor
-        When user on buyer cooperating page
-        And user select another supplier
+        # When user on s cooperating page
+        And user click another anchor
         And user fill a field "anchorName" with "UD Combo Box Fire"
         And user select industry type
         And user select the date cooperating
-        And user input business address
+        And user fill a field "anchorAddress" with "Jl. Jalan Ke Pasar Minggu"
         #section supplier representatives has contact
-        And user input supplier representatives name
-        And user input contact name
-        And user input email address supplier
-        And user checklist checbox term and condition
-        And user checklist checbox privy
-        When user click button next
+        And user swipe to supplier
+        And user fill a field "PICNameField" with "Irvandy"
+        And user fill a field "PICNumberField" with "081234567890"
+        And user fill a field "PICEmailField" with "hartono@test.com"
+        And user agree with the terms and condition
+        And user allow to agree to use my digital signature through Privy.id
+        When user click button Kirim Pengajuan Pinjaman
         #section domicile office
         And user select domicile office
         And user click button "Selanjutnya" in page domicile office
         Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-        And user click OK
+        And user want to click button ok
         # section upload document
         Given user on upload document page
         When user upload document "3contohInvoicewithSupplier"

@@ -23,7 +23,7 @@ module.exports = {
         btnClose: "~buttonClose",
         btnChoose: "~buttonChoose",
         btnCancel: "~buttonCancel",
-        btnOk: "~buttonOk",
+        btnOk: "~buttonNextSuccessBottomSheet",
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",

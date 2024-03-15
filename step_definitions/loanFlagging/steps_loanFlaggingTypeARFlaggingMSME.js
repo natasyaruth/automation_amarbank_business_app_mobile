@@ -47,6 +47,11 @@ When('And user fill a field "anchorName" with "UD Combo Box Fire"', () => {
 When('user select industry type', () => {
 
 });
+
+When('user input business address', () => {
+
+});
+
 When('user select the date cooperating', () => {
 
 });

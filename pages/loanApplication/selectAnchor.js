@@ -5,7 +5,9 @@ module.exports = {
         textFieldAnchorPage: "~textTitlePage",
         textFieldTitleAnchorNotFound: "~textTitleErrorPlatform",
         textFieldSubTitleAnchorNotFound: "~textMessageErrorPlatform",
-        textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'}
+        textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'},
+        textFieldHeadOfficeLocationPage: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh dana untuk membayar tagihan dari supplier")]'},
+
     },
     fields: {
         searchField: "~textFieldSearch",
@@ -19,10 +21,13 @@ module.exports = {
         dateYearSelectedField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[2]'},
         dateYearNextField: {xpath: '(//android.widget.TextView[@content-desc="textYear"])[3]'},
         anchorName: "~textFieldSupplierName",
+        anchorAddress: "~textFieldSupplierAddress",
         industryTypeField: "~textFieldSupplierType",
         industryTypeList1: {xpath: '(//android.widget.TextView[@content-desc="itemIndustryType"])[1]'},
         PICNameField: "~textFieldPicName",
-        PICNumberField: "~textFieldPicNumber"
+        PICNumberField: "~textFieldPicNumber",
+        PICEmailField: "~textFieldPicEmail",
+
     },
     buttons: {
         chooseBtn: "~buttonChoose",
@@ -40,7 +45,15 @@ module.exports = {
         PICNameField: "~textErrorPicName",
         PICNumberField: "~textErrorPicNumber"
     },
-
+    scrollView: {
+        scroll: "android.widget.ScrollView"
+    },
+    checkBox:{
+        termsAndCondition: "~checkboxTnc",
+        // rights: "~checkBoxRight",
+        privy: "~checkboxTncPrivy",
+        // loan: "~checkBoxLoan",
+    },
     // Function for call the id component
     viewAnchorPage(){
         I.wait(2);
@@ -124,5 +137,32 @@ module.exports = {
         //I.swipeDown(this.messageErrorFields.PICNumberField);
         I.wait(2);
         I.performSwipe({x:575,y:1653},{x:575,y:1265});
-    }
+    },
+
+    // swipetoPICNameField() {
+    //     // I.waitForElement(this.fields.PICNameField, 10);
+    //     I.swipeDown(this.fields.PICNameField, 1000, 2500);
+    //   },
+
+    async termsAndCondition(){
+
+        I.waitForElement(this.checkBox.termsAndCondition,10);
+        const isChecked = await I.grabAttributeFrom(this.checkBox.termsAndCondition, "checked");
+    
+        if(isChecked === "false"){
+          I.click(this.checkBox.termsAndCondition);
+        }
+      },
+
+    async privyAggrementPage(){
+
+        I.waitForElement(this.checkBox.privy,10);
+        const isChecked = await I.grabAttributeFrom(this.checkBox.privy, "checked");
+    
+        if(isChecked === "false"){
+          I.click(this.checkBox.privy);
+        }
+      },
+    
 }
+

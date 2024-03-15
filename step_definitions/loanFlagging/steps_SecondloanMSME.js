@@ -44,11 +44,22 @@ When("user Input Nominal Pinjaman {string}", (nominal) => {
     loanFlaggingPage.fillNominalPinjaman(nominal);
 });
 
-When("user Input Tenor {string}", (tenor) => {
+When("user input loan tenor {string}", (tenor) => {
     loanFlaggingPage.fillTenor(tenor);
 });
 
+When('user select domicile office', () => {
+    I.wait(50);
+    selectLoanAmountPage.viewHeadOfficeLocationPage();
+});
+
+When('user click button Selanjutnya in page domicile office', () => {
+    I.wait(5);
+    selectLoanAmountPage.viewHeadOfficeLocationPage();
+});
+
 When('I select business location jabodetabek', () => {
+    I.wait(5);
     selectLoanAmountPage.selectJabodetabekLocation();
 });
 
@@ -57,7 +68,7 @@ When ('user click on button Selanjutnya', () => {
 });
 
 When(/I select loan type \"([^\"]*)\"/,(selectLoanType)=>{
-    I.wait(2);
+    I.wait(5);
     loanTypePage.selectLoanTypeList(selectLoanType);
 });
 
@@ -70,6 +81,10 @@ When('I click button select the schema', () => {
 });
 
 When('I click icon other anchor', () => {
+    selectAnchorPage.clickIconOtherAnchor();
+});
+
+When('user click another anchor', () => {
     selectAnchorPage.clickIconOtherAnchor();
 });
 
@@ -86,8 +101,9 @@ When('I select the date cooperating', () => {
     selectAnchorPage.selectDateCooperating();
 });
 
-When('I click button next', () => {
-    selectAnchorPage.clickNextBtnOnAnchorPage();
+When('user click button Kirim Pengajuan Pinjaman', () => {
+    I.wait(5);
+    loanFlaggingPage.ClickNext();
 });
 
 When('I click button continue complete the data', () => {
@@ -166,4 +182,22 @@ When(/I select result of search/,()=>{
     selectAnchorPage.selectAnchorList();
 });
 
+When("user swipe to supplier", () => {
+    I.swipeUp(selectAnchorPage.fields.anchorAddress, 5000, 5000);
+});
 
+When("user agree with the terms and condition", async () => {
+    await selectAnchorPage.termsAndCondition();
+});
+
+When("user allow to agree to use my digital signature through Privy.id", async () => {
+    await selectAnchorPage.privyAggrementPage();
+});
+
+Given(/user on buyer cooperating page/,()=>{
+    selectAnchorPage.viewBuyerPage();
+});
+
+Then(/user want to click button ok/, () => {
+    transactionHistoryPage.clickBtnOk();
+});
