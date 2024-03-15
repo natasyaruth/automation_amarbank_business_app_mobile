@@ -126,9 +126,9 @@ Then('user click button upload documents', () => {
 });
 
 // # section upload document
-Given('user on upload document page', () => {
+// Given('user on upload document page', () => {
 
-});
+// });
 When('user upload document "nib"', () => {
 
 });

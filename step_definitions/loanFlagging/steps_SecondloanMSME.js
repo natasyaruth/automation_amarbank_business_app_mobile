@@ -203,5 +203,5 @@ Then(/user want to click button ok/, () => {
 });
 
 When("user click button Upload Dokumen", () => {
-    uploadBusinessDocPage.buttons.uploadDocument();
+    uploadBusinessDocPage.clickUploadDocument();
 });
