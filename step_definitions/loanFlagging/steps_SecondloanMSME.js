@@ -18,6 +18,7 @@ const{
     loginPage,
     loanDashboardPage,
     transactionHistoryPage,
+    uploadBusinessDocPage,
 
 } = inject();
 
@@ -199,4 +200,8 @@ Given(/user on buyer cooperating page/,()=>{
 
 Then(/user want to click button ok/, () => {
     transactionHistoryPage.clickBtnOk();
+});
+
+When("user click button Upload Dokumen", () => {
+    uploadBusinessDocPage.buttons.uploadDocument();
 });

@@ -46,7 +46,8 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         When user should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
         And user want to click button ok
         # section upload document
-        Given user on upload document page
+        Given user click button Upload Dokumen
+        And user on upload document page
         When user upload document "3contohInvoicewithSupplier"
         And user upload document "paymentMutation"
         And user upload document "1YearfinancialReports"

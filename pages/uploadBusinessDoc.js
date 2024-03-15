@@ -3,7 +3,7 @@ const { I, uploadDao, resetStateDao } = inject();
 module.exports = {
 
   buttons: {
-    uploadDocument: "~buttonUploadDoc",
+    uploadDocument: "~buttonUpload",
     refresh: "~buttonRefresh",
     continueToDashboard: "~buttonGoToDashboard",
   },
