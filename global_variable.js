@@ -19,6 +19,10 @@ module.exports = {
         userID: "",
         countValue: "",
     },
+    forgotPassword: {
+        userID: "",
+        email: "",
+    },
     formKtp:{
         eKTPNumber: "",
         fullName:"",

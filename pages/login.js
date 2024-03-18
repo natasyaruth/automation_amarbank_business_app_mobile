@@ -85,6 +85,7 @@ module.exports = {
   },
 
   goToForgotPasswordPage() {
+    I.waitForElement(this.link.forgotPassword, 10);
     I.click(this.link.forgotPassword);
   },
 

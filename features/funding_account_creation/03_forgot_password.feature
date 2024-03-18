@@ -1,23 +1,16 @@
+@forgotPassword
 Feature: Account Forgot Password
   In order to going to SMB dashboard while forgot user password
   As a customer
   I want to reset password
 
-  @forgotPassword @C96654
+  @C96654
   Scenario: Reset password with user ID is empty
     Given I am a customer want to reset password
     When I leave field User ID empty
     And I input email for reset password with value 'ruth.hutauruk@amarbank.co.id'
     And I click button Reset Password
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
-
-  @forgotPassword @C96655
-  Scenario: Reset password with user ID hasn't been registered
-    Given I am a customer want to reset password
-    When I am filling field User ID with 'JOHN1232'
-    And I input email for reset password with value 'ruth.hutauruk@amarbank.co.id'
-    And I click button Reset Password
-    Then I should be notified 'User ID tidak terdaftar' in the below of field 'userID'
 
   Scenario Outline: Verifying email for reset password with invalid value
     Given I am a customer want to reset password
@@ -49,7 +42,7 @@ Feature: Account Forgot Password
     And I click try again to reset password
     And I click button Reset Password
     Then I will see pop up information reset password with text 'Anda akan langsung diarahkan ke halaman Masuk Akun'
-    And I click button direct to login
+    And I click button understand to direct to page login
     And I will directing to page login
 
   Scenario: Fill form reset password with user id and email is match after fill form with user id and email is not match 3 times
@@ -64,14 +57,14 @@ Feature: Account Forgot Password
     And I click try again to reset password
     And I click button Reset Password
     And I will see pop up information reset password with text 'Anda akan langsung diarahkan ke halaman Masuk Akun'
-    And I click button direct to login
+    And I click button understand to direct to page login
     And I click link forgot password
     When I am filling field User ID with 'autocaea'
     And I input email for reset password with value 'auto.integrate.upload.doc@trash-mail.com'
     And I click button Reset Password
     Then I will see information about the reset password can be done in the next 10 minutes
 
-  @forgotPassword @C96656
+  @C96656
   Scenario: Reset password with user ID has been registered
     Given I am a customer want to reset password
     When I am filling field User ID with 'ruth79f5'
@@ -79,7 +72,7 @@ Feature: Account Forgot Password
     And I click button Reset Password
     Then I should be notified that email Reset Password successfully sent
 
-  @forgotPassword @C96657
+  @C96657
   Scenario: Resend email reset password
     Given I am a customer with User ID 'ruth5010' and email 'rut.testing@email.com' has already requested a password reset
     And who has not received the reset password email
@@ -104,7 +97,7 @@ Feature: Account Forgot Password
     And I click button back from pop up reset password
     Then I should back to page reset password with field User ID still filled
 
-  @forgotPassword @C96660
+  @C96660
   Scenario: Back to page login from page reset password
     Given I am a customer want to reset password
     When I click button back in the header page

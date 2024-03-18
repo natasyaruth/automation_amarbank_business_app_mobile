@@ -10,7 +10,8 @@ module.exports = {
     backPopUpConfirm: "~buttonBackUserID",
     checkEmail: "~buttonCheckEmail",
     confirm: "~buttonConfirm",
-    tryAgain: "~btnTryAgain",
+    tryAgain: "~buttonTryAgain",
+    understand: "~buttonUnderstand",
   },
   link: {
     resendEmail: "~linkResendEmail",
@@ -21,7 +22,7 @@ module.exports = {
     email: "~textEmail"
   },
   messageErrorFields: {
-    userID: "~textMsgErrorUserId",
+    userID: "~textMsgErrorUserID",
     email: "~textMsgErrorEmail"
   },
 
@@ -77,6 +78,6 @@ module.exports = {
 
   clickUnderstand(){
     I.waitForText("Mengerti", 10);
-    I.click(this.buttons.tryAgain);
+    I.click(this.buttons.understand);
   },
 }
