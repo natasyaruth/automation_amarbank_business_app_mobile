@@ -238,7 +238,7 @@ When("I input wrong PIN", () => {
 
 Then("I see Pin message error {string}", async (ExpectedMessageErrorPIN) => {
     let actualmessageErrorPIN = await transferPage.getMessageErrorPIN();
-    I.assertEqual(actualmessageErrorPIN, expectedMessageErrorPIN);
+    I.assertEqual(actualmessageErrorPIN, ExpectedMessageErrorPIN);
     transferPage.inputPin(dummyPin);
 });
 
@@ -261,8 +261,6 @@ Then("I am on receiver list page", () => {
 });
 
 Then("I choose menu Transfer from main dashboard", () => {
-    I.wait(5);
-    // globalVariable.dashboard.senderName = await mainActivePage.getCompanyName();
     transferPage.clickSectionBtnTransfer();
 });
 
