@@ -208,6 +208,7 @@ exports.config = {
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/01_create_pin_journey_transfer.feature",
       "./features/funding_create_pin/02_create_pin_journey_menu_other.feature",
+      "./features/funding_create_pin/03_change_pin_journey.feature",
       "./features/funding_transfer/friend_list.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",

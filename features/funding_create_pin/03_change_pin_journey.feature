@@ -1,5 +1,4 @@
-
-    Feature: User change PIN from other menu
+Feature: User change PIN from other menu
     In order to transfer
     As a customer
     I want to be able to change transcation pin from menu other
@@ -20,12 +19,12 @@
         Given I am a customer who wants to change PIN from menu other
         When I choose other
         And I click create transaction pin
-        And I input old PIN 
+        And I input old PIN
         And I input new PIN
         And I input confirmation new PIN
         And I input OTP
         Then I will go back to other page
-    
+
     Scenario: User wants to changes pin from menu other
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -36,7 +35,7 @@
         Given I am a customer who wants to change PIN from menu other
         When I choose other
         And I click change transaction pin
-        And I input old PIN 
+        And I input old PIN
         And I input new PIN with "123456"
         And I input incorrect confirmation new PIN
         Then I will see message error "PIN yang dimasukkan tidak sesuai"
@@ -59,7 +58,7 @@
         And I submit my old pin
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    
+
     Scenario: User input incorrect old pin twice for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
