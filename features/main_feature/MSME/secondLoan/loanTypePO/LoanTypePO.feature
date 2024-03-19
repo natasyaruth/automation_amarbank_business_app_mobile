@@ -49,3 +49,16 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
+
+    Scenario: Validate Card Limit For Type Loan AP
+        Given I have been on Loan Dashboard to see the loan type of Loan AP
+        When I validate the card of "Loan AP"
+        Then I should see the wording dan card design of "Loan AP"
+        And user click button back
+        And user should see text view "Selamat, Limit Pinjaman Telah Aktif" on bottom sheet "titleLimitPinjaman"
+        And user should see text bottom sheet "Limit Tersedia" in field "titleLimitTersedia"
+        And user should see text bottom sheet "Bouwheer" in field "titleSupplier"
+        And user should see text bottom sheet "No. Pinjaman" in field "titleNoPinjaman"
+        And user click button copy
+        And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
+        And user click button lihat pinjaman
