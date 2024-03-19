@@ -27,12 +27,13 @@ When('I am accessing loan limit approval page', () => {
     loanDashboardPage.goToApprovalLimitOffering();
 });
 
-And ('I see loan offering page MSME', () => {
+Then ('I see loan offering page MSME', () => {
     loanDashboardPage.validateApprovalLimitOfferStillRunningMSME();
 });
 
-And ('I see loan offering page CORP with admin and provisi is displayed', () => {
+Then ('I see loan offering page CORP with admin and provisi is displayed', () => {
     loanDashboardPage.validateApprovalLimitOfferStillRunningCORP();
+});
 
 // Then('I see loan offering page', () => {
 //     loanDashboardPage.validateApprovalLimitOfferStillRunning();
