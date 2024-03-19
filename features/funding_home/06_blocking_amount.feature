@@ -13,9 +13,8 @@ Feature: Blocking amount
             | userID   | autocaea |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
-        And I wait until my account name 'NADYA LAROSA' displayed
+        And I wait until my account name displayed
         When I click detail amount
         And I click button back in the header page
         Then I will see card account 'active'
@@ -28,8 +27,7 @@ Feature: Blocking amount
             | userID   | autocaea |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'NADYA LAROSA' displayed
+        And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I mask my amount
         Then I will not see my active, blocking and total amount
@@ -42,8 +40,7 @@ Feature: Blocking amount
             | userID   | auto54a9 |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'NADYA LAROSA' displayed
+        And I wait until my account name displayed
         Then I will see my active, blocking and total amount are Rp 0
         And I click detail amount
         Then I will see my detail active, blocking and total amount are Rp 0
@@ -56,8 +53,7 @@ Feature: Blocking amount
             | userID   | autod015 |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'Automation Jangan Dipake' displayed
+        And I wait until my account name displayed
         Then I will see my active, blocking and total amount are Rp 0
         And I click detail amount
         Then I will see my detail active, blocking and total amount are Rp 0
@@ -70,8 +66,7 @@ Feature: Blocking amount
             | userID   | auto20bf |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'NADYA LAROSA' displayed
+        And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
         And I input name 'Surya Edwin' from the search box
@@ -87,11 +82,11 @@ Feature: Blocking amount
         And I close page detail transfer
         Then I will see my active amount decreased
         And my blocking amount still Rp. 500.000
-        And my total amount increased
+        And my total amount decreased
         And I click detail amount
         And I will see my active amount detail decreased
         And my blocking amount detail still Rp. 500.000
-        And my total amount detail increased
+        And my total amount detail decreased
 
     Scenario: Validate active amount, blocking amount and total amount after transfer using account business active
         Given I am a registered customer with following details:
@@ -101,8 +96,7 @@ Feature: Blocking amount
             | userID   | ptpe5040 |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
         And I am on receiver list page
@@ -114,41 +108,39 @@ Feature: Blocking amount
         And I choose transfer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN '111111'
+        And I input PIN '123456'
         And I successfully transferred
         And I close page detail transfer
         Then I will see my active amount decreased
         And my blocking amount still Rp. 1.000.000
-        And my total amount increased
+        And my total amount decreased
         And I click detail amount
         And I will see my active amount detail decreased
         And my blocking amount detail still Rp. 1.000.000
-        And my total amount detail increased
+        And my total amount detail decreased
 
     Scenario: Validate Wording blocking amount with account has Loan and product type MSME
         Given I am a registered customer with following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID   | trys5524 |
+            | password | Eca12345 |
         And I filling in form login with the following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID   | trys5524 |
+            | password | Eca12345 |
         And I click login
-        And I click later
-        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee
         And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
     Scenario: Validate Wording blocking amount with account has Loan and product type CORP
         Given I am a registered customer with following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID   | niza2098 |
+            | password | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID   | niza2098 |
+            | password | Test1234 |
         And I click login
-        And I click later
-        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
@@ -161,22 +153,20 @@ Feature: Blocking amount
             | userID   | ptpe5040 |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee
         And I will not see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type CORP
         Given I am a registered customer with following details:
-            | userID   | ptpe5040 |
+            | userID   | alfibd3e |
             | password | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ptpe5040 |
+            | userID   | alfibd3e |
             | password | 1234Test |
         And I click login
-        And I click later
-        And I wait until my account name 'PT PERORANGAN INTEGRATE DUA PULUH' displayed
+        And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will not see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount

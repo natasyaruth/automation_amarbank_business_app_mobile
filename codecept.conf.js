@@ -157,7 +157,31 @@ exports.config = {
       level: 'warn',
     },
   },
-  mocha: {},
+  mocha: {
+    "reporterOptions": {
+      "codeceptjs-cli-reporter": {
+        "stdout": "-",
+        "options": {
+          "verbose": true,
+          "steps": true
+        }
+      },
+      "mochawesome": {
+        "stdout": "./output/console.log",
+        "options": {
+          "reportDir": "./output",
+          "reportFilename": "report"
+        }
+      },
+    //   "mocha-junit-reporter": {
+    //     "stdout": "./output/console.log",
+    //     "options": {
+    //       "mochaFile": "./output/result.xml",
+    //       "attachments": true //add screenshot for a failed test
+    //     }
+    // }
+   }
+  },
   bootstrap: null,
   timeout: null,
   teardown: null,

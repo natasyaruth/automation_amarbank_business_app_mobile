@@ -27,9 +27,17 @@ When('I am accessing loan limit approval page', () => {
     loanDashboardPage.goToApprovalLimitOffering();
 });
 
-Then('I see loan offering page', () => {
-    loanDashboardPage.validateApprovalLimitOfferStillRunning();
+Then ('I see loan offering page MSME', () => {
+    loanDashboardPage.validateApprovalLimitOfferStillRunningMSME();
 });
+
+Then ('I see loan offering page CORP with admin and provisi is displayed', () => {
+    loanDashboardPage.validateApprovalLimitOfferStillRunningCORP();
+});
+
+// Then('I see loan offering page', () => {
+//     loanDashboardPage.validateApprovalLimitOfferStillRunning();
+// });
 
 When('I approve loan limit', () => {
     loanDashboardPage.approveLimitLoanOffering();

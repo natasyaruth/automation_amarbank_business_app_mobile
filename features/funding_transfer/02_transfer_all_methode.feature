@@ -59,7 +59,7 @@ Feature: User transfer with all transfer methode
         And I choose transfer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         Then I successfully transferred
 
     @C96932
@@ -76,7 +76,7 @@ Feature: User transfer with all transfer methode
         And I choose transfer service BIFAST
         And I click transfer
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         Then I successfully transferred
 
     @C96933
@@ -93,7 +93,7 @@ Feature: User transfer with all transfer methode
         And I choose transfer service SKN
         And I click transfer
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         Then I successfully transferred
 
     @C96934
@@ -101,7 +101,7 @@ Feature: User transfer with all transfer methode
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '1000000100'
+        And I input amount '1000000000'
         And I choose category "Tagihan"
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service
@@ -110,5 +110,5 @@ Feature: User transfer with all transfer methode
         And I choose transfer service RTGS
         And I click transfer
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         Then I successfully transferred

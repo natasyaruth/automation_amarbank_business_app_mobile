@@ -2,6 +2,7 @@ const {
     I,
     transactionHistoryPage,
     amountDetailPage,
+    resetStateDao,
     globalVariable,
 } = inject();
 
@@ -85,8 +86,21 @@ Then(/I click menu tab testing/, () => {
 
 // Amount detail
 
-Given("I wait until my account name {string} displayed", (name) => {
-    I.waitForText(name, 30);
+Given("I wait until my account name displayed", async () => {
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).productType;
+    let accountName;
+
+    if (
+        accType === "1"
+    ) {
+        const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+        accountName = fullName;
+    } else {
+        const businessName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+        accountName = businessName;
+    }
+
+    I.waitForText(accountName, 30);
 });
 
 When("I click detail amount", () => {
@@ -100,7 +114,6 @@ When("I mask my amount", () => {
 });
 
 When("I will see my active, blocking and total amount", async () => {
-    I.wait(3);
     globalVariable.dashboard.activeAmount = await amountDetailPage.getActiveAmount();
     globalVariable.dashboard.blockingAmount = await amountDetailPage.getBlockingAmount();
     globalVariable.dashboard.totalAmount = await amountDetailPage.getTotalAmount();
@@ -158,8 +171,10 @@ Then("I will see my detail active, blocking and total amount are Rp 0", async ()
 });
 
 Then("I will see my active amount decreased", async () => {
-    let previousActiveAmount = globalVariable.dashboard.activeAmount.replace('Rp.', '');
-    let expectedActiveAmount = previousActiveAmount - globalVariable.transfer.amount
+    const previousActiveAmount = globalVariable.dashboard.activeAmount.replace(/Rp|\./g, '');
+    const numberPreviousActiveAmount = parseInt(previousActiveAmount);
+
+    const expectedActiveAmount = numberPreviousActiveAmount - globalVariable.transfer.amount - globalVariable.transfer.adminFee;
 
     const numberString = expectedActiveAmount.toString().split('');
 
@@ -208,9 +223,12 @@ Then("my blocking amount detail still Rp. 1.000.000", async () => {
     I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
 });
 
-Then("my total amount increased", async () => {
-    let previousTotalAmount = globalVariable.dashboard.totalAmount.replace('Rp.', '');
-    let expectedTotalAmount = previousTotalAmount + globalVariable.transfer.amount
+Then("my total amount decreased", async () => {
+    const blockingAmount = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+    const activeAmount = globalVariable.dashboard.activeAmount.replace(/Rp|\./g, '');
+    const numberBlockingAmount = parseInt(blockingAmount);
+    const numberActiveAmount = parseInt(activeAmount);
+    const expectedTotalAmount = numberActiveAmount + numberBlockingAmount;
 
     const numberString = expectedTotalAmount.toString().split('');
 
@@ -227,35 +245,46 @@ Then("my total amount increased", async () => {
     globalVariable.dashboard.totalAmount = "Rp" + formattedTotalAmount;
 });
 
-Then("my total amount detail increased", async () => {
+Then("my total amount detail decreased", async () => {
     let actualTotalAmount = await amountDetailPage.getTotalAmount();
 
     I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
 });
 
-Then ("I will see detail blocking amount coming from loan fee", ()=>{
+Then("I will see detail blocking amount coming from loan fee", () => {
     I.waitForText("Saldo Tertahan", 10);
     I.waitForText("Total Biaya Bunga pinjaman, jika Anda mempunyai pinjaman", 10);
     I.waitForText("Saldo tidak dapat digunakan untuk transaksi", 10);
 });
 
-Then ("I will see information {string} in the below of field blocking amount", async (information)=>{
-    const actualInformation = await amountDetail.getinformationBlockingAmount();
+Then("I will see information {string} in the below of field blocking amount", async (information) => {
+    const actualInformation = await amountDetailPage.getinformationBlockingAmount();
     I.assertEqual(actualInformation, information);
 });
 
-Then("I will see detail blocking amount coming from loan fee and minimum amount", ()=>{
+Then("I will see detail blocking amount coming from loan fee and minimum amount", () => {
     I.waitForText("Saldo Tertahan", 10);
-    I.see("Saldo yang didebit dari:");
     I.see("Saldo Minimum sebesar Rp500.000 (untuk individu)");
     I.see("Saldo Minimum sebesar Rp1.000.000 (untuk PT Perusahaan, CV, PT Perorangan, UD)");
     I.see("Total Biaya Bunga pinjaman, jika Anda mempunyai pinjaman");
     I.see("Saldo tidak dapat digunakan untuk transaksi");
 });
 
-Then("I will not see information {string} in the below of field blocking amount", (information)=>{
+Then("I will not see information {string} in the below of field blocking amount", async (information) => {
     I.waitForText("Saldo Rekening Giro", 10);
 
-    I.dontSeeElement(amountDetail.text.informationBlockingAmount);
-    I.dontSee(information);
+    const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
+
+    if (
+        productType === "MSME"
+    ) {
+        I.dontSeeElement(amountDetailPage.text.informationBlockingAmount);
+        I.dontSee(information);
+    } else if (
+        productType === "CORP"
+    ) {
+        const actualDescBlockingAmount = await amountDetailPage.getinformationBlockingAmount();
+        I.assertNotEqual(actualDescBlockingAmount, information);
+    }
+
 });
