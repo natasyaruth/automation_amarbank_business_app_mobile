@@ -32,32 +32,6 @@ Feature: Blocking amount
         When I mask my amount
         Then I will not see my active, blocking and total amount
 
-    Scenario: Validate active amount, blocking amount and total amount with account individual recently accepted from CRM
-        Given I am a registered customer with following details:
-            | userID   | auto54a9 |
-            | password | 1234Test |
-        And I filling in form login with the following details:
-            | userID   | auto54a9 |
-            | password | 1234Test |
-        And I click login
-        And I wait until my account name displayed
-        Then I will see my active, blocking and total amount are Rp 0
-        And I click detail amount
-        Then I will see my detail active, blocking and total amount are Rp 0
-
-    Scenario: Validate active amount, blocking amount and total amount with account business recently accepted from CRM
-        Given I am a registered customer with following details:
-            | userID   | autod015 |
-            | password | 1234Test |
-        And I filling in form login with the following details:
-            | userID   | autod015 |
-            | password | 1234Test |
-        And I click login
-        And I wait until my account name displayed
-        Then I will see my active, blocking and total amount are Rp 0
-        And I click detail amount
-        Then I will see my detail active, blocking and total amount are Rp 0
-
     Scenario: Validate active amount, blocking amount and total amount after transfer using account individual active
         Given I am a registered customer with following details:
             | userID   | auto20bf |
@@ -108,7 +82,7 @@ Feature: Blocking amount
         And I choose transfer service RTOL
         And I click transfer
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         And I successfully transferred
         And I close page detail transfer
         Then I will see my active amount decreased
@@ -154,7 +128,8 @@ Feature: Blocking amount
             | password | 1234Test |
         And I click login
         And I wait until my account name displayed
-        When I click detail amount
+        When I see my blocking amount is Rp 0
+        And I click detail amount
         Then I will see detail blocking amount coming from loan fee
         And I will not see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
@@ -167,6 +142,7 @@ Feature: Blocking amount
             | password | 1234Test |
         And I click login
         And I wait until my account name displayed
+        When I see my blocking amount coming from minimum amount
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will not see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount

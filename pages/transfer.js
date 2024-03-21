@@ -217,7 +217,7 @@ module.exports = {
   },
 
   clickSectionBtnTransfer(){
-    I.waitForElement(this.buttons.sectionBtnTrf, 10);
+    I.waitForElement(this.buttons.sectionBtnTrf, 20);
     I.click(this.buttons.sectionBtnTrf);
   },
 

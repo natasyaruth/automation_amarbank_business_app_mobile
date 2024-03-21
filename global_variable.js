@@ -37,7 +37,8 @@ module.exports = {
         numberOfDirectors: 0
     },
     createPin:{
-        newPin:""
+        newPin:"",
+        otp: "",
     },
     friendList:{
         bankName:"",

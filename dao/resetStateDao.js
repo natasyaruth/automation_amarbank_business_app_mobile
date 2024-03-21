@@ -78,7 +78,7 @@ module.exports = {
 
         return {
             status: responseProfile.status,
-            productType: responseProfile.data.accountCreationJourney.accountType,
+            accountType: responseProfile.data.accountCreationJourney.accountType,
         };
 
     },
@@ -111,6 +111,22 @@ module.exports = {
         return {
             status: responseProfile.status,
             phoneNumber: responseProfile.data.phoneNumber,
+        };
+
+    },
+
+    async getEmail(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            email: responseProfile.data.email,
         };
 
     },

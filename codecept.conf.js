@@ -253,6 +253,7 @@ exports.config = {
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypePO.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAR.js",
       "./step_definitions/funding_home/steps_home.js",
+      "./step_definitions/funding_home/steps_other.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",
