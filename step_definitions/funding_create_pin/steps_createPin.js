@@ -35,6 +35,7 @@ When("I click change transaction pin", () => {
     createPINPage.goToChangePIN();
 });
 
+
 When("I click link forgot pin", () => {
     createPINPage.clickButtonForgotPIN();
 });

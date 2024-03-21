@@ -208,6 +208,7 @@ exports.config = {
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/01_create_pin_journey_transfer.feature",
       "./features/funding_create_pin/02_create_pin_journey_menu_other.feature",
+      "./features/funding_create_pin/03_change_pin_journey.feature",
       "./features/funding_transfer/friend_list.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
@@ -217,7 +218,9 @@ exports.config = {
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
       "./features/main_feature/account_opening_only/*.feature",
-      "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature"
+      "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature",
+      "./features/funding_create_pin/05_create_pin_manual.feature",
+      "./features/funding_create_pin/04_forgot_pin_journey.feature"
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
