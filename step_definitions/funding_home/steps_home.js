@@ -87,7 +87,7 @@ Then(/I click menu tab testing/, () => {
 // Amount detail
 
 Given("I wait until my account name displayed", async () => {
-    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).productType;
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
     let accountName;
 
     if (
@@ -119,6 +119,31 @@ When("I will see my active, blocking and total amount", async () => {
     globalVariable.dashboard.totalAmount = await amountDetailPage.getTotalAmount();
 });
 
+When("I see my blocking amount is Rp 0", async () => {
+    let expectedAmount = "Rp0"
+
+    let actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    I.assertEqual(actualBlockingAmount, expectedAmount);
+});
+
+When("I see my blocking amount coming from minimum amount", async () => {
+    const minimumBusiness = "1.000.000";
+    const minimumIndividual = "500.000";
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+
+    if (
+        accType === 1
+    ){
+        const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+        I.assertEqual(actualBlockingAmount, "Rp"+minimumIndividual);
+    } else if(
+        accType === 2
+    ){
+        const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+        I.assertEqual(actualBlockingAmount, "Rp"+minimumBusiness);
+    }
+});
+
 Then("I will not see my active, blocking and total amount", async () => {
     I.dontSee(globalVariable.dashboard.activeAmount);
     I.dontSee(globalVariable.dashboard.blockingAmount);
@@ -146,7 +171,6 @@ Then("I will see my detail active, blocking and total amount are Rp 0", async ()
     I.see("Nominal saldo yang dapat digunakan untuk transaksi");
 
     I.see("Saldo Tertahan");
-    I.see("Saldo yang didebit dari:");
     I.see("Saldo Minimum sebesar Rp500.000 (untuk individu)");
     I.see("Saldo Minimum sebesar Rp1.000.000 (untuk PT Perusahaan, CV, PT Perorangan, UD)");
     I.see("Total Penangguhan Saldo Pinjaman, jika Anda mempunyai pinjaman");

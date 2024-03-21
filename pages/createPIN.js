@@ -3,9 +3,9 @@ const { I } = inject();
 module.exports = {
   fields: {
     password: "~textFieldPassword",
-    newPIN: "~textFieldPin", 
+    newPIN: "~textFieldPin",
     otpcode: "~textFieldOtp",
-    confirmPIN: ~"textFieldPin",
+    confirmPIN: "~textFieldPin",
   },
   buttons: {
     login: "~buttonLogin",
@@ -13,27 +13,28 @@ module.exports = {
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: "~buttonClose",
-    cancel: "~buttonCancel",
+    cancel: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View" },
     btnTransfer: "~btnTransfer",
-    back: "buttonBack",
+    back: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View" },
+    backToDashboard: "~buttonBackToDashboard",
     forgotPIN: "~",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
-    creatPINPopUp: "buttonCreatePin",
+    creatPINPopUp: "~buttonCreatePin",
     understand: "~buttonUnderstand",
     otherMenu: "~",
     createPIN: "~",
     changePassword: "~",
     changePIN: "~",
-    emailSupport: "~", 
+    emailSupport: "~",
     closeOurTeam: "~",
   },
   icon: {
     eyePassword: "~iconShowHidePassword",
   },
   messageErrorFields: {
-    errorPIN: "~textErrorPin",         
+    errorPIN: "~textErrorPin",
+    errorOtp: "~textErrorOtp",
   },
-
   toastbar: {
     successPin: "~",
   },
@@ -49,7 +50,7 @@ module.exports = {
   },
 
   tryAgain() {
-    I.waitForElement(this.buttons.tryAgain);
+    I.waitForElement(this.buttons.tryAgain, 10);
     I.click(this.buttons.tryAgain);
     I.wait(1);
   },
@@ -58,56 +59,54 @@ module.exports = {
     I.click(this.buttons.close);
   },
 
-  inputPIN(pin) {    
+  inputPIN(pin) {
     I.waitForElement(this.fields.newPIN, 5);
     I.setText(this.fields.newPIN, pin);
     I.hideDeviceKeyboard();
   },
 
-  // async inputPIN() {
-    // I.wait(5);
-    // let newPin ='123456';
-    // for (let i=0; i < newPin.length; i++) {
-      // await I.setText(this.fields.newPIN, newPin[i]);
-    // }
-  // },
-
   popupCreatePIN() {
     I.waitForText("Buat PIN", 10);
     I.seeElement(this.buttons.creatPINPopUp);
+    I.seeElement(this.buttons.backToDashboard);
   },
 
   popupCancelCreatePIN() {
     I.waitForElement(this.buttons.cancel, 10);
-    I.waitForElement(this.buttons.close, 10);
+    I.waitForElement(this.buttons.back, 10);
   },
 
-  clickButtonClose(){
-    I.waitForElement(this.buttons.close);
+  clickButtonClose() {
+    I.waitForElement(this.buttons.close, 10);
     I.click(this.buttons.close);
   },
 
-  clickButtonBack(){
-    I.waitForElement(this.buttons.back);
+  clickButtonBack() {
+    I.waitForElement(this.buttons.back, 10);
     I.click(this.buttons.back);
   },
 
-  clickButtonForgotPIN(){
+  clickButtonBackToDashboard() {
+    I.waitForElement(this.buttons.backToDashboard, 10);
+    I.click(this.buttons.backToDashboard);
+  },
+
+  clickButtonForgotPIN() {
     I.waitForElement(this.buttons.forgotPIN);
     I.click(this.buttons.forgotPIN);
   },
 
-  clickButtonCancel(){
-    I.waitForElement(this.buttons.cancel);
+  clickButtonCancel() {
+    I.waitForElement(this.buttons.cancel, 10);
     I.click(this.buttons.cancel);
   },
 
-  clickButtonUnderstand(){
+  clickButtonUnderstand() {
     I.waitForElement(this.buttons.understand);
     I.click(this.buttons.understand);
   },
 
-  clickPopUpCreatePIN(){
+  clickPopUpCreatePIN() {
     I.click(this.buttons.creatPINPopUp);
   },
 
@@ -116,7 +115,7 @@ module.exports = {
     I.setText(this.fields.newPIN, confirmationPIN);
   },
 
-    nexttoTransferPage() {
+  nexttoTransferPage() {
     I.click(this.buttons.nextpagetransfer);
   },
 
@@ -129,9 +128,7 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
 
-  
-  
-    continueAfterCreatePin(){
+  continueAfterCreatePin() {
     I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },
@@ -143,47 +140,47 @@ module.exports = {
   getRandomNumberPin() {
     const randomNumbers = [];
     for (let i = 0; i < 6; i++) {
-      const randomNumber = getRandomInt(1, 100); // Change the range as needed
+      const randomNumber = this.getRandomInt(1, 100); // Change the range as needed
       randomNumbers.push(randomNumber);
     }
     return randomNumbers;
   },
 
   async getMessageErrorOTP() {
-    I.waitForElement(this.messageErrorFields.errorOTPcode, 5);
-    return await I.grabTextFrom(this.messageErrorFields.errorOTPcode);
+    I.waitForElement(this.messageErrorFields.errorOtp, 5);
+    return await I.grabTextFrom(this.messageErrorFields.errorOtp);
   },
 
-  async getEmailValue(){
+  async getEmailValue() {
     let email = await I.grabTextFrom(this.label.email);
     return email
   },
 
   fillInOtpCode(otpCode) {
-    I.fillField(this.fields.otpcode, otpCode);
+    I.setText(this.fields.otpcode, otpCode);
     I.hideDeviceKeyboard();
   },
 
-  goToOtherMenu(){
+  goToOtherMenu() {
     I.click(this.buttons.otherMenu);
   },
 
-  goToLoginPage(){
+  goToLoginPage() {
     I.waitForElement(this.buttons.login, 10);
   },
 
-  goToCreatePIN(){
+  goToCreatePIN() {
     I.click(this.buttons.createPIN);
 
   },
 
-  goToChangePIN(){
+  goToChangePIN() {
     I.click(this.buttons.changePIN);
 
   },
 
-  closeBottomSheet(){
+  closeBottomSheet() {
     I.click(this.buttons.closeOurTeam);
-  },  
+  },
 
 }
