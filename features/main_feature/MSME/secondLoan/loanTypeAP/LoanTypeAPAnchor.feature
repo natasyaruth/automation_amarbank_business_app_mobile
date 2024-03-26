@@ -48,9 +48,10 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         # section upload document
         Given user click button Upload Dokumen
         And user on upload document page
-        When user upload document "3contohInvoicewithSupplier"
+        When user upload document "ktpNpwpOfComp"
+        Then user upload document "proofOfPurchase"
         And user upload document "paymentMutation"
-        And user upload document "1YearfinancialReports"
+        And user upload document "financialReports"
         And user click button refresh
         And user click back button to loan processing
         # section trigered status loan

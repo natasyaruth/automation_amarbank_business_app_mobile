@@ -18,9 +18,10 @@ module.exports = {
     btnUploadAkte: "",
     btnUploadSk: "",
     btnUploadNpwp: "",
-    btnUploadPurchase: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[1]' },
-    btnUploadMutation: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[2]' },
-    btnUploadFinReport: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[3]' },
+    btnUploadPurchase: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[2]' },
+    btnUploadMutation: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[3]' },
+    btnUploadFinReport: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[4]' },
+    btnUploadKtpNpwp: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[1]' },
     btnRefreshUploadDoc: "~buttonRefresh",
     backBtn: "",
     btnAcceptLimitOffer: "",
@@ -237,6 +238,10 @@ module.exports = {
       case 'npwpOfComp':
         I.seeElement(this.buttons.btnUploadNpwp);
         I.attachFile(this.buttons.btnUploadNpwp, 'data/file.pdf');
+      break;
+      case 'ktpNpwpOfComp':
+        I.seeElement(this.buttons.btnUploadKtpNpwp);
+        I.attachFile(this.buttons.btnUploadKtpNpwp, 'data/file.pdf');
       break;
       case 'proofOfPurchase':
         I.seeElement(this.buttons.btnUploadPurchase);
