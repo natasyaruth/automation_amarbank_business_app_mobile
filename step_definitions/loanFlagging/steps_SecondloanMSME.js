@@ -3,7 +3,7 @@ const loanFlagging = require("../../pages/loanFlagging/loanFlagging");
 
 const{
     I,
-    globalVariable,    
+    globalVariable,
     headerPage,
     onboardingAccOpeningPage,
     loanFlaggingPage,
@@ -18,38 +18,60 @@ const{
     loanMonitoringProcessPage,
     loginPage,
     loanDashboardPage,
+    transactionHistoryPage,
+    uploadBusinessDocPage,
+    uploadDocLoanPage,
 
 } = inject();
 
 // Feature for loan AP Direct AR Direct
 
+Given('I click button loan dashboard', () => {
+    loanDashboardPage.goToLoanDashboard();
+});
+
+Then(/I click menu tab testing/, () => {
+    transactionHistoryPage.clickTabTesting();
+});
+
 Given('I am on onboarding loan', () => {
     loanTypePage.viewPageOnBoarding();    
 });
 
-When('I click button ajukan pinjaman', () => {
-    I.wait(2);
-    loanTypePage.validationTextTittleOnboarding();
+When('user click button apply new limit', () => {
+    I.wait(5);
+    loanDashboardPage.applyNewLimitLoan();
 });
 
-When("I Input Nominal Pinjaman {string}", (nominalAP) => {
-    loanFlaggingPage.fillNominalPinjaman(nominalAP);
+When("user Input Nominal Pinjaman {string}", (nominal) => {
+    loanFlaggingPage.fillNominalPinjaman(nominal);
 });
 
-When("I Input Tenor {string}", (tenor) => {
+When("user input loan tenor {string}", (tenor) => {
     loanFlaggingPage.fillTenor(tenor);
 });
 
+When('user select domicile office', () => {
+    I.wait(50);
+    selectLoanAmountPage.viewHeadOfficeLocationPage();
+});
+
+When('user click button Selanjutnya in page domicile office', () => {
+    I.wait(5);
+    selectLoanAmountPage.viewHeadOfficeLocationPage();
+});
+
 When('I select business location jabodetabek', () => {
+    I.wait(5);
     selectLoanAmountPage.selectJabodetabekLocation();
 });
 
-When ('I click on button Selanjutnya', () => {
+When ('user click on button Selanjutnya', () => {
     loanFlaggingPage.ClickNext();
 });
 
 When(/I select loan type \"([^\"]*)\"/,(selectLoanType)=>{
-    I.wait(2);
+    I.wait(5);
     loanTypePage.selectLoanTypeList(selectLoanType);
 });
 
@@ -62,6 +84,10 @@ When('I click button select the schema', () => {
 });
 
 When('I click icon other anchor', () => {
+    selectAnchorPage.clickIconOtherAnchor();
+});
+
+When('user click another anchor', () => {
     selectAnchorPage.clickIconOtherAnchor();
 });
 
@@ -78,8 +104,8 @@ When('I select the date cooperating', () => {
     selectAnchorPage.selectDateCooperating();
 });
 
-When('I click button next', () => {
-    selectAnchorPage.clickNextBtnOnAnchorPage();
+When('user click button Kirim Pengajuan Pinjaman', () => {
+    loanFlaggingPage.ClickNext();
 });
 
 //When('I click button continue complete the data', () => {
@@ -168,3 +194,30 @@ When(/I select result of search/,()=>{
     selectAnchorPage.selectAnchorList();
 });
 
+When("user swipe to supplier", () => {
+    I.swipeUp(selectAnchorPage.fields.anchorAddress, 2000, 2000);
+});
+
+When("user agree with the terms and condition", async () => {
+    await selectAnchorPage.termsAndCondition();
+});
+
+When("user allow to agree to use my digital signature through Privy.id", async () => {
+    await selectAnchorPage.privyAggrementPage();
+});
+
+Given(/user on buyer cooperating page/,()=>{
+    selectAnchorPage.viewBuyerPage();
+});
+
+Then(/user want to click button ok/, () => {
+    transactionHistoryPage.clickBtnOk();
+});
+
+When("user click button Upload Dokumen", () => {
+    uploadBusinessDocPage.clickUploadDocument();
+});
+
+When(/user upload document \"([^\"]*)\"/,(docType)=>{
+    uploadDocLoanPage.uploadDocuments(docType);
+});

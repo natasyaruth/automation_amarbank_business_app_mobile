@@ -151,6 +151,7 @@ exports.config = {
     documentManagementPage: "./pages/loanApplication/documentManagement.js",
 
     approvalTransactionPage: "./pages/approvalTransaction.js",
+    loanFlaggingPage: "./pages/loanFlagging/loanFlagging.js"
   },
   settings: {
     logging: {
