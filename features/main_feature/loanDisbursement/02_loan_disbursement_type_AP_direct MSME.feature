@@ -12,8 +12,8 @@ Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
       | userID   | wahy8ea8 |
       | password | Test4321 |
     And I click login
-    And I click later
-    Then I will direct to dashboard
+    Then I successed go to dashbord
+    Then I click menu tab testing
 
 
   @techdebt26
@@ -51,7 +51,7 @@ Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
     And I close the loan information section
     And I back to the anchor detail
 
- 
+
   Scenario: Take Picture to Upload Invoice Type Direct Loan AP
     Given I have been on anchor detail to take picture
     When I upload invoice document
@@ -136,7 +136,7 @@ Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
     When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
     Then show amount disbursement calculation page if invoice value 100%
 
- 
+
   Scenario: Validate Disbursement Calculations When Invoice Value 80%
     Given I have been on "Perhitungan pencairan page"
     When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"

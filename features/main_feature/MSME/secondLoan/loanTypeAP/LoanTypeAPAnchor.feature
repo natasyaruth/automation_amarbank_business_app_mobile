@@ -2,7 +2,7 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
     As a customer lead
     I want to apply second loan using AP Direct with MSME has flag
 
-    Background:
+    Background: User must login to home dashboard
         Given I am a registered customer with following details:
             | userID   | niza1356   |
             | password | Test1234 |
