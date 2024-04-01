@@ -17,6 +17,8 @@ module.exports = {
     savePersonalData: "~buttonSavePersonalData",
     closeBottomSheet: "~buttonClose",
     uploadNpwp: "~buttonUploadNpwp",
+    fromCamera: "~takeFromCamera",
+    fromGallery: "~takeFromGallery",
   },
   messageErrorFields: {
     lastEducation: "~texfieldErrorLastEdu",
@@ -64,6 +66,11 @@ module.exports = {
     }
   },
 
+  closeBottomSheet(){
+    I.waitForElement(this.buttons.closeBottomSheet, 10);
+    I.click(this.buttons.closeBottomSheet);
+  },
+
   fillField(fieldName, value) {
     I.waitForElement(this.fields[fieldName], 10);
     I.setText(this.fields[fieldName], value);
@@ -80,5 +87,10 @@ module.exports = {
 
   savePersonalData() {
     I.click(this.buttons.savePersonalData);
-  }
+  },
+
+  clickUploadNPWP(){
+    I.waitForElement(this.buttons.uploadNpwp, 10);
+    I.click(this.buttons.uploadNpwp);
+  },
 }

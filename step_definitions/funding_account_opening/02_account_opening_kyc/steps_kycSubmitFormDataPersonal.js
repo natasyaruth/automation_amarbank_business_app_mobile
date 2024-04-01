@@ -88,6 +88,14 @@ When("I don't upload my NPWP photo", ()=>{
     globalVariable.formPersonal.isUploadNpwp = false;
 });
 
+When("I click button upload document NPWP", ()=>{
+    formPersonalDataPage.clickUploadNPWP();
+});
+
+When("I click close bottom sheet upload NPWP", ()=>{
+    formPersonalDataPage.closeBottomSheet();
+});
+
 Then("I will notify my personal details has successfully submitted", () => {
     I.waitForText("Data diri berhasil disimpan", 10);
 });
@@ -119,4 +127,19 @@ Then("I should see message error {string} in the below of field {string} in form
 
 Then("I will see phonenumber {string} in field reference number", (phonenumber) => {
     I.waitForText(phonenumber, 5);
+});
+
+Then("I will see bottom sheet with option take NPWP using camera or upload from gallery", ()=>{
+    I.waitForText("Upload NPWP Individu", 10);
+    I.waitForElement(formPersonalDataPage.buttons.closeBottomSheet, 10)
+
+    I.see("Ambil dari Kamera");
+    I.see("Ambil dari Galeri");
+    I.seeElement(formPersonalDataPage.buttons.fromCamera);
+    I.seeElement(formPersonalDataPage.buttons.fromGallery);
+});
+
+Then("I will not see the bottom sheet", ()=>{
+    I.wait(2);
+    I.dontSee(formPersonalDataPage.buttons.closeBottomSheet);
 });
