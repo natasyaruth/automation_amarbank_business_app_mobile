@@ -123,18 +123,6 @@ When("I submit incorrect password three times", () => {
     createPINPage.submitPassword();
 });
 
-// Then("My account should be temporary blocked for 30 minutes", () => {
-//     I.waitForText("Akun Anda Terblokir", 10);
-//     I.waitForText("Silakan coba masuk kembali setelah 30 menit.",10);
-//     createPINPage.closeSheetBlocked();
-
-
-//     // createPINPage.inputPassword(globalVariable.login.password);
-//     // createPINPage.submitPassword();
-//     // I.waitForElement(createPINPage.fields.newPIN, 10);
-// })
-
-
 When("I click icon eye", () => {
     createPINPage.clickEyePassword();
 });

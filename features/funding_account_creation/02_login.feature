@@ -6,10 +6,10 @@ Feature: Account login
   @login @C75493
   Scenario: Login with registered account
     Given I am a registered customer with following details:
-      | userID   | rutha013 |
+      | userID   | autod015 |
       | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | rutha013 |
+      | userID   | autod015 |
       | password | 1234Test |
     And I click login
     And I click later
@@ -58,45 +58,12 @@ Feature: Account login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
 
-  @login @C75509
-  Scenario: Login with wrong password once
-    Given I am a registered customer with following details:
-      | userID   | ruth2322 |
-      | password | Test1234 |
-    When I filling in form login with the following details:
-      | userID   | ruth2322 |
-      | password | Pass1234 |
-    And I click login
-    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
-
-  @login @C75510
-  Scenario: Login with wrong password twice
-    Given I am a customer who has failed to login '1' times with following details:
-      | userID   | ruth15ff |
-      | password | Test1234 |
-    When I filling in form login with the following details:
-      | userID   | ruth15ff |
-      | password | Pass1234 |
-    And I click login
-    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'  
-
-  @login @C75511
-  Scenario: Login with wrong password three times
-    Given I am a customer who has failed to login '2' times with following details:
-      | userID   | ruth17a5 |
-      | password | Test1234 |
-    When I filling in form login with the following details:
-      | userID   | ruth17a5 |
-      | password | Pass1234 |
-    And I click login
-    Then I should see pop up 'Akun Anda Terblokir' with button 'close'    
-
   @login @C75503
   Scenario: User want to see their password
     Given I am customer that already on page login
     When I filling in form login with the following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userID   | autod015 |
+      | password | 1234Test |
     And I click icon eye password
     Then I should see my password
 
@@ -104,8 +71,8 @@ Feature: Account login
   Scenario: User don't want to see their password
     Given I am customer that already on page login
     When I filling in form login with the following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userID   | autod015 |
+      | password | 1234Test |
     And I click icon eye password twice
     Then I should not see my password
 
@@ -120,8 +87,9 @@ Feature: Account login
   Scenario: Access link Lupa Password
     Given I am customer that already on page login
     When I click forgot password
-    Then I should see new page with text 'Masukan User ID Anda untuk mendapatkan email mereset password.' displayed
+    Then I should see new page with text 'Masukan User ID dan E-mail Anda untuk mendapatkan email mereset password.' displayed
     And I should see field 'userID' on page Forgot Password
+    And I should see field 'email' on page Forgot Password
 
   @login @C75507
   Scenario: Access link Daftar
@@ -133,13 +101,14 @@ Feature: Account login
   @login @C75508
   Scenario: User want to remember their User ID
     Given I am a registered customer with following details:
-      | userID   | rutha013 |
+      | userID   | autod015 |
       | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | rutha013 |
+      | userID   | autod015 |
       | password | 1234Test |
     And I click checkbox remember me
     And I click login
+    And I choose other
     And I click logout
     Then I should see checkbox remember me is checked
     And I should see field user ID is filled with the last user ID
@@ -148,4 +117,43 @@ Feature: Account login
   Scenario: Back to page Onboarding from page Login
     Given I am customer that already on page login
     When I click button back in the header page
-    Then I will direct to page onboarding  
+    Then I will direct to page onboarding
+
+  @login @C75509
+  Scenario: Login with wrong password once
+    Given I am a registered customer with following details:
+      | userID   | autod015 |
+      | password | Test1234 |
+    When I filling in form login with the following details:
+      | userID   | autod015 |
+      | password | Pass1234 |
+    And I click login
+    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
+
+  @login @C75510
+  Scenario: Login with wrong password twice
+    Given I am a registered customer with following details:
+      | userID   | autod015 |
+      | password | Pass1234 |
+    When I filling in form login with the following details:
+      | userID   | autod015 |
+      | password | Pass1234 |
+    And I click login
+    And I click try again to login
+    And I click login
+    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
+
+  @login @C75511
+  Scenario: Login with wrong password three times
+    Given I am a customer who has failed to login '2' times with following details:
+      | userID   | autod015 |
+      | password | Test1234 |
+    When I filling in form login with the following details:
+      | userID   | autod015 |
+      | password | Pass1234 |
+    And I click login
+    And I click try again to login
+    And I click login
+    And I click try again to login
+    And I click login
+    Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
