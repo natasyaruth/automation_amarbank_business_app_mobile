@@ -354,7 +354,7 @@ When("I click button back in the header page", () => {
 });
 
 Then("I will direct to page onboarding", () => {
-  I.seeElement(welcomePage.buttons.registration);
+  I.waitForElement(welcomePage.buttons.registration, 10);
 });
 
 When("I let the otp code expire", () => {

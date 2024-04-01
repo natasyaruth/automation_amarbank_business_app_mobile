@@ -13,6 +13,7 @@ module.exports = {
     callCenter: "~buttonCallCenter",
     onboardingPage: { xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]' },
     tabOthers: "~tabOthers",
+    logout: "~btnLogout",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -58,6 +59,11 @@ module.exports = {
 
   clickLoginButton() {
     I.click(this.buttons.login);
+  },
+
+  clickLogout(){
+    I.waitForElement(this.buttons.logout, 10);
+    I.click(this.buttons.logout);
   },
 
   clickReactivationButton() {
