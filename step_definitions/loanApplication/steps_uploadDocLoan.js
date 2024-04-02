@@ -58,9 +58,9 @@ Then(/user fill a field reason \"([^\"]*)\" with \"([^\"]*)\"/,(fieldName, actua
 });
 
 // validate limit loan activation rejected
-Given(/I select first list card loan approved/, () => {
-    uploadDocLoanPage.clickListCardApproved();
-});
+// Given(/I select first list card loan approved/, () => {
+//     uploadDocLoanPage.clickListCardApproved();
+// });
 When(/user validate status is approved/, () => {
     uploadDocLoanPage.getStatusLimitApproved();
 });
