@@ -121,8 +121,8 @@ Then("I will not see button document business", () => {
 
 Then("I will see document business for type company", () => {
     I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB Berbasis Resiko");
-    I.see("NIB Berbasis Resiko.pdf");
+    I.see("NIB");
+    I.see("NIB.pdf");
 
     I.seeElement(profilePage.buttons.downloadDeed);
     I.see("Akta Perusahaan");
@@ -141,8 +141,8 @@ Then("I will see document business for type company", () => {
 
 Then("I will see document business for type individual company", () => {
     I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB Berbasis Resiko");
-    I.see("NIB Berbasis Resiko.pdf");
+    I.see("NIB");
+    I.see("NIB.pdf");
 
     I.seeElement(profilePage.buttons.downloadDeed);
     I.see("Akta Perusahaan");
@@ -161,8 +161,8 @@ Then("I will see document business for type individual company", () => {
 
 Then("I will see one document giro", () => {
     I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB Berbasis Resiko");
-    I.see("NIB Berbasis Resiko.pdf");
+    I.see("NIB");
+    I.see("NIB.pdf");
 
     I.see("Dokumen Giro");
 });
