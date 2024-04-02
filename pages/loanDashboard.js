@@ -15,8 +15,9 @@ module.exports = {
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
-    // buttonCardOffer: "~cardOffer",
-
+    buttonNavigation: '#iconNavigation',
+    buttonLater: "~buttonLater",
+    buttonSign: "~buttonSign",
   },
 
   cards: {
@@ -81,8 +82,23 @@ module.exports = {
   },
 
   clickCardOffer() {
-    I.wait(2);
+    // I.wait(2);
     I.click(this.cards.cardOffer);
+  },
+
+  clickBtnLater() {
+    I.wait(2);
+    I.click(this.buttons.buttonLater);
+  },
+
+  clickBtnSign() {
+    I.wait(2);
+    I.click(this.buttons.buttonSign);
+  },
+
+  clickBtnApprove() {
+    I.wait(2);
+    I.click(this.buttons.buttonApprove);
   },
 
   applyNewLimitLoan() {
