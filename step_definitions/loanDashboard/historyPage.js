@@ -54,6 +54,10 @@ Given('I have been access history loan limit to see status "Dalam Proses"', () =
 
 });
 
+Then('I select first list card loan approved', () => {
+    loanDashboardPage.clickCardOffer();
+});
+
 When('I access menu bar limit with status "Dalam Proses"', () => {
     loanDashboardPage.goToStatusInProcessLimitHistory();
 

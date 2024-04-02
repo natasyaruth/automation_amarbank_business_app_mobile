@@ -4,39 +4,48 @@ Feature: Apply Second Loan With Flagging Corporate Using AP Anchor
 
  Background:
   Given I am a registered customer with following details:
-   | userID   | cokr3b4e   |
+   | userID   | cokr3b4e |
    | password | Test1234 |
   When I filling in form login with the following details:
-   | userID   | cokr3b4e   |
+   | userID   | cokr3b4e |
    | password | Test1234 |
   And I click login
   Then I successed go to dashbord
+  Then I click menu tab testing
 
  @debt2
  Scenario: User apply second loan AP anchor type with flagging Corporate
   Given I click button loan dashboard
   #section input nominal
-  When user click button "ajukan limit baru"
-  And user Input Nominal Pinjaman more than 5 billion
-  And user input loan tenor
-  And user click button "Selanjutnya"
+  When user click button apply new limit
+  And user Input Nominal Pinjaman "4000000000"
+  And user input loan tenor "30"
+  And user click on button Selanjutnya
   And user on loan type page
   #section select schema loan type
   When user select loan type "AP"
   And user click button lihat skema pinjaman AP
   And user click button select the schema
   #section select Anchor
-  When user on buyer cooperating page
-  And user select one of supplier list
-  And user select the date cooperating
-  And user checklist checbox term and condition
-  When user click button "Kirim Pengajuan Pinjaman"
-  Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-  And user click OK
+  Given user on the anchor page
+  And user fill search anchor "Admin Kumar"
+  When user select result of search
+  And user on anchor cooperating page
+  Then user on anchor cooperating page AP
+  And user agree with the terms and condition
+  And user allow to agree to use my digital signature through Privy.id
+  When user click button Kirim Pengajuan Pinjaman
+  #section supplier representatives has contact
+  And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
+  When user should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
+  And user want to click button ok
   #section upload document
-  Given user on upload document page
+  Given user click button Upload Dokumen
+  And user on upload document page
+  When user upload document "ktpNpwpOfComp"
+  Then user upload document "proofOfPurchase"
   And user upload document "paymentMutation"
-  And user upload document "2YearsfinancialReports"
+  And user upload document "financialReports"
   And user click button refresh
   And user click back button to loan processing
   #section trigered status loan

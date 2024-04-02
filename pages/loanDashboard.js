@@ -15,6 +15,7 @@ module.exports = {
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
+    // buttonCardOffer: "~cardOffer",
 
   },
 
@@ -24,6 +25,8 @@ module.exports = {
     cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
     cardLimitAR: "~cardLimitAR",
     cardLimitPO: "~cardLimitPO",
+    // cardOffer: { xpath: "//android.view.View[@content-desc='cardOffer']/android.view.View[1]" },
+    cardOffer: "~cardOffer",
   },
 
   tabs: {
@@ -75,6 +78,11 @@ module.exports = {
   clickButtonBack() {
     I.wait(2);
     I.click(this.buttons.buttonBack);
+  },
+
+  clickCardOffer() {
+    I.wait(2);
+    I.click(this.cards.cardOffer);
   },
 
   applyNewLimitLoan() {

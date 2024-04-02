@@ -21,6 +21,12 @@ const {I, selectAnchorPage} = inject();
     When(/I on anchor cooperating page/,()=>{
         selectAnchorPage.viewAnchorCooperatingPage();
     });
+    When(/user on anchor cooperating page/,()=>{
+        selectAnchorPage.viewAnchorCooperatingPageSupplier();
+    });
+    When(/user on anchor cooperating page/,()=>{
+        selectAnchorPage.viewAnchorCooperatingPageBuyer();
+    });
     Then(/I select the date cooperating/,()=>{
         selectAnchorPage.selectDateCooperating();
     });
