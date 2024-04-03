@@ -6,6 +6,8 @@ module.exports = {
         textFieldTitleAnchorNotFound: "~textTitleErrorPlatform",
         textFieldSubTitleAnchorNotFound: "~textMessageErrorPlatform",
         textFieldAnchorCooperatingPage: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'},
+        textFieldAnchorCooperatingPageSupplier: {xpath: '//android.widget.TextView[contains(@text, "Dengan supplier mana Anda bekerjasama?")]'},
+        textFieldAnchorCooperatingPageBuyer: {xpath: '//android.widget.TextView[contains(@text, "Dengan buyer mana Anda bekerjasama?")]'},
         textFieldHeadOfficeLocationPage: {xpath: '//android.widget.TextView[contains(@text, "Saya butuh dana untuk membayar tagihan dari supplier")]'},
 
     },
@@ -90,6 +92,14 @@ module.exports = {
     viewAnchorCooperatingPage(){
         I.wait(2);
         I.seeElement(this.textField.textFieldAnchorCooperatingPage);
+    },
+    viewAnchorCooperatingPageSupplier(){
+        I.wait(2);
+        I.seeElement(this.textField.textFieldAnchorCooperatingPageSupplier);
+    },
+    viewAnchorCooperatingPageBuyer(){
+        I.wait(2);
+        I.seeElement(this.textField.textFieldAnchorCooperatingPageBuyer);
     },
     // selectDateCooperating(){
     //     I.waitForElement(this.fields.dateField, 10);

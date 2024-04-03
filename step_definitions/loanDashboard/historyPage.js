@@ -54,6 +54,27 @@ Given('I have been access history loan limit to see status "Dalam Proses"', () =
 
 });
 
+// Then('I select first list card loan approved', () => {
+//     console.log('iconNavigation');
+//     this.click('#cardOffer');
+// });
+
+Then('I select first list card loan approved', () => {
+    loanDashboardPage.clickCardOffer();
+});
+
+Then('I validate status is approved', () => {
+    loanDashboardPage.clickBtnLater();
+});
+
+Then('I validate content limit approved page', () => {
+    loanDashboardPage.clickBtnSign();
+});
+
+Then('I validate content limit approved page corp', () => {
+    loanDashboardPage.clickBtnApprove();
+});
+
 When('I access menu bar limit with status "Dalam Proses"', () => {
     loanDashboardPage.goToStatusInProcessLimitHistory();
 

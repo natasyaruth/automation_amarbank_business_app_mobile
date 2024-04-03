@@ -30,7 +30,7 @@ exports.config = {
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        //deviceName: "emulator-5554",
+        deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.staging", //staging
         // appPackage: "id.co.amarbank.smb.dev", //Dev
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
@@ -221,7 +221,11 @@ exports.config = {
       "./features/main_feature/account_opening_only/*.feature",
       "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature",
       "./features/funding_create_pin/05_create_pin_manual.feature",
-      "./features/funding_create_pin/04_forgot_pin_journey.feature"
+      "./features/funding_create_pin/04_forgot_pin_journey.feature",
+      "./features/main_feature/corporate/loanTypeAP/*.feature",
+      "./features/main_feature/corporate/loanTypeAR/*.feature",
+      "./features/main_feature/loanTypeAP/*.feature",
+      "./features/main_feature/loanDisbursement/*.feature"
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",

@@ -15,7 +15,9 @@ module.exports = {
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
-
+    buttonNavigation: '#iconNavigation',
+    buttonLater: "~buttonLater",
+    buttonSign: "~buttonSign",
   },
 
   cards: {
@@ -24,6 +26,8 @@ module.exports = {
     cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
     cardLimitAR: "~cardLimitAR",
     cardLimitPO: "~cardLimitPO",
+    // cardOffer: { xpath: "//android.view.View[@content-desc='cardOffer']/android.view.View[1]" },
+    cardOffer: "~cardOffer",
   },
 
   tabs: {
@@ -75,6 +79,26 @@ module.exports = {
   clickButtonBack() {
     I.wait(2);
     I.click(this.buttons.buttonBack);
+  },
+
+  clickCardOffer() {
+    // I.wait(2);
+    I.click(this.cards.cardOffer);
+  },
+
+  clickBtnLater() {
+    I.wait(2);
+    I.click(this.buttons.buttonLater);
+  },
+
+  clickBtnSign() {
+    I.wait(2);
+    I.click(this.buttons.buttonSign);
+  },
+
+  clickBtnApprove() {
+    I.wait(2);
+    I.click(this.buttons.buttonApprove);
   },
 
   applyNewLimitLoan() {
