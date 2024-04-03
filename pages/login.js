@@ -96,8 +96,8 @@ module.exports = {
   },
 
   tryToLogin() {
+    I.waitForElement(this.buttons.tryAgain, 10);
     I.click(this.buttons.tryAgain);
-    I.waitForInvisible(this.buttons.tryAgain, 2);
   },
 
   clickBtnOnBoardingPage() {
