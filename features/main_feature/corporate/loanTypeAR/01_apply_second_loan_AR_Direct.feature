@@ -1,21 +1,20 @@
-Feature: Apply Second Loan With Flagging MSME Using AP Direct
+Feature: Apply Second Loan With Flagging Corporate Using AR Direct
     As a customer lead
-    I want to apply second loan using AP Direct with MSME has flag
+    I want to apply second loan using AR Direct with Corporate has flag
 
-    Background: User must login to home dashboard
+    Background:
         Given I am a registered customer with following details:
-            | userID   | niza1356   |
+            | userID   | cokr3b4e |
             | password | Test1234 |
         When I filling in form login with the following details:
-            | userID   | niza1356   |
+            | userID   | cokr3b4e |
             | password | Test1234 |
         And I click login
         Then I successed go to dashbord
         Then I click menu tab testing
-        # And I click button loan dashboard
 
-    @emes1
-    Scenario: User apply second loan AP direct type with flagging MSME
+    @debt3
+    Scenario: User apply second loan AR direct type with flagging Corporate
         Given I click button loan dashboard
         #section input nominal
         When user click button apply new limit
@@ -24,8 +23,8 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user click on button Selanjutnya
         And user on loan type page
         #section select schema loan type
-        When user select loan type "AP"
-        And user click button lihat skema pinjaman AP
+        When user select loan type "AR"
+        And user click button lihat skema pinjaman AR
         And user click button select the schema
         #section select Anchor
         And user click another anchor
@@ -41,7 +40,7 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user agree with the terms and condition
         And user allow to agree to use my digital signature through Privy.id
         When user click button Kirim Pengajuan Pinjaman
-        ##sectionn buttom sheet success
+        #sectionn buttom sheet success
         And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
         When user should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
         And user want to click button ok
@@ -56,16 +55,3 @@ Feature: Apply Second Loan With Flagging MSME Using AP Direct
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
-
-    Scenario: Validate Card Limit For Type Loan AP
-        Given I have been on Loan Dashboard to see the loan type of Loan AP
-        When I validate the card of "Loan AP"
-        Then I should see the wording dan card design of "Loan AP"
-        And user click button back
-        And user should see text view "Selamat, Limit Pinjaman Telah Aktif" on bottom sheet "titleLimitPinjaman"
-        And user should see text bottom sheet "Limit Tersedia" in field "titleLimitTersedia"
-        And user should see text bottom sheet "Supplier" in field "titleSupplier"
-        And user should see text bottom sheet "No. Pinjaman" in field "titleNoPinjaman"
-        And user click button copy
-        And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
-        And user click button lihat pinjaman
