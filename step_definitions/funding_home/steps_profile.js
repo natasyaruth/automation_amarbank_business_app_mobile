@@ -2,31 +2,32 @@ const { I,
     transactionHistoryPage,
     globalVariable,
     profilePage,
+    resetStateDao,
     headerPage,
 } = inject();
 
 When("I will see card account {string}", (typeAccount) => {
-    if(
+    if (
         typeAccount === "active"
-    ){
+    ) {
         I.waitForElement(transactionHistoryPage.buttons.historyBtn, 10);
 
     } else if (
         typeAccount === "on verification"
-    ){
+    ) {
         I.waitForText("Menunggu verifikasi data selesai", 10);
 
     } else if (
         typeAccount === "complete document"
-    ){
+    ) {
         I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 10);
 
     } else if (
         typeAccount === "on process"
-    ){
+    ) {
         I.waitForText("Lanjutkan Pembuatan Rekening Giro", 10);
 
-    } 
+    }
     globalVariable.onBoarding.status = typeAccount;
 });
 
@@ -38,36 +39,36 @@ When("I see my profile company data", () => {
     I.waitForText("Direktur", 10);
     I.see(globalVariable.login.userID.toUpperCase());
 
-    if(
+    if (
         globalVariable.onBoarding.status === "active"
-    ){
-        I.seeElement(profilePage.buttons.copyAccNumber); 
+    ) {
+        I.seeElement(profilePage.buttons.copyAccNumber);
 
     } else {
-        I.dontSeeElement(profilePage.buttons.copyAccNumber); 
+        I.dontSeeElement(profilePage.buttons.copyAccNumber);
     }
-    
+
     I.see("Tipe Industri");
     I.see("Jenis Bisnis");
     I.see("Tanggal Berdiri");
     I.see("Alamat Bisnis");
-    I.seeElement(profilePage.buttons.documentProcuration);
-    I.swipeUp(profilePage.buttons.documentProcuration, 500, 800);
+    I.seeElement(profilePage.buttons.transactionApprovalDetail);
+    I.swipeUp(profilePage.buttons.transactionApprovalDetail, 800, 800);
 });
 
 When("I see my profile individual company data", () => {
     I.waitForText("Pemilik Bisnis", 10);
     I.see(globalVariable.login.userID.toUpperCase());
 
-    if(
+    if (
         globalVariable.onBoarding.status === "active"
-    ){
-        I.seeElement(profilePage.buttons.copyAccNumber); 
+    ) {
+        I.seeElement(profilePage.buttons.copyAccNumber);
 
     } else {
-        I.dontSeeElement(profilePage.buttons.copyAccNumber); 
+        I.dontSeeElement(profilePage.buttons.copyAccNumber);
     }
-    
+
     I.see("Tipe Industri");
     I.see("Jenis Bisnis");
     I.see("Tanggal Berdiri");
@@ -97,14 +98,14 @@ When("I back to page document business", () => {
 Then("I will see my profile individual data", () => {
     I.waitForText("Individu", 10);
     I.see(globalVariable.login.userID.toUpperCase());
-    
-    if(
+
+    if (
         globalVariable.onBoarding.status === "active"
-    ){
-        I.seeElement(profilePage.buttons.copyAccNumber); 
+    ) {
+        I.seeElement(profilePage.buttons.copyAccNumber);
 
     } else {
-        I.dontSeeElement(profilePage.buttons.copyAccNumber); 
+        I.dontSeeElement(profilePage.buttons.copyAccNumber);
     }
 
     I.dontSee("Tipe Industri");
@@ -114,8 +115,12 @@ Then("I will see my profile individual data", () => {
     I.seeElement(profilePage.buttons.documentProcuration);
 });
 
-Then("I will not see button document business", () => {
-    I.swipeUp(profilePage.buttons.documentProcuration, 500, 800);
+Then("I will not see button document giro", () => {
+    I.waitForText("Dokumen Bisnis", 10);
+    I.dontSeeElement(profilePage.buttons.documentGiro);
+});
+
+Then("I will not see button document business", ()=>{
     I.dontSeeElement(profilePage.buttons.documentBusiness);
 });
 

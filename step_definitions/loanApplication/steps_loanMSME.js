@@ -1,6 +1,3 @@
-const loanType = require("../../pages/loanApplication/loanType");
-const loanFlagging = require("../../pages/loanFlagging/loanFlagging");
-
 const{
     I,
     globalVariable,    
@@ -98,27 +95,6 @@ When("I submit my legality type", () => {
 
 When("I update my last journey step to {string}", async (stepName) => {
     await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
-});
-
-When("I continue to process KYB", () => {
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
-    formEmploymentDataPage.continueToKYB();
-});
-
-When("I fill my business profile as followings:", (table) => {
-    I.waitForElement(formBusinessProfilePage.fields.businessName, 10);
-
-    const businessProfile = table.parse().rowsHash();
-    formBusinessProfilePage.fillBusinessProfile(businessProfile);
-});
-
-When("I submit my business profile", () => {
-    formBusinessProfilePage.saveBusinessProfile();
-});
-
-When("I submit business director list", () => {
-    formBusinessOwnerPage.saveListDirectors();
 });
 
 Then("I will see checkbox Rights & Policy and T&C about loan", async () => {

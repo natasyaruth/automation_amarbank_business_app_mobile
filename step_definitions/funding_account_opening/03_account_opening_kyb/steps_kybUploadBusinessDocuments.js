@@ -39,7 +39,7 @@ When("I see files that need to be uploaded for type individual company", () => {
     I.see("Format file PDF maximal 10MB");
 });
 
-When("I upload document {string}", async (typeDoc) => {
+When("I upload document business {string}", async (typeDoc) => {
     await
         uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
 });
