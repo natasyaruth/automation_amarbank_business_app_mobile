@@ -2,8 +2,13 @@ const { I,
     homePage,
     globalVariable,
     accountDeletionPage,
+    onboardingAccOpeningPage,
     headerPage,
 } = inject();
+
+When("I choose other", () =>{
+    onboardingAccOpeningPage.goToTabOthers();
+});
 
 When("I click menu delete account", () => {
     accountDeletionPage.clickMenuAccountDelete();

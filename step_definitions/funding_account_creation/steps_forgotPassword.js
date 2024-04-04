@@ -91,11 +91,6 @@ When("I click link forgot password", ()=>{
   loginPage.goToForgotPasswordPage();
 });
 
-Then("I should be notified {string} in the below of field {string}", async (expectedMsgError, field) => {
-  let actualMsgError = await forgotPasswordPage.getMessageError(field);
-  I.assertEqual(actualMsgError, expectedMsgError);
-});
-
 Then("I should be notified that email Reset Password successfully sent", () => {
   I.waitForText("Segera Cek E-mail", 10);
   I.see("Kami telah mengirim email konfirmasi untuk reset password ke:");

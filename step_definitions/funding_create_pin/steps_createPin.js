@@ -19,10 +19,6 @@ Given("I am a customer who wants to change PIN from menu other", () => { });
 
 When("I don't have a PIN", () => { });
 
-When("I choose other", () => {
-    createPINPage.goToOtherMenu();
-});
-
 Then("I go to page other ", () => {
     Then("I can see change password and create transaction pin", () => { });
     I.waitForElement(createPINPage.buttons.changePassword, 5);

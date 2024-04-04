@@ -1,6 +1,7 @@
 const {
     I,
     welcomePage,
+    headerPage,
     registrationPage,
     forgotPasswordPage,
     loginPage,
@@ -122,7 +123,7 @@ When("I click icon eye password twice", () => {
 });
 
 Then("I should see my password", () => {
-    I.see(globalVariable.login.password);
+    I.waitForText(globalVariable.login.password, 10);
 });
 
 Then("I should not see my password", () => {
@@ -165,6 +166,11 @@ When("I click logout", () => {
     loginPage.clickLogout();
 });
 
+When("I click try again to login", ()=>{
+    I.wait(1);
+    loginPage.tryToLogin();
+});
+
 Then("I click button loan dashboard", () => {
     loginPage.clickBtnOnBoardingPage();
 });
@@ -182,4 +188,11 @@ Then("I should see checkbox remember me is checked", () => {
 Then("I should see field user ID is filled with the last user ID", async () => {
     let actualUserID = await loginPage.getValueUserID();
     I.assertEqual(actualUserID, globalVariable.login.userID);
+});
+
+Then("I should see bottom sheet call center with email", ()=>{
+    I.waitForElement(headerPage.buttons.close, 10);
+    I.see("Hubungi Tim Kami");
+    I.see("Kami akan membantu Anda dalam"+"\n"+"pembentukan rekening ataupun pinjaman");
+    I.see("support.bisnis@amarbank.co.id");
 });

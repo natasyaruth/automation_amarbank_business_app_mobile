@@ -6,13 +6,12 @@ Feature: Account login
   @login @C75493
   Scenario: Login with registered account
     Given I am a registered customer with following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     And I click login
-    And I click later
     Then I will direct to dashboard
 
   @login @C76892
@@ -60,18 +59,22 @@ Feature: Account login
 
   @login @C75503
   Scenario: User want to see their password
-    Given I am customer that already on page login
+    Given I am a registered customer with following details:
+      | userID   | autocaea |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     And I click icon eye password
     Then I should see my password
 
   @login @C75504
   Scenario: User don't want to see their password
-    Given I am customer that already on page login
+    Given I am a registered customer with following details:
+      | userID   | autocaea |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     And I click icon eye password twice
     Then I should not see my password
@@ -80,14 +83,13 @@ Feature: Account login
   Scenario: Access call center on page login
     Given I am customer that already on page login
     When I click call center
-    Then I should see pop up with text 'Hubungi Tim Kami' displayed
-    And I should see pop up with text 'Kami akan membantu Anda dalam pembuatan rekening' displayed
+    Then I should see bottom sheet call center with email
 
   @login @C75506
   Scenario: Access link Lupa Password
     Given I am customer that already on page login
     When I click forgot password
-    Then I should see new page with text 'Masukan User ID dan E-mail Anda untuk mendapatkan email mereset password.' displayed
+    Then I should see new page with text 'Masukkan User ID dan E-mail Anda untuk mendapatkan email mereset password.' displayed
     And I should see field 'userID' on page Forgot Password
     And I should see field 'email' on page Forgot Password
 
@@ -101,10 +103,10 @@ Feature: Account login
   @login @C75508
   Scenario: User want to remember their User ID
     Given I am a registered customer with following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | 1234Test |
     And I click checkbox remember me
     And I click login
@@ -122,34 +124,34 @@ Feature: Account login
   @login @C75509
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
-      | userID   | autod015 |
-      | password | Test1234 |
+      | userID   | autocaea |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | Pass1234 |
     And I click login
-    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
+    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
   @login @C75510
   Scenario: Login with wrong password twice
     Given I am a registered customer with following details:
-      | userID   | autod015 |
-      | password | Pass1234 |
+      | userID   | autocaea |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | Pass1234 |
     And I click login
     And I click try again to login
     And I click login
-    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
+    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
   @login @C75511
   Scenario: Login with wrong password three times
     Given I am a customer who has failed to login '2' times with following details:
-      | userID   | autod015 |
-      | password | Test1234 |
+      | userID   | autocaea |
+      | password | 1234Test |
     When I filling in form login with the following details:
-      | userID   | autod015 |
+      | userID   | autocaea |
       | password | Pass1234 |
     And I click login
     And I click try again to login
