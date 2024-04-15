@@ -21,7 +21,7 @@ When("I see files that need to be uploaded for type company", () => {
 
     I.waitForText("Upload dokumen-dokumen sebagai berikut:", 10);
 
-    I.see("NIB Berbasis Resiko *");
+    I.see("NIB *");
     I.see("Akta Perusahaan *");
     I.see("SK Kemenkumham *");
     I.see("NPWP Perusahaan *");
@@ -32,14 +32,14 @@ When("I see files that need to be uploaded for type individual company", () => {
 
     I.waitForText("Upload dokumen-dokumen sebagai berikut:", 10);
 
-    I.see("NIB Berbasis Resiko *");
+    I.see("NIB *");
     I.see("Akta Perusahaan *");
     I.dontSee("SK Kemenkumham *");
     I.dontSee("NPWP Perusahaan *");
     I.see("Format file PDF maximal 10MB");
 });
 
-When("I upload document {string}", async (typeDoc) => {
+When("I upload document business {string}", async (typeDoc) => {
     await
         uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
 });

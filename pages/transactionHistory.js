@@ -23,7 +23,7 @@ module.exports = {
         btnClose: "~buttonClose",
         btnChoose: "~buttonChoose",
         btnCancel: "~buttonCancel",
-        btnOk: "~buttonOk",
+        btnOk: "~buttonNextSuccessBottomSheet",
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",
@@ -53,7 +53,7 @@ module.exports = {
         textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
     },
     menu: {
-        tabTesting: { xpath: "(//android.view.View[@content-desc='tabHome'])[2]" },
+        tabTesting: { xpath: "//android.widget.TextView[contains(@text, 'TESTING')]" },
         tabOthers: { xpath: "(//android.view.View[@content-desc='tabOthers'])[1]" },
         tabCallCenter: "~tabCallCenter",
         tabBusiness: "~tabBusiness",
@@ -210,7 +210,7 @@ module.exports = {
         I.click(this.buttons.btnCancel);
     },
     clickBtnOk() {
-        I.wait(2);
+        I.wait(5);
         I.click(this.buttons.btnOk);
     },
     async validateTextViewTransfer(trfType) {

@@ -10,7 +10,7 @@ module.exports = {
     activeBalance: "~txtActiveBalance",
     blockBalance: "~txtBlockBalance",
     totalBalance: "~txtTotalBalance",
-    informationBlockingAmount: "~"
+    informationBlockingAmount: "~txtBlockBalanceDesc"
   },
 
   clickIconEye(){

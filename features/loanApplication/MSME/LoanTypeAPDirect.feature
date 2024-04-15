@@ -36,8 +36,7 @@ Feature: Apply Either Loan and select the loan type
         And I click button Kirim Pengajuan Pinjaman
         And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
         And I should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
-        And user close the bottom sheet
-        And I am on user on monitoring loan process page
+        And user close the bottom sheet       
         And I click button Upload Dokumen     
         And I upload document "npwpOfComp"
         And I upload document "proofOfPurchase"

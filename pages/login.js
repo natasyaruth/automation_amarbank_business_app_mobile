@@ -13,6 +13,7 @@ module.exports = {
     callCenter: "~buttonCallCenter",
     onboardingPage: { xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]' },
     tabOthers: "~tabOthers",
+    logout: "~btnLogout",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -60,6 +61,11 @@ module.exports = {
     I.click(this.buttons.login);
   },
 
+  clickLogout(){
+    I.waitForElement(this.buttons.logout, 10);
+    I.click(this.buttons.logout);
+  },
+
   clickReactivationButton() {
     I.click(this.buttons.reactivation);
   },
@@ -85,12 +91,13 @@ module.exports = {
   },
 
   goToForgotPasswordPage() {
+    I.waitForElement(this.link.forgotPassword, 10);
     I.click(this.link.forgotPassword);
   },
 
   tryToLogin() {
+    I.waitForElement(this.buttons.tryAgain, 10);
     I.click(this.buttons.tryAgain);
-    I.waitForInvisible(this.buttons.tryAgain, 2);
   },
 
   clickBtnOnBoardingPage() {

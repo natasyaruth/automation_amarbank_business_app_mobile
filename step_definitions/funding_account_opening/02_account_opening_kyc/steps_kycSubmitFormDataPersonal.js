@@ -88,6 +88,16 @@ When("I don't upload my NPWP photo", ()=>{
     globalVariable.formPersonal.isUploadNpwp = false;
 });
 
+When("I click button upload document NPWP", ()=>{
+    I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    formPersonalDataPage.clickUploadNPWP();
+});
+
+When("I click close bottom sheet upload NPWP", ()=>{
+    formPersonalDataPage.closeBottomSheet();
+});
+
 Then("I will notify my personal details has successfully submitted", () => {
     I.waitForText("Data diri berhasil disimpan", 10);
 });
@@ -119,4 +129,25 @@ Then("I should see message error {string} in the below of field {string} in form
 
 Then("I will see phonenumber {string} in field reference number", (phonenumber) => {
     I.waitForText(phonenumber, 5);
+});
+
+Then("I will see bottom sheet with option take NPWP using camera or upload from gallery", async ()=>{
+    I.waitForText("Upload NPWP Individu", 10);
+    I.waitForElement(formPersonalDataPage.buttons.closeBottomSheet, 10)
+
+    I.see("Ambil dari Kamera");
+    I.see("Ambil dari Galeri");
+    I.seeElement(formPersonalDataPage.buttons.fromCamera);
+    I.seeElement(formPersonalDataPage.buttons.fromGallery);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will not see the bottom sheet", async ()=>{
+    I.wait(2);
+    I.dontSee(formPersonalDataPage.buttons.closeBottomSheet);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

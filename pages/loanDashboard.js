@@ -15,7 +15,9 @@ module.exports = {
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
-
+    buttonNavigation: '#iconNavigation',
+    buttonLater: "~buttonLater",
+    buttonSign: "~buttonSign",
   },
 
   cards: {
@@ -24,6 +26,8 @@ module.exports = {
     cardLimitAPDirectLoan: "~cardLimitAPDirectLoan",
     cardLimitAR: "~cardLimitAR",
     cardLimitPO: "~cardLimitPO",
+    // cardOffer: { xpath: "//android.view.View[@content-desc='cardOffer']/android.view.View[1]" },
+    cardOffer: "~cardOffer",
   },
 
   tabs: {
@@ -77,6 +81,26 @@ module.exports = {
     I.click(this.buttons.buttonBack);
   },
 
+  clickCardOffer() {
+    // I.wait(2);
+    I.click(this.cards.cardOffer);
+  },
+
+  clickBtnLater() {
+    I.wait(2);
+    I.click(this.buttons.buttonLater);
+  },
+
+  clickBtnSign() {
+    I.wait(2);
+    I.click(this.buttons.buttonSign);
+  },
+
+  clickBtnApprove() {
+    I.wait(2);
+    I.click(this.buttons.buttonApprove);
+  },
+
   applyNewLimitLoan() {
     I.wait(2);
     I.seeElement(this.buttons.buttonNewLimit);
@@ -112,12 +136,24 @@ module.exports = {
     I.click(this.cards.cardOffer);
   },
 
-  validateApprovalLimitOfferStillRunning() {
+  validateApprovalLimitOfferStillRunningMSME() {
     I.see('Pengajuan limit telah disetujui sebesar');
     I.see('Detail Biaya Pinjaman');
     I.see('Tenor 180 hari')
     I.see('Bunga per Tahun 1.3%');
     I.see('Biaya Administrasi 3%', 'Dikurangkan saat pencairan limit pinjaman');
+    I.see('Denda Jika Terlambat Bayar 0.1%', 'Dihitung berdasarkan jumlah hari keterlambatan');
+    I.see('Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank.')
+    I.seeElement(this.buttons.buttonApprove);
+  },
+
+  validateApprovalLimitOfferStillRunningCORP() {
+    I.see('Pengajuan limit telah disetujui sebesar');
+    I.see('Detail Biaya Pinjaman');
+    I.see('Tenor 180 hari')
+    I.see('Bunga per Tahun 1.3%');
+    I.see('Biaya Administrasi 3%', 'Dikurangkan saat pencairan limit pinjaman');
+    I.see('Biaya Provisi');
     I.see('Denda Jika Terlambat Bayar 0.1%', 'Dihitung berdasarkan jumlah hari keterlambatan');
     I.see('Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank.')
     I.seeElement(this.buttons.buttonApprove);

@@ -30,7 +30,7 @@ exports.config = {
         // platformVersion: "12.0",
         automationName: "UiAutomator2",
         newCommandTimeout: 300,
-        //deviceName: "emulator-5554",
+        deviceName: "emulator-5554",
         appPackage: "id.co.amarbank.smb.staging", //staging
         // appPackage: "id.co.amarbank.smb.dev", //Dev
         appActivity: "id.co.amarbank.smb.ui.MainActivity",
@@ -151,13 +151,38 @@ exports.config = {
     documentManagementPage: "./pages/loanApplication/documentManagement.js",
 
     approvalTransactionPage: "./pages/approvalTransaction.js",
+    loanFlaggingPage: "./pages/loanFlagging/loanFlagging.js"
   },
   settings: {
     logging: {
       level: 'warn',
     },
   },
-  mocha: {},
+  mocha: {
+    "reporterOptions": {
+      "codeceptjs-cli-reporter": {
+        "stdout": "-",
+        "options": {
+          "verbose": true,
+          "steps": true
+        }
+      },
+      "mochawesome": {
+        "stdout": "./output/console.log",
+        "options": {
+          "reportDir": "./output",
+          "reportFilename": "report"
+        }
+      },
+    //   "mocha-junit-reporter": {
+    //     "stdout": "./output/console.log",
+    //     "options": {
+    //       "mochaFile": "./output/result.xml",
+    //       "attachments": true //add screenshot for a failed test
+    //     }
+    // }
+   }
+  },
   bootstrap: null,
   timeout: null,
   teardown: null,
@@ -169,7 +194,6 @@ exports.config = {
       "./features/loanApplication/loanTypePO/*.feature",
       "./features/loanDashboard/*.feature",
       "./features/funding_account_creation/*.feature",
-      "./features/funding_transfer/02_transfer_all_methode.feature",
       "./features/funding_account_opening/01_account_opening_onboarding_and_dashboard/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_cv/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/kyc_individual/*.feature",
@@ -182,9 +206,7 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       "./features/funding_transfer/*.feature",
-      "./features/funding_create_pin/01_create_pin_journey_transfer.feature",
-      "./features/funding_create_pin/02_create_pin_journey_menu_other.feature",
-      "./features/funding_transfer/friend_list.feature",
+      "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
       "./features/funding_home/01_MainDashboard_Hook1/*.feature",
@@ -193,7 +215,13 @@ exports.config = {
       "./features/funding_home/03_MainDashboard_Active/*.feature",
       "./features/main_feature/loan_app_journey/01_Registration.feature",
       "./features/main_feature/account_opening_only/*.feature",
-      "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature"
+      "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature",
+      "./features/funding_create_pin/05_create_pin_manual.feature",
+      "./features/funding_create_pin/04_forgot_pin_journey.feature",
+      "./features/main_feature/corporate/loanTypeAP/*.feature",
+      "./features/main_feature/corporate/loanTypeAR/*.feature",
+      "./features/main_feature/loanTypeAP/*.feature",
+      "./features/main_feature/loanDisbursement/*.feature"
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
@@ -226,6 +254,7 @@ exports.config = {
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypePO.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAR.js",
       "./step_definitions/funding_home/steps_home.js",
+      "./step_definitions/funding_home/steps_other.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",

@@ -286,8 +286,7 @@ module.exports = {
       I.see('Pencairan 80%')
       I.see('Jatuh Tempo 90 hari');
       I.see('Total Bunga');
-      I.see('Bunga 15.6% per tahun');
-      I.see('Bunga per bulan');
+      I.see('Bunga 15.6% per tahun');      
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
     } else {
@@ -297,7 +296,7 @@ module.exports = {
       I.dontSee('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
-      I.see('Bunga per bulan');
+      I.see('Bunga 15.6% per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
     }
@@ -312,7 +311,7 @@ module.exports = {
       I.dontSee('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
-      I.see('Bunga per bulan');
+      I.see('Bunga 15.6 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
     } else {
@@ -322,7 +321,8 @@ module.exports = {
       I.see('Pencairan 80%')
       I.see('Jatuh Tempo');
       I.see('Total Bunga');
-      I.see('Bunga per bulan');
+      I.see('Bunga 15.6 % per tahun');
+      I.see('Biaya Provisi');
       I.see('Biaya Administrasi 3%');
       I.see('Nominal yang Dicairkan');
     }
@@ -365,13 +365,14 @@ module.exports = {
   },
 
     
-  validateAnchorDetail() {
+  validateAnchorDetailInvoice100() {
     I.waitForElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonUpload);
     I.seeElement(this.buttons.buttonDetailLimit);
     I.see('Limit Tersedia');
     I.see('Tenor 30 Hari');
   },
+  
 
   goToUploadDocument() {
     I.seeElement(this.buttons.buttonUpload);
@@ -467,9 +468,7 @@ module.exports = {
       I.see('Total Bunga');
       I.see('Bunga per bulan 15.5 % per tahun');
       I.see('Biaya Administrasi 3%');
-      I.see('Nominal yang Dicairkan');
-      I.see('Nominal yang Dikembalikan Setelah Pelunasan');
-      I.see('Sudah dipotong bunga + biaya admin dan akan dikembalikan setelah pelunasan ke rekening Anda');
+      I.see('Nominal yang Dicairkan');     
       I.seeElement(this.buttons.buttonDisburse);
     } else {
       I.see('Limit Tidak Mencukupi');
@@ -506,9 +505,7 @@ module.exports = {
       I.see('Total Bunga');
       I.see('Bunga per bulan');
       I.see('Biaya Administrasi 3%');
-      I.see('Nominal yang Dicairkan');
-      I.see('Nominal yang Dikembalikan Setelah Pelunasan');
-      I.see('Sudah dipotong bunga + biaya admin dan akan dikembalikan setelah pelunasan ke rekening Anda');
+      I.see('Nominal yang Dicairkan');     
       I.seeElement(this.buttons.buttonDisburse);
     }
   },
@@ -541,6 +538,8 @@ module.exports = {
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');
+      I.see('Nominal yang wajib dibayar ke supplier');
+      I.see('Perhitungan = Nominal Invoice - Nominal yang Dicairkan');
     }
   },
 
@@ -556,12 +555,15 @@ module.exports = {
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');
+      I.see('Nominal yang wajib dibayar ke supplier');
+      I.see('Perhitungan = Nominal Invoice - Nominal yang Dicairkan');
     } else {
       I.see('Dana akan langsung dicairkan ke Supplier');
       I.see('Nominal Invoice');
       I.see('Nominal Pinjaman');
       I.see('Pencairan 80%')
       I.see('Total Bunga');
+      I.see('Bunga 15.6 % per tahun');
       I.see('Biaya Administrasi 3%');
       I.see('Jatuh Tempo');
       I.see('Nominal yang Dicairkan');

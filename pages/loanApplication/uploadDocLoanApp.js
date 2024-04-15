@@ -18,9 +18,10 @@ module.exports = {
     btnUploadAkte: "",
     btnUploadSk: "",
     btnUploadNpwp: "",
-    btnUploadPurchase: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[1]' },
-    btnUploadMutation: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[2]' },
-    btnUploadFinReport: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[3]' },
+    btnUploadPurchase: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[2]' },
+    btnUploadMutation: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[3]' },
+    btnUploadFinReport: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[4]' },
+    btnUploadKtpNpwp: { xpath: '(//android.view.View[@content-desc="buttonUpload"])[1]' },
     btnRefreshUploadDoc: "~buttonRefresh",
     backBtn: "",
     btnAcceptLimitOffer: "",
@@ -224,37 +225,41 @@ module.exports = {
     switch (docType) {
       case 'nib':
         I.seeElement(this.buttons.btnUploadNib);
-        I.attachFile(this.buttons.btnUploadNib, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadNib, 'data/file.pdf');
       break;
       case 'deedOfComp':
         I.seeElement(this.buttons.btnUploadAkte);
-        I.attachFile(this.buttons.btnUploadAkte, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadAkte, 'data/file.pdf');
       break;
       case 'SKKemen':
         I.seeElement(this.buttons.btnUploadSk);
-        I.attachFile(this.buttons.btnUploadSk, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadSk, 'data/file.pdf');
       break;
       case 'npwpOfComp':
         I.seeElement(this.buttons.btnUploadNpwp);
-        I.attachFile(this.buttons.btnUploadNpwp, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadNpwp, 'data/file.pdf');
+      break;
+      case 'ktpNpwpOfComp':
+        I.seeElement(this.buttons.btnUploadKtpNpwp);
+        I.attachFile(this.buttons.btnUploadKtpNpwp, 'data/file.pdf');
       break;
       case 'proofOfPurchase':
         I.seeElement(this.buttons.btnUploadPurchase);
-        I.attachFile(this.buttons.btnUploadPurchase, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadPurchase, 'data/file.pdf');
         I.wait(2);
         let actualValueTextBar5 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
         I.assertEqual(actualValueTextBar5, "true");
       break;
       case 'paymentMutation':
         I.seeElement(this.buttons.btnUploadMutation);
-        I.attachFile(this.buttons.btnUploadMutation, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadMutation, 'data/file.pdf');
         I.wait(2);
         let actualValueTextBar6 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
         I.assertEqual(actualValueTextBar6, "true");
       break;
       case 'financialReports':
         I.seeElement(this.buttons.btnUploadFinReport);
-        I.attachFile(this.buttons.btnUploadFinReport, 'data/beruang.pdf');
+        I.attachFile(this.buttons.btnUploadFinReport, 'data/file.pdf');
         I.wait(2);
         let actualValueTextBar7 = await I.grabAttributeFrom(this.fields.textProgressBar, "displayed");
         I.assertEqual(actualValueTextBar7, "true");

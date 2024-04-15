@@ -75,15 +75,17 @@ selectLoanTypeList(selectLoanType){
  },
 
  ClickNext(){
+    I.wait(2);
     I.click(this.button.btnNext);
+    I.wait(5);
  },
 
-  fillNominalPinjaman(){
-    I.setText(this.fields.inputNominal);  
+fillNominalPinjaman(nominal){
+    I.setText(this.fields.inputNominal, nominal);  
 },
 
-fillTenor(){
-    I.setText(this.fields.inputTenor);
+fillTenor(tenor){
+    I.setText(this.fields.inputTenor, tenor);
 },
 
 async getMessageEmptyLoan() {

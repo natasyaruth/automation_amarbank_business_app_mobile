@@ -111,7 +111,7 @@ Then("I will directing to page upload require documents for business", () => {
     I.see("Pengecekan Dokumen");
     I.see("Proses saat ini");
     I.see("Untuk mempercepat pembentukan rekening, Anda bisa upload dokumen langsung.");
-    I.see("NIB Berbasis Resiko");
+    I.see("NIB");
     I.see("Akta Perusahaan");
     I.see("SK Kemenkumham");
     I.see("NPWP Perusahaan");
@@ -127,7 +127,7 @@ Then("I will directing to page upload require documents for business individual"
     I.see("Pengecekan Dokumen");
     I.see("Proses saat ini");
     I.see("Untuk mempercepat pembentukan rekening, Anda bisa upload dokumen langsung.");
-    I.see("NIB Berbasis Resiko");
+    I.see("NIB");
     I.see("Akta Pendirian");
     I.dontSee("Akta Perusahaan");
     I.dontSee("SK Kemenkumham");

@@ -57,7 +57,7 @@ Feature: Maker and Approver Transaction
         And I choose category 'Pembayaran'
         And I submit to next flow
         And I click transfer now
-        And I input PIN '123456'
+        And I input PIN '111111'
         And I successfully transferred
         And I close page detail transfer
         Then I don't see any card transaction in main dashboard

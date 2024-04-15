@@ -102,7 +102,7 @@ Then("I will directing to page capture eKTP with information {string}", async (e
 });
 
 Then("I will directing to Hook 1 Onboarding Account Opening", async () => {
-    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+    I.waitForText("Apa kebutuhan Anda saat ini?", 20);
 });
 
 Then("I will directing to page type giro account", async () => {

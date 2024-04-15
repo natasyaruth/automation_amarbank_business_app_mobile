@@ -3,6 +3,7 @@ Feature: Account Opening KYB CV - Upload Document Business
     As a customer
     I want to upload document business as part of the KYB Process
 
+    @upload_document_business
     Scenario: Upload some document business
         Given I am a registered customer with following details:
             | userID   | nata5ff1                |
@@ -57,8 +58,8 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I submit my business address
         When I click button upload document
         And I see files that need to be uploaded for type company
-        And I upload document 'NIB Berbasis Resiko'
-        And I upload document 'Akta Perusahaan'
+        And I upload document business 'NIB Berbasis Resiko'
+        And I upload document business 'Akta Perusahaan'
         Then I will not see button continue
         And I will not see additional information in the top of section
 
@@ -116,7 +117,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I submit my business address
         When I click button upload document
         And I see files that need to be uploaded for type company
-        And I upload document 'NIB Berbasis Resiko'
+        And I upload document business 'NIB Berbasis Resiko'
         And I back to dashboard
         And I will see card continue to complete upload document business
         And I can continue to page 'Upload Document Business'
@@ -176,7 +177,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
-        And I upload document with size more than 10MB
+        And I upload document business with size more than 10MB
         Then I will see message error 'Ukuran file melebihi 10MB. Silahkan coba lagi' in the below of section upload document
 
     Scenario: Upload document with file other than PDF
@@ -232,7 +233,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I allow company to store my data
         And I submit my business address
         When I click button upload document
-        And I upload document with file other than PDF
+        And I upload document business with file other than PDF
         Then I will see message error 'File tidak boleh selain pdf' in the below of section upload document
 
     Scenario: Access call center in Page upload document

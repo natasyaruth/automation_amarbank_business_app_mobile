@@ -1,16 +1,18 @@
 const {
     I,
     welcomePage,
+    headerPage,
     registrationPage,
     forgotPasswordPage,
     loginPage,
+    transferPage,
     onboardingAccOpeningPage,
     globalVariable } = inject();
 
 Given("I am a customer who has failed to login {string} times with following details:", (countValue, table) => {
     welcomePage.clickButtonLogin();
 
-    for (let i = 0;i < countValue;i++) {
+    for (let i = 0; i < countValue; i++) {
 
         const account = table.parse().rowsHash();
         globalVariable.login.password = account["password"];
@@ -83,8 +85,9 @@ Then("I should be notified {string} in the below of field {string}", async (expe
 });
 
 Then("I should see pop up {string} with button {string}", (expectedValue, buttonName) => {
-    I.waitForText(expectedValue, 10);
-    I.seeElement(loginPage.buttons[buttonName]);
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.see(expectedValue);
+    I.waitForElement(loginPage.buttons[buttonName], 10);
 
     if (globalVariable.login.countValue === 2) {
         loginPage.closeBottomSheet();
@@ -95,7 +98,19 @@ Then("I should see pop up {string} with button {string}", (expectedValue, button
     loginPage.fillFieldLogin('userID', globalVariable.login.userID);
     loginPage.fillFieldLogin('password', globalVariable.login.password);
     loginPage.clickLoginButton();
-    I.waitForText("Dashboard Screen", 10);
+    I.waitForElement(transferPage.buttons.sectionBtnTrf, 10);
+});
+
+Then("I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes", () => {
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const addMinutes = minutes + 10;
+
+    const currentTime = hours.toString().padStart(2, '0') + ":" + addMinutes.toString().padStart(2, '0');
+
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.see("Tiga kali salah memasukan data. Silahkan coba lagi pada pukul "+currentTime);
 });
 
 When("I click icon eye password", () => {
@@ -108,7 +123,7 @@ When("I click icon eye password twice", () => {
 });
 
 Then("I should see my password", () => {
-    I.see(globalVariable.login.password);
+    I.waitForText(globalVariable.login.password, 10);
 });
 
 Then("I should not see my password", () => {
@@ -140,7 +155,7 @@ Then("I should see field {string} on page Forgot Password", (fieldName) => {
 });
 
 Then("I should see field {string} on page Registration", (fieldName) => {
-    I.seeElement(registrationPage.fields[fieldName])
+    I.waitForElement(registrationPage.fields[fieldName], 10);
 });
 
 When("I click checkbox remember me", () => {
@@ -148,8 +163,12 @@ When("I click checkbox remember me", () => {
 });
 
 When("I click logout", () => {
-    I.waitForText("Dashboard Screen", 10);
-    I.click("LOGOUT") // this only temporary because dashboard still on development
+    loginPage.clickLogout();
+});
+
+When("I click try again to login", ()=>{
+    I.wait(1);
+    loginPage.tryToLogin();
 });
 
 Then("I click button loan dashboard", () => {
@@ -169,4 +188,11 @@ Then("I should see checkbox remember me is checked", () => {
 Then("I should see field user ID is filled with the last user ID", async () => {
     let actualUserID = await loginPage.getValueUserID();
     I.assertEqual(actualUserID, globalVariable.login.userID);
+});
+
+Then("I should see bottom sheet call center with email", ()=>{
+    I.waitForElement(headerPage.buttons.close, 10);
+    I.see("Hubungi Tim Kami");
+    I.see("Kami akan membantu Anda dalam"+"\n"+"pembentukan rekening ataupun pinjaman");
+    I.see("support.bisnis@amarbank.co.id");
 });

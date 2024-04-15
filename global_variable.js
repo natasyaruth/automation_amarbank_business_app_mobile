@@ -19,6 +19,10 @@ module.exports = {
         userID: "",
         countValue: "",
     },
+    forgotPassword: {
+        userID: "",
+        email: "",
+    },
     formKtp:{
         eKTPNumber: "",
         fullName:"",
@@ -33,7 +37,8 @@ module.exports = {
         numberOfDirectors: 0
     },
     createPin:{
-        newPin:""
+        newPin:"",
+        otp: "",
     },
     friendList:{
         bankName:"",

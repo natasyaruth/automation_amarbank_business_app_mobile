@@ -1,3 +1,4 @@
+@document_management
 Feature: Document Management
     As a customer
     I want to view business document that I previously uploaded
@@ -10,11 +11,11 @@ Feature: Document Management
             | userID   | autocaea |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
         When I click tab profile
-        Then I will see my profile individual data
-        And I will not see button document business
+        And I will see my profile individual data
+        And I click document business
+        Then I will not see button document giro
 
     Scenario: Verify tab profile user individual on verification
         Given I am a registered customer with following details:
@@ -28,7 +29,7 @@ Feature: Document Management
         And I will see card account 'on verification'
         When I click tab profile
         Then I will see my profile individual data
-        And I will not see button document business
+        And I will not see button document giro
 
     Scenario: Verify tab profile user PT Perusahaan active
         Given I am a registered customer with following details:
@@ -38,7 +39,6 @@ Feature: Document Management
             | userID   | autofb2c |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
         When I click tab profile
         And I see my profile company data
@@ -86,7 +86,6 @@ Feature: Document Management
             | userID   | autoeb6a |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
         When I click tab profile
         And I see my profile company data
@@ -134,7 +133,6 @@ Feature: Document Management
             | userID   | autoa645 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
         When I click tab profile
         And I see my profile individual company data
@@ -182,7 +180,6 @@ Feature: Document Management
             | userID   | autod015 |
             | password | 1234Test |
         And I click login
-        And I click later
         And I will see card account 'active'
         When I click tab profile
         And I see my profile individual company data
@@ -233,8 +230,8 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab profile
-        Then I will not see button document business
         And I see my profile individual company data
+        Then I will not see button document giro
 
     Scenario: Verify button business document is appear if user upload 1 document
         Given I am a registered customer with following details:

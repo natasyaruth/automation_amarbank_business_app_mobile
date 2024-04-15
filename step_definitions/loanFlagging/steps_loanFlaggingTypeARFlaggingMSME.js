@@ -47,9 +47,14 @@ When('And user fill a field "anchorName" with "UD Combo Box Fire"', () => {
 When('user select industry type', () => {
 
 });
-When('user select the date cooperating', () => {
+
+When('user input business address', () => {
 
 });
+
+// When('user select the date cooperating', () => {
+
+// });
 When('user click button next', () => {
 
 });
@@ -127,9 +132,9 @@ Then('user click button upload documents', () => {
 });
 
 // # section upload document
-Given('user on upload document page', () => {
+// Given('user on upload document page', () => {
 
-});
+// });
 When('user upload document "nib"', () => {
 
 });

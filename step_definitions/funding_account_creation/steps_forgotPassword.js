@@ -87,9 +87,8 @@ When("I click try again to reset password", () => {
   forgotPasswordPage.clickTryAgain();
 });
 
-Then("I should be notified {string} in the below of field {string}", async (expectedMsgError, field) => {
-  let actualMsgError = await forgotPasswordPage.getMessageError(field);
-  I.assertEqual(actualMsgError, expectedMsgError);
+When("I click link forgot password", ()=>{
+  loginPage.goToForgotPasswordPage();
 });
 
 Then("I should be notified that email Reset Password successfully sent", () => {
@@ -126,5 +125,9 @@ Then("I will see information about the reset password can be done in the next 10
   I.waitForText("Mohon menunggu", 10);
   I.see("Silahkan coba lagi pada pukul "+currentTime+" untuk melakukan Reset Password");
   
+  forgotPasswordPage.clickUnderstand();
+});
+
+Then("I click button understand to direct to page login", ()=>{
   forgotPasswordPage.clickUnderstand();
 });

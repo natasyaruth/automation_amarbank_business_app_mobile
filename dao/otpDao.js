@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I, resetStateDao } = inject();
 
 module.exports = {
 
@@ -31,6 +31,22 @@ module.exports = {
     I.seeResponseCodeIsSuccessful();
     I.seeResponseContainsKeys(['phone', 'otp', 'otpExpired', 'verifyAttemptsLeft', 
     'resendAttemptsLeft', 'resendableAfter']);
+
+    return {
+      status: response.status,
+      otp: response.data.otp,
+    };
+  },
+
+  async getOTPCreatePIN(userID, password){
+
+    const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+    I.amBearerAuthenticated(secret(bearerToken));
+
+    const response = await I.sendGetRequest("https://dev-smb-trx.otoku.io/api/v1/authorization/otp?username="+userID);
+
+    I.seeResponseCodeIsSuccessful();
 
     return {
       status: response.status,

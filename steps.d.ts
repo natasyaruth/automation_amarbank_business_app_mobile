@@ -50,6 +50,7 @@ type accountDeletionPage = typeof import('./pages/accountDeletion.js');
 type amountDetailPage = typeof import('./pages/amountDetail.js');
 type documentManagementPage = typeof import('./pages/loanApplication/documentManagement.js');
 type approvalTransactionPage = typeof import('./pages/approvalTransaction.js');
+type loanFlaggingPage = typeof import('./pages/loanFlagging/loanFlagging.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
@@ -105,7 +106,8 @@ declare namespace CodeceptJS {
     accountDeletionPage: accountDeletionPage,
     amountDetailPage: amountDetailPage,
     documentManagementPage: documentManagementPage,
-    approvalTransactionPage: approvalTransactionPage
+    approvalTransactionPage: approvalTransactionPage,
+    loanFlaggingPage: loanFlaggingPage
   }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse { }
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> { }

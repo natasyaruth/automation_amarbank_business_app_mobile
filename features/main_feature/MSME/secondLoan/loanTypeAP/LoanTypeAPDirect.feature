@@ -5,17 +5,22 @@ Feature: Apply Either Loan and select the loan type
 
     Background:
         Given I am a registered customer with following details:
-            | userID   | bots2912  |
-            | password | TestSmb123 |
+            # | userID   | bots2912  |
+            # | password | TestSmb123 |
+            | userID   | niza1356   |
+            | password | Test1234 |
         When I filling in form login with the following details:
-            | userID   | bots2912  |
-            | password | TestSmb123 |
+            # | userID   | bots2912  |
+            # | password | TestSmb123 |
+            | userID   | niza1356   |
+            | password | Test1234 |
         And I click login
         And I click later
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
 
+    @emes2
     Scenario: user choose type loan AP
         Given I am on onboarding loan
         And I click button ajukan pinjaman       
@@ -48,10 +53,24 @@ Feature: Apply Either Loan and select the loan type
         # section trigered status loan
         And user trigered api change status loan is approved
 
+    @emes3
     Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
         Then I select first list card loan approved
         And user validate status is approved
         And user validate content limit approved page
+
+    Scenario: Validate Card Limit For Type Loan AP
+        Given I have been on Loan Dashboard to see the loan type of Loan AP
+        When I validate the card of "Loan AP"
+        Then I should see the wording dan card design of "Loan AP"
+        And user click button back
+        And user should see text view "Selamat, Limit Pinjaman Telah Aktif" on bottom sheet "titleLimitPinjaman"
+        And user should see text bottom sheet "Limit Tersedia" in field "titleLimitTersedia"
+        And user should see text bottom sheet "Supplier" in field "titleSupplier"
+        And user should see text bottom sheet "No. Pinjaman" in field "titleNoPinjaman"
+        And user click button copy
+        And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
+        And user click button lihat pinjaman
         

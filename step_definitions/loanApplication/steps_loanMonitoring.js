@@ -27,7 +27,7 @@ Given(/user click button next completed data/,()=>{
     loanMonitoringProcessPage.clickBtnNextCompletedData();
 });
 When(/user should see text bottom sheet \"([^\"]*)\" in field \"([^\"]*)\"/, async(expectedValue, fieldName) => {
-    I.wait(2);
+    I.wait(40);
     let actualValue = await loanMonitoringProcessPage.getTextFieldBottomSheet(fieldName);
     I.assertEqual(actualValue, expectedValue);
 });

@@ -93,6 +93,17 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         When I fill field 'referencePhoneNumber' with '089561123456' in form Data Personal
         Then I will see phonenumber '89561123456' in field reference number
 
+    Scenario: Verify bottom sheet upload document NPWP
+        Given I am a customer want to fill my personal details
+        When I click button upload document NPWP
+        Then I will see bottom sheet with option take NPWP using camera or upload from gallery
+
+    Scenario: Close bottom sheet upload document NPWP 
+        Given I am a customer want to fill my personal details
+        When I click button upload document NPWP
+        And I click close bottom sheet upload NPWP
+        Then I will not see the bottom sheet
+
     Scenario: Submit form Data Personal without upload NPWP
         Given I am a customer want to fill my personal details
         When I fill my personal data details as followings:
