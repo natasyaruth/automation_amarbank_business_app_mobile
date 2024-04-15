@@ -8,10 +8,10 @@ Feature: User create PIN Journey Transfer
     # please use user id with PIN still not created yet
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | mukl8e4d |
+            | userID   | ruthf292 |
             | password | 1234Test |
         When I filling in form login with the following details:
-            | userID   | mukl8e4d |
+            | userID   | ruthf292 |
             | password | 1234Test |
         And I click login
         Then I will direct to dashboard
@@ -92,7 +92,7 @@ Feature: User create PIN Journey Transfer
         And I input confirmation new PIN '111111'
         And I will receive email contain with OTP
         And I input incorrect OTP
-        Then I will see message error "Kode OTP yang Anda masukkan salah" in the below of field otp code
+        Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code
 
     Scenario: User Successfully Get Email for OTP and input expired OTP
         Given I am a customer who wants to create PIN
@@ -105,7 +105,7 @@ Feature: User create PIN Journey Transfer
         And I input confirmation new PIN '111111'
         And I will receive email contain with OTP
         And I input expired OTP
-        Then I will see message error "Kode OTP yang dimasukan sudah kadaluarsa" in the below of field otp code
+        Then I will see message error "Kode verifikasi yang dimasukan sudah kadaluarsa" in the below of field otp code
 
     Scenario: Back to main dashbord in pop up create PIN Transaction
         Given I am a customer who wants to create PIN

@@ -50,7 +50,7 @@ When("I click button Create PIN", () => {
 });
 
 When("I see pop up Create PIN", () => {
-    I.waitForText("Buat PIN transaksi terlebih dahulu sebelum melakukan transfer", 10);
+    I.waitForText("Buat PIN transaksi terlebih dahulu sebelum melakukan transfer", 20);
     createPINPage.popupCreatePIN();
 });
 
@@ -168,7 +168,7 @@ When("I will receive email contain with OTP", async() => {
     
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
-    I.see("Masukkan Kode OTP");
+    I.see("Masukkan Kode Verifikasi");
     I.wait(3);
 
     globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
