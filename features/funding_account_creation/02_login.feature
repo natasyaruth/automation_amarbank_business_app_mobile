@@ -8,9 +8,13 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID   | autocaea |
       | password | 1234Test |
+      | userIDStaging | autocaea |
+      | passwordStaging | 1234Test |
     When I filling in form login with the following details:
       | userID   | autocaea |
       | password | 1234Test |
+      | userIDStaging | autocaea |
+      | passwordStaging | 1234Test |
     And I click login
     Then I will direct to dashboard
 
@@ -20,6 +24,8 @@ Feature: Account login
     When I filling in form login with the following details:
       | userID   | LOLO1212 |
       | password | Pass1234 |
+      | userIDStaging | autocaea |
+      | passwordStaging | 1234Test |
     And I click login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
