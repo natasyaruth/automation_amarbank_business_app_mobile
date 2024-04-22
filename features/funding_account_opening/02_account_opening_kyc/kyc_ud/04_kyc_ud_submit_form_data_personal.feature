@@ -6,11 +6,15 @@ Feature: Account Opening KYC UD - Submit Data Personal
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | natabe66 |
-            | password | Test1234 |
+            | userID      | natabe66 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | natabe66 |
-            | password | Test1234 |
+            | userID      | natabe66 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

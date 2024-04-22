@@ -1,6 +1,6 @@
-const fs = require('fs')
+const { I, headerPage, onboardingAccOpeningPage, globalVariable} = inject();
 
-const { I, headerPage, onboardingAccOpeningPage} = inject();
+const env = globalVariable.returnEnvi();
 
 module.exports = {
 
@@ -10,7 +10,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseState = await I.sendPostRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/account-creation/set?step=" + stateNumber));
+        const responseState = await I.sendPostRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/account-creation/set?step=" + stateNumber));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -25,7 +25,7 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseLogin = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/login", secret({
+        const responseLogin = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
             password: password,
         }));
@@ -57,7 +57,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -73,7 +73,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -89,7 +89,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -105,7 +105,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -121,7 +121,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -137,7 +137,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseBusinessDetails = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/business/details"));
+        const responseBusinessDetails = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/business/details"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -153,7 +153,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseBusinessDetails = await I.sendGetRequest(secret("https://dev-smb-user.otoku.io/api/v1/user/business/details"));
+        const responseBusinessDetails = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/business/details"));
         I.seeResponseCodeIsSuccessful();
 
         return {

@@ -23,17 +23,27 @@ Feature: Account Forgot Password
       |             |                        | E-mail wajib diisi         |
 
   Scenario: Fill form reset password with user id and email is not match
-    Given I am a customer want to reset password
-    When I am filling field User ID with 'autocaea'
-    And I input email for reset password with value 'ruth.hutauruk@amarbank.co.id'
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input wrong email for reset password
     And I click button Reset Password
     Then I will see pop up information reset password with text 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
     And I click try again to reset password
 
   Scenario: Fill form reset password with user id and email is not match 3 times
-    Given I am a customer want to reset password
-    When I am filling field User ID with 'autocaea'
-    And I input email for reset password with value 'ruth.hutauruk@amarbank.co.id'
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input wrong email for reset password
     And I click button Reset Password
     And I will see pop up information reset password with text 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
     And I click try again to reset password
@@ -46,9 +56,14 @@ Feature: Account Forgot Password
     And I will directing to page login
 
   Scenario: Fill form reset password with user id and email is match after fill form with user id and email is not match 3 times
-    Given I am a customer want to reset password
-    When I am filling field User ID with 'autocaea'
-    And I input email for reset password with value 'ruth.hutauruk@amarbank.co.id'
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input wrong email for reset password
     And I click button Reset Password
     And I will see pop up information reset password with text 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
     And I click try again to reset password
@@ -59,40 +74,59 @@ Feature: Account Forgot Password
     And I will see pop up information reset password with text 'Anda akan langsung diarahkan ke halaman Masuk Akun'
     And I click button understand to direct to page login
     And I click link forgot password
-    When I am filling field User ID with 'autocaea'
-    And I input email for reset password with value 'auto.integrate.upload.doc@trash-mail.com'
+    When I am filling field User ID
+    And I input email for reset password
     And I click button Reset Password
     Then I will see information about the reset password can be done in the next 10 minutes
 
   @C96656
   Scenario: Reset password with user ID has been registered
-    Given I am a customer want to reset password
-    When I am filling field User ID with 'ruth79f5'
-    And I input email for reset password with value 'natasyaruth03@gmail.com'
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input email for reset password
     And I click button Reset Password
     Then I should be notified that email Reset Password successfully sent
 
   @C96657
   Scenario: Resend email reset password
-    Given I am a customer with User ID 'ruth5010' and email 'rut.testing@email.com' has already requested a password reset
+    Given I am a customer with User ID and email has already requested a password reset
+      | userID      | ruth5010 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And who has not received the reset password email
     When I resend email reset password
     Then I should be notified that email reset password has been successfully sent
 
   @C96658
   Scenario: Reset password with user ID from invitation business
-    Given I am a customer has User ID 'autoeb6a' and company name 'Automation Jangan Dipake'
-    When I am filling field User ID with 'autoeb6a'
-    And I input email for reset password with value 'auto.integrate.upload.doc@trash-mail.com'
+    Given I am a registered customer with following details:
+      | userID      | autoeb6a |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input email for reset password
     And I click button Reset Password
     And I click button confirmation reset password
     Then I should be notified that email Reset Password successfully sent
 
   @C96659
   Scenario: Back to page reset password from pop up confirmation
-    Given I am a customer has User ID 'autoeb6a' and company name 'Automation Jangan Dipake'
-    When I am filling field User ID with 'autoeb6a'
-    And I input email for reset password with value 'auto.integrate.upload.doc@trash-mail.com'
+    Given I am a registered customer with following details:
+      | userID      | autoeb6a |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I am a customer want to reset password
+    When I am filling field User ID
+    And I input email for reset password
     And I click button Reset Password
     And I click button back from pop up reset password
     Then I should back to page reset password with field User ID still filled

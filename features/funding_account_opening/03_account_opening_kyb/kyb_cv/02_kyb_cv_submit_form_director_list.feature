@@ -6,12 +6,15 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID   | ruth0c1c              |
-            | password | 1234Test              |
-            | email    | rut.testing@email.com |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0c1c |
-            | password | 1234Test |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -39,9 +42,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Add Director
         Examples:
             | testRailTag | Field    | Field Name   |
-            |             | fullName | Nama lengkap |
-            |             | email    | E-mail       |
-            |             | nik      | Nomor KTP    |
+            | @C101302    | fullName | Nama lengkap |
+            | @C101303    | email    | E-mail       |
+            | @C101304    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Add Director
         Given I am a customer who has submitted my business profile
@@ -51,9 +54,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Add Director
         Examples:
             | testRailTag | Field    | Field Name   |
-            |             | fullName | Nama lengkap |
-            |             | email    | E-mail       |
-            |             | nik      | Nomor KTP    |
+            | @C101305    | fullName | Nama lengkap |
+            | @C101306    | email    | E-mail       |
+            | @C101307    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying full name with invalid value in form Add Director
         Given I am a customer who has submitted my business profile
@@ -62,12 +65,13 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'fullName' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value                                               | Message                                                                        |
-            |             | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            |             | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            |             | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-            |             | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-            |             |                                                     | Nama lengkap wajib diisi                                                       |
+            | @C101308    | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            | @C101309    | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            | @C101310    | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            | @C101311    | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            | @C101312    |                                                     | Nama lengkap wajib diisi                                                       |
 
+    @C101313
     Scenario: Verifying field full name contain with special char and number
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -81,9 +85,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'email' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value                  | Message                    |
-            |             | ruth.natasyagmail.com  | E-mail tidak sesuai format |
-            |             | ruth natasya@gmail.com | E-mail tidak sesuai format |
-            |             |                        | E-mail wajib diisi         |
+            | @C101314    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+            | @C101315    | ruth natasya@gmail.com | E-mail tidak sesuai format |
+            | @C101316    |                        | E-mail wajib diisi         |
 
     Scenario Outline: Verifying NIK field with invalid value in form Add Director
         Given I am a customer who has submitted my business profile
@@ -92,13 +96,13 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'nik' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value              | Message                             |
-            |             | 31730aa601860007   | Nomor KTP tidak sesuai format       |
-            |             | 31730@!601860007   | Nomor KTP tidak sesuai format       |
-            |             | 31730 601860007    | Nomor KTP tidak sesuai format       |
-            |             | 31730356018607     | Nomor KTP harus 16 digit            |
-            |             | 317303560186000712 | Nomor KTP harus 16 digit            |
-            |             | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
-            |             |                    | Nomor KTP wajib diisi               |
+            | @C101317    | 31730aa601860007   | Nomor KTP tidak sesuai format       |
+            | @C101318    | 31730@!601860007   | Nomor KTP tidak sesuai format       |
+            | @C101319    | 31730 601860007    | Nomor KTP tidak sesuai format       |
+            | @C101320    | 31730356018607     | Nomor KTP harus 16 digit            |
+            | @C101321    | 317303560186000712 | Nomor KTP harus 16 digit            |
+            | @C101322    | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
+            | @C101323    |                    | Nomor KTP wajib diisi               |
 
     @C96554
     Scenario: Submit one business director successfully business type CV

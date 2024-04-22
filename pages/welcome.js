@@ -5,6 +5,9 @@ module.exports = {
     login: "~buttonLogin",
     registration: "~buttonRegister",
   },
+  image:{
+    onboarding: {xpath: "//android.view.View/android.view.View[1]/android.widget.ImageView"}
+  },
 
   clickButtonLogin(){
     I.waitForElement(this.buttons.login, 10);
@@ -12,7 +15,7 @@ module.exports = {
   },
 
   clickButtonRegister(){
-    I.waitForElement(this.buttons.registration, 5);
+    I.waitForElement(this.buttons.registration, 10);
     I.click(this.buttons.registration);
   },
 };

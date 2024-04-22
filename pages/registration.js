@@ -182,12 +182,12 @@ module.exports = {
   },
 
   goToTermsAndConditionPage() {
-    I.swipeUp(this.buttons.createAccount, 10000, 3000);
+    I.swipeUp(this.fields.email, 10000, 3000);
     I.click(this.links.termsCondition);
   },
 
   goToPrivacyPolicyPage() {
-    I.swipeUp(this.buttons.createAccount, 10000, 3000);
+    I.swipeUp(this.fields.email, 10000, 3000);
     I.click(this.links.privacyPolicy);
   },
 

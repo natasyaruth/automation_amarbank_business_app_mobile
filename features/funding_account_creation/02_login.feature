@@ -6,11 +6,15 @@ Feature: Account login
   @login @C75493
   Scenario: Login with registered account
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click login
     Then I will direct to dashboard
 
@@ -18,41 +22,55 @@ Feature: Account login
   Scenario: Login with unregistered account
     Given I am an unregistered customer trying to login
     When I filling in form login with the following details:
-      | userID   | LOLO1212 |
-      | password | Pass1234 |
+      | userID      | LOLO1212 |
+      | password    | Pass1234 |
+      | userIDstg   | LOLO1212 |
+      | passwordStg | Test1234 |
     And I click login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
   @login @C75491
   Scenario: Input UserID without value
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | Test1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   |          |
-      | password | Pass1234 |
+      | userID      |          |
+      | password    | Pass1234 |
+      | userIDstg   |          |
+      | passwordStg | Test1234 |
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
 
   @login @C75492
   Scenario: Input Password without value
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | Pass1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | JOHN12j3 |
-      | password |          |
+      | userID      | autocaea |
+      | password    |          |
+      | userIDstg   | stag76ee |
+      | passwordStg |          |
     And I click login
     Then I should be notified 'Password wajib diisi' in the below of field 'password'
 
   @login @C75497
   Scenario: Login with User ID and Password is empty
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userID      | JOHN12j3 |
+      | password    | Pass1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   |  |
-      | password |  |
+      | userID      |  |
+      | password    |  |
+      | userIDstg   |  |
+      | passwordStg |  |
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
@@ -60,22 +78,30 @@ Feature: Account login
   @login @C75503
   Scenario: User want to see their password
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click icon eye password
     Then I should see my password
 
   @login @C75504
   Scenario: User don't want to see their password
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click icon eye password twice
     Then I should not see my password
 
@@ -103,11 +129,15 @@ Feature: Account login
   @login @C75508
   Scenario: User want to remember their User ID
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click checkbox remember me
     And I click login
     And I choose other
@@ -124,22 +154,30 @@ Feature: Account login
   @login @C75509
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | Pass1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
   @login @C75510
   Scenario: Login with wrong password twice
     Given I am a registered customer with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | Pass1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Pass1234 |
     And I click login
     And I click try again to login
     And I click login
@@ -148,11 +186,15 @@ Feature: Account login
   @login @C75511
   Scenario: Login with wrong password three times
     Given I am a customer who has failed to login '2' times with following details:
-      | userID   | autocaea |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | autocaea |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | Pass1234 |
+      | userIDstg   | stag76ee |
+      | passwordStg | Pass1234 |
     And I click login
     And I click try again to login
     And I click login

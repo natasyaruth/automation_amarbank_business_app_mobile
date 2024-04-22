@@ -1,4 +1,4 @@
-@accountOpeningDashboardUserInvited
+@accountOpeningUserInvited
 Feature: Account Opening Main Dashboard User Invited
     In order to opening my Giro account in SMB
     As a customer
@@ -6,11 +6,15 @@ Feature: Account Opening Main Dashboard User Invited
 
     Background: User invited has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID      | ruth17a5 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID      | ruth17a5 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I continue to register my KYC data
 

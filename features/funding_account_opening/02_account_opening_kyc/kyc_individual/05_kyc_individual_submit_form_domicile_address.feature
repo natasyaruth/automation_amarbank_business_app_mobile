@@ -6,11 +6,15 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID   | ruth0c1c |
-            | password | 1234Test |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0c1c |
-            | password | 1234Test |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -28,9 +32,9 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form New Domicile Address
         Examples:
             | testRailTag | Field   | Field Name     |
-            |             | address | Alamat lengkap |
-            |             | rt      | RT             |
-            |             | rw      | RW             |
+            | @C101234    | address | Alamat lengkap |
+            | @C101235    | rt      | RT             |
+            | @C101236    | rw      | RW             |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form New Domicile address
         Given I am a customer who has submitted my personal data details
@@ -40,13 +44,13 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form New Domicile Address
         Examples:
             | testRailTag | Field    | Field Name     |
-            |             | address  | Alamat lengkap |
-            |             | rt       | RT             |
-            |             | rw       | RW             |
-            |             | province | Provinsi       |
-            |             | city     | Kota/Kabupaten |
-            |             | district | Kecamatan      |
-            |             | village  | Kelurahan/Desa |
+            | @C101237    | address  | Alamat lengkap |
+            | @C101238    | rt       | RT             |
+            | @C101239    | rw       | RW             |
+            | @C101240    | province | Provinsi       |
+            | @C101241    | city     | Kota/Kabupaten |
+            | @C101242    | district | Kecamatan      |
+            | @C101243    | village  | Kelurahan/Desa |
 
     Scenario Outline: Verifying length address in form New Domicile address
         Given I am a customer who has submitted my personal data details
@@ -55,33 +59,38 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Message>' in the below of field 'address' in form New Domicile Address
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                  |
-            |             | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
-            |             | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
+            | @C101244    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
+            | @C101245    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
 
+    @C101246
     Scenario: Verifying field address contain with special char and number
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'address' with 'John Doe S.Kom, M\'Kom- 11233' in form New Domicile Address
         Then I shouldn't see message error in the below of field 'address' in form New Domicile Address
 
+    @C101247
     Scenario: Verifying length RT in form New Domicile address
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rt' with '3124' in form New Domicile Address
         Then I should see message error 'RT maksimal 3' in the below of field 'rt' in form New Domicile Address
 
+    @C101248
     Scenario: Verifying field rt contain with -
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rt' with '-' in form New Domicile Address
         Then I shouldn't see message error in the below of field 'rt' in form New Domicile Address
 
+    @C101249
     Scenario: Verifying length RW in form New Domicile address
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rw' with '3124' in form New Domicile Address
         Then I should see message error 'RW maksimal 3' in the below of field 'rw' in form New Domicile Address
 
+    @C101250
     Scenario: Verifying field rw contain with -
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

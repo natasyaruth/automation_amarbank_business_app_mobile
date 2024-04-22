@@ -6,12 +6,15 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID   | ptpe2eef                        |
-            | password | 1234Test                        |
-            | email    | pt_perorangan203@trash-mail.com |
+            | userID      | ptpe2eef |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ptpe2eef |
-            | password | 1234Test |
+            | userID      | ptpe2eef |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

@@ -6,12 +6,15 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | udteea44             |
-            | password | 1234Test             |
-            | email    | ud201@trash-mail.com |
+            | userID      | udteea44 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | udteea44 |
-            | password | 1234Test |
+            | userID      | udteea44 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

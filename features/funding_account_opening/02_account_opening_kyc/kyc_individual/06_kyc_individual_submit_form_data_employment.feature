@@ -6,11 +6,15 @@ Feature: Account Opening KYC Individual - Submit Data Employment
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Data Employment
         Given I am a registered customer with following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -25,19 +29,23 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Data Employment
         Examples:
             | testRailTag | Field         | Field Name          |
-            |             | workType      | Jenis pekerjaan     |
-            |             | sourceIncome  | Sumber Pendapatan   |
-            |             | monthlyIncome | Pendapatan bulanan  |
-            |             | industry      | Industri perusahaan |
-            |             | companyName   | Nama perusahaan     |
+            | @C101251    | workType      | Jenis pekerjaan     |
+            | @C101252    | sourceIncome  | Sumber Pendapatan   |
+            | @C101253    | monthlyIncome | Pendapatan bulanan  |
+            | @C101254    | industry      | Industri perusahaan |
+            | @C101255    | companyName   | Nama perusahaan     |
 
     Scenario Outline: Verifying company name with invalid value in form Data Employment
         Given I am a registered customer with following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -50,16 +58,21 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Then I should see message error '<Message>' in the below of field 'companyName' in form Data Employment
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                           |
-            |             | TA                                                                                                                                                      | Nama perusahaan minimal 3 & maksimal 150 karakter |
-            |             | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Nama perusahaan minimal 3 & maksimal 150 karakter |
+            | @C101256    | TA                                                                                                                                                      | Nama perusahaan minimal 3 & maksimal 150 karakter |
+            | @C101257    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Nama perusahaan minimal 3 & maksimal 150 karakter |
 
+    @C101258
     Scenario: Verifying company name has been filled and then empty the fields
         Given I am a registered customer with following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -72,13 +85,18 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I clear field company name
         Then I should see message error 'Nama perusahaan wajib diisi' in the below of field 'companyName' in form Data Employment
 
+    @C101259
     Scenario: Verifying company name contain with special char and number
         Given I am a registered customer with following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2322 |
-            | password | Test1234 |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -93,11 +111,15 @@ Feature: Account Opening KYC Individual - Submit Data Employment
     @C96529
     Scenario: Submit form Data Employment successfully business type Individual
         Given I am a registered customer with following details:
-            | userID   | ruth2322 |
-            | password | 1234Test |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth2322 |
-            | password | 1234Test |
+            | userID      | ruth2322 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

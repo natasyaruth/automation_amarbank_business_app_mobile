@@ -30,3 +30,9 @@ Run all tests
 npx codeceptjs run
 
 ```
+
+Run All tests for staging environment
+
+```
+ENVIRONMENT=staging npx codeceptjs run
+```
