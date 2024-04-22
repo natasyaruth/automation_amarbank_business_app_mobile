@@ -36,7 +36,7 @@ When("I see carousel onboarding", () => {
 });
 
 When("I swipe to next carousel", () => {
-  I.performSwipe({ x: 1244, y: 1367}, { x: 246, y: 1367});
+  I.swipeLeft(welcomePage.image.onboarding, 600, 800);
   I.wait(1);
 });
 
@@ -59,7 +59,7 @@ When(
   "I filling in my account information with the following details:",
   async (table) => {
     const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"] + "019";
+    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
 
@@ -89,7 +89,7 @@ When("I registering the account", () => {
 });
 
 Then("my account should be created", () => {
-  I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+  I.waitForText("Apa kebutuhan Anda saat ini?", 20);
   onboardingAccOpeningPage.chooseLater();
 });
 
@@ -333,7 +333,7 @@ When("I click button back to page registration", () => {
 Then(
   "I will direct to page registration with each fields still has values as following:",
   async (table) => {
-    I.swipeUp(registrationPage.fields.email, 500, 1000);
+    I.swipeDown(registrationPage.fields.email, 1000, 1000);
     registrationPage.clickIconEyePassword();
     registrationPage.clickIconEyeConfirmPassword();
 

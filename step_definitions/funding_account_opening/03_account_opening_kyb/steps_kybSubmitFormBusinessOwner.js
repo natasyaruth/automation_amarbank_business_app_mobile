@@ -9,19 +9,25 @@ const {
 
 Given("I am a customer who has submitted my business profile", () => { });
 
-Given("I am the only one business owner", () => {
+Given("I am the only one business owner", async () => {
     I.waitForText("Pemilik bisnis", 10);
+
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
     I.see(globalVariable.formKtp.fullName);
-    I.see(globalVariable.registration.email);
+    I.see(email);
     I.see(globalVariable.formKtp.eKTPNumber);
     I.dontSee(formBusinessOwnerPage.buttons.addListDirector);
 });
 
-Given("I am the only one business director", () => {
+Given("I am the only one business director", async() => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
     I.see("Silahkan menambah Daftar Direktur sesuai akta");
+
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
     I.see(globalVariable.formKtp.fullName);
-    I.see(globalVariable.registration.email);
+    I.see(email);
     I.see(globalVariable.formKtp.eKTPNumber);
     I.see(formBusinessOwnerPage.buttons.addListDirector);
 });

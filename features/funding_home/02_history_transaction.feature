@@ -6,31 +6,27 @@ Feature: User Should See Detail Transaction History
 
     Background: User must login to home dashboard
         Given I am a registered customer with following details:
-            # | userID   | pang6f17 |
-            # | password | Test1234 |
-            | userID   | niza7373 |
-            | password | Test1234 |
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            # | userID   | pang6f17 |
-            # | password | Test1234 |
-            | userID   | niza7373 |
-            | password | Test1234 |
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
-        # And I click later
         Then I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
-    
-    # @HistoryTrx
-    @C96150 
+
+    @C96150
     Scenario: User want click button filter
         Given I want to click button filter history
         When I should see buttom sheet filter history
-
         Then I want to click button close
-    
-    # @HistoryTrx
-    @C96151 
+
+    @C96151
     Scenario: User want filtered history transaction
         Given I want to click button filter history
         When I should see buttom sheet filter history
@@ -41,8 +37,7 @@ Feature: User Should See Detail Transaction History
         And I choose the end date
         And I want to click button ok
 
-    # @HistoryTrx
-    @C96152 
+    @C96152
     Scenario: User want click detail history transfer out
         Given I want to click list transfer "out"
         When I should see text view transfer "out"
@@ -54,8 +49,7 @@ Feature: User Should See Detail Transaction History
         And I want to click button share
         And I want to click button close
 
-    # @HistoryTrx
-    @C96153 
+    @C96153
     Scenario: User want click detail history transfer in
         Given I want to click list transfer "in"
         When I should see text view transfer "in"

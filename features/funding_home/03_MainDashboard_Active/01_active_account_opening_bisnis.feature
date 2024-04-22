@@ -5,14 +5,19 @@ Feature: User Should See Main Dashboard Active Card On Account Opening Bisnis
 
     Background: User must login to main dashboard
         Given I am a registered customer w
-            | userID   | akun0373   |
-            | password | Test1234 |
+            | userID      | akun0373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with
-            | userID   | akun0373   |
-            | password | Test1234 |
+            | userID      | akun0373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I click later
 
+    @C109161
     Scenario: User validate Active Card main dashboard Acc Opening Bisnis
         Given user on main dashboard
         When user should see text button "Ajukan Pinjaman" on field "btnLoan"

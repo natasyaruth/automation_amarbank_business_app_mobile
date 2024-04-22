@@ -5,14 +5,19 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
 
     Background: User must login to home da
         Given I am a registered customer w
-            | userID   | botse324   |
-            | password | TestSmb123 |
+            | userID      | botse324   |
+            | password    | TestSmb123 |
+            | userIDstg   | stag76ee   |
+            | passwordStg | Test1234   |
         When I filling in form login with
-            | userID   | botse324   |
-            | password | TestSmb123 |
+            | userID      | botse324   |
+            | password    | TestSmb123 |
+            | userIDstg   | stag76ee   |
+            | passwordStg | Test1234   |
         And I click login
         And I click later
 
+    @C109149
     Scenario: User validate drop off main dashboard loan process on waiting kyc
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
@@ -23,6 +28,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         Then user click button drop off
         And user should see personal data page
 
+    @C109150
     Scenario: User validate drop off main dashboard loan process on waiting kyb
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
@@ -33,6 +39,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         Then user click button drop off
         And user should see business data page
 
+    @C109151
     Scenario: User validate drop off main dashboard loan process on waiting upload document
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
@@ -47,6 +54,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         Then user click button open document
         And user should see upload doc account opening only page
 
+    @C109152
     Scenario: User validate drop off main dashboard loan process on waiting upload document and invited user
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
@@ -66,6 +74,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user click button invited user
         And user should see invited user account opening only page
 
+    @C109153
     Scenario: User validate drop off main dashboard loan process on waiting invited user
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
@@ -80,6 +89,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user click button invited user
         And user should see invited user account opening only page
 
+    @C109154
     Scenario: User validate drop off main dashboard loan process on waiting invited user1
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"

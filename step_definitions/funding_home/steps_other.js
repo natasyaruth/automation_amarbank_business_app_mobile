@@ -4,6 +4,7 @@ const { I,
     accountDeletionPage,
     onboardingAccOpeningPage,
     headerPage,
+    resetStateDao,
 } = inject();
 
 When("I choose other", () =>{
@@ -46,9 +47,11 @@ When("I see my user id and field password", () => {
     I.see("Verifikasi");
 });
 
-When("I see field reason and my email", () => {
+When("I see field reason and my email", async() => {
     I.waitForText("Beritahu mengapa Anda ingin menghapus akun ?", 10);
     I.see("Permintaan Hapus Akun");
+
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
 
     I.see("Informasi proses hapus akun akan dikirim ke email Anda: " + globalVariable.registration.email);
     I.seeElement(accountDeletionPage.fields.reason);

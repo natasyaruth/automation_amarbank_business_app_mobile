@@ -6,15 +6,19 @@ Feature: Account Opening Onboarding
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | ruth07f9 |
-            | password | 1234Test |
+            | userID      | ruth07f9 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID   | ruth07f9 |
-            | password | 1234Test |
+            | userID      | ruth07f9 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
 
-    @C96591
+    @C109193
     Scenario: User choose Giro Account
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -23,7 +27,7 @@ Feature: Account Opening Onboarding
         Then I will see details info of giro account MSME
         And I will see details info of giro account Corporate
 
-    @C96592
+    @C109194
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         When I click later
@@ -32,7 +36,7 @@ Feature: Account Opening Onboarding
         And I will see details info of giro account MSME
         And I will see details info of giro account Corporate
 
-    @C96593
+    @C109195
     Scenario: User choose legality business type PT Perusahaan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -43,7 +47,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
 
-    @C96594
+    @C109196
     Scenario: User choose legality business type CV
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -54,7 +58,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
 
-    @C96595
+    @C109197
     Scenario: User choose legality business type PT Perorangan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -65,7 +69,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C96596
+    @C109198
     Scenario: User choose legality business type UD
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -76,7 +80,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C96597
+    @C109199
     Scenario: User choose legality business type Individu
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -87,7 +91,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C96598
+    @C109200
     Scenario: Back to page onboarding account opening
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -96,6 +100,7 @@ Feature: Account Opening Onboarding
         Then I will directing to Hook 1 Onboarding Account Opening
         And product type same with I choose before
 
+    @C109201
     Scenario: Back to dashboard from page legality type entry point hook
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -105,6 +110,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page type giro account
         And product type same with I choose before
 
+    @C109202
     Scenario: Back to dashboard from page legality type entry point dashboard
         Given I am a customer want to open Giro Account
         When I click later

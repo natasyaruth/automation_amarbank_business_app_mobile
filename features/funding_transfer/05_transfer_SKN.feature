@@ -1,26 +1,29 @@
+@transfer_SKN
 Feature: User transfer SKN
     In order to transfer
     As a customer
     I want to make transfer SKN
 
-
     Background: User has registered and login to dashboard
         Given I am a registered  customer with following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID      | ruth17a5 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID   | ruth17a5 |
-            | password | Test1234 |
+            | userID      | ruth17a5 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
-        
-    
+
     Scenario: User transfer detail with SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"       
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         Then I can see BI Fast, SKN and RTGS
@@ -28,23 +31,23 @@ Feature: User transfer SKN
 
     Scenario: User transfer with SKN with empty notes
         Given I am a customer who wants to Transfer and has friend list
-       When I input name 'Nurul Septariani' from the search box
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I click choose bank transfer service
         And I choose transer service SKN
         And I click transfer
         And I click transfer now
         And I input PIN '224466'
-        Then I successfully transferred without notes 
+        Then I successfully transferred without notes
 
     Scenario: User transfer with SKN and input notes with emoji & symbol
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran #Oktober :D'
         And I click choose bank transfer service
         Then I see error message "Catatan tidak menggunakan emoji & symbol"
@@ -54,14 +57,14 @@ Feature: User transfer SKN
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"       
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Cicilan bulan pertama yaitu di bulan Oktober'
         And I click choose bank transfer service
         Then i see error message "Catatan tidak bisa input lebih dari 50 char"
 
-     Scenario: User Transfer with amount < Rp.10.000
+    Scenario: User Transfer with amount < Rp.10.000
         Given I am a customer who wants to Transfer and has friend list
-       When I input name 'Nurul Septariani' from the search box
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '9.000'
         Then I see error message "Nilai Transfer minimal Rp.10.000"
@@ -71,7 +74,7 @@ Feature: User transfer SKN
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '1.000.000.000'
-        And I choose category "Pembayaran"       
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service SKN
@@ -90,27 +93,27 @@ Feature: User transfer SKN
         And I click choose bank transfer service
         And I choose transer service SKN
         And I click transfer
-        Then I will directly go to page confirmation transfer   
+        Then I will directly go to page confirmation transfer
 
     Scenario: User successfully transfer between Amar Bank
         Given I am a customer who wants to Transfer and has friend list
-       When I input name 'Nurul Septariani' from the search box
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And I will directly go to page confirmation transfer between Amar Bank
         And I click transfer now
         And I input PIN '224466'
-        Then I successfully transferred between Amar Bank    
+        Then I successfully transferred between Amar Bank
 
     Scenario: User successfully transfer
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '55.000.000'
-        And I choose category "Pembayaran"       
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And I click choose bank transfer service
         And i choose transer service SKN
@@ -125,7 +128,7 @@ Feature: User transfer SKN
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And i choose transer service SKN
         And I click transfer
@@ -135,36 +138,26 @@ Feature: User transfer SKN
 
     Scenario: User input incorrect PIN twice
         Given I am a customer who wants to Transfer and has friend list
-       When I input name 'Nurul Septariani' from the search box
+        When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And i choose transer service SKN
         And I click transfer
         And I click transfer now
         And I input wrong PIN
         Then I see Pin message error for click twice "Pin yang dimasukkan salah, silahkan coba lagi"
-       
+
     Scenario: User input incorrect PIN three times
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Nurul Septariani' from the search box
         And I choose the friendlist
         And I input amount '155.000.000'
-        And I choose category "Pembayaran"        
+        And I choose category "Pembayaran"
         And I input notes with 'Pembayaran Pinjamanan bulan oktober'
         And i choose transer service SKN
         And I click transfer
         And I click transfer now
-        And I input wrong PIN 
+        And I input wrong PIN
         Then My PIN transaction will be temporary blocked for 30 minutes
-
-    
-    
-
-
-
-    
-
-       
-

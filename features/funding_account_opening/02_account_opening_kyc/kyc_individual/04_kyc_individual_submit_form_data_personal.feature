@@ -6,11 +6,15 @@ Feature: Account Opening KYC Individual - Submit Data Personal
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | ruth0c1c |
-            | password | 1234Test |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ruth0c1c |
-            | password | 1234Test |
+            | userID      | ruth0c1c |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -27,12 +31,13 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Data Personal
         Examples:
             | testRailTag | Field                | Field Name                |
-            |             | lastEducation        | Pendidikan terakhir       |
-            |             | motherName           | Nama ibu kandung          |
-            |             | purposeAccount       | Tujuan Pembuatan rekening |
-            |             | referencePhoneNumber | Nomor handphone kerabat   |
-            |             | referenceName        | Nama kerabat              |
+            | @C111497    | lastEducation        | Pendidikan terakhir       |
+            | @C111498    | motherName           | Nama ibu kandung          |
+            | @C111499    | purposeAccount       | Tujuan Pembuatan rekening |
+            | @C111500    | referencePhoneNumber | Nomor handphone kerabat   |
+            | @C111501    | referenceName        | Nama kerabat              |
 
+    @C111502
     Scenario: Verifying field mother name has been filled and then empty the fields
         Given I am a customer want to fill my personal details
         When I fill field 'motherName' with 'Nur' in form Data Personal
@@ -45,10 +50,11 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         Then I should see message error '<Message>' in the below of field 'motherName' in form Data Personal
         Examples:                                                                 ❸
             | testRailTag | Value                                               | Message                                                                          |
-            |             | Nur 3@                                              | Nama ibu kandung tidak boleh mengandung angka & spesial karakter kecuali (.,\'-) |
-            |             | Nu                                                  | Nama ibu kandung minimal 3 & maksimal 50 karakter                                |
-            |             | Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur | Nama ibu kandung minimal 3 & maksimal 50 karakter                                |
+            | @C111503    | Nur 3@                                              | Nama ibu kandung tidak boleh mengandung angka & spesial karakter kecuali (.,\'-) |
+            | @C111504    | Nu                                                  | Nama ibu kandung minimal 3 & maksimal 50 karakter                                |
+            | @C111505    | Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur | Nama ibu kandung minimal 3 & maksimal 50 karakter                                |
 
+    @C111506
     Scenario: Verifying field mother name contain with special char (.-,')
         Given I am a customer want to fill my personal details
         When I fill field 'motherName' with 'John Doe S.Kom, M\'Kom-' in form Data Personal
@@ -60,16 +66,18 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         Then I should see message error '<Message>' in the below of field 'referenceName' in form Data Personal
         Examples:                                                                 ❸
             | testRailTag | Value                                               | Message                                                                      |
-            |             | Nur 3@                                              | Nama kerabat tidak boleh mengandung angka & spesial karakter kecuali (.,\'-) |
-            |             | Nu                                                  | Nama kerabat minimal 3 & maksimal 50 karakter                                |
-            |             | Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur | Nama kerabat minimal 3 & maksimal 50 karakter                                |
+            | @C111507    | Nur 3@                                              | Nama kerabat tidak boleh mengandung angka & spesial karakter kecuali (.,\'-) |
+            | @C111508    | Nu                                                  | Nama kerabat minimal 3 & maksimal 50 karakter                                |
+            | @C111509    | Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur Nur | Nama kerabat minimal 3 & maksimal 50 karakter                                |
 
+    @C111510
     Scenario: Verifying field relatives name has been filled and then empty the fields
         Given I am a customer want to fill my personal details
         When I fill field 'referenceName' with 'Nur' in form Data Personal
         And I clear the field 'referenceName' in form Data Personal
         Then I should see message error 'Nama kerabat wajib diisi' in the below of field 'referenceName' in form Data Personal
 
+    @C111511
     Scenario: Verifying field relatives name contain with special char (.-,')
         Given I am a customer want to fill my personal details
         When I fill field 'referenceName' with 'John Doe S.Kom, M\'Kom-' in form Data Personal
@@ -81,13 +89,14 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         Then I should see message error '<Message>' in the below of field 'referencePhoneNumber' in form Data Personal
         Examples:                                                                 ❸
             | testRailTag | Value         | Message                                                       |
-            |             | 89561r12367   | Nomor handphone tidak sesuai format                           |
-            |             | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-            |             | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-            |             | 9678995676    | Nomor handphone tidak sesuai format                           |
-            |             | 8678 995676   | Nomor handphone tidak sesuai format                           |
-            |             |               | Nomor handphone kerabat wajib diisi                           |
+            | @C111512    | 89561r12367   | Nomor handphone tidak sesuai format                           |
+            | @C111513    | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+            | @C111514    | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+            | @C111515    | 9678995676    | Nomor handphone tidak sesuai format                           |
+            | @C111516    | 8678 995676   | Nomor handphone tidak sesuai format                           |
+            | @C111517    |               | Nomor handphone kerabat wajib diisi                           |
 
+    @C111518
     Scenario: Verifying autotrim 0 after label +62 in field relatives phonenumber
         Given I am a customer want to fill my personal details
         When I fill field 'referencePhoneNumber' with '089561123456' in form Data Personal
@@ -98,12 +107,13 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         When I click button upload document NPWP
         Then I will see bottom sheet with option take NPWP using camera or upload from gallery
 
-    Scenario: Close bottom sheet upload document NPWP 
+    Scenario: Close bottom sheet upload document NPWP
         Given I am a customer want to fill my personal details
         When I click button upload document NPWP
         And I click close bottom sheet upload NPWP
         Then I will not see the bottom sheet
 
+    @C111519
     Scenario: Submit form Data Personal without upload NPWP
         Given I am a customer want to fill my personal details
         When I fill my personal data details as followings:

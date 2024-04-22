@@ -101,9 +101,11 @@ Then("I will directing to page business owner", async () => {
     I.waitForText("Pemilik bisnis", 10);
     I.dontSee("Anda wajib menambah direktur sesuai akta");
 
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
     I.see(globalVariable.formKtp.fullName);
     I.see(globalVariable.formKtp.eKTPNumber);
-    I.see(globalVariable.registration.email);
+    I.see(email);
     I.dontSeeElement(formBusinessOwnerPage.buttons.addListDirector);
 
     await
@@ -114,9 +116,11 @@ Then("I will directing to page director list", async () => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
     I.see("Anda wajib menambah direktur sesuai akta");
 
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
     I.see(globalVariable.formKtp.fullName);
     I.see(globalVariable.formKtp.eKTPNumber);
-    I.see(globalVariable.registration.email);
+    I.see(email);
     I.seeElement(formBusinessOwnerPage.buttons.addListDirector);
 
     await

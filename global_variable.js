@@ -1,4 +1,14 @@
 module.exports = {
+
+    returnEnvi(){
+        let environment;
+        if(process.env.ENVIRONMENT == "staging"){
+            environment = "staging";
+        } else{
+            environment = "dev";
+        }
+        return environment;
+    },
     registration: {
         phoneNumber: "",
         otpCode: "",

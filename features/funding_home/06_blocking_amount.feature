@@ -5,13 +5,18 @@ Feature: Blocking amount
     I want to see my amount divided into active amount, blocking amount and total amount
     So that I'm not confused with my information amount
 
+    @C109210
     Scenario: Back to main dashboard from page detail account giro amount
         Given I am a registered customer with following details:
-            | userID   | autocaea |
-            | password | 1234Test |
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | autocaea |
-            | password | 1234Test |
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will see card account 'active'
         And I wait until my account name displayed
@@ -19,26 +24,36 @@ Feature: Blocking amount
         And I click button back in the header page
         Then I will see card account 'active'
 
+    @C109211
     Scenario: Mask/Unmask amount in main dashboard
         Given I am a registered customer with following details:
-            | userID   | autocaea |
-            | password | 1234Test |
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | autocaea |
-            | password | 1234Test |
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I mask my amount
         Then I will not see my active, blocking and total amount
 
+    @C109214
     Scenario: Validate active amount, blocking amount and total amount after transfer using account individual active
         Given I am a registered customer with following details:
-            | userID   | auto20bf |
-            | password | 1234Test |
+            | userID      | auto20bf |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | auto20bf |
-            | password | 1234Test |
+            | userID      | auto20bf |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
@@ -62,13 +77,18 @@ Feature: Blocking amount
         And my blocking amount detail still Rp. 500.000
         And my total amount detail decreased
 
+    @C109215
     Scenario: Validate active amount, blocking amount and total amount after transfer using account business active
         Given I am a registered customer with following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID      | ptpe5040 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID      | ptpe5040 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
@@ -93,39 +113,54 @@ Feature: Blocking amount
         And my blocking amount detail still Rp. 1.000.000
         And my total amount detail decreased
 
+    @C101664
     Scenario: Validate Wording blocking amount with account has Loan and product type MSME
         Given I am a registered customer with following details:
-            | userID   | trys5524 |
-            | password | Eca12345 |
+            | userID      | trys5524 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | trys5524 |
-            | password | Eca12345 |
+            | userID      | trys5524 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee
         And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
+    @C111540
     Scenario: Validate Wording blocking amount with account has Loan and product type CORP
         Given I am a registered customer with following details:
-            | userID   | niza2098 |
-            | password | Test1234 |
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | niza2098 |
-            | password | Test1234 |
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
+    @C111541
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type MSME
         Given I am a registered customer with following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID      | ptpe5040 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | ptpe5040 |
-            | password | 1234Test |
+            | userID      | ptpe5040 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         When I see my blocking amount is Rp 0
@@ -133,13 +168,18 @@ Feature: Blocking amount
         Then I will see detail blocking amount coming from loan fee
         And I will not see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
+    @C111542
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type CORP
         Given I am a registered customer with following details:
-            | userID   | alfibd3e |
-            | password | 1234Test |
+            | userID      | alfibd3e |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | alfibd3e |
-            | password | 1234Test |
+            | userID      | alfibd3e |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I wait until my account name displayed
         When I see my blocking amount coming from minimum amount

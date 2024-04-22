@@ -10,25 +10,25 @@ const {
   globalVariable,
 } = inject();
 
-Given(
-  "I am a customer who has failed to login {string} times with following details:",
-  (countValue, table) => {
-    welcomePage.clickButtonLogin();
+  Given(
+    "I am a customer who has failed to login {string} times with following details:",
+    (countValue, table) => {
+      welcomePage.clickButtonLogin();
 
-    for (let i = 0; i < countValue; i++) {
-      const account = table.parse().rowsHash();
+      for (let i = 0; i < countValue; i++) {
+        const account = table.parse().rowsHash();
 
-      if (process.env.ENVIRONMENT == "staging") {
-        account["password"] = account["passwordStaging"];
-        account["userID"] = account["userIDStaging"];
+        if (process.env.ENVIRONMENT == "staging") {
+          globalVariable.login.password = account["passwordStg"];
+          globalVariable.login.userID = account["userIDstg"];
+        } else {
+          globalVariable.login.password = account["password"];
+          globalVariable.login.userID = account["userID"];
+        }
       }
-
-      globalVariable.login.password = account["password"];
-      globalVariable.login.userID = account["userID"];
+      globalVariable.login.countValue = countValue;
     }
-    globalVariable.login.countValue = countValue;
-  }
-);
+  );
 
 Then("I successed go to dashbord", () => {
   ///dashboard still on development from mobile
@@ -46,15 +46,11 @@ Given("I am a registered customer with following details:", (table) => {
   const account = table.parse().rowsHash();
 
   if (process.env.ENVIRONMENT == "staging") {
-    account["password"] = account["passwordStaging"];
-    account["userID"] = account["userIDStaging"];
-  }
-
-  globalVariable.login.password = account["password"];
-  globalVariable.login.userID = account["userID"];
-
-  if (Object.keys(account).indexOf("email") !== -1) {
-    globalVariable.registration.email = account["email"];
+    globalVariable.login.password = account["passwordStg"];
+    globalVariable.login.userID = account["userIDstg"];
+  } else {
+    globalVariable.login.password = account["password"];
+    globalVariable.login.userID = account["userID"];
   }
 });
 
@@ -64,22 +60,28 @@ Given(
     welcomePage.clickButtonLogin();
 
     const account = table.parse().rowsHash();
-    if (process.env.ENVIRONMENT == "staging") {
-      account["password"] = account["passwordStaging"];
-      account["userID"] = account["userIDStaging"];
-    }
 
-    globalVariable.login.password = account["password"];
-    globalVariable.login.userID = account["userID"];
+    if (process.env.ENVIRONMENT == "staging") {
+      globalVariable.login.password = account["passwordStg"];
+      globalVariable.login.userID = account["userIDstg"];
+    } else {
+      globalVariable.login.password = account["password"];
+      globalVariable.login.userID = account["userID"];
+    }
   }
 );
 
 When("I filling in form login with the following details:", (table) => {
   const account = table.parse().rowsHash();
+
   if (process.env.ENVIRONMENT == "staging") {
-    account["password"] = account["passwordStaging"];
-    account["userID"] = account["userIDStaging"];
+    account["password"] = account["passwordStg"];
+    account["userID"] = account["userIDstg"];
   }
+
+  globalVariable.login.password = account["password"];
+  globalVariable.login.userID = account["userID"];
+
   loginPage.fillInAccountInformation(account);
 });
 
@@ -151,7 +153,7 @@ Then(
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.see(
       "Tiga kali salah memasukan data. Silahkan coba lagi pada pukul " +
-        currentTime
+      currentTime
     );
   }
 );
@@ -235,8 +237,8 @@ Then("I should see bottom sheet call center with email", () => {
   I.see("Hubungi Tim Kami");
   I.see(
     "Kami akan membantu Anda dalam" +
-      "\n" +
-      "pembentukan rekening ataupun pinjaman"
+    "\n" +
+    "pembentukan rekening ataupun pinjaman"
   );
   I.see("support.bisnis@amarbank.co.id");
 });

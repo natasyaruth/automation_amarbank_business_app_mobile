@@ -1,6 +1,8 @@
 const fs = require('fs')
 
-const { I, resetStateDao } = inject();
+const { I, resetStateDao, globalVariable } = inject();
+
+const env = globalVariable.returnEnvi();
 
 module.exports = {
 
@@ -18,7 +20,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseKtp = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/photo/ktp", secret({
+        const responseKtp = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/photo/ktp", secret({
             imageFormat: "jpg",
             file: base64Ktp,
         }));
@@ -40,7 +42,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseSelfie = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/photo/selfie", secret({
+        const responseSelfie = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/photo/selfie", secret({
             imageFormat: "jpg",
             file: base64Selfie,
         }));
@@ -61,7 +63,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseDoc = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/business/docs/" + enumDoc, secret({
+        const responseDoc = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/docs/" + enumDoc, secret({
             fileFormat: "pdf",
             file: base64File,
         }));
@@ -79,7 +81,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseDeviceData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/device", secret({
+        const responseDeviceData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/device", secret({
             deviceId: "QWERTY78922",
             payload: {
                 ImageAndVideo: true,
@@ -104,7 +106,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile", secret({
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/profile", secret({
             accountOpeningReason: purposeAccount,
             lastEducation: lastEducation,
             motherName: motherName,
@@ -130,7 +132,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile", secret({
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/profile", secret({
             lastEducation: lastEducation,
             motherName: motherName,
             referenceName: referenceName,
@@ -153,7 +155,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responsePostData = await I.sendPostRequest("https://dev-smb-user.otoku.io/api/v1/user/profile/ktp", secret({
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/profile/ktp", secret({
             ktpnumber: ktpData["ktpnumber"],
             ktpname: ktpData["ktpname"],
             birthplace: ktpData["birthplace"],

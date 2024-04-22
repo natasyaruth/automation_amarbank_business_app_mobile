@@ -1,3 +1,4 @@
+@friendList
 Feature: User add friend list
     In order to transfer
     As a customer
@@ -7,40 +8,40 @@ Feature: User add friend list
     # please use user id with friendlist still not created yet
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            # | userID   | mohaf6df |
-            # | password | Test1234 |
-            | userID   | niza9813 |
-            | password | Test1234 |
+            | userID      | niza9813 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            # | userID   | mohaf6df |
-            # | password | Test1234 |
-            | userID   | niza9813 |
-            | password | Test1234 |
-        And I click login        
+            | userID      | niza9813 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
         Then I will direct to dashboard
 
-    # @TR271
+    @C96935
     Scenario: User click back button
         Given I am a customer who wants to Transfer and has no friend list
         And I choose menu Transfer from main dashboard
         And I click button back in the header page
         Then I will direct to dashboard
 
-    # @TR272
+    @C96936
     Scenario: User search friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         And I input name 'NEGARA ADIL MAKMUR' from the search box
         Then I find name 'NEGARA ADIL MAKMUR' from the list
 
-    # @TR273
+    @C96937
     Scenario: User search friend list and the name is not found
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         Then I input name 'Nurul Septariani' from the search box
         And I can't find the name 'Nurul Septariani' from the list
 
-    # @TR274
+    @C96938
     Scenario: Account number was not found
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
@@ -52,7 +53,7 @@ Feature: User add friend list
         And I click on check
         Then I will see error message "Nomor rekening tidak ditemukan"
 
-    # @TR275
+    @C96939
     Scenario: User close bottom sheet list bank name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -61,7 +62,7 @@ Feature: User add friend list
         And I close bottom sheet list bank name
         Then I will not see bottom sheet list bank name
 
-    # @TR276
+    @C96940
     Scenario: User choose another bank name after inquiry
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -75,8 +76,8 @@ Feature: User add friend list
         And I search 'BNI' in search box bank name
         And I tap on bank name
         Then I will see bank name is change
-    
-    # @TR277
+
+    @C96941
     Scenario: User uncheck checkbox save as friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -91,7 +92,7 @@ Feature: User add friend list
         Then I can't see toastbar "Data berhasil disimpan ke daftar penerima"
         And name of receiver should not be added in friendlist
 
-    # @TR278
+    @C96942
     Scenario: User add friend list and validate account number and name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -106,7 +107,7 @@ Feature: User add friend list
         Then I can see toastbar "Data berhasil disimpan ke daftar penerima"
         And name of receiver should be added in friendlist
 
-    # @TR279
+    @C96943
     Scenario: User has friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
