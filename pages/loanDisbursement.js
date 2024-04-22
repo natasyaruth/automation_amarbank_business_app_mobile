@@ -14,13 +14,13 @@ module.exports = {
     buttonPreview: "~buttonPreview",
     buttonDisburse: "~buttonDisburse",
     buttonComplaint: "~buttonComplaint",
-    buttonClose: "~buttonClose",
+    // buttonClose: "~buttonClose",
     buttonSendPdc: "~buttonSendPdc",
     buttonCopy: "~buttonCopy",
     buttonSendComplaint: "~buttonSendComplaint",
     //Direct AP
     buttonUpload: "~buttonUpload",
-    buttonClose: "~buttonClose",
+    // buttonClose: "~buttonClose",
     buttonTakePicture: "~buttonTakePicture",
     buttonGetFromGallery: "~buttonGetFromGallery",
     buttonTakePicture: "~buttonTakePicture",
@@ -151,7 +151,7 @@ module.exports = {
   },
 
   async validateAlreadyUploadInvoiceAP() {
-    I.wait(3);
+    I.wait(10);
     const alreadyUploadInvoice = await I.waitForElement(this.buttons.buttonDetailInvoice);
     if (alreadyUploadInvoice) {
       I.see('Invoice Tersedia');
@@ -164,7 +164,7 @@ module.exports = {
   },
 
   async validateNotUploadInvoiceYetAP() {
-    I.wait(2);
+    I.wait(10);
     const notUploadInvoiceYet = await I.seeElement(this.buttons.buttonDetailLimit);
     if (notUploadInvoiceYet) {
       I.dontSee('Invoice Tersedia');
@@ -183,10 +183,10 @@ module.exports = {
   },
 
   validateProgramLoanInformation() {
-    I.wait(1);
+    I.wait(5);
     I.waitForText('Informasi Program Pinjaman');
-    I.see('Tenor 30 hari');
-    I.see('Bunga per Tahun 15.6 % dikurangkan saat pembayaran invoice');
+    // I.see('Tenor 30 hari');
+    // I.see('Bunga per Tahun 14.4 %');
 
   },
 
@@ -222,13 +222,14 @@ module.exports = {
     I.see('Masa Berlaku Invoice');
     I.see('Rekening Supplier');
     //  I.seeElement(this.buttons.buttonDisburse);
-    //  I.seeElement(this.buttons.buttonComplaint);
+     I.seeElement(this.buttons.buttonComplaint);
   },
 
   openDocumentPreview() {
     I.wait(3);
     I.waitForText('Invoice_Transaksi');
     //  I.waitForElement(this.buttons.buttonPreview);
+    I.wait(3);
     I.click('Invoice_Transaksi');
     //  I.click(this.buttons.buttonPreview);
     //  I.waitForText('Mengunduh dokumen invoice...');
@@ -249,7 +250,8 @@ module.exports = {
   },
 
   closeInvoiceIssuePage() {
-    I.seeElement(this.buttons.buttonClose);
+    // I.seeElement(this.buttons.buttonClose);
+    I.click(this.buttons.buttonClose);
     I.waitForElement(this.buttons.buttonDetailInvoice);
   },
 

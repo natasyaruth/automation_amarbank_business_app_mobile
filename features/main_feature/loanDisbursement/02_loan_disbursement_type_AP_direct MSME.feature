@@ -1,4 +1,4 @@
-@techdebt26
+@loanDisbursementAPDirectMSME
 Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
   In order to test Loan Disbursement
   As a customer
@@ -6,14 +6,18 @@ Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
 
   Background: User must login to home dashboard
     Given I am a registered customer with following details:
-      | userID   | wahy8ea8 |
-      | password | Test4321 |
+      # | userID   | wahy8ea8 |
+      # | password | Test4321 |
+      | userID   | bots2643 |
+      | password | Test1234 |
     When I filling in form login with the following details:
-      | userID   | wahy8ea8 |
-      | password | Test4321 |
+      # | userID   | wahy8ea8 |
+      # | password | Test4321 |
+      | userID   | bots2643 |
+      | password | Test1234 |
     And I click login
-    Then I successed go to dashbord
-    Then I click menu tab testing
+    # And I click later
+    Then I will direct to dashboard
 
 
   @debt26
@@ -60,6 +64,7 @@ Feature: Main Loan Disbursement for Loan Type AP - Direct Loan
     And I take the picture
     Then Document invoice will be showed in "Konfirmasi Invoice"
 
+  
   @debt32
   Scenario: Click button Close in Section Upload Invoice
     Given I have been on anchor detail

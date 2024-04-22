@@ -15,7 +15,7 @@ Feature: Checking Loan Type AP and Direct AP with Status Active
                 Then I will direct to dashboard
                 And I click menu tab testing
         
-        @tdebt86
+        @debt86
         Scenario: Validate Card Limit For Type Loan AP
                 Given I have been access history loan limit to see status "Dalam Proses"
                 When I access menu bar limit with status "Dalam Proses"

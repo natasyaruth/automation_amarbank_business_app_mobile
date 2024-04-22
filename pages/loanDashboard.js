@@ -240,6 +240,7 @@ module.exports = {
     I.seeElement(this.filters.filterByOnActive);
     I.seeElement(this.filters.filterByOnProcess);
     I.seeElement(this.filters.filterbyOnDone);
+    I.wait(30);
   },
 
   goToTabLimit() {
@@ -291,9 +292,11 @@ module.exports = {
   },
 
   goToStatusActiveLimitHistory() {
+
     I.seeElement(this.filters.filterByOnActive);
     I.click(this.filters.filterByOnActive);
     I.click("Aktif");
+    I.wait(5);
   },
 
   validateStatusActiveLimitHistory() {
