@@ -112,7 +112,7 @@ Then("I will see my profile individual data", () => {
     I.dontSee("Jenis Bisnis");
     I.dontSee("Tanggal Berdiri");
     I.dontSee("Alamat Bisnis");
-    I.seeElement(profilePage.buttons.documentProcuration);
+    I.dontSeeElement(profilePage.buttons.documentProcuration);
 });
 
 Then("I will not see button document giro", () => {
@@ -120,7 +120,7 @@ Then("I will not see button document giro", () => {
     I.dontSeeElement(profilePage.buttons.documentGiro);
 });
 
-Then("I will not see button document business", ()=>{
+Then("I will not see button document business", () => {
     I.dontSeeElement(profilePage.buttons.documentBusiness);
 });
 
