@@ -5,12 +5,15 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID   | nata517f                |
-            | password | 1234Test                |
-            | email    | natasyaruth03@gmail.com |
+            | userID      | nata517f |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID   | nata517f |
-            | password | 1234Test |
+            | userID      | nata517f |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -61,6 +64,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I allow company to store my data
         And I submit my business address
 
+    @C101375
     Scenario: Upload All document business type UD
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address

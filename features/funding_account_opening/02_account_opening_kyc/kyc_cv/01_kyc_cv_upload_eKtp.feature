@@ -6,11 +6,15 @@ Feature: Account Opening KYC CV - Upload KTP Photo
 
   Background: User choose legality business type CV
     Given I am a registered customer with following details:
-      | userID   | ruth07f9 |
-      | password | 1234Test |
+      | userID      | ruth07f9 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I filling in form login with the following details:
-      | userID   | ruth07f9 |
-      | password | 1234Test |
+      | userID      | ruth07f9 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click login
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
@@ -18,7 +22,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I choose Giro Account Corporate
     And I choose legality business type 'cv'
     And I submit my legality type
-  
+
   @C96516
   Scenario: Upload eKTP photo successfully business type CV
     Given I am a customer who has selected the business type CV

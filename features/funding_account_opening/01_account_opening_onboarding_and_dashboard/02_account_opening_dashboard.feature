@@ -6,11 +6,15 @@ Feature: Account Opening Main Dashboard
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | johnbf89 |
-            | password | 1234Test |
+            | userID      | johnbf89 |
+            | password    | 1234Test |
+            | userIDstg   | stag9a38 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
-            | userID   | johnbf89 |
-            | password | 1234Test |
+            | userID      | johnbf89 |
+            | password    | 1234Test |
+            | userIDstg   | stag9a38 |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

@@ -2,12 +2,9 @@ const {
   I,
   loginPage,
   welcomePage,
-  forgotPasswordPage } = inject();
-
-const globalVar = {
-  userID: "",
-  companyName: "",
-}
+  forgotPasswordPage,
+  resetStateDao,
+  globalVariable } = inject();
 
 Given("I am a customer want to reset password", () => {
   welcomePage.clickButtonLogin();
@@ -17,17 +14,14 @@ Given("I am a customer want to reset password", () => {
 
 Given("I leave field User ID empty", () => { });
 
-Given("I am a customer has User ID {string} and company name {string}", (userID, companyName) => {
-  globalVar.userID = userID;
-  globalVar.companyName = companyName;
-});
-
-Given("I am a customer with User ID {string} and email {string} has already requested a password reset", (userID, email) => {
+Given("I am a customer with User ID and email has already requested a password reset", async() => {
   welcomePage.clickButtonLogin();
   loginPage.goToForgotPasswordPage();
   forgotPasswordPage.isOpen();
 
-  forgotPasswordPage.fillUserID(userID);
+  const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
+  forgotPasswordPage.fillUserID(globalVariable.login.userID);
   forgotPasswordPage.fillEmail(email);
   forgotPasswordPage.clickButtonResetPassword();
 
@@ -51,8 +45,17 @@ When("I input email for reset password with value {string}", (email) => {
   forgotPasswordPage.fillEmail(email);
 });
 
-When("I am filling field User ID with {string}", (actualValue) => {
-  forgotPasswordPage.fillUserID(actualValue);
+When("I input email for reset password", async ()=>{
+  const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+  forgotPasswordPage.fillEmail(email);
+});
+
+When("I input wrong email for reset password", ()=>{
+  forgotPasswordPage.fillEmail("randomABC123@test.mail.com");
+});
+
+When("I am filling field User ID", () => {
+  forgotPasswordPage.fillUserID(globalVariable.login.userID);
 });
 
 When("I click button Reset Password", () => {
@@ -67,8 +70,10 @@ When("I click button confirmation reset password", async () => {
   let actualUserID = await forgotPasswordPage.getUserID();
   let actualCompanyName = await forgotPasswordPage.getCompanyName();
 
-  I.assertEqual(actualUserID, globalVar.userID);
-  I.assertEqual(actualCompanyName, globalVar.companyName);
+  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+
+  I.assertEqual(actualUserID, globalVariable.login.userID);
+  I.assertEqual(actualCompanyName, companyName);
 
   forgotPasswordPage.clickButtonConfirm();
 });
@@ -77,17 +82,17 @@ When("I click button back from pop up reset password", async () => {
   let actualUserID = await forgotPasswordPage.getUserID();
   let actualCompanyName = await forgotPasswordPage.getCompanyName();
 
-  I.assertEqual(actualUserID, globalVar.userID);
-  I.assertEqual(actualCompanyName, globalVar.companyName);
+  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
 
-  forgotPasswordPage.backtoPageResetPassword()
+  I.assertEqual(actualUserID, globalVariable.login.userID);
+  I.assertEqual(actualCompanyName, companyName);
 });
 
 When("I click try again to reset password", () => {
   forgotPasswordPage.clickTryAgain();
 });
 
-When("I click link forgot password", ()=>{
+When("I click link forgot password", () => {
   loginPage.goToForgotPasswordPage();
 });
 
@@ -106,7 +111,7 @@ Then("I should be notified that email reset password has been successfully sent"
 
 
 Then("I should back to page reset password with field User ID still filled", () => {
-  I.waitForText(globalVar.userID, 10);
+  I.waitForText(globalVariable.login.userID, 10);
 });
 
 Then("I will see pop up information reset password with text {string}", (wordingMsg) => {
@@ -114,7 +119,7 @@ Then("I will see pop up information reset password with text {string}", (wording
   I.see(wordingMsg);
 });
 
-Then("I will see information about the reset password can be done in the next 10 minutes", ()=>{
+Then("I will see information about the reset password can be done in the next 10 minutes", () => {
   const currentDate = new Date();
   const hours = currentDate.getHours();
   const minutes = currentDate.getMinutes();
@@ -123,11 +128,11 @@ Then("I will see information about the reset password can be done in the next 10
   const currentTime = hours.toString().padStart(2, '0') + ":" + addMinutes.toString().padStart(2, '0');
 
   I.waitForText("Mohon menunggu", 10);
-  I.see("Silahkan coba lagi pada pukul "+currentTime+" untuk melakukan Reset Password");
-  
+  I.see("Silahkan coba lagi pada pukul " + currentTime + " untuk melakukan Reset Password");
+
   forgotPasswordPage.clickUnderstand();
 });
 
-Then("I click button understand to direct to page login", ()=>{
+Then("I click button understand to direct to page login", () => {
   forgotPasswordPage.clickUnderstand();
 });

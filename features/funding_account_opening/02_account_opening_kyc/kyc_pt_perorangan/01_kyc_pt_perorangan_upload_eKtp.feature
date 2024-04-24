@@ -6,8 +6,10 @@ Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
 
   Background: User choose legality business type PT Perorangan
     Given I am a registered customer with following details:
-      | userID   | ruth07f9 |
-      | password | 1234Test |
+      | userID      | ruth07f9 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I filling in form login with the following details:
       | userID   | ruth07f9 |
       | password | 1234Test |

@@ -6,11 +6,15 @@ Feature: Account Opening KYC - User Invited
 
   Background: User choose legality business type UD
     Given I am a registered customer invited business with following details:
-      | userID   | joha3b62 |
-      | password | 1234Test |
+      | userID      | joha3b62 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | joha3b62 |
-      | password | 1234Test |
+      | userID      | joha3b62 |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click login
     And I continue to register my KYC data
 

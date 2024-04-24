@@ -1,15 +1,20 @@
-Feature: User transfer with all transfer methode
+@transfer_all_method
+Feature: User transfer with all transfer method
     In order to transfer
     As a customer
     I want to make transfer all methode
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID   | natace13 |
-            | password | 1234Test |
+            | userID      | natace13 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID   | natace13 |
-            | password | 1234Test |
+            | userID      | natace13 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
@@ -29,7 +34,7 @@ Feature: User transfer with all transfer methode
         And I choose transfer service RTOL
         And I click transfer
         And I am on page transfer confirmation
-        
+
     @C96930
     Scenario: User transfer with RTOL and input wrong PIN
         Given I am a customer who wants to Transfer and has friend list
