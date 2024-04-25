@@ -40,6 +40,10 @@ Then("I successed go to dashbord", () => {
   // loginPage.tryToLogin();
 });
 
+Then("I click menu loan dashboard", () => {
+    I.click()
+});
+
 Given("I am a registered customer with following details:", (table) => {
   welcomePage.clickButtonLogin();
 

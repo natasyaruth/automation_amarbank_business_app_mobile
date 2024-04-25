@@ -184,7 +184,7 @@ exports.config = {
    }
   },
   bootstrap: null,
-  timeout: null,
+  timeout: 500,
   teardown: null,
   hooks: [],
   gherkin: {

@@ -131,10 +131,10 @@ Given('I have been in anchor detail page to validate loan program information fo
  loanDisbursementPage.openLoanDashboard();
  loanDashboardPage.goToHistory();
  loanDashboardPage.goToStatusActiveLimitHistory();
- loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
+//  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
-When('I click button "Info Selanjutnya" for type AP', () => {
+When('I click button "Info Selengkapnya" for type AP', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
@@ -149,7 +149,7 @@ Given('I have been in anchor detail page to close the loan program information s
  loanDashboardPage.goToStatusActiveLimitHistory();
  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
-When('I click button "Info Selanjutnya" for type AP', () => {
+When('I click button "Info Selengkapnya" for type AP', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
@@ -221,6 +221,10 @@ Then('show section "Invoice Tidak Sesuai"', () => {
  loanDisbursementPage.validateInvoiceIssuePage();
 });
 
+Then('user fill a field "textFieldIssue" with "Masih belum sesuai"', () => {
+    loanDisbursementPage.inputInvoiceIssue();
+});
+
 Then('back to the confirmation invoice detail after close section', () => {
  loanDisbursementPage.closeInvoiceIssuePage();
 });
@@ -277,15 +281,15 @@ Then('User select invoice due date', () => {
 //  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 // });
 
-// When('I input invoice issue', () => {
-//  loanDisbursementPage.hasAnInvoiceIssue();
-//  loanDisbursementPage.validateInvoiceIssuePage();
-//  loanDisbursementPage.inputInvoiceIssue();
-// });
+When('I input invoice issue', () => {
+ loanDisbursementPage.hasAnInvoiceIssue();
+ loanDisbursementPage.validateInvoiceIssuePage();
+ loanDisbursementPage.inputInvoiceIssue();
+});
 
-// Then('show toastbar "Kendala invoice sudah dilaporkan"', () => {
-//  loanDisbursementPage.validateToastBarIssueHasBeenReported();
-// });
+Then('show toastbar "Kendala invoice sudah dilaporkan"', () => {
+ loanDisbursementPage.validateToastBarIssueHasBeenReported();
+});
 
 // Then('button Continue Disbursement Calculations is dissapear', () => {
 //  I.dontSeeElement(this.buttons.buttonDisburse);
@@ -342,7 +346,7 @@ Then('User select invoice due date', () => {
 //  await loanDisbursementPage.validateDisburseAmountPageLessOrEqualThan2Billion();
 // });
 
-// // Scenario: Continue Disburse The Loan When The PIN Has Not Been Created
+// Scenario: Continue Disburse The Loan When The PIN Has Not Been Created
 // Given('I haven been in calculation page of amount', () => {
 //  loanDashboardPage.goToHistory();
 //  loanDashboardPage.goToStatusActiveLimitHistory();
@@ -367,12 +371,12 @@ Then('User select invoice due date', () => {
 //  loanDashboardPage.validateLoanTypeofLoanAP();
 //  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 // });
-// When('I click button continue disburse loan with input true PIN', () => {
-//  I.click(this.buttons.buttonDisburse);
-//  I.waitForText('Lanjut Cairkan Pinjaman');
-//  I.click(this.buttons.buttonDisburse);
-//  //direct to the input PIN
-// });
+When('I click button continue disburse loan with input true PIN', () => {
+ I.click(this.buttons.buttonDisburse);
+ I.waitForText('Lanjut Cairkan Pinjaman');
+ I.click(this.buttons.buttonDisburse);
+ //direct to the input PIN
+});
 
 // Then('I should be see the page of delivery PDC', () => {
 //  loanDisbursementPage.validateSendPDCPage();
