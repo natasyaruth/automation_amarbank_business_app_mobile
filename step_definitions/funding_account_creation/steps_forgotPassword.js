@@ -7,7 +7,6 @@ const {
   globalVariable } = inject();
 
 Given("I am a customer want to reset password", () => {
-  welcomePage.clickButtonLogin();
   loginPage.goToForgotPasswordPage();
   forgotPasswordPage.isOpen();
 });
@@ -86,6 +85,8 @@ When("I click button back from pop up reset password", async () => {
 
   I.assertEqual(actualUserID, globalVariable.login.userID);
   I.assertEqual(actualCompanyName, companyName);
+
+  forgotPasswordPage.backtoPageResetPassword();
 });
 
 When("I click try again to reset password", () => {
@@ -111,6 +112,7 @@ Then("I should be notified that email reset password has been successfully sent"
 
 
 Then("I should back to page reset password with field User ID still filled", () => {
+  I.wait(1);
   I.waitForText(globalVariable.login.userID, 10);
 });
 

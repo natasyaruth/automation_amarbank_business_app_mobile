@@ -15,6 +15,7 @@ module.exports = {
     iconEyePassword: "~iconShowHidePassword",
     passwordIncorrect: "~passwordIncorrectBtn",
     copy: "~buttonCopy",
+    cancel: "~cancelButton",
   },
   texts: {
     transactionApprovalType: "~transactionApprovalType",
@@ -24,14 +25,15 @@ module.exports = {
     transactionAmount: "~transactionAmount",
     senderName: "~senderName",
     senderAccount: "~senderAccount",
-    senderBankName: "~senderBankName",
+    senderBankName: "~senderAccountName",
     recipientName: "~recipientName",
     recipientAccount: "~recipientAccount",
-    recipientBankName: "~recipientBankName",
+    recipientBankName: {xpath: "(//android.widget.ScrollView/android.widget.TextView)[7]"},
     amountTransferOut: "~transferOut",
     nameCreatedBy: "~createdBy",
     referenceNumber: "~referenceNumber",
     date: "~date",
+    time: "~time",
     category: "~category",
     noted: "~noted",
     nameRejectedBy: "~rejectedBy",
@@ -61,8 +63,8 @@ module.exports = {
   },
 
   async getRecipientName() {
-    I.waitForElement(this.texts.transactionRecipientName, 10);
-    return I.grabTextFrom(this.texts.transactionRecipientName);
+    I.waitForElement(this.texts.recipientName, 10);
+    return I.grabTextFrom(this.texts.recipientName);
   },
 
   async getRecipientBankName() {
@@ -217,6 +219,11 @@ module.exports = {
   resendOtp(){
     I.waitForElement(this.links.resendOtp, 10);
     I.click(this.links.resendOtp);
-  }
+  },
+
+  cancelTransaction(){
+    I.waitForElement(this.buttons.cancel, 10);
+    I.click(this.buttons.cancel);
+  },
 
 }

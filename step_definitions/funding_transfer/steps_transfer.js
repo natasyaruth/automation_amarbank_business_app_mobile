@@ -11,6 +11,7 @@ const {
 When("I choose the friendlist", async () => {
     I.wait(1);
     globalVariable.friendList.friendListName = await friendListPage.getFriendListName();
+    globalVariable.friendList.bankName = await friendListPage.getFriendListBankName();
     globalVariable.friendList.friendListAccNumber = await friendListPage.getFriendListAccNumber();
     I.click(friendListPage.cards.friendList);
 });

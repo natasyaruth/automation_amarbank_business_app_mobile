@@ -8,13 +8,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -39,13 +39,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -66,13 +66,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -90,13 +90,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
@@ -113,13 +113,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2322 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth530f |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

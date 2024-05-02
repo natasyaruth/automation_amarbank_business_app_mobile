@@ -8,13 +8,13 @@ Feature: User create PIN from other menu
         Given I am a registered customer with following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth5218 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth5218 |
+            | passwordStg | 1234Test |
         And I click login
         Then I will direct to Main Dashboard
 

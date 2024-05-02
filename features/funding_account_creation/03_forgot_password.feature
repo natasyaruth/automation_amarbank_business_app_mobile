@@ -82,7 +82,7 @@ Feature: Account Forgot Password
   @C96656
   Scenario: Reset password with user ID has been registered
     Given I am a registered customer with following details:
-      | userID      | autocaea |
+      | userID      | ruthf200 |
       | password    | 1234Test |
       | userIDstg   | stag76ee |
       | passwordStg | Test1234 |
@@ -108,8 +108,8 @@ Feature: Account Forgot Password
     Given I am a registered customer with following details:
       | userID      | autoeb6a |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nata6bde |
+      | passwordStg | 1234Test |
     And I am a customer want to reset password
     When I am filling field User ID
     And I input email for reset password
@@ -122,8 +122,8 @@ Feature: Account Forgot Password
     Given I am a registered customer with following details:
       | userID      | autoeb6a |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | ruth2d88 |
+      | passwordStg | 1234Test |
     And I am a customer want to reset password
     When I am filling field User ID
     And I input email for reset password

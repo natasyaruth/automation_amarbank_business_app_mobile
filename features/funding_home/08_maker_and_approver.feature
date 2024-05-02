@@ -37,7 +37,7 @@ Feature: Maker and Approver Transaction
         And I click login
         When I click tab profile
         Then I will not see menu transaction approval
-        And I will see menu download power of attorney
+        And I will not see menu download power of attorney
         And I will see menu document management
 
     @C109680
@@ -55,7 +55,7 @@ Feature: Maker and Approver Transaction
         And I click login
         When I click tab profile
         Then I will not see menu transaction approval
-        And I will see menu download power of attorney
+        And I will not see menu download power of attorney
         And I will see menu document management
 
     @C109681
@@ -239,7 +239,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -312,7 +312,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -325,7 +325,7 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -335,12 +335,12 @@ Feature: Maker and Approver Transaction
     @C109693
     Scenario: Back to main dashboard from detail card approver
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -352,12 +352,12 @@ Feature: Maker and Approver Transaction
     @C109694
     Scenario: Input wrong password once when user want to approve transaction
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -371,12 +371,12 @@ Feature: Maker and Approver Transaction
     @C109695
     Scenario: Input wrong password more than 3 times when user want to approve transaction
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -400,12 +400,12 @@ Feature: Maker and Approver Transaction
     @C109696
     Scenario: Unmask password
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -419,12 +419,12 @@ Feature: Maker and Approver Transaction
     @C109697
     Scenario: Mask password
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -439,12 +439,12 @@ Feature: Maker and Approver Transaction
     @C109698
     Scenario: Close page input password entry point detail card from main dashboard
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -457,12 +457,12 @@ Feature: Maker and Approver Transaction
     @C109699
     Scenario: Close page input password entry point detail card from page transaction approval
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -475,35 +475,15 @@ Feature: Maker and Approver Transaction
         And I close page password for transaction approval
         Then I will direct to page detail approval transaction
 
-    @C109700
-    Scenario: Close page input password entry point card from page transaction approval
-        Given I am a registered customer with following details:
-            | userID      | michb753 |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I filling in form login with the following details:
-            | userID      | michb753 |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I click login
-        When I click tab profile
-        And I click menu transaction approval
-        And I approve the transaction
-        And I input password for approver
-        And I close page password for transaction approval
-        Then I will direct to page detail approval transaction
-
     @C109701
     Scenario: Verifying wrong OTP code
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -517,12 +497,12 @@ Feature: Maker and Approver Transaction
     @C109702
     Scenario: Verifying expired OTP code
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -537,12 +517,12 @@ Feature: Maker and Approver Transaction
     @C109703
     Scenario: Verifying wrong OTP code five times
         Given I am a registered customer with following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -576,12 +556,12 @@ Feature: Maker and Approver Transaction
     @C109705
     Scenario: Resend OTP code more than five times
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | deveb4ef |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | deveb4ef |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -606,7 +586,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -645,7 +625,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -663,14 +643,19 @@ Feature: Maker and Approver Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will see card approver transaction in main dashboard
         When I click card approver transaction
         And I approve the transaction
         And I input password for approver
         And I input OTP to approve transaction
         Then I will direct to page transaction approval
         And I will not see card approver that has been approved
-        And I will see snackbar with wording 'Anda telah menyetujui transaksi '
+        And I will see snackbar with wording 'Anda telah menyetujui transaksi'
         And I can click link to see the transaction with status 'Transaksi Disetujui'
+        And I will see card maker that has been approved
+        And I can click detail card completed
+        And I will see detail card maker that has been approved
+        And I close page detail card completed
 
     @C109708
     Scenario: Approve transaction from detail approval transaction
@@ -686,7 +671,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
         And I input amount '1000000'
         And I choose category 'Pembayaran'
@@ -706,13 +691,18 @@ Feature: Maker and Approver Transaction
         And I click login
         When I click tab profile
         And I click menu transaction approval
+        And I click card approver transaction
         And I approve the transaction
         And I input password for approver
         And I input OTP to approve transaction
         Then I will direct to page transaction approval
         And I will not see card approver that has been approved
-        And I will see snackbar with wording 'Anda telah menyetujui transaksi '
+        And I will see snackbar with wording 'Anda telah menyetujui transaksi'
         And I can click link to see the transaction with status 'Transaksi Disetujui'
+        And I will see card maker that has been approved
+        And I can click detail card completed
+        And I will see detail card maker that has been approved
+        And I close page detail card completed
 
     @C109709
     Scenario: Reject transaction from detail card maker
@@ -728,6 +718,97 @@ Feature: Maker and Approver Transaction
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
+        When I input name 'RUTH BISNIS A' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will see card maker transaction in main dashboard
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | mich5707 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        When I click card approver transaction
+        And I reject the transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will direct to page transaction approval
+        And I will not see card approver that has been rejected
+        And I will see snackbar with wording 'Anda telah menolak transaksi'
+        And I can click link to see the transaction with status 'Transaksi Ditolak'
+        And I will see card maker that has been rejected
+        And I can click detail card completed
+        And I will see detail card maker that has been rejected
+        And I close page detail card completed
+
+    @C109710
+    Scenario: Reject transaction from detail approval transaction
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
+        When I input name 'RUTH BISNIS A' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will see card maker transaction in main dashboard
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | mich5707 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        When I click tab profile
+        And I click menu transaction approval
+        And I click card approver transaction
+        And I reject the transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will direct to page transaction approval
+        And I will not see card approver that has been rejected
+        And I will see snackbar with wording 'Anda telah menolak transaksi'
+        And I can click link to see the transaction with status 'Transaksi Ditolak'
+        And I will see card maker that has been rejected
+        And I can click detail card completed
+        And I will see detail card maker that has been rejected
+        And I close page detail card completed
+
+    Scenario: Approve transaction to other bank
+        Given I am a registered customer with following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
         And I input amount '1000000'
@@ -741,22 +822,25 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
         When I click card approver transaction
-        And I reject the transaction
+        And I approve the transaction
         And I input password for approver
         And I input OTP to approve transaction
         Then I will direct to page transaction approval
-        And I will not see card approver that has been rejected
-        And I will see snackbar with wording 'Anda telah menolak transaksi'
-        And I can click link to see the transaction with status 'Transaksi Ditolak'
+        And I will not see card approver that has been approved
+        And I will see snackbar with wording 'Anda telah menyetujui transaksi '
+        And I can click link to see the transaction with status 'Transaksi Disetujui'
+        And I will see card maker that has been approved
+        And I can click detail card completed
+        And I will see detail card maker that has been approved
+        And I close page detail card completed
 
-    @C109710
-    Scenario: Reject transaction from detail approval transaction
+    Scenario: Reject transaction to other bank
         Given I am a registered customer with following details:
             | userID      | mike1eb6 |
             | password    | 1234Test |
@@ -782,13 +866,12 @@ Feature: Maker and Approver Transaction
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | michb753 |
+            | userID      | mich5707 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        When I click tab profile
-        And I click menu transaction approval
+        When I click card approver transaction
         And I reject the transaction
         And I input password for approver
         And I input OTP to approve transaction
@@ -796,3 +879,184 @@ Feature: Maker and Approver Transaction
         And I will not see card approver that has been rejected
         And I will see snackbar with wording 'Anda telah menolak transaksi'
         And I can click link to see the transaction with status 'Transaksi Ditolak'
+        And I will see card maker that has been rejected
+        And I can click detail card completed
+        And I will see detail card maker that has been rejected
+        And I close page detail card completed
+
+    Scenario: Make transfer out and then cancel directly
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
+        When I input name 'PT RUTH ABADI' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I canceled my transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
+        And I will not see card maker that has been canceled
+        And I click tab profile
+        And I click menu transaction approval
+        And I click waiting approval section
+        And I will not see card maker that has been canceled
+        And I click tab approval has been done
+        And I will see card with status has been canceled
+
+    Scenario: Cancel Transaction from Main Dashboard
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
+        When I input name 'PT RUTH ABADI' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will see card maker transaction in main dashboard
+        And I click card maker transaction
+        And I will direct to page need approval from other director
+        And I canceled my transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
+        And I will not see card maker that has been canceled
+        And I will direct to dashboard
+        And I click tab profile
+        And I click menu transaction approval
+        And I click waiting approval section
+        And I will not see card maker that has been canceled
+        And I click tab approval has been done
+        And I will see card with status has been canceled
+        And I can click detail card completed
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
+    
+    Scenario: Cancel Transaction from Detail Approval Transaction
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
+        When I input name 'PT RUTH ABADI' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will see card maker transaction in main dashboard
+        And I click tab profile
+        And I click menu transaction approval
+        And I click card maker transaction
+        And I will direct to page need approval from other director
+        And I canceled my transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
+        And I will not see card maker that has been canceled
+        And I will direct to dashboard
+        And I click tab profile
+        And I click menu transaction approval
+        And I click waiting approval section
+        And I will not see card maker that has been canceled
+        And I click tab approval has been done
+        And I will see card with status has been canceled
+        And I can click detail card completed
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
+
+    Scenario: Cancel Transaction then create again and approve the transaction
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I choose menu Transfer from main dashboard
+        When I input name 'PT RUTH ABADI' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will see card maker transaction in main dashboard
+        And I click card maker transaction
+        And I will direct to page need approval from other director
+        And I canceled my transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        And I will see snackbar with wording 'Transaksi berhasil dibatalkan'
+        And I choose menu Transfer from main dashboard
+        And I input name 'RUTH BISNIS A' from the search box
+        And I choose the friendlist
+        And I input amount '1000000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | mich5707 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I click card approver transaction
+        And I approve the transaction
+        And I input password for approver
+        And I input OTP to approve transaction
+        Then I will direct to page transaction approval
+        And I will not see card approver that has been approved
+        And I will see snackbar with wording 'Anda telah menyetujui transaksi '
+        And I can click link to see the transaction with status 'Transaksi Disetujui'
+        And I will see card maker that has been approved
+        And I can click detail card completed
+        And I will see detail card maker that has been approved
+        And I close page detail card completed

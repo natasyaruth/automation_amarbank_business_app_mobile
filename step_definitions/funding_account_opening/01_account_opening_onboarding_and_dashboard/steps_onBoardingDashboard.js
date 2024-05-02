@@ -209,6 +209,9 @@ Then("I will notify that my personal data details needs to be verified in main d
     I.waitForText("Perbankan Giro", 10);
     I.see("Menunggu verifikasi data selesai");
     I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password); 
 });
 
 Then("I will see card continue to complete registration user invited", () => {

@@ -8,13 +8,13 @@ Feature: Account Opening KYC - User Invited
     Given I am a registered customer invited business with following details:
       | userID      | joha3b62 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nataa2fd |
+      | passwordStg | 1234Test |
     When I filling in form login with the following details:
       | userID      | joha3b62 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nataa2fd |
+      | passwordStg | 1234Test |
     And I click login
     And I continue to register my KYC data
 

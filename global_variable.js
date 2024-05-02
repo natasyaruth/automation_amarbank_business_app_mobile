@@ -17,7 +17,6 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
-        companyName: "",
     },
     onBoarding:{
         legality: "",
@@ -63,7 +62,14 @@ module.exports = {
         category:"",
         accountNumber: "",
         date: "",
+        senderName: "",
         senderBankName: "",
+        senderAccountNumber: "",
+        recipientName: "",
+        recipientBankName: "",
+        recipientAccountNumber: "",
+        makerName: "",
+        status: "",
         adminFee: 0,
     },
     dashboard:{
