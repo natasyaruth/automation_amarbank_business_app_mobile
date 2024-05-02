@@ -31,6 +31,7 @@ module.exports = {
     recipientBankName: {xpath: "(//android.widget.ScrollView/android.widget.TextView)[7]"},
     amountTransferOut: "~transferOut",
     nameCreatedBy: "~createdBy",
+    nameCanceledBy: "~cancelledBy",
     referenceNumber: "~referenceNumber",
     date: "~date",
     time: "~time",
@@ -68,13 +69,13 @@ module.exports = {
   },
 
   async getRecipientBankName() {
-    I.waitForElement(this.texts.transactionRecipientBank, 10);
-    return I.grabTextFrom(this.texts.transactionRecipientBank);
+    I.waitForElement(this.texts.recipientBankName, 10);
+    return I.grabTextFrom(this.texts.recipientBankName);
   },
 
   async getTransactionDate() {
-    I.waitForElement(this.texts.transactionDate, 10);
-    return I.grabTextFrom(this.texts.transactionDate);
+    I.waitForElement(this.texts.date, 10);
+    return I.grabTextFrom(this.texts.date);
   },
 
   async getAmountTransaction() {
@@ -226,4 +227,8 @@ module.exports = {
     I.click(this.buttons.cancel);
   },
 
+  async getNameCanceledBy(){
+    I.waitForElement(this.texts.nameCanceledBy, 10);
+    return I.grabTextFrom(this.texts.nameCanceledBy);
+  },
 }

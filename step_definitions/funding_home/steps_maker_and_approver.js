@@ -109,7 +109,7 @@ When("I input OTP to approve transaction", async () => {
     I.see("Kode OTP telah dikirim ke nomor");
 
     const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
+    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace(/\s+/g, '').replace(/+/g, '');
 
     I.assertEqual("+" + actualPhoneNumber, phoneNumber);
 
@@ -809,9 +809,9 @@ Then("I will see detail card maker that has been canceled", async ()=>{
     I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
 
     I.see("Dibatalkan oleh");
-    const actualRejectedName = await approvalTransactionPage.getNameRejectedBy();
-    const expectedRejectedName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
-    I.assertEqual(actualRejectedName, expectedRejectedName);
+    const actualCanceledName = await approvalTransactionPage.getNameCanceledBy();
+    const expectedCanceledName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    I.assertEqual(actualCanceledName, expectedCanceledName);
 
     I.see("Nomor Referensi");
     I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
