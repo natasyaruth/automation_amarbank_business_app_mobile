@@ -169,6 +169,7 @@ When("I will receive email contain with OTP", async() => {
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
+    I.see("Kode verifikasi telah dikirim ke e-mail");
     I.wait(3);
 
     globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;

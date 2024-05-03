@@ -8,13 +8,13 @@ Feature: Account Opening KYC CV - Submit Data Personal
         Given I am a registered customer with following details:
             | userID      | ruth2a1e |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruthf5d5 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ruth2a1e |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruthf5d5 |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

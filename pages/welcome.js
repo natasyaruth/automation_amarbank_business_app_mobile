@@ -10,12 +10,12 @@ module.exports = {
   },
 
   clickButtonLogin(){
-    I.waitForElement(this.buttons.login, 10);
+    I.waitForElement(this.buttons.login, 30);
     I.click(this.buttons.login);
   },
 
   clickButtonRegister(){
-    I.waitForElement(this.buttons.registration, 10);
+    I.waitForElement(this.buttons.registration, 30);
     I.click(this.buttons.registration);
   },
 };

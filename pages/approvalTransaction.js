@@ -15,6 +15,7 @@ module.exports = {
     iconEyePassword: "~iconShowHidePassword",
     passwordIncorrect: "~passwordIncorrectBtn",
     copy: "~buttonCopy",
+    cancel: "~cancelButton",
   },
   texts: {
     transactionApprovalType: "~transactionApprovalType",
@@ -24,14 +25,16 @@ module.exports = {
     transactionAmount: "~transactionAmount",
     senderName: "~senderName",
     senderAccount: "~senderAccount",
-    senderBankName: "~senderBankName",
+    senderBankName: "~senderAccountName",
     recipientName: "~recipientName",
     recipientAccount: "~recipientAccount",
-    recipientBankName: "~recipientBankName",
+    recipientBankName: {xpath: "(//android.widget.ScrollView/android.widget.TextView)[7]"},
     amountTransferOut: "~transferOut",
     nameCreatedBy: "~createdBy",
+    nameCanceledBy: "~cancelledBy",
     referenceNumber: "~referenceNumber",
     date: "~date",
+    time: "~time",
     category: "~category",
     noted: "~noted",
     nameRejectedBy: "~rejectedBy",
@@ -61,18 +64,18 @@ module.exports = {
   },
 
   async getRecipientName() {
-    I.waitForElement(this.texts.transactionRecipientName, 10);
-    return I.grabTextFrom(this.texts.transactionRecipientName);
+    I.waitForElement(this.texts.recipientName, 10);
+    return I.grabTextFrom(this.texts.recipientName);
   },
 
   async getRecipientBankName() {
-    I.waitForElement(this.texts.transactionRecipientBank, 10);
-    return I.grabTextFrom(this.texts.transactionRecipientBank);
+    I.waitForElement(this.texts.recipientBankName, 10);
+    return I.grabTextFrom(this.texts.recipientBankName);
   },
 
   async getTransactionDate() {
-    I.waitForElement(this.texts.transactionDate, 10);
-    return I.grabTextFrom(this.texts.transactionDate);
+    I.waitForElement(this.texts.date, 10);
+    return I.grabTextFrom(this.texts.date);
   },
 
   async getAmountTransaction() {
@@ -217,6 +220,15 @@ module.exports = {
   resendOtp(){
     I.waitForElement(this.links.resendOtp, 10);
     I.click(this.links.resendOtp);
-  }
+  },
 
+  cancelTransaction(){
+    I.waitForElement(this.buttons.cancel, 10);
+    I.click(this.buttons.cancel);
+  },
+
+  async getNameCanceledBy(){
+    I.waitForElement(this.texts.nameCanceledBy, 10);
+    return I.grabTextFrom(this.texts.nameCanceledBy);
+  },
 }

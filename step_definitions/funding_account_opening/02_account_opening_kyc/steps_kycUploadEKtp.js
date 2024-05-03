@@ -35,7 +35,7 @@ When("I upload my eKTP photo", async () => {
 When("I upload invited user eKTP photo", async () => {
     I.waitForText("Ambil Foto eKTP Anda", 10);
     await
-        resetStateDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
         uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageUserInvitedAfterResetState();

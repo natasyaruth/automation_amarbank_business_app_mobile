@@ -27,6 +27,7 @@ module.exports = {
     text: {
       receiverName: "~textReceiverName",
       friendListName: { xpath: "//android.view.View/android.view.View[1]/android.view.View/android.widget.TextView[2]"},
+      friendListBankName: { xpath: "//android.view.View/android.view.View[1]/android.view.View/android.widget.TextView[3]"},
       friendListAccNumber: {xpath: "//android.view.View/android.view.View[1]/android.view.View/android.widget.TextView[4]"},
       bankName: "~textBank",
     },
@@ -120,6 +121,11 @@ module.exports = {
     async getFriendListAccNumber(){
       I.waitForElement(this.text.friendListAccNumber, 10);
       return await I.grabTextFrom(this.text.friendListAccNumber);
+    },
+
+    async getFriendListBankName(){
+      I.waitForElement(this.text.friendListBankName, 10);
+      return await I.grabTextFrom(this.text.friendListBankName);
     },
   }
   
