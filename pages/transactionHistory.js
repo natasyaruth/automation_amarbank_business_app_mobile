@@ -24,12 +24,14 @@ module.exports = {
         btnChoose: "~buttonChoose",
         btnCancel: "~buttonCancel",
         btnOk: "~buttonNextSuccessBottomSheet",
+        submitFilter: "~buttonOk",
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",
         btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])[1]" },
         btneStatementLatest: { xpath: "(//android.view.View[@content-desc='buttonRequest0'])" },
         btnCloseeStatement: "~buttonClose",
+        detailHistory: "~buttonDetail",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -48,9 +50,29 @@ module.exports = {
         textViewNoteIn: { xpath: '//android.widget.TextView[contains(@text, "test transfer")]' },
         textViewCatOut: { xpath: '//android.widget.TextView[contains(@text, "PAJAK BUNGA")]' },
         textViewCatIn: { xpath: '//android.widget.TextView[contains(@text, "BUNGA JASA GIRO/TABUNGAN")]' },
-        textNote: "~textNote",
         textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
+        textErrorDate: "~textErrorDate",
+        nameBucketlist: "~textName",
+        bankNameBucketlist: "~textBankName",
+        dateBucketlist: "~textDateTime",
+        accNumberBucketlist: "~textRekening",
+        amountBucketlist: "~textAmount",
+        senderName: "~textTransferToName",
+        senderBankName: "~textTransferFromBankName",
+        senderAccNumber: "~textTransferFromRekening",
+        recipientName: "~textTransferToName",
+        recipientBankName: "~textTransferFromBankName",
+        recipientAccNumber: "~textTransferFromRekening",
+        amount: "~textAmount",
+        createdBy: "~textCreateBy",
+        approveBy: "~textApproveBy",
+        referenceNumber: "~textReferenceNo",
+        dateDetailHistory: "~textDate",
+        timeDetailHistory: "~textTime",
+        category: "~textCategory",
+        methodTransaction: "~textMethod",
+        textNote: "~textNote",
     },
     menu: {
         tabTesting: { xpath: "//android.widget.TextView[contains(@text, 'TESTING')]" },
@@ -59,13 +81,20 @@ module.exports = {
         tabBusiness: "~tabBusiness",
         tabHome: "~tabHome"
     },
-
+    link: {
+        reset: "~buttonReset",
+    },
+    tabs:{
+        allTransaction: "",
+        inTransaction: "",
+        outTransaction: "",
+    },
     viewUserName() {
         I.wait(7);
         I.seeElement(this.fields.userField);
     },
     clickBtnHistory() {
-        I.wait(5);
+        I.waitForElement(this.buttons.historyBtn, 20);
         I.click(this.buttons.historyBtn);
     },
     async viewPageHistoryTransaction() {
@@ -78,7 +107,7 @@ module.exports = {
         I.seeElement(this.buttons.historyBtn);
     },
 
-    viewButtonDownloadEStatement(){
+    viewButtonDownloadEStatement() {
         I.wait(2);
         I.seeElement(this.buttons.btneStatementDownload);
     },
@@ -93,42 +122,42 @@ module.exports = {
         I.click(this.buttons.btneStatementLatest);
     },
 
-    validationeStatementNotExist(){
+    validationeStatementNotExist() {
         I.wait(5);
         I.see("e-Statement belum ada")
     },
 
-    async viewSuccessAlertBar(){
+    async viewSuccessAlertBar() {
 
-        I.waitForElement(this.textFields.textViewFailedAlert,5);
+        I.waitForElement(this.textFields.textViewFailedAlert, 5);
         let isAlert = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "bounds");
-    
-        if(isAlert === "[77,2055][143,2121]"){
-          console.log("Sistem tidak dapat mencetak e-Statement.");
-          //return true;
-        }
-    
-        else{
-          console.log("e-Statement sudah di download");
-          //return true;
-        }
-      },
 
-    async checkAlertBar(){
+        if (isAlert === "[77,2055][143,2121]") {
+            console.log("Sistem tidak dapat mencetak e-Statement.");
+            //return true;
+        }
 
-        I.waitForElement(this.textFields.textViewFailedAlert,3);
+        else {
+            console.log("e-Statement sudah di download");
+            //return true;
+        }
+    },
+
+    async checkAlertBar() {
+
+        I.waitForElement(this.textFields.textViewFailedAlert, 3);
         let isFailed = await I.grabAttributeFrom(this.textFields.textViewFailedAlert, "text");
-    
-        if(isFailed === "Sedang terjadi kesalahan sistem."){
-          console.log("Sistem tidak dapat mencetak e-Statement.");
-          //return true;
+
+        if (isFailed === "Sedang terjadi kesalahan sistem.") {
+            console.log("Sistem tidak dapat mencetak e-Statement.");
+            //return true;
         }
-    
-        else{
-          console.log("e-Statement sudah di download");
-          //return true;
+
+        else {
+            console.log("e-Statement sudah di download");
+            //return true;
         }
-      },
+    },
 
     clicBtnFilter() {
         I.wait(2);
@@ -192,17 +221,18 @@ module.exports = {
         }
     },
     viewFormDate() {
-        I.wait(2);
-        I.seeElement(this.textFields.textViewSelectDate);
+        I.waitForElement(this.textFields.textViewSelectDate, 10);
     },
     clicFieldStartDate() {
+        I.waitForElement(this.fields.startDateField, 10);
         I.click(this.fields.startDateField);
     },
     clicFieldEndDate() {
+        I.waitForElement(this.fields.endDateField, 10);
         I.click(this.fields.endDateField);
     },
     clickBtnChoose() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btnChoose, 10);
         I.click(this.buttons.btnChoose);
     },
     clickBtnCancel() {
@@ -210,8 +240,8 @@ module.exports = {
         I.click(this.buttons.btnCancel);
     },
     clickBtnOk() {
-        I.wait(5);
-        I.click(this.buttons.btnOk);
+        I.waitForElement(this.buttons.submitFilter, 10);
+        I.click(this.buttons.submitFilter);
     },
     async validateTextViewTransfer(trfType) {
         I.wait(2);
@@ -231,14 +261,13 @@ module.exports = {
         }
     },
     async clickListTransfer(trfType) {
-        I.wait(2);
         switch (trfType) {
             case 'out':
-                I.wait(2);
+                I.waitForElement(this.fields.listTransferOut, 10);
                 I.click(this.fields.listTransferOut);
                 break;
             case 'in':
-                I.wait(2);
+                I.waitForElement(this.fields.listTransferIn, 10);
                 I.click(this.fields.listTransferIn);
                 break;
         }
@@ -334,6 +363,85 @@ module.exports = {
     clickTabTesting() {
         I.waitForElement(this.menu.tabTesting, 10);
         I.click(this.menu.tabTesting);
-    }
-
+    },
+    resetFilter() {
+        I.waitForElement(this.link.reset, 10);
+        I.click(this.link.reset);
+    },
+    clearFieldStartDate(){
+        I.waitForElement(this.fields.startDateField, 10);
+        I.clearField(this.fields.startDateField);
+    },
+    clearFieldEndDate(){
+        I.waitForElement(this.fields.endDateField, 10);
+        I.clearField(this.fields.endDateField);
+    },
+    async getTransactionNameBucketList(){
+        I.waitForElement(this.textFields.nameBucketlist, 10);
+        return await I.grabTextFrom(this.textFields.nameBucketlist);
+    },
+    async getTransactionDateBucketList(){
+        I.waitForElement(this.textFields.dateBucketlist, 10);
+        return await I.grabTextFrom(this.textFields.dateBucketlist);
+    },
+    async getTransactionBankNameBucketList(){
+        I.waitForElement(this.textFields.bankNameBucketlist, 10);
+        return await I.grabTextFrom(this.textFields.bankNameBucketlist);
+    },
+    async getTransactionAccNumberBucketList(){
+        I.waitForElement(this.textFields.accNumberBucketlist, 10);
+        return await I.grabTextFrom(this.textFields.accNumberBucketlist);
+    },
+    async getTransactionAmountBucketList(){
+        I.waitForElement(this.textFields.amountBucketlist, 10);
+        return await I.grabTextFrom(this.textFields.amountBucketlist);
+    },
+    async getRecipientNameDetail(){
+        I.waitForElement(this.textFields.recipientName, 10);
+        return await I.grabTextFrom(this.textFields.recipientName);
+    },
+    async getRecipientBankNameDetail(){
+        I.waitForElement(this.textFields.recipientBankName, 10);
+        return await I.grabTextFrom(this.textFields.recipientBankName);
+    },
+    async getRecipientAccNumberDetail(){
+        I.waitForElement(this.textFields.recipientAccNumber, 10);
+        return await I.grabTextFrom(this.textFields.recipientAccNumber);
+    },
+    async getSenderNameDetail(){
+        I.waitForElement(this.textFields.senderName, 10);
+        return await I.grabTextFrom(this.textFields.senderName);
+    },
+    async getSenderBankNameDetail(){
+        I.waitForElement(this.textFields.senderBankName, 10);
+        return await I.grabTextFrom(this.textFields.senderBankName);
+    },
+    async getSenderAccNumberDetail(){
+        I.waitForElement(this.textFields.senderAccNumber, 10);
+        return await I.grabTextFrom(this.textFields.senderAccNumber);
+    },
+    async getAmountDetail(){
+        I.waitForElement(this.textFields.amount, 10);
+        return await I.grabTextFrom(this.textFields.amount);
+    },
+    async getCreatedByName(){
+        I.waitForElement(this.textFields.createdBy, 10);
+        return await I.grabTextFrom(this.textFields.createdBy);
+    },
+    async getApprovedByName(){
+        I.waitForElement(this.textFields.approveBy, 10);
+        return await I.grabTextFrom(this.textFields.approveBy);
+    },
+    async getCategory(){
+        I.waitForElement(this.textFields.category, 10);
+        return await I.grabTextFrom(this.textFields.category);
+    },
+    async getMethodTransaction(){
+        I.waitForElement(this.textFields.methodTransaction, 10);
+        return await I.grabTextFrom(this.textFields.methodTransaction);
+    },
+    async getNotes(){
+        I.waitForElement(this.textFields.textNote, 10);
+        return await I.grabTextFrom(this.textFields.textNote);
+    },
 }

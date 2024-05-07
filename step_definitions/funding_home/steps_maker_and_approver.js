@@ -109,7 +109,7 @@ When("I input OTP to approve transaction", async () => {
     I.see("Kode OTP telah dikirim ke nomor");
 
     const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace(/\s+/g, '').replace(/+/g, '');
+    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
 
     I.assertEqual("+" + actualPhoneNumber, phoneNumber);
 
@@ -526,8 +526,8 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
-    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace(/\s+/g, '').replace(/+/g, '');
-    await otpDao.resetLimitRequestOtp(globalVariable.registration.actualPhoneNumber);
+    const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
+    await otpDao.resetLimitRequestOtp(actualPhoneNumber);
 });
 
 Then("I will get new OTP different with my first OTP to approve transaction", async ()=>{
