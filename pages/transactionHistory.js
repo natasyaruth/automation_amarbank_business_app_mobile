@@ -31,7 +31,8 @@ module.exports = {
         btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])[1]" },
         btneStatementLatest: { xpath: "(//android.view.View[@content-desc='buttonRequest0'])" },
         btnCloseeStatement: "~buttonClose",
-        detailHistory: "~buttonDetail",
+        detailHistory: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[1]'},
+        detailHistorySecond: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[2]'},
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -53,11 +54,16 @@ module.exports = {
         textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textErrorDate: "~textErrorDate",
-        nameBucketlist: "~textName",
-        bankNameBucketlist: "~textBankName",
-        dateBucketlist: "~textDateTime",
-        accNumberBucketlist: "~textRekening",
-        amountBucketlist: "~textAmount",
+        nameBucketlist: {xpath: '(//android.view.View[@content-desc="textName"])[1]'},
+        bankNameBucketlist: {xpath: '(//android.view.View[@content-desc="textBankName"])[1]'},
+        dateBucketlist: {xpath: '(//android.view.View[@content-desc="textDateTime"])[1]'},
+        accNumberBucketlist: {xpath: '(//android.view.View[@content-desc="textRekening"])[1]'},
+        amountBucketlist: {xpath: '(//android.view.View[@content-desc="textAmount"])[1]'},
+        nameBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textName"])[2]'},
+        bankNameBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textBankName"])[2]'},
+        dateBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textDateTime"])[2]'},
+        accNumberBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textRekening"])[2]'},
+        amountBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textAmount"])[2]'},
         senderName: "~textTransferToName",
         senderBankName: "~textTransferFromBankName",
         senderAccNumber: "~textTransferFromRekening",
@@ -69,10 +75,15 @@ module.exports = {
         approveBy: "~textApproveBy",
         referenceNumber: "~textReferenceNo",
         dateDetailHistory: "~textDate",
+        month: "~textMonth",
         timeDetailHistory: "~textTime",
         category: "~textCategory",
         methodTransaction: "~textMethod",
         textNote: "~textNote",
+        adminFeeTitle: {xpath: '(//android.view.View[@content-desc="textAdminFee"])[1]'},
+        adminFeeAmount: {xpath: '(//android.view.View[@content-desc="textAdminFeeAmount"])[1]'},
+        adminFeeTitleSecond: {xpath: '(//android.view.View[@content-desc="textAdminFee"])[2]'},
+        adminFeeAmountSecond: {xpath: '(//android.view.View[@content-desc="textAdminFeeAmount"])[2]'},
     },
     menu: {
         tabTesting: { xpath: "//android.widget.TextView[contains(@text, 'TESTING')]" },
@@ -85,9 +96,9 @@ module.exports = {
         reset: "~buttonReset",
     },
     tabs:{
-        allTransaction: "",
-        inTransaction: "",
-        outTransaction: "",
+        allTransaction: "~buttonTabTransferAll",
+        inTransaction: "~buttonTabTransferIn",
+        outTransaction: "~buttonTabTransferOut",
     },
     viewUserName() {
         I.wait(7);
@@ -168,6 +179,7 @@ module.exports = {
         I.seeElement(this.textFields.textViewBtmSheetFilterHistory);
     },
     clicBtnClose() {
+        I.waitForElement(this.buttons.btnClose, 10);
         I.click(this.buttons.btnClose);
     },
     selectDayDate(Date, Qty) {
@@ -355,10 +367,8 @@ module.exports = {
         }
     },
     clickBtnShare() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btnShare, 10);
         I.click(this.buttons.btnShare);
-        I.wait(3);
-        I.sendDeviceKeyEvent(4);
     },
     clickTabTesting() {
         I.waitForElement(this.menu.tabTesting, 10);
@@ -380,21 +390,41 @@ module.exports = {
         I.waitForElement(this.textFields.nameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.nameBucketlist);
     },
+    async getTransactionNameBucketListSecond(){
+        I.waitForElement(this.textFields.nameBucketlistSecond, 10);
+        return await I.grabTextFrom(this.textFields.nameBucketlistSecond);
+    },
     async getTransactionDateBucketList(){
         I.waitForElement(this.textFields.dateBucketlist, 10);
         return await I.grabTextFrom(this.textFields.dateBucketlist);
+    },
+    async getTransactionDateBucketListSecond(){
+        I.waitForElement(this.textFields.dateBucketlistSecond, 10);
+        return await I.grabTextFrom(this.textFields.dateBucketlistSecond);
     },
     async getTransactionBankNameBucketList(){
         I.waitForElement(this.textFields.bankNameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.bankNameBucketlist);
     },
+    async getTransactionBankNameBucketListSecond(){
+        I.waitForElement(this.textFields.bankNameBucketlistSecond, 10);
+        return await I.grabTextFrom(this.textFields.bankNameBucketlistSecond);
+    },
     async getTransactionAccNumberBucketList(){
         I.waitForElement(this.textFields.accNumberBucketlist, 10);
         return await I.grabTextFrom(this.textFields.accNumberBucketlist);
     },
+    async getTransactionAccNumberBucketListSecond(){
+        I.waitForElement(this.textFields.accNumberBucketlistSecond, 10);
+        return await I.grabTextFrom(this.textFields.accNumberBucketlistSecond);
+    },
     async getTransactionAmountBucketList(){
         I.waitForElement(this.textFields.amountBucketlist, 10);
         return await I.grabTextFrom(this.textFields.amountBucketlist);
+    },
+    async getTransactionAmountBucketListSecond(){
+        I.waitForElement(this.textFields.amountBucketlistSecond, 10);
+        return await I.grabTextFrom(this.textFields.amountBucketlistSecond);
     },
     async getRecipientNameDetail(){
         I.waitForElement(this.textFields.recipientName, 10);
@@ -443,5 +473,65 @@ module.exports = {
     async getNotes(){
         I.waitForElement(this.textFields.textNote, 10);
         return await I.grabTextFrom(this.textFields.textNote);
+    },
+    async getDate(){
+        I.waitForElement(this.textFields.dateDetailHistory, 10);
+        return await I.grabTextFrom(this.textFields.dateDetailHistory);
+    },
+    openDetailHistory(){
+        I.waitForElement(this.buttons.detailHistory, 10);
+        I.click(this.buttons.detailHistory);
+    },
+    openSecondDetailHistory(){
+        I.waitForElement(this.buttons.detailHistorySecond, 10);
+        I.click(this.buttons.detailHistorySecond);
+    },
+    async getAdminFeeAmount(){
+        I.waitForElement(this.textFields.adminFeeAmount, 10);
+        return await I.grabTextFrom(this.textFields.adminFeeAmount);
+    },
+    async getAdminFeeAmountSecond(){
+        I.waitForElement(this.textFields.adminFeeAmountSecond, 10);
+        return await I.grabTextFrom(this.textFields.adminFeeAmountSecond);
+    },
+    choosePastStartDate(){
+        I.waitForElement(this.fields.startDateField, 10);
+        I.click(this.fields.startDateField, 10);
+        I.waitForText("Pilih Tanggal", 10);
+        I.swipeDown(this.textFields.dateDetailHistory, 1000, 1000);
+        I.swipeDown(this.textFields.month, 1000, 1000);
+    },
+    chooseFutureStartDate(){
+        I.waitForElement(this.fields.startDateField, 10);
+        I.click(this.fields.startDateField, 10);
+        I.waitForText("Pilih Tanggal", 10);
+        I.swipeUp(this.textFields.dateDetailHistory, 1000, 1000);
+        I.swipeUp(this.textFields.month, 1000, 1000);
+    },
+    choosePastEndDate(){
+        I.waitForElement(this.fields.endDateField, 10);
+        I.click(this.fields.endDateField, 10);
+        I.waitForText("Pilih Tanggal", 10);
+        I.swipeDown(this.textFields.dateDetailHistory, 1000, 1000);
+        I.swipeDown(this.textFields.month, 1000, 1000);
+    },
+    chooseFutureEndDate(){
+        I.waitForElement(this.fields.endDateField, 10);
+        I.click(this.fields.endDateField, 10);
+        I.waitForText("Pilih Tanggal", 10);
+        I.swipeUp(this.textFields.dateDetailHistory, 1000, 1000);
+        I.swipeUp(this.textFields.month, 1000, 1000);
+    },
+    chooseDate(){
+        I.waitForElement(this.buttons.btnChoose, 10);
+        I.click(this.buttons.btnChoose);
+    },
+    backFromFormDate(){
+        I.waitForElement(this.buttons.btnCancel, 10);
+        I.click(this.buttons.btnCancel);
+    },
+    async getMessageErrorFilterHistoryTransaction(){
+        I.waitForElement(this.textFields.textErrorDate, 10);
+        return await I.grabTextFrom(this.textFields.textErrorDate);
     },
 }

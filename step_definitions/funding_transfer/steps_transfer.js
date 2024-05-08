@@ -64,27 +64,27 @@ Then("I can see RTOL", async () => {
     I.waitForElement(transferPage.radioButtons.methodRtol, 5);
 
     const actualAdminFee = await transferPage.getAdminFeeRTOL();
-    I.assertEqual(actualAdminFee, "Rp 6.500");
+    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeRTOL);
 });
 
 Then("I can see BI Fast", async() => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
     const actualAdminFee = await transferPage.getAdminFeeBIFAST();
-    I.assertEqual(actualAdminFee, "Rp 2.500");
+    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeBIFAST);
 });
 
 Then("I can see SKN", async () => {
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
 
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
-    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
+    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
 });
 
 Then("I can see RTGS", async () => {
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
 
     const actualAdminFee = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFee, "Rp 30.000");
+    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeRTGS);
 });
 
 Then("I can see BI Fast, SKN and RTGS", async ()=>{
@@ -95,9 +95,9 @@ Then("I can see BI Fast, SKN and RTGS", async ()=>{
     const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFeeBifast, "Rp 2.500");
-    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
-    I.assertEqual(actualAdminFeeRtgs, "Rp 30.000");
+    I.assertEqual(actualAdminFeeBifast, "Rp "+globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeRtgs, "Rp "+globalVariable.transfer.adminFeeRTGS);
 });
 
 Then("I can see SKN and RTGS", async ()=>{
@@ -108,9 +108,9 @@ Then("I can see SKN and RTGS", async ()=>{
     const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFeeBifast, "Rp 2.500");
-    I.assertEqual(actualAdminFeeSkn, "Rp 2.900");
-    I.assertEqual(actualAdminFeeRtgs, "Rp 30.000");
+    I.assertEqual(actualAdminFeeBifast, "Rp "+globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeRtgs, "Rp "+globalVariable.transfer.adminFeeRTGS);
 });
 
 Then("I choose transfer service RTGS", () => {

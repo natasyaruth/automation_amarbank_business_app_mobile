@@ -118,6 +118,7 @@ Feature: Maker and Approver Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
@@ -128,6 +129,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         Then I will direct to page need approval from other director
         And I close page detail transfer
+        And I will see my blocking amount increase from amount transfer
         And I will see card maker transaction in main dashboard
         And I click card maker transaction
         And I will direct to page need approval from other director
@@ -624,6 +626,7 @@ Feature: Maker and Approver Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
@@ -634,6 +637,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I will see my blocking amount increase from amount transfer
         And I will see card maker transaction in main dashboard
         And I choose other
         And I click logout
@@ -656,6 +660,8 @@ Feature: Maker and Approver Transaction
         And I can click detail card completed
         And I will see detail card maker that has been approved
         And I close page detail card completed
+        And I click button back in the header page
+        Then I will see my active balance is decreased but my blocking amount and total amount back like in beginning
 
     @C109708
     Scenario: Approve transaction from detail approval transaction
@@ -717,6 +723,7 @@ Feature: Maker and Approver Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
@@ -727,6 +734,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I will see my blocking amount increase from amount transfer
         And I will see card maker transaction in main dashboard
         And I choose other
         And I click logout
@@ -748,6 +756,8 @@ Feature: Maker and Approver Transaction
         And I can click detail card completed
         And I will see detail card maker that has been rejected
         And I close page detail card completed
+        And I click button back in the header page
+        Then I will see my active balance, blocking amount and total amount back like in the beginning
 
     @C109710
     Scenario: Reject transaction from detail approval transaction
@@ -929,6 +939,7 @@ Feature: Maker and Approver Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'PT RUTH ABADI' from the search box
         And I choose the friendlist
@@ -939,6 +950,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I will see my blocking amount increase from amount transfer
         And I will see card maker transaction in main dashboard
         And I click card maker transaction
         And I will direct to page need approval from other director
@@ -947,7 +959,7 @@ Feature: Maker and Approver Transaction
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will not see card maker that has been canceled
-        And I will direct to dashboard
+        And I will see my active balance, blocking amount and total amount back like in the beginning
         And I click tab profile
         And I click menu transaction approval
         And I click waiting approval section

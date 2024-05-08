@@ -248,6 +248,7 @@ exports.config = {
       "./step_definitions/funding_transfer/steps_friend_list.js",
       "./step_definitions/funding_transfer/steps_transfer.js",
       "./step_definitions/funding_transfer/steps_eStatement.js",
+      "./step_definitions/funding_home/steps_historyTransaction.js",
       "./step_definitions/funding_create_pin/steps_createPin.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAP.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeDirectLoanAP.js",

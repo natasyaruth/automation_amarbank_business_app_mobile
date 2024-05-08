@@ -162,4 +162,21 @@ module.exports = {
         };
 
     },
+
+    async getBusinessPartnerUserID(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseBusinessPartnerList = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/business/partners"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseBusinessPartnerList.status,
+            userIdPartner: responseBusinessPartnerList.data[1].userId,
+        };
+
+    },
+
 }

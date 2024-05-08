@@ -71,6 +71,10 @@ module.exports = {
         makerName: "",
         status: "",
         adminFee: 0,
+        adminFeeRTOL: "6.500",
+        adminFeeBIFAST: "2.500",
+        adminFeeSKN: "2.900",
+        adminFeeRTGS: "30.000",
     },
     dashboard:{
         activeAmount: "",
@@ -82,6 +86,7 @@ module.exports = {
         senderName: "",
         recipientName: "",
         recipientBankName: "",
+        recipientAccNumber: "",
         date: "",
         amountTransaction: "",
     },
