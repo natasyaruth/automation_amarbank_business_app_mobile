@@ -81,6 +81,7 @@ Feature: User Should See Detail Transaction History
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
+        And I see tab filter all transaction, inbound transaction and outbound transaction
         When I want to click list transfer "in"
         Then I will direct to list transfer in
         And I will see in card bucketlist information such as Recipient Name, Bank Name, Account Number and Amount transaction
@@ -101,6 +102,7 @@ Feature: User Should See Detail Transaction History
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
+        And I see tab filter all transaction, inbound transaction and outbound transaction
         When I want to click list transfer "out"
         Then I will direct to list transfer out
         And I will see in card bucketlist information such as Recipient Name, Bank Name, Account Number and Amount transaction
@@ -109,12 +111,12 @@ Feature: User Should See Detail Transaction History
 
     Scenario: Validate detail transfer out RTGS
         Given I am a registered customer with following details:
-            | userID      | deveceea |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deveceea |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -123,18 +125,18 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out RTGS without approval
-        Then I will see detail transaction transfer out RTGS without approval
+        And I click detail card transaction transfer out "RTGS" without approval
+        Then I will see detail transaction transfer out "RTGS" without approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out RTGS with approval transaction
         Given I am a registered customer with following details:
-            | userID      | deved35f |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deved35f |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -143,18 +145,18 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out RTGS with approval
-        Then I will see detail transaction transfer out RTGS with approval
+        And I click detail card transaction transfer out "RTGS" with approval
+        Then I will see detail transaction transfer out "RTGS" with approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out SKN
         Given I am a registered customer with following details:
-            | userID      | devef721 |
+            | userID      | deveb316 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | devef721 |
+            | userID      | deveb316 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -163,18 +165,18 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out SKN without approval
-        Then I will see detail transaction transfer out SKN without approval
+        And I click detail card transaction transfer out "SKN" without approval
+        Then I will see detail transaction transfer out "SKN" without approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out SKN with approval transaction
         Given I am a registered customer with following details:
-            | userID      | deveb316 |
+            | userID      | devef721 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deveb316 |
+            | userID      | devef721 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -183,31 +185,11 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out SKN with approval
-        Then I will see detail transaction transfer out SKN with approval
+        And I click detail card transaction transfer out "SKN" with approval
+        Then I will see detail transaction transfer out "SKN" with approval
         And I close page detail history transaction
 
-    Scenario: Validate detail transfer out BIFAST
-        Given I am a registered customer with following details:
-            | userID      | deve3b14 |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I filling in form login with the following details:
-            | userID      | deve3b14 |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I click login
-        And I will direct to dashboard
-        And I want to click button history transaction
-        And I will redirect to history transaction page
-        When I want to click list transfer "out"
-        And I click detail card transaction transfer out BIFAST without approval
-        Then I will see detail transaction transfer out BIFAST without approval
-        And I close page detail history transaction
-
-    Scenario: Validate detail transfer out BIFAST with approval transaction
+    Scenario: Validate detail transfer out BI-FAST
         Given I am a registered customer with following details:
             | userID      | deve9372 |
             | password    | 1234Test |
@@ -223,18 +205,38 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out BIFAST with approval
-        Then I will see detail transaction transfer out BIFAST with approval
+        And I click detail card transaction transfer out "BI-FAST" without approval
+        Then I will see detail transaction transfer out "BI-FAST" without approval
+        And I close page detail history transaction
+
+    Scenario: Validate detail transfer out BI-FAST with approval transaction
+        Given I am a registered customer with following details:
+            | userID      | deve3b14 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | deve3b14 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        And I want to click button history transaction
+        And I will redirect to history transaction page
+        When I want to click list transfer "out"
+        And I click detail card transaction transfer out "BI-FAST" with approval
+        Then I will see detail transaction transfer out "BI-FAST" with approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out RTOL
         Given I am a registered customer with following details:
-            | userID      | deveb931 |
+            | userID      | devecfb5 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deveb931 |
+            | userID      | devecfb5 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -243,18 +245,18 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out RTOL without approval
-        Then I will see detail transaction transfer out RTOL without approval
+        And I click detail card transaction transfer out "RTOL" without approval
+        Then I will see detail transaction transfer out "RTOL" without approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out RTOL with approval transaction
         Given I am a registered customer with following details:
-            | userID      | devecfb5 |
+            | userID      | deveb931 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | devecfb5 |
+            | userID      | deveb931 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -263,31 +265,11 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out RTOL with approval
-        Then I will see detail transaction transfer out RTOL with approval
+        And I click detail card transaction transfer out "RTOL" with approval
+        Then I will see detail transaction transfer out "RTOL" with approval
         And I close page detail history transaction
 
-    Scenario: Validate detail transfer out overbooking
-        Given I am a registered customer with following details:
-            | userID      | deve1a6f |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I filling in form login with the following details:
-            | userID      | deve1a6f |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I click login
-        And I will direct to dashboard
-        And I want to click button history transaction
-        And I will redirect to history transaction page
-        When I want to click list transfer "out"
-        And I click detail card transaction transfer out overbooking without approval
-        Then I will see detail transaction transfer out overbooking without approval
-        And I close page detail history transaction
-
-    Scenario: Validate detail transfer out overbooking with approval transaction to other bank
+    Scenario: Validate detail transfer out Overbooking
         Given I am a registered customer with following details:
             | userID      | deve7b18 |
             | password    | 1234Test |
@@ -303,8 +285,28 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out overbooking with approval
-        Then I will see detail transaction transfer out overbooking with approval
+        And I click detail card transaction transfer out "Overbooking" without approval
+        Then I will see detail transaction transfer out "Overbooking" without approval
+        And I close page detail history transaction
+
+    Scenario: Validate detail transfer out Overbooking with approval transaction to other bank
+        Given I am a registered customer with following details:
+            | userID      | deve1a6f |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | deve1a6f |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        And I want to click button history transaction
+        And I will redirect to history transaction page
+        When I want to click list transfer "out"
+        And I click detail card transaction transfer out "Overbooking" with approval
+        Then I will see detail transaction transfer out "Overbooking" with approval
         And I close page detail history transaction
 
     Scenario: Validate detail transfer in RTOL
@@ -323,11 +325,11 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in RTOL
-        Then I will see detail transaction transfer in RTOL
+        And I click detail card transaction transfer in "RTOL"
+        Then I will see detail transaction transfer in "RTOL"
         And I close page detail history transaction
 
-    Scenario: Validate detail transfer in BIFAST
+    Scenario: Validate detail transfer in BI-FAST
         Given I am a registered customer with following details:
             | userID      | deve3b14 |
             | password    | 1234Test |
@@ -343,8 +345,8 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in BIFAST
-        Then I will see detail transaction transfer in BIFAST
+        And I click detail card transaction transfer in "BI-FAST"
+        Then I will see detail transaction transfer in "BI-FAST"
         And I close page detail history transaction
 
     Scenario: Validate detail transfer in SKN
@@ -363,8 +365,8 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in SKN
-        Then I will see detail transaction transfer in SKN
+        And I click detail card transaction transfer in "SKN"
+        Then I will see detail transaction transfer in "SKN"
         And I close page detail history transaction
 
     Scenario: Validate detail transfer in RTGS
@@ -383,8 +385,8 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in RTGS
-        Then I will see detail transaction transfer in RTGS
+        And I click detail card transaction transfer in "RTGS"
+        Then I will see detail transaction transfer in "RTGS"
         And I close page detail history transaction
 
     Scenario: Validate detail transfer in overbooking
@@ -403,8 +405,8 @@ Feature: User Should See Detail Transaction History
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in overbooking
-        Then I will see detail transaction transfer in overbooking
+        And I click detail card transaction transfer in "Overbooking"
+        Then I will see detail transaction transfer in "Overbooking"
         And I close page detail history transaction
 
     Scenario: Validate detail transfer out with notes
@@ -426,7 +428,7 @@ Feature: User Should See Detail Transaction History
         And I choose category 'Pembayaran'
         And I input notes with 'Testing History Transaction'
         And I click choose bank transfer service
-        And I choose transfer service BIFAST
+        And I choose transfer service BI-FAST
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
@@ -474,6 +476,7 @@ Feature: User Should See Detail Transaction History
         And I click detail latest card history transaction
         Then I will see notes in detail history transaction
 
+    #last
     Scenario: Filter transaction history within a date where there is no transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -492,9 +495,9 @@ Feature: User Should See Detail Transaction History
         When I want to click button filter history
         And I fill start date transaction with condition there is no transaction
         And I fill end date transaction with condition there is no transaction
-        And I want to click button close
+        And I want to click button ok
         Then I will see no transaction history
-        And I will not see all tab to filter type transaction
+        And I see tab filter all transaction, inbound transaction and outbound transaction
 
     Scenario: Filter transaction with date is empty
         Given I am a registered customer with following details:
@@ -517,7 +520,7 @@ Feature: User Should See Detail Transaction History
         And I click link reset history date
         And I will see field start and end date is empty
         And I want to click button ok
-        Then I will direct to page transaction history
+        Then I will redirect to history transaction page
 
     Scenario: Filter transaction history with end date less than start date
         Given I am a registered customer with following details:
@@ -556,7 +559,6 @@ Feature: User Should See Detail Transaction History
         And I click detail latest card history transaction
         And I click share receipt transaction
         Then I will see bottom sheet share history transaction
-        And I can close bottom sheet share history transaction
 
     Scenario: Back to main dashboard from page history transaction
         Given I am a registered customer with following details:

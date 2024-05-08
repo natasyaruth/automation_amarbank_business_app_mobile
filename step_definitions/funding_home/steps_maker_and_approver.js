@@ -1,6 +1,3 @@
-const global_variable = require("../../global_variable");
-const approvalTransaction = require("../../pages/approvalTransaction");
-
 const {
     I,
     resetStateDao,
@@ -12,6 +9,7 @@ const {
     onboardingAccOpeningPage,
     mainActivePage,
     profilePage,
+    amountDetailPage,
 } = inject();
 
 Given("I see card maker transaction", async () => {
@@ -139,7 +137,7 @@ When("I let the otp code for approve transaction expire", () => {
     I.waitForElement(approvalTransactionPage.links.resendOtp, 10);
 });
 
-When("I resend otp code to approve transaction", async ()=>{
+When("I resend otp code to approve transaction", async () => {
     I.wait(3);
     globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace('/\s+/g', '').replace('/-/g', '');
     globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
@@ -149,7 +147,7 @@ When("I resend otp code to approve transaction", async ()=>{
     I.waitForText("Kode OTP berhasil dikirim.", 10);
 });
 
-When("I resend otp code to approve transaction five times", async()=>{
+When("I resend otp code to approve transaction five times", async () => {
     I.waitForText("Kode OTP", 10);
 
     I.wait(3);
@@ -162,15 +160,15 @@ When("I resend otp code to approve transaction five times", async()=>{
     };
 });
 
-When("I can click detail card completed", ()=>{
+When("I can click detail card completed", () => {
     approvalTransactionPage.openCardTransaction();
 });
 
-When("I approve the transaction", ()=>{
+When("I approve the transaction", () => {
     approvalTransactionPage.approveTransaction();
 });
 
-When("I reject the transaction", ()=>{
+When("I reject the transaction", () => {
     approvalTransactionPage.rejectTransaction();
 });
 
@@ -208,6 +206,72 @@ Then("I don't see any card transaction in main dashboard", () => {
     I.dontSee(onboardingAccOpeningPage.buttons.cardTransaction);
 });
 
+Then("I will see my blocking amount and total amount increase but active balance decrease from amount transfer", async () => {
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+
+    const previousBlockingAmount = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+    const previousActiveBalance = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+
+    const number = parseInt(previousBlockingAmount);
+    const numberActiveBalance = parseInt(previousActiveBalance);
+
+    const totalBlockingAmount = number + globalVariable.transfer.amount;
+    const numberString = totalBlockingAmount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+
+    const expectedBlockingAmount = numberString.join('');
+    I.assertEqual(actualBlockingAmount, "Rp" + expectedBlockingAmount);
+
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const numberStringActiveBalance = activeBalance.toString().split('');
+
+    for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
+        numberStringActiveBalance.splice(i, 0, '.');
+    }
+
+    const expectedActiveBalance = numberStringActiveBalance.join('');
+    I.assertEqual(actualActiveBalance, "Rp" + expectedActiveBalance);
+});
+
+Then ("I will see my active balance is decreased but my blocking amount and total amount back like in beginning", async ()=>{
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+
+    const previousActiveBalance = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+    const numberActiveBalance = parseInt(previousActiveBalance);
+
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const numberStringActiveBalance = activeBalance.toString().split('');
+
+    for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
+        numberStringActiveBalance.splice(i, 0, '.');
+    }
+
+    const expectedActiveBalance = numberStringActiveBalance.join('');
+    I.assertEqual(actualActiveBalance, "Rp" + expectedActiveBalance);
+    I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+});
+
+Then("I will see my active balance, blocking amount and total amount back like in the beginning", async () => {
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
+
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    I.assertEqual(actualActiveBalance, globalVariable.dashboard.activeAmount);
+
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+});
+
 Then("I will direct to page need approval from other director", async () => {
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -228,7 +292,7 @@ Then("I will direct to page need approval from other director", async () => {
     const actualSenderBankName = await approvalTransactionPage.getSenderBankName();
     globalVariable.transfer.senderBankName = "Amar Bank";
     I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
-    
+
     const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
     const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
@@ -238,7 +302,7 @@ Then("I will direct to page need approval from other director", async () => {
     I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
 
     const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
-    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName); 
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName);
 
     const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
     I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
@@ -276,7 +340,7 @@ Then("I will direct to page need approval from other director", async () => {
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
     I.see("Catatan");
-    if(globalVariable.transfer.note !== ""){
+    if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
@@ -327,7 +391,7 @@ Then("I will direct to page waiting for approval from other director", async () 
     I.see("Tanggal");
     const actualDate = await approvalTransactionPage.getDateTransaction();
     I.assertEqual(actualDate, expectedDate);
-    
+
     I.see("Waktu");
     I.waitForElement(approvalTransactionPage.texts.time, 10);
 
@@ -336,7 +400,7 @@ Then("I will direct to page waiting for approval from other director", async () 
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
     I.see("Catatan");
-    if(globalVariable.transfer.note !== ""){
+    if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
@@ -372,7 +436,7 @@ Then("I will see card maker transaction in main dashboard", async () => {
         numberString.splice(i, 0, '.');
     }
     const expectedAmount = numberString.join('');
-    I.assertEqual(actualAmount, "Rp"+ expectedAmount);
+    I.assertEqual(actualAmount, "Rp" + expectedAmount);
 });
 
 Then("I will see card approver transaction in main dashboard", async () => {
@@ -530,41 +594,41 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
     await otpDao.resetLimitRequestOtp(actualPhoneNumber);
 });
 
-Then("I will get new OTP different with my first OTP to approve transaction", async ()=>{
+Then("I will get new OTP different with my first OTP to approve transaction", async () => {
     I.wait(2);
     const newOtpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
 
     I.assertNotEqual(newOtpCode, globalVariable.registration.otpCode);
 });
 
-Then("I will see attempt left {string}", (attemptLeft) =>{
+Then("I will see attempt left {string}", (attemptLeft) => {
     I.waitForText(attemptLeft, 5);
 });
 
-Then("I will not see card approver that has been approved",  ()=>{
+Then("I will not see card approver that has been approved", () => {
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will not see card maker that has been canceled",  ()=>{
+Then("I will not see card maker that has been canceled", () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will not see card approver that has been rejected",  ()=>{
+Then("I will not see card approver that has been rejected", () => {
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will see snackbar with wording {string}", (wordingSnackBar)=>{
+Then("I will see snackbar with wording {string}", (wordingSnackBar) => {
     I.waitForText(wordingSnackBar, 10);
 });
 
-Then("I can click link to see the transaction with status {string}", async (statusApproval)=>{
+Then("I can click link to see the transaction with status {string}", async (statusApproval) => {
     approvalTransactionPage.openDetailApprovalOnSnackbar();
     globalVariable.transfer.status = statusApproval;
 });
 
-Then("I will see card maker that has been approved", async ()=>{
+Then("I will see card maker that has been approved", async () => {
     I.waitForText("Persetujuan Transaksi", 10);
     I.see("Dalam Proses");
     I.see("Selesai");
@@ -593,7 +657,7 @@ Then("I will see card maker that has been approved", async ()=>{
     I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
 });
 
-Then("I will see detail card maker that has been approved", async ()=>{
+Then("I will see detail card maker that has been approved", async () => {
     I.waitForText("Transaksi Disetujui", 10);
 
     const actualSenderName = await approvalTransactionPage.getSenderName();
@@ -634,7 +698,7 @@ Then("I will see detail card maker that has been approved", async ()=>{
     I.see("Tanggal");
     const actualDate = await approvalTransactionPage.getDateTransaction();
     I.assertEqual(actualDate, expectedDate);
-    
+
     I.see("Waktu");
     I.waitForElement(approvalTransactionPage.texts.time, 10);
 
@@ -643,13 +707,13 @@ Then("I will see detail card maker that has been approved", async ()=>{
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
     I.see("Catatan");
-    if(globalVariable.transfer.note !== ""){
+    if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
 });
 
-Then("I will see card maker that has been rejected", async ()=>{
+Then("I will see card maker that has been rejected", async () => {
     I.waitForText("Persetujuan Transaksi", 10);
     I.see("Dalam Proses");
     I.see("Selesai");
@@ -678,7 +742,7 @@ Then("I will see card maker that has been rejected", async ()=>{
     I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
 });
 
-Then("I will see detail card maker that has been rejected", async ()=>{
+Then("I will see detail card maker that has been rejected", async () => {
     I.waitForText("Transaksi Ditolak", 10);
     I.see("Saldo Anda tidak terpotong & akan langsung dikembalikan ke Saldo Aktif");
 
@@ -727,7 +791,7 @@ Then("I will see detail card maker that has been rejected", async ()=>{
     I.see("Tanggal");
     const actualDate = await approvalTransactionPage.getDateTransaction();
     I.assertEqual(actualDate, expectedDate);
-    
+
     I.see("Waktu");
     I.waitForElement(approvalTransactionPage.texts.time, 10);
 
@@ -736,13 +800,13 @@ Then("I will see detail card maker that has been rejected", async ()=>{
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
     I.see("Catatan");
-    if(globalVariable.transfer.note !== ""){
+    if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
 });
 
-Then("I will see card with status has been canceled", async ()=>{
+Then("I will see card with status has been canceled", async () => {
     I.waitForText("Persetujuan Transaksi", 10);
     I.see("Dalam Proses");
     I.see("Selesai");
@@ -771,7 +835,7 @@ Then("I will see card with status has been canceled", async ()=>{
     I.assertEqual(actualStatusApproval, "Transaksi Dibatalkan");
 });
 
-Then("I will see detail card maker that has been canceled", async ()=>{
+Then("I will see detail card maker that has been canceled", async () => {
     I.waitForText("Transaksi Dibatalkan", 10);
     I.see("Saldo Anda tidak terpotong & akan langsung dikembalikan ke Saldo Aktif");
 
@@ -820,7 +884,7 @@ Then("I will see detail card maker that has been canceled", async ()=>{
     I.see("Tanggal");
     const actualDate = await approvalTransactionPage.getDateTransaction();
     I.assertEqual(actualDate, expectedDate);
-    
+
     I.see("Waktu");
     I.waitForElement(approvalTransactionPage.texts.time, 10);
 
@@ -829,7 +893,7 @@ Then("I will see detail card maker that has been canceled", async ()=>{
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
     I.see("Catatan");
-    if(globalVariable.transfer.note !== ""){
+    if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
