@@ -25,7 +25,21 @@ Given(/I want to click button filter history/, () => {
     transactionHistoryPage.clicBtnFilter();
 });
 When(/I should see buttom sheet filter history/, () => {
-    transactionHistoryPage.viewBtmSheetFilterHistory();
+    I.see("Filter Riwayat");
+    I.see("Pilih sendiri rentang waktu transaksi");
+
+    I.see("Tanggal Awal");
+    I.see("Pilih tanggal");
+
+    I.see("Tanggal Akhir");
+    I.see("Pilih tanggal");
+
+    I.see("Ok");
+
+    I.waitForElement(transactionHistoryPage.fields.startDateField, 10);
+    I.waitForElement(transactionHistoryPage.fields.endDateField, 10);
+    I.waitForElement(transactionHistoryPage.buttons.submitFilter, 10);
+    I.dontSee(transactionHistoryPage.link.reset);
 });
 Then(/I want to click button close/, () => {
     transactionHistoryPage.clicBtnClose();
@@ -76,9 +90,6 @@ Then(/I should see text view value note transfer \"([^\"]*)\"/, (trfType) => {
 });
 Then(/I should see text view value category transfer \"([^\"]*)\"/, (trfType) => {
     transactionHistoryPage.shouldSeeTextViewCategory(trfType);
-});
-Then(/I want to click button share/, () => {
-    transactionHistoryPage.clickBtnShare();
 });
 Then(/I click menu tab testing/, () => {
     transactionHistoryPage.clickTabTesting();

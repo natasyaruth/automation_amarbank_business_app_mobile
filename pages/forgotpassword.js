@@ -17,7 +17,7 @@ module.exports = {
     resendEmail: "~linkResendEmail",
   },
   text: {
-    userID: "~textUserID",
+    userID: "~labelEmail",
     companyName: "~textCompanyName",
     email: "~textEmail"
   },

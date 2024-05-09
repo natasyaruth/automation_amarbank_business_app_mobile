@@ -23,17 +23,17 @@ module.exports = {
   },
 
   async getActiveAmount(){
-    I.waitForElement(this.text.activeBalance, 10);
+    I.waitForElement(this.text.activeBalance, 20);
     return await I.grabTextFrom(this.text.activeBalance);
   },
 
   async getBlockingAmount(){
-    I.waitForElement(this.text.blockBalance, 10);
+    I.waitForElement(this.text.blockBalance, 20);
     return await I.grabTextFrom(this.text.blockBalance);
   },
 
   async getTotalAmount(){
-    I.waitForElement(this.text.totalBalance, 10);
+    I.waitForElement(this.text.totalBalance, 20);
     return await I.grabTextFrom(this.text.totalBalance);
   },
 

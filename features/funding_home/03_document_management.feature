@@ -8,13 +8,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
         When I click tab profile
@@ -27,13 +27,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto4424 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto4424 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later
         And I will see card account 'on verification'
@@ -66,13 +66,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto79e2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag9a38 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto79e2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag9a38 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later
         And I will see card account 'on verification'
@@ -108,13 +108,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
         When I click tab profile
@@ -170,13 +170,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autoa645 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag6cf7 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autoa645 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag6cf7 |
+            | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
         When I click tab profile
@@ -211,13 +211,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto7d0b |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagc6ce |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto7d0b |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagc6ce |
+            | passwordStg | 1234Test |
         And I click login
         And I click later
         And I will see card account 'complete document'

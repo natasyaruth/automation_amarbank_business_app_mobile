@@ -8,13 +8,13 @@ Feature: Account Opening KYB CV - Submit Business Address
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account

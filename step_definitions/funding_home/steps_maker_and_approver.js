@@ -9,6 +9,7 @@ const {
     onboardingAccOpeningPage,
     mainActivePage,
     profilePage,
+    amountDetailPage,
 } = inject();
 
 Given("I see card maker transaction", async () => {
@@ -96,6 +97,10 @@ When("I close page password for transaction approval", () => {
     headerPage.closePage();
 });
 
+When("I close page detail card completed", () => {
+    headerPage.closePage();
+});
+
 When("I input OTP to approve transaction", async () => {
     I.waitForText("Kode OTP", 10);
     I.see("Masukkan Kode OTP");
@@ -132,7 +137,7 @@ When("I let the otp code for approve transaction expire", () => {
     I.waitForElement(approvalTransactionPage.links.resendOtp, 10);
 });
 
-When("I resend otp code to approve transaction", async ()=>{
+When("I resend otp code to approve transaction", async () => {
     I.wait(3);
     globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace('/\s+/g', '').replace('/-/g', '');
     globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
@@ -142,7 +147,7 @@ When("I resend otp code to approve transaction", async ()=>{
     I.waitForText("Kode OTP berhasil dikirim.", 10);
 });
 
-When("I resend otp code to approve transaction five times", async()=>{
+When("I resend otp code to approve transaction five times", async () => {
     I.waitForText("Kode OTP", 10);
 
     I.wait(3);
@@ -155,16 +160,20 @@ When("I resend otp code to approve transaction five times", async()=>{
     };
 });
 
-When("I approve the transaction", ()=>{
+When("I can click detail card completed", () => {
+    approvalTransactionPage.openCardTransaction();
+});
+
+When("I approve the transaction", () => {
     approvalTransactionPage.approveTransaction();
 });
 
-When("I reject the transaction", ()=>{
+When("I reject the transaction", () => {
     approvalTransactionPage.rejectTransaction();
 });
 
 Then("I will not see menu transaction approval", () => {
-    I.waitForText(globalVariable.login.userID.toUpperCase(), 10);
+    I.waitForText(globalVariable.login.userID.toUpperCase(), 20);
     I.dontSee(profilePage.buttons.transactionApprovalDetail);
 });
 
@@ -197,6 +206,72 @@ Then("I don't see any card transaction in main dashboard", () => {
     I.dontSee(onboardingAccOpeningPage.buttons.cardTransaction);
 });
 
+Then("I will see my blocking amount and total amount increase but active balance decrease from amount transfer", async () => {
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+
+    const previousBlockingAmount = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+    const previousActiveBalance = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+
+    const number = parseInt(previousBlockingAmount);
+    const numberActiveBalance = parseInt(previousActiveBalance);
+
+    const totalBlockingAmount = number + globalVariable.transfer.amount;
+    const numberString = totalBlockingAmount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+
+    const expectedBlockingAmount = numberString.join('');
+    I.assertEqual(actualBlockingAmount, "Rp" + expectedBlockingAmount);
+
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const numberStringActiveBalance = activeBalance.toString().split('');
+
+    for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
+        numberStringActiveBalance.splice(i, 0, '.');
+    }
+
+    const expectedActiveBalance = numberStringActiveBalance.join('');
+    I.assertEqual(actualActiveBalance, "Rp" + expectedActiveBalance);
+});
+
+Then ("I will see my active balance is decreased but my blocking amount and total amount back like in beginning", async ()=>{
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+
+    const previousActiveBalance = globalVariable.dashboard.blockingAmount.replace(/Rp|\./g, '');
+    const numberActiveBalance = parseInt(previousActiveBalance);
+
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const numberStringActiveBalance = activeBalance.toString().split('');
+
+    for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
+        numberStringActiveBalance.splice(i, 0, '.');
+    }
+
+    const expectedActiveBalance = numberStringActiveBalance.join('');
+    I.assertEqual(actualActiveBalance, "Rp" + expectedActiveBalance);
+    I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+});
+
+Then("I will see my active balance, blocking amount and total amount back like in the beginning", async () => {
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
+
+    const actualActiveBalance = await amountDetailPage.getActiveAmount();
+    I.assertEqual(actualActiveBalance, globalVariable.dashboard.activeAmount);
+
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+    I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
+});
+
 Then("I will direct to page need approval from other director", async () => {
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -208,117 +283,148 @@ Then("I will direct to page need approval from other director", async () => {
         "September", "Oktober", "November", "Desember"
     ];
 
-    I.waitForText("Menunggu Persetujuan Transaksi", 10);
+    I.waitForText("Menunggu Persetujuan Transaksi", 20);
 
+    globalVariable.registration.companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
     const actualSenderName = await approvalTransactionPage.getSenderName();
-    I.assertEqual(actualSenderName, globalVariable.dashboard.senderName);
-
-    I.seeElement(approvalTransactionPage.texts.senderBankName);
-    globalVariable.transfer.senderBankName = await approvalTransactionPage.getSenderBankName();
-
-    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace('/\s+/g', '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
-    I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
-
-    const actualReceiverName = await approvalTransactionPage.getRecipientName();
-    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
-
-    I.seeElement(approvalTransactionPage.texts.recipientBankName);
-
-    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace('/\s+/g', '');
-    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace('/\s+/g', '').replace('/-/g', ''));
-
-    I.see("Transfer Keluar");
-    const numberString = globalVariable.transfer.amount.toString().split('');
-
-    for (let i = numberString.length - 3; i > 0; i -= 3) {
-        numberString.splice(i, 0, '.');
-    }
-    const actualAmount = numberString.join('');
-    I.see("-Rp " + actualAmount);
-
-    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
-    const expectedMakerName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
-    I.assertEqual(actualMakerName, expectedMakerName);
-
-    I.see(approvalTransactionPage.texts.referenceNumber);
-    I.see(approvalTransactionPage.buttons.copy);
-
-    const actualDate = await approvalTransactionPage.getDateTransaction();
-    const expectedDate = day + " " + months[month] + " " + year
-    I.assertEqual(actualDate, expectedDate);
-    globalVariable.transfer.date = expectedDate;
-
-    const actualCategory = await approvalTransactionPage.getCategoryName();
-    I.assertEqual(actualCategory, globalVariable.transfer.category);
-});
-
-Then("I will direct to page waiting for approval from other director", async () => {
-
-    I.waitForText("Butuh Persetujuan Transaksi", 10);
-
-    const actualSenderName = await approvalTransactionPage.getSenderName();
-    I.assertEqual(actualSenderName, globalVariable.dashboard.senderName);
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
 
     const actualSenderBankName = await approvalTransactionPage.getSenderBankName();
+    globalVariable.transfer.senderBankName = "Amar Bank";
     I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
 
-    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace('/\s+/g', '');
+    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
     const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
+    globalVariable.transfer.senderAccountNumber = expectedSenderAccNumber;
 
     const actualReceiverName = await approvalTransactionPage.getRecipientName();
     I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
 
     const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
-    I.assertEqual(actualReceiverBankName, globalVariable.dashboard.recipientBankName);
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName);
 
-    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace('/\s+/g', '');
-    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace('/\s+/g', '').replace('/-/g', ''));
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
 
-    I.see("Transfer Keluar");
+    I.see("Transaksi Keluar");
     const numberString = globalVariable.transfer.amount.toString().split('');
 
     for (let i = numberString.length - 3; i > 0; i -= 3) {
         numberString.splice(i, 0, '.');
     }
     const actualAmount = numberString.join('');
-    I.see("-Rp " + actualAmount);
+    I.see("-Rp" + actualAmount);
 
+    I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
     const expectedMakerName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
     I.assertEqual(actualMakerName, expectedMakerName);
+    globalVariable.transfer.makerName = expectedMakerName;
 
-    I.see(approvalTransactionPage.texts.referenceNumber);
-    I.see(approvalTransactionPage.buttons.copy);
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
 
+    I.see("Tanggal");
     const actualDate = await approvalTransactionPage.getDateTransaction();
     const expectedDate = day + " " + months[month] + " " + year
     I.assertEqual(actualDate, expectedDate);
     globalVariable.transfer.date = expectedDate;
 
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori")
     const actualCategory = await approvalTransactionPage.getCategoryName();
     I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.waitForText("Batalkan", 10);
+    I.waitForElement(approvalTransactionPage.buttons.cancel, 10);
+});
+
+Then("I will direct to page waiting for approval from other director", async () => {
+    I.waitForText("Butuh Persetujuan Transaksi", 10);
+
+    const actualSenderName = await approvalTransactionPage.getSenderName();
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
+
+    const actualSenderBankName = approvalTransactionPage.getSenderBankName();
+    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+
+    const actualSenderAccNumber = await approvalTransactionPage.getSenderAccountNumber();
+    I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actualReceiverName = await approvalTransactionPage.getRecipientName();
+    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
+
+    const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.friendListName);
+
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const expectedAmount = numberString.join('');
+    I.see("-Rp" + expectedAmount);
+
+    I.see("Dibuat oleh");
+    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
+    I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
+
+    I.see("Tanggal");
+    const actualDate = await approvalTransactionPage.getDateTransaction();
+    I.assertEqual(actualDate, expectedDate);
+
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori");
+    const actualCategory = await approvalTransactionPage.getCategoryName();
+    I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
+
 });
 
 Then("I will see card maker transaction in main dashboard", async () => {
     I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
-    globalVariable.dashboard.senderName = await mainActivePage.getCompanyName();
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
+    I.see("Sebelum disetujui, nominal transaksi masuk ke saldo tertahan.");
     I.see("Persetujuan Transaksi");
     I.see("Lihat Semua");
-    I.seeElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval);
+    I.waitForElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval, 10);
 
-    I.seeElement(onboardingAccOpeningPage.buttons.cardTransaction);
+    I.waitForElement(onboardingAccOpeningPage.buttons.cardTransaction, 10);
     I.see("Menunggu Persetujuan");
 
     const actualCompanyReceiver = await onboardingAccOpeningPage.getRecipientName();
     I.assertEqual(actualCompanyReceiver, globalVariable.friendList.friendListName);
 
-    I.seeElement(onboardingAccOpeningPage.texts.transactionRecipientBank);
-    globalVariable.dashboard.recipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    I.assertEqual(actualRecipientBankName, globalVariable.friendList.friendListName)
 
     const actualDate = await onboardingAccOpeningPage.getTransactionDate();
     I.assertEqual(actualDate, globalVariable.transfer.date);
@@ -329,7 +435,6 @@ Then("I will see card maker transaction in main dashboard", async () => {
     for (let i = numberString.length - 3; i > 0; i -= 3) {
         numberString.splice(i, 0, '.');
     }
-
     const expectedAmount = numberString.join('');
     I.assertEqual(actualAmount, "Rp" + expectedAmount);
 });
@@ -338,18 +443,19 @@ Then("I will see card approver transaction in main dashboard", async () => {
     I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
+    I.see("Sebelum disetujui, nominal transaksi masuk ke saldo tertahan.");
     I.see("Persetujuan Transaksi");
     I.see("Lihat Semua");
-    I.seeElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval);
+    I.waitForElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval, 10);
 
-    I.seeElement(onboardingAccOpeningPage.buttons.cardTransaction);
+    I.waitForElement(onboardingAccOpeningPage.buttons.cardTransaction, 10);
     I.see("Butuh Persetujuan");
 
     const actualCompanyReceiver = await onboardingAccOpeningPage.getRecipientName();
     I.assertEqual(actualCompanyReceiver, globalVariable.friendList.friendListName);
 
-    I.seeElement(onboardingAccOpeningPage.texts.transactionRecipientBank);
-    globalVariable.dashboard.recipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    const actualReceiverBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName);
 
     const actualDate = await onboardingAccOpeningPage.getTransactionDate();
     I.assertEqual(actualDate, globalVariable.transfer.date);
@@ -369,7 +475,7 @@ Then("I will see card maker transaction", () => {
     I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
-    I.seeElement(onboardingAccOpeningPage.buttons.cardTransaction);
+    I.waitForElement(onboardingAccOpeningPage.buttons.cardTransaction, 10);
     I.see("Menunggu Persetujuan");
 });
 
@@ -403,22 +509,22 @@ Then("I will direct to page transaction approval", () => {
 });
 
 Then("I will direct to tab profile", () => {
-    I.waitForText(globalVariable.login.userID.toUpperCase(), 10);
+    I.waitForText(globalVariable.login.userID.toUpperCase(), 20);
 });
 
 Then("I will see card maker with information same with card in main dashboard", async () => {
     I.waitForElement(approvalTransactionPage.buttons.openDetailTransaction, 10);
 
-    const actualRecipientName = await approvalTransactionPage.getRecipientName();
+    const actualRecipientName = await onboardingAccOpeningPage.getRecipientName();
     I.assertEqual(actualRecipientName, globalVariable.dashboard.recipientName);
 
-    const actualRecipientBankName = await approvalTransactionPage.getRecipientBankName();
+    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
     I.assertEqual(actualRecipientBankName, globalVariable.dashboard.recipientBankName);
 
-    const actualDate = await approvalTransactionPage.getDateTransaction();
+    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
     I.assertEqual(actualDate, globalVariable.dashboard.date);
 
-    const actualAmount = await approvalTransactionPage.getAmountTransaction();
+    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
     const numberString = globalVariable.dashboard.amountTransaction.toString().split('');
 
     for (let i = numberString.length - 3; i > 0; i -= 3) {
@@ -427,7 +533,7 @@ Then("I will see card maker with information same with card in main dashboard", 
 
     const expectedAmount = numberString.join('');
 
-    I.assertEqual(actualAmount, "Rp " + expectedAmount);
+    I.assertEqual(actualAmount, "Rp" + expectedAmount);
 });
 
 Then("I will see pop up password is incorrect", () => {
@@ -485,35 +591,310 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
     const actualPhoneNumber = await approvalTransactionPage.getPhoneNumber().replace('/\s+/g', '').replace('/+/g', '');
-    await otpDao.resetLimitRequestOtp(globalVariable.registration.actualPhoneNumber);
+    await otpDao.resetLimitRequestOtp(actualPhoneNumber);
 });
 
-Then("I will get new OTP different with my first OTP to approve transaction", async ()=>{
+Then("I will get new OTP different with my first OTP to approve transaction", async () => {
     I.wait(2);
     const newOtpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
 
     I.assertNotEqual(newOtpCode, globalVariable.registration.otpCode);
 });
 
-Then("I will see attempt left {string}", (attemptLeft) =>{
+Then("I will see attempt left {string}", (attemptLeft) => {
     I.waitForText(attemptLeft, 5);
 });
 
-Then("I will not see card approver that has been approved",  ()=>{
+Then("I will not see card approver that has been approved", () => {
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will not see card approver that has been rejected",  ()=>{
+Then("I will not see card maker that has been canceled", () => {
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will see snackbar with wording {string}", (wordingSnackBar)=>{
+Then("I will not see card approver that has been rejected", () => {
+    I.dontSee(globalVariable.friendList.friendListName);
+});
+
+Then("I will see snackbar with wording {string}", (wordingSnackBar) => {
     I.waitForText(wordingSnackBar, 10);
 });
 
-Then("I can click link to see the transaction with status {string}", async (statusApproval)=>{
+Then("I can click link to see the transaction with status {string}", async (statusApproval) => {
     approvalTransactionPage.openDetailApprovalOnSnackbar();
+    globalVariable.transfer.status = statusApproval;
+});
+
+Then("I will see card maker that has been approved", async () => {
+    I.waitForText("Persetujuan Transaksi", 10);
+    I.see("Dalam Proses");
+    I.see("Selesai");
+
+    const actualRecipientName = await onboardingAccOpeningPage.getRecipientName();
+    I.assertEqual(actualRecipientName, globalVariable.transfer.recipientName);
+
+    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    I.assertEqual(actualRecipientBankName, globalVariable.transfer.recipientBankName);
+
+    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
+    I.assertEqual(actualDate, globalVariable.transfer.date);
+
+    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+
+    const expectedAmount = numberString.join('');
+
+    I.assertEqual(actualAmount, "Rp" + expectedAmount);
 
     const actualStatusApproval = await approvalTransactionPage.getStatusTransaction();
-    I.assertEqual(actualStatusApproval, statusApproval);
+    I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
+});
+
+Then("I will see detail card maker that has been approved", async () => {
+    I.waitForText("Transaksi Disetujui", 10);
+
+    const actualSenderName = await approvalTransactionPage.getSenderName();
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
+
+    const actualSenderBankName = approvalTransactionPage.getSenderBankName();
+    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+
+    const actualSenderAccNumber = await approvalTransactionPage.getSenderAccountNumber();
+    I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actualReceiverName = await approvalTransactionPage.getRecipientName();
+    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
+
+    const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.friendListName);
+
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const expectedAmount = numberString.join('');
+    I.see("-Rp" + expectedAmount);
+
+    I.see("Dibuat oleh");
+    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
+    I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
+
+    I.see("Tanggal");
+    const actualDate = await approvalTransactionPage.getDateTransaction();
+    I.assertEqual(actualDate, expectedDate);
+
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori");
+    const actualCategory = await approvalTransactionPage.getCategoryName();
+    I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
+});
+
+Then("I will see card maker that has been rejected", async () => {
+    I.waitForText("Persetujuan Transaksi", 10);
+    I.see("Dalam Proses");
+    I.see("Selesai");
+
+    const actualRecipientName = await onboardingAccOpeningPage.getRecipientName();
+    I.assertEqual(actualRecipientName, globalVariable.transfer.recipientName);
+
+    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    I.assertEqual(actualRecipientBankName, globalVariable.transfer.recipientBankName);
+
+    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
+    I.assertEqual(actualDate, globalVariable.transfer.date);
+
+    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+
+    const expectedAmount = numberString.join('');
+
+    I.assertEqual(actualAmount, "Rp" + expectedAmount);
+
+    const actualStatusApproval = await approvalTransactionPage.getStatusTransaction();
+    I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
+});
+
+Then("I will see detail card maker that has been rejected", async () => {
+    I.waitForText("Transaksi Ditolak", 10);
+    I.see("Saldo Anda tidak terpotong & akan langsung dikembalikan ke Saldo Aktif");
+
+    const actualSenderName = await approvalTransactionPage.getSenderName();
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
+
+    const actualSenderBankName = approvalTransactionPage.getSenderBankName();
+    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+
+    const actualSenderAccNumber = await approvalTransactionPage.getSenderAccountNumber();
+    I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actualReceiverName = await approvalTransactionPage.getRecipientName();
+    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
+
+    const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.friendListName);
+
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const expectedAmount = numberString.join('');
+    I.see("-Rp" + expectedAmount);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+    I.see("Dibuat oleh");
+    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
+    I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
+
+    I.see("Ditolak oleh");
+    const actualRejectedName = await approvalTransactionPage.getNameRejectedBy();
+    const expectedRejectedName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    I.assertEqual(actualRejectedName, expectedRejectedName);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
+
+    I.see("Tanggal");
+    const actualDate = await approvalTransactionPage.getDateTransaction();
+    I.assertEqual(actualDate, expectedDate);
+
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori");
+    const actualCategory = await approvalTransactionPage.getCategoryName();
+    I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
+});
+
+Then("I will see card with status has been canceled", async () => {
+    I.waitForText("Persetujuan Transaksi", 10);
+    I.see("Dalam Proses");
+    I.see("Selesai");
+
+    const actualRecipientName = await onboardingAccOpeningPage.getRecipientName();
+    I.assertEqual(actualRecipientName, globalVariable.transfer.recipientName);
+
+    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
+    I.assertEqual(actualRecipientBankName, globalVariable.transfer.recipientBankName);
+
+    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
+    I.assertEqual(actualDate, globalVariable.transfer.date);
+
+    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+
+    const expectedAmount = numberString.join('');
+
+    I.assertEqual(actualAmount, "Rp" + expectedAmount);
+
+    const actualStatusApproval = await approvalTransactionPage.getStatusTransaction();
+    I.assertEqual(actualStatusApproval, "Transaksi Dibatalkan");
+});
+
+Then("I will see detail card maker that has been canceled", async () => {
+    I.waitForText("Transaksi Dibatalkan", 10);
+    I.see("Saldo Anda tidak terpotong & akan langsung dikembalikan ke Saldo Aktif");
+
+    const actualSenderName = await approvalTransactionPage.getSenderName();
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
+
+    const actualSenderBankName = approvalTransactionPage.getSenderBankName();
+    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+
+    const actualSenderAccNumber = await approvalTransactionPage.getSenderAccountNumber();
+    I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actualReceiverName = await approvalTransactionPage.getRecipientName();
+    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
+
+    const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.friendListName);
+
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    const numberString = globalVariable.transfer.amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const expectedAmount = numberString.join('');
+    I.see("-Rp" + expectedAmount);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+    I.see("Dibuat oleh");
+    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
+    I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
+
+    I.see("Dibatalkan oleh");
+    const actualCanceledName = await approvalTransactionPage.getNameCanceledBy();
+    const expectedCanceledName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    I.assertEqual(actualCanceledName, expectedCanceledName);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
+
+    I.see("Tanggal");
+    const actualDate = await approvalTransactionPage.getDateTransaction();
+    I.assertEqual(actualDate, expectedDate);
+
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori");
+    const actualCategory = await approvalTransactionPage.getCategoryName();
+    I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
 });
