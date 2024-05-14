@@ -1,31 +1,41 @@
 Feature: Apply Second Loan With Flagging Corporate Using AR Direct
-    As a customer lead
-    I want to apply second loan using AR Direct with Corporate has flag
+ As a customer lead
+ I want to apply second loan using AR Direct with flagging corp
 
-    Background:
-        Given I am a registered customer with following details:
-            | userID   | cokr3b4e |
-            | password | Test1234 |
-        When I filling in form login with the following details:
-            | userID   | cokr3b4e |
-            | password | Test1234 |
-        And I click login
-        Then I successed go to dashbord
-        Then I click menu tab testing
+ Background:
+    Given I am a registered customer with following details:
+        | userID      | yahyde6f |
+        | password    | Akuntes1 |
+        | userIDstg   | bots2643 |
+        | passwordStg | Test1234 |
+    When I filling in form login with the following details:
+        | userID      | yahyde6f |
+        | password    | Akuntes1 |
+        | userIDstg   | bots2643 |
+        | passwordStg | Test1234 |
+    And I click login
+    Then I successed go to dashbord
+    Then I click menu tab testing
+    And I click button loan dashboard
+
+Scenario: User apply second loan AR Direct and want to see AR loan schema
+    Given I click button loan dashboard  
+    #section select loan type
+    When user click button "ajukan limit baru"
+    And user select loan type "AP"
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button Supplier Financing
 
     @debt3
     Scenario: User apply second loan AR direct type with flagging Corporate
         Given I click button loan dashboard
-        #section input nominal
-        When user click button apply new limit
-        And user Input Nominal Pinjaman "4000000000"
-        And user input loan tenor "30"
-        And user click on button Selanjutnya
-        And user on loan type page
-        #section select schema loan type
-        When user select loan type "AR"
-        And user click button lihat skema pinjaman AR
-        And user click button select the schema
+         When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User choose nominal "Lebih dari 5 Milyar" 
+        And user input nominal for Corp "15000000000"
+         user click button Lanjut Isi Data Supplier 
         #section select Anchor
         And user click another anchor
         And user fill a field "anchorName" with "UD Combo Box Fire"
@@ -33,12 +43,10 @@ Feature: Apply Second Loan With Flagging Corporate Using AR Direct
         And user select the date cooperating
         And user fill a field "anchorAddress" with "Jl. Jalan Ke Pasar Minggu"
         #section supplier representatives has contact
-        And user swipe to supplier
         And user fill a field "PICNameField" with "Irvandy"
         And user fill a field "PICNumberField" with "081234567890"
         And user fill a field "PICEmailField" with "hartono@test.com"
-        And user agree with the terms and condition
-        And user allow to agree to use my digital signature through Privy.id
+        And user agree with the terms and condition        
         When user click button Kirim Pengajuan Pinjaman
         #sectionn buttom sheet success
         And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
