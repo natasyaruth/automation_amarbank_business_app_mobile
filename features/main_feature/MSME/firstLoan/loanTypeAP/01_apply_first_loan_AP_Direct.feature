@@ -1,81 +1,94 @@
 Feature: Apply First Loan With Flagging MSME Using AP Direct
  As a customer lead
- I want to apply first loan using AP Direct with MSME has flag
+ I want to apply first loan using AP Direct with flaging MSME
 
  Background:
-  Given I am a registered customer with foll
-   | userID   | bots2912   |
-   | password | TestSmb123 |
-  When I filling in form login with the foll
-   | userID   | bots2912   |
-   | password | TestSmb123 |
+  Given I am a registered customer with followng details:
+    | userID      | yahyde6f |
+    | password    | Akuntes1 |
+    | userIDstg   | bots2643 |
+    | passwordStg | Test1234 |
+  When I filling in form login with the following details:
+    | userID      | yahyde6f |
+    | password    | Akuntes1 |
+    | userIDstg   | bots2643 |
+    | passwordStg | Test1234 |
   And I click login
   Then I successed go to dashbord
 
- Scenario: User apply first loan AP direct type with flagging MSME
-  Given I click button loan dashboard
-  #section input nominal
-  When user click button ajukan pinjaman
-  And user Input Nominal Pinjaman less than 5 billion
-  And user input loan tenor
-  And user click button "Selanjutnya"
-  #section domicile office
-  And user select domicile office
-  And user click button "Selanjutnya" in page domicile office
-  And user on loan type page
-  #section select schema loan type
-  When user select loan type "AP"
-  And user click button lihat skema pinjaman AP
-  And user click button select the schema
-  #section select Anchor
-  When user on buyer cooperating page
-  And user select another supplier
-  And user fill a field "anchorName" with "UD Combo Box Fire"
-  And user select industry type
-  And user select the date cooperating
-  And user input business address
-  #section supplier representatives has contact
-  And user input supplier representatives name
-  And user input contact name
-  And user input email address supplier
-  And user checklist checbox term and condition
-  And user checklist checbox privy
-  When user click button next
-  #section domicile office
-  And user select domicile office
-  And user click button "Selanjutnya" in page domicile office
-  Then system show success screen
-  And direct to success screen contiuesly fill the data
-  #section KYC Process
-  Given user choose Business Type "PT Perusahaan"
-  And user click Selanjutnya
-  And user take photo eKTP
-  And user click "Saya Mengerti"
-  And user click "Ambil Foto eKTP"
-  And user click "Kirim Foto"
-  And user input and save eKTP data
-  And user click take "Foto Diri"
-  And user click "Kirim Foto"
-  And user input and save personal individual data
-  And user select domicile address
-  When user input "Data Pekerjaan"
-  And click "Simpan Data Pekerjaan"
-  And system direct to Success screen
-  Then user click button "Lanjut Lengkapi Data Bisnis"
-  #section KYB Process
-  Given user in "Data Pekerjaan" filled
-  When user input and save "Profil Bisnis"
-  And user input and click "Simpan Daftar Direktur"
-  And user input and save "Alamat Bisnis"
-  Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-  And user click OK
-  # section upload document
-  Given user on upload document page
-  When user upload document "KTPandnpwpOfComp"
-  And user upload document "3contohInvoicewithSupplier"
-  And user upload document "paymentMutation"
-  And user upload document "1YearfinancialReports"
-  And user click button refresh
-  And user click back button to loan processing
-  # section trigered status loan
-  And user trigered api change status loan is approved
+ Scenario: User apply first loan AP direct and want to see AP loan schema
+    Given I click button loan dashboard  
+    #section select loan type
+    When user click button "ajukan pinjaman"
+    And user select loan type "AP"
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button Distributor Financing
+    Then System will display Schema of Distributor Financing
+
+ Scenario: User apply first loan AP Direct with flaging MSME
+    Given I click button loan dashboard
+    When user click button "ajukan pinjaman"
+    And User select loan type "AP"
+    And User click button Pelajari Tipe Skema Kredit
+    And User choose nominal "Rp50 juta - 5 Miliar"  
+    And user input loan tenor "30" 
+    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
+    #select business location
+    And user choose business location "Jabodetabek"
+    And user click button Lanjut isi data supplier
+    #section select Anchor
+    When user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
+    And user checklist checbox term and condition
+    And user checklist checbox privy
+    And user click button next   
+    And user click button Lanjut Lengkapi Data
+    #section KYC Process
+    Given user choose Business Type "PT Perusahaan"
+    And user click Selanjutnya
+    And user take photo eKTP
+    And user click "Saya Mengerti"
+    And user click "Ambil Foto eKTP"
+    And user click "Kirim Foto"
+    And user input and save eKTP data
+    And user click take "Foto Diri"
+    And user click "Kirim Foto"
+    And user input and save personal individual data
+    And user select domicile address
+    When user input "Data Pekerjaan"
+    And click "Simpan Data Pekerjaan"
+    And system direct to Success screen
+    Then user click button "Lanjut Lengkapi Data Bisnis"
+    #section KYB Process
+    Given user in "Data Pekerjaan" filled
+    When user input and save "Profil Bisnis"
+    And user input and click "Simpan Daftar Direktur"
+    And user input and save "Alamat Bisnis"
+    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
+    And user click OK
+    # section upload document
+    Given user on upload document page
+    When user upload document "KTPandnpwpOfComp"
+    And user upload document "3contohInvoicewithSupplier"
+    And user upload document "paymentMutation"
+    And user upload document "1YearfinancialReports"
+    And user click button refresh
+    And user click back button to loan processing
+    #section trigered status loan
+    And user trigered api change status loan is approved
+
+Scenario: Validate Error Field on Select Loan Amount and Tenor Form
+    Given user on select loan need page
+    When user click button Lanjut Isi Data Supplier
+    Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
+    And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
+   
