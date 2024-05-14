@@ -7,9 +7,9 @@ module.exports = {
         textBenefit2: {xpath: '//android.widget.TextView[contains(@text, "Proses Cepat dan Mudah")]'},
         textBenefit3: {xpath: '//android.widget.TextView[contains(@text, "Perbankan Bisnis Premium")]'},
         textFieldLoanTypePage: "~textTitle",
-        textFieldLoanAP: "~textRadioButtonAP",
-        textFieldLoanAR: "~textRadioButtonAR",
-        textFieldLoanPO: "~textRadioButtonPO",
+        textFieldLoanAP: "~textFieldLoanAP",
+        textFieldLoanAR: "~textFieldLoanAR",
+        textFieldLoanPO: "~textFieldLoanPO",
         textLoanSchemaAP: "~textTitle",
         textLoanSchemaAR: "~textTitle",
         textLoanSchemaPO: "~textTitle"
@@ -17,7 +17,16 @@ module.exports = {
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
         backButtonLoanTypePage: {xpath: '(//android.view.View[@content-desc="buttonBack"])[1]'},
-        nextButton: "~buttonNext"
+        nextButton: "~buttonNext",
+        schemacreditButton: "~buttonSchema", 
+        backButton:"~buttonClose",
+        backSchemaButton: "~buttonBack",
+        loanAPButton: "~cardAP",
+        loanARButton: "~cardAR",
+        loanPOButton: "~cardPO",
+        schemaAPButton: "~buttonSchemaAP",
+        schemaARButton: "~buttonSchemaAP",
+        schemaPOButton: "~buttonSchemaAP",
     },
     radioButtons: {
         radioBtnAP: "~radioButtonAP",
@@ -25,9 +34,9 @@ module.exports = {
         radioBtnPO: "~radioButtonPO",
     },
     contentFields: {
-        viewPageAP: "~Loan Schema",
-        viewPageAR: "~Loan Schema",
-        viewPagePO: "~Loan Schema",
+        viewPageAP: "~imageSchemaAP",
+        viewPageAR: "~imageSchemaAR",
+        viewPagePO: "~imageSchemaPO",
         loanRequirement: {xpath: '(//android.widget.ImageView[@content-desc="Loan requirement"])[1]'},
     },
 
@@ -86,13 +95,27 @@ module.exports = {
     selectLoanTypeList(selectLoanType){
         switch (selectLoanType){
             case 'AP':
-                I.click(this.radioButtons.radioBtnAP);
+                I.click(this.buttons.loanAPButton);
             break;
             case 'AR':
-                I.click(this.radioButtons.radioBtnAR);
+                I.click(this.buttons.loanARButton);
             break;
             case "PO":
-                I.click(this.radioButtons.radioBtnPO);
+                I.click(this.buttons.loanPOButton);
+                break;
+        }
+    },
+
+    selectSchemaLoanList(selectSchemaType){
+        switch (selectSchemaType){
+            case 'AP':
+                I.click(this.buttons.schemaAPButton);
+            break;
+            case 'AR':
+                I.click.(this.buttons.schemaARButton);
+            break;
+            case 'PO':
+                I.click(this.buttons.schemaPOButton);
                 break;
         }
     },
@@ -116,18 +139,30 @@ module.exports = {
     validateContentField(contentFieldText){
         switch (contentFieldText){
             case 'AP':
-                I.seeElement(this.contentFields.viewPageAP);
+                I.seeElement(this.contentFields.imageSchemaAP);
             break;
             case 'AR':
-                I.seeElement(this.contentFields.viewPageAR);
+                I.seeElement(this.contentFields.imageSchemaAR);
             break;
             case 'PO':
-                I.seeElement(this.contentFields.viewPagePO);
+                I.seeElement(this.contentFields.imageSchemaPO);
             break;
         }
     },
 
+    clickBacktoAjukanPinjaman(){
+        I.click(this.buttons.backButton);
+    },
+
+    clickBackSelectSchmea(){
+        I.click(this.buttons.buttonClose);
+    },
+
     clickBackButtonLoanTypePage(){
         I.click(this.buttons.backButtonLoanTypePage);
+    }
+
+    clickButtonAterSeeSchema(){
+        I.click(this.buttons.backButton);
     }
 }
