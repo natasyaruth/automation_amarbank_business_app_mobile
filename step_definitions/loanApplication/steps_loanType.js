@@ -1,5 +1,7 @@
 const {I, loanTypePage} = inject();
-
+Before(() => {
+    state = {};
+  });
 
 // Feature(/Apply Either Loan and select the loan type/)
 
@@ -55,3 +57,13 @@ const {I, loanTypePage} = inject();
     Then(/user click button select the schema/,()=>{
         loanTypePage.clickNextButton();
     });
+
+    After(async () => {
+        await someService.cleanup();
+      });
+      
+      Fail((test, err) => {
+        // test didn't
+        console.log('Failed with', err);
+        pause();
+      });
