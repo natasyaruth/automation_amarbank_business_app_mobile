@@ -55,3 +55,41 @@ const {I, loanTypePage} = inject();
     Then(/user click button select the schema/,()=>{
         loanTypePage.clickNextButton();
     });
+
+// Apply Loan Journey Improvement
+    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
+        loanTypePage.clickButtonSchema();
+    });   
+    Then(/User select loan type "AP"/,()=>{
+        loanTypePage.clickButtonLoanAP();
+    });
+    Then(/User select loan type "AR"/,()=>{
+        loanTypePage.clickButtonLoanAR();
+    });
+    Then(/User select loan type "PO"/,()=>{
+        loanTypePage.clickButtonLoanPO();
+    });
+    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
+        loanTypePage.clickButtonSchemaAP();
+    });
+    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
+        loanTypePage.clickButtonSchemaAR();
+    });
+    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
+        loanTypePage.clickButtonSchemaPO();
+    });
+    Then(/.../,()=>{
+        loanTypePage.clickButtonClose();
+    });
+    Then(/user click button Lanjut isi data supplier/,()=>{
+        loanTypePage.clickButtonNext();
+    });
+    Then(/user click back button to loan processing /,()=>{
+        loanTypePage.clickButtonBack();
+    });
+    Then(/.../,()=>{
+        loanTypePage.clickButtonSave();
+    });
+    Then(/.../,()=>{
+        loanTypePage.clickButtonClear();
+    });

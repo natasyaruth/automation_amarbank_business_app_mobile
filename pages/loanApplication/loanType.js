@@ -12,21 +12,26 @@ module.exports = {
         textFieldLoanPO: "~textFieldLoanPO",
         textLoanSchemaAP: "~textTitle",
         textLoanSchemaAR: "~textTitle",
-        textLoanSchemaPO: "~textTitle"
+        textLoanSchemaPO: "~textTitle",
+        textLoan: "~textFieldLoan",
+        textTenor: "~textFieldTenor",
+        textAmount: "~textFieldCustomAmount",
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
         backButtonLoanTypePage: {xpath: '(//android.view.View[@content-desc="buttonBack"])[1]'},
-        nextButton: "~buttonNext",
         schemacreditButton: "~buttonSchema", 
-        backButton:"~buttonClose",
-        backSchemaButton: "~buttonBack",
         loanAPButton: "~cardAP",
         loanARButton: "~cardAR",
         loanPOButton: "~cardPO",
         schemaAPButton: "~buttonSchemaAP",
-        schemaARButton: "~buttonSchemaAP",
-        schemaPOButton: "~buttonSchemaAP",
+        schemaARButton: "~buttonSchemaAR",
+        schemaPOButton: "~buttonSchemaPO",
+        buttonClose: "~buttonClose",
+        buttonNext: "~buttonNext",
+        buttonBack: "~buttonBack",
+        buttonSave: "~buttonSave",
+        buttonClear: "~clearText",
     },
     radioButtons: {
         radioBtnAP: "~radioButtonAP",
@@ -38,6 +43,46 @@ module.exports = {
         viewPageAR: "~imageSchemaAR",
         viewPagePO: "~imageSchemaPO",
         loanRequirement: {xpath: '(//android.widget.ImageView[@content-desc="Loan requirement"])[1]'},
+        nominalMSME: "~optionUpTo5Billion",
+        nominalCORP: "~optionMoreThan5Billion",
+    },
+
+// Apply Loan Journey Improvement
+    clickButtonSchema(){
+        I.click(this.buttons.schemacreditButton);
+    },
+    clickButtonLoanAP(){
+        I.click(this.buttons.loanAPButton);
+    },
+    clickButtonLoanAR(){
+        I.click(this.buttons.loanARButton);
+    },
+    clickButtonLoanPO(){
+        I.click(this.buttons.loanPOButton);
+    },
+    clickButtonSchemaAP(){
+        I.click(this.buttons.schemaAPButton);
+    },
+    clickButtonSchemaAR(){
+        I.click(this.buttons.schemaARButton);
+    },
+    clickButtonSchemaPO(){
+        I.click(this.buttons.schemaPOButton);
+    },
+    clickButtonClose(){
+        I.click(this.buttons.buttonClose);
+    },
+    clickButtonNext(){
+        I.click(this.buttons.buttonNext);
+    },
+    clickButtonBack(){
+        I.click(this.buttons.buttonBack);
+    },
+    clickButtonSave(){
+        I.click(this.buttons.buttonSave);
+    },
+    clickButtonClear(){
+        I.click(this.buttons.buttonClear);
     },
 
 // Function for call the id component
@@ -112,7 +157,7 @@ module.exports = {
                 I.click(this.buttons.schemaAPButton);
             break;
             case 'AR':
-                I.click.(this.buttons.schemaARButton);
+                I.click(this.buttons.schemaARButton);
             break;
             case 'PO':
                 I.click(this.buttons.schemaPOButton);
@@ -160,9 +205,9 @@ module.exports = {
 
     clickBackButtonLoanTypePage(){
         I.click(this.buttons.backButtonLoanTypePage);
-    }
+    },
 
     clickButtonAterSeeSchema(){
         I.click(this.buttons.backButton);
-    }
+    },
 }
