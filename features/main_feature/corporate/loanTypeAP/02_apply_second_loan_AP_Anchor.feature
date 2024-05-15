@@ -27,6 +27,15 @@ Scenario: User apply second loan AP Anchor and want to see AP loan schema
     And User click button Pelajari Tipe Skema Kredit
     And User click button Distributor Financing
 
+Scenario: User validate dropdown list on nominal option
+    Given I click button loan dashboard
+    When user click button "ajukan limit baru"
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And user click dropdown option
+    Then user can validate limit for MSME
+    And user can validate limit for Corp
+
  Scenario: User apply second loan AP anchor type with flagging Corporate
     Given I click button loan dashboard
     When user click button "ajukan limit baru"
