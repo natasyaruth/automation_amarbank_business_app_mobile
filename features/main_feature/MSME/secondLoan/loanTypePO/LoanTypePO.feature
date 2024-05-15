@@ -30,7 +30,7 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         Given I click button loan dashboard
         When user click button "ajukan limit baru"
         And User select loan type "AP"
-        And User click button Pelajari Tipe Skema Kredit
+        And User on Loan Needs Page
         And User on nominal "Rp50 juta - 5 Miliar"
         And user input loan tenor "30" 
         And user click button Lanjut Isi Data Supplier  

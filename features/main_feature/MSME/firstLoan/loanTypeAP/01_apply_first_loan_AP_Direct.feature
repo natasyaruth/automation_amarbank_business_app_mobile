@@ -25,8 +25,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And User click button Pelajari Tipe Skema Kredit
     And User click button Distributor Financing
     Then System will display Schema of Distributor Financing
-
- Scenario: User apply first loan AP Direct with flaging MSME
+    And User on Loan Needs Page
+  Scenario: User apply first loan AP Direct with flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AP"
@@ -38,7 +38,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user choose business location "Jabodetabek"
     And user click button Lanjut isi data supplier
     #section select Anchor
-    When user on buyer cooperating page
+    And user on buyer cooperating page
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type

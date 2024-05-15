@@ -32,8 +32,9 @@ Feature: Apply Either Loan and select the loan type
 
     Scenario: user choose type loan AP Direct
         Given I click button loan dashboard
+        When user click button "ajukan limit baru"
         And User select loan type "AP"
-        And User click button Pelajari Tipe Skema Kredit
+        And User on Loan Needs Page
         And User choose nominal "Rp50 juta - 5 Miliar"  
         And user input loan tenor "30" 
         And user click button Lanjut Isi Data Supplier
