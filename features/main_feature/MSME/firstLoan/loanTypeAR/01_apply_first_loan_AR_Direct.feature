@@ -30,7 +30,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AR"
-    And User click button Pelajari Tipe Skema Kredit
+    And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
     And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
