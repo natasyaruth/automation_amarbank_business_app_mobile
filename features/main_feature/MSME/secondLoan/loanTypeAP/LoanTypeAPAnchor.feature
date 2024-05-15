@@ -28,9 +28,10 @@ Scenario: User apply second loan AP Anchor and want to see AP loan schema
     And User click button Distributor Financing
 
 Scenario: User apply second loan AP Anchor type with flagging MSME
-    Given I click button loan dashboard
+    Given I click button loan 
+    When user click button "ajukan limit baru"
     And User select loan type "AP"
-    And User click button Pelajari Tipe Skema Kredit
+    And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
     And user click button Lanjut Isi Data Supplier  

@@ -31,7 +31,7 @@ Scenario: User apply first loan AP direct and want to see AP loan schema
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "PO"
-    And User click button Pelajari Tipe Skema Kredit
+    And User on Loan Needs Page
     And User on nominal "Rp50 juta - 5 Miliar"
     And user input loan tenor "30" 
     And user click button Lanjut Isi Lokasi Kantor Pusat Bank  

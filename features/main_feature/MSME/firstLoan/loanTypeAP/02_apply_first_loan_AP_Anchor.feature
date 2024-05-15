@@ -30,7 +30,7 @@ Scenario: User apply first loan AP Anchor with flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AP"
-    And User click button Pelajari Tipe Skema Kredit
+    And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
     And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
