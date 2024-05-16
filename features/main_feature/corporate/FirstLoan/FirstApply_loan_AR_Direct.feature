@@ -19,7 +19,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
  Scenario: User apply first loan AR direct and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button "ajukan pinjaman"
+    When user click button ajukan pinjaman
     And user select loan type "AR"
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
@@ -28,20 +28,52 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
 
   Scenario: User validate dropdown list on nominal option
     Given I click button loan dashboard
-    When user click button "ajukan limit baru"
+    When user click button ajukan pinjaman
     And User select loan type "AP"
     And User on Loan Needs Page
     And user click dropdown option
     Then user can validate limit for MSME
     And user can validate limit for Corp
 
+  Scenario: Validate Error meesage on Loan Needs when empty field
+    Given user click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page   
+    And user click button Lanjut Isi Data Distributor    
+    Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
+    And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
+    
+
+  Scenario: Validate Error input nominal min Rp.50000000001
+    Given user click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Lebih dari 5 Milyar"    
+    And user input nominal below minimun nominal "13500000"
+    And user click button Save
+    Then user can see error message "Min Rp.5.000.000.001, Max Rp.25.000.000.000" in the field "errorAmountLoanField"
+    
+  Scenario: user clear the text input nominal
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Lebih dari 5 Milyar"    
+    And user input nominal for Corp "13500000"   
+    Then user click button clear to delete all input nominal and back to zero    
+
+
  Scenario: User apply first loan AP Direct with flaging Corp
     Given I click button loan dashboard
-    When user click button "ajukan pinjaman"
+    When user click button ajukan pinjaman
     And User select loan type "AR"
     And user on loan needs page
     And User choose nominal "Lebih dari 5 Milyar" 
     And user input nominal for Corp "15000000000"
+    And user click button Save
+    And user input tenor "30"
     And user click button Lanjut Isi Data Supplier 
     #section select Anchor
     When user on buyer cooperating page
@@ -91,9 +123,3 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     #section trigered status loan
     And user trigered api change status loan is approved
 
-Scenario: Validate Error Field on Select Loan Amount and Tenor Form
-    Given user on select loan need page
-    When user click button Lanjut Isi Data Supplier
-    Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
-    And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
-   

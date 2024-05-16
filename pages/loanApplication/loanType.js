@@ -13,9 +13,13 @@ module.exports = {
         textLoanSchemaAP: "~textTitle",
         textLoanSchemaAR: "~textTitle",
         textLoanSchemaPO: "~textTitle",
-        textLoan: "~textFieldLoan",
-        textTenor: "~textFieldTenor",
+        textLoan: "~textFieldLoan",      
         textAmount: "~textFieldCustomAmount",
+        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Min. tenor 30 hari, Max. tenor 180 hari")]'},
+        texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
+        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'}, 
+        
+    
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
@@ -120,6 +124,22 @@ module.exports = {
                 I.assertEqual(actual, 'Perbankan Bisnis Premium');
             break;
         }
+
+    },
+
+    async validateTitleTopBarLoanNeeds(titleLoanNeeds){
+        let actual = await I.grabAttributeFrom(this.textField.texttitletopbarLoanNeeds, 'text');
+        I.assertEqual(actual, 'Pengajuan Limit Kredit Bisnis');
+    },
+
+    async validateLoanAmountRequested(titleNominal){
+        let actual = await I.grabAttributeFrom(this.textField.textnominalKredit, 'text');
+        I.assertEqual(actual, 'Berapa kisaran nominal limit kredit yang Anda butuhkan? *');
+    },
+
+    async validateLoanTenor(titleTenor){
+        let.actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
+        I.assertEqual(actuak, 'Min. tenor 30 hari, Max. tenor 180 hari');
 
     },
 
