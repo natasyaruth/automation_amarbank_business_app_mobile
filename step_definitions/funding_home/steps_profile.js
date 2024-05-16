@@ -37,7 +37,7 @@ When("I click tab profile", () => {
 
 When("I see my profile company data", () => {
     I.waitForText("Direktur", 10);
-    I.see(globalVariable.login.userID.toUpperCase());
+    I.waitForText(globalVariable.login.userID.toUpperCase(), 10);
 
     if (
         globalVariable.onBoarding.status === "active"
@@ -48,11 +48,11 @@ When("I see my profile company data", () => {
         I.dontSeeElement(profilePage.buttons.copyAccNumber);
     }
 
-    I.see("Tipe Industri");
-    I.see("Jenis Bisnis");
-    I.see("Tanggal Berdiri");
-    I.see("Alamat Bisnis");
-    I.seeElement(profilePage.buttons.transactionApprovalDetail);
+    I.waitForText("Tipe Industri", 10);
+    I.waitForText("Jenis Bisnis", 10);
+    I.waitForText("Tanggal Berdiri", 10);
+    I.waitForText("Alamat Bisnis", 10);
+    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 10);
     I.swipeUp(profilePage.buttons.transactionApprovalDetail, 800, 800);
 });
 

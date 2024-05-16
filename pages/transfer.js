@@ -163,14 +163,17 @@ module.exports = {
   },
 
   chooseSkn(){
+    I.waitForElement(this.radioButtons.methodSkn, 10);
     I.click(this.radioButtons.methodSkn);
   },
 
   chooseRtgs(){
+    I.waitForElement(this.radioButtons.methodRtgs, 10);
     I.click(this.radioButtons.methodRtgs);
   },
 
   chooseBifast(){
+    I.waitForElement(this.radioButtons.methodBifast, 10);
     I.click(this.radioButtons.methodBifast);
   },
 

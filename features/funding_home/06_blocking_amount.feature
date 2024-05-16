@@ -1,4 +1,4 @@
-@blocking_amount
+
 Feature: Blocking amount
     In order to detail amount of customer
     As a customer
@@ -186,3 +186,72 @@ Feature: Blocking amount
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will not see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account hasn’t Loan, but has pending transaction and product type MSME
+        Given I am a registered customer with following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike1eb6 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I wait until my account name displayed
+        And I click detail amount
+        Then I will see detail blocking amount coming from loan fee
+        And I will see information 'Transaksi yang belum disetujui' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account hasn’t Loan, but has pending transaction and product type CORP
+        Given I am a registered customer with following details:
+            | userID      | deve2c69 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | deve2c69 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I wait until my account name displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee and minimum amount
+        And I will see information 'Saldo Minimum + Transaksi yang belum disetujui' in the below of field blocking amount
+
+    @blocking_amount
+    Scenario: Validate Wording blocking amount with account has loan, has pending transaction and product type MSME
+        Given I am a registered customer with following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I wait until my account name displayed
+        And I click detail amount
+        Then I will see detail blocking amount coming from loan fee
+        And I will see information 'Total Biaya Bunga Pinjaman + Transaksi yang belum disetujui' in the below of field blocking amount
+
+    Scenario: Validate Wording blocking amount with account has loan, has pending transaction and product type CORP
+        Given I am a registered customer with following details:
+            | userID      | alfibd3e |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I filling in form login with the following details:
+            | userID      | alfibd3e |
+            | password    | 1234Test |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I wait until my account name displayed
+        When I click detail amount
+        Then I will see detail blocking amount coming from loan fee and minimum amount
+        And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman + Transaksi yang belum disetujui' in the below of field blocking amount    

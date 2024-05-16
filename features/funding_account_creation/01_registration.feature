@@ -179,7 +179,7 @@ Feature: Account registration
   Scenario: Access call center on page registration
     Given I am a customer want to access menu registration
     When I click call center
-    Then I will see helping center via whatsapp and email
+    Then I will see helping center via email
 
   @registration1 @C75486
   Scenario: Back to page form registration from pop up confirmation

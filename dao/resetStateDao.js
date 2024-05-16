@@ -37,6 +37,23 @@ module.exports = {
         }
     },
 
+    async resetAttemptFailedLogin(userID) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseReset = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/login/reset-attempts", secret({
+            userID: userID,
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseReset.status
+        }
+    },
+
     reloadPageAfterResetState() {
         headerPage.clickButtonBack();
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
@@ -174,7 +191,23 @@ module.exports = {
 
         return {
             status: responseBusinessPartnerList.status,
-            userIdPartner: responseBusinessPartnerList.data[1].userId,
+            userIdPartner: responseBusinessPartnerList.data[0].userId,
+        };
+
+    },
+
+    async isPendingTaskExist(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseBusinessDetails = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/business/details"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseBusinessDetails.status,
+            hasPendingTransaction: responseBusinessDetails.data.hasPendingTransaction,
         };
 
     },

@@ -40,7 +40,8 @@ Then("I should see error message {string} in field {string}", async (expectedVal
 
 When("I input amount {string}", (amount) => {
     transferPage.inputAmountTransfer(amount);
-    globalVariable.transfer.amount = amount;
+    const numberAmount = parseInt(amount)
+    globalVariable.transfer.amount = numberAmount;
 });
 
 When("I search name {string} in friendlist", (friendListname) => {
@@ -170,7 +171,7 @@ When("I input PIN {string}", (Pin) => {
 Then("I successfully transferred without notes", () => {
     I.see(transferPage.texts.status);
     I.see('Transfer Keluar');
-    I.see("Rp. " + globalVariable.transfer.amount);
+    I.see("Rp" + globalVariable.transfer.amount);
     I.waitForElement(transferPage.buttons.copy, 10);
     I.dontSee(globalVariable.transfer.note);
     I.see(transferPage.buttons.share);
@@ -203,7 +204,7 @@ Then("I successfully transferred", async () => {
         numberString.splice(i, 0, '.');
     }
     const actualAmount = numberString.join('');
-    I.see("Rp " + actualAmount);
+    I.see("Rp" + actualAmount);
 
     I.waitForElement(transferPage.buttons.copy, 10);
     I.waitForElement(transferPage.buttons.share, 10);

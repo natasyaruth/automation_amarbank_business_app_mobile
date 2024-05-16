@@ -90,4 +90,8 @@ module.exports = {
         date: "",
         amountTransaction: "",
     },
+    historyTrx:{
+        startDate: "",
+        endDate: "",
+    },
 }
