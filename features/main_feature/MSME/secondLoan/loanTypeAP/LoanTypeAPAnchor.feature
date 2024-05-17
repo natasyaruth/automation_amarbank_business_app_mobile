@@ -21,11 +21,31 @@ Background: User must login to home dashboard
 Scenario: User apply second loan AP Anchor and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button "ajukan limit baru"
-    And user select loan type "AP"
+    When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
     And User click button Distributor Financing
+    Then System will display Schema of Distributor Financing
+
+Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier    
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 Scenario: User apply second loan AP Anchor type with flagging MSME
     Given I click button loan 

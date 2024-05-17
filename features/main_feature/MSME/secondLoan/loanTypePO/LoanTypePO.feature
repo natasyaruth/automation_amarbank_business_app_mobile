@@ -17,14 +17,34 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         Then I successed go to dashbord
 
     Scenario: User apply first loan PO and want to see PO loan schema
-        Given I click button loan dashboard  
-        When user click button "ajukan limit baru"
+       Given I click button loan dashboard  
         #section select loan type
-        And user select loan type "PO"
+        When user click button ajukan pinjaman    
         #section wants to see loan schema
         And User click button Pelajari Tipe Skema Kredit
-        And User click button Project Financing
-        Then System will display Schema of Project Financing
+        And User click button Supplier Financing
+        Then System will display Schema of Supplier Financing
+
+
+    Scenario: Validate error input tenor below min 30 hari 
+        Given I click button loan dashboard
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Bouwheer    
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: Validate error input tenor more than 180 hari 
+        Given I click button loan dashboard
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Bouwheer
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
     Scenario: User apply second loan PO direct type with flagging MSME
         Given I click button loan dashboard
@@ -33,7 +53,7 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And User on Loan Needs Page
         And User on nominal "Rp50 juta - 5 Miliar"
         And user input loan tenor "30" 
-        And user click button Lanjut Isi Data Supplier  
+        And user click button Lanjut Isi Data Bouwheer
         #section select Anchor
         When user on buyer cooperating page
         And user fill a field "BowheerName" with "Po Test Nurul"

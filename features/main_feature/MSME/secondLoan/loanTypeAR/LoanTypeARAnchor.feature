@@ -20,14 +20,35 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
-    Scenario: User apply second loan AR Anchor and want to see AP loan schema
-        Given I click button loan dashboard  
-        #section select loan type
-        When user click button "ajukan limit baru"
-        And user select loan type "AR"
-        #section wants to see loan schema
-        And User click button Pelajari Tipe Skema Kredit
-        And User click button Supplier Financing    
+Scenario: User apply second loan AR Anchor and want to see AP loan schema
+    Given I click button loan dashboard  
+    #section select loan type
+    When user click button ajukan pinjaman    
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button Supplier Financing
+    Then System will display Schema of Supplier Financing
+
+
+Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Buyer   
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
     Scenario: User apply second loan AR Anchor type with flagging MSME
         Given I click button loan dashboard
@@ -36,7 +57,7 @@ Feature: Apply Either Loan and select the loan type
         And User on Loan Needs Page
         And User choose nominal "Rp50 juta - 5 Miliar"  
         And user input loan tenor "30" 
-        And user click button Lanjut Isi Data Supplier  
+        And user click button Lanjut Isi Data Buyer 
         #section select Anchor
         And user on buyer cooperating page
         And user select one of supplier list

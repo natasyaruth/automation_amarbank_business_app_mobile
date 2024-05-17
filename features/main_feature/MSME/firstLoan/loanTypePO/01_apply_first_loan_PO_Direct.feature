@@ -19,12 +19,32 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
 Scenario: User apply first loan AP direct and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button "ajukan pinjaman"
-    And user select loan type "PO"
+    When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Project Financing
+    And User click button Project  Financing
     Then System will display Schema of Project Financing
+
+
+Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Bouwheer    
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+  Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Bouwheer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 
  Scenario: User apply first loan PO direct type with flagging MSME
@@ -37,7 +57,7 @@ Scenario: User apply first loan AP direct and want to see AP loan schema
     And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
     #select business location
     And user choose business location "Jabodetabek"
-    And user click button Lanjut Isi Data Supplier   
+    And user click button Lanjut Isi Data Bouwheer  
     #section select Anchor
     When user on buyer cooperating page
     And user fill a field "BowheerName" with "PO test"

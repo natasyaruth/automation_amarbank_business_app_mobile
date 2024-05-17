@@ -16,15 +16,16 @@ Feature: Apply First Loan With Flagging Corp                                    
   And I click login
   Then I successed go to dashbord
 
- Scenario: User apply first loan AP Anchor and want to see AP loan schema
+ Scenario: User apply first loan AR Anchor and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button ajukan pinjaman
-    And user select loan type "AR"
+    When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
     And User click button Supplier Financing
     Then System will display Schema of Supplier Financing
+
+
 
   Scenario: User validate dropdown list on nominal option
     Given I click button loan dashboard
@@ -34,6 +35,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click dropdown option
     Then user can validate limit for MSME
     And user can validate limit for Corp
+    Then user can click close button and back to loan needs page
 
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given user click button loan dashboard
@@ -59,11 +61,35 @@ Feature: Apply First Loan With Flagging Corp                                    
     Given I click button loan dashboard
     When user click button ajukan pinjaman
     And User select loan type "AP"
+    And user on select loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar"
+    And user input nominal for Corp "13500000"
+    Then user click button clear to delete all input nominal and back to zero
+    And user click back button to back to page drop down option nominal 
+
+   Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
     And user on select loan Needs Page 
     And User choose nominal "Lebih dari 5 Milyar"    
-    And user input nominal for Corp "13500000"
-    Then user click button clear to delete all input nominal and back to zero    
+    And user input nominal for Corp "10000000000"
+    And user click button Save
+    And user input tenor "10"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+  Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Lebih dari 5 Milyar"    
+    And user input nominal for Corp "10000000000"
+    And user click button Save
+    And user input tenor "240"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
     
  Scenario: User apply first loan AP Anchor with flaging Corp
     Given I click button loan dashboard
@@ -74,7 +100,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user input nominal for Corp "15000000000"
     And user click button Save
     And User input tenor "60"
-    And user click button Lanjut Isi Data Supplier 
+    And user click button Lanjut Isi Data Buyer 
     #section select Anchor
     And user fill search anchor "PT AR Anchor Tes Nurul"
     And user select the date cooperating

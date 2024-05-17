@@ -1,3 +1,5 @@
+const { text } = require("../registration");
+
 const { I } = inject();
 
 module.exports = {
@@ -13,12 +15,11 @@ module.exports = {
         textLoanSchemaAP: "~textTitle",
         textLoanSchemaAR: "~textTitle",
         textLoanSchemaPO: "~textTitle",
-        textLoan: "~textFieldLoan",      
-        textAmount: "~textFieldCustomAmount",
-        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Min. tenor 30 hari, Max. tenor 180 hari")]'},
+        textLoan: "~textFieldLoan",             
+        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Berapa hari tenor limit yang Anda butuhkan")]'},
         texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
         textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'}, 
-        
+        textTenorhari: {xpath: '//android.widget.TextView[contains(@text, "Hari")]'},
     
     },
     buttons: {
@@ -36,6 +37,8 @@ module.exports = {
         buttonBack: "~buttonBack",
         buttonSave: "~buttonSave",
         buttonClear: "~clearText",
+        buttonNominalMSME: "~optionUpTo5Billion",
+        buttonNominalCorp: "~optionMoreThan5Billion",
     },
     radioButtons: {
         radioBtnAP: "~radioButtonAP",
@@ -50,43 +53,86 @@ module.exports = {
         nominalMSME: "~optionUpTo5Billion",
         nominalCORP: "~optionMoreThan5Billion",
     },
+    field:{
+        inputTenor: "~textFieldTenor",
+        inputCustomNominal: "~textFieldCustomAmount",        
+    },
 
 // Apply Loan Journey Improvement
-    clickButtonSchema(){
+    clickButtonLearnSchema(){
         I.click(this.buttons.schemacreditButton);
     },
-    clickButtonLoanAP(){
-        I.click(this.buttons.loanAPButton);
-    },
-    clickButtonLoanAR(){
-        I.click(this.buttons.loanARButton);
-    },
-    clickButtonLoanPO(){
-        I.click(this.buttons.loanPOButton);
-    },
-    clickButtonSchemaAP(){
-        I.click(this.buttons.schemaAPButton);
-    },
-    clickButtonSchemaAR(){
-        I.click(this.buttons.schemaARButton);
-    },
-    clickButtonSchemaPO(){
-        I.click(this.buttons.schemaPOButton);
-    },
+    
     clickButtonClose(){
         I.click(this.buttons.buttonClose);
     },
+
     clickButtonNext(){
         I.click(this.buttons.buttonNext);
     },
+
     clickButtonBack(){
         I.click(this.buttons.buttonBack);
     },
     clickButtonSave(){
         I.click(this.buttons.buttonSave);
     },
-    clickButtonClear(){
+    clickButtonClearNominal(){
         I.click(this.buttons.buttonClear);
+    },
+    fillTenor(){
+        I.setText(this.field.inputTenor);       
+    },
+
+    async verifyTextHari(Hari){
+        let actual = await I.grabAttributeFrom(this.textField.textTenorhari, 'text');
+        I.assertEqual(actual, 'Hari');
+
+    },
+
+    fillCustomNonimal(){
+        I.setText(this.field.inputCustomNominal);
+    },
+
+    selectLoanTypeList(selectLoanType){
+        switch (selectLoanType){
+            case 'AP':
+                I.click(this.buttons.loanAPButton);
+            break;
+            case 'AR':
+                I.click(this.buttons.loanARButton);
+            break;
+            case "PO":
+                I.click(this.buttons.loanPOButton);
+                break;
+        }
+    },
+
+    selectNominal(selectNominal){
+        switch (selectNominal){
+            case 'MSME':
+                I.click(this.buttons.buttonNominalMSME);
+            break;
+            case 'Corp':
+                I.click(this.buttons.buttonNominalCorp);
+            break;
+        }
+    },
+
+    async validateTitleTopBarLoanNeeds(titleLoanNeeds){
+        let actual = await I.grabAttributeFrom(this.textField.texttitletopbarLoanNeeds, 'text');
+        I.assertEqual(actual, 'Pengajuan Limit Kredit Bisnis');
+    },
+
+    async validateLoanAmountRequested(titleNominal){
+        let actual = await I.grabAttributeFrom(this.textField.textnominalKredit, 'text');
+        I.assertEqual(actual, 'Berapa kisaran nominal limit kredit yang Anda butuhkan? *');
+    },
+
+    async validateLoanTenor(titleTenor){
+        let.actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
+        I.assertEqual(actual, 'Berapa hari tenor limit yang Anda butuhkan');
+
     },
 
 // Function for call the id component
@@ -127,21 +173,7 @@ module.exports = {
 
     },
 
-    async validateTitleTopBarLoanNeeds(titleLoanNeeds){
-        let actual = await I.grabAttributeFrom(this.textField.texttitletopbarLoanNeeds, 'text');
-        I.assertEqual(actual, 'Pengajuan Limit Kredit Bisnis');
-    },
-
-    async validateLoanAmountRequested(titleNominal){
-        let actual = await I.grabAttributeFrom(this.textField.textnominalKredit, 'text');
-        I.assertEqual(actual, 'Berapa kisaran nominal limit kredit yang Anda butuhkan? *');
-    },
-
-    async validateLoanTenor(titleTenor){
-        let.actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
-        I.assertEqual(actuak, 'Min. tenor 30 hari, Max. tenor 180 hari');
-
-    },
+   
 
     validateLoanTypeList(loanType){
         switch (loanType){
@@ -156,20 +188,7 @@ module.exports = {
             break;
         }
     },
-
-    selectLoanTypeList(selectLoanType){
-        switch (selectLoanType){
-            case 'AP':
-                I.click(this.buttons.loanAPButton);
-            break;
-            case 'AR':
-                I.click(this.buttons.loanARButton);
-            break;
-            case "PO":
-                I.click(this.buttons.loanPOButton);
-                break;
-        }
-    },
+    
 
     selectSchemaLoanList(selectSchemaType){
         switch (selectSchemaType){
@@ -189,15 +208,15 @@ module.exports = {
         switch (loanSchema){
             case 'AP':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaAP);
-                I.assertEqual(actualValue, 'Skema Pinjaman Distributor');
+                I.assertEqual(actualValue, 'Skema Distributor Financing');
             break;
             case 'AR':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaAR);
-                I.assertEqual(actualValue, 'Skema Pinjaman Modal Proyek');
+                I.assertEqual(actualValue, 'Skema Supplier Financing');
             break;
             case 'PO':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaPO);
-                I.assertEqual(actualValue, 'Skema Pinjaman Tagihan Faktur');
+                I.assertEqual(actualValue, 'Skema Project Financing');
             break;
         }
     },

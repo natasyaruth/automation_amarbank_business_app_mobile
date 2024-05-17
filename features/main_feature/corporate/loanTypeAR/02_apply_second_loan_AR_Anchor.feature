@@ -21,11 +21,12 @@ Feature: Apply Second Loan With Flagging Corporate Using AR Anchor
 Scenario: User apply second loan AR Anchor and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button "ajukan limit baru"
-    And user select loan type "AR"
+    When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
     And User click button Supplier Financing
+    Then System will display Schema of Supplier Financing
+
 
 Scenario: User validate dropdown list on nominal option
     Given I click button loan dashboard
@@ -60,12 +61,38 @@ Scenario: user clear the text input nominal
     Given I click button loan dashboard
     When user click button ajukan pinjaman
     And User select loan type "AP"
+    And user on select loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar"
+    And user input nominal for Corp "13500000"
+    Then user click button clear to delete all input nominal and back to zero
+    And user click back button to back to page drop down option nominal
+    Then user can click close button and back to loan needs page
+
+Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
     And user on select loan Needs Page 
     And User choose nominal "Lebih dari 5 Milyar"    
-    And user input nominal for Corp "13500000"
-    Then user click button clear to delete all input nominal and back to zero  
+    And user input nominal for Corp "10000000000"
+    And user click button Save
+    And user input tenor "10"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
- Scenario: User apply second loan AR anchor type with flagging Corporate
+Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Lebih dari 5 Milyar"    
+    And user input nominal for Corp "10000000000"
+    And user click button Save
+    And user input tenor "240"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+Scenario: User apply second loan AR anchor type with flagging Corporate
     Given I click button loan dashboard
     When user click button "ajukan limit baru"
     And User select loan type "AR"
@@ -74,7 +101,7 @@ Scenario: user clear the text input nominal
     And user input nominal for Corp "15000000000"
     And user click button Save
     And user input tenor "90"
-    And user click button Lanjut Isi Data Supplier 
+    And user click button Lanjut Isi Data Buyer
     #section select Anchor    
     And user fill search anchor "PT Tirta Investama"
     And user select the date cooperating

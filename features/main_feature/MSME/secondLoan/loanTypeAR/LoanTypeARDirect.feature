@@ -20,15 +20,43 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
+Given I click button loan dashboard  
+    #section select loan type
+    When user click button ajukan pinjaman    
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button Supplier Financing
+    Then System will display Schema of Supplier Financing
+
+
     Scenario: User apply second loan AP direct and want to see AP loan schema
         Given I click button loan dashboard  
-        When user click button "ajukan limit baru"
         #section select loan type
-        When user select loan type "AP"
+        When user click button ajukan pinjaman    
         #section wants to see loan schema
         And User click button Pelajari Tipe Skema Kredit
         And User click button Supplier Financing
+        Then System will display Schema of Supplier Financing
 
+    Scenario: Validate error input tenor below min 30 hari 
+        Given I click button loan dashboard
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Buyer    
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: Validate error input tenor more than 180 hari 
+        Given I click button loan dashboard
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Buyer
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
     Scenario: user choose type loan AP Direct
         Given I click button loan dashboard        
@@ -37,7 +65,7 @@ Feature: Apply Either Loan and select the loan type
         And User on Loan Needs Page
         And User choose nominal "Rp50 juta - 5 Miliar"  
         And user input loan tenor "30" 
-        And user click button Lanjut Isi Data Supplier
+        And user click button Lanjut Isi Data Buyer
         And I fill a field "anchorName" with "PT. AP Direct 1"
         When I select industry type
         And I select the date cooperating
