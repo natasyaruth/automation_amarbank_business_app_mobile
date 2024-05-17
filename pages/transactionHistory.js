@@ -23,6 +23,7 @@ module.exports = {
         btnClose: "~buttonClose",
         btnChoose: "~buttonChoose",
         btnCancel: "~buttonCancel",
+        buttonDetail: "~buttonDetail",
         btnOk: "~buttonNextSuccessBottomSheet",
         submitFilter: "~buttonOk",
         btnCopied: "~buttonCopy",
@@ -54,22 +55,22 @@ module.exports = {
         textViewFailedAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textViewSuccessAlert: { xpath: '//android.view.ViewGroup[@resource-id="android:id/content"]/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[2]' },
         textErrorDate: "~textErrorDate",
-        nameBucketlist: {xpath: '(//android.view.View[@content-desc="textName"])[1]'},
-        bankNameBucketlist: {xpath: '(//android.view.View[@content-desc="textBankName"])[1]'},
-        dateBucketlist: {xpath: '(//android.view.View[@content-desc="textDateTime"])[1]'},
-        accNumberBucketlist: {xpath: '(//android.view.View[@content-desc="textRekening"])[1]'},
-        amountBucketlist: {xpath: '(//android.view.View[@content-desc="textAmount"])[1]'},
-        nameBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textName"])[2]'},
-        bankNameBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textBankName"])[2]'},
-        dateBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textDateTime"])[2]'},
-        accNumberBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textRekening"])[2]'},
-        amountBucketlistSecond: {xpath: '(//android.view.View[@content-desc="textAmount"])[2]'},
-        senderName: "~textTransferToName",
+        nameBucketlist: "~textName",
+        bankNameBucketlist: "~textBankName",
+        dateBucketlist: "~textDateTime",
+        accNumberBucketlist: "~textRekening",
+        amountBucketlist: "~textAmount",
+        nameBucketlistSecond: {xpath: '//android.widget.TextView[@content-desc="textName"][2]'},
+        bankNameBucketlistSecond: {xpath: '//android.widget.TextView[@content-desc="textBankName"][2]'},
+        dateBucketlistSecond: {xpath: '//android.widget.TextView[@content-desc="textDateTime"][2]'},
+        accNumberBucketlistSecond: {xpath: '//android.widget.TextView[@content-desc="textRekening"][2]'},
+        amountBucketlistSecond: {xpath: '//android.widget.TextView[@content-desc="textAmount"][2]'},
+        senderName: "~textTransferFromName",
         senderBankName: "~textTransferFromBankName",
         senderAccNumber: "~textTransferFromRekening",
         recipientName: "~textTransferToName",
-        recipientBankName: "~textTransferFromBankName",
-        recipientAccNumber: "~textTransferFromRekening",
+        recipientBankName: "~textTransferToBankName",
+        recipientAccNumber: "~textTransferToRekening",
         amount: "~textAmount",
         createdBy: "~textCreateBy",
         approveBy: "~textApproveBy",
@@ -80,10 +81,16 @@ module.exports = {
         category: "~textCategory",
         methodTransaction: "~textMethod",
         textNote: "~textNote",
-        adminFeeTitle: {xpath: '(//android.view.View[@content-desc="textAdminFee"])[1]'},
-        adminFeeAmount: {xpath: '(//android.view.View[@content-desc="textAdminFeeAmount"])[1]'},
-        adminFeeTitleSecond: {xpath: '(//android.view.View[@content-desc="textAdminFee"])[2]'},
-        adminFeeAmountSecond: {xpath: '(//android.view.View[@content-desc="textAdminFeeAmount"])[2]'},
+        adminFeeTitle: "~textAdminFee",
+        adminFeeAmount: "~textAdminFeeAmount",
+        adminFeeTitleSecond: {xpath: '//android.widget.TextView[@content-desc="textAdminFee"][2]'},
+        adminFeeAmountSecond: {xpath: '//android.widget.TextView[@content-desc="textAdminFeeAmount"][2]'},
+        titleTabAll: {xpath: '//android.view.View[1]/android.view.View[1]/android.widget.TextView'},
+        titleTabInbound: {xpath: '//android.view.View[1]/android.view.View[2]/android.widget.TextView'},
+        titleTabOutbound: {xpath: '//android.view.View[1]/android.view.View[3]/android.widget.TextView'},
+        plusMinus: {xpath: '//android.view.View/android.view.View[2]/android.view.View/android.widget.TextView'},
+        choosenStartDate: {xpath: '//android.view.View/android.view.View[2]/android.view.View[2]/android.widget.EditText'},
+        choosenEndDate: {xpath: '//android.view.View/android.view.View[2]/android.view.View[3]/android.widget.EditText'},
     },
     menu: {
         tabTesting: { xpath: "//android.widget.TextView[contains(@text, 'TESTING')]" },
@@ -275,12 +282,12 @@ module.exports = {
     async clickListTransfer(trfType) {
         switch (trfType) {
             case 'out':
-                I.waitForElement(this.fields.listTransferOut, 10);
-                I.click(this.fields.listTransferOut);
+                I.waitForElement(this.tabs.outTransaction, 10);
+                I.click(this.tabs.outTransaction);
                 break;
             case 'in':
-                I.waitForElement(this.fields.listTransferIn, 10);
-                I.click(this.fields.listTransferIn);
+                I.waitForElement(this.tabs.inTransaction, 10);
+                I.click(this.tabs.inTransaction);
                 break;
         }
     },
@@ -390,6 +397,10 @@ module.exports = {
         I.waitForElement(this.textFields.nameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.nameBucketlist);
     },
+    async getListTransactionNameBucketList(){
+        I.waitForElement(this.textFields.nameBucketlist, 10);
+        return await I.grabTextFromAll(this.textFields.nameBucketlist);
+    },
     async getTransactionNameBucketListSecond(){
         I.waitForElement(this.textFields.nameBucketlistSecond, 10);
         return await I.grabTextFrom(this.textFields.nameBucketlistSecond);
@@ -406,6 +417,10 @@ module.exports = {
         I.waitForElement(this.textFields.bankNameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.bankNameBucketlist);
     },
+    async getListTransactionBankNameBucketList(){
+        I.waitForElement(this.textFields.bankNameBucketlist, 10);
+        return await I.grabTextFromAll(this.textFields.bankNameBucketlist);
+    },
     async getTransactionBankNameBucketListSecond(){
         I.waitForElement(this.textFields.bankNameBucketlistSecond, 10);
         return await I.grabTextFrom(this.textFields.bankNameBucketlistSecond);
@@ -414,6 +429,10 @@ module.exports = {
         I.waitForElement(this.textFields.accNumberBucketlist, 10);
         return await I.grabTextFrom(this.textFields.accNumberBucketlist);
     },
+    async getListTransactionAccNumberBucketList(){
+        I.waitForElement(this.textFields.accNumberBucketlist, 10);
+        return await I.grabTextFromAll(this.textFields.accNumberBucketlist);
+    },
     async getTransactionAccNumberBucketListSecond(){
         I.waitForElement(this.textFields.accNumberBucketlistSecond, 10);
         return await I.grabTextFrom(this.textFields.accNumberBucketlistSecond);
@@ -421,6 +440,10 @@ module.exports = {
     async getTransactionAmountBucketList(){
         I.waitForElement(this.textFields.amountBucketlist, 10);
         return await I.grabTextFrom(this.textFields.amountBucketlist);
+    },
+    async getListTransactionAmountBucketList(){
+        I.waitForElement(this.textFields.amountBucketlist, 10);
+        return await I.grabTextFromAll(this.textFields.amountBucketlist);
     },
     async getTransactionAmountBucketListSecond(){
         I.waitForElement(this.textFields.amountBucketlistSecond, 10);
@@ -490,34 +513,42 @@ module.exports = {
         I.waitForElement(this.textFields.adminFeeAmount, 10);
         return await I.grabTextFrom(this.textFields.adminFeeAmount);
     },
+    async getAllAdminFeeAmount(){
+        I.waitForElement(this.textFields.adminFeeAmount, 10);
+        return await I.grabTextFromAll(this.textFields.adminFeeAmount);
+    },
     async getAdminFeeAmountSecond(){
         I.waitForElement(this.textFields.adminFeeAmountSecond, 10);
         return await I.grabTextFrom(this.textFields.adminFeeAmountSecond);
     },
     choosePastStartDate(){
         I.waitForElement(this.fields.startDateField, 10);
-        I.click(this.fields.startDateField, 10);
+        I.click(this.fields.startDateField);
+        I.waitForElement(this.textFields.dateDetailHistory, 10);
         I.waitForText("Pilih Tanggal", 10);
         I.swipeDown(this.textFields.dateDetailHistory, 1000, 1000);
         I.swipeDown(this.textFields.month, 1000, 1000);
     },
     chooseFutureStartDate(){
         I.waitForElement(this.fields.startDateField, 10);
-        I.click(this.fields.startDateField, 10);
+        I.click(this.fields.startDateField);
+        I.waitForElement(this.textFields.dateDetailHistory, 10);
         I.waitForText("Pilih Tanggal", 10);
         I.swipeUp(this.textFields.dateDetailHistory, 1000, 1000);
         I.swipeUp(this.textFields.month, 1000, 1000);
     },
     choosePastEndDate(){
         I.waitForElement(this.fields.endDateField, 10);
-        I.click(this.fields.endDateField, 10);
+        I.click(this.fields.endDateField);
+        I.waitForElement(this.textFields.dateDetailHistory, 10);
         I.waitForText("Pilih Tanggal", 10);
         I.swipeDown(this.textFields.dateDetailHistory, 1000, 1000);
         I.swipeDown(this.textFields.month, 1000, 1000);
     },
     chooseFutureEndDate(){
         I.waitForElement(this.fields.endDateField, 10);
-        I.click(this.fields.endDateField, 10);
+        I.click(this.fields.endDateField);
+        I.waitForElement(this.textFields.dateDetailHistory, 10);
         I.waitForText("Pilih Tanggal", 10);
         I.swipeUp(this.textFields.dateDetailHistory, 1000, 1000);
         I.swipeUp(this.textFields.month, 1000, 1000);
@@ -533,5 +564,13 @@ module.exports = {
     async getMessageErrorFilterHistoryTransaction(){
         I.waitForElement(this.textFields.textErrorDate, 10);
         return await I.grabTextFrom(this.textFields.textErrorDate);
+    },
+    async getChoosenStartDate(){
+        I.waitForElement(this.textFields.choosenStartDate, 10);
+        return await I.grabTextFrom(this.textFields.choosenStartDate);
+    },
+    async getChoosenEndDate(){
+        I.waitForElement(this.textFields.choosenEndDate, 10);
+        return await I.grabTextFrom(this.textFields.choosenEndDate);
     },
 }

@@ -102,7 +102,7 @@ Given("I wait until my account name displayed", async () => {
     let accountName;
 
     if (
-        accType === "1"
+        accType === 1
     ) {
         const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
         accountName = fullName;
@@ -309,14 +309,17 @@ Then("I will not see information {string} in the below of field blocking amount"
     I.waitForText("Saldo Rekening Giro", 10);
 
     const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
+    const statusPendingTask = await (await resetStateDao.isPendingTaskExist(globalVariable.login.userID, globalVariable.login.password)).hasPendingTransaction;
 
     if (
-        productType === "MSME"
+        productType === "MSME" &&
+        statusPendingTask === false
     ) {
         I.dontSeeElement(amountDetailPage.text.informationBlockingAmount);
         I.dontSee(information);
     } else if (
-        productType === "CORP"
+        productType === "CORP" &&
+        statusPendingTask === false
     ) {
         const actualDescBlockingAmount = await amountDetailPage.getinformationBlockingAmount();
         I.assertNotEqual(actualDescBlockingAmount, information);
