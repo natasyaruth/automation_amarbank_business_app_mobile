@@ -78,7 +78,7 @@ const {I, loanTypePage} = inject();
     Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
         loanTypePage.clickButtonSchemaPO();
     });
-    Then(/.../,()=>{
+    Then(/user can click close button and back to loan needs page/,()=>{
         loanTypePage.clickButtonClose();
     });
     Then(/user click button Lanjut isi data supplier/,()=>{
@@ -87,9 +87,9 @@ const {I, loanTypePage} = inject();
     Then(/user click back button to loan processing /,()=>{
         loanTypePage.clickButtonBack();
     });
-    Then(/.../,()=>{
+    Then(/user click button Save/,()=>{
         loanTypePage.clickButtonSave();
     });
-    Then(/.../,()=>{
+    Then(/user click button clear to delete all input nominal and back to zero/,()=>{
         loanTypePage.clickButtonClear();
     });
