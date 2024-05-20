@@ -18,7 +18,10 @@ module.exports = {
         textTenor: {xpath: '//android.widget.TextView[contains(@text, "Min. tenor 30 hari, Max. tenor 180 hari")]'},
         texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
         textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'}, 
-        
+        textLoanDashboard: {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
+        textLoanAP: {xpath: '//android.widget.TextView[contains(@text, "Skema Distributor Financing")]'},
+        textLoanAR: {xpath: '//android.widget.TextView[contains(@text, "Skema Supplier Financing")]'},
+        textLoanPO: {xpath: '//android.widget.TextView[contains(@text, "Skema Project Financing")]'},
     
     },
     buttons: {
