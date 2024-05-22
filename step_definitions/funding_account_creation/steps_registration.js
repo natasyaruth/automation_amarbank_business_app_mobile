@@ -301,9 +301,11 @@ When("I click call center", () => {
   headerPage.goToCallCenter();
 });
 
-Then("I will see helping center via whatsapp and email", () => {
-  I.waitForElement(headerPage.cards.whatsApp, 5);
-  I.waitForElement(headerPage.cards.email, 5);
+Then("I will see helping center via email", () => {
+  I.waitForText("Hubungi Tim Kami", 10);
+  I.see("Kami akan membantu Anda dalam"+"\n"+"pembentukan rekening ataupun pinjaman");
+  I.see("support.bisnis@amarbank.co.id");
+  I.waitForElement(headerPage.cards.whatsApp, 10);
 
   headerPage.closeCallCenter();
 });

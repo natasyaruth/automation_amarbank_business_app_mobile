@@ -128,3 +128,14 @@ Scenario: User apply second loan AR direct type with flagging Corporate
     And user click back button to loan processing
     # section trigered status loan
     And user trigered api change status loan is approved
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see Distributor Financing
+    And user will see Supplier Financing
+    And user will see Project Financing
+    Then use can click close button and back to type loan page

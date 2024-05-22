@@ -33,7 +33,8 @@ Feature: Apply First Loan With Flagging Corp                                    
     When user click button ajukan pinjaman
     And User select loan type "AP"
     And User on Loan Needs Page
-    And user click dropdown option
+    And I can choose nominal
+    And user tap on nominal
     Then user can see list of nominal    
     And user can click close button and back to loan needs page
 

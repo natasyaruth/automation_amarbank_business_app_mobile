@@ -18,7 +18,7 @@ module.exports = {
         textLoan: "~textFieldLoan",             
         textTenor: {xpath: '//android.widget.TextView[contains(@text, "Berapa hari tenor limit yang Anda butuhkan")]'},
         texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
-        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'}, 
+        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'},
         textTenorhari: {xpath: '//android.widget.TextView[contains(@text, "Hari")]'},
         textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
         textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
@@ -42,6 +42,7 @@ module.exports = {
         buttonNominalMSME: "~optionUpTo5Billion",
         buttonNominalCorp: "~optionMoreThan5Billion",
     },
+
     radioButtons: {
         radioBtnAP: "~radioButtonAP",
         radioBtnAR: "~radioButtonAR",

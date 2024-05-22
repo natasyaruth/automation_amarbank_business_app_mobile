@@ -106,3 +106,9 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     # section trigered status loan
     And user trigered api change status loan is approved
 
+Scenario: Validate Error Field on Select Loan Amount and Tenor Form
+    Given user on select loan need page
+    When user click button Lanjut Isi Data Supplier
+    Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
+    And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
+   

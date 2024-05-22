@@ -9,7 +9,7 @@ module.exports = {
         back: "~buttonBack",
         close: "~buttonCloseCallCenter",
         closeWebView: "~",
-        closePage: "~~buttonClose",
+        closePage: "~buttonClose",
     },
     cards:{
         whatsApp: "~cardWhatsApp",
@@ -21,6 +21,7 @@ module.exports = {
         I.click(this.buttons.back);
     },
     goToCallCenter(){
+        I.waitForElement(this.icon.callCenter);
         I.click(this.icon.callCenter);
     },
     openHelpCenter(){
