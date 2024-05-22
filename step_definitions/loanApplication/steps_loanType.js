@@ -23,22 +23,31 @@ const {I, loanTypePage} = inject();
         loanTypePage.clickButtonStart();
     });
 
-// Scenario(/user validate and select loan type AR/)
+// Scenario(/user validate and select loan type AP)
     Given(/user on loan type page/,()=>{
         I.wait(2);
         loanTypePage.viewLoanTypePage();
+            
     });
+
+    Then(/user click button ajukan pinjaman/,()=>{
+        loanTypePage.clickButtonStart();
+    });
+
     Given(/user validate wording loan type \"([^\"]*)\"/,(loanType)=>{
         I.wait(2);
         loanTypePage.validateLoanTypeList(loanType);
     });
+
     When(/user select loan type \"([^\"]*)\"/,(selectLoanType)=>{
         I.wait(2);
         loanTypePage.selectLoanTypeList(selectLoanType);
+
     });
     Then(/user click button lihat skema pinjaman/,()=>{
         loanTypePage.clickNextButton();
     });
+    
     Then(/user on loan schema \"([^\"]*)\"/,()=>{
         I.wait(2);
         loanTypePage.validateLoanSchemPage();
@@ -53,43 +62,52 @@ const {I, loanTypePage} = inject();
     });
 
     Then(/user click button select the schema/,()=>{
-        loanTypePage.clickNextButton();
+        loanTypePage.clickBackButtonLoanTypePage
     });
 
 // Apply Loan Journey Improvement
     Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
-        loanTypePage.clickButtonSchema();
+        loanTypePage.clickButtonLearnSchema();
     });   
-    Then(/User select loan type "AP"/,()=>{
-        loanTypePage.clickButtonLoanAP();
+
+    Then(/user will see bottom sheet of Pelajari Tipe Skema Kredit/, () =>{
+        I.waitForText("Pelajari Tipe Skema Kredit", 10);
+   });
+
+    Then(/user validate content of schema type loan  \"([^\"]*)\"/,(wordingLoanType)=>{
+        I.wait(2);
+        loanTypePage.validateTypeLoanWording();
+   }); 
+   
+    Then(/user select loan type \"([^\"]*)\"/,(selectLoanType)=>{
+        I.wait(5);
+        loanTypePage.selectLoanTypeList(selectLoanType);
+
     });
-    Then(/User select loan type "AR"/,()=>{
-        loanTypePage.clickButtonLoanAR();
+
+    Given(/user on select loan Needs Page /,()=>{
+        I.wait(2);
+        loanTypePage.viewLoanTypePage();
     });
-    Then(/User select loan type "PO"/,()=>{
-        loanTypePage.clickButtonLoanPO();
+   
+    Then(/User click button \"([^\"]*)\"/,(selectSchemaType)=>{
+        I.wait(2);
+        loanTypePage.selectSchemaLoanTypeList(selectSchemaType);
     });
-    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
-        loanTypePage.clickButtonSchemaAP();
+
+    Then(/System will display Schema of Distributor Financing/, () =>{
+        I.waitForText("Skema Distributor Financing");
     });
-    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
-        loanTypePage.clickButtonSchemaAR();
+
+    Then(/User on Loan Needs Page/, () =>{
+        I.wait(5);
+        loanTypePage.validateTitleTopBarLoanNeeds();
+        I.wait(5);
+        loanTypePage.validateLoanAmountRequested();
+        I.wait(2);
+        loanTypePage.validateLoanTenor();
     });
-    Then(/User click button Pelajari Tipe Skema Kredit/,()=>{
-        loanTypePage.clickButtonSchemaPO();
-    });
-    Then(/.../,()=>{
-        loanTypePage.clickButtonClose();
-    });
-    Then(/user click button Lanjut isi data supplier/,()=>{
-        loanTypePage.clickButtonNext();
-    });
-    Then(/user click back button to loan processing /,()=>{
-        loanTypePage.clickButtonBack();
-    });
-    Then(/.../,()=>{
-        loanTypePage.clickButtonSave();
-    });
-    Then(/.../,()=>{
-        loanTypePage.clickButtonClear();
+
+    Then(/user click dropdown option/, ()=>{
+
     });

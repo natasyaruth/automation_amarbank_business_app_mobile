@@ -20,7 +20,9 @@ module.exports = {
         texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
         textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'}, 
         textTenorhari: {xpath: '//android.widget.TextView[contains(@text, "Hari")]'},
-    
+        textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
+        textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
+        textwordPO: {xpath: '//android.widget.TextView[contains(@text, "Project Financing")]'},
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
@@ -89,6 +91,25 @@ module.exports = {
         I.assertEqual(actual, 'Hari');
 
     },
+
+    async validateTypeLoanWording(wordingLoanType){
+        switch (wordingLoanType){
+            case 'AP':
+                let hint = await I.grabAttributeFrom(this.textField.textwordAP, 'text');
+                I.assertEqual(hint, 'Distributor Financing');
+            break;
+            case 'AR':
+                let actualValue = await I.grabAttributeFrom(this.textField.textwordAR, 'text');
+                I.assertEqual(actualValue, 'Supplier Financing');
+            break;
+            case 'PO':
+                let actual = await I.grabAttributeFrom(this.textField.textwordPO, 'text');
+                I.assertEqual(actual, 'Project Financing');
+            break;
+        }
+
+    },
+    
 
     fillCustomNonimal(){
         I.setText(this.field.inputCustomNominal);
@@ -173,32 +194,17 @@ module.exports = {
 
     },
 
-   
+        
 
-    validateLoanTypeList(loanType){
-        switch (loanType){
-            case 'AP':
-                I.seeElement(this.textField.textFieldLoanAP);
-            break;
-            case 'AR':
-                I.seeElement(this.textField.textFieldLoanAR);
-            break;
-            case 'PO':
-                I.seeElement(this.textField.textFieldLoanPO);
-            break;
-        }
-    },
-    
-
-    selectSchemaLoanList(selectSchemaType){
+    selectSchemaLoanTypeList(selectSchemaType){
         switch (selectSchemaType){
-            case 'AP':
+            case 'Distributor Financing':
                 I.click(this.buttons.schemaAPButton);
             break;
-            case 'AR':
+            case 'Suppplier Financing':
                 I.click(this.buttons.schemaARButton);
             break;
-            case 'PO':
+            case 'Distributor Financing':
                 I.click(this.buttons.schemaPOButton);
                 break;
         }

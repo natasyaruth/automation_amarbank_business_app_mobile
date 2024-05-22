@@ -23,8 +23,10 @@ Feature: Apply First Loan With Flagging Corp                                    
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Distributor Financing
+    And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
+    Then user validate content loan schema "AP"
+    And user click back to loan type page
 
   Scenario: User validate dropdown list on nominal option
     Given I click button loan dashboard
@@ -32,9 +34,8 @@ Feature: Apply First Loan With Flagging Corp                                    
     And User select loan type "AP"
     And User on Loan Needs Page
     And user click dropdown option
-    Then user can validate limit for MSME
-    And user can validate limit for Corp
-    Then user can click close button and back to loan needs page
+    Then user can see list of nominal    
+    And user can click close button and back to loan needs page
 
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given user click button loan dashboard
