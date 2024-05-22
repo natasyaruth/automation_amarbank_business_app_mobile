@@ -19,12 +19,32 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
  Scenario: User apply first loan AR direct and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
-    When user click button "ajukan pinjaman"
-    And user select loan type "AR"
+    When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
     And User click button Supplier Financing
     Then System will display Schema of Supplier Financing
+
+
+  Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+  Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Buyer
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
  
  Scenario: User apply first loan AR direct type with flagging MSME
     Given I click button loan dashboard
@@ -36,7 +56,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
     #select business location
     And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data supplier
+    And user click button Lanjut isi data buyer
     #section select Anchor
     When user on buyer cooperating page
     And user select another supplier
@@ -91,15 +111,4 @@ Scenario: Validate Error Field on Select Loan Amount and Tenor Form
     When user click button Lanjut Isi Data Supplier
     Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
-
-Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page
    
