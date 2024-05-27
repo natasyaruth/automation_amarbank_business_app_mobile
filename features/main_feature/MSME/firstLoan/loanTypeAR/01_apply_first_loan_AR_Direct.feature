@@ -108,6 +108,8 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     #section upload AR MSME Invoice
     Given user on tab limit active
     When user upload document invoice 
+    And user take invoice from camera
+    And user take invoice from galery
 
 Scenario: Validate Error Field on Select Loan Amount and Tenor Form
     Given user on select loan need page
