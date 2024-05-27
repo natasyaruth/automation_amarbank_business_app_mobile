@@ -16,13 +16,23 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And I click login
     Then I successed go to dashbord
 
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
 Scenario: User apply first loan AP direct and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Project  Financing
+    And User click button "Project  Financing"
     Then System will display Schema of Project Financing
 
 
@@ -101,13 +111,3 @@ Scenario: Validate error input tenor below min 30 hari
     # section trigered status loan
     And user trigered api change status loan is approved
 
-Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page

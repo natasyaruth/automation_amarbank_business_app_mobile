@@ -20,13 +20,23 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
 Scenario: User apply second loan AP direct and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Distributor Financing
+    And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing   
 
  Scenario: Validate error input tenor below min 30 hari 
@@ -99,14 +109,5 @@ Scenario: User apply second loan AP direct and want to see AP loan schema
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
 
-    Scenario: Verify bottom sheet Loan Schema
-        Given I click button loan dashboard
-        #section select loan type
-        When user click button ajukan pinjaman
-        #section wants to see loan schema
-        And User click button Pelajari Tipe Skema Kredit
-        Then user will see Distributor Financing
-        And user will see Supplier Financing
-        And user will see Project Financing
-        Then use can click close button and back to type loan page
+    
         

@@ -72,6 +72,9 @@ const {I, loanTypePage} = inject();
 
     Then(/user will see bottom sheet of Pelajari Tipe Skema Kredit/, () =>{
         I.waitForText("Pelajari Tipe Skema Kredit", 10);
+        I.waitforText("Distributor Financing", 10);
+        I.waitforText("Supplier Financing", 10);
+        I.waitForText("Prject Financing", 10);        
    });
 
     Then(/user validate content of schema type loan  \"([^\"]*)\"/,(wordingLoanType)=>{
@@ -79,7 +82,7 @@ const {I, loanTypePage} = inject();
         loanTypePage.validateTypeLoanWording();
    }); 
    
-    Then(/user select loan type \"([^\"]*)\"/,(selectLoanType)=>{
+    Then(/User select loan type \"([^\"]*)\"/,(selectLoanType)=>{
         I.wait(5);
         loanTypePage.selectLoanTypeList(selectLoanType);
 
@@ -109,5 +112,7 @@ const {I, loanTypePage} = inject();
     });
 
     Then(/user click dropdown option/, ()=>{
-
+        I.waitforText("Pilih Nominal Limit Kredit", 10);
+        I.waitForElement(this.buttons.chooseOptionMSME,10); 
+        I.waitForElement(this.buttons.chooseOptionCorp,10);
     });

@@ -18,13 +18,23 @@ Feature: Apply First Loan With Flagging MSME Using AR Anchor
 
 
 
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
+
 Scenario: User apply first loan AR Anchor and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Supplier Financing
+    And User click button "Supplier Financing"
     Then System will display Schema of Supplier Financing
 
 
@@ -103,14 +113,3 @@ Scenario: User apply first loan AR Anchor with flaging MSME
 
 
 
-Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page
-   
