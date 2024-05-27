@@ -128,6 +128,9 @@ Scenario: User apply second loan AR direct type with flagging Corporate
     And user click back button to loan processing
     # section trigered status loan
     And user trigered api change status loan is approved
+    #section upload AR CORP Invoice
+    Given user on tab limit active
+    When user upload document invoice 
 
 Scenario: Verify bottom sheet Loan Schema
     Given I click button loan dashboard

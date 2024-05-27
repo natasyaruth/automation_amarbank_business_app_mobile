@@ -100,7 +100,9 @@ Scenario: User apply first loan AR Anchor with flaging MSME
     And user click back button to loan processing
     #section trigered status loan
     And user trigered api change status loan is approved
-
+    #section upload AR MSME Invoice
+    Given user on tab limit active
+    When user upload document invoice 
 
 
 Scenario: Verify bottom sheet Loan Schema

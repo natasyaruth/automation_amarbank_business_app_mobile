@@ -80,6 +80,9 @@ Scenario: Validate error input tenor more than 180 hari
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
+        #section upload AR MSME Invoice
+        Given user on tab limit active
+        When user upload document invoice 
 
     Scenario: Validate Card Limit For Type Loan AR
         Given I have been on Loan Dashboard to see the loan type of Loan AP
