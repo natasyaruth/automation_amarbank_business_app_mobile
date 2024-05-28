@@ -107,9 +107,26 @@ module.exports = {
                 let actual = await I.grabAttributeFrom(this.textField.textwordPO, 'text');
                 I.assertEqual(actual, 'Project Financing');
             break;
-        }
+        }        
 
     },
+
+   chooseOptionMSME(){  
+        I.waitForElement(this.buttons.chooseOptionMSME,10);    
+        I.click(this.buttons.chooseOptionMSME);
+   },
+
+   chooseOptionCorp(){
+        I.waitForElement(this.buttons.chooseOptionCorp,10);
+        I.click(this.buttons.chooseOptionCorp);
+   },
+
+   inputTenor(){
+        I.setText(this.field.inputTenor);
+   },
+
+    
+
     
 
     fillCustomNonimal(){

@@ -16,13 +16,23 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
   And I click login
   Then I successed go to dashbord
 
+
+ Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
  Scenario: User apply first loan AR direct and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Supplier Financing
+    And User click button "Supplier Financing"
     Then System will display Schema of Supplier Financing
 
 
@@ -111,9 +121,3 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user take invoice from camera
     And user take invoice from galery
 
-Scenario: Validate Error Field on Select Loan Amount and Tenor Form
-    Given user on select loan need page
-    When user click button Lanjut Isi Data Supplier
-    Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
-    And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
-   

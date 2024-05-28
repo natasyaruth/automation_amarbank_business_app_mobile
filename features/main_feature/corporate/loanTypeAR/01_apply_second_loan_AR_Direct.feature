@@ -18,31 +18,41 @@ Feature: Apply Second Loan With Flagging Corporate Using AR Direct
     Then I click menu tab testing
     And I click button loan dashboard
 
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
+
 Scenario: User apply second loan AR Direct and want to see AR loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Supplier Financing
+    And User click button "Supplier Financing"
     Then System will display Schema of Supplier Financing
 
 
 Scenario: User validate dropdown list on nominal option
-    Given I click button loan dashboard
-    When user click button "ajukan limit baru"
+    Given user click button ajukan pinjaman
     And User select loan type "AP"
     And User on Loan Needs Page
     And user click dropdown option
-    Then user can validate limit for MSME
-    And user can validate limit for Corp
+    Then user can validate List of Nominal Limit Credit   
+    And user can click close button and back to loan needs page
 
 Scenario: Validate Error meesage on Loan Needs when empty field
     Given user click button loan dashboard
     When user click button ajukan pinjaman
     And User select loan type "AP"
     And user on select loan Needs Page   
-    And user click button Lanjut Isi Data Distributor    
+    And user click button Lanjut Isi Data Buyer
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
     
@@ -134,13 +144,3 @@ Scenario: User apply second loan AR direct type with flagging Corporate
     And user take invoice from camera
     And user take invoice from galery
 
-Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page

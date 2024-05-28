@@ -20,14 +20,23 @@ Feature: Apply Either Loan and select the loan type
         And I click menu tab testing
         And I click button loan dashboard
 
-Given I click button loan dashboard  
-    #section select loan type
-    When user click button ajukan pinjaman    
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    And User click button Supplier Financing
-    Then System will display Schema of Supplier Financing
+    Scenario: Verify bottom sheet Loan Schema
+        Given I click button loan dashboard
+        #section select loan type
+        When user click button ajukan pinjaman
+        #section wants to see loan schema
+        And User click button Pelajari Tipe Skema Kredit
+        Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+        And user click back button to back to type loan page
 
+    Scenario: User apply second loan AR Anchor and want to see AP loan schema
+        Given I click button loan dashboard  
+        #section select loan type
+        When user click button ajukan pinjaman    
+        #section wants to see loan schema
+        And User click button Pelajari Tipe Skema Kredit
+        And User click button "Supplier Financing"
+        Then System will display Schema of Supplier Financing
 
     Scenario: User apply second loan AP direct and want to see AP loan schema
         Given I click button loan dashboard  

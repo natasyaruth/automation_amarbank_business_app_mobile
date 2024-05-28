@@ -16,14 +16,32 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
   And I click login
   Then I successed go to dashbord
 
+
+ Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
  Scenario: User apply first loan AP direct and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Distributor Financing
+    And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
+
+  Scenario: User validate dropdown list on nominal option
+    Given user click button ajukan pinjaman
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And user click dropdown option
+    Then user can validate List of Nominal Limit Credit   
+    And user can click close button and back to loan needs page
 
   Scenario: Validate error input tenor below min 30 hari 
     Given I click button loan dashboard
@@ -111,14 +129,4 @@ Scenario: Validate Error Field on Select Loan Amount and Tenor Form
     Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
 
-  Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page
-   
+  

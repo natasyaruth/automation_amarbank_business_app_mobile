@@ -18,31 +18,50 @@ Feature: Apply Second Loan With Flagging Corporate Using AP Direct
     Then I click menu tab testing
     And I click button loan dashboard
 
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
 Scenario: User apply second loan AP Direct and want to see AP loan schema
     Given I click button loan dashboard  
     #section select loan type
     When user click button ajukan pinjaman    
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
-    And User click button Distributor Financing
+    And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
 
 Scenario: User validate dropdown list on nominal option
-    Given I click button loan dashboard
-    When user click button ajukan limit baru
+    Given user click button ajukan pinjaman
     And User select loan type "AP"
     And User on Loan Needs Page
     And user click dropdown option
-    Then user can validate limit for MSME
-    And user can validate limit for Corp
-    Then user can click close button and back to loan needs page
+    Then user can validate List of Nominal Limit Credit   
+    And user can click close button and back to loan needs page
+
+Scenario: user clear the text input nominal
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar"
+    And user input nominal for Corp "13500000"
+    Then user click button clear to delete all input nominal and back to zero
+    And user click back button to back to page drop down option nominal 
+
 
 Scenario: Validate Error meesage on Loan Needs when empty field
     Given user click button loan dashboard
     When user click button ajukan pinjaman
     And User select loan type "AP"
     And user on select loan Needs Page   
-    And user click button Lanjut Isi Data Distributor    
+    And user click button Lanjut Isi Data Supplier    
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
     
@@ -130,13 +149,3 @@ Scenario: Validate Error meesage on Loan Needs when empty field
     #section trigered status loan
     Then user trigered api change status loan is approved
 
-Scenario: Verify bottom sheet Loan Schema
-    Given I click button loan dashboard
-    #section select loan type
-    When user click button ajukan pinjaman
-    #section wants to see loan schema
-    And User click button Pelajari Tipe Skema Kredit
-    Then user will see Distributor Financing
-    And user will see Supplier Financing
-    And user will see Project Financing
-    Then use can click close button and back to type loan page
