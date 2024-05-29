@@ -64,6 +64,9 @@ module.exports = {
         buttonClear: "~clearText",
         buttonNominalMSME: "~optionUpTo5Billion",
         buttonNominalCorp: "~optionMoreThan5Billion",
+        buttonCloseDoc: "~buttonCloseBottomSheet",
+        buttonUploadMobileDoc: "~buttonUploadMobile",
+        buttonUploadWebDoc: "~buttonUploadWeb",
     },
 
     radioButtons: {
@@ -88,15 +91,12 @@ module.exports = {
     clickButtonLearnSchema(){
         I.click(this.buttons.schemacreditButton);
     },
-    
     clickButtonClose(){
         I.click(this.buttons.buttonClose);
     },
-
     clickButtonNext(){
         I.click(this.buttons.buttonNext);
     },
-
     clickButtonBack(){
         I.click(this.buttons.buttonBack);
     },
@@ -108,6 +108,17 @@ module.exports = {
     },
     fillTenor(){
         I.setText(this.field.inputTenor);       
+    },
+
+    //Upload Document
+    clickButtonCloseDoc(){
+        I.click(this.buttons.buttonCloseDoc);
+    },
+    clickButtonUploadMobileDoc(){
+        I.click(this.buttons.buttonUploadMobileDoc);
+    },
+    clickButtonUploadWebDoc(){
+        I.click(this.buttons.buttonUploadWebDoc);
     },
 
     async verifyTextHari(Hari){

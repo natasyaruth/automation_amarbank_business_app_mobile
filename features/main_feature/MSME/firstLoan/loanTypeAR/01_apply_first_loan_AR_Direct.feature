@@ -115,6 +115,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click back button to loan processing
     # section trigered status loan
     And user trigered api change status loan is approved
+    #sectionn buttom sheet success
+    And user click button close on Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
+    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
     #section upload AR MSME Invoice
     Given user on tab limit active
     When user upload document invoice 
