@@ -8,16 +8,20 @@ Feature: Apply Either Loan and select the loan type
         Given I am a registered customer with following details:
             | userID   | bots2912  |
             | password | TestSmb123 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
             | userID   | bots2912  |
             | password | TestSmb123 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
         And I click login
         And I click later
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
 
-    # @C83802 @LoanApp
+    @LoanApp
     Scenario: validate content on select either apply for loan
         Given user on onboarding loan
         And user should see field title onboarding
@@ -28,7 +32,7 @@ Feature: Apply Either Loan and select the loan type
         Then user click button ajukan pinjaman
         And user on loan type page
 
-    # @C83804 @LoanApp
+    @LoanApp
     Scenario: user validate and select loan type AR
         Given user on onboarding loan
         And user click button ajukan pinjaman
