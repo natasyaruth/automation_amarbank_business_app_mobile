@@ -8,13 +8,13 @@ Feature: User transfer with all transfer method
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         And I click login
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
@@ -30,7 +30,7 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BI Fast and RTOL
+        Then I can see BI Fast, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
         And I am on page transfer confirmation
@@ -44,7 +44,7 @@ Feature: User transfer with all transfer method
         And I choose category "Pembayaran"
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
-        And i choose transfer service RTOL
+        And I choose transfer service RTOL
         And I click transfer
         And I will directly go to page confirmation transfer
         And I input wrong PIN

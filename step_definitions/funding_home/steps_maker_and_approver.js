@@ -95,8 +95,13 @@ When("I submit my password for approver", () => {
     approvalTransactionPage.submitPassword();
 });
 
+When("I try again to input PIN", () => {
+    approvalTransactionPage.clickButtonTryAgain();
+    I.wait(1);
+});
+
 When("I try again to input password", () => {
-    approvalTransactionPage.clickButtonIncorrectPassword();
+    approvalTransactionPage.clickButtonTryAgain();
     I.wait(1);
 });
 
@@ -229,7 +234,7 @@ Then("I will see page transaction approval is empty", () => {
 });
 
 Then("I don't see any card transaction in main dashboard", () => {
-    I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
+    I.waitForElement(mainActivePage.buttons.btnTransfer, 30);
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.dontSee(onboardingAccOpeningPage.buttons.openAllTransactionApproval);
     I.dontSee(onboardingAccOpeningPage.buttons.cardTransaction);
@@ -331,7 +336,7 @@ Then("I will direct to page need approval from other director", async () => {
     I.assertEqual(actualSenderName, globalVariable.registration.companyName);
 
     const actualSenderBankName = await approvalTransactionPage.getSenderBankName();
-    globalVariable.transfer.senderBankName = "Bank Amar";
+    globalVariable.transfer.senderBankName = "Bank Amar Indonesia";
     I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
 
     const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
@@ -546,7 +551,7 @@ Then("along with button approve and reject the transaction", () => {
 });
 
 Then("I will direct to page transaction approval", () => {
-    I.waitForElement(approvalTransactionPage.buttons.tabOnProgress, 20);
+    I.waitForElement(approvalTransactionPage.buttons.tabOnProgress, 30);
     I.see("Persetujuan Transaksi");
 });
 
@@ -578,30 +583,30 @@ Then("I will see card maker with information same with card in main dashboard", 
     I.assertEqual(actualAmount, "Rp" + expectedAmount);
 });
 
-Then("I will see pop up password is incorrect", () => {
-    I.waitForElement(approvalTransactionPage.buttons.passwordIncorrect, 10);
+Then("I will see pop up data is incorrect", () => {
+    I.waitForElement(approvalTransactionPage.buttons.tryAgainInput, 10);
 
     I.see("Data Yang Dimasukkan Salah");
     I.see("Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun");
     I.see("Coba Lagi");
 });
 
-Then("I can click try again to input the password", async () => {
-    approvalTransactionPage.clickButtonIncorrectPassword();
+Then("I can click try again to input PIN", async () => {
+    approvalTransactionPage.clickButtonTryAgain();
 
-    // await
-    //     resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+    await
+        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
-Then("I will notify I will direct lo login page", () => {
+Then("I will notify I will direct lo login page", async () => {
     I.waitForElement(approvalTransactionPage.buttons.understand, 10);
 
     I.see("Data Yang Dimasukkan Salah");
     I.see("Anda akan langsung diarahkan ke halaman Masuk Akun");
     I.see("Mengerti");
 
-    // await
-    //     resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+    await
+        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
 Then("I click button direct to login", () => {

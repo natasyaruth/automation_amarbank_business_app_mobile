@@ -75,6 +75,7 @@ module.exports = {
         adminFeeBIFAST: "2.500",
         adminFeeSKN: "2.900",
         adminFeeRTGS: "30.000",
+        activeAmount: "",
     },
     dashboard:{
         activeAmount: "",
