@@ -23,6 +23,29 @@ module.exports = {
         textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
         textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
         textwordPO: {xpath: '//android.widget.TextView[contains(@text, "Project Financing")]'},
+        //Data Pekerjaan
+        individuEmployeDataMSME: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
+        individuEmployeDataCORP: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
+        //Address Bussiness Field
+        adressBussinessPTPeroranganMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPerusahaanMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessCVMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessUDMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPeroranganCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPerusahaanCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessCVCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessUDCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        //Select Anchor or Supplier Name
+        selectAPAnchorMSME: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARAnchorMSME: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectAPDirectMSME: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARDirectrMSME: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectPODirectMSME: {xpath: '//android.widget.TextView[contains(@text, "Nama Pemilik Proyek/Bowheer Anda")]'},
+        selectAPAnchorCORP: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARAnchorCORP: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectAPDirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARDirectrCORP: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectPODirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Nama Pemilik Proyek/Bowheer Anda")]'},
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
@@ -41,6 +64,9 @@ module.exports = {
         buttonClear: "~clearText",
         buttonNominalMSME: "~optionUpTo5Billion",
         buttonNominalCorp: "~optionMoreThan5Billion",
+        buttonCloseDoc: "~buttonCloseBottomSheet",
+        buttonUploadMobileDoc: "~buttonUploadMobile",
+        buttonUploadWebDoc: "~buttonUploadWeb",
     },
 
     radioButtons: {
@@ -65,15 +91,12 @@ module.exports = {
     clickButtonLearnSchema(){
         I.click(this.buttons.schemacreditButton);
     },
-    
     clickButtonClose(){
         I.click(this.buttons.buttonClose);
     },
-
     clickButtonNext(){
         I.click(this.buttons.buttonNext);
     },
-
     clickButtonBack(){
         I.click(this.buttons.buttonBack);
     },
@@ -85,6 +108,17 @@ module.exports = {
     },
     fillTenor(){
         I.setText(this.field.inputTenor);       
+    },
+
+    //Upload Document
+    clickButtonCloseDoc(){
+        I.click(this.buttons.buttonCloseDoc);
+    },
+    clickButtonUploadMobileDoc(){
+        I.click(this.buttons.buttonUploadMobileDoc);
+    },
+    clickButtonUploadWebDoc(){
+        I.click(this.buttons.buttonUploadWebDoc);
     },
 
     async verifyTextHari(Hari){

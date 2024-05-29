@@ -116,3 +116,14 @@ const {I, loanTypePage} = inject();
         I.waitForElement(this.buttons.chooseOptionMSME,10); 
         I.waitForElement(this.buttons.chooseOptionCorp,10);
     });
+
+    //Upload Document
+    Then(/user click button close on Metode Upload Dokumen/,()=>{
+        loanTypePage.buttonCloseDoc();
+    });
+    Then(/user click button Langsung dari Aplikasi on Metode Upload Dokumen/,()=>{
+        loanTypePage.buttonUploadMobileDoc();
+    });
+    Then(/user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen/,()=>{
+        loanTypePage.buttonUploadWebDoc();
+    });

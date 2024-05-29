@@ -122,6 +122,10 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click back button to loan processing
     #section trigered status loan
     And user trigered api change status loan is approved
+    #sectionn buttom sheet success
+    And user click button close on Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
+    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
 
 Scenario: Validate Error Field on Select Loan Amount and Tenor Form
     Given user on select loan need page
