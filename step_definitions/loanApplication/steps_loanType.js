@@ -1,5 +1,7 @@
 const {I, loanTypePage} = inject();
-
+Before(() => {
+    state = {};
+  });
 
 // Feature(/Apply Either Loan and select the loan type/)
 
