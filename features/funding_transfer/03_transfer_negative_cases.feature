@@ -8,13 +8,13 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a registered customer with following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         And I click login
         Then I will direct to dashboard
         And I choose menu Transfer from main dashboard
@@ -53,7 +53,7 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '90000000'
+        And I input amount more than amount active
         Then I should see error message "Saldo aktif tidak mencukupi" in field "amount"
 
     @C96928

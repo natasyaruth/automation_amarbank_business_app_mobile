@@ -19,6 +19,7 @@ module.exports = {
   },
 
   openDetailAmount(){
+    I.waitForElement(this.buttons.detailAmount, 30);
     I.click(this.buttons.detailAmount);
   },
 

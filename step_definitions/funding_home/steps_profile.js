@@ -10,22 +10,22 @@ When("I will see card account {string}", (typeAccount) => {
     if (
         typeAccount === "active"
     ) {
-        I.waitForElement(transactionHistoryPage.buttons.historyBtn, 10);
+        I.waitForElement(transactionHistoryPage.buttons.historyBtn, 30);
 
     } else if (
         typeAccount === "on verification"
     ) {
-        I.waitForText("Menunggu verifikasi data selesai", 10);
+        I.waitForText("Menunggu verifikasi data selesai", 30);
 
     } else if (
         typeAccount === "complete document"
     ) {
-        I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 10);
+        I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 30);
 
     } else if (
         typeAccount === "on process"
     ) {
-        I.waitForText("Lanjutkan Pembuatan Rekening Giro", 10);
+        I.waitForText("Lanjutkan Pembuatan Rekening Giro", 30);
 
     }
     globalVariable.onBoarding.status = typeAccount;

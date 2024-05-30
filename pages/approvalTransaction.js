@@ -1,6 +1,6 @@
 const { I } = inject();
 
-module.exports = {
+module.exports = { 
 
   buttons: {
     approveTransaction: "~transactionApprovedBtn",
@@ -13,7 +13,7 @@ module.exports = {
     closeInfo: "~transactionNeedApprovalInfoClose",
     submitPassword: "~buttonNext",
     iconEyePassword: "~iconShowHidePassword",
-    passwordIncorrect: "~buttonTryAgain",
+    tryAgainInput: "~buttonTryAgain",
     understand: "~buttonUnderstand",
     copy: "~buttonCopy",
     cancel: "~cancelButton",
@@ -214,9 +214,9 @@ module.exports = {
     I.click(this.buttons.submitPassword);
   },
 
-  clickButtonIncorrectPassword() {
-    I.waitForElement(this.buttons.passwordIncorrect, 10);
-    I.click(this.buttons.passwordIncorrect);
+  clickButtonTryAgain() {
+    I.waitForElement(this.buttons.tryAgainInput, 10);
+    I.click(this.buttons.tryAgainInput);
   },
 
   directToLogin() {
