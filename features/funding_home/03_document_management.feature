@@ -17,29 +17,74 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
-        When I click tab profile
+        And I click tab profile
         And I will see my profile individual data
-        And I click document business
-        Then I will not see button document giro
+        When I click tab document
+        Then I will direct to page document business
+        And I will not see button document giro
+        And I will see button document loan
+        And I click button document loan
+        And I will see page document loan is empty
+
+    Scenario: Verify tab profile user individual active and has loan
+        Given I am a registered customer with following details:
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        And I click tab profile
+        And I will see my profile individual data
+        When I click tab document
+        Then I will direct to page document business
+        And I will not see button document giro
+        And I will see button document loan
+        And I click button document loan
+        And I will see list of my loan
+        And I click top list of my loan
+        And I will see list of document loan
 
     @C101377
     Scenario: Verify tab profile user individual on verification
         Given I am a registered customer with following details:
-            | userID      | auto4424 |
+            | userID      | indibec3 |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | auto4424 |
+            | userID      | indibec3 |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         And I click login
         And I click later
         And I will see card account 'on verification'
-        When I click tab profile
-        Then I will see my profile individual data
-        And I will not see button document giro
+        When I click tab document
+        Then I will see document page is empty
+
+    
+    Scenario: Verify tab profile user individual on process KYC
+        Given I am a registered customer with following details:
+            | userID      | deved6a1 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | deved6a1 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later
+        And I will see card account 'on process'
+        When I click tab document
+        And I will see document page is empty
 
     @C101378
     Scenario: Verify tab profile user PT Perusahaan active
@@ -55,53 +100,72 @@ Feature: Document Management
             | passwordStg | Test1234 |
         And I click login
         And I will see card account 'active'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        And I will direct to page document business
+        Then I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
 
     @C101379
     Scenario: Verify tab profile user PT Perusahaan on verification
         Given I am a registered customer with following details:
-            | userID      | auto79e2 |
+            | userID      | ptpe7f28 |
             | password    | 1234Test |
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | auto79e2 |
+            | userID      | ptpe7f28 |
             | password    | 1234Test |
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |
         And I click login
         And I click later
         And I will see card account 'on verification'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
 
     @C101380
     Scenario: Verify tab profile user PT Perusahaan complete document
         Given I am a registered customer with following details:
-            | userID      | auto436d |
+            | userID      | ptpe1d52 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | auto436d |
+            | userID      | ptpe1d52 |
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
+
+    
+    Scenario: Verify tab profile user PT Perusahaan on process KYB
+        Given I am a registered customer with following details:
+            | userID      | deve82e5 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | deve82e5 |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later
+        And I will see card account 'on process'
+        When I click tab document
+        Then I will direct to page document business
+        And I will see document page is empty
 
     @C101381
     Scenario: Verify tab profile user CV active
@@ -117,11 +181,11 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        And I will direct to page document business
+        Then I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
 
     @C101382
     Scenario: Verify tab profile user CV on verification
@@ -138,11 +202,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'on verification'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
 
     @C101383
     Scenario: Verify tab profile user CV complete document
@@ -159,11 +223,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type company
+        And I will see document business for type company
 
     @C101384
     Scenario: Verify tab profile user PT Perorangan active
@@ -179,11 +243,11 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I will see card account 'active'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        And I will direct to page document business
+        Then I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101385
     Scenario: Verify tab profile user PT Perorangan on verification
@@ -200,11 +264,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'on verification'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101386
     Scenario: Verify tab profile user PT Perorangan complete document
@@ -221,11 +285,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101387
     Scenario: Verify tab profile user UD active
@@ -241,11 +305,11 @@ Feature: Document Management
             | passwordStg | Test1234 |
         And I click login
         And I will see card account 'active'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        And I will direct to page document business
+        Then I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101388
     Scenario: Verify tab profile user UD on verification
@@ -262,11 +326,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'on verification'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101389
     Scenario: Verify tab profile user UD complete document
@@ -283,11 +347,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see document business for type individual company
+        And I will see document business for type individual company
 
     @C101390
     Scenario: Verify button business document is not appear if user still not upload any document
@@ -304,9 +368,9 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile individual company data
-        Then I will not see button document giro
+        When I click tab document
+        Then I will direct to page document business
+        And I will see document page is empty
 
     @C101391
     Scenario: Verify button business document is appear if user upload 1 document
@@ -323,32 +387,11 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile individual company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
-        Then I will see one document giro
-
-    @C101392
-    Scenario: Back to page profile from page Dokumen Bisnis
-        Given I am a registered customer with following details:
-            | userID      | autoc10a |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I filling in form login with the following details:
-            | userID      | autoc10a |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I click login
-        And I click later
-        And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
-        And I back to page profile business
-        Then I will see card account 'complete document'
+        And I will see one document giro
 
     @C101393
     Scenario: Back to page Dokumen Bisnis from page Dokumen Giro
@@ -365,9 +408,9 @@ Feature: Document Management
         And I click login
         And I click later
         And I will see card account 'complete document'
-        When I click tab profile
-        And I see my profile company data
-        And I click document business
+        When I click tab document
+        Then I will direct to page document business
+        And I will see button document giro and document loan
         And I click document giro
         And I back to page document business
-        Then I will direct to page document business
+        And I will direct to page document business
