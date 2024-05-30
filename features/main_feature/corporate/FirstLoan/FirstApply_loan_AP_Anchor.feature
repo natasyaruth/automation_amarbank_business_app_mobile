@@ -34,7 +34,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
-    Then user validate content loan schema "AP"
+    And user validate content loan schema "AP"
     And user click back to loan type page
 
   Scenario: User validate dropdown list on nominal option
@@ -101,7 +101,6 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-
  Scenario: User apply first loan AP Direct with business type PT.Perusahaan and flaging Corp 
     Given I click button loan dashboard
     When user click button pinjaman
@@ -114,20 +113,21 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lanjut Isi Data Supplier 
     #section select Anchor
     And user fill search anchor "PT Tirta Investama"
+    And user select result of search
     And user select the date cooperating        
     And user click button Selanjutnya   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
-    And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
+    And user click Selanjutnya     
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button Kirim Foto
     And user input and save eKTP data
-    And user click take "Ambil Foto Selfie"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto 
     And user input Pendidikan terakhir "S1"
     And user input nama ibu kandung "Susi Susanti"
     And user input nama kerabat "Susi Similikiti"
@@ -136,14 +136,14 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Simpan Data Diri
     And user click button Simpan Alamat Tempat Tinggal
     And user select "Pegawai Swasta"
-    And user select "Gaji Bulanan"    
+    And user select sumber pendapatan "Pemasukan dari usaha"  
     And click Simpan Data Pekerjaan
     And system direct to Success screen
-    Then user click button Lanjut Lengkapi Data Bisnis
+    And user click button Lanjut Lengkapi Data Bisnis
     #section KYB Process
-    Given user in "Data Pekerjaan" filled
-    When user input and save "Profil Bisnis"
-    And user input and click "Simpan Daftar Direktur"
+    And user in Profil Bisnis page
+    And user input profil bisnis and click button Simpan Profil Bisnis
+    And user input and click Simpan Daftar Direktur
     And I fill my business address as followings:
         | address  | Jl. Gambir Belok Kiri No. 10 |
         | rt       | 000                          |
