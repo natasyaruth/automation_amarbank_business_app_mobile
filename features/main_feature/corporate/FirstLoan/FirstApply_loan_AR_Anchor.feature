@@ -16,8 +16,6 @@ Feature: Apply First Loan With Flagging Corp                                    
   And I click login
   Then I successed go to dashbord
 
-
-
   Scenario: Verify bottom sheet Loan Schema
     Given I click button loan dashboard
     #section select loan type
@@ -35,6 +33,8 @@ Feature: Apply First Loan With Flagging Corp                                    
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Supplier Financing"
     Then System will display Schema of Supplier Financing
+    And user validate content loan schema "AR"
+    And user click back to loan type page
 
   Scenario: User validate dropdown list on nominal option
     Given user click button ajukan pinjaman
@@ -98,7 +98,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
     
- Scenario: User apply first loan AP Anchor with flaging Corp
+ Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     Given I click button loan dashboard
     When user click button ajukan pinjaman
     And User select loan type "AR"
@@ -110,47 +110,90 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lanjut Isi Data Buyer 
     #section select Anchor
     And user fill search anchor "PT AR Anchor Tes Nurul"
+    And user select result of search
     And user select the date cooperating
-    And user checklist checbox term and condition  
-    And user click button next    
+    And user click button Selanjutnya   
     And user click button Lanjut Lengkapi Data    
     #section KYC Process
-    Given user choose Business Type "PT Perusahaan"
+    Given user choose Business Type "CV"
     And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button Kirim Foto
     And user input and save eKTP data
-    And user click take "Foto Diri"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
-    And user select domicile address
-    When user input "Data Pekerjaan"
-    And click "Simpan Data Pekerjaan"
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto      
+    And user input Pendidikan terakhir "S1"
+    And user input nama ibu kandung "Tom Tom"
+    And user input nama kerabat "Tintin"
+    And user input nomor kerbat "867300989"
+    And user upload document "npwpindividu"
+    And user click button Simpan Data Diri
+    And user click button Simpan Alamat Tempat Tinggal
+    And user select "Pegawai Swasta"
+    And user select sumber pendapatan "Pemasukan dari usaha"   
+    And user click button Simpan Data Pekerjaan
     And system direct to Success screen
-    Then user click button "Lanjut Lengkapi Data Bisnis"
-    #section KYB Process
-    Given user in "Data Pekerjaan" filled
-    When user input and save "Profil Bisnis"
-    And user input and click "Simpan Daftar Direktur"
-    And user input and save "Alamat Bisnis"
-    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-    And user click OK
-    # section upload document
-    Given user on upload document page
-    When user upload document "KTPandnpwpOfComp"
+    And user click button Lanjut Lengkapi Data Bisnis    
+    #KYB
+    And user in Profil Bisnis page
+    And user input profil bisnis and click button Simpan Profil Bisnis
+    And user click button Simpan Daftar Direktur
+    And I fill my business address as followings:
+        | address  | Jl. Gambir Belok Kanan No. 10 |
+        | rt       | 000                          |
+        | rw       | 011                          |
+        | province | DKI JAKARTA                  |
+        | city     | JAKARTA TIMUR                |
+        | district | DUREN SAWIT                  |
+        | village  | PONDOK BAMBU                 |    
+    And user checklist checkbox term and condition  
+    And user checklist checkbox right and obligations
+    And user click button Lanjut Upload Dokumen
+    And user validate content list of documents for CV
+    And user click buttton Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload docuemnt "nib"
+    And user upload document "aktaperusahaan"
+    And user upload document "skkemenkumhan"
+    And user upload document "npwpPerusahaan"
+    And user upload document "KTPandnpwpOfComp"
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
-    And user upload document "1YearfinancialReports"
-    And user click button refresh
-    And user click back button to loan processing
-    #section trigered status loan
-    And user trigered api change status loan is approved
-    #section upload AR CORP Invoice
-    Given user on tab limit active
-    When user upload document invoice  
-    And user take invoice from camera
-    And user take invoice from galery
+    And user upload document "2YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
+    
+  Scenario: validate progress monitoring loan checking document
+    Given user on monitoring loan process page
+    And user validate title "Pengecekan Limit & Upload Dokumen" on field "titleDocumentField"
+    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
+    Then user can click button Upload Ulang Dokumen
+
+
+  Scenario: Checking Credit Analyst Process
+    Given user on monitoring loan process page
+    And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
+    When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
+    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 

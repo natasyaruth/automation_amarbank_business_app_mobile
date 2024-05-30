@@ -35,6 +35,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
+    And user validate content loan schema "AP"
+    And user click back to loan type page
 
   Scenario: User validate dropdown list on nominal option
     Given user click button ajukan pinjaman
@@ -124,14 +126,14 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     #section KYC Process
     Given user choose Business Type "UD"
     And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button  Kirim Foto
     And user input and save eKTP data
-    And user click take "Foto Diri"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto  
     And user input Pendidikan terakhir "S1"
     And user input nama ibu kandung "Susi Susanti"
     And user input nama kerabat "Susi Similikiti"
@@ -145,9 +147,9 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And system direct to Success screen
     Then user click button Lanjut Lengkapi Data Bisnis
     #section KYB Process
-    Given user in "Data Pekerjaan" filled
-    When user input and save "Profil Bisnis"
-    And user input and click "Simpan Pemilik Bisnis"    
+    Given user in Profil Binis Page
+    When user input and click simpan Profil Bisnis
+    And user input and click Simpan Pemilik Bisnis   
     And I fill my business address as followings:
         | address  | Jl. Gambir Belok Kiri No. 10 |
         | rt       | 000                          |
@@ -216,14 +218,14 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     #section KYC Process
     Given user choose Business Type "Individu"
     And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button Kirim Foto
     And user input and save eKTP data
-    And user click take "Ambil Foto Selfie"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto 
     And user input Pendidikan terakhir "S1"
     And user input nama ibu kandung "Dewi Astuti"
     And user input nama kerabat "Ramdhan"
@@ -232,29 +234,13 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user upload document "npwpindividu"
     And user click button Simpan Data Diri
     And user click button Simpan Alamat Tempat Tinggal
-    And user select "Pegawai Swasta"
-    And user select "Gaji Bulanan"
-    And user select "20-30 juta"
-    And user select industri kesehatan "Industri Kreatif"
+    And user select jenis pekerjaan "Pegawai Swasta"
+    And user select sumber penghasilan "Gaji Bulanan"
+    And user select pendapatan bulanan "20-30 juta"
+    And user select industri perusahaan  "Industri Kreatif"
     And user input nama perusahaan "Kreatif Indonesia"
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
     And user validate content list of documents for Individu
     And user click buttton Pilih Metode Upload Dokumen
-    #Upload Dokumen from Aplikasi
-    And user click button Langsung dari Aplikasi
-    And user on Progress Upload Dokumen Page    
-    And user upload document "3contohInvoicewithSupplier"
-    And user upload document "paymentMutation"
-    And user upload document "1YearfinancialReports"
-    And user click button Perbaharui Progres
-    And user click button Kirim Pengajuan Kredit Limit
-    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
-    And user click button Lihat Progres Pengajuan
-    And user on monitoring loan process page
-
-
-   
-
-
