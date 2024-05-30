@@ -18,7 +18,7 @@ type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
 type onboardingAccOpeningPage = typeof import('./pages/onboardingAccOpening.js');
-// type steps_SecondloanMSME = typeof import('./pages/steps_SecondloanMSME.js');
+type steps_SecondloanMSMEPage = typeof import('./steps_SecondloanMSME.js');
 type uploadKtpPage = typeof import('./pages/uploadKtp.js');
 type formKtpPage = typeof import('./pages/formKtp.js');
 type resetStateDao = typeof import('./dao/resetStateDao.js');
@@ -49,69 +49,17 @@ type uploadDao = typeof import('./dao/uploadDao.js');
 type accountDeletionPage = typeof import('./pages/accountDeletion.js');
 type amountDetailPage = typeof import('./pages/amountDetail.js');
 type documentManagementPage = typeof import('./pages/loanApplication/documentManagement.js');
+type documentPage = typeof import('./pages/documentManagement.js');
 type approvalTransactionPage = typeof import('./pages/approvalTransaction.js');
 type loanFlaggingPage = typeof import('./pages/loanFlagging/loanFlagging.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
 declare namespace CodeceptJS {
-  interface SupportObject {
-    I: I,
-    current: any,
-    registrationPage: registrationPage,
-    otpConfirmationPage: otpConfirmationPage,
-    loginPage: loginPage,
-    welcomePage: welcomePage,
-    changePhoneNumberPage: changePhoneNumberPage,
-    headerPage: headerPage,
-    whitelistDao: whitelistDao,
-    verificationEmailPage: verificationEmailPage,
-    otpDao: otpDao, loanTypePage: loanTypePage,
-    selectAnchorPage: selectAnchorPage,
-    selectLoanAmountPage: selectLoanAmountPage,
-    loanMonitoringProcessPage: loanMonitoringProcessPage,
-    forgotPasswordPage: forgotPasswordPage,
-    uploadDocLoanPage: uploadDocLoanPage,
-    loanDashboardPage: loanDashboardPage,
-    privyAggrementPage: privyAggrementPage,
-    onboardingAccOpeningPage: onboardingAccOpeningPage,
-    // steps_SecondloanMSMEPage: steps_SecondloanMSMEPage,
-    uploadKtpPage: uploadKtpPage,
-    formKtpPage: formKtpPage,
-    resetStateDao: resetStateDao,
-    globalVariable: globalVariable,
-    uploadSelfiePage: uploadSelfiePage,
-    formPersonalDataPage: formPersonalDataPage,
-    formDomicileAddressPage: formDomicileAddressPage,
-    formEmploymentDataPage: formEmploymentDataPage,
-    formBusinessProfilePage: formBusinessProfilePage,
-    formBusinessOwnerPage: formBusinessOwnerPage,
-    formBusinessAddressPage: formBusinessAddressPage,
-    createPINPage: createPINPage,
-    loanDisbursementPage: loanDisbursementPage,
-    friendListPage: friendListPage,
-    transferPage: transferPage,
-    transactionHistoryPage: transactionHistoryPage,
-    limitActivePage: limitActivePage,
-    businessLoanPage: businessLoanPage,
-    pdcDeliveryPage: pdcDeliveryPage,
-    confirmInvoicePage: confirmInvoicePage,
-    invitationBusinessPage: invitationBusinessPage,
-    loanRepaymentPage: loanRepaymentPage,
-    hookOnBoardingPage: hookOnBoardingPage,
-    mainActivePage: mainActivePage,
-    uploadBusinessDocPage: uploadBusinessDocPage,
-    profilePage: profilePage,
-    uploadDao: uploadDao,
-    accountDeletionPage: accountDeletionPage,
-    amountDetailPage: amountDetailPage,
-    documentManagementPage: documentManagementPage,
-    approvalTransactionPage: approvalTransactionPage,
-    loanFlaggingPage: loanFlaggingPage
-  }
-  interface Methods extends Appium, ChaiWrapper, REST, JSONResponse { }
-  interface I extends ReturnType<steps_file>, WithTranslation<Methods> { }
+  interface SupportObject { I: I, current: any, registrationPage: registrationPage, otpConfirmationPage: otpConfirmationPage, loginPage: loginPage, welcomePage: welcomePage, changePhoneNumberPage: changePhoneNumberPage, headerPage: headerPage, whitelistDao: whitelistDao, verificationEmailPage: verificationEmailPage, otpDao: otpDao, loanTypePage: loanTypePage, selectAnchorPage: selectAnchorPage, selectLoanAmountPage: selectLoanAmountPage, loanMonitoringProcessPage: loanMonitoringProcessPage, forgotPasswordPage: forgotPasswordPage, uploadDocLoanPage: uploadDocLoanPage, loanDashboardPage: loanDashboardPage, privyAggrementPage: privyAggrementPage, onboardingAccOpeningPage: onboardingAccOpeningPage, steps_SecondloanMSMEPage: steps_SecondloanMSMEPage, uploadKtpPage: uploadKtpPage, formKtpPage: formKtpPage, resetStateDao: resetStateDao, globalVariable: globalVariable, uploadSelfiePage: uploadSelfiePage, formPersonalDataPage: formPersonalDataPage, formDomicileAddressPage: formDomicileAddressPage, formEmploymentDataPage: formEmploymentDataPage, formBusinessProfilePage: formBusinessProfilePage, formBusinessOwnerPage: formBusinessOwnerPage, formBusinessAddressPage: formBusinessAddressPage, createPINPage: createPINPage, loanDisbursementPage: loanDisbursementPage, friendListPage: friendListPage, transferPage: transferPage, transactionHistoryPage: transactionHistoryPage, limitActivePage: limitActivePage, businessLoanPage: businessLoanPage, pdcDeliveryPage: pdcDeliveryPage, confirmInvoicePage: confirmInvoicePage, invitationBusinessPage: invitationBusinessPage, loanRepaymentPage: loanRepaymentPage, hookOnBoardingPage: hookOnBoardingPage, mainActivePage: mainActivePage, uploadBusinessDocPage: uploadBusinessDocPage, profilePage: profilePage, uploadDao: uploadDao, accountDeletionPage: accountDeletionPage, amountDetailPage: amountDetailPage, documentManagementPage: documentManagementPage, approvalTransactionPage: approvalTransactionPage, loanFlaggingPage: loanFlaggingPage, documentPage: documentPage}
+  interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
+  interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}
   namespace Translation {
-    interface Actions { }
+    interface Actions {}
   }
 }

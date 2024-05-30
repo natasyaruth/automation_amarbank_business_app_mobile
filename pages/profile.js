@@ -23,12 +23,6 @@ module.exports = {
     I.waitForElement(this.buttons.documentBusiness, 10);
     I.click(this.buttons.documentBusiness);
   },
-
-  clickDocumentGiro(){
-    I.waitForElement(this.buttons.documentGiro, 10);
-    I.click(this.buttons.documentGiro);
-  },
-
   openTransactionApproval(){
     I.waitForElement(this.buttons.transactionApprovalDetail, 10);
     I.click(this.buttons.transactionApprovalDetail);

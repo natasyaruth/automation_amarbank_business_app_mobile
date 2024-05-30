@@ -393,3 +393,41 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver will see history transaction in tab completed with status "Transaksi Dibatalkan"
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
+
+    Scenario: Approve transaction with user still not create PIN yet
+        Given Login to app using account as a approver
+        And has card transaction that need to approved
+        And didn't set the PIN yet
+        When I click card Approver
+        And I approve the transaction
+        And I click button create PIN
+        And I input password
+        And I input new PIN
+        And I input confirm new PIN
+        And I input OTP 
+        And I click button next
+        Then I will direct to page detail transaction that need to approve
+        And I approve the transaction
+        And I input PIN transaction
+        And I will direct to page transaction approval
+        And I will see snackbar success
+        And I will see my card is in section complete with status approved
+
+    Scenario: Reject transaction with user still not create PIN yet
+        Given Login to app using account as a approver
+        And has card transaction that need to approved
+        And didn't set the PIN yet
+        When I click card Approver
+        And I reject the transaction
+        And I click button create PIN
+        And I input password
+        And I input new PIN
+        And I input confirm new PIN
+        And I input OTP 
+        And I click button next
+        Then I will direct to page detail transaction that need to approve
+        And I reject the transaction
+        And I input PIN transaction
+        And I will direct to page transaction approval
+        And I will see snackbar success
+        And I will see my card is in section complete with status approved
