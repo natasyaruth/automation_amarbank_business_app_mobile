@@ -26,6 +26,14 @@ module.exports = {
     adminFeeBIFAST: "~feeBifast",
     adminFeeRTGS: "~feeRTGS",
     adminFeeSKN: "~feeSKN",
+    titleActiveSaldo: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[1]'},
+    titleAmountTransfer: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[3]'},
+    titleAdminFee: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[5]'},
+    titleTotalAmount: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[7]'},
+    textBalanceAmount: "~textBalanceAmount",
+    textTransferAmount: "~textTransferAmount",
+    textTransferFee: "~textTransferFee",
+    textTotalAmount: "~textTotalAmount",
   },
   dropdownLists: {
     category: "~dropDownCategory",
@@ -163,14 +171,17 @@ module.exports = {
   },
 
   chooseSkn(){
+    I.waitForElement(this.radioButtons.methodSkn, 10);
     I.click(this.radioButtons.methodSkn);
   },
 
   chooseRtgs(){
+    I.waitForElement(this.radioButtons.methodRtgs, 10);
     I.click(this.radioButtons.methodRtgs);
   },
 
   chooseBifast(){
+    I.waitForElement(this.radioButtons.methodBifast, 10);
     I.click(this.radioButtons.methodBifast);
   },
 
@@ -207,8 +218,7 @@ module.exports = {
   },
 
   viewPageTrfMethodeList(){
-    I.wait(3);
-    I.seeElement(this.fields.transferMethodePage);
+    I.waitForElement(this.fields.transferMethodePage, 10);
   },
 
   viewPageConfirmTrf(){
@@ -263,5 +273,63 @@ module.exports = {
   async getAdminFeeSKN(){
     I.waitForElement(this.texts.adminFeeSKN, 10);
     return I.grabTextFrom(this.texts.adminFeeSKN);
-  }
+  },
+
+  async getAmountActive(){
+    I.waitForElement(this.texts.balance, 10);
+    return I.grabTextFrom(this.texts.balance);
+  },
+
+  async getTitleAmountActive(){
+    I.waitForElement(this.texts.titleActiveSaldo, 10);
+    return I.grabTextFrom(this.texts.titleActiveSaldo);
+  },
+
+  async getTitleAmountTransfer(){
+    I.waitForElement(this.texts.titleAmountTransfer, 10);
+    return I.grabTextFrom(this.texts.titleAmountTransfer);
+  },
+
+  async getTitleAdminFee(){
+    I.waitForElement(this.texts.titleAdminFee, 10);
+    return I.grabTextFrom(this.texts.titleAdminFee);
+  },
+
+  async getTitleTotalAmount(){
+    I.waitForElement(this.texts.titleTotalAmount, 10);
+    return I.grabTextFrom(this.texts.titleTotalAmount);
+  },
+
+  async getValueAmountActive(){
+    I.waitForElement(this.texts.textBalanceAmount, 10);
+    return I.grabTextFrom(this.texts.textBalanceAmount);
+  },
+
+  async getValueAmountTransfer(){
+    I.waitForElement(this.texts.textTransferAmount, 10);
+    return I.grabTextFrom(this.texts.textTransferAmount);
+  },
+
+  async getValueAdminFee(){
+    I.waitForElement(this.texts.textTransferFee, 10);
+    return I.grabTextFrom(this.texts.textTransferFee);
+  },
+
+  async getValueTotalAmount(){
+    I.waitForElement(this.texts.textTotalAmount, 10);
+    return I.grabTextFrom(this.texts.textTotalAmount);
+  },
+
+  formattedToThreeDigit(amount){
+    const numberAmount = parseInt(amount);
+
+    const numberString = numberAmount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+        numberString.splice(i, 0, '.');
+    }
+    const formattedAmount = numberString.join('');
+
+    return formattedAmount;
+  },
 }

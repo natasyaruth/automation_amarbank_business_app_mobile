@@ -1,6 +1,6 @@
 const { I } = inject();
 
-module.exports = {
+module.exports = { 
 
   buttons: {
     approveTransaction: "~transactionApprovedBtn",
@@ -13,7 +13,8 @@ module.exports = {
     closeInfo: "~transactionNeedApprovalInfoClose",
     submitPassword: "~buttonNext",
     iconEyePassword: "~iconShowHidePassword",
-    passwordIncorrect: "~passwordIncorrectBtn",
+    tryAgainInput: "~buttonTryAgain",
+    understand: "~buttonUnderstand",
     copy: "~buttonCopy",
     cancel: "~cancelButton",
   },
@@ -25,10 +26,10 @@ module.exports = {
     transactionAmount: "~transactionAmount",
     senderName: "~senderName",
     senderAccount: "~senderAccount",
-    senderBankName: "~senderAccountName",
+    senderBankName: "~senderBankName",
     recipientName: "~recipientName",
     recipientAccount: "~recipientAccount",
-    recipientBankName: {xpath: "(//android.widget.ScrollView/android.widget.TextView)[7]"},
+    recipientBankName: "~recipientBankName",
     amountTransferOut: "~transferOut",
     nameCreatedBy: "~createdBy",
     nameCanceledBy: "~cancelledBy",
@@ -38,6 +39,7 @@ module.exports = {
     category: "~category",
     noted: "~noted",
     nameRejectedBy: "~rejectedBy",
+    nameApprovedBy: "~approvedBy",
     infoIncorrectPassword: "~passwordIncorrectDesc",
     phoneNumber: "~textPhoneNumber",
   },
@@ -54,8 +56,8 @@ module.exports = {
   },
 
   openCardTransaction() {
-    I.waitForElement(this.buttons.cardTransaction, 10);
-    I.click(this.buttons.cardTransaction);
+    I.waitForElement(this.buttons.openDetailTransaction, 10);
+    I.click(this.buttons.openDetailTransaction);
   },
 
   async getStatusTransaction() {
@@ -212,9 +214,14 @@ module.exports = {
     I.click(this.buttons.submitPassword);
   },
 
-  clickButtonIncorrectPassword() {
-    I.waitForElement(this.buttons.passwordIncorrect, 10);
-    I.click(this.buttons.passwordIncorrect);
+  clickButtonTryAgain() {
+    I.waitForElement(this.buttons.tryAgainInput, 10);
+    I.click(this.buttons.tryAgainInput);
+  },
+
+  directToLogin() {
+    I.waitForElement(this.buttons.understand, 10);
+    I.click(this.buttons.understand);
   },
 
   resendOtp(){
@@ -230,5 +237,10 @@ module.exports = {
   async getNameCanceledBy(){
     I.waitForElement(this.texts.nameCanceledBy, 10);
     return I.grabTextFrom(this.texts.nameCanceledBy);
+  },
+
+  async getNameApprovedBy(){
+    I.waitForElement(this.texts.nameApprovedBy, 10);
+    return I.grabTextFrom(this.texts.nameApprovedBy);
   },
 }

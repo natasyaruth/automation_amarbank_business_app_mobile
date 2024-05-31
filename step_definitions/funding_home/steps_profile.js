@@ -4,28 +4,29 @@ const { I,
     profilePage,
     resetStateDao,
     headerPage,
+    documentPage,
 } = inject();
 
 When("I will see card account {string}", (typeAccount) => {
     if (
         typeAccount === "active"
     ) {
-        I.waitForElement(transactionHistoryPage.buttons.historyBtn, 10);
+        I.waitForElement(transactionHistoryPage.buttons.historyBtn, 30);
 
     } else if (
         typeAccount === "on verification"
     ) {
-        I.waitForText("Menunggu verifikasi data selesai", 10);
+        I.waitForText("Menunggu verifikasi data selesai", 30);
 
     } else if (
         typeAccount === "complete document"
     ) {
-        I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 10);
+        I.waitForText("Mohon lengkapi Dokumen yang dibutuhkan", 30);
 
     } else if (
         typeAccount === "on process"
     ) {
-        I.waitForText("Lanjutkan Pembuatan Rekening Giro", 10);
+        I.waitForText("Lanjutkan Pembuatan Rekening Giro", 30);
 
     }
     globalVariable.onBoarding.status = typeAccount;
@@ -37,7 +38,7 @@ When("I click tab profile", () => {
 
 When("I see my profile company data", () => {
     I.waitForText("Direktur", 10);
-    I.see(globalVariable.login.userID.toUpperCase());
+    I.waitForText(globalVariable.login.userID.toUpperCase(), 10);
 
     if (
         globalVariable.onBoarding.status === "active"
@@ -48,11 +49,11 @@ When("I see my profile company data", () => {
         I.dontSeeElement(profilePage.buttons.copyAccNumber);
     }
 
-    I.see("Tipe Industri");
-    I.see("Jenis Bisnis");
-    I.see("Tanggal Berdiri");
-    I.see("Alamat Bisnis");
-    I.seeElement(profilePage.buttons.transactionApprovalDetail);
+    I.waitForText("Tipe Industri", 10);
+    I.waitForText("Jenis Bisnis", 10);
+    I.waitForText("Tanggal Berdiri", 10);
+    I.waitForText("Alamat Bisnis", 10);
+    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 10);
     I.swipeUp(profilePage.buttons.transactionApprovalDetail, 800, 800);
 });
 
@@ -82,7 +83,7 @@ When("I click document business", () => {
 });
 
 When("I click document giro", () => {
-    profilePage.clickDocumentGiro();
+    documentPage.clickDocumentGiro();
 });
 
 When("I back to page profile business", () => {
@@ -113,65 +114,9 @@ Then("I will see my profile individual data", () => {
     I.dontSee("Tanggal Berdiri");
     I.dontSee("Alamat Bisnis");
     I.dontSeeElement(profilePage.buttons.documentProcuration);
-});
-
-Then("I will not see button document giro", () => {
-    I.waitForText("Dokumen Bisnis", 10);
-    I.dontSeeElement(profilePage.buttons.documentGiro);
+    I.dontSeeElement(profilePage.buttons.documentBusiness);
 });
 
 Then("I will not see button document business", () => {
     I.dontSeeElement(profilePage.buttons.documentBusiness);
-});
-
-Then("I will see document business for type company", () => {
-    I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB");
-    I.see("NIB.pdf");
-
-    I.seeElement(profilePage.buttons.downloadDeed);
-    I.see("Akta Perusahaan");
-    I.see("Akta Perusahaan.pdf");
-
-    I.seeElement(profilePage.buttons.downloadSk);
-    I.see("SK Kemenkumham");
-    I.see("SK Kemenkumham.pdf");
-
-    I.seeElement(profilePage.buttons.downloadNpwp);
-    I.see("NPWP Perusahaan");
-    I.see("NPWP Perusahaan.pdf");
-
-    I.see("Dokumen Giro");
-});
-
-Then("I will see document business for type individual company", () => {
-    I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB");
-    I.see("NIB.pdf");
-
-    I.seeElement(profilePage.buttons.downloadDeed);
-    I.see("Akta Perusahaan");
-    I.see("Akta Perusahaan.pdf");
-
-    I.dontSeeElement(profilePage.buttons.downloadSk);
-    I.dontSee("SK Kemenkumham");
-    I.dontSee("SK Kemenkumham.pdf");
-
-    I.dontSeeElement(profilePage.buttons.downloadNpwp);
-    I.dontSee("NPWP Perusahaan");
-    I.dontSee("NPWP Perusahaan.pdf");
-
-    I.see("Dokumen Giro");
-});
-
-Then("I will see one document giro", () => {
-    I.waitForElement(profilePage.buttons.downloadNib, 10);
-    I.see("NIB");
-    I.see("NIB.pdf");
-
-    I.see("Dokumen Giro");
-});
-
-Then("I will direct to page document business", () => {
-    I.waitForText("Dokumen Giro", 10);
 });

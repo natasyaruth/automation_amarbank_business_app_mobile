@@ -1,37 +1,72 @@
 Feature: Apply Either Loan and select the loan type
     As a customer lead
-    I want to login Aplly loan and select the loan type
+    I want to login Aplly loan and select the loan type AP Direct
 
 
     Background:
-        Given I am a registered customer with following details:
-            # | userID   | bots2912  |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+        Given I am a registered customer with following details
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            # | userID   | bots2912  |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         And I click login
         And I click later
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
 
-    @emes2
-    Scenario: user choose type loan AP
-        Given I am on onboarding loan
-        And I click button ajukan pinjaman       
-        And I Input Nominal Pinjaman '2400000000'
-        And I Input Tenor '30'
-        And I select business location jabodetabek    
-        And I click on button Selanjutnya              
-        And I select loan type "AP"
-        And I click on Lihat Skema Pinjaman        
-        And I click button select the schema
-        And I click icon other anchor             
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
+Scenario: User apply second loan AP direct and want to see AP loan schema
+    Given I click button loan dashboard  
+    #section select loan type
+    When user click button ajukan pinjaman    
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button "Distributor Financing"
+    Then System will display Schema of Distributor Financing   
+
+ Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier    
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+  Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: user choose type loan AP Direct
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User choose nominal "Rp50 juta - 5 Miliar"  
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Supplier
         And I fill a field "anchorName" with "PT. AP Direct 1"
         When I select industry type
         And I select the date cooperating
@@ -52,8 +87,12 @@ Feature: Apply Either Loan and select the loan type
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
+        #sectionn buttom sheet success
+        And user click button close on Metode Upload Dokumen
+        And user click button Langsung dari Aplikasi on Metode Upload Dokumen
+        And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
 
-    @emes3
+    
     Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
@@ -73,4 +112,6 @@ Feature: Apply Either Loan and select the loan type
         And user click button copy
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
+
+    
         

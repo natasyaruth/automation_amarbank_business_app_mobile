@@ -1,3 +1,5 @@
+const { text } = require("../registration");
+
 const { I } = inject();
 
 module.exports = {
@@ -7,28 +9,203 @@ module.exports = {
         textBenefit2: {xpath: '//android.widget.TextView[contains(@text, "Proses Cepat dan Mudah")]'},
         textBenefit3: {xpath: '//android.widget.TextView[contains(@text, "Perbankan Bisnis Premium")]'},
         textFieldLoanTypePage: "~textTitle",
-        textFieldLoanAP: "~textRadioButtonAP",
-        textFieldLoanAR: "~textRadioButtonAR",
-        textFieldLoanPO: "~textRadioButtonPO",
+        textFieldLoanAP: "~textFieldLoanAP",
+        textFieldLoanAR: "~textFieldLoanAR",
+        textFieldLoanPO: "~textFieldLoanPO",
         textLoanSchemaAP: "~textTitle",
         textLoanSchemaAR: "~textTitle",
-        textLoanSchemaPO: "~textTitle"
+        textLoanSchemaPO: "~textTitle",
+        textLoan: "~textFieldLoan",             
+        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Berapa hari tenor limit yang Anda butuhkan")]'},
+        texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
+        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'},
+        textTenorhari: {xpath: '//android.widget.TextView[contains(@text, "Hari")]'},
+        textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
+        textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
+        textwordPO: {xpath: '//android.widget.TextView[contains(@text, "Project Financing")]'},
+        //Data Pekerjaan
+        individuEmployeDataMSME: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
+        individuEmployeDataCORP: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
+        //Address Bussiness Field
+        adressBussinessPTPeroranganMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPerusahaanMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessCVMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessUDMSME: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPeroranganCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessPTPerusahaanCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessCVCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        adressBussinessUDCORP: {xpath: '//android.widget.TextView[contains(@text, "Alamat Bisnis *")]'},
+        //Select Anchor or Supplier Name
+        selectAPAnchorMSME: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARAnchorMSME: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectAPDirectMSME: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARDirectrMSME: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectPODirectMSME: {xpath: '//android.widget.TextView[contains(@text, "Nama Pemilik Proyek/Bowheer Anda")]'},
+        selectAPAnchorCORP: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARAnchorCORP: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectAPDirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
+        selectARDirectrCORP: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
+        selectPODirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Nama Pemilik Proyek/Bowheer Anda")]'},
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
         backButtonLoanTypePage: {xpath: '(//android.view.View[@content-desc="buttonBack"])[1]'},
-        nextButton: "~buttonNext"
+        schemacreditButton: "~buttonSchema", 
+        loanAPButton: "~cardAP",
+        loanARButton: "~cardAR",
+        loanPOButton: "~cardPO",
+        schemaAPButton: "~buttonSchemaAP",
+        schemaARButton: "~buttonSchemaAR",
+        schemaPOButton: "~buttonSchemaPO",
+        buttonClose: "~buttonClose",
+        buttonNext: "~buttonNext",
+        buttonBack: "~buttonBack",
+        buttonSave: "~buttonSave",
+        buttonClear: "~clearText",
+        buttonNominalMSME: "~optionUpTo5Billion",
+        buttonNominalCorp: "~optionMoreThan5Billion",
+        buttonCloseDoc: "~buttonCloseBottomSheet",
+        buttonUploadMobileDoc: "~buttonUploadMobile",
+        buttonUploadWebDoc: "~buttonUploadWeb",
     },
+
     radioButtons: {
         radioBtnAP: "~radioButtonAP",
         radioBtnAR: "~radioButtonAR",
         radioBtnPO: "~radioButtonPO",
     },
     contentFields: {
-        viewPageAP: "~Loan Schema",
-        viewPageAR: "~Loan Schema",
-        viewPagePO: "~Loan Schema",
+        viewPageAP: "~imageSchemaAP",
+        viewPageAR: "~imageSchemaAR",
+        viewPagePO: "~imageSchemaPO",
         loanRequirement: {xpath: '(//android.widget.ImageView[@content-desc="Loan requirement"])[1]'},
+        nominalMSME: "~optionUpTo5Billion",
+        nominalCORP: "~optionMoreThan5Billion",
+    },
+    field:{
+        inputTenor: "~textFieldTenor",
+        inputCustomNominal: "~textFieldCustomAmount",        
+    },
+
+// Apply Loan Journey Improvement
+    clickButtonLearnSchema(){
+        I.click(this.buttons.schemacreditButton);
+    },
+    clickButtonClose(){
+        I.click(this.buttons.buttonClose);
+    },
+    clickButtonNext(){
+        I.click(this.buttons.buttonNext);
+    },
+    clickButtonBack(){
+        I.click(this.buttons.buttonBack);
+    },
+    clickButtonSave(){
+        I.click(this.buttons.buttonSave);
+    },
+    clickButtonClearNominal(){
+        I.click(this.buttons.buttonClear);
+    },
+    fillTenor(){
+        I.setText(this.field.inputTenor);       
+    },
+
+    //Upload Document
+    clickButtonCloseDoc(){
+        I.click(this.buttons.buttonCloseDoc);
+    },
+    clickButtonUploadMobileDoc(){
+        I.click(this.buttons.buttonUploadMobileDoc);
+    },
+    clickButtonUploadWebDoc(){
+        I.click(this.buttons.buttonUploadWebDoc);
+    },
+
+    async verifyTextHari(Hari){
+        let actual = await I.grabAttributeFrom(this.textField.textTenorhari, 'text');
+        I.assertEqual(actual, 'Hari');
+
+    },
+
+    async validateTypeLoanWording(wordingLoanType){
+        switch (wordingLoanType){
+            case 'AP':
+                let hint = await I.grabAttributeFrom(this.textField.textwordAP, 'text');
+                I.assertEqual(hint, 'Distributor Financing');
+            break;
+            case 'AR':
+                let actualValue = await I.grabAttributeFrom(this.textField.textwordAR, 'text');
+                I.assertEqual(actualValue, 'Supplier Financing');
+            break;
+            case 'PO':
+                let actual = await I.grabAttributeFrom(this.textField.textwordPO, 'text');
+                I.assertEqual(actual, 'Project Financing');
+            break;
+        }        
+
+    },
+
+   chooseOptionMSME(){  
+        I.waitForElement(this.buttons.chooseOptionMSME,10);    
+        I.click(this.buttons.chooseOptionMSME);
+   },
+
+   chooseOptionCorp(){
+        I.waitForElement(this.buttons.chooseOptionCorp,10);
+        I.click(this.buttons.chooseOptionCorp);
+   },
+
+   inputTenor(){
+        I.setText(this.field.inputTenor);
+   },
+
+    
+
+    
+
+    fillCustomNonimal(){
+        I.setText(this.field.inputCustomNominal);
+    },
+
+    selectLoanTypeList(selectLoanType){
+        switch (selectLoanType){
+            case 'AP':
+                I.click(this.buttons.loanAPButton);
+            break;
+            case 'AR':
+                I.click(this.buttons.loanARButton);
+            break;
+            case "PO":
+                I.click(this.buttons.loanPOButton);
+                break;
+        }
+    },
+
+    selectNominal(selectNominal){
+        switch (selectNominal){
+            case 'MSME':
+                I.click(this.buttons.buttonNominalMSME);
+            break;
+            case 'Corp':
+                I.click(this.buttons.buttonNominalCorp);
+            break;
+        }
+    },
+
+    async validateTitleTopBarLoanNeeds(titleLoanNeeds){
+        let actual = await I.grabAttributeFrom(this.textField.texttitletopbarLoanNeeds, 'text');
+        I.assertEqual(actual, 'Pengajuan Limit Kredit Bisnis');
+    },
+
+    async validateLoanAmountRequested(titleNominal){
+        let actual = await I.grabAttributeFrom(this.textField.textnominalKredit, 'text');
+        I.assertEqual(actual, 'Berapa kisaran nominal limit kredit yang Anda butuhkan? *');
+    },
+
+    async validateLoanTenor(titleTenor){
+        let.actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
+        I.assertEqual(actual, 'Berapa hari tenor limit yang Anda butuhkan');
+
     },
 
 // Function for call the id component
@@ -69,30 +246,18 @@ module.exports = {
 
     },
 
-    validateLoanTypeList(loanType){
-        switch (loanType){
-            case 'AP':
-                I.seeElement(this.textField.textFieldLoanAP);
-            break;
-            case 'AR':
-                I.seeElement(this.textField.textFieldLoanAR);
-            break;
-            case 'PO':
-                I.seeElement(this.textField.textFieldLoanPO);
-            break;
-        }
-    },
+        
 
-    selectLoanTypeList(selectLoanType){
-        switch (selectLoanType){
-            case 'AP':
-                I.click(this.radioButtons.radioBtnAP);
+    selectSchemaLoanTypeList(selectSchemaType){
+        switch (selectSchemaType){
+            case 'Distributor Financing':
+                I.click(this.buttons.schemaAPButton);
             break;
-            case 'AR':
-                I.click(this.radioButtons.radioBtnAR);
+            case 'Suppplier Financing':
+                I.click(this.buttons.schemaARButton);
             break;
-            case "PO":
-                I.click(this.radioButtons.radioBtnPO);
+            case 'Distributor Financing':
+                I.click(this.buttons.schemaPOButton);
                 break;
         }
     },
@@ -101,33 +266,45 @@ module.exports = {
         switch (loanSchema){
             case 'AP':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaAP);
-                I.assertEqual(actualValue, 'Skema Pinjaman Distributor');
+                I.assertEqual(actualValue, 'Skema Distributor Financing');
             break;
             case 'AR':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaAR);
-                I.assertEqual(actualValue, 'Skema Pinjaman Modal Proyek');
+                I.assertEqual(actualValue, 'Skema Supplier Financing');
             break;
             case 'PO':
                 actualValue = I.grabTextFromField(this.textField.textLoanSchemaPO);
-                I.assertEqual(actualValue, 'Skema Pinjaman Tagihan Faktur');
+                I.assertEqual(actualValue, 'Skema Project Financing');
             break;
         }
     },
     validateContentField(contentFieldText){
         switch (contentFieldText){
             case 'AP':
-                I.seeElement(this.contentFields.viewPageAP);
+                I.seeElement(this.contentFields.imageSchemaAP);
             break;
             case 'AR':
-                I.seeElement(this.contentFields.viewPageAR);
+                I.seeElement(this.contentFields.imageSchemaAR);
             break;
             case 'PO':
-                I.seeElement(this.contentFields.viewPagePO);
+                I.seeElement(this.contentFields.imageSchemaPO);
             break;
         }
     },
 
+    clickBacktoAjukanPinjaman(){
+        I.click(this.buttons.backButton);
+    },
+
+    clickBackSelectSchmea(){
+        I.click(this.buttons.buttonClose);
+    },
+
     clickBackButtonLoanTypePage(){
         I.click(this.buttons.backButtonLoanTypePage);
-    }
+    },
+
+    clickButtonAterSeeSchema(){
+        I.click(this.buttons.backButton);
+    },
 }
