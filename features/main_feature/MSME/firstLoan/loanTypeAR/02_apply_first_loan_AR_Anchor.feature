@@ -58,7 +58,7 @@ Scenario: Validate error input tenor more than 180 hari
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-Scenario: User apply first loan AR Anchor with flaging MSME
+Scenario: User apply first loan AR Anchor with PT Perusahaan flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AR"
@@ -119,4 +119,20 @@ Scenario: User apply first loan AR Anchor with flaging MSME
     When user upload document invoice 
     And user take invoice from camera
     And user take invoice from galery
+    #Upload Dokumen from Aplikasi
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload docuemnt "nib"
+    And user upload document "aktaperusahaan"
+    And user upload document "skkemenkumhan"
+    And user upload document "npwpPerusahaan"
+    And user upload document "KTPandnpwpOfComp"
+    And user upload document "3contohInvoicewithSupplier"
+    And user upload document "paymentMutation"
+    And user upload document "2YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
 
