@@ -198,3 +198,21 @@ Scenario: User apply first loan AP Direct with bussiness type Individu and flagi
     And user click button close on Metode Upload Dokumen
     And user click button Langsung dari Aplikasi on Metode Upload Dokumen
     And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
+
+Scenario: Validate bottom sheet for Upload Dokumen
+    Given I click button loan
+    When user click button "ajukan limit baru"
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
+    And user click button Lanjut Isi Data Supplier
+    #section select Anchor
+    And user select "Anchor MSME Test"
+    And user select the date cooperating
+    And user click button Selanjutnya
+    And user checklist checkbox term and condition
+    And user checklist checkbox Privy term and condition
+    And user click button Lanjut Upload Dokumen
+    And user validate content list of documents for PT.Perusahaan
+    And user click buttton Pilih Metode Upload Dokumen
