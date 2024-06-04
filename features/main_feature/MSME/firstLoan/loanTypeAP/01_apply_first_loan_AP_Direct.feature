@@ -34,6 +34,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
+    And user validate content loan schema "AP"
+    And user click back to loan type page
 
   Scenario: User validate dropdown list on nominal option
     Given user click button ajukan pinjaman
@@ -63,7 +65,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-  Scenario: User apply first loan AP Direct with flaging MSME
+  Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AP"
@@ -90,7 +92,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button next   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
-    Given user choose Business Type "PT Perusahaan"
+    Given user choose Business Type "UD"
     And user click Selanjutnya
     And user take photo eKTP
     And user click "Saya Mengerti"
@@ -113,13 +115,19 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Then direct to "Selamat, Pengajuan Berhasil Dikirim"
     And user click OK
     # section upload document
-    Given user on upload document page
-    When user upload document "KTPandnpwpOfComp"
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload docuemnt "nib"
+    And user upload document "aktaperusahaan"  
+    And user upload document "KTPandnpwpOfComp"
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
-    And user upload document "1YearfinancialReports"
-    And user click button refresh
-    And user click back button to loan processing
+    And user upload document "2YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
     #section trigered status loan
     And user trigered api change status loan is approved
     #sectionn buttom sheet success
@@ -127,10 +135,107 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Langsung dari Aplikasi on Metode Upload Dokumen
     And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
 
-Scenario: Validate Error Field on Select Loan Amount and Tenor Form
+  Scenario: validate progress monitoring loan checking document
+    Given user on monitoring loan process page
+    And user validate title "Pengecekan Limit & Upload Dokumen" on field "titleDocumentField"
+    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
+    Then user can click button Upload Ulang Dokumen
+
+  Scenario: Checking Credit Analyst Process
+    Given user on monitoring loan process page
+    And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
+    When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
+    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
+
+  Scenario: Validate Error Field on Select Loan Amount and Tenor Form
     Given user on select loan need page
     When user click button Lanjut Isi Data Supplier
     Then user should see error "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
+
+  Scenario: User apply first loan AP Direct with bussiness type Individu and flaging MSME
+    Given I click button loan dashboard
+    When user click button "ajukan pinjaman"
+    And User select loan type "AP"
+    And User click button Pelajari Tipe Skema Kredit
+    And User choose nominal "Rp50 juta - 5 Miliar"  
+    And user input loan tenor "30" 
+    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
+    #select business location
+    And user choose business location "Jabodetabek"
+    And user click button Lanjut isi data supplier
+    #section select Anchor
+    And user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
+    And user checklist checbox term and condition
+    And user checklist checbox privy
+    And user click button next   
+    And user click button Lanjut Lengkapi Data
+    #section KYC Process
+    Given user choose Business Type "UD"
+    And user click Selanjutnya
+    And user take photo eKTP
+    And user click "Saya Mengerti"
+    And user click "Ambil Foto eKTP"
+    And user click "Kirim Foto"
+    And user input and save eKTP data
+    And user click take "Foto Diri"
+    And user click "Kirim Foto"
+    And user input and save personal individual data
+    And user select domicile address
+    When user input "Data Pekerjaan"
+    And click "Simpan Data Pekerjaan"
+    And system direct to Success screen
+    Then user click button "Lanjut Lengkapi Data Bisnis"
+    #section KYB Process
+    Given user in "Data Pekerjaan" filled
+    When user input and save "Profil Bisnis"
+    And user input and click "Simpan Daftar Direktur"
+    And user input and save "Alamat Bisnis"
+    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
+    And user click OK
+    # section upload document
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload document "3contohInvoicewithSupplier"
+    And user upload document "paymentMutation"
+    And user upload document "2YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
+    #section trigered status loan
+    And user trigered api change status loan is approved
+    #sectionn buttom sheet success
+    And user click button close on Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
+    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
+
+  Scenario: Validate bottom sheet for Upload Dokumen
+    Given I click button loan
+    When user click button "ajukan limit baru"
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
+    And user click button Lanjut Isi Data Supplier
+    #section select Anchor
+    And user select "Anchor MSME Test"
+    And user select the date cooperating
+    And user click button Selanjutnya
+    And user checklist checkbox term and condition
+    And user checklist checkbox Privy term and condition
+    And user click button Lanjut Upload Dokumen
+    And user validate content list of documents for PT.Perusahaan
+    And user click buttton Pilih Metode Upload Dokumen
 
   
