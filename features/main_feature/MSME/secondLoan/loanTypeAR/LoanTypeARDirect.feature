@@ -67,38 +67,36 @@ Feature: Apply Either Loan and select the loan type
         And user click button Lanjut Isi Data Buyer
         Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-    Scenario: user choose type loan AP Direct
-        Given I click button loan dashboard        
+    Scenario: user choose type loan AP Direct with business type Individu
+        Given I click button loan dashboard
         When user click button "ajukan limit baru"
-        And User select loan type "AP"
+        And User select loan type "AR"
         And User on Loan Needs Page
         And User choose nominal "Rp50 juta - 5 Miliar"  
         And user input loan tenor "30" 
-        And user click button Lanjut Isi Data Buyer
-        And I fill a field "anchorName" with "PT. AP Direct 1"
-        When I select industry type
-        And I select the date cooperating
-        And I fill a field "PICNameField" with "Budi"
-        And I fill a field "PICNumberField" with "08123456789"
-        And I will see checkbox Rights & Policy, T&C about loan and Privy
-        And I click button Kirim Pengajuan Pinjaman
-        And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
-        And I should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
-        And user close the bottom sheet
-        And I am on user on monitoring loan process page
-        And I click button Upload Dokumen     
-        And I upload document "npwpOfComp"
-        And I upload document "proofOfPurchase"
-        And I upload document "paymentMutation"
-        And I upload document "financialReports"
-        And I click button refresh
-        And user click back button to loan processing
+        And user click button Lanjut Isi Data Buyer 
+        #section select Anchor
+        And user select "Anchor MSME Test"
+        And user select the date cooperating
+        And user click button Selanjutnya   
+        And user checklist checkbox term and condition  
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user validate content list of documents for PT.Perusahaan
+        And user click buttton Pilih Metode Upload Dokumen
+        #Upload Dokumen from Aplikasi
+        And user click button Langsung dari Aplikasi
+        And user on Progress Upload Dokumen Page
+        And user upload document "3contohInvoicewithSupplier"
+        And user upload document "paymentMutation"
+        And user upload document "1YearfinancialReports"
+        And user click button Perbaharui Progres
+        And user click button Kirim Pengajuan Kredit Limit
+        Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+        And user click button Lihat Progres Pengajuan
+        And user on monitoring loan process page   
         # section trigered status loan
-        And user trigered api change status loan is approved
-        #sectionn buttom sheet success
-        And user click button close on Metode Upload Dokumen
-        And user click button Langsung dari Aplikasi on Metode Upload Dokumen
-        And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
+        And user trigered api change status loan is approve
     
     Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
@@ -120,14 +118,22 @@ Feature: Apply Either Loan and select the loan type
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
 
-    Scenario: Verify bottom sheet Loan Schema
+    Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
         Given I click button loan dashboard
-        #section select loan type
-        When user click button ajukan pinjaman
-        #section wants to see loan schema
-        And User click button Pelajari Tipe Skema Kredit
-        Then user will see Distributor Financing
-        And user will see Supplier Financing
-        And user will see Project Financing
-        Then use can click close button and back to type loan page
-        
+        When user click button "ajukan limit baru"
+        And User select loan type "AR"
+        And User on Loan Needs Page
+        And User choose nominal "Rp50 juta - 5 Miliar"  
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Buyer 
+        #section select Anchor
+        And user select "Anchor MSME Test"
+        And user select the date cooperating
+        And user click button Selanjutnya   
+        And user checklist checkbox term and condition  
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user validate content list of documents for PT.Perusahaan
+        And user click buttton Pilih Metode Upload Dokumen
+        And user validate wording for "Dari Perangkat lain/ Delegasi"
+        And user click button close bottom sheet
