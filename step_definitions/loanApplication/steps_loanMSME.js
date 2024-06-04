@@ -83,11 +83,6 @@ When('I click button next', () => {
     //selectLoanAmountPage.validateCompletedDataSection();
 //});
 
-When('I choose legality business type {string}', (businessType) => {
-    onboardingAccOpeningPage.chooseLegalityBusinessType(businessType);
-    globalVariable.onBoarding.legality = businessType;
-});
-
 When("I submit my legality type", () => {
     onboardingAccOpeningPage.continueToKYC();
     I.wait(3);

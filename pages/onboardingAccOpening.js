@@ -71,6 +71,7 @@ module.exports = {
     home: "~tabHome",
     business: "~tabBusiness",
     callCenter: "~tabCallCenter",
+    document: "~tabDocument",
     others: "~tabOthers",
   },
 
