@@ -57,7 +57,7 @@ Scenario: Validate error input tenor more than 180 hari
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-Scenario: User apply second loan AP Anchor type with flagging MSME
+Scenario: User apply second loan AP Anchor with business type PT.Perusahaan and flagging MSME
     Given I click button loan 
     When user click button "ajukan limit baru"
     And User select loan type "AP"
@@ -65,33 +65,32 @@ Scenario: User apply second loan AP Anchor type with flagging MSME
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
     And user click button Lanjut Isi Data Supplier  
-    #section select Anchor
-    And user on buyer cooperating page
-    And user select one of supplier list
+    #section select Anchor    
+    And user select "Anchor MSME Test"
     And user select the date cooperating
-    And user checklist checbox term and condition
-    And user checklist checbox privy
-    And user click button kIirim Pengajuan Pinjaman     
-    ##sectionn buttom sheet success
-    And user should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
-    When user should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
-    And user want to click button ok
-    # section upload document
-    Given user click button Upload Dokumen
-    And user on upload document page
-    When user upload document "ktpNpwpOfComp"
-    Then user upload document "proofOfPurchase"
+    And user click button Selanjutnya   
+    And user checklist checkbox term and condition  
+    And user checklist checkbox Privy term and condition
+    And user click button Lanjut Upload Dokumen      
+    And user validate content list of documents for PT.Perusahaan
+    And user click buttton Pilih Metode Upload Dokumen
+    #Upload Dokumen from Aplikasi
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page 
+    And user upload document "KTPandnpwpOfComp"
+    And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
-    And user upload document "financialReports"
-    And user click button refresh
-    And user click back button to loan processing
+    And user upload document "1YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
     # section trigered status loan
     And user trigered api change status loan is approved
-    #sectionn buttom sheet success
-    And user click button close on Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
-    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
-
+      
+      
+   
 Scenario: Validate Card Limit For Type Loan AP
     Given I have been on Loan Dashboard to see the loan type of Loan AP
     When I validate the card of "Loan AP"
