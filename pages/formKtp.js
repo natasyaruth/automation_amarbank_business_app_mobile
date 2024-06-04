@@ -15,7 +15,9 @@ module.exports = {
     saveEktp: "~buttonSaveEktpData",
     chooseDate: "~buttonChoose",
     backFromDate: "~buttonCancel",
-    closeBottomSheet: "~buttonClose"
+    closeBottomSheet: "~buttonClose",
+    helpDHN: "~showSupportBtn",
+    closePage: "~buttonClose",
   },
   dropDowns: {
     gender: "~textFieldGender",
@@ -53,6 +55,8 @@ module.exports = {
     date: "~textDate",
     month: "~textMonth",
     year: "~textYear",
+    blockerVerificationTitle: "~blockerVerificationTitle",
+    blockerVerificationDesc: "~blockerVerificationDesc",
   },
 
   fillInformation(ktpData) {
@@ -125,4 +129,23 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
+  clickHelp() {
+    I.waitForElement(this.buttons.helpDHN, 10);
+    I.click(this.buttons.helpDHN);
+  },
+
+  async getTitleValidationBlocker() {
+    I.waitForElement(this.text.blockerVerificationTitle, 10);
+    return await I.grabTextFrom(this.text.blockerVerificationTitle);
+  },
+
+  async getContentValidationBlocker() {
+    I.waitForElement(this.text.blockerVerificationDesc, 10);
+    return await I.grabTextFrom(this.text.blockerVerificationDesc);
+  },
+
+  closePage(){
+    I.waitForElement(this.buttons.closePage, 10);
+    I.click(this.buttons.closePage);
+  },
 }

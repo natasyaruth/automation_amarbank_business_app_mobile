@@ -155,6 +155,8 @@ exports.config = {
     loanFlaggingPage: "./pages/loanFlagging/loanFlagging.js",
 
     documentPage: "./pages/documentManagement.js",
+
+    mockingDao: "./dao/mockingDao.js",
   },
   settings: {
     logging: {

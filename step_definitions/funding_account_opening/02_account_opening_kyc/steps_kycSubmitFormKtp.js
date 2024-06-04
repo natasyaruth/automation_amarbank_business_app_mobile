@@ -3,12 +3,18 @@ const {
     formKtpPage,
     resetStateDao,
     uploadDao,
-    globalVariable } = inject();
+    globalVariable,
+    mockingDao } = inject();
 
 Given("I am a customer want to fill my information identity details", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
     resetStateDao.reloadPageAfterResetState();
+});
+
+Given("I mock feature submit form KTP into enabled", async () => {
+    await
+        mockingDao.enabledCheckDHNKTP();
 });
 
 Given("I am a customer who has uploaded my eKTP photo", async () => {
@@ -141,4 +147,43 @@ Then("I will direct to page capture selfie", async () => {
     I.waitForText("Ambil Foto Diri Anda", 10);
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will direct to page notifying me that I can't continue to next process KYC because my data indicated as DHN", async () => {
+    const actualTitle = await formKtpPage.getTitleValidationBlocker();
+    I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
+
+    const actualContent = await formKtpPage.getContentValidationBlocker();
+    I.assertEqual(actualContent, "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+
+    I.see("Untuk informasi lebih lanjut, silakan");
+    I.see("Hubungi Kami");
+    I.waitForElement(formKtpPage.buttons.helpDHN, 10);
+});
+
+Then("I close page rejected account", async () => {
+    formKtpPage.closePage();
+});
+
+Then("I will direct to dashboard with info my data indicated as DHN", async () => {
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
+
+    I.see("Amar Bank belum bisa melayani Anda.");
+    I.see("Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+
+    I.dontSee("Untuk informasi lebih lanjut, silakan");
+    I.dontSee("Hubungi Kami");
+    I.dontSeeElement(formKtpPage.buttons.helpDHN);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+
+    await
+        mockingDao.disabledCheckDHNKTP();
+
+    await
+        mockingDao.disabledCheckDHNNPWP();
 });

@@ -145,7 +145,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
   Scenario: Verifying field rw contain with -
     Given I am a customer want to fill my information identity details
     When I fill field 'rt' with '-' in form KTP
-    Then I shouldn't see message error in the below of field 'rw' in form KTP
+    Then I shouldn't see message error in the below of field 'rw' in form KTP  
 
   @C101222
   Scenario: Submit form KTP successfully business type Individual
