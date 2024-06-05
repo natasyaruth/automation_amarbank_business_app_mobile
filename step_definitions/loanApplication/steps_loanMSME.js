@@ -83,18 +83,9 @@ When('I click button next', () => {
     //selectLoanAmountPage.validateCompletedDataSection();
 //});
 
-When('I choose legality business type {string}', (businessType) => {
-    onboardingAccOpeningPage.chooseLegalityBusinessType(businessType);
-    globalVariable.onBoarding.legality = businessType;
-});
-
 When("I submit my legality type", () => {
     onboardingAccOpeningPage.continueToKYC();
     I.wait(3);
-});
-
-When("I update my last journey step to {string}", async (stepName) => {
-    await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
