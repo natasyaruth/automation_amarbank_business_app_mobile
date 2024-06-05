@@ -17,6 +17,7 @@ Feature: Account Opening Onboarding
             | passwordStg | 1234Test |
         And I click login
         And I will directing to Hook 1 Onboarding Account Opening
+        And I click later in pop up biometric
 
     @C109193
     Scenario: User choose Giro Account

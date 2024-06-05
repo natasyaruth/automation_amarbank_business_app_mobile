@@ -117,12 +117,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deved35f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag990b |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deved35f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag990b |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -138,12 +138,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag990b |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag990b |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -159,12 +159,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deveb316 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga8a9 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deveb316 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga8a9 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -180,12 +180,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga8a9 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga8a9 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -201,12 +201,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve9372 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve9372 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -222,12 +222,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve3b14 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve3b14 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -243,7 +243,7 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | devecfb5 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4400 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | devecfb5 |
@@ -264,7 +264,7 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deveb931 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4400 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deveb931 |
@@ -285,12 +285,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve7b18 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve7b18 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -306,12 +306,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve1a6f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve1a6f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -327,12 +327,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deveb931 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4400 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deveb931 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4400 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -348,12 +348,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve3b14 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve3b14 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | staga7d0 |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -369,12 +369,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve1a6f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve1a6f |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag323d |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -390,12 +390,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | deve5e3a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | deve5e3a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I choose menu Transfer from main dashboard
@@ -422,12 +422,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -445,12 +445,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -469,12 +469,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -489,12 +489,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
@@ -509,12 +509,12 @@ Feature: User Should See Detail Transaction History
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag2add |
             | passwordStg | Test1234 |
         And I click login
         And I will direct to dashboard
