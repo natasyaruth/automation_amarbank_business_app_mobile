@@ -180,7 +180,11 @@ Then("I should not see my password", () => {
 });
 
 Given("I am customer that already on page login", () => {
-  loginPage.clickLoginButton();
+  welcomePage.clickButtonLogin();
+});
+
+When("I click button login via biometric", () => {
+  loginPage.clickBiometric();
 });
 
 When("I click call center", () => {
@@ -193,6 +197,21 @@ When("I click forgot password", () => {
 
 When("I click registration", () => {
   loginPage.goToRegistrationPage();
+});
+
+When("I click later in pop up biometric", () => {
+  loginPage.clickLaterBiometric();
+});
+
+When("I close bottom sheet biometric", () => {
+  loginPage.closeBottomSheet();
+});
+
+Then("I should see bottom sheet that biometric still not activated yet", () => {
+  I.waitForElement(loginPage.buttons.close, 10);
+
+  I.see("Masuk dengan Biometrik");
+  I.see("Fitur masuk dengan Biometrik belum aktif. Anda dapat mengaktifkan fitur ini melalui Menu Lainnya.")
 });
 
 Then("I should see new page with text {string} displayed", (actualMessage) => {

@@ -28,6 +28,7 @@ Feature: Account Opening Main Dashboard
         And I submit my legality type
         And I see page 'Upload eKTP'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
@@ -39,6 +40,7 @@ Feature: Account Opening Main Dashboard
         And I upload my eKTP photo
         And I see page 'Data KTP'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
@@ -50,6 +52,7 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
@@ -61,6 +64,7 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Upload Selfie'
         And I see page 'Data Personal'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'
 
@@ -72,10 +76,11 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
-     
-    @C96604 
+
+    @C96604
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -83,6 +88,7 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
@@ -95,6 +101,7 @@ Feature: Account Opening Main Dashboard
         And I continue to process KYB
         And I see page 'Data Business Profile'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Continue Process KYB'
 
@@ -116,6 +123,7 @@ Feature: Account Opening Main Dashboard
         And I submit my business profile
         And I see page 'Data Business Owner'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Business Owner'
 
@@ -137,6 +145,7 @@ Feature: Account Opening Main Dashboard
         And I submit my business profile
         And I see page 'Data Director List'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
@@ -159,6 +168,7 @@ Feature: Account Opening Main Dashboard
         And I submit business director
         And I see page 'Data Business Address'
         And I back to dashboard
+        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Business Address'
 

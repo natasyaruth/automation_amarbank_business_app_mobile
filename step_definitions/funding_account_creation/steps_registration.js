@@ -311,11 +311,35 @@ Then("I will see helping center via email", () => {
 });
 
 Then("I will directing to page login", () => {
-  I.waitForText("Masuk Akun", 10);
-  I.seeElement(headerPage.buttons.back);
-  I.seeElement(loginPage.fields.userID);
-  I.seeElement(loginPage.fields.password);
-  I.seeElement(loginPage.buttons.login);
+  I.waitForText("Masuk Akun", 20);
+  I.see(headerPage.buttons.back);
+  I.see(headerPage.icon.callCenter);
+
+  I.see("User ID");
+  I.see("Masukan user ID");
+  I.see(loginPage.fields.userID);
+
+  I.see("Password");
+  I.see("Masukan password");
+  I.see(loginPage.fields.password);
+  I.see(loginPage.icon.eyePassword);
+
+  I.see("Ingat saya");
+  I.see(loginPage.checkbox.rememberMe);
+
+  I.see("Lupa Password?");
+  I.see(loginPage.link.forgotPassword);
+
+  I.see("Masuk Akun");
+  I.see(loginPage.buttons.login);
+
+  I.see("Atau");
+  I.see("Masuk dengan Biometrik");
+  I.see(loginPage.buttons.biometric);
+
+  I.see("Belum memiliki akun?");
+  I.see("Daftar?");
+  I.see(loginPage.link.registration);
 });
 
 Then("I will directing to web view terms and condition", () => {
