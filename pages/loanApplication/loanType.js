@@ -23,6 +23,9 @@ module.exports = {
         textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
         textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
         textwordPO: {xpath: '//android.widget.TextView[contains(@text, "Project Financing")]'},
+        textTitleTopBarListDoc: {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
+
+
         //Data Pekerjaan
         individuEmployeDataMSME: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
         individuEmployeDataCORP: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
@@ -46,6 +49,7 @@ module.exports = {
         selectAPDirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Supplier Tujuan Anda")]'},
         selectARDirectrCORP: {xpath: '//android.widget.TextView[contains(@text, "Buyer Tujuan Anda")]'},
         selectPODirectCORP: {xpath: '//android.widget.TextView[contains(@text, "Nama Pemilik Proyek/Bowheer Anda")]'},
+
     },
     buttons: {
         startButton: {xpath: '(//android.view.View[@content-desc="buttonStartLoan"])[1]'},
@@ -67,6 +71,7 @@ module.exports = {
         buttonCloseDoc: "~buttonCloseBottomSheet",
         buttonUploadMobileDoc: "~buttonUploadMobile",
         buttonUploadWebDoc: "~buttonUploadWeb",
+        buttonPilihMetodeUploadDoc: "~buttonNext",
     },
 
     radioButtons: {
@@ -203,9 +208,13 @@ module.exports = {
     },
 
     async validateLoanTenor(titleTenor){
-        let.actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
+        let actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
         I.assertEqual(actual, 'Berapa hari tenor limit yang Anda butuhkan');
 
+    },
+    async validateTitleTopBarDocList(titleDocList){
+        let actual = await I.grabAttributeFrom(this.textField.textTitleTopBarListDoc, 'text');
+        I.assertEqual(actual, 'Pengajuan Limit Kredit Bisnis');
     },
 
 // Function for call the id component
@@ -306,5 +315,9 @@ module.exports = {
 
     clickButtonAterSeeSchema(){
         I.click(this.buttons.backButton);
+    },
+
+    clickButtonPilihMetodeUploadDoc(){
+        I.click(this.buttons.buttonPilihMetodeUploadDoc);
     },
 }
