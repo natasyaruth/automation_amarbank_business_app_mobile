@@ -117,10 +117,6 @@ When("I submit my legality type", () => {
     I.wait(3);
 });
 
-When("I update my last journey step to {string}", async (stepName) => {
-    await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
-});
-
 Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
     const legalityType = globalVariable.onBoarding.legality;
 

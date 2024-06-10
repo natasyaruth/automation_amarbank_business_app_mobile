@@ -3,6 +3,7 @@ Feature: Maker and Approver Transaction Manual Cases
     As a director
     I want to approve or reject transaction from other director
 
+    @C124789
     Scenario: Validate number card approval transaction in main dashboard (Only maker)
         Given Maker create transaction transfer out more than 5 times
         When User login as maker
@@ -10,6 +11,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then User will see card maker in main dashboard with maximum 5 cards
         And User can swipe the card
 
+    @C124790
     Scenario: Validate number card approval transaction in main dashboard (Only approver)
         Given Maker create transaction transfer out more than 5 times
         When User login as approver
@@ -17,6 +19,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then User will see card approver in main dashboard with maximum 5 cards
         And User can swipe the card
 
+    @C124791
     Scenario: Validate number card approval transaction in main dashboard (Maker+Approver)
         Given Maker and approver create transaction transfer out more than 5 times
         When User login as approver or maker
@@ -24,6 +27,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then User will see card approver in main dashboard with maximum 5 cards contain with need approval and waiting approval cards
         And User can swipe the card
 
+    @C124792
     Scenario: Validate card maker and approval after make transfer out
         Given I am a registered customer with following details:
             | userID   | autocaea |
@@ -65,6 +69,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And I swipe card transaction
         And I will see card approver transaction in main dashboard
 
+    @C124793
     Scenario: Receive notification need approval transaction from maker
         Given Maker create transaction transfer out in device A
         And Approver using device B
@@ -73,6 +78,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And subject is 'Amar Bank Bisnis'
         And along with icon amarbank business
 
+    @C124794
     Scenario: Receive OTP SMS
         Given Maker create transaction transfer out
         And service to approve/reject transaction is error
@@ -83,6 +89,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User submit password
         Then User will receive SMS along with otp code
 
+    @C124795
     Scenario: Checking time and attempt resend OTP
         Given Maker create transaction transfer out
         And service to approve/reject transaction is error
@@ -103,6 +110,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User try to resend OTP
         Then User will see count down time reset to 1 minutes with attempt '5/5'
 
+    @C124796
     Scenario: Drop off in page input OTP
         Given Maker create transaction transfer out
         And service to approve/reject transaction is error
@@ -119,6 +127,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User submit password
         Then User will see count down back to default 1 minutes with attempt left '1/5'
 
+    @C124797
     Scenario: Approve transaction more than one
         Given Maker create transaction transfer out more than 2 times
         When User login as approver
@@ -143,6 +152,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User back to main dashboard
         And User will see card approver B is no longer in main dashboard
 
+    @C124798
     Scenario: Approve transaction with approval more than 1 director
         Given Maker create transaction transfer out
         And approver more than one
@@ -156,6 +166,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User will direct to tab in process at section waiting for approval
         And card transaction will move to tab in process at section waiting for approval
 
+    @C124799
     Scenario: Reject transaction when other director approve the transaction
         Given Maker create transaction transfer out
         And approver more than one
@@ -172,6 +183,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And User back to main dashboard
         And User will see card approver is no longer in main dashboard
 
+    @C124800
     Scenario: Approve/reject transaction when server is error
         Given Maker create transaction transfer out
         And service to approve/reject transaction is error
@@ -184,6 +196,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then User User will direct to section in progress
         And User will see snackbar 'Sedang terjadi kesalahan sistem.'
 
+    @C124801
     Scenario: Receive notification approved from approver
         Given Maker create transaction transfer out using device A
         When User login as approver using device B
@@ -197,6 +210,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then Maker in device A will receive notification with wording 'Transaksi Anda telah disetujui oleh Direksi lainnya.'
         And receive email approved from amarbank business
 
+    @C124802
     Scenario: Receive notification rejected from approver
         Given Maker create transaction transfer out using device A
         When User login as approver using device B
@@ -210,6 +224,7 @@ Feature: Maker and Approver Transaction Manual Cases
         Then Maker in device A will receive notification with wording 'Transaksi Anda telah ditolak oleh Direksi lainnya.'
         And receive email rejected from amarbank business
 
+    @C124803
     Scenario: Check card maker in main dashboard and detail approval transaction after transaction was cancelled
         Given Maker create transaction transfer out using device A
         When Maker cancel their transaction
@@ -228,6 +243,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker can click detail card completed
         And Maker will see detail card maker that has been canceled
 
+    @C124804
     Scenario: Cancel transaction with one approval already accept the transaction (Level approval more than 1 director)
         Given Maker create transaction transfer out using device A
         And level approval more than 1 director
@@ -242,6 +258,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And in all approver, that transaction should be not exist anymore
         And in history completed card, the transaction will get status 'Transaksi Dibatalkan'
 
+    @C124805
     Scenario: Cancel transaction when transaction was accepted at the same time (Level approval 1 director, state cancelation in page detail maker)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -256,6 +273,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker can click detail card completed
         And Maker will see detail card maker that has been approved
 
+    @C124806
     Scenario: Cancel transaction when transaction was accepted at the same time (Level approval 1 director, state cancelation in page input password)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -274,6 +292,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker can click detail card completed
         And Maker will see detail card maker that has been approved
 
+    @C124807
     Scenario: Cancel transaction when transaction was accepted at the same time (Level approval 1 director, state cancelation in page input otp)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -292,6 +311,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker can click detail card completed
         And Maker will see detail card maker that has been approved
 
+    @C124808
     Scenario: Approve transaction when transaction was cancelled at the same time (Level approval 1 director, state approve in page detail maker)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -307,6 +327,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
+    @C124809
     Scenario: Approve transaction when transaction was cancelled at the same time (Level approval 1 director, state approve in page input password)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -325,6 +346,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
+    @C124810
     Scenario: Approve transaction when transaction was cancelled at the same time (Level approval 1 director, state approve in page input otp)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -343,6 +365,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
+    @C124811
     Scenario: Reject transaction when transaction was cancelled at the same time (Level approval 1 director, state reject in page detail maker)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -358,6 +381,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
+    @C124812
     Scenario: Reject transaction when transaction was cancelled at the same time (Level approval 1 director, state reject in page input password)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
@@ -376,6 +400,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
+    @C124813
     Scenario: Reject transaction when transaction was cancelled at the same time (Level approval 1 director, state reject in page input otp)
         Given Maker create transaction transfer out using device A
         And level approval only 1 director
