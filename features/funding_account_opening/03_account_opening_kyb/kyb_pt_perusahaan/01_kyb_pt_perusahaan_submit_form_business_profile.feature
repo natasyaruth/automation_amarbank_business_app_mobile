@@ -24,7 +24,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
         And I submit my legality type
         And I update my last journey step to 'Data Employment'
 
-    @C96564
+    @C131931
     Scenario: Submit form Business Profile successfully business type PT Perusahaan
         Given I am a customer who has completed my KYC process
         When I continue to process KYB

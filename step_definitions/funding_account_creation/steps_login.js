@@ -10,25 +10,37 @@ const {
   globalVariable,
 } = inject();
 
-  Given(
-    "I am a customer who has failed to login {string} times with following details:",
-    (countValue, table) => {
-      welcomePage.clickButtonLogin();
+Given(
+  "I am a customer who has failed to login {string} times with following details:",
+  (countValue, table) => {
+    welcomePage.clickButtonLogin();
 
-      for (let i = 0; i < countValue; i++) {
-        const account = table.parse().rowsHash();
+    for (let i = 0; i < countValue; i++) {
+      const account = table.parse().rowsHash();
 
-        if (process.env.ENVIRONMENT == "staging") {
-          globalVariable.login.password = account["passwordStg"];
-          globalVariable.login.userID = account["userIDstg"];
-        } else {
-          globalVariable.login.password = account["password"];
-          globalVariable.login.userID = account["userID"];
-        }
+      if (process.env.ENVIRONMENT == "staging") {
+        globalVariable.login.password = account["passwordStg"];
+        globalVariable.login.userID = account["userIDstg"];
+      } else {
+        globalVariable.login.password = account["password"];
+        globalVariable.login.userID = account["userID"];
       }
-      globalVariable.login.countValue = countValue;
     }
-  );
+    globalVariable.login.countValue = countValue;
+  }
+);
+
+Given("I login using my user id that I recently receive through email", async () => {
+  welcomePage.clickButtonLogin();
+
+  const account = {
+    userID: globalVariable.login.userID,
+    password: globalVariable.login.password
+  };
+
+  loginPage.fillInAccountInformation(account);
+  loginPage.clickLoginButton();
+});
 
 Then("I successed go to dashbord", () => {
   ///dashboard still on development from mobile
@@ -41,7 +53,7 @@ Then("I successed go to dashbord", () => {
 });
 
 Then("I click menu loan dashboard", () => {
-    I.click()
+  I.click()
 });
 
 Given("I am a registered customer with following details:", (table) => {
@@ -231,6 +243,8 @@ When("I click checkbox remember me", () => {
 });
 
 When("I click logout", () => {
+  I.wait(3);
+  I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
   loginPage.clickLogout();
 });
 

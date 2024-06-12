@@ -23,7 +23,7 @@ Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
     And I choose legality business type 'individualBusiness'
     And I submit my legality type
 
-  @C96530
+  @C131833
   Scenario: Upload eKTP photo successfully business type PT Perorangan
     Given I am a customer who has selected the business type PT Perorangan
     When I upload my eKTP photo

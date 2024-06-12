@@ -72,7 +72,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I allow company to store my data
         And I submit my business address
 
-    @C101373
+    @C131943
     Scenario: Upload All document business type PT Perorangan
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address

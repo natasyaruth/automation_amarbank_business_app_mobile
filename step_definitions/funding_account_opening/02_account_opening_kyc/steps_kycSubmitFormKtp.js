@@ -4,6 +4,7 @@ const {
     resetStateDao,
     uploadDao,
     globalVariable,
+    onboardingAccOpeningPage,
     mockingDao } = inject();
 
 Given("I am a customer want to fill my information identity details", async () => {
@@ -154,7 +155,7 @@ Then("I will direct to page notifying me that I can't continue to next process K
     I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
 
     const actualContent = await formKtpPage.getContentValidationBlocker();
-    I.assertEqual(actualContent, "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+    I.assertEqual(actualContent.trim(), "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
 
     I.see("Untuk informasi lebih lanjut, silakan");
     I.see("Hubungi Kami");
@@ -172,7 +173,7 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
     I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
     I.see("Amar Bank belum bisa melayani Anda.");
-    I.see("Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+    I.see("Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari. ");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");
     I.dontSee("Hubungi Kami");

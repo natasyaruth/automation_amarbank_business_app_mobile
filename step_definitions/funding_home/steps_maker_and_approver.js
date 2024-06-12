@@ -68,6 +68,12 @@ When("I click help center", () => {
     headerPage.goToCallCenter();
 });
 
+When("I input PIN {string} approver", (Pin) => {
+    I.waitForText("Masukkan PIN", 10);
+    I.see("PIN")
+    transferPage.inputPin(Pin);
+}),
+
 When("I input incorrect password for approver", () => {
     I.waitForText("Password", 10);
     I.see("Silahkan masukkan password Amar Bank Bisnis kamu");
@@ -733,9 +739,9 @@ Then("I will see detail card maker that has been approved", async () => {
     const month = currentDate.getMonth();
     const year = currentDate.getFullYear();
     const months = [
-        "Jan", "Feb", "Mar", "Apr",
-        "Mei", "Jun", "Jul", "Aug",
-        "Sep", "Okt", "Nov", "Des"
+        "Januari", "Februari", "Maret", "April",
+        "Mei", "Juni", "Juli", "Agustus",
+        "September", "Oktober", "November", "Desember"
     ];
 
     const actualSenderName = await approvalTransactionPage.getSenderName();

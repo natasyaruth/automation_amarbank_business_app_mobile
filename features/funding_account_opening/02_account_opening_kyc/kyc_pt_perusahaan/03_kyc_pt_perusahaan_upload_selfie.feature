@@ -24,7 +24,7 @@ Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
     And I submit my legality type
     And I update my last journey step to 'Data KTP'
 
-  @C96539
+  @C131828
   Scenario: Upload selfie image successfully business type PT Perusahaan
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'

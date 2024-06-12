@@ -24,7 +24,7 @@ Feature: Account Opening KYC CV - Submit Data Employment
         And I submit my legality type
         And I update my last journey step to 'Data Domicile Address'
 
-    @C96522
+    @C131825
     Scenario: Submit form Data Employment successfully business type CV
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

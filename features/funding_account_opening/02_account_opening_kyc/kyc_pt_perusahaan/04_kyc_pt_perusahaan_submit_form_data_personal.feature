@@ -24,7 +24,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Personal
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
 
-    @C96540
+    @C131829
     Scenario: Submit form Data Personal successfully business type PT Perusahaan
         Given I am a customer want to fill my personal details
         When I submit my personal data details business and upload my npwp as followings:
