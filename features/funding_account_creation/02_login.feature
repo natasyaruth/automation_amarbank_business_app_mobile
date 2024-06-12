@@ -4,7 +4,7 @@ Feature: Account login
   As a customer lead
   I want to login with registered account
 
-  @C75493
+  @C131544
   Scenario: Login with registered account
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -19,7 +19,7 @@ Feature: Account login
     And I click login
     Then I will direct to dashboard
 
-  @C76892
+  @C131545
   Scenario: Login with unregistered account
     Given I am an unregistered customer trying to login
     When I filling in form login with the following details:
@@ -30,7 +30,7 @@ Feature: Account login
     And I click login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
-  @C75491
+  @C131546
   Scenario: Input UserID without value
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -45,7 +45,7 @@ Feature: Account login
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
 
-  @C75492
+  @C131547
   Scenario: Input Password without value
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -60,7 +60,7 @@ Feature: Account login
     And I click login
     Then I should be notified 'Password wajib diisi' in the below of field 'password'
 
-  @C75497
+  @C131548
   Scenario: Login with User ID and Password is empty
     Given I am a registered customer with following details:
       | userID      | JOHN12j3 |
@@ -76,7 +76,7 @@ Feature: Account login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
 
-  @C75503
+  @C131549
   Scenario: User want to see their password
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -91,7 +91,7 @@ Feature: Account login
     And I click icon eye password
     Then I should see my password
 
-  @C75504
+  @C131550
   Scenario: User don't want to see their password
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -106,13 +106,13 @@ Feature: Account login
     And I click icon eye password twice
     Then I should not see my password
 
-  @C75505
+  @C131551
   Scenario: Access call center on page login
     Given I am customer that already on page login
     When I click call center
     Then I should see bottom sheet call center with email
 
-  @C75506
+  @C131552
   Scenario: Access link Lupa Password
     Given I am customer that already on page login
     When I click forgot password
@@ -120,14 +120,14 @@ Feature: Account login
     And I should see field 'userID' on page Forgot Password
     And I should see field 'email' on page Forgot Password
 
-  @C75507
+  @C131553
   Scenario: Access link Daftar
     Given I am customer that already on page login
     When I click registration
     Then I should see new page with text 'Buat Akun' displayed
     And I should see field 'fullName' on page Registration
 
-  @C75508
+  @C131554
   Scenario: User want to remember their User ID
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -146,13 +146,13 @@ Feature: Account login
     Then I should see checkbox remember me is checked
     And I should see field user ID is filled with the last user ID
 
-  @C75514
+  @C131555
   Scenario: Back to page Onboarding from page Login
     Given I am customer that already on page login
     When I click button back in the header page
     Then I will direct to page onboarding
 
-  @C75509
+  @C131556
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -167,7 +167,7 @@ Feature: Account login
     And I click login
     Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
-  @C75510
+  @C131557
   Scenario: Login with wrong password twice
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -184,7 +184,7 @@ Feature: Account login
     And I click login
     Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
-  @C75511
+  @C131558
   Scenario: Login with wrong password three times
     Given I am a customer who has failed to login '2' times with following details:
       | userID      | autocaea |
@@ -203,6 +203,7 @@ Feature: Account login
     And I click login
     Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
 
+  @C131559
   Scenario: Click login via biometric
     Given I am customer that already on page login
     When I click button login via biometric

@@ -23,7 +23,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I choose legality business type 'cv'
     And I submit my legality type
 
-  @C96516
+  @C131819
   Scenario: Upload eKTP photo successfully business type CV
     Given I am a customer who has selected the business type CV
     When I upload my eKTP photo

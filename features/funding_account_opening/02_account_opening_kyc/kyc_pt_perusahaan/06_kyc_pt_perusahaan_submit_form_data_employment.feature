@@ -24,7 +24,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
         And I submit my legality type
         And I update my last journey step to 'Data Domicile Address'
 
-    @C96543
+    @C131832
     Scenario: Submit form Data Employment successfully business type PT Perusahaan
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

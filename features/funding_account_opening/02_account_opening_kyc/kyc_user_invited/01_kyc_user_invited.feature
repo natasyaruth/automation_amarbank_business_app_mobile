@@ -18,6 +18,7 @@ Feature: Account Opening KYC - User Invited
     And I click login
     And I continue to register my KYC data
 
+  @C131848
   Scenario: User invited complete KYC
     Given I am a invited customer wants to complete my KYC data
     When I upload invited user eKTP photo

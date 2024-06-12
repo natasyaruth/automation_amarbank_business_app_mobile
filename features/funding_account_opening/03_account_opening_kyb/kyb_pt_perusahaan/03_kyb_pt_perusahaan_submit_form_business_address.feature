@@ -50,7 +50,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I submit business director list
         And I confirm my director lists
 
-    @C96571
+    @C131938
     Scenario: Submit form Business Address successfully business type PT Perusahaan
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

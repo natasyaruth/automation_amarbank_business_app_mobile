@@ -8,6 +8,7 @@ const {
   verificationEmailPage,
   whitelistDao,
   otpDao,
+  firstRegistrationDao,
   changePhoneNumberPage,
   onboardingAccOpeningPage,
   globalVariable,
@@ -26,6 +27,33 @@ Given("My company name is {string}", (companyName) => {
 });
 
 Given("I am a customer lead wanting to register account business from invitation", async () => { });
+
+Given("I am a customer that recently registered to amarbank business with data as below", async (registration) => {
+
+  const account = registration.parse().rowsHash();
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+62" + account["phoneNumber"]
+    );
+
+    await whitelistDao.whitelistEmail(
+      account["email"]
+    );
+
+    globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
+    globalVariable.registration.email = account["email"];
+    globalVariable.login.password = account["password"];
+
+    await
+      otpDao.requestOTP("+"+globalVariable.registration.phoneNumber);
+
+    const otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
+    account.otp = otpCode;
+
+    globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+    
+    console.log(globalVariable.login.userID);
+});
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -303,7 +331,7 @@ When("I click call center", () => {
 
 Then("I will see helping center via email", () => {
   I.waitForText("Hubungi Tim Kami", 10);
-  I.see("Kami akan membantu Anda dalam"+"\n"+"pembentukan rekening ataupun pinjaman");
+  I.see("Kami akan membantu Anda dalam" + "\n" + "pembentukan rekening ataupun pinjaman");
   I.see("support.bisnis@amarbank.co.id");
   I.waitForElement(headerPage.cards.whatsApp, 10);
 
@@ -312,34 +340,34 @@ Then("I will see helping center via email", () => {
 
 Then("I will directing to page login", () => {
   I.waitForText("Masuk Akun", 20);
-  I.see(headerPage.buttons.back);
-  I.see(headerPage.icon.callCenter);
+  I.waitForElement(headerPage.buttons.back, 10);
+  I.waitForElement(headerPage.icon.callCenter, 10);
 
   I.see("User ID");
   I.see("Masukan user ID");
-  I.see(loginPage.fields.userID);
+  I.waitForElement(loginPage.fields.userID, 10);
 
   I.see("Password");
   I.see("Masukan password");
-  I.see(loginPage.fields.password);
-  I.see(loginPage.icon.eyePassword);
+  I.waitForElement(loginPage.fields.password, 10);
+  I.waitForElement(loginPage.icon.eyePassword, 10);
 
   I.see("Ingat saya");
-  I.see(loginPage.checkbox.rememberMe);
+  I.waitForElement(loginPage.checkbox.rememberMe, 10);
 
   I.see("Lupa Password?");
-  I.see(loginPage.link.forgotPassword);
+  I.waitForElement(loginPage.link.forgotPassword, 10);
 
   I.see("Masuk Akun");
-  I.see(loginPage.buttons.login);
+  I.waitForElement(loginPage.buttons.login, 10);
 
   I.see("Atau");
   I.see("Masuk dengan Biometrik");
-  I.see(loginPage.buttons.biometric);
+  I.waitForElement(loginPage.buttons.biometric, 10);
 
   I.see("Belum memiliki akun?");
-  I.see("Daftar?");
-  I.see(loginPage.link.registration);
+  I.see("Daftar");
+  I.waitForElement(loginPage.link.registration, 10);
 });
 
 Then("I will directing to web view terms and condition", () => {
@@ -556,7 +584,7 @@ When("I checked the 2 mandatory PDP checklists", () => {
 });
 
 When("I unchecked the 2 mandatory PDP checklists", () => {
-  
+
 });
 
 When("I checked the optional PDP checklist", () => {
@@ -575,7 +603,7 @@ Then("I should see button Buat Akun will enable", () => {
   I.seeElement(registrationPage.buttons.createAccountPDP);
 });
 
-Then("I should see button Buat Akun will disable",async () => {
+Then("I should see button Buat Akun will disable", async () => {
   //I.seeElement(registrationPage.buttons.createAccountPDP);
   await registrationPage.checkTnC();
 });
@@ -586,7 +614,7 @@ Then("I should go to Verifikasi No. HP page", () => {
 });
 
 Then("I get email including the information about PDP that i checked before", () => {
-  
+
 });
 
 Then("I see text consent PDP", () => {

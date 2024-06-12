@@ -3,6 +3,7 @@ Feature: Account Opening Manual - Submit Data KTP
     As a customer
     I want to submit my data KTP as part of the KYC Process
 
+    @C131783
     Scenario: Submit again form KTP after period time DHN is over
         Given I am a customer want to register again after my period time DHN is over
         And my past journey is in submit form KTP
@@ -16,6 +17,7 @@ Feature: Account Opening Manual - Submit Data KTP
         Then I will direct to page data personal
         And I will see snackbar green success
 
+    @C131784
     Scenario: Submit again form Business Profile after period time is over
         Given I am a customer want to register again after my period time DHN is over
         And my past journey is in submit form business profile

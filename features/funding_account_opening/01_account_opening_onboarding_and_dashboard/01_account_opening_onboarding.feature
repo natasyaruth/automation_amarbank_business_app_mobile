@@ -19,7 +19,7 @@ Feature: Account Opening Onboarding
         And I will directing to Hook 1 Onboarding Account Opening
         And I click later in pop up biometric
 
-    @C109193
+    @C131952
     Scenario: User choose Giro Account
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -28,7 +28,7 @@ Feature: Account Opening Onboarding
         Then I will see details info of giro account MSME
         And I will see details info of giro account Corporate
 
-    @C109194
+    @C131953
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         When I click later
@@ -37,7 +37,7 @@ Feature: Account Opening Onboarding
         And I will see details info of giro account MSME
         And I will see details info of giro account Corporate
 
-    @C109195
+    @C131954
     Scenario: User choose legality business type PT Perusahaan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -48,7 +48,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
 
-    @C109196
+    @C131955
     Scenario: User choose legality business type CV
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -59,7 +59,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
 
-    @C109197
+    @C131956
     Scenario: User choose legality business type PT Perorangan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -70,7 +70,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C109198
+    @C131957
     Scenario: User choose legality business type UD
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -81,7 +81,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C109199
+    @C131958
     Scenario: User choose legality business type Individu
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -92,7 +92,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C109200
+    @C131959
     Scenario: Back to page onboarding account opening
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -101,7 +101,7 @@ Feature: Account Opening Onboarding
         Then I will directing to Hook 1 Onboarding Account Opening
         And product type same with I choose before
 
-    @C109201
+    @C131960
     Scenario: Back to dashboard from page legality type entry point hook
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -111,7 +111,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page type giro account
         And product type same with I choose before
 
-    @C109202
+    @C131961
     Scenario: Back to dashboard from page legality type entry point dashboard
         Given I am a customer want to open Giro Account
         When I click later

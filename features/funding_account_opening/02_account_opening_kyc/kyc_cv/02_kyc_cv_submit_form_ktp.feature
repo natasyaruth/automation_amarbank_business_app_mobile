@@ -24,7 +24,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
-  @C96517
+  @C131820
   Scenario: Submit form KTP successfully business type CV
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
