@@ -24,7 +24,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
-  @C96531
+  @C131835
   Scenario: Submit form KTP successfully business type PT Perorangan
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

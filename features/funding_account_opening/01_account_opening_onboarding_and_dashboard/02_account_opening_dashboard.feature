@@ -21,7 +21,7 @@ Feature: Account Opening Main Dashboard
         And I choose Giro Account
         And I choose Giro Account MSME
 
-    @C96599
+    @C131962
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -32,7 +32,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
-    @C96600
+    @C131963
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -44,7 +44,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
-    @C96601
+    @C131964
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -56,7 +56,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
-    @C96602
+    @C131965
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -68,7 +68,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'
 
-    @C96603
+    @C131966
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -80,7 +80,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
-    @C96604
+    @C131967
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -92,7 +92,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
-    @C96605
+    @C131968
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -105,7 +105,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Continue Process KYB'
 
-    @C96606
+    @C131969
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account
         And I choose legality business type 'ud'
@@ -127,7 +127,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Owner'
 
-    @C96607
+    @C131970
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Director List
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -149,7 +149,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
-    @C96608
+    @C131971
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -172,7 +172,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Address'
 
-    @C96609
+    @C131972
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
@@ -205,7 +205,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to complete upload document business
         And I can continue to page 'Upload Document Business'
 
-    @C96610
+    @C131973
     Scenario: User can see cards continue to complete upload document and register director list
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'

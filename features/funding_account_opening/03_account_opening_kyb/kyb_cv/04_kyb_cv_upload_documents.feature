@@ -4,7 +4,7 @@ Feature: Account Opening KYB CV - Upload Document Business
     As a customer
     I want to upload document business as part of the KYB Process
 
-    @C101348
+    @C131925
     Scenario: Upload some document business
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
@@ -67,7 +67,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         Then I will not see button continue
         And I will not see additional information in the top of section
 
-    @C101349
+    @C131926
     Scenario: Upload document and user drop off
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
@@ -132,7 +132,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I click button upload document
         Then I will see document 'NIB Berbasis Resiko' still exists
 
-    @C101350
+    @C131927
     Scenario: Upload document with file size more than 10 MB
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
@@ -192,7 +192,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I upload document business with size more than 10MB
         Then I will see message error 'Ukuran file melebihi 10MB. Silahkan coba lagi' in the below of section upload document
 
-    @C101351
+    @C131928
     Scenario: Upload document with file other than PDF
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
@@ -252,7 +252,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I upload document business with file other than PDF
         Then I will see message error 'File tidak boleh selain pdf' in the below of section upload document
 
-    @C101352
+    @C131929
     Scenario: Access call center in Page upload document
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
@@ -312,7 +312,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         And I click link call center in page upload document
         Then I will see bottom sheet with email contact
 
-    @C101353
+    @C131930
     Scenario: Upload All document business type CV
         Given I am a registered customer with following details:
             | userID      | alfife18 |

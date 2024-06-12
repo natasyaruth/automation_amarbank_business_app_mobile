@@ -138,7 +138,7 @@ Then("I will direct to page notifying me that I can't continue to next process K
     I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
 
     const actualContent = await formBusinessProfilePage.getContentValidationBlocker();
-    I.assertEqual(actualContent, "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+    I.assertEqual(actualContent.trim(), "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
 
     I.see("Untuk informasi lebih lanjut, silakan");
     I.see("Hubungi Kami");
