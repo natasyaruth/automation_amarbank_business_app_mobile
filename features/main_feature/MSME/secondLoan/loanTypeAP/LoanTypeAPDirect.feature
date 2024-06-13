@@ -81,7 +81,7 @@ Scenario: User apply second loan AP direct and want to see AP loan schema
         And user checklist checkbox term and condition  
         And user checklist checkbox Privy term and condition
         And user click button Lanjut Upload Dokumen
-        And user validate content list of documents for Individu
+        And user validate content list of documents for AP MSME with business legality type type Individu
         And user click buttton Pilih Metode Upload Dokumen
         #Upload Dokumen from Aplikasi
         And user click button Langsung dari Aplikasi
@@ -120,4 +120,23 @@ Scenario: User apply second loan AP direct and want to see AP loan schema
         And user click button lihat pinjaman
 
     
-        
+    Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AR"
+        And User on Loan Needs Page
+        And User choose nominal "Rp50 juta - 5 Miliar"  
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Buyer 
+        #section select Anchor
+        And user select "Anchor MSME Test"
+        And user select the date cooperating
+        And user click button Selanjutnya   
+        And user checklist checkbox term and condition  
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user go to page list of document for AP MSME with business legality type type Individu
+        And user click buttton Pilih Metode Upload Dokumen
+        And user validate wording for "Dari Perangkat lain/ Delegasi"
+        And user click button close bottom sheet
+   

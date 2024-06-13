@@ -71,13 +71,13 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And user select the date cooperating
         And user checklist checkbox Privy term and condition
         And user click button Lanjut Upload Dokumen      
-        And user validate content list of documents for PT.Perusahaan
+        And user go to page list of document for PO PT.Perusahaan MSME
         And user click buttton Pilih Metode Upload Dokumen
         #Upload Dokumen from Aplikasi
         And user click button Langsung dari Aplikasi
         And user on Progress Upload Dokumen Page
         And user upload document "KTPandnpwpOfComp"
-        And user upload document "3contohInvoicewithSupplier"
+        And user upload document "SPK"
         And user upload document "paymentMutation"
         And user upload document "1YearfinancialReports"
         And user click button Perbaharui Progres
@@ -104,12 +104,12 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And user select the date cooperating
         And user checklist checkbox Privy term and condition
         And user click button Lanjut Upload Dokumen      
-        And user validate content list of documents for PT.Perusahaan
+        And user validate content list of documents for PO PT.Perusahaan
         And user click buttton Pilih Metode Upload Dokumen
         #Upload Dokumen from Aplikasi
         And user click button Langsung dari Aplikasi
         And user on Progress Upload Dokumen Page
-        And user upload document "3contohInvoicewithSupplier"
+        And user upload document "SPK"
         And user upload document "paymentMutation"
         And user upload document "1YearfinancialReports"
         And user click button Perbaharui Progres
@@ -132,5 +132,23 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And user click button copy
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
-
-    
+        
+    Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User on nominal "Rp50 juta - 5 Miliar"
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Bouwheer
+        #section select Anchor
+        When user on buyer cooperating page
+        And user fill a field "BowheerName" with "Po Test Nurul"
+        And user select industry type "Agrikultur atau Perikanan"
+        And user select the date cooperating
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user go to page list of document for PT.Perusahaan
+        And user click buttton Pilih Metode Upload Dokumen
+        And user validate wording for "Dari Perangkat lain/ Delegasi"
+        And user click button close bottom sheet

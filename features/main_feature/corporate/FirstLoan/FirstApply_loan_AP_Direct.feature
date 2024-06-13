@@ -161,7 +161,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for UD
+    And user go to page list of document for UD
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -242,7 +242,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for Individu
+    And user go to page list of document for Individu
     And user click buttton Pilih Metode Upload Dokumen
      #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -310,7 +310,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for PT.Perusahaan
+    And user go to page list of document for PT.Perusahaan 
     And user click buttton Pilih Metode Upload Dokumen  
     And user on bottom sheet metode upload Dokumen
     And user validate wording for "Dari Perangkat lain/ Delegasi"
