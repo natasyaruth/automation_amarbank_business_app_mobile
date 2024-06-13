@@ -75,7 +75,7 @@ Scenario: Validate error input tenor more than 180 hari
         And user checklist checkbox term and condition  
         And user checklist checkbox Privy term and condition
         And user click button Lanjut Upload Dokumen      
-        And user validate content list of documents for PT.Perusahaan
+        And user go to page list of document for AR UD MSME
         And user click buttton Pilih Metode Upload Dokumen
         #Upload Dokumen from Aplikasi
         And user click button Langsung dari Aplikasi
@@ -121,7 +121,7 @@ Scenario: Validate error input tenor more than 180 hari
         And user checklist checkbox term and condition  
         And user checklist checkbox Privy term and condition
         And user click button Lanjut Upload Dokumen      
-        And user validate content list of documents for PT.Perusahaan
+        And user go to page list of document for PT.Perusahaan
         And user click buttton Pilih Metode Upload Dokumen
         And user validate wording for "Dari Perangkat lain/ Delegasi"
         And user click button close bottom sheet

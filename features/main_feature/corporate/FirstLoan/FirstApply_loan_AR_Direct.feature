@@ -161,7 +161,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for PT Perorangan
+    And user go to page list of document for PT Perorangan
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -240,7 +240,7 @@ Scenario: User apply first loan AP Direct with business type Individu and flagin
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for Individu
+    And user go to page list of document for Individu
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -255,7 +255,71 @@ Scenario: User apply first loan AP Direct with business type Individu and flagin
     And user on monitoring loan process page
 
 
-
+Scenario: Validate bottom sheet for Metode Upload Dokumen Dari Perangkat Lain/ Delegasi
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AR"
+    And user on loan needs page
+    And User choose nominal "Lebih dari 5 Milyar" 
+    And user input nominal for Corp "15000000000"
+    And user click button Save
+    And user input tenor "30"
+    And user click button Lanjut Isi Data Buyer
+    #section select Anchor
+    When user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AR Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier      
+    And user click button Selanjutnya   
+    And user click button Lanjut Lengkapi Data
+    #section KYC Process
+    Given user choose Business Type "PT Perorangan"
+    And user click Selanjutnya
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button Kirim Foto
+    And user input and save eKTP data
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto 
+    And user input Pendidikan terakhir "S1"
+    And user input nama ibu kandung "Tom Tom"
+    And user input nama kerabat "Tintin"
+    And user input nomor kerbat "867300989"
+    And user upload document "npwpindividu"
+    And user click button Simpan Data Diri
+    And user click button Simpan Alamat Tempat Tinggal
+    And user select "Pegawai Swasta"
+    And user select sumber pendapatan "Pemasukan dari Usaha"
+    And user click button Simpan Data Pekerjaan    
+    And system direct to Success screen
+    Then user click button Lanjut Lengkapi Data Bisnis
+    #section KYB Process
+    Given user in Profil Binis Page
+    When user input and click simpan Profil Bisnis
+    And user input and click Simpan Pemilik Bisnis   
+    And I fill my business address as followings:
+        | address  | Jl. Gambir Belok Kiri No. 10 |
+        | rt       | 000                          |
+        | rw       | 011                          |
+        | province | DKI JAKARTA                  |
+        | city     | JAKARTA TIMUR                |
+        | district | DUREN SAWIT                  |
+        | village  | PONDOK BAMBU                 |    
+    And user checklist checkbox term and condition  
+    And user checklist checkbox right and obligations
+    And user click button Lanjut Upload Dokumen
+    And user validate content list of documents for PT Perorangan
+    And user click buttton Pilih Metode Upload Dokumen
+    And user validate wording for "Dari Perangkat lain/ Delegasi"
+    And user click button close bottom sheet
    
 
 
