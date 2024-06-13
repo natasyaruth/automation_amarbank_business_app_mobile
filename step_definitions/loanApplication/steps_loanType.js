@@ -129,3 +129,106 @@ Before(() => {
     Then(/user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen/,()=>{
         loanTypePage.buttonUploadWebDoc();
     });
+
+    //Validate AP MSME Dokumen List 
+    Then(/user go to page list of document for AP MSME with business legality type PT Perusahaan & CV/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+        I.see("1. KTP & NPWP Komisioner & Pemegang Saham.");
+        I.see("2. Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.see("3. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan supplier atau buyer.");
+        I.see("4. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+    }); 
+
+    Then(/And user validate content list of documents for AP MSME with business legality type type Individu/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("1. Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.see("2. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan supplier atau buyer.");
+        I.see("3. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+    });
+    
+    
+    Then(/user go to page list of document for AP MSME with business legality type PT Perorangan & UD/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("1. KTP & NPWP Komisioner & Pemegang Saham.");
+        I.see("2. Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.see("3. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan supplier atau buyer.");
+        I.see("4. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+
+
+    });
+
+    //Validate AR dokumen list for AR 
+
+    Then(/And user go to page list of document for AR UD MSME/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+        I.see("1. KTP & NPWP Komisioner & Pemegang Saham");
+        I.see("2. Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.see("3. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan supplier atau buyer.");
+        I.see("4. Laporan Keuangan dalam 1 tahun terakhir (jika ada)");
+    });
+
+    Then(/And user go to page list of document for AR Individu MSME/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("1. Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.see("2. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan supplier atau buyer.");
+        I.see("3. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+    });
+
+    //validate PO dokumen list for PO
+
+    Then(/And user validate content list of documents for PO PT.Perusahaan/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+        I.see("1. KTP & NPWP Komisioner & Pemegang Saham");
+        I.see("2. Surat Perintah Kerja (SPK) dari bouwheer saat ini atau bouwheer lainnya dengan produk yang sama.");
+        I.see("3. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan bouwheer.");
+        I.see("4. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+    });
+
+    Then(/And user go to page list of document for AR Individu MSME/, async () =>{
+        const actualTitle = await loanTypePage.validateTitleTopBarDocList();
+        I.assertEqual(actualTitle, "Pengajuan Limit Kredit Bisnis");
+
+        I.see("Mohon persiapkan dokumen-dokumen berikut:")
+       
+        I.see("1. Surat Perintah Kerja (SPK) dari bouwheer saat ini atau bouwheer lainnya dengan produk yang sama.");
+        I.see("2. Mutasi rekening koran 6 bulan terakhir yang mencerminkan transaksi dengan bouwheer.");
+        I.see("3. Laporan Keuangan dalam 1 tahun terakhir (jika ada).");
+
+        I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
+    });
+

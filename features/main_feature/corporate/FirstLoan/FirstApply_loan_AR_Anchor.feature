@@ -152,7 +152,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user validate content list of documents for CV
+    And user go to page list of document for CV
     And user click buttton Pilih Metode Upload Dokumen
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
@@ -183,6 +183,72 @@ Feature: Apply First Loan With Flagging Corp                                    
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
 
+
+  Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
+    Given I click button loan dashboard
+    When user click button pinjaman
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar" 
+    And user input nominal for Corp "15000000000"
+    And user click button Save
+    And user input tenor "60"
+    And user click button Lanjut Isi Data Supplier 
+    #section select Anchor
+    And user fill search anchor "PT Tirta Investama"
+    And user select result of search
+    And user select the date cooperating        
+    And user click button Selanjutnya   
+    And user click button Lanjut Lengkapi Data
+    #section KYC Process
+    Given user choose Business Type "PT Perusahaan"
+    And user click Selanjutnya     
+    And user click button Ambil Foto eKTP
+    And user click button Saya Mengerti
+    And user click buton take photo eKTP   
+    And user click button Kirim Foto
+    And user input and save eKTP data
+    And user click button Ambil Foto Diri
+    And user click Ambil Foto
+    And user click button Kirim Foto 
+    And user input Pendidikan terakhir "S1"
+    And user input nama ibu kandung "Susi Susanti"
+    And user input nama kerabat "Susi Similikiti"
+    And user input nomor kerbat "867300987"
+    And user upload document "npwpindividu"
+    And user click button Simpan Data Diri
+    And user click button Simpan Alamat Tempat Tinggal
+    And user select "Pegawai Swasta"
+    And user select sumber pendapatan "Pemasukan dari usaha"  
+    And click Simpan Data Pekerjaan
+    And system direct to Success screen
+    And user click button Lanjut Lengkapi Data Bisnis
+    #section KYB Process
+    And user in Profil Bisnis page
+    And user input profil bisnis and click button Simpan Profil Bisnis
+    And user input and click Simpan Daftar Direktur
+    And I fill my business address as followings:
+        | address  | Jl. Gambir Belok Kiri No. 10 |
+        | rt       | 000                          |
+        | rw       | 011                          |
+        | province | DKI JAKARTA                  |
+        | city     | JAKARTA TIMUR                |
+        | district | DUREN SAWIT                  |
+        | village  | PONDOK BAMBU                 |    
+    And user checklist checkbox term and condition  
+    And user checklist checkbox right and obligations
+    And user click button Lanjut Upload Dokumen
+    And user go to page list of document for PT.Perusahaan
+    And user click buttton Pilih Metode Upload Dokumen  
+    And user on bottom sheet metode upload Dokumen
+    And user validate wording for "Langsung dari Aplikasi"
+    And user click button close bottom sheet
+   
+
+
+
+
+   
 
 
 
