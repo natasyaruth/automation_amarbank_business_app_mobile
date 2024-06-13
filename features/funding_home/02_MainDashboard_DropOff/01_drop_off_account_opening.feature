@@ -20,7 +20,7 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109155
     Scenario: User validate drop off main dashboard opening account only on kyc
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         And user should see text button "Lanjut Lengkapi Data Personal" on field "btnTextDropOffAccOpeningOnlyKyc"
         And user should see text card "Lanjutkan Pembuatan Rekening Giro" on field "textCardNextOpeningAccount"
         Then user click button drop off
@@ -29,7 +29,7 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109156
     Scenario: User validate drop off main dashboard opening account only on kyb
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         And user should see text button "Lanjut Lengkapi Data Bisnis" on field "btnTextDropOffAccOpeningOnlyKyb"
         And user should see text card "Lanjutkan Pembuatan Rekening Giro" on field "textCardNextOpeningAccount"
         Then user click button drop off

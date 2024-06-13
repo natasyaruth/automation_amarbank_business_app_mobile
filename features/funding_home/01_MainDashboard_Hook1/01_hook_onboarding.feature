@@ -28,6 +28,5 @@ Feature: User Should See Hook OnBoarding
     Scenario: User want see a default main dashboard
         Given user on onboarding loan
         When I click later
-        And user on main dashboard default
-        Then user should see text button "Ajukan Pinjaman" on field "btnLoan"
-        And user should see text button "Buka Rekening Giro" on field "btnTextOpenAccount"
+        Then I will directing to main dashboard with card loan application and account opening
+        

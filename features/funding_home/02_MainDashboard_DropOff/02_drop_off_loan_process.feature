@@ -20,6 +20,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
     @C109149
     Scenario: User validate drop off main dashboard loan process on waiting kyc
         Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         When user should see text card "1" on field "textCardValueProcess"
         When user should see text card "Proses" on field "textCardProcess"
@@ -31,6 +32,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
     @C109150
     Scenario: User validate drop off main dashboard loan process on waiting kyb
         Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         When user should see text card "1" on field "textCardValueProcess"
         When user should see text card "Proses" on field "textCardProcess"
