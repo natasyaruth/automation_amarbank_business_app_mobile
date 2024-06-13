@@ -23,7 +23,7 @@ Feature: Account Opening KYC UD - Upload KTP Photo
     And I choose legality business type 'ud'
     And I submit my legality type
 
-  @C96544
+  @C131841
   Scenario: Upload eKTP photo successfully business type UD
     Given I am a customer who has selected the business type UD
     When I upload my eKTP photo

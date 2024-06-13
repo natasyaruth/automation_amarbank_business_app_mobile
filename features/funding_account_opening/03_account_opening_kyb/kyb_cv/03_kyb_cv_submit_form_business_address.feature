@@ -57,9 +57,9 @@ Feature: Account Opening KYB CV - Submit Business Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Address
         Examples:
             | testRailTag | Field   | Field Name |
-            | @C101325    | address | Alamat     |
-            | @C101326    | rt      | RT         |
-            | @C101327    | rw      | RW         |
+            | @C131901    | address | Alamat     |
+            | @C131902    | rt      | RT         |
+            | @C131903    | rw      | RW         |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Address
         Given I am a customer who has submitted business owner list
@@ -69,13 +69,13 @@ Feature: Account Opening KYB CV - Submit Business Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Address
         Examples:
             | testRailTag | Field    | Field Name     |
-            | @C101328    | address  | Alamat         |
-            | @C101329    | rt       | RT             |
-            | @C101330    | rw       | RW             |
-            | @C101331    | province | Provinsi       |
-            | @C101332    | city     | Kota/Kabupaten |
-            | @C101333    | district | Kecamatan      |
-            | @C101334    | village  | Kelurahan      |
+            | @C131904    | address  | Alamat         |
+            | @C131905    | rt       | RT             |
+            | @C131906    | rw       | RW             |
+            | @C131907    | province | Provinsi       |
+            | @C131908    | city     | Kota/Kabupaten |
+            | @C131909    | district | Kecamatan      |
+            | @C131910    | village  | Kelurahan      |
 
     Scenario Outline: Verifying length address in form Business Address
         Given I am a customer who has submitted business owner list
@@ -83,10 +83,10 @@ Feature: Account Opening KYB CV - Submit Business Address
         Then I should see message error '<Message>' in the below of field 'address' in form Business Address
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                  |
-            | @C101335    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
-            | @C101336    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
+            | @C131911    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
+            | @C131912    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
 
-    @C101337
+    @C131913
     Scenario: Verifying field address contain with special char and number
         Given I am a customer who has submitted business owner list
         When I fill field 'address' with 'John Doe S.Kom, M\'Kom- 11233' in form Business Address
@@ -98,12 +98,12 @@ Feature: Account Opening KYB CV - Submit Business Address
         Then I should see message error '<Message>' in the below of field 'rt' in form Business Address
         Examples:                                                                 ❸
             | testRailTag | Value | Message                |
-            | @C101338    | ab    | RT tidak sesuai format |
-            | @C101339    | !@    | RT tidak sesuai format |
-            | @C101340    | 3124  | RT maksimal 3          |
-            | @C101341    |       | RT wajib diisi         |
+            | @C131914    | ab    | RT tidak sesuai format |
+            | @C131915    | !@    | RT tidak sesuai format |
+            | @C131916    | 3124  | RT maksimal 3          |
+            | @C131917    |       | RT wajib diisi         |
 
-    @C101342
+    @C131918
     Scenario: Verifying field rt contain with -
         Given I am a customer who has submitted business owner list
         When I fill field 'rt' with '-' in form Business Address
@@ -115,18 +115,18 @@ Feature: Account Opening KYB CV - Submit Business Address
         Then I should see message error '<Message>' in the below of field 'rw' in form Business Address
         Examples:                                                                 ❸
             | testRailTag | Value | Message                |
-            | @C101343    | ab    | RW tidak sesuai format |
-            | @C101344    | !@    | RW tidak sesuai format |
-            | @C101345    | 3124  | RW maksimal 3          |
-            | @C101346    |       | RW wajib diisi         |
+            | @C131919    | ab    | RW tidak sesuai format |
+            | @C131920    | !@    | RW tidak sesuai format |
+            | @C131921    | 3124  | RW maksimal 3          |
+            | @C131922    |       | RW wajib diisi         |
 
-    @C101347
+    @C131923
     Scenario: Verifying field rw contain with -
         Given I am a customer who has submitted business owner list
         When I fill field 'rt' with '-' in form Business Address
         Then I shouldn't see message error in the below of field 'rw' in form Business Address
 
-    @C96560
+    @C131924
     Scenario: Submit form Business Address successfully business type CV
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business owner list

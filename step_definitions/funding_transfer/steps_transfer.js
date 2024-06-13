@@ -69,60 +69,60 @@ Then("I can see RTOL", async () => {
     I.waitForElement(transferPage.radioButtons.methodRtol, 5);
 
     const actualAdminFee = await transferPage.getAdminFeeRTOL();
-    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeRTOL);
+    I.assertEqual(actualAdminFee, "Rp " + globalVariable.transfer.adminFeeRTOL);
 });
 
-Then("I can see BI Fast", async() => {
+Then("I can see BI Fast", async () => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
     const actualAdminFee = await transferPage.getAdminFeeBIFAST();
-    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFee, "Rp " + globalVariable.transfer.adminFeeBIFAST);
 });
 
 Then("I can see SKN", async () => {
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
 
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
-    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
 });
 
 Then("I can see RTGS", async () => {
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
 
     const actualAdminFee = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFee, "Rp "+globalVariable.transfer.adminFeeRTGS);
+    I.assertEqual(actualAdminFee, "Rp " + globalVariable.transfer.adminFeeRTGS);
 });
 
-Then("I can see BI Fast, RTOL and SKN", async ()=>{
+Then("I can see BI Fast, RTOL and SKN", async () => {
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
     I.waitForElement(transferPage.radioButtons.methodBifast, 10);
     const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
-    I.assertEqual(actualAdminFeeBifast, "Rp "+globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFeeBifast, "Rp " + globalVariable.transfer.adminFeeBIFAST);
     I.see("Dana langsung sampai ke penerima");
     I.see("Nominal transfer:");
     I.see("Rp 10.000 - Rp 250.000.000");
 
     const actualAdminFee = await transferPage.getValueAdminFee();
-    I.assertEqual(actualAdminFee, "+Rp"+globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeBIFAST);
 
     const actualTotalAmount = await transferPage.getValueTotalAmount();
     const formattedString = globalVariable.transfer.adminFeeBIFAST.replace(/Rp|\./g, '');
     const numberAdminFee = parseInt(formattedString);
     const numberTotalAmount = globalVariable.transfer.amount + numberAdminFee;
     const expectedTotalAmount = transferPage.formattedToThreeDigit(numberTotalAmount);
-    I.assertEqual(actualTotalAmount, "Rp"+expectedTotalAmount);
-    
+    I.assertEqual(actualTotalAmount, "Rp" + expectedTotalAmount);
+
     I.waitForElement(transferPage.radioButtons.methodRtol, 10);
     const actualAdminFeeRTOL = await transferPage.getAdminFeeRTOL();
-    I.assertEqual(actualAdminFeeRTOL, "Rp "+globalVariable.transfer.adminFeeRTOL);
+    I.assertEqual(actualAdminFeeRTOL, "Rp " + globalVariable.transfer.adminFeeRTOL);
     I.see("Dana langsung sampai ke penerima");
     I.see("Nominal transfer:");
     I.see("Rp 10.000 - Rp 50.000.000");
 
     I.waitForElement(transferPage.radioButtons.methodSkn, 10);
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
-    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
     I.see("Dana langsung sampai ke penerima");
     I.see("Nominal transfer:");
     I.see("Rp 10.000 - Rp 1.000.000.000");
@@ -130,7 +130,7 @@ Then("I can see BI Fast, RTOL and SKN", async ()=>{
     I.dontSee(transferPage.radioButtons.methodRtgs);
 });
 
-Then("I can see BI Fast, SKN and RTGS", async ()=>{
+Then("I can see BI Fast, SKN and RTGS", async () => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
@@ -138,12 +138,12 @@ Then("I can see BI Fast, SKN and RTGS", async ()=>{
     const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFeeBifast, "Rp "+globalVariable.transfer.adminFeeBIFAST);
-    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
-    I.assertEqual(actualAdminFeeRtgs, "Rp "+globalVariable.transfer.adminFeeRTGS);
+    I.assertEqual(actualAdminFeeBifast, "Rp " + globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
 });
 
-Then("I can see SKN and RTGS", async ()=>{
+Then("I can see SKN and RTGS", async () => {
     I.waitForElement(transferPage.radioButtons.methodBifast, 5);
     I.waitForElement(transferPage.radioButtons.methodSkn, 5);
     I.waitForElement(transferPage.radioButtons.methodRtgs, 5);
@@ -151,9 +151,9 @@ Then("I can see SKN and RTGS", async ()=>{
     const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
-    I.assertEqual(actualAdminFeeBifast, "Rp "+globalVariable.transfer.adminFeeBIFAST);
-    I.assertEqual(actualAdminFeeSkn, "Rp "+globalVariable.transfer.adminFeeSKN);
-    I.assertEqual(actualAdminFeeRtgs, "Rp "+globalVariable.transfer.adminFeeRTGS);
+    I.assertEqual(actualAdminFeeBifast, "Rp " + globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
 });
 
 Then("I choose transfer service RTGS", () => {
@@ -204,11 +204,11 @@ When("I input PIN {string}", (Pin) => {
     transferPage.inputPin(Pin);
 }),
 
-    When("I click transfer now", async () => {
-        I.waitForText("Konfirmasi Transfer", 10);
-        globalVariable.dashboard.senderName = await transferPage.getConfirmSenderName();
-        transferPage.confirmTransfer();
-    });
+When("I click transfer now", async () => {
+    I.waitForText("Konfirmasi Transfer", 10);
+    globalVariable.dashboard.senderName = await transferPage.getConfirmSenderName();
+    transferPage.confirmTransfer();
+});
 
 Then("I successfully transferred without notes", () => {
     I.see(transferPage.texts.status);
@@ -275,7 +275,7 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
     I.dontSee(globalVariable.transfer.service);
 });
 
-When("I input amount more than amount active", async ()=>{
+When("I input amount more than amount active", async () => {
     const amountActive = (await transferPage.getAmountActive()).replace(/Rp|\./g, '');
 
     const numberActiveAmount = parseInt(amountActive);
@@ -322,16 +322,16 @@ Then("I am on Transfer methode list page", async () => {
     transferPage.viewPageTrfMethodeList();
 
     const listExpectedTitle = {
-        titleActiveSaldo : "Saldo aktif",
-        titleAmountTransfer : "Nominal Transfer",
+        titleActiveSaldo: "Saldo aktif",
+        titleAmountTransfer: "Nominal Transfer",
         titleAdminFee: "Biaya Transfer",
         titleTotalAmount: "Total Transfer"
-    }; 
+    };
 
     const actualTitleActiveAmount = await transferPage.getTitleAmountActive();
     I.assertEqual(actualTitleActiveAmount, listExpectedTitle.titleActiveSaldo);
 
-    const actualActiveAmount = (await transferPage.getValueAmountActive()).replace(/ /,'');
+    const actualActiveAmount = (await transferPage.getValueAmountActive()).replace(/ /, '');
     I.assertEqual(actualActiveAmount, globalVariable.transfer.activeAmount);
 
     const actualTitleTransferAmount = await transferPage.getTitleAmountTransfer();
@@ -339,7 +339,7 @@ Then("I am on Transfer methode list page", async () => {
 
     const actualTransferAmount = await transferPage.getValueAmountTransfer();
     const expectedTransferAmount = transferPage.formattedToThreeDigit(globalVariable.transfer.amount);
-    I.assertEqual(actualTransferAmount, "Rp"+ expectedTransferAmount);
+    I.assertEqual(actualTransferAmount, "Rp" + expectedTransferAmount);
 
     const actualTitleAdminFee = await transferPage.getTitleAdminFee();
     I.assertEqual(actualTitleAdminFee, listExpectedTitle.titleAdminFee);

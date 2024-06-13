@@ -24,7 +24,7 @@ Feature: Account Opening KYC UD - Submit Data Employment
         And I submit my legality type
         And I update my last journey step to 'Data Domicile Address'
 
-    @C96551
+    @C131847
     Scenario: Submit form Data Employment successfully business type UD
         Given I am a customer who has submitted my domicile address
         When I fill my employment details as followings:

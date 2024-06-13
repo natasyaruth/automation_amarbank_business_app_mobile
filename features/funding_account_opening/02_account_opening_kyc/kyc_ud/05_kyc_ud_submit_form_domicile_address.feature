@@ -24,7 +24,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         And I submit my legality type
         And I update my last journey step to 'Data Personal'
 
-    @C96549
+    @C131845
     Scenario: Submit form Domicile address same with KTP successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -32,7 +32,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
-    @C96550
+    @C131846
     Scenario: Submit form Domicile address with new address successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

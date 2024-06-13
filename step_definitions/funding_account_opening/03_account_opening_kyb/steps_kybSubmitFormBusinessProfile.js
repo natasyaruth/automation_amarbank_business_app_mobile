@@ -5,10 +5,16 @@ const {
     formBusinessOwnerPage,
     headerPage,
     resetStateDao,
-    globalVariable
+    globalVariable,
+    mockingDao
 } = inject();
 
 Given("I am a customer who has completed my KYC process", () => {
+});
+
+Given("I mock feature submit form Business Profile into enabled", async () => {
+    await
+        mockingDao.enabledCheckDHNNPWP();
 });
 
 When("I continue to process KYB", () => {
@@ -125,4 +131,16 @@ Then("I will directing to page director list", async () => {
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I will direct to page notifying me that I can't continue to next process KYB because my data indicated as DHN", async () => {
+    const actualTitle = await formBusinessProfilePage.getTitleValidationBlocker();
+    I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
+
+    const actualContent = await formBusinessProfilePage.getContentValidationBlocker();
+    I.assertEqual(actualContent.trim(), "Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+
+    I.see("Untuk informasi lebih lanjut, silakan");
+    I.see("Hubungi Kami");
+    I.waitForElement(formBusinessProfilePage.buttons.helpDHN, 10);
 });

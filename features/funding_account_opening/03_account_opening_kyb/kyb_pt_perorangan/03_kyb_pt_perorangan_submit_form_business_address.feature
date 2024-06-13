@@ -35,7 +35,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I submit my business profile
         And I submit business owner list
 
-    @C96563
+    @C131942
     Scenario: Submit form Business Address successfully business type PT Perorangan
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

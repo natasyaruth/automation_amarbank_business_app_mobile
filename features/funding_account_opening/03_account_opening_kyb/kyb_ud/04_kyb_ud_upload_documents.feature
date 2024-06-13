@@ -64,7 +64,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I allow company to store my data
         And I submit my business address
 
-    @C101375
+    @C131947
     Scenario: Upload All document business type UD
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address

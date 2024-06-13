@@ -14,6 +14,9 @@ module.exports = {
     onboardingPage: { xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]' },
     tabOthers: "~tabOthers",
     logout: "~btnLogout",
+    biometric: "~buttonLoginBiometric",
+    laterBiometric: "~buttonSkip",
+    activatedBiometric: "~buttonActiveNow"
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -71,6 +74,7 @@ module.exports = {
   },
 
   closeBottomSheet() {
+    I.waitForElement(this.buttons.close, 10);
     I.click(this.buttons.close);
   },
 
@@ -122,5 +126,15 @@ module.exports = {
 
   async getValueUserID() {
     return await I.grabTextFromField(this.fields.userID);
+  },
+
+  clickBiometric() {
+    I.waitForElement(this.buttons.biometric, 30);
+    I.click(this.buttons.biometric);
+  },
+
+  clickLaterBiometric() {
+    I.waitForElement(this.buttons.laterBiometric, 30);
+    I.click(this.buttons.laterBiometric);
   },
 }

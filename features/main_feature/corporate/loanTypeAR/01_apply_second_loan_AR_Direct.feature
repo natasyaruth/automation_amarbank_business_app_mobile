@@ -144,3 +144,73 @@ Scenario: User apply second loan AR direct type with flagging Corporate
     And user take invoice from camera
     And user take invoice from galery
 
+Scenario: User apply loan only AP Corp business
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar" 
+    And user input nominal for Corp "7000000000"
+    And user click button Save
+    And user input tenor "30"
+    And user click button Lanjut Isi Data Supplier
+    #section select Anchor
+    When user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
+    And user click button Selanjutnya
+    And user click button Lanjut Lengkapi Data
+    #section upload document
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload document "KTPandnpwpOfComp"
+    And user upload document "3contohInvoicewithSupplier"
+    And user upload document "paymentMutation"
+    And user upload document "1YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
+
+Scenario: User apply loan only AP Corp individu
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And User on Loan Needs Page
+    And User choose nominal "Lebih dari 5 Milyar" 
+    And user input nominal for Corp "7000000000"
+    And user click button Save
+    And user input tenor "30"
+    And user click button Lanjut Isi Data Supplier
+    #section select Anchor
+    When user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
+    And user click button Selanjutnya
+    And user click button Lanjut Lengkapi Data   
+    #section upload document
+    And user click button Langsung dari Aplikasi
+    And user on Progress Upload Dokumen Page
+    And user upload document "3contohInvoicewithSupplier"
+    And user upload document "paymentMutation"
+    And user upload document "1YearfinancialReports"
+    And user click button Perbaharui Progres
+    And user click button Kirim Pengajuan Kredit Limit
+    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    And user click button Lihat Progres Pengajuan
+    And user on monitoring loan process page
