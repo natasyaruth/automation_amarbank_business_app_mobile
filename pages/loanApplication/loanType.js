@@ -109,7 +109,21 @@ module.exports = {
     },
     field:{
         inputTenor: "~textFieldTenor",
-        inputCustomNominal: "~textFieldCustomAmount",        
+        inputCustomNominal: "~textFieldCustomAmount", 
+        //AppNavigation
+        activeStepDetailCredit: "~activeStepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        completedStepDetailCredit: "~completedStepDetailCredit",
+        activeStepDataSupplier: "~activeStepDataSupplier",        
+        //FirstLoanID
+        stepDetailCredit: "~stepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        stepBusinessLocation: "~stepBusinessLocation",
+        stepUploadDocument: "~stepUploadDocument",
+        //SecondLoanID
+        stepDetailCredit: "~stepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        stepUploadDocument: "~stepUploadDocument",
     },
 
 // Apply Loan Journey Improvement
