@@ -38,7 +38,7 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109157
     Scenario: User validate drop off main dashboard upload document in account opening only
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         And user should see text button "Lihat Semua Dokumen" on field "btnTextDropOffAccOpeningOnlyUploadDoc"
         And user should see text card "Mohon lengkapi Dokumen yang dibutuhkan" on field "textCardNextCompletedDoc"
         Then user click button open document
@@ -47,7 +47,7 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109158
     Scenario: User validate drop off main dashboard upload document in account opening only and waiting invited user
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         And user should see text button "Lihat Semua Dokumen" on field "btnTextDropOffAccOpeningOnlyUploadDoc"
         And user should see text card "Mohon lengkapi Dokumen yang dibutuhkan" on field "textCardNextCompletedDoc"
         And user should see text card "Menunggu proses registrasi Daftar Direksi lainnya" on field "textCardInvetedUserDireksi"

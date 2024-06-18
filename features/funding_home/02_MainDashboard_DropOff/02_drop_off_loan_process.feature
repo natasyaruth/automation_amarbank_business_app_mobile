@@ -44,6 +44,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
     @C109151
     Scenario: User validate drop off main dashboard loan process on waiting upload document
         Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
@@ -59,6 +60,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
     @C109152
     Scenario: User validate drop off main dashboard loan process on waiting upload document and invited user
         Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"       
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
@@ -77,7 +79,7 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see invited user account opening only page
 
     @C109153
-    Scenario: User validate drop off main dashboard loan process on waiting invited user
+    Scenario: User validate drop off main dashboard loan process on waiting invited regis
         Given user on main dashboard
         When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         And user should see text card "1" on field "textCardValueProcess"
@@ -98,3 +100,11 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
         Then user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
+
+    Scenario: User validate drop off upload document in Combine Journey
+        Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"       
+        When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
+        And user should see text card "1" on field "textCardValueProcess"
+        And user should see text card "Proses" on field "textCardProcess"
+
