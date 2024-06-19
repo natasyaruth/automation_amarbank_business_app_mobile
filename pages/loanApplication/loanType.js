@@ -25,9 +25,9 @@ module.exports = {
         textProgress: {xpath: '//android.widget.TextView[contains(@text, "Proses selesai")]'},
         textDescription: {xpath: '//android.widget.TextView[contains(@text, "Tim Amar Bank sedang verifikasi data & dokumen yang sudah Anda upload")]'},
         textJointAccount: {xpath: '//android.widget.TextView[contains(@text, "Dengan ini anda mengizinkan Amar Bank untuk joint account dengan rekening bang yang Anda gunakan dalam berinteraksi dengan bouwheer.")]'},
-        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Berapa hari tenor limit yang Anda butuhkan")]'},
+        textTenor: {xpath: '//android.widget.TextView[contains(@text, "Berapa hari tenor limit kredit yang Anda butuhkan")]'},
         texttitletopbarLoanNeeds:  {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
-        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal limit kredit yang Anda butuhkan? *")]'},
+        textnominalKredit: {xpath: '//android.widget.TextView[contains(@text, "Berapa kisaran nominal kebutuhan limit kredit yang Anda butuhkan? *")]'},
         textTenorhari: {xpath: '//android.widget.TextView[contains(@text, "Hari")]'},
         textwordAP: {xpath: '//android.widget.TextView[contains(@text, "Distributor Financing")]'},
         textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
@@ -109,10 +109,28 @@ module.exports = {
     },
     field:{
         inputTenor: "~textFieldTenor",
-        inputCustomNominal: "~textFieldCustomAmount",        
+        inputCustomNominal: "~textFieldCustomAmount", 
+        //IDTracking
+        completedStep: "~completedStep",
+        activeStep: "~activeStep",
+        step: "~step",  
+        //AppNavigation
+        activeStepDetailCredit: "~activeStepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        completedStepDetailCredit: "~completedStepDetailCredit",
+        activeStepDataSupplier: "~activeStepDataSupplier",        
+        //FirstLoanID
+        stepDetailCredit: "~stepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        stepBusinessLocation: "~stepBusinessLocation",
+        stepUploadDocument: "~stepUploadDocument",
+        //SecondLoanID
+        stepDetailCredit: "~stepDetailCredit",
+        stepDataSupplier: "~stepDataSupplier",
+        stepUploadDocument: "~stepUploadDocument",
     },
 
-// Apply Loan Journey Improvement
+    //Apply Loan Journey Improvement
     clickButtonLearnSchema(){
         I.click(this.buttons.schemacreditButton);
     },
@@ -224,12 +242,12 @@ module.exports = {
 
     async validateLoanAmountRequested(titleNominal){
         let actual = await I.grabAttributeFrom(this.textField.textnominalKredit, 'text');
-        I.assertEqual(actual, 'Berapa kisaran nominal limit kredit yang Anda butuhkan? *');
+        I.assertEqual(actual, 'Berapa kisaran nominal kebutuhan limit kredit yang Anda butuhkan? *');
     },
 
     async validateLoanTenor(titleTenor){
         let actual = await I.grabAttributeFrom(this.textField.textTenor, 'text');
-        I.assertEqual(actual, 'Berapa hari tenor limit yang Anda butuhkan');
+        I.assertEqual(actual, 'Berapa hari tenor limit kredit yang Anda butuhkan');
 
     },
     async validateTitleTopBarDocList(titleDocList){
