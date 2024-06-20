@@ -604,6 +604,13 @@ Then("I can click try again to input PIN", async () => {
         resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
+Then("I can click try again to input password", async () => {
+    approvalTransactionPage.clickButtonTryAgain();
+
+    await
+        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+});
+
 Then("I will notify I will direct lo login page", async () => {
     I.waitForElement(approvalTransactionPage.buttons.understand, 10);
 
@@ -620,7 +627,7 @@ Then("I click button direct to login", () => {
 });
 
 Then("I will direct to page detail approval transaction", () => {
-    I.waitForText("Butuh Persetujuan Transaksi", 10);
+    I.waitForText("Menunggu Persetujuan Transaksi", 10);
 });
 
 Then("I will see message error {string} in the below of field otp for approver", async (messageError) => {
@@ -658,8 +665,7 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
-    const actualPhoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/\s+/g, '');
-    await otpDao.resetLimitRequestOtp(actualPhoneNumber);
+    await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
 });
 
 Then("I will get new OTP different with my first OTP to approve transaction", async () => {

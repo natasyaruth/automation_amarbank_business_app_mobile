@@ -7,20 +7,20 @@ module.exports = {
     idFlag: {
         checkDHNKTPDev: "f2aef6fc-522f-4afd-b9cc-d8145b19bc59",
         checkDHNNPWPDev: "a7e17480-e287-4e0b-9892-a8898a0dfb45",
-        checkDHNKTPStg: "",
-        checkDHNNPWPStg: "",
+        checkDHNKTPStg: "2b5f3d24-91bd-4aa3-a58c-fb87fb68c445",
+        checkDHNNPWPStg: "6e85833c-4fed-43cc-b8b2-5a66fa23fb39",
     },
     name: {
         checkDHNKTPDev: "[DEV] GOV Check DHN",
         checkDHNNPWPDev: "[DEV] Cek DHN",
-        checkDHNKTPStg: "",
-        checkDHNNPWPStg: "",
+        checkDHNKTPStg: "[STG] GOV Check DHN",
+        checkDHNNPWPStg: "[STG] Cek DHN",
     },
     path: {
         checkDHNKTPDev: "/dev-gov/regulation/blacklist/([0-9]{16})/.*",
         checkDHNNPWPDev: "/dev-gov/dhn-verification",
-        checkDHNKTPStg: "",
-        checkDHNNPWPStg: "",
+        checkDHNKTPStg: "/staging-gov/regulation/blacklist/([0-9]{16})/.*",
+        checkDHNNPWPStg: "/staging-gov/dhn-verification",
     },
     static: {
         endpoint: "http://10.10.8.54:5557",
@@ -38,7 +38,7 @@ module.exports = {
         if (
             env === "dev"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPDev, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPDev, {
                 id: this.idFlag.checkDHNKTPDev,
                 name: this.name.checkDHNKTPDev,
                 endpoint: this.static.endpoint,
@@ -68,7 +68,7 @@ module.exports = {
         } else if (
             env === "staging"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPStg, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPStg, {
                 id: this.idFlag.checkDHNKTPStg,
                 name: this.name.checkDHNKTPStg,
                 endpoint: this.static.endpoint,
@@ -112,7 +112,7 @@ module.exports = {
         if (
             env === "dev"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPDev, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPDev, {
                 id: this.idFlag.checkDHNKTPDev,
                 name: this.name.checkDHNKTPDev,
                 endpoint: this.static.endpoint,
@@ -143,7 +143,7 @@ module.exports = {
         } else if (
             env === "staging"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPStg, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNKTPStg, {
                 id: this.idFlag.checkDHNKTPStg,
                 name: this.name.checkDHNKTPStg,
                 endpoint: this.static.endpoint,
@@ -187,7 +187,7 @@ module.exports = {
         if (
             env === "dev"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPDev, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPDev, {
                 id: this.idFlag.checkDHNNPWPDev,
                 name: this.name.checkDHNNPWPDev,
                 endpoint: this.static.endpoint,
@@ -217,7 +217,7 @@ module.exports = {
         } else if (
             env === "staging"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPStg, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPStg, {
                 id: this.idFlag.checkDHNNPWPStg,
                 name: this.name.checkDHNNPWPStg,
                 endpoint: this.static.endpoint,
@@ -261,7 +261,7 @@ module.exports = {
         if (
             env === "dev"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPDev, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPDev, {
                 id: this.idFlag.checkDHNNPWPDev,
                 name: this.name.checkDHNNPWPDev,
                 endpoint: this.static.endpoint,
@@ -291,7 +291,7 @@ module.exports = {
         } else if (
             env === "staging"
         ) {
-            response = I.sendPutRequest("https://" + env + "-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPStg, {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.checkDHNNPWPStg, {
                 id: this.idFlag.checkDHNNPWPStg,
                 name: this.name.checkDHNNPWPStg,
                 endpoint: this.static.endpoint,

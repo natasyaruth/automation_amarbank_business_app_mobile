@@ -30,6 +30,7 @@ Given("I am a customer lead wanting to register account business from invitation
 
 Given("I am a customer that recently registered to amarbank business with data as below", async (registration) => {
 
+  
   const account = registration.parse().rowsHash();
 
     await whitelistDao.whitelistPhoneNumber(

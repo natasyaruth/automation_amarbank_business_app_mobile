@@ -16,7 +16,15 @@ module.exports = {
     logout: "~btnLogout",
     biometric: "~buttonLoginBiometric",
     laterBiometric: "~buttonSkip",
-    activatedBiometric: "~buttonActiveNow"
+    activatedBiometric: "~buttonActiveNow",
+    cancelNewDevice: "~buttonCancel",
+    registerNewDevice: "~buttonRegister",
+    understand: "~buttonUnderstand",
+    continueSelfie: "~buttonContinueSelfie",
+    takeSelfie: "~buttonTakeSelfie",
+    reTakeSelfie: "~buttonTry",
+    uploadSelfie: "~buttonUpload",
+    continueToMainDashboard: "~buttonGoToDashboard",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -31,6 +39,10 @@ module.exports = {
   },
   checkbox: {
     rememberMe: "~checkBoxRememberMe",
+  },
+  text: {
+    blockedDate: "~textTitle",
+    errorFace: "~textError",
   },
 
   fillInAccountInformation(accountInformation) {
@@ -64,7 +76,7 @@ module.exports = {
     I.click(this.buttons.login);
   },
 
-  clickLogout(){
+  clickLogout() {
     I.waitForElement(this.buttons.logout, 10);
     I.click(this.buttons.logout);
   },
@@ -137,4 +149,45 @@ module.exports = {
     I.waitForElement(this.buttons.laterBiometric, 30);
     I.click(this.buttons.laterBiometric);
   },
+
+  clickRegisterNewDevice() {
+    I.waitForElement(this.buttons.registerNewDevice, 20);
+    I.click(this.buttons.registerNewDevice);
+  },
+
+  closePageVerificationNewDevice() {
+    I.waitForElement(this.buttons.close, 10);
+    I.click(this.buttons.close);
+  },
+
+  continueTakeSelfie() {
+    I.waitForElement(this.buttons.continueSelfie, 10);
+    I.click(this.buttons.continueSelfie);
+  },
+
+  takePicture() {
+    I.waitForElement(this.buttons.takeSelfie, 10);
+    I.click(this.buttons.takeSelfie);
+  },
+
+  retakePicture() {
+    I.waitForElement(this.buttons.reTakeSelfie, 10);
+    I.click(this.buttons.reTakeSelfie);
+  },
+
+  submitPhoto() {
+    I.waitForElement(this.buttons.uploadSelfie, 10);
+    I.click(this.buttons.uploadSelfie);
+  },
+
+  continueToMainDashboard() {
+    I.waitForElement(this.buttons.continueToMainDashboard, 10);
+    I.click(this.buttons.continueToMainDashboard);
+  },
+
+  async getInfoMessageBlocked() {
+    I.waitForElement(this.text.blockedDate, 10);
+    return await I.grabTextFrom(this.text.blockedDate);
+  },
+
 }
