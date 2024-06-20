@@ -1,4 +1,4 @@
-Feature: User Should See Detail Transaction History
+Feature: Manual Transaction History
     In home
     As a customer
     I need to see detail history transaction

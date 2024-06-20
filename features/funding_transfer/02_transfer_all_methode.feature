@@ -1,4 +1,4 @@
-@transfer_all_method
+#@transfer_all_method
 Feature: User transfer with all transfer method
     In order to transfer
     As a customer
@@ -20,7 +20,7 @@ Feature: User transfer with all transfer method
         And I choose menu Transfer from main dashboard
         And I am on receiver list page
 
-    @C96929
+    #@C96929
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -35,7 +35,7 @@ Feature: User transfer with all transfer method
         And I click transfer
         And I am on page transfer confirmation
 
-    @C96930
+    #@C96930
     Scenario: User transfer with RTOL and input wrong PIN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -50,7 +50,7 @@ Feature: User transfer with all transfer method
         And I input wrong PIN
         Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
-    @C96931
+    #@C96931
     Scenario: User Success Transfer RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -67,7 +67,7 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    @C96932
+    #@C96932
     Scenario: User Success Transfer BiFast
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -84,7 +84,7 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    @C96933
+    #@C96933
     Scenario: User Success Transfer SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -101,7 +101,7 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    @C96934
+    #@C96934
     Scenario: User Success Transfer RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box

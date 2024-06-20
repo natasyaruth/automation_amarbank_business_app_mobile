@@ -4,7 +4,7 @@ Feature: Account Forgot Password
   As a customer
   I want to reset password
 
-  @C96654
+  # #@C96654
   Scenario: Reset password with user ID is empty
     Given I am a customer want to reset password
     When I leave field User ID empty
@@ -79,7 +79,7 @@ Feature: Account Forgot Password
     And I click button Reset Password
     Then I will see information about the reset password can be done in the next 10 minutes
 
-  @C96656
+  # #@C96656
   Scenario: Reset password with user ID has been registered
     Given I am a registered customer with following details:
       | userID      | ruthf200 |
@@ -92,7 +92,7 @@ Feature: Account Forgot Password
     And I click button Reset Password
     Then I should be notified that email Reset Password successfully sent
 
-  @C96657
+  #@C96657
   Scenario: Resend email reset password
     Given I am a customer with User ID and email has already requested a password reset
       | userID      | ruth5010 |
@@ -103,7 +103,7 @@ Feature: Account Forgot Password
     When I resend email reset password
     Then I should be notified that email reset password has been successfully sent
 
-  @C96658
+  #@C96658
   Scenario: Reset password with user ID from invitation business
     Given I am a registered customer with following details:
       | userID      | autoeb6a |
@@ -117,7 +117,7 @@ Feature: Account Forgot Password
     And I click button confirmation reset password
     Then I should be notified that email Reset Password successfully sent
 
-  @C96659
+  #@C96659
   Scenario: Back to page reset password from pop up confirmation
     Given I am a registered customer with following details:
       | userID      | autoeb6a |
@@ -131,7 +131,7 @@ Feature: Account Forgot Password
     And I click button back from pop up reset password
     Then I should back to page reset password with field User ID still filled
 
-  @C96660
+  #@C96660
   Scenario: Back to page login from page reset password
     Given I am a customer want to reset password
     When I click button back in the header page

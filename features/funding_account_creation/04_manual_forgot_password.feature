@@ -1,4 +1,4 @@
-Feature: Account Forgot Password
+Feature: Mannual Account Forgot Password
     In order to going to SMB dashboard while forgot user password
     As a customer
     I want to reset password
