@@ -190,4 +190,19 @@ module.exports = {
     return await I.grabTextFrom(this.text.blockedDate);
   },
 
+  understandPermission() {
+    I.waitForElement(this.buttons.understand, 10);
+    I.click(this.buttons.understand);
+  },
+
+  understandInformation() {
+    I.waitForElement(this.buttons.understand, 10);
+    I.click(this.buttons.understand);
+  },
+
+  cancelNewDevice(){
+    I.waitForElement(this.buttons.cancelNewDevice, 10);
+    I.click(this.buttons.cancelNewDevice);
+  }
+
 }

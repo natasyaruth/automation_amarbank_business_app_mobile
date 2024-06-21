@@ -8,6 +8,7 @@ const {
   transferPage,
   onboardingAccOpeningPage,
   globalVariable,
+  getDataDao,
 } = inject();
 
 Given(
@@ -86,6 +87,14 @@ Given(
     }
   }
 );
+
+Given("I enabled to checking device id", async () => {
+  // API to enabled check device id
+});
+
+Given("I have last step journey before", async () => {
+  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
+});
 
 When("I filling in form login with the following details:", (table) => {
   const account = table.parse().rowsHash();
@@ -219,6 +228,169 @@ When("I close bottom sheet biometric", () => {
   loginPage.closeBottomSheet();
 });
 
+When("I will see bottom sheet register new device", () => {
+  I.waitForElement(loginPage.buttons.close, 10);
+  I.waitForText("Perangkat Baru Terdeteksi", 10);
+  I.see("Daftarkan perangkat ini untuk dapat mengakses akun Anda. Demi keamanan, Anda tidak dapat mengakses akun Amar Bank Bisnis melalui perangkat lama lagi.");
+
+  I.see("Batal");
+  I.waitForElement(loginPage.buttons.cancelNewDevice, 10);
+
+  I.see("Daftarkan");
+  I.waitForElement(loginPage.buttons.registerNewDevice, 10);
+});
+
+When("I click button register new device", () => {
+  loginPage.clickRegisterNewDevice();
+});
+
+When("I will direct to page verification new device", () => {
+  I.waitForElement(headerPage.buttons.closePage, 10);
+  I.waitForElement(loginPage.buttons.callCenter, 10);
+
+  I.waitForText("Verifikasi Data Anda Menggunakan Selfie", 10);
+  I.see("Untuk mengubah data, silakan lakukan selfie seperti pada saat Anda registrasi awal untuk memastikan data Anda benar.");
+
+  I.see("Lanjut Ambil Selfie");
+  I.waitForElement(loginPage.buttons.continueSelfie, 10);
+});
+
+When("I click button continue to take selfie", () => {
+  loginPage.continueTakeSelfie();
+});
+
+When("I will see bottom sheet permission", () => {
+  I.waitForElement(loginPage.buttons.close, 10);
+
+  I.waitForText("Amar Bank membutuhkan izin perangkat", 10);
+  I.see("Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
+  I.see("Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
+  I.see("Kami memastikan data kamu tidak akan disalahgunakan.");
+
+  I.see("Saya Mengerti");
+  I.waitForElement(loginPage.buttons.understand, 10);
+});
+
+When("I understand about the permission", () => {
+  loginPage.understandPermission();
+});
+
+When("I will direct to page take selfie", () => {
+  I.waitForText("Selfie", 10);
+  I.see("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong");
+
+  I.see("Ambil Selfie");
+  I.waitForElement(loginPage.buttons.takeSelfie, 10);
+  I.dontSee(loginPage.buttons.reTakeSelfie);
+  I.dontSee("Ulangi");
+});
+
+When("I take picture selfie for matching the face", () => {
+  I.wait(3);
+  loginPage.takePicture();
+});
+
+When("I take picture selfie with face is blur", async () => {
+  I.wait(3);
+
+  // API to mock face blur
+
+  loginPage.takePicture();
+});
+
+When("I take picture selfie with face is dark", async () => {
+  I.wait(3);
+
+  // API to mock face dark
+
+  loginPage.takePicture();
+});
+
+When("I take picture selfie with no face", async () => {
+  I.wait(3);
+
+  // API to mock no face detected
+
+  loginPage.takePicture();
+});
+
+When("I take picture selfie with server is error", async () => {
+  I.wait(3);
+
+  // API to mock face server error
+
+  loginPage.takePicture();
+});
+
+When("I will direct to page preview selfie picture", () => {
+  I.waitForElement(loginPage.buttons.reTakeSelfie, 10);
+  I.waitForText("Ulangi", 10);
+});
+
+When("I retake my picture selfie", () => {
+  loginPage.retakePicture();
+});
+
+When("I submit my selfie photo", () => {
+  loginPage.submitPhoto();
+});
+
+When("I will disabled checking device id", async () => {
+  // API to disabled checking device id
+});
+
+When("I will direct to page verification is failed", () => {
+  I.waitForElement(headerPage.buttons.closePage, 10);
+
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+
+  const hours = tomorrowDate.getHours();
+  const minutes = tomorrowDate.getMinutes();
+  const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
+
+  const day = tomorrowDate.getDate();
+  const month = tomorrowDate.getMonth();
+  const year = tomorrowDate.getFullYear();
+  const months = [
+    "Januari", "Februari", "Maret", "April",
+    "Mei", "Juni", "Juli", "Agustus",
+    "September", "Oktober", "November", "Desember"
+  ];
+
+  globalVariable.login.date = day + " " + months[month] + " " + year;
+  globalVariable.login.time = currentTime;
+
+  I.waitForElement(loginPage.buttons.callCenter, 10);
+
+  I.waitForText("Verifikasi Data Gagal", 10);
+  I.see("Amar Bank belum bisa melayani Anda di perangkat baru. Saat ini akun Anda terblokir dalam 1x24 jam.");
+
+  I.see("Saya Mengerti");
+  I.waitForElement(loginPage.buttons.understand, 10);
+});
+
+When("I understand about the information", () => {
+  loginPage.understandInformation();
+});
+
+When("I click cancel register new device", () => {
+  loginPage.cancelNewDevice();
+});
+
+When("I click close bottom sheet register new device", () => {
+  loginPage.closeBottomSheet();
+});
+
+When("I close page verification new device", () => {
+  headerPage.closePage();
+});
+
+When("I click button continue to main dashboard", () => {
+  loginPage.continueToMainDashboard();
+});
+
 Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
@@ -278,4 +450,24 @@ Then("I should see bottom sheet call center with email", () => {
     "pembentukan rekening ataupun pinjaman"
   );
   I.see("support.bisnis@amarbank.co.id");
+});
+
+Then("I will direct to page verification face is success", () => {
+  I.waitForText(errorMsg, 10);
+});
+
+Then("I will see information that my account can be opened tomorrow", async () => {
+  I.waitForElement(loginPage.buttons.close, 10);
+
+  I.see("Akun Anda Terblokir");
+  I.see("Silakan coba lagi pada");
+
+  const actualInfo = await loginPage.getInfoMessageBlocked();
+  const expInfo = globalVariable.login.date + ", pukul " + globalVariable.login.time;
+  I.assertEqual(actualInfo, expInfo);
+});
+
+Then("my last journey step is not change", async () => {
+  const actualLastStep = (await getDataDao.getLastStepJourney()).step;
+  I.assertEqual(actualLastStep, globalVariable.login.lastStep);
 });

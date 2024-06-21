@@ -7,6 +7,7 @@ Feature: Registering New Device
     Background: Enabled checking register new device id
         Given I enabled to checking device id
 
+    @C133917
     Scenario: Recapture selfie picture
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -32,6 +33,7 @@ Feature: Registering New Device
         Then I will direct to page take selfie
         And I will disabled checking device id
 
+    @C133918
     Scenario: Submit photo selfie with picture is blur
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -52,6 +54,7 @@ Feature: Registering New Device
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'
         And I will disabled checking device id
 
+    @C133919
     Scenario: Submit photo selfie with picture is dark
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -72,6 +75,7 @@ Feature: Registering New Device
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'    
         And I will disabled checking device id
 
+    @C133920
     Scenario: Submit photo selfie is blank or not selfie picture
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -92,6 +96,7 @@ Feature: Registering New Device
         Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
         And I will disabled checking device id
 
+    @C133921
     Scenario: Submit photo selfie with server is error
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -112,6 +117,7 @@ Feature: Registering New Device
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'    
         And I will disabled checking device id
 
+    @C133922
     Scenario: Submit failed photo till account is blocked
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -146,6 +152,7 @@ Feature: Registering New Device
         And I understand about the information
         And I will disabled checking device id
 
+    @C133923
     Scenario: Submit failed photo three times got server error
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -170,6 +177,7 @@ Feature: Registering New Device
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'      
         And I will disabled checking device id    
 
+    @C133924
     Scenario: Back to page login from bottom sheet register new device
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -184,9 +192,10 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click cancel register new device
-        And I will directing to page login
+        Then I will directing to page login
         And I will disabled checking device id
 
+    @C133925
     Scenario: Close page bottom sheet register new device
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -201,9 +210,10 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click close bottom sheet register new device
-        And I will directing to page login
+        Then I will directing to page login
         And I will disabled checking device id    
 
+    @C133926
     Scenario: Close page verification register new device
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -223,6 +233,7 @@ Feature: Registering New Device
         Then I will directing to page login
         And I will disabled checking device id
 
+    @C133927
     Scenario: Login to app using different user id - account active
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -253,16 +264,17 @@ Feature: Registering New Device
         When I click login
         And I will see card account 'active'
 
+    @C133928
     Scenario: Login to app using different user id - account on process
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         And I have last step journey before
         When I click login
@@ -278,21 +290,22 @@ Feature: Registering New Device
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         When I click login
         And I will see card account 'on process'
 
+    @C133929
     Scenario: Login to app using different user id - account on verification
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | indibec3 |
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
@@ -308,9 +321,9 @@ Feature: Registering New Device
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         When I click login
         And I will see card account 'on verification'
