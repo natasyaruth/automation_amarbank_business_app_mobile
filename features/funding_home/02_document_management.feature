@@ -394,13 +394,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later
