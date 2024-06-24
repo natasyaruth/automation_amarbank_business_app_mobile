@@ -17,6 +17,50 @@ Given("I mock feature submit form Business Profile into enabled", async () => {
         mockingDao.enabledCheckDHNNPWP();
 });
 
+When("I see fields that available in Business Profile", async () => {
+    I.waitForText("Wajib Diisi", 10);
+
+    I.waitForElement(formBusinessProfilePage.fields.businessName, 10);
+    I.see("Nama Bisnis");
+    I.see("Tulis nama bisnis");
+    I.see("Nama bisnis sesuai dengan dokumen legalitas");
+
+    I.waitForElement(formBusinessProfilePage.dropDowns.industry, 10);
+    I.see("Tipe Industri");
+    I.see("Pilih tipe industri");
+
+    I.waitForElement(formBusinessProfilePage.fields.businessField, 10);
+    I.see("Jenis Bisnis");
+    I.see("Tulis jenis bisnis");
+    I.see("Contoh: Salon, Restoran dll");
+
+    I.waitForElement(formBusinessProfilePage.dropDowns.monthlyIncome, 10);
+    I.see("Penghasilan Bisnis per Bulan");
+    I.see("Pilih pendapatan bisnis per bulan");
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+    I.waitForElement(formBusinessProfilePage.fields.averageTransaction, 10);
+    I.see("Rata-rata Transaksi");
+    I.see("Rata-rata transaksi per bulan");
+
+    I.waitForElement(formBusinessProfilePage.fields.npwp, 10);
+    I.see("Nomor NPWP Bisnis");
+    I.see("Tulis nomor NPWP bisnis");
+
+    I.waitForElement(formBusinessProfilePage.fields.nib, 10);
+    I.see("NIB Berbasis Resiko");
+    I.see("Tulis nomor NIB berbasis resiko");
+
+    I.waitForElement(formBusinessProfilePage.datePicker.businessDateStart, 10);
+    I.see("Tanggal Bisnis Berdiri");
+    I.see("Tanggal/Bulan/Tahun");
+
+    I.see("Simpan Profil Bisnis");
+
+    I.swipeDown(formBusinessProfilePage.dropDowns.monthlyIncome, 1000, 1000);
+});
+
 When("I continue to process KYB", () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
@@ -37,9 +81,16 @@ When("I submit my business profile", () => {
 When("I fill field {string} with {string} in form Business Profile", (fieldName, valueField) => {
     if (fieldName === "npwp" ||
         fieldName === "nib") {
-        I.swipeUp(formBusinessProfilePage.fields[fieldName], 500, 1000);
+        I.swipeUp(formBusinessProfilePage.fields.averageTransaction, 1000, 1000);
     }
+
     formBusinessProfilePage.fillField(fieldName, valueField);
+    
+    if (
+        fieldName === "averageTransaction"
+    ) {
+        I.dontSee(valueField);
+    }
 });
 
 When("I fill form Business Profile except field {string}", (fieldName) => {
@@ -48,6 +99,7 @@ When("I fill form Business Profile except field {string}", (fieldName) => {
         industry: "Jasa",
         businessField: "Restoran",
         monthlyIncome: "30 - 50 juta",
+        averageTransaction: 200000,
         npwp: "906283213036000",
         nib: "9129106701234",
         businessDateStart: "10/10/2010",
@@ -67,7 +119,7 @@ When("I swipe to field {string} in form Business Profile", (fieldName) => {
         fieldName === "businessName" ||
         fieldName === "industry"
     ) {
-        I.swipeDown(formBusinessProfilePage.fields.businessField, 600, 900);
+        I.swipeDown(formBusinessProfilePage.fields.businessField, 1000, 1500);
     }
 });
 
