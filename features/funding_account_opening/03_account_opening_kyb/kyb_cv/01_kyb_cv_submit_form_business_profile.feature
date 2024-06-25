@@ -16,6 +16,7 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -31,11 +32,12 @@ Feature: Account Opening KYB CV - Submit Business Profile
         And I clear the field '<Field>' in form Business Profile
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Profile
         Examples:
-            | testRailTag | Field         | Field Name          |
-            | @C131851    | businessName  | Nama bisnis         |
-            | @C131852    | businessField | Jenis bisnis        |
-            | @C131853    | npwp          | NPWP bisnis         |
-            | @C131854    | nib           | NIB Berbasis Resiko |
+            | testRailTag | Field              | Field Name            |
+            | @C131851    | businessName       | Nama bisnis           |
+            | @C131852    | businessField      | Jenis bisnis          |
+            | @C134126    | averageTransaction | Rata - rata transaksi |
+            | @C131853    | npwp               | NPWP bisnis           |
+            | @C131854    | nib                | NIB Berbasis Resiko   |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Profile
         Given I am a customer who has completed my KYC process
@@ -50,6 +52,7 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | @C131856    | industry          | Tipe industri                |
             | @C131857    | businessField     | Jenis bisnis                 |
             | @C131858    | monthlyIncome     | Penghasilan bisnis per bulan |
+            | @C134133    | averageTransaction| Rata - rata transaksi        |
             | @C131859    | npwp              | NPWP bisnis                  |
             | @C131860    | nib               | NIB Berbasis Resiko          |
             | @C131861    | businessDateStart | Tanggal bisnis berdiri       |
@@ -70,6 +73,13 @@ Feature: Account Opening KYB CV - Submit Business Profile
         When I continue to process KYB
         And I fill field 'businessName' with 'John Doe S.Kom, M\'Kom- 11233' in form Business Profile
         Then I shouldn't see message error in the below of field 'businessName' in form Business Profile
+
+    @C134116
+    Scenario: Verifying field average transaction contain with special char and alphabeth
+        Given I am a customer who has completed my KYC process
+        When I continue to process KYB
+        And I fill field 'averageTransaction' with '20;0000ty@#$' in form Business Profile
+        Then I should see message error 'Rata - rata transaksi wajib diisi' in the below of field 'averageTransaction' in form Business Profile   
 
     Scenario Outline: Verifying business field with invalid value in form Business Profile
         Given I am a customer who has completed my KYC process
@@ -106,14 +116,16 @@ Feature: Account Opening KYB CV - Submit Business Profile
     Scenario: Submit form Business Profile successfully business type CV
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
+        And I see fields that available in Business Profile
         And I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Restoran        |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | npwp               | 906283213036000 |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
         And I submit my business profile
         Then I will notify my business profile has successfully submitted
         And I will directing to page director list

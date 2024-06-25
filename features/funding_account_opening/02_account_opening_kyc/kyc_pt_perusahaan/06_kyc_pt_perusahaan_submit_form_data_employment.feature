@@ -27,6 +27,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
     @C131832
     Scenario: Submit form Data Employment successfully business type PT Perusahaan
         Given I am a customer who has submitted my domicile address
+        And I see fields that available in Data Employment
         When I fill my employment details as followings:
             | workType     | Pegawai Swasta       |
             | sourceIncome | Pemasukan dari Usaha |
