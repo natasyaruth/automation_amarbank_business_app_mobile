@@ -26,30 +26,16 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I update my last journey step to 'Data Employment'
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
-            | industry          | Jasa                                  |
-            | businessField     | Restoran                              |
-            | monthlyIncome     | 30 - 50 juta                          |
-            | npwp              | 906283213036000                       |
-            | nib               | 9129106701234                         |
-            | businessDateStart | 10/10/2010                            |
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Restoran                              |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | npwp               | 906283213036000                       |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
         And I submit my business profile
-        And I click add business director
-        And I fill business director data as followings:
-            | fullName | COKI PARDEDE                |
-            | email    | coki.pardede@trash-mail.com |
-            | nik      | 3175064412930004            |
-        And I save data director
-        And I validate my first director
-        And I click add business director
-        And I fill business director data as followings:
-            | fullName | TRETAN UNIVERSE                |
-            | email    | tretanuniverse1@trash-mail.com |
-            | nik      | 3171036412910007               |
-        And I save data director
-        And I validate my second director
         And I submit business director list
-        And I confirm my director lists
 
     Scenario Outline: Verifying form Business Address fields has been filled and then empty the fields
         Given I am a customer who has submitted business owner list
@@ -139,7 +125,10 @@ Feature: Account Opening KYB CV - Submit Business Address
             | city     | KAB. ACEH TIMUR              |
             | district | DARUL AMAN                   |
             | village  |                              |
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
         Then I will directing to page upload require documents for business
         And I can close the page so that I can back to main dashboard

@@ -53,6 +53,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'
         And I will disabled checking device id
+        And I will reset my attempt failed face match
 
     @C133919
     Scenario: Submit photo selfie with picture is dark
@@ -74,18 +75,19 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'    
         And I will disabled checking device id
+        And I will reset my attempt failed face match
 
     @C133920
     Scenario: Submit photo selfie is blank or not selfie picture
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -95,18 +97,19 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
         And I will disabled checking device id
+        And I will reset my attempt failed face match
 
     @C133921
     Scenario: Submit photo selfie with server is error
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -120,14 +123,14 @@ Feature: Registering New Device
     @C133922
     Scenario: Submit failed photo till account is blocked
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -151,18 +154,19 @@ Feature: Registering New Device
         Then I will see information that my account can be opened tomorrow 
         And I understand about the information
         And I will disabled checking device id
+        And I will reset my attempt failed face match
 
     @C133923
     Scenario: Submit failed photo three times got server error
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -180,14 +184,14 @@ Feature: Registering New Device
     @C133924
     Scenario: Back to page login from bottom sheet register new device
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I will see bottom sheet register new device
@@ -198,14 +202,14 @@ Feature: Registering New Device
     @C133925
     Scenario: Close page bottom sheet register new device
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I will see bottom sheet register new device
@@ -216,14 +220,14 @@ Feature: Registering New Device
     @C133926
     Scenario: Close page verification register new device
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I will see bottom sheet register new device
@@ -236,14 +240,14 @@ Feature: Registering New Device
     @C133927
     Scenario: Login to app using different user id - account active
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -257,9 +261,9 @@ Feature: Registering New Device
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
         And I will see card account 'active'

@@ -176,6 +176,9 @@ Then("I will notify that I already fill my personal details data", async () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will notify that my personal data details needs to be verified first", async () => {
@@ -183,6 +186,9 @@ Then("I will notify that my personal data details needs to be verified first", a
     I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I shouldn't see message error in the below of field company name in form Data Employment", async () => {

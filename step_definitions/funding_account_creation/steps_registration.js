@@ -318,12 +318,50 @@ When("I click link registration", () => {
   registrationPage.goToLoginPage();
 });
 
-When("I click link terms and condition", () => {
-  registrationPage.goToTermsAndConditionPage();
+When("I click button agree with terms and condition", () => {
+  registrationPage.agreeWithTermsAndCondition();
 });
 
-When("I click link privacy and policy", () => {
-  registrationPage.goToPrivacyPolicyPage();
+When("I will directing to page terms and condition", () => {
+  I.wait(3);
+  I.waitForText("Syarat dan Ketentuan", 10);
+  I.waitForElement(headerPage.buttons.back, 10);
+
+  registrationPage.clickScrollToEndOfPage();
+
+  I.waitForElement(registrationPage.buttons.acceptWebView, 10);
+  I.see("Setujui Syarat dan Ketentuan");
+});
+
+When("I click button agree with privacy and policy", () => {
+  registrationPage.agreeWithPrivacyAndPolicy();
+});
+
+When("I will directing to page privacy and policy", () => {
+  I.wait(3);
+  I.waitForText("Kebijakan Privasi", 10);
+  I.waitForElement(headerPage.buttons.back, 10);
+  
+  registrationPage.clickScrollToEndOfPage();
+  
+  I.waitForElement(registrationPage.buttons.acceptWebView, 10);
+  I.see("Setujui Kebijakan Privasi");
+});
+
+When("I will directing to page PDP", () => {
+  I.waitForText("Persetujuan Penggunaan Data dan Informasi Pribadi", 10);
+  I.see("Buat Akun");
+  I.see("Wajib dicentang");
+
+  I.waitForElement(registrationPage.checkButton.firstPdp, 10);
+  I.see("Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank.".trim());
+
+  I.waitForElement(registrationPage.checkButton.secondPdp, 10);
+  I.see("Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank.".trim());
+  
+  I.waitForElement(registrationPage.checkButton.thirdPdp, 10);
+  I.see("Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank.".trim());
+  
 });
 
 When("I click call center", () => {

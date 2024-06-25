@@ -103,6 +103,7 @@ module.exports = {
   },
 
   goToRegistrationPage() {
+    I.waitForElement(this.link.registration, 30);
     I.click(this.link.registration);
   },
 

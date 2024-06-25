@@ -54,6 +54,21 @@ module.exports = {
         }
     },
 
+    async resetAttemptFailedFaceMatch(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseReset = await I.sendDeleteRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/verify/selfie/"+userID);
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseReset.status
+        }
+    },
+
     reloadPageAfterResetState() {
         headerPage.clickButtonBack();
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
