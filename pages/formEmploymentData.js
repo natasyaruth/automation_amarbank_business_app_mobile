@@ -2,7 +2,8 @@ const { I } = inject();
 
 module.exports = {
   field:{
-    companyName: "~fieldCompany"
+    companyName: "~fieldCompany",
+    averageTransaction: "~averageTransactionField",
   }, 
   dropDowns:{
     workType: "~fieldTypeWork",
@@ -32,6 +33,7 @@ module.exports = {
     monthlyIncome: "~fieldErrorMonthlyIncome",
     industry: "~fieldErrorIndustry",
     companyName: "~fieldErrorCompany",
+    averageTransaction: "~averageTransactionErrorField",
   },
 
   async fillEmploymentData(employmentData){
@@ -50,6 +52,9 @@ module.exports = {
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
         ){
+        if(fieldName === "industry"){
+          I.swipeUp(this.field.averageTransaction, 1000, 500);
+        }  
         I.waitForElement(this.dropDowns[fieldName], 10);  
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
@@ -76,6 +81,11 @@ module.exports = {
      I.setText(this.field.companyName, value);
   },
 
+  fillFieldAverageTransaction(value){
+    I.waitForElement(this.field.averageTransaction, 10);
+    I.setText(this.field.averageTransaction, value);
+ },
+
   saveEmploymentData(){
     I.click(this.buttons.saveEmploymentData);
   },
@@ -92,8 +102,13 @@ module.exports = {
     I.clearField(this.field.companyName);
   },
 
+  clearFieldAverageTransaction(){
+    I.clearField(this.field.averageTransaction);
+  },
+
   async getMessageError(fieldName){
     I.waitForElement(this.messageErrorFields[fieldName], 10);
     return I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
+
 }

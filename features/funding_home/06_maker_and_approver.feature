@@ -18,6 +18,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
@@ -37,10 +38,11 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
-        And I will see menu document management
+        And I will not see menu document management
 
     @C131462
     Scenario: Validate menu transaction approval with type UD
@@ -56,10 +58,11 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
-        And I will see menu document management
+        And I will not see menu document management
 
     @C131463
     Scenario: Validate card maker after make transfer out with type business other than company and CV
@@ -75,6 +78,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
@@ -101,6 +105,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I don't see any card transaction in main dashboard
         When I click tab profile
         And I click menu transaction approval
@@ -174,6 +179,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         And I click menu transaction approval
         And I click waiting approval section
@@ -195,6 +201,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         And I click menu transaction approval
         And I will direct to page transaction approval
@@ -292,6 +299,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         When I click tab profile
         And I click menu transaction approval
         And I click card approver transaction
@@ -392,6 +400,7 @@ Feature: Maker and Approver Transaction
         And I input incorrect password for approver
         And I submit my password for approver
         Then I will see pop up data is incorrect
+        And I can click try again to input password
 
     @C131477
     Scenario: Input wrong password more than 3 times when user want to approve transaction
@@ -443,7 +452,7 @@ Feature: Maker and Approver Transaction
         And I canceled my transaction
         And I input password for approver
         And I Unmask the password
-        Then I will not see my password
+        Then I will see my password
 
     @C131479
     Scenario: Mask password
@@ -465,7 +474,7 @@ Feature: Maker and Approver Transaction
         And I input password for approver
         And I Unmask the password
         And I Mask the password
-        Then I will see my password
+        Then I will not see my password
 
     @C131480
     Scenario: Close page input password entry point detail card from main dashboard
@@ -528,6 +537,7 @@ Feature: Maker and Approver Transaction
         When I click card maker transaction
         And I canceled my transaction
         And I input password for approver
+        And I submit my password for approver
         And I input incorrect OTP for approve transaction
         Then I will see message error 'Kode OTP yang dimasukkan salah' in the below of field otp for approver
 
@@ -549,9 +559,10 @@ Feature: Maker and Approver Transaction
         When I click card maker transaction
         And I canceled my transaction
         And I input password for approver
+        And I submit my password for approver
         And I let the otp code for approve transaction expire
         And I input OTP to approve transaction
-        Then I will see message error 'Kode OTP yang dimasukan sudah kadaluarsa' in the below of field otp for approver
+        Then I will see message error 'Kode OTP yang dimasukan sudah kedaluwarsa' in the below of field otp for approver
 
     @C131484
     Scenario: Verifying wrong OTP code five times
@@ -571,6 +582,7 @@ Feature: Maker and Approver Transaction
         When I click card maker transaction
         And I canceled my transaction
         And I input password for approver
+        And I submit my password for approver
         And I input incorrect OTP '5' times
         Then I should be notified that I can verify the OTP tomorrow
 
@@ -592,6 +604,7 @@ Feature: Maker and Approver Transaction
         When I click card maker transaction
         And I canceled my transaction
         And I input password for approver
+        And I submit my password for approver
         And I resend otp code to approve transaction
         Then I will get new OTP different with my first OTP to approve transaction
         And I will see attempt left '1/5'
@@ -614,7 +627,8 @@ Feature: Maker and Approver Transaction
         When I click card maker transaction
         And I canceled my transaction
         And I input password for approver
-        And I resend otp code to approve transaction five times
+        And I submit my password for approver
+        And I resend otp code to approve transaction more than five times
         Then I should be notified that I can verify the OTP tomorrow
 
     @C131487
@@ -622,13 +636,13 @@ Feature: Maker and Approver Transaction
         Given I am a registered customer with following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I choose menu Transfer from main dashboard
@@ -1193,12 +1207,12 @@ Feature: Maker and Approver Transaction
         Given I am a registered customer with following details:
             | userID      | nata511a |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | nata66a0 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | nata511a |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | nata66a0 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1218,7 +1232,7 @@ Feature: Maker and Approver Transaction
         And I filling in form login with the following details:
             | userID      | nata2082 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | nataab7d |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1233,7 +1247,7 @@ Feature: Maker and Approver Transaction
         And I filling in form login with the following details:
             | userID      | devef63e |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | stagd02c |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

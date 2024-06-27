@@ -27,6 +27,9 @@ module.exports = {
         password: "",
         userID: "",
         countValue: "",
+        date: "",
+        time: "",
+        lastStep: "",
     },
     forgotPassword: {
         userID: "",

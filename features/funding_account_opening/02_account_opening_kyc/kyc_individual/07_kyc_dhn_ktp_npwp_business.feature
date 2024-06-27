@@ -11,7 +11,7 @@ Feature: Account Opening - Validation DHN KTP and NPWP Business
     Scenario: Submit form KTP with NIK indicated as DHN
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Revvy                   |
-            | email           | revvy_dev@gmail.com     |
+            | email           | revvy@gmail.com         |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
             | confirmPassword | 1234Test                |
@@ -47,7 +47,7 @@ Feature: Account Opening - Validation DHN KTP and NPWP Business
     Scenario: Submit form Business Profile with NPWP business indicated as DHN
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Revvy                   |
-            | email           | revvy_dev@gmail.com     |
+            | email           | revvy@gmail.com         |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
             | confirmPassword | 1234Test                |

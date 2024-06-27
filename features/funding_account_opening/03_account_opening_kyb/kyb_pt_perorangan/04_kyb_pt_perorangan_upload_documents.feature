@@ -15,6 +15,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account

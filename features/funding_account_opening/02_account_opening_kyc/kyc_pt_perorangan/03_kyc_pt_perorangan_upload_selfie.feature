@@ -16,6 +16,7 @@ Feature: Account Opening KYC PT Perorangan - Upload Selfie Photo
       | userIDstg   | ruthdadb |
       | passwordStg | 1234Test |
     And I click login
+    And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account

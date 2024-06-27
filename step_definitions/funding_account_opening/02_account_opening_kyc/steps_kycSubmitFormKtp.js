@@ -180,9 +180,6 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
     I.dontSeeElement(formKtpPage.buttons.helpDHN);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-
-    await
         mockingDao.disabledCheckDHNKTP();
 
     await
