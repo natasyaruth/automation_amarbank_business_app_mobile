@@ -13,6 +13,7 @@ module.exports = {
     closeBottomSheet: "~buttonClose",
     email: "~buttonDirectEmail",
     closePage: "~buttonClose",
+    acceptWebView: "~acceptWebviewBtn",
   },
   dropDownsSearch:{
     province: "~textFieldProvince",
@@ -35,6 +36,9 @@ module.exports = {
     rights: "~checkBoxRight",
     privy: "~checkBoxPrivy",
     loan: "~checkBoxLoan",
+  },
+  scroll:{
+    scrollToButton: "~scrollContentWebview",
   },
 
   fillBusinessAddress(businessAddress){
@@ -115,6 +119,16 @@ module.exports = {
   async getMessageError(fieldName) {
     I.waitForElement(this.messageErrorFields[fieldName], 2);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
+
+  clickScrollToEndOfPage(){
+    I.waitForElement(this.scroll.scrollToButton, 10);
+    I.click(this.scroll.scrollToButton);
+  },
+
+  agreeWithRightsAndObligations() {
+    I.waitForElement(this.buttons.acceptWebView);
+    I.click(this.buttons.acceptWebView);
   },
 
 }

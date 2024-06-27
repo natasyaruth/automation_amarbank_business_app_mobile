@@ -26,13 +26,14 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I update my last journey step to 'Data Employment'
         When I continue to process KYB
         And I fill my business profile as followings:
-            | businessName      | PT PERORANGAN TERBARU KYC TIGA |
-            | industry          | Jasa                           |
-            | businessField     | Restoran                       |
-            | monthlyIncome     | 30 - 50 juta                   |
-            | npwp              | 906283213036000                |
-            | nib               | 9129106701234                  |
-            | businessDateStart | 10/10/2010                     |
+            | businessName       | PT PERORANGAN TERBARU KYC TIGA |
+            | industry           | Jasa                           |
+            | businessField      | Restoran                       |
+            | monthlyIncome      | 30 - 50 juta                   |
+            | averageTransaction | 2000000                        |
+            | npwp               | 906283213036000                |
+            | nib                | 9129106701234                  |
+            | businessDateStart  | 10/10/2010                     |
         And I submit my business profile
         And I submit business owner list
 
@@ -47,7 +48,10 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
         Then I will directing to page upload require documents for business individual
         And I can close the page so that I can back to main dashboard

@@ -9,6 +9,7 @@ const {
   onboardingAccOpeningPage,
   globalVariable,
   getDataDao,
+  resetStateDao,
 } = inject();
 
 Given(
@@ -112,6 +113,10 @@ When("I filling in form login with the following details:", (table) => {
 
 When("I click login", () => {
   loginPage.clickLoginButton();
+});
+
+When("I click link registration", () => {
+  loginPage.goToRegistrationPage();
 });
 
 Then("I will direct to dashboard", () => {
@@ -293,7 +298,8 @@ When("I take picture selfie for matching the face", () => {
 When("I take picture selfie with face is blur", async () => {
   I.wait(3);
 
-  // API to mock face blur
+  await
+    mockingDao.livenessFaceBlur();
 
   loginPage.takePicture();
 });
@@ -301,7 +307,8 @@ When("I take picture selfie with face is blur", async () => {
 When("I take picture selfie with face is dark", async () => {
   I.wait(3);
 
-  // API to mock face dark
+  await
+    mockingDao.livenessFaceBlur();
 
   loginPage.takePicture();
 });
@@ -309,7 +316,17 @@ When("I take picture selfie with face is dark", async () => {
 When("I take picture selfie with no face", async () => {
   I.wait(3);
 
-  // API to mock no face detected
+  await
+    mockingDao.livenessFaceNotDetected();
+
+  loginPage.takePicture();
+});
+
+When("I take picture selfie with face is blur and dark", async () => {
+  I.wait(3);
+
+  await
+    mockingDao.livenessFaceBlurAndDark();
 
   loginPage.takePicture();
 });
@@ -317,7 +334,8 @@ When("I take picture selfie with no face", async () => {
 When("I take picture selfie with server is error", async () => {
   I.wait(3);
 
-  // API to mock face server error
+  await
+    mockingDao.livenessError();
 
   loginPage.takePicture();
 });
@@ -337,6 +355,9 @@ When("I submit my selfie photo", () => {
 
 When("I will disabled checking device id", async () => {
   // API to disabled checking device id
+
+  await
+    mockingDao.livenessSuccess();
 });
 
 When("I will direct to page verification is failed", () => {
@@ -453,7 +474,24 @@ Then("I should see bottom sheet call center with email", () => {
 });
 
 Then("I will direct to page verification face is success", () => {
+  I.waitForText("Verifikasi Data Berhasil", 20);
+  I.see("Anda dapat menggunakan kembali fitur Amar Bank Bisnis di perangkat ini.");
+
+  I.dontSee(headerPage.buttons.back);
+  I.dontSee(headerPage.buttons.close);
+  I.dontSee(loginPage.buttons.callCenter);
+
+  I.see("Menuju Dashboard");
+  I.waitForElement(loginPage.buttons.continueToMainDashboard);
+});
+
+Then("I will see snackbar error upload photo {string}", (errorMsg) => {
   I.waitForText(errorMsg, 10);
+});
+
+Then("I will reset my attempt failed face match", async () => {
+  await
+    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see information that my account can be opened tomorrow", async () => {

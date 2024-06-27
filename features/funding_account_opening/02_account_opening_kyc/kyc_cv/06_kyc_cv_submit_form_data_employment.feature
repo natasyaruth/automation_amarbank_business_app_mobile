@@ -6,12 +6,12 @@ Feature: Account Opening KYC CV - Submit Data Employment
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID      | deve26d4 |
+            | userID      | revv04c0 |
             | password    | 1234Test |
             | userIDstg   | ruthf5d5 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | deve26d4 |
+            | userID      | revv04c0 |
             | password    | 1234Test |
             | userIDstg   | ruthf5d5 |
             | passwordStg | 1234Test |

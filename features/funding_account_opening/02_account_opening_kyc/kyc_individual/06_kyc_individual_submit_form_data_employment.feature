@@ -191,6 +191,9 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | averageTransaction | 2000000              |
             | industry           | Pemerintahan         |
             | companyName        | KEMENDAGRI           |
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my employment data individual
         Then I will notify that my personal data details needs to be verified first
