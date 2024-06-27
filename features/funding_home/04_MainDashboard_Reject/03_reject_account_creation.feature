@@ -20,5 +20,7 @@ Feature: User Should See Main Dashboard Rejected Card On Account Creation
     @C109168
     Scenario: User validate Rejected Card main dashboard Acc Creation
         Given user on main dashboard
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
+        When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
         When user should see text button "Pembuatan Rekening Ditolak" on field "Perbankan Giro"
         Then user should see acc creation name on card saldo

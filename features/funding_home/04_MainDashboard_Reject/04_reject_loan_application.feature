@@ -20,5 +20,7 @@ Feature: User Should See Main Dashboard Rejected Card On Loan Application
     @C109169
     Scenario: User validate Rejected Card main dashboard Loan Application
         Given user on main dashboard
-        When user should see text button "Pembuatan Rekening Ditolak" on field "Perbankan Giro"
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
+        When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
+        When user should see text button "Ajukan Limit Baru" on field "btnLoanNew"
         Then user should see loan application name on card saldo

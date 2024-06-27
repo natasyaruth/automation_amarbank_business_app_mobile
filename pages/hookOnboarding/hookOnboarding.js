@@ -22,6 +22,7 @@ module.exports = {
         textViewBusinessDataPage: { xpath: '//android.widget.TextView[contains(@text, "Data Bisnis")]' },
         textViewUploadDocPage: { xpath: '//android.widget.TextView[contains(@text, "Upload dokumen-dokumen sebagai berikut:")]' },
         textViewInvitedUser: { xpath: '//android.widget.TextView[contains(@text, "Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.")]' },
+        textviewhistoryloan: { xpath: '//android.widget.TextView[contains(@text, "Aktivitas Pinjaman")]' },
     },
     textCard: {
         textCardNextOpeningAccount: { xpath: '//android.widget.TextView[contains(@text, "Lanjutkan Pembuatan Rekening Giro")]' },
@@ -35,6 +36,7 @@ module.exports = {
     },
     buttons: {
         btnLoan:  { xpath: '//android.widget.TextView[contains(@text, "Ajukan Limit Kredit")]' },
+        btnLoanNew:  { xpath: '//android.widget.TextView[contains(@text, "Ajukan Limit Baru")]' },
         btnBack: "~btnBack",
         btnClose: "~buttonClose",
         btnOpenAccount: "~btnOpenAccount",
@@ -79,7 +81,7 @@ module.exports = {
         I.wait(2);
         I.click(this.buttons.btnBack);
     },
-    clickDirectButtonLoan(){
+    clickDirectHistory(){
         I.wait(2);
         I.click(this.buttons.btnDirectToHistoryLoan);
     },
@@ -153,5 +155,9 @@ module.exports = {
     clickBtnInvitedUser(){
         I.wait(2);
         I.click(this.buttons.btnOpenInvited);
-    }
+    },
+    viewPageHistoryLoan(){
+        I.wait(2);
+        I.seeElement(this.textView.viewPageHistoryLoan);
+    },
 }

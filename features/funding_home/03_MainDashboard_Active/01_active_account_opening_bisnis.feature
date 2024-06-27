@@ -20,5 +20,5 @@ Feature: User Should See Main Dashboard Active Card On Account Opening Bisnis
     @C109161
     Scenario: User validate Active Card main dashboard Acc Opening Bisnis
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         Then user should see company name on card saldo
