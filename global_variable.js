@@ -79,6 +79,8 @@ module.exports = {
         adminFeeSKN: "2.900",
         adminFeeRTGS: "30.000",
         activeAmount: "",
+        method: "",
+        totalAmount: "",
     },
     dashboard:{
         activeAmount: "",

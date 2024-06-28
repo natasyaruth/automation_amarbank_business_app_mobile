@@ -74,7 +74,13 @@ module.exports = {
     },
   
     checkingAccountNumber() {
+      I.waitForElement(this.buttons.checkAccount, 10);
       I.click(this.buttons.checkAccount);
+    },
+
+    clickTopFriendList() {
+      I.waitForElement(this.cards.friendList, 10);
+      I.click(this.cards.friendList);
     },
   
     async saveFriendlist() {

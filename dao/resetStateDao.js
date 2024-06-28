@@ -54,11 +54,11 @@ module.exports = {
         }
     },
 
-    async resetAttemptFailedFaceMatch(userID, password) {
+    async resetAttemptFailedFaceMatch(userID) {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-
-        I.amBearerAuthenticated(secret(bearerToken));
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
 
         const responseReset = await I.sendDeleteRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/verify/selfie/"+userID);
 

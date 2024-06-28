@@ -10,6 +10,7 @@ const {
   globalVariable,
   getDataDao,
   resetStateDao,
+  mockingDao,
 } = inject();
 
 Given(
@@ -282,7 +283,7 @@ When("I understand about the permission", () => {
 
 When("I will direct to page take selfie", () => {
   I.waitForText("Selfie", 10);
-  I.see("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong");
+  I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
 
   I.see("Ambil Selfie");
   I.waitForElement(loginPage.buttons.takeSelfie, 10);
@@ -491,7 +492,7 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 
 Then("I will reset my attempt failed face match", async () => {
   await
-    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID, globalVariable.login.password);
+    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
 });
 
 Then("I will see information that my account can be opened tomorrow", async () => {
@@ -508,4 +509,14 @@ Then("I will see information that my account can be opened tomorrow", async () =
 Then("my last journey step is not change", async () => {
   const actualLastStep = (await getDataDao.getLastStepJourney()).step;
   I.assertEqual(actualLastStep, globalVariable.login.lastStep);
+});
+
+Then("I will back to page login", () => {
+  I.waitForText("Masuk Akun", 10);
+
+  I.see(globalVariable.login.userID);
+  I.waitForElement(loginPage.fields.userID, 10);
+
+  loginPage.clickIconEyePassword();
+  I.see(globalVariable.login.password);
 });
