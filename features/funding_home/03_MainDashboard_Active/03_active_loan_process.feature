@@ -43,13 +43,19 @@ Feature: User Should See Main Dashboard Active Card On Loan Process
     @C109166
     Scenario: User validate Active Card main dashboard Account Active and In Process Loan
         Given user on main dashboard
-        When user should see total loan process
-        Then user should see button apply new limit loan
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
+        Then user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
+        And user should see text card "1" on field "textCardValueProcess"
+        And user should see text card "Proses" on field "textCardProcess"
+        And user should see text button "Ajukan Limit Baru" on field "btnLoanNew"       
         And user should see card balance
 
     @C109167
     Scenario: User validate Active Card main dashboard Account Active and In Process Loan with count down
         Given user on main dashboard
-        When user should see total loan process
-        Then user should see button apply new limit loan
+        When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
+        Then user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
+        And user should see text card "1" on field "textCardValueProcess"
+        And user should see text card "Proses" on field "textCardProcess"
+        And user should see text button "Ajukan Limit Baru" on field "btnLoanNew"       
         And user should see card balance
