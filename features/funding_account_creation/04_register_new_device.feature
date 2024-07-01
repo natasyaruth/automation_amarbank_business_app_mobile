@@ -24,8 +24,6 @@ Feature: Registering New Device
         And I click button register new device
         And I will direct to page verification new device
         And I click button continue to take selfie
-        And I will see bottom sheet permission
-        And I understand about the permission
         And I will direct to page take selfie
         And I take picture selfie for matching the face
         And I will direct to page preview selfie picture
@@ -48,7 +46,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with face is blur
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'
@@ -70,7 +67,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with face is dark
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'    
@@ -92,7 +88,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with no face
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
@@ -114,7 +109,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with server is error
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'    
@@ -135,7 +129,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with no face
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
@@ -171,7 +164,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie with server is error
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'       
@@ -196,7 +188,7 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click cancel register new device
-        Then I will directing to page login
+        Then I will back to page login
         And I will disabled checking device id
 
     @C133925
@@ -214,7 +206,7 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click close bottom sheet register new device
-        Then I will directing to page login
+        Then I will back to page login
         And I will disabled checking device id    
 
     @C133926
@@ -234,7 +226,7 @@ Feature: Registering New Device
         And I click button register new device
         And I will direct to page verification new device
         And I close page verification new device
-        Then I will directing to page login
+        Then I will back to page login
         And I will disabled checking device id
 
     @C133927
@@ -252,7 +244,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie for matching the face
         And I submit my selfie photo
         Then I will direct to page verification face is success
@@ -284,7 +275,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie for matching the face
         And I submit my selfie photo
         Then I will direct to page verification face is success
@@ -316,7 +306,6 @@ Feature: Registering New Device
         When I click login
         And I click button register new device
         And I click button continue to take selfie
-        And I understand about the permission
         And I take picture selfie for matching the face
         And I submit my selfie photo
         Then I will direct to page verification face is success
