@@ -41,7 +41,7 @@ module.exports = {
     rememberMe: "~checkBoxRememberMe",
   },
   text: {
-    blockedDate: "~textTitle",
+    blockedDate: "~blockTime",
     errorFace: "~textError",
   },
 

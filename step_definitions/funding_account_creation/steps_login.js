@@ -95,7 +95,7 @@ Given("I enabled to checking device id", async () => {
 });
 
 Given("I have last step journey before", async () => {
-  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
+  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
 });
 
 When("I filling in form login with the following details:", (table) => {
@@ -373,6 +373,7 @@ When("I will direct to page verification is failed", () => {
   const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
 
   const day = tomorrowDate.getDate();
+  const formattedDay = (day < 10 ? '0' : '') + day;
   const month = tomorrowDate.getMonth();
   const year = tomorrowDate.getFullYear();
   const months = [
@@ -381,7 +382,7 @@ When("I will direct to page verification is failed", () => {
     "September", "Oktober", "November", "Desember"
   ];
 
-  globalVariable.login.date = day + " " + months[month] + " " + year;
+  globalVariable.login.date = formattedDay + " " + months[month] + " " + year;
   globalVariable.login.time = currentTime;
 
   I.waitForElement(loginPage.buttons.callCenter, 10);
@@ -488,6 +489,7 @@ Then("I will direct to page verification face is success", () => {
 
 Then("I will see snackbar error upload photo {string}", (errorMsg) => {
   I.waitForText(errorMsg, 10);
+  I.wait(2);
 });
 
 Then("I will reset my attempt failed face match", async () => {

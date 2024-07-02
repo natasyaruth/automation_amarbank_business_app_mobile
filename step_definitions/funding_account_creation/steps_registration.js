@@ -148,7 +148,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
   otpConfirmationPage.isOpen();
   otpConfirmationPage.fillInOtpCode("000000");
 });
-
+ 
 When("I verifying my email by login by user id", async () => {
   I.wait(3);
   verificationEmailPage.isOpen();
