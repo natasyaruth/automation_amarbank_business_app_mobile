@@ -23,6 +23,19 @@ Feature: Manual Registering New Device
         And I will see loading icon
         Then I will see bottom sheet to register new device id
 
+    @C135662
+    Scenario: Login to new device with condition account still login in old device
+        Given I have two device A and B
+        And device A in condition login with user id A
+        When I try to register device B with user id A till success
+        And I back to my old device
+        And I try to trigger any menu or action in old device
+        Then I will get notification page new device is detected
+        And I click button understand
+        And I will direct to page login
+        And I try to login again
+        And I will see bottom sheet register new device 
+
     @C133931
     Scenario: Login same account with different device using user id password
         Given I have two device A and B

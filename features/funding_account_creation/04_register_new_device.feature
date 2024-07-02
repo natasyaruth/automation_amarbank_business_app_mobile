@@ -146,6 +146,7 @@ Feature: Registering New Device
         And I click login
         Then I will see information that my account can be opened tomorrow 
         And I understand about the information
+        And I will back to page login
         And I will disabled checking device id
         And I will reset my attempt failed face match
 
@@ -206,7 +207,7 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click close bottom sheet register new device
-        Then I will back to page login
+        Then I will directing to page login
         And I will disabled checking device id    
 
     @C133926
@@ -229,8 +230,8 @@ Feature: Registering New Device
         Then I will back to page login
         And I will disabled checking device id
 
-    @C133927
-    Scenario: Login to app using different user id - account active
+    @C135615
+    Scenario: Login to app using different user id - device id of other user id has been registered
         Given I am a registered customer with following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -242,17 +243,33 @@ Feature: Registering New Device
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
+        Then I will direct to page cannot login because already login in other device   
+
+    @C133927
+    Scenario: Login to app using different user id - account active
+        Given I am a registered customer with following details:
+            | userID      | mich875d |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | mich875d |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        When I click login
         And I click button register new device
         And I click button continue to take selfie
         And I take picture selfie for matching the face
         And I submit my selfie photo
         Then I will direct to page verification face is success
         And I click button continue to main dashboard
+        And I click later in pop up biometric
         And I will see card account 'active'
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
@@ -271,25 +288,9 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
-        And I have last step journey before
         When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
-        Then I will direct to page verification face is success
-        And I click button continue to main dashboard
-        And I will see card account 'on process'
-        And my last journey step is not change
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | deved6a1 |
-            | password    | 1234Test |
-            | userIDstg   | stag8fac |
-            | passwordStg | 1234Test |
-        When I click login
-        And I will see card account 'on process'
+        And I click later
+        Then I will see card account 'on process'
 
     @C133929
     Scenario: Login to app using different user id - account on verification
@@ -304,19 +305,5 @@ Feature: Registering New Device
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
         When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
-        Then I will direct to page verification face is success
-        And I click button continue to main dashboard
-        And I will see card account 'on verification'
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | indibec3 |
-            | password    | 1234Test |
-            | userIDstg   | stagb081 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I will see card account 'on verification'
+        And I click later
+        Then I will see card account 'on verification'
