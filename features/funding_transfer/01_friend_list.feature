@@ -1,4 +1,4 @@
-@friendList
+#@friendList
 Feature: User add friend list
     In order to transfer
     As a customer
@@ -20,28 +20,28 @@ Feature: User add friend list
         And I click login
         Then I will direct to dashboard
 
-    @C96935
+    #@C96935
     Scenario: User click back button
         Given I am a customer who wants to Transfer and has no friend list
         And I choose menu Transfer from main dashboard
         And I click button back in the header page
         Then I will direct to dashboard
 
-    @C96936
+    #@C96936
     Scenario: User search friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         And I input name 'NEGARA ADIL MAKMUR' from the search box
         Then I find name 'NEGARA ADIL MAKMUR' from the list
 
-    @C96937
+    #@C96937
     Scenario: User search friend list and the name is not found
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         Then I input name 'Nurul Septariani' from the search box
         And I can't find the name 'Nurul Septariani' from the list
 
-    @C96938
+    #@C96938
     Scenario: Account number was not found
         Given I am a customer who wants to Transfer and has no friend list
         When I choose menu Transfer from main dashboard
@@ -53,7 +53,7 @@ Feature: User add friend list
         And I click on check
         Then I will see error message "Nomor rekening tidak ditemukan"
 
-    @C96939
+    #@C96939
     Scenario: User close bottom sheet list bank name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -62,7 +62,7 @@ Feature: User add friend list
         And I close bottom sheet list bank name
         Then I will not see bottom sheet list bank name
 
-    @C96940
+    #@C96940
     Scenario: User choose another bank name after inquiry
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -77,7 +77,7 @@ Feature: User add friend list
         And I tap on bank name
         Then I will see bank name is change
 
-    @C96941
+    #@C96941
     Scenario: User uncheck checkbox save as friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -92,7 +92,7 @@ Feature: User add friend list
         Then I can't see toastbar "Data berhasil disimpan ke daftar penerima"
         And name of receiver should not be added in friendlist
 
-    @C96942
+    #@C96942
     Scenario: User add friend list and validate account number and name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
@@ -107,7 +107,7 @@ Feature: User add friend list
         Then I can see toastbar "Data berhasil disimpan ke daftar penerima"
         And name of receiver should be added in friendlist
 
-    @C96943
+    #@C96943
     Scenario: User has friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard

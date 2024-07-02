@@ -25,7 +25,7 @@ Feature: User Want to Transfer with Negative Cases
         And I choose the friendlist
         And I input amount '900000'
         And I choose category "Pembayaran"
-        And I input notes with 'Pembayaran Okt 😆'
+        And I input notes with 'Pembayaran #Oktober!@#'
         Then I should see error message "Catatan tidak menggunakan emoji & symbol" in field "notes"
 
     @C133901
@@ -96,7 +96,7 @@ Feature: User Want to Transfer with Negative Cases
         And I input amount more than active amount
         Then I should see error message "Saldo aktif tidak mencukupi" in field "amount"
 
-    @C133904
+    @C96928
     Scenario: User Transfer with category not selected
         Given I am a registered customer with following details:
             | userID      | natace13 |
