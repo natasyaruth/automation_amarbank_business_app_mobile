@@ -17,10 +17,22 @@ module.exports = {
     category: "~textCategory",
     subCategory: "~textSubCategory",
     note: "~textNote",
+    confirmSenderName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[2]"},
+    confirmSenderAccNumber: {xpath: "//android.view.View/android.view.View/android.widget.TextView[5]"},
+    confirmSenderBankName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[3]"},
+    confirmRecipientName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[6]"},
+    confirmRecipientAccNumber: {xpath: "//android.view.View/android.view.View/android.widget.TextView[9]"},
+    confirmRecipientBankName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[7]"},
+    confirmAdminFee: {xpath: "//android.view.View/android.view.View/android.widget.TextView[15]"},
     senderName: {xpath: "//android.widget.ScrollView/android.widget.TextView[2]"},
+    senderBankName: {xpath: "//android.widget.ScrollView/android.widget.TextView[3]"},
     senderAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[5]"},
     receiverName: {xpath: "//android.widget.ScrollView/android.widget.TextView[6]"},
+    receiverBankName: {xpath: "//android.widget.ScrollView/android.widget.TextView[7]"},
     receiverAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[9]"},
+    referenceNumber: {xpath: "//android.widget.ScrollView/android.view.View[1]/android.widget.TextView"},
+    dateTransfer: {xpath: "//android.widget.ScrollView/android.widget.TextView[14]"},
+    timeTransfer: {xpath: "//android.widget.ScrollView/android.widget.TextView[16]"},
     variableSenderConfirmationPage: {xpath: "//android.widget.TextView[2]"},
     adminFeeRTOL: "~feeRTOL",
     adminFeeBIFAST: "~feeBifast",
@@ -52,6 +64,7 @@ module.exports = {
     checkMethod: "~buttonChangeMethod",
     backToDashboard: "~buttonBackToDashboard",
     callCenter:"~buttonCallCenter",
+    tryAgain: "~",
   },
   cards: {
     category: "~itemCategory",
@@ -70,6 +83,7 @@ module.exports = {
     warningErrorPin: "~textWarningPin",
     blockedPin: "~textBlockPin",
     dropDownErrorField: "~dropDownErrorSubCategory",
+    balance: "~textBalanceError",
   },
 
   inputAmountTransfer(amount){
@@ -191,6 +205,7 @@ module.exports = {
   },
 
   confirmTransfer(){
+    I.waitForElement(this.buttons.transfer, 10);
     I.click(this.buttons.transfer);
   },
 
@@ -212,18 +227,17 @@ module.exports = {
     I.click(this.buttons.callCenter);
   },
 
+  clickTry(){
+    I.waitForElement(this.buttons.tryAgain, 10);
+    I.click(this.buttons.tryAgain);
+  },
+
   viewPageFriendList(){
-    I.wait(3);
-    I.seeElement(this.fields.receiverListPage);
+    I.waitForElement(this.fields.receiverListPage, 10);
   },
 
   viewPageTrfMethodeList(){
     I.waitForElement(this.fields.transferMethodePage, 10);
-  },
-
-  viewPageConfirmTrf(){
-    I.wait(3);
-    I.seeElement(this.fields.confirmTrfPage);
   },
 
   clickSectionBtnTransfer(){
@@ -232,26 +246,42 @@ module.exports = {
   },
 
   closePageAfterTransfer(){
+    I.waitForElement(this.buttons.closeDetailTransferPage, 10);
     I.click(this.buttons.closeDetailTransferPage);
   },
 
   async getReceiverName(){
+    I.waitForElement(this.texts.receiverName, 10);
     return I.grabTextFrom(this.texts.receiverName);
   },
 
+  async getReceiverBankName(){
+    I.waitForElement(this.texts.receiverBankName, 10);
+    return I.grabTextFrom(this.texts.receiverBankName);
+  },
+
   async getReceiverAccNnumber(){
+    I.waitForElement(this.texts.receiverAccNumber, 10);
     return I.grabTextFrom(this.texts.receiverAccNumber);
   },
 
   async getSenderName(){
+    I.waitForElement(this.texts.senderName, 10);
     return I.grabTextFrom(this.texts.senderName);
   },
 
+  async getSenderBankName(){
+    I.waitForElement(this.texts.senderBankName, 10);
+    return I.grabTextFrom(this.texts.senderBankName);
+  },
+
   async getSenderAccNnumber(){
+    I.waitForElement(this.texts.senderAccNumber, 10);
     return I.grabTextFrom(this.texts.senderAccNumber);
   },
 
   async getConfirmSenderName(){
+    I.waitForElement(this.texts.variableSenderConfirmationPage, 10);
     return I.grabTextFrom(this.texts.variableSenderConfirmationPage);
   },
 
@@ -320,6 +350,11 @@ module.exports = {
     return I.grabTextFrom(this.texts.textTotalAmount);
   },
 
+  async getDateTransfer(){
+    I.waitForElement(this.texts.dateTransfer, 10);
+    return I.grabTextFrom(this.texts.dateTransfer);
+  },
+
   formattedToThreeDigit(amount){
     const numberAmount = parseInt(amount);
 
@@ -331,5 +366,40 @@ module.exports = {
     const formattedAmount = numberString.join('');
 
     return formattedAmount;
+  },
+
+  async getConfirmSenderName(){
+    I.waitForElement(this.texts.confirmSenderName, 10);
+    return I.grabTextFrom(this.texts.confirmSenderName);
+  },
+
+  async getConfirmSenderAccNumber(){
+    I.waitForElement(this.texts.confirmSenderAccNumber, 10);
+    return I.grabTextFrom(this.texts.confirmSenderAccNumber);
+  },
+
+  async getConfirmSenderBankName(){
+    I.waitForElement(this.texts.confirmSenderBankName, 10);
+    return I.grabTextFrom(this.texts.confirmSenderBankName);
+  },
+
+  async getConfirmRecipientName(){
+    I.waitForElement(this.texts.confirmRecipientName, 10);
+    return I.grabTextFrom(this.texts.confirmRecipientName);
+  },
+
+  async getConfirmRecipientAccNumber(){
+    I.waitForElement(this.texts.confirmRecipientAccNumber, 10);
+    return I.grabTextFrom(this.texts.confirmRecipientAccNumber);
+  },
+
+  async getConfirmRecipientBankName(){
+    I.waitForElement(this.texts.confirmRecipientBankName, 10);
+    return I.grabTextFrom(this.texts.confirmRecipientBankName);
+  },
+
+  async getConfirmAdminFee(){
+    I.waitForElement(this.texts.confirmAdminFee, 10);
+    return I.grabTextFrom(this.texts.confirmAdminFee);
   },
 }

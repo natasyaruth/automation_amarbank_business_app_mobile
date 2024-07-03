@@ -1,4 +1,4 @@
-#@transfer_all_method
+@transfer_all_method
 Feature: User transfer with all transfer method
     In order to transfer
     As a customer
@@ -7,20 +7,21 @@ Feature: User transfer with all transfer method
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         And I am on receiver list page
 
-    #@C96929
+    @C133894
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -30,12 +31,12 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BI Fast, RTOL and SKN
+        Then I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
-        And I am on page transfer confirmation
+        And I am on page transfer confirmation 
 
-    #@C96930
+    @C96930
     Scenario: User transfer with RTOL and input wrong PIN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -50,64 +51,82 @@ Feature: User transfer with all transfer method
         And I input wrong PIN
         Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
 
-    #@C96931
+    @C96931
     Scenario: User Success Transfer RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '10000000'
-        And I choose category "Pembayaran"
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see RTOL
+        Then I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
+        And I am on page transfer confirmation
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
 
-    #@C96932
+    @C96932
     Scenario: User Success Transfer BiFast
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '10000000'
-        And I choose category "Tagihan"
+        And I input amount '60000000'
+        And I choose category 'Tagihan'
         And I input notes with 'Test BiFast'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BI Fast
+        Then I can see BIFAST and SKN
         And I choose transfer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
 
-    #@C96933
+    @C135519
+    Scenario: User confirmation transfer SKN with choice between SKN and RTGS
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I input amount '200000000'
+        And I choose category 'Tagihan'
+        And I input notes with 'Test SKN'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see SKN and RTGS
+        And I choose transfer service SKN
+        And I click transfer
+        And I click transfer now
+        And I input PIN '111111'
+        Then I successfully transferred    
+
+    @C133898
     Scenario: User Success Transfer SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '1000000'
-        And I choose category "Tagihan"
+        And I input amount '200000000'
+        And I choose category 'Tagihan'
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see SKN
+        Then I can see BIFAST, SKN and RTGS
         And I choose transfer service SKN
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
 
-    #@C96934
+    @C96934
     Scenario: User Success Transfer RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
         And I input amount '1000000000'
-        And I choose category "Tagihan"
+        And I choose category 'Tagihan'
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service
         And I am on Transfer methode list page

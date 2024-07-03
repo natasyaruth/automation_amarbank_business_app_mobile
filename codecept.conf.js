@@ -159,6 +159,8 @@ exports.config = {
     mockingDao: "./dao/mockingDao.js",
 
     firstRegistrationDao: "./dao/firstRegistrationDao.js",
+
+    getDataDao: "./dao/getDataDao.js",
   },
   settings: {
     logging: {

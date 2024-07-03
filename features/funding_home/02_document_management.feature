@@ -21,11 +21,7 @@ Feature: Document Management
         And I click tab profile
         And I will see my profile individual data
         When I click tab document
-        Then I will direct to page document business
-        And I will not see button document giro
-        And I will see button document loan
-        And I click button document loan
-        And I will see page document loan is empty
+        And I will see document page is empty
 
     @C131646
     Scenario: Verify tab profile user individual active and has loan
@@ -77,12 +73,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -96,13 +92,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autofb2c |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autofb2c |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -139,13 +135,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | ptpe1d52 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag528f |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ptpe1d52 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag528f |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later
@@ -161,12 +157,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -202,13 +198,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later
@@ -224,13 +220,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later
@@ -311,13 +307,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruthfdcb |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruthfdcb |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -332,12 +328,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto590e |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4c45 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | auto590e |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | stag4c45 |
             | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
@@ -354,13 +350,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autob386 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag5a14 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autob386 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stag5a14 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later
@@ -370,26 +366,6 @@ Feature: Document Management
         And I will see button document giro and document loan
         And I click document giro
         And I will see document business for type individual company
-
-    @C131662
-    Scenario: Verify button business document is not appear if user still not upload any document
-        Given I am a registered customer with following details:
-            | userID      | autofded |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I filling in form login with the following details:
-            | userID      | autofded |
-            | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
-        And I click login
-        And I click later in pop up biometric
-        And I click later
-        And I will see card account 'complete document'
-        When I click tab document
-        Then I will direct to page document business
-        And I will see document page is empty
 
     @C131663
     Scenario: Verify button business document is appear if user upload 1 document
@@ -418,13 +394,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autoc10a |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | mich4d05 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I click later

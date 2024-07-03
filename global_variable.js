@@ -27,6 +27,9 @@ module.exports = {
         password: "",
         userID: "",
         countValue: "",
+        date: "",
+        time: "",
+        lastStep: "",
     },
     forgotPassword: {
         userID: "",
@@ -76,6 +79,8 @@ module.exports = {
         adminFeeSKN: "2.900",
         adminFeeRTGS: "30.000",
         activeAmount: "",
+        method: "",
+        totalAmount: "",
     },
     dashboard:{
         activeAmount: "",

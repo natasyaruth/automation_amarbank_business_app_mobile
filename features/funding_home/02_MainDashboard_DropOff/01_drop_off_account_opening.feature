@@ -61,7 +61,7 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109159
     Scenario: User validate drop off main dashboard waiting invited user in account opening only
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         And user should see text card "Menunggu proses registrasi Daftar Direksi lainnya" on field "textCardInvetedUserDireksi"
         And user should see text button "Lihat Daftar Direksi" on field "btnTextDropOffAccOpeningOnlyInvitedUser"
         And user click button invited user
@@ -70,5 +70,5 @@ Feature: User Should See Main Dashboard Drop Off For Account Opening
     @C109160
     Scenario: User validate drop off main dashboard waiting data verification in account opening only
         Given user on main dashboard
-        When user should see text button "Ajukan Pinjaman" on field "btnLoan"
+        When user should see text button "Ajukan Limit Kredit" on field "btnLoan"
         Then user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"

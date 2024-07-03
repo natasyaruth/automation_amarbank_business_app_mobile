@@ -7,6 +7,7 @@ module.exports = {
     businessField: "~textFieldBusiness",
     npwp: "~textFieldNpwp",
     nib: "~textFieldNib",
+    averageTransaction: "~averageTransactionField",
   },
   buttons: {
     saveProfileBusiness: "~buttonSaveJobData",
@@ -31,6 +32,7 @@ module.exports = {
     npwp: "~textErrorNpwp",
     nib: "~textErrorNib",
     businessDateStart: "~textErrorBusinessDateStart",
+    averageTransaction: "~averageTransactionErrorField",
   },
   text: {
     date: "~textDate",
@@ -50,6 +52,7 @@ module.exports = {
       if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.fields[fieldName], 10);
         I.setText(this.fields[fieldName], value);
 
       } else if (

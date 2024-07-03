@@ -15,6 +15,7 @@ module.exports = {
     backRegist: "~buttonBackRegist",
     confirm: "~buttonConfirm",
     continueRegist: "~btnNext",
+    acceptWebView: "~acceptWebviewBtn",
   },
   messageErrorFields:{
     fullName: "~textMsgErrorFullName",
@@ -30,8 +31,6 @@ module.exports = {
   },
   links:{
     login: "~linkLogin",
-    termsCondition: "~linkTermsCondition",
-    privacyPolicy: "~linkPrivacyPolicy",
   },
   label:{
     email: "~labelEmail",
@@ -47,6 +46,9 @@ module.exports = {
     firstPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank. *"])]' },
     secondPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank. *"])]' },
     thirdPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank."])]' },
+  },
+  scroll:{
+    scrollToButton: "~scrollContentWebview",
   },
 
   fillInAccountInformation(accountInformation) {
@@ -181,17 +183,22 @@ module.exports = {
     I.click(this.links.login);
   },
 
-  goToTermsAndConditionPage() {
-    I.swipeUp(this.fields.email, 10000, 3000);
-    I.click(this.links.termsCondition);
+  agreeWithTermsAndCondition() {
+    I.waitForElement(this.buttons.acceptWebView);
+    I.click(this.buttons.acceptWebView);
   },
 
-  goToPrivacyPolicyPage() {
-    I.swipeUp(this.fields.email, 10000, 3000);
-    I.click(this.links.privacyPolicy);
+  agreeWithPrivacyAndPolicy() {
+    I.waitForElement(this.buttons.acceptWebView);
+    I.click(this.buttons.acceptWebView);
   },
 
   continueRegistration(){
     I.click(this.buttons.continueRegist);
+  },
+
+  clickScrollToEndOfPage(){
+    I.waitForElement(this.scroll.scrollToButton, 10);
+    I.click(this.scroll.scrollToButton);
   },
 };

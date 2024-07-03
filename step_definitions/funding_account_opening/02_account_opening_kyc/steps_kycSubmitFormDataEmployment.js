@@ -22,18 +22,89 @@ Given("I am a customer who has uploaded my eKTP photo and selfie", async () => {
 
 Given("I want to submit my employment data", () => { });
 
+Given("I see fields that available in Data Employment", async () => {
+    I.waitForText("Wajib Diisi", 10);
+    
+    const legality = globalVariable.onBoarding.legality;
+
+    if(
+        legality === "individual"
+    ){
+        I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+        I.see("Jenis Pekerjaan");
+        I.see("Pilih jenis pekerjaan");
+
+        I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
+        I.see("Sumber pendapatan");
+        I.see("Pilih sumber pendapatan");
+
+        I.waitForElement(formEmploymentDataPage.dropDowns.monthlyIncome, 10);
+        I.see("Pendapatan Bulanan (dalam Rp)");
+        I.see("Pilih pendapatan bulanan");
+
+        I.waitForElement(formEmploymentDataPage.field.averageTransaction, 10);
+        I.see("Rata-rata Transaksi");
+        I.see("Rata-rata transaksi per bulan");
+
+        I.waitForElement(formEmploymentDataPage.dropDowns.industry, 10);
+        I.see("Industri Perusahaan");
+        I.see("Pilih industri perusahaan");
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.waitForElement(formEmploymentDataPage.field.companyName, 10);
+        I.see("Nama Perusahaan");
+        I.see("Tulis nama Perusahaan");
+        I.see("Isi \"Tidak Ada\" jika kamu bekerja sendiri")
+        
+        I.see("Syarat dan Ketentuan");
+        I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+        I.waitForElement(formEmploymentDataPage.checkBox.rights, 10);
+
+        I.see("Buka Rekening Sekarang");
+
+        I.swipeDown(formEmploymentDataPage.field.averageTransaction, 1000, 500);
+
+    } else{
+
+        I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
+        I.see("Jenis Pekerjaan");
+        I.see("Pilih jenis pekerjaan");
+
+        I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
+        I.see("Sumber pendapatan");
+        I.see("Pilih sumber pendapatan");
+
+        I.dontSee(formEmploymentDataPage.dropDowns.monthlyIncome);
+        I.dontSee("Pendapatan Bulanan (dalam Rp)");
+        I.dontSee("Pilih pendapatan bulanan");
+
+        I.dontSee(formEmploymentDataPage.field.averageTransaction);
+        I.dontSee("Rata-rata Transaksi");
+        I.dontSee("Rata-rata transaksi per bulan");
+
+        I.dontSee(formEmploymentDataPage.dropDowns.industry);
+        I.dontSee("Industri Perusahaan");
+        I.dontSee("Pilih industri perusahaan");
+
+        I.dontSee(formEmploymentDataPage.field.companyName);
+        I.dontSee("Nama Perusahaan");
+        I.dontSee("Tulis nama Perusahaan");
+        I.dontSee("Isi \"Tidak Ada\" jika kamu bekerja sendiri")
+        
+        I.dontSee("Syarat dan Ketentuan");
+        I.dontSee("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+        I.dontSee(formEmploymentDataPage.checkBox.rights);
+
+        I.see("Simpan Data Pekerjaan");
+    }
+});
+
 When("I fill my employment details as followings:", async (table) => {
     I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
 
     const employmentData = table.parse().rowsHash();
     await formEmploymentDataPage.fillEmploymentData(employmentData);
-
-    if (globalVariable.onBoarding.legality === "individual") {
-        I.swipeUp(
-            formEmploymentDataPage.checkBox.rights,
-            500,
-            1000);
-    }
 });
 
 When("I fill my company name with {string}", (companyName) => {
@@ -41,11 +112,18 @@ When("I fill my company name with {string}", (companyName) => {
     formEmploymentDataPage.fillFieldCompany(companyName);
 });
 
+When("I fill my average transaction with {string}", async (avgTransaction) => {
+    formEmploymentDataPage.fillFieldAverageTransaction(avgTransaction);
+
+    I.dontSee(avgTransaction);
+});
+
 When("I fill form Data Employment except field {string}", async (fieldName) => {
     const account = {
         workType: "Pegawai Negeri Sipil",
         sourceIncome: "Gaji Bulanan",
         monthlyIncome: "5 - 10 juta",
+        averageTransaction: 200000,
         industry: "Pemerintahan",
         companyName: "KEMENDAGRI"
     };
@@ -62,7 +140,7 @@ When("I swipe to field {string} in form Data Employment", (fieldName) => {
         fieldName === "workType" ||
         fieldName === "sourceIncome"
     ) {
-        I.swipeDown(formEmploymentDataPage.dropDowns.industry, 500, 1000);
+        I.swipeDown(formEmploymentDataPage.dropDowns.industry, 500, 1500);
     }
 });
 
@@ -80,10 +158,14 @@ When("I clear field company name", () => {
     formEmploymentDataPage.clearFieldCompany();
 })
 
+When("I clear field average transaction", () => {
+    formEmploymentDataPage.clearFieldAverageTransaction();
+})
+
 Then("I will notify that I already fill my personal details data", async () => {
     I.waitForText("Terima kasih telah melengkapi Data Diri", 10);
     I.see("Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pembentukan rekening");
-    I.dont("Digital Banking untuk Bisnis");
+    I.see("Digital Banking untuk Bisnis");
     I.see("Dengan melengkapi Data Bisnis, Anda akan mendapatkan fitur Digital Banking (rekening giro) dari Bank Amar");
     I.see("Bebas Biaya Admin Bulanan");
     I.see("Transaksi Real-Time");
@@ -94,6 +176,9 @@ Then("I will notify that I already fill my personal details data", async () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will notify that my personal data details needs to be verified first", async () => {
@@ -101,6 +186,9 @@ Then("I will notify that my personal data details needs to be verified first", a
     I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I shouldn't see message error in the below of field company name in form Data Employment", async () => {
@@ -108,6 +196,13 @@ Then("I shouldn't see message error in the below of field company name in form D
 
     let messageField = await formEmploymentDataPage.getMessageError("companyName");
     I.assertEqual(messageField, infoCompanyName);
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I shouldn't see message error in the below of field average transaction in form Data Employment", async () => {
+    I.dontSee(formEmploymentDataPage.messageErrorFields.averageTransaction);
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

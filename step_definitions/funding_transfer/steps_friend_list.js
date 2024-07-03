@@ -14,6 +14,14 @@ When("I click Transfer to Receiver Name", ()=>{
      friendListPage.addNewFriendList();   
 });
 
+When("I choose the friendlist", async () => {
+    I.waitForElement(friendListPage.cards.friendList, 10);
+    globalVariable.friendList.friendListName = await friendListPage.getFriendListName();
+    globalVariable.friendList.bankName = await friendListPage.getFriendListBankName();
+    globalVariable.friendList.friendListAccNumber = await friendListPage.getFriendListAccNumber();
+    friendListPage.clickTopFriendList();
+});
+
 When("I can choose Bank name", ()=>{
     friendListPage.chooseListBank();
 });
