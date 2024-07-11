@@ -214,6 +214,8 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perorangan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_pt_perusahaan/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
+      "./features/funding_account_opening/02_account_opening_kyc/*.feature",
+      "./features/funding_account_opening/03_account_opening_kyb/*.feature",
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/*.feature",
       "./features/loanDisbursement/*.feature",

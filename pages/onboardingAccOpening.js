@@ -30,6 +30,8 @@ module.exports = {
     giroAccountMsme: "~smeBtnOpenGiro",
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
+    rejectCard: {xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]"},
+    openProgressAccount: "~openProgressAccount",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -225,6 +227,11 @@ module.exports = {
     I.click(this.buttons.completeDoc);
   },
 
+  openCardReject(){
+    I.waitForElement(this.buttons.rejectCard, 10);
+    I.click(this.buttons.rejectCard);
+  },
+
   continueCompleteRegistrationDirectors() {
     I.click(this.buttons.invitedDirectors);
   },
@@ -313,6 +320,11 @@ module.exports = {
   openCardTransaction (){
     I.waitForElement(this.buttons.cardTransaction, 10);
     I.click(this.buttons.cardTransaction);
+  },
+
+  clickButtonProgressAccOpeningDetail (){
+    I.waitForElement(this.buttons.openProgressAccount, 10);
+    I.click(this.buttons.openProgressAccount);
   },
 
   async getStatusTransaction(){

@@ -113,7 +113,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'    
         And I will disabled checking device id
-
+        
     @C133922
     Scenario: Submit failed photo till account is blocked
         Given I am a registered customer with following details:
@@ -155,12 +155,12 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -190,7 +190,6 @@ Feature: Registering New Device
         And I will see bottom sheet register new device
         And I click cancel register new device
         Then I will back to page login
-        And I will disabled checking device id
 
     @C133925
     Scenario: Close page bottom sheet register new device
@@ -207,8 +206,7 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click close bottom sheet register new device
-        Then I will directing to page login
-        And I will disabled checking device id    
+        Then I will back to page login
 
     @C133926
     Scenario: Close page verification register new device
@@ -227,8 +225,7 @@ Feature: Registering New Device
         And I click button register new device
         And I will direct to page verification new device
         And I close page verification new device
-        Then I will back to page login
-        And I will disabled checking device id
+        Then I will directing to page login
 
     @C135615
     Scenario: Login to app using different user id - device id of other user id has been registered
@@ -290,6 +287,7 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click later
+        And I click later in pop up biometric
         Then I will see card account 'on process'
 
     @C133929
@@ -302,8 +300,9 @@ Feature: Registering New Device
         And I filling in form login with the following details:
             | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         When I click login
         And I click later
+        And I click later in pop up biometric
         Then I will see card account 'on verification'

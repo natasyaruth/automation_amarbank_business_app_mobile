@@ -3,6 +3,7 @@ const {
     formKtpPage,
     resetStateDao,
     uploadDao,
+    headerPage,
     globalVariable,
     onboardingAccOpeningPage,
     mockingDao } = inject();
@@ -29,12 +30,31 @@ Given("I am a customer who has uploaded my eKTP photo", async () => {
 When("I fill all information identity details as followings:",
     async (table) => {
         const ktpData = table.parse().rowsHash();
+        if(process.env.ENVIRONMENT === "staging"){
+            if(
+                Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
+            ){
+                ktpData["eKtpNumber"] = ktpData["eKtpNumberStg"];
+            } 
+        } else{
+            if(
+                Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
+            ){
+                delete ktpData["eKtpNumberStg"];
+            } 
+        } 
+
         I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
         formKtpPage.fillInformation(ktpData);
         globalVariable.formKtp.eKTPNumber = ktpData["eKtpNumber"];
         globalVariable.formKtp.fullName = ktpData["fullName"];
     }
 );
+
+When("I choose birthdate with current date", () =>{
+    formKtpPage.chooseFieldBirthDate();
+    formKtpPage.chooseDate();
+})
 
 When("I submit my information identity details", () => {
     formKtpPage.saveKtpData();
@@ -151,6 +171,9 @@ Then("I will direct to page capture selfie", async () => {
 });
 
 Then("I will direct to page notifying me that I can't continue to next process KYC because my data indicated as DHN", async () => {
+    I.waitForElement(headerPage.buttons.closePage, 20);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
     const actualTitle = await formKtpPage.getTitleValidationBlocker();
     I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
 
@@ -160,6 +183,30 @@ Then("I will direct to page notifying me that I can't continue to next process K
     I.see("Untuk informasi lebih lanjut, silakan");
     I.see("Hubungi Kami");
     I.waitForElement(formKtpPage.buttons.helpDHN, 10);
+});
+
+Then("I will direct to page notifying me that I can't continue to next process KYC because my data already registered", async () => {
+    I.waitForElement(headerPage.buttons.closePage, 20);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Amar Bank belum bisa melayanimu");
+
+    I.see("Data eKTP-mu sudah terdaftar");
+    I.see("Tapi jangan khawatir, kamu bisa coba daftar kembali setelah 7 hari");
+
+    I.dontSee("Untuk informasi lebih lanjut, silakan");
+    I.dontSee("Hubungi Kami");
+});
+
+Then("I will notify my age should above 17 years old", async () => {
+    I.waitForElement(headerPage.buttons.closePage, 20);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Amar Bank belum bisa melayanimu");
+    I.see("Amar Bank hanya dapat melayani Nasabah dengan usia 17 tahun keatas");
+
+    I.dontSee("Untuk informasi lebih lanjut, silakan");
+    I.dontSee("Hubungi Kami");
 });
 
 Then("I close page rejected account", async () => {
@@ -184,4 +231,15 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
 
     await
         mockingDao.disabledCheckDHNNPWP();
+});
+
+Then("I will direct to dashboard with widget account is rejected", async () => {
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
+
+    I.waitForText("Pembuatan Rekening Ditolak", 10);
+    I.see("Mohon maaf, Amar Bank belum dapat melayani Anda.");
+    I.waitForElement(onboardingAccOpeningPage.buttons.rejectCard, 10);
 });

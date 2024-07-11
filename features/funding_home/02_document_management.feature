@@ -28,12 +28,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | niza2098 |
             | password    | Test1234 |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | niza2098 |
             | password    | Test1234 |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

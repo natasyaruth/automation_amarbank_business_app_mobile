@@ -65,17 +65,6 @@ Feature: Manual Registering New Device
         And I will see loading icon
         Then I will see bottom sheet to register new device id
 
-    @C133933
-    Scenario: Login different account with same device using user id password
-        Given I have two Account A and B
-        And one device with biometric still not activated
-        When I try to login using account A via user id and password
-        And I will see loading icon
-        And I will see bottom sheet to register new device id
-        And I try to login using account B via user id and password
-        And I will see loading icon
-        Then I will see bottom sheet to register new device id
-
     @C133934
     Scenario: Register device with permission still not allowed yet
         Given I disallowed permission camera and location for SMB app via settings

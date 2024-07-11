@@ -131,6 +131,22 @@ module.exports = {
 
     },
 
+    async getKTPNumber(userID, password){
+        
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            ktpNumber: responseProfile.data.profileKtp.ktpNumber,
+        };
+
+    },
+
     async getPhoneNumber(userID, password){
         
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
