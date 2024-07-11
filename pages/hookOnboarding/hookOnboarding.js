@@ -3,10 +3,10 @@ const { I } = inject();
 module.exports = {
     textView: {
         textTitleOnboardingAccOpening: { xpath: '(//android.widget.TextView[@content-desc="textTitleLoanOnBoardingPage1"])[2]' },
-        textViewLimitBoarding: { xpath: '//android.widget.TextView[contains(@text, "Dapatkan Limit hingga")]' },
+        textViewLimitBoarding: { xpath: '//android.widget.TextView[contains(@text, "Dapatkan Limit Tinggi")]' },
         textViewLimitBranding: { xpath: '//android.widget.TextView[contains(@text, "Rp 5 Milyar")]' },
         textViewBodyTitle: { xpath: '//android.widget.TextView[contains(@text, "Pinjaman untuk Bisnis dari Amar Bank")]' },
-        textViewBodyDesc: { xpath: '//android.widget.TextView[contains(@text, "Dapatkan pinjaman untuk pembiayaan transaksi bisnis Anda.")]' },
+        textViewBodyDesc: { xpath: '//android.widget.TextView[contains(@text, "Kredit Bisnis untuk berbagai kebutuhan usaha")]' },
         textViewCardTittleAc: { xpath: '//android.widget.TextView[contains(@text, "Dapatkan Rekening Giro")]' },
         textViewCardSubTittleAc: { xpath: '//android.widget.TextView[contains(@text, "Layanan perbankan bisnis premium untuk memantau usaha Anda.")]' },
         textViewBenefitTitle: { xpath: '//android.widget.TextView[contains(@text, "Benefit")]' },
@@ -22,6 +22,7 @@ module.exports = {
         textViewBusinessDataPage: { xpath: '//android.widget.TextView[contains(@text, "Data Bisnis")]' },
         textViewUploadDocPage: { xpath: '//android.widget.TextView[contains(@text, "Upload dokumen-dokumen sebagai berikut:")]' },
         textViewInvitedUser: { xpath: '//android.widget.TextView[contains(@text, "Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.")]' },
+        textviewhistoryloan: { xpath: '//android.widget.TextView[contains(@text, "Aktivitas Pinjaman")]' },
     },
     textCard: {
         textCardNextOpeningAccount: { xpath: '//android.widget.TextView[contains(@text, "Lanjutkan Pembuatan Rekening Giro")]' },
@@ -34,11 +35,13 @@ module.exports = {
         textCardContinueProcessLoan: "~txtTitleDropoff",
     },
     buttons: {
-        btnLoan: "~btnToLoan",
+        btnLoan:  { xpath: '//android.widget.TextView[contains(@text, "Ajukan Limit Kredit")]' },
+        btnLoanNew:  { xpath: '//android.widget.TextView[contains(@text, "Ajukan Limit Baru")]' },
         btnBack: "~btnBack",
         btnClose: "~buttonClose",
         btnOpenAccount: "~btnOpenAccount",
         btnOpenInvited: "~btnOpenInvited",
+        bTnStartLoan: "~buttonStartLoan",
         btnOpenDoc: "~btnOpenDoc",
         btnDirectToHistoryLoan: "~directToHistoryLoan",
         btnTextOpenAccount: { xpath: '//android.widget.TextView[contains(@text, "Buka Rekening Giro")]' },
@@ -78,7 +81,7 @@ module.exports = {
         I.wait(2);
         I.click(this.buttons.btnBack);
     },
-    clickDirectButtonLoan(){
+    clickDirectHistory(){
         I.wait(2);
         I.click(this.buttons.btnDirectToHistoryLoan);
     },
@@ -86,22 +89,17 @@ module.exports = {
         I.wait(2);
         I.click(this.buttons.btnClose);
     },
+    clickBtnStartLoan(){
+        I.wait(2);
+        I.click(this.buttons.bTnStartLoan);
+    },
     async validationTextViewOnboarding() {
         I.wait(2);
         switch (boardType) {
             case 'loan':
                 I.wait(2);
-                let limitBoardValue = await I.grabAttributeFrom(this.textView.textViewLimitBoarding, "text");
-                I.assertEqual(limitBoardValue, "Dapatkan Limit hingga");
-                I.wait(2);
-                let limitBrandValue = await I.grabAttributeFrom(this.textView.textViewLimitBranding, "text");
-                I.assertEqual(limitBrandValue, "Rp 5 Milyar");
-                I.wait(2);
-                let bodyTitleValue = await I.grabAttributeFrom(this.textView.textViewBodyTitle, "text");
-                I.assertEqual(bodyTitleValue, "Pinjaman untuk Bisnis dari Amar Bank");
-                I.wait(2);
                 let bodyDescValue = await I.grabAttributeFrom(this.textView.textViewBodyDesc, "text");
-                I.assertEqual(bodyDescValue, "Dapatkan pinjaman untuk pembiayaan transaksi bisnis Anda.");
+                I.assertEqual(bodyDescValue, "Kredit Bisnis untuk berbagai kebutuhan usaha");
                 break;
             case 'ca':
                 I.wait(2);
@@ -157,5 +155,9 @@ module.exports = {
     clickBtnInvitedUser(){
         I.wait(2);
         I.click(this.buttons.btnOpenInvited);
-    }
+    },
+    viewPageHistoryLoan(){
+        I.wait(2);
+        I.seeElement(this.textView.viewPageHistoryLoan);
+    },
 }

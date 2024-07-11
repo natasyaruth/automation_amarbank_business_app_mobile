@@ -15,6 +15,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -87,7 +88,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I allow company to store my data
         And I submit my business address
 
-    @C101374
+    @C131939
     Scenario: Upload All document business type PT Perusahaan
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address

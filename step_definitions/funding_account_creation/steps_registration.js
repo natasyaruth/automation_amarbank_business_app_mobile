@@ -8,6 +8,7 @@ const {
   verificationEmailPage,
   whitelistDao,
   otpDao,
+  firstRegistrationDao,
   changePhoneNumberPage,
   onboardingAccOpeningPage,
   globalVariable,
@@ -26,6 +27,34 @@ Given("My company name is {string}", (companyName) => {
 });
 
 Given("I am a customer lead wanting to register account business from invitation", async () => { });
+
+Given("I am a customer that recently registered to amarbank business with data as below", async (registration) => {
+
+  
+  const account = registration.parse().rowsHash();
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+62" + account["phoneNumber"]
+    );
+
+    await whitelistDao.whitelistEmail(
+      account["email"]
+    );
+
+    globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
+    globalVariable.registration.email = account["email"];
+    globalVariable.login.password = account["password"];
+
+    await
+      otpDao.requestOTP("+"+globalVariable.registration.phoneNumber);
+
+    const otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
+    account.otp = otpCode;
+
+    globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+    
+    console.log(globalVariable.login.userID);
+});
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -119,7 +148,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
   otpConfirmationPage.isOpen();
   otpConfirmationPage.fillInOtpCode("000000");
 });
-
+ 
 When("I verifying my email by login by user id", async () => {
   I.wait(3);
   verificationEmailPage.isOpen();
@@ -289,31 +318,95 @@ When("I click link registration", () => {
   registrationPage.goToLoginPage();
 });
 
-When("I click link terms and condition", () => {
-  registrationPage.goToTermsAndConditionPage();
+When("I click button agree with terms and condition", () => {
+  registrationPage.agreeWithTermsAndCondition();
 });
 
-When("I click link privacy and policy", () => {
-  registrationPage.goToPrivacyPolicyPage();
+When("I will directing to page terms and condition", () => {
+  I.wait(3);
+  I.waitForText("Syarat dan Ketentuan", 10);
+  I.waitForElement(headerPage.buttons.back, 10);
+
+  registrationPage.clickScrollToEndOfPage();
+
+  I.waitForElement(registrationPage.buttons.acceptWebView, 10);
+  I.see("Setujui Syarat dan Ketentuan");
+});
+
+When("I click button agree with privacy and policy", () => {
+  registrationPage.agreeWithPrivacyAndPolicy();
+});
+
+When("I will directing to page privacy and policy", () => {
+  I.wait(3);
+  I.waitForText("Kebijakan Privasi", 10);
+  I.waitForElement(headerPage.buttons.back, 10);
+  
+  registrationPage.clickScrollToEndOfPage();
+  
+  I.waitForElement(registrationPage.buttons.acceptWebView, 10);
+  I.see("Setujui Kebijakan Privasi");
+});
+
+When("I will directing to page PDP", () => {
+  I.waitForText("Persetujuan Penggunaan Data dan Informasi Pribadi", 10);
+  I.see("Buat Akun");
+  I.see("Wajib dicentang");
+
+  I.waitForElement(registrationPage.checkButton.firstPdp, 10);
+  I.see("Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank.".trim());
+
+  I.waitForElement(registrationPage.checkButton.secondPdp, 10);
+  I.see("Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank.".trim());
+  
+  I.waitForElement(registrationPage.checkButton.thirdPdp, 10);
+  I.see("Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank.".trim());
+  
 });
 
 When("I click call center", () => {
   headerPage.goToCallCenter();
 });
 
-Then("I will see helping center via whatsapp and email", () => {
-  I.waitForElement(headerPage.cards.whatsApp, 5);
-  I.waitForElement(headerPage.cards.email, 5);
+Then("I will see helping center via email", () => {
+  I.waitForText("Hubungi Tim Kami", 10);
+  I.see("Kami akan membantu Anda dalam" + "\n" + "pembentukan rekening ataupun pinjaman");
+  I.see("support.bisnis@amarbank.co.id");
+  I.waitForElement(headerPage.cards.whatsApp, 10);
 
   headerPage.closeCallCenter();
 });
 
 Then("I will directing to page login", () => {
-  I.waitForText("Masuk Akun", 10);
-  I.seeElement(headerPage.buttons.back);
-  I.seeElement(loginPage.fields.userID);
-  I.seeElement(loginPage.fields.password);
-  I.seeElement(loginPage.buttons.login);
+  I.waitForText("Masuk Akun", 20);
+  I.waitForElement(headerPage.buttons.back, 10);
+  I.waitForElement(headerPage.icon.callCenter, 10);
+
+  I.see("User ID");
+  I.see("Masukan user ID");
+  I.waitForElement(loginPage.fields.userID, 10);
+
+  I.see("Password");
+  I.see("Masukan password");
+  I.waitForElement(loginPage.fields.password, 10);
+  I.waitForElement(loginPage.icon.eyePassword, 10);
+
+  I.see("Ingat saya");
+  I.waitForElement(loginPage.checkbox.rememberMe, 10);
+
+  I.see("Lupa Password?");
+  I.waitForElement(loginPage.link.forgotPassword, 10);
+
+  I.see("Masuk Akun");
+  I.waitForElement(loginPage.buttons.login, 10);
+
+  I.see("Atau");
+  I.see("Masuk dengan Biometrik");
+  I.waitForElement(loginPage.buttons.biometric, 10);
+
+  I.see("Belum memiliki akun?");
+  I.see("Daftar");
+  I.waitForElement(loginPage.link.registration, 10);
 });
 
 Then("I will directing to web view terms and condition", () => {
@@ -530,7 +623,7 @@ When("I checked the 2 mandatory PDP checklists", () => {
 });
 
 When("I unchecked the 2 mandatory PDP checklists", () => {
-  
+
 });
 
 When("I checked the optional PDP checklist", () => {
@@ -549,7 +642,7 @@ Then("I should see button Buat Akun will enable", () => {
   I.seeElement(registrationPage.buttons.createAccountPDP);
 });
 
-Then("I should see button Buat Akun will disable",async () => {
+Then("I should see button Buat Akun will disable", async () => {
   //I.seeElement(registrationPage.buttons.createAccountPDP);
   await registrationPage.checkTnC();
 });
@@ -560,7 +653,7 @@ Then("I should go to Verifikasi No. HP page", () => {
 });
 
 Then("I get email including the information about PDP that i checked before", () => {
-  
+
 });
 
 Then("I see text consent PDP", () => {

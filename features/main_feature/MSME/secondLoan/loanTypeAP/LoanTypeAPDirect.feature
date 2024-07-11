@@ -1,59 +1,104 @@
 Feature: Apply Either Loan and select the loan type
     As a customer lead
-    I want to login Aplly loan and select the loan type
+    I want to login Aplly loan and select the loan type AP Direct
 
 
     Background:
-        Given I am a registered customer with following details:
-            # | userID   | bots2912  |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+        Given I am a registered customer with following details
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            # | userID   | bots2912  |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         And I click login
         And I click later
         Then I will direct to dashboard
         And I click menu tab testing
         And I click button loan dashboard
 
-    @emes2
-    Scenario: user choose type loan AP
-        Given I am on onboarding loan
-        And I click button ajukan pinjaman       
-        And I Input Nominal Pinjaman '2400000000'
-        And I Input Tenor '30'
-        And I select business location jabodetabek    
-        And I click on button Selanjutnya              
-        And I select loan type "AP"
-        And I click on Lihat Skema Pinjaman        
-        And I click button select the schema
-        And I click icon other anchor             
-        And I fill a field "anchorName" with "PT. AP Direct 1"
-        When I select industry type
-        And I select the date cooperating
-        And I fill a field "PICNameField" with "Budi"
-        And I fill a field "PICNumberField" with "08123456789"
-        And I will see checkbox Rights & Policy, T&C about loan and Privy
-        And I click button Kirim Pengajuan Pinjaman
-        And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
-        And I should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
-        And user close the bottom sheet
-        And I am on user on monitoring loan process page
-        And I click button Upload Dokumen     
-        And I upload document "npwpOfComp"
-        And I upload document "proofOfPurchase"
-        And I upload document "paymentMutation"
-        And I upload document "financialReports"
-        And I click button refresh
+
+Scenario: Verify bottom sheet Loan Schema
+    Given I click button loan dashboard
+    #section select loan type
+    When user click button ajukan pinjaman
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
+    And user click back button to back to type loan page
+
+Scenario: User apply second loan AP direct and want to see AP loan schema
+    Given I click button loan dashboard  
+    #section select loan type
+    When user click button ajukan pinjaman    
+    #section wants to see loan schema
+    And User click button Pelajari Tipe Skema Kredit
+    And User click button "Distributor Financing"
+    Then System will display Schema of Distributor Financing   
+
+ Scenario: Validate error input tenor below min 30 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier    
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+  Scenario: Validate error input tenor more than 180 hari 
+    Given I click button loan dashboard
+    When user click button ajukan pinjaman
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: user choose type loan AP Direct with business type Individu with flaging msme
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User choose nominal "Rp50 juta - 5 Miliar"  
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Supplier
+        #Select Anchor
+        When user on buyer cooperating page
+        And user select another supplier
+        And user fill a field "anchorName" with "AP Direct Tes"
+        And user select industry type
+        And user select the date cooperating
+        And user input business address
+        #section supplier representatives has contact
+        And user input supplier representatives name
+        And user input contact name
+        And user input email address supplier
+        And user checklist checkbox term and condition  
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen
+        And user validate content list of documents for AP MSME with business legality type type Individu
+        And user click buttton Pilih Metode Upload Dokumen
+        #Upload Dokumen from Aplikasi
+        And user click button Langsung dari Aplikasi
+        And user on Progress Upload Dokumen Page
+        And user upload document "3contohInvoicewithSupplier"
+        And user upload document "paymentMutation"
+        And user upload document "1YearfinancialReports"
+        And user click button Perbaharui Progres
+        And user click button Kirim Pengajuan Kredit Limit
+        Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+        And user click button Lihat Progres Pengajuan
+        And user on monitoring loan process page
         And user click back button to loan processing
         # section trigered status loan
         And user trigered api change status loan is approved
-
-    @emes3
+       
+    
     Scenario: User AP validate Limit Loan Activation Approved
         Given I have been access history loan limit to see status "Dalam Proses"
         When I access menu bar limit with status "Dalam Proses"
@@ -73,4 +118,25 @@ Feature: Apply Either Loan and select the loan type
         And user click button copy
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
-        
+
+    
+    Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AR"
+        And User on Loan Needs Page
+        And User choose nominal "Rp50 juta - 5 Miliar"  
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Buyer 
+        #section select Anchor
+        And user select "Anchor MSME Test"
+        And user select the date cooperating
+        And user click button Selanjutnya   
+        And user checklist checkbox term and condition  
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user go to page list of document for AP MSME with business legality type type Individu
+        And user click buttton Pilih Metode Upload Dokumen
+        And user validate wording for "Dari Perangkat lain/ Delegasi"
+        And user click button close bottom sheet
+   

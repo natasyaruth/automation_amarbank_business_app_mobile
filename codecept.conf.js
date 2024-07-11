@@ -151,7 +151,16 @@ exports.config = {
     documentManagementPage: "./pages/loanApplication/documentManagement.js",
 
     approvalTransactionPage: "./pages/approvalTransaction.js",
-    loanFlaggingPage: "./pages/loanFlagging/loanFlagging.js"
+
+    loanFlaggingPage: "./pages/loanFlagging/loanFlagging.js",
+
+    documentPage: "./pages/documentManagement.js",
+
+    mockingDao: "./dao/mockingDao.js",
+
+    firstRegistrationDao: "./dao/firstRegistrationDao.js",
+
+    getDataDao: "./dao/getDataDao.js",
   },
   settings: {
     logging: {
@@ -268,6 +277,7 @@ exports.config = {
       "./step_definitions/funding_home/steps_onboarding.js",
       "./step_definitions/funding_home/steps_main_active.js",
       "./step_definitions/funding_home/steps_profile.js",
+      "./step_definitions/funding_home/steps_document.js",
       "./step_definitions/loanApplication/steps_documentManagement.js",
       "./step_definitions/funding_home/steps_maker_and_approver.js",
       "./step_definitions/loanFlagging/steps_SecondloanMSME.js",

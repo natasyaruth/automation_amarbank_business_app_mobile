@@ -16,6 +16,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
             | userIDstg   | rutheeab |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -34,7 +35,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    @C96562
+    @C131941
     Scenario: Submit form Business owner successfully business type PT Perorangan
         Given I am a customer who has submitted my business profile
         And I am the only one business owner

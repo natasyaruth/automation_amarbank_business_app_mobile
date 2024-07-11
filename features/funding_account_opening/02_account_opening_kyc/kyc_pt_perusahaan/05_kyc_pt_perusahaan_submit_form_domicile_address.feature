@@ -16,6 +16,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
             | userIDstg   | ruth8f27 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -24,7 +25,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
         And I submit my legality type
         And I update my last journey step to 'Data Personal'
 
-    @C96541
+    @C131830
     Scenario: Submit form Domicile address same with KTP successfully business type PT Perusahaan
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -32,7 +33,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
-    @C96542
+    @C131831
     Scenario: Submit form Domicile address with new address successfully business type PT Perusahaan
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

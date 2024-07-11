@@ -16,6 +16,7 @@ Feature: Account Opening KYC CV - Submit Data Personal
             | userIDstg   | ruthf5d5 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -24,7 +25,7 @@ Feature: Account Opening KYC CV - Submit Data Personal
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
 
-    @C96519
+    @C131822
     Scenario: Submit form Data Personal successfully business type CV
         Given I am a customer who has uploaded my selfie photo
         When I fill my personal data details as followings:

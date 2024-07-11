@@ -16,6 +16,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -24,18 +25,20 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
         And I submit my legality type
         And I update my last journey step to 'Data Employment'
 
-    @C96564
+    @C131931
     Scenario: Submit form Business Profile successfully business type PT Perusahaan
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
+        And I see fields that available in Business Profile
         And I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
-            | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Restoran        |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | npwp               | 906283213036000 |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
         And I submit my business profile
         Then I will notify my business profile has successfully submitted
         And I will directing to page director list

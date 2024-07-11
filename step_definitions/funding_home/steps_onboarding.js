@@ -1,3 +1,5 @@
+const hookOnboarding = require("../../pages/hookOnboarding/hookOnboarding");
+
 const {I, hookOnBoardingPage} = inject();
 
 When(/user validate content onboarding \"([^\"]*)\"/, (boardType) => {
@@ -5,6 +7,8 @@ When(/user validate content onboarding \"([^\"]*)\"/, (boardType) => {
 });
 Then(/user swipe the card onboarding/, () => {
     hookOnBoardingPage.swipeToCardAccOpening();
+
+    I.waitForElement(this.buttons.bTnStartLoan);
 });
 Then(/user should see onboarding account opening/, () => {
     hookOnBoardingPage.viewCardOnBoardingAccOpening();
@@ -52,4 +56,21 @@ Then(/user click button direct history loan/, () => {
 });
 Then(/user close form upload doc/, () => {
     hookOnBoardingPage.clickBtnClose();
+});
+Then("I will directing to main dashboard with card loan application and account opening", async () => {
+    I.waitForElement(hookOnBoardingPage.buttons.bTnStartLoan, 10);
+    I.see("Pilihan Produk");
+    I.see("Kredit Bisnis untuk berbagai kebutuhan usaha");
+   
+
+    I.see("Perbankan Bisnis Premium");
+    I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
+    I.see("Pilih Rekening Giro");    
+});
+Then(/user click button Aktivitas Pinjaman/, () => {
+    hookOnBoardingPage.clickDirectHistory();
+
+});
+Then(/user on Aktvitas Pinjaman page/, () =>{
+    hookOnBoardingPage.viewPageHistoryLoan();
 });

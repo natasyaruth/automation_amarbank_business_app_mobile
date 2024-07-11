@@ -3,59 +3,124 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
     I want to apply second loan using PO Direct with MSME has flag
 
     Background:
-        Given I am a registered customer with following details:
-            # | userID   | bots2912   |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+        Given I am a registered customer with followng details:
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            # | userID   | bots2912   |
-            # | password | TestSmb123 |
-            | userID   | niza1356   |
-            | password | Test1234 |
+            | userID      | yahyde6f |
+            | password    | Akuntes1 |
+            | userIDstg   | bots2643 |
+            | passwordStg | Test1234 |
         And I click login
         Then I successed go to dashbord
 
-    @emes8
-    Scenario: User apply second loan PO direct type with flagging MSME
+
+    Scenario: User apply second loan AR Anchor and want to see AP loan schema
+        Given I click button loan dashboard  
+        #section select loan type
+        When user click button ajukan pinjaman    
+        #section wants to see loan schema
+        And User click button Pelajari Tipe Skema Kredit
+        And User click button "Supplier Financing"
+        Then System will display Schema of Supplier Financing
+
+    Scenario: User apply first loan PO and want to see PO loan schema
+       Given I click button loan dashboard  
+        #section select loan type
+        When user click button ajukan pinjaman    
+        #section wants to see loan schema
+        And User click button Pelajari Tipe Skema Kredit
+        And User click button Supplier Financing
+        Then System will display Schema of Supplier Financing
+
+
+    Scenario: Validate error input tenor below min 30 hari 
         Given I click button loan dashboard
-        #section input nominal
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Bouwheer    
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: Validate error input tenor more than 180 hari 
+        Given I click button loan dashboard
+        When user click button ajukan pinjaman
+        And User select loan type "AP"
+        And user on select loan Needs Page 
+        And User choose nominal "Rp50 juta - 5 Miliar"       
+        And user input tenor "1"
+        And user click button Lanjut Isi Data Bouwheer
+        Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+    Scenario: User apply second loan PO direct type with business type PT. Perusahaan with flagging MSME
+        Given I click button loan dashboard
         When user click button "ajukan limit baru"
-        And user Input Nominal Pinjaman less than 5 billion
-        And user input loan tenor
-        And user click button "Selanjutnya"
-        #section domicile office
-        And user select domicile office
-        And user click button "Selanjutnya" in page domicile office
-        And user on loan type page
-        #section select schema loan type
-        When user select loan type "PO"
-        And user click button lihat skema pinjaman PO
-        And user click button select the schema
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User on nominal "Rp50 juta - 5 Miliar"
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Bouwheer
         #section select Anchor
         When user on buyer cooperating page
-        And user fill a field "BowheerName"
-        And user select industry type
+        And user fill a field "BowheerName" with "Po Test Nurul"
+        And user select industry type "Agrikultur atau Perikanan"
         And user select the date cooperating
-        And user checklist checbox term and condition
-        And user checklist checbox privy
-        When user click button next
-        #section domicile office
-        And user select domicile office
-        And user click button "Selanjutnya" in page domicile office
-        Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-        And user click OK
-        # section upload document
-        Given user on upload document page
-        When user upload document "3contohInvoicewithBuyer"
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user go to page list of document for PO PT.Perusahaan MSME
+        And user click buttton Pilih Metode Upload Dokumen
+        #Upload Dokumen from Aplikasi
+        And user click button Langsung dari Aplikasi
+        And user on Progress Upload Dokumen Page
+        And user upload document "KTPandnpwpOfComp"
+        And user upload document "SPK"
         And user upload document "paymentMutation"
         And user upload document "1YearfinancialReports"
-        And user click button refresh
-        And user click back button to loan processing
+        And user click button Perbaharui Progres
+        And user click button Kirim Pengajuan Kredit Limit
+        Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+        And user click button Lihat Progres Pengajuan
+        And user on monitoring loan process page
+        # section trigered status loan
+        And user trigered api change status loan is approved
+        
+
+     Scenario: User apply second loan PO direct type with business type Individu with flagging MSME
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User on nominal "Rp50 juta - 5 Miliar"
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Bouwheer
+        #section select Anchor
+        When user on buyer cooperating page
+        And user fill a field "BowheerName" with "Po Test Nurul"
+        And user select industry type "Agrikultur atau Perikanan"
+        And user select the date cooperating
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user validate content list of documents for PO PT.Perusahaan
+        And user click buttton Pilih Metode Upload Dokumen
+        #Upload Dokumen from Aplikasi
+        And user click button Langsung dari Aplikasi
+        And user on Progress Upload Dokumen Page
+        And user upload document "SPK"
+        And user upload document "paymentMutation"
+        And user upload document "1YearfinancialReports"
+        And user click button Perbaharui Progres
+        And user click button Kirim Pengajuan Kredit Limit
+        Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+        And user click button Lihat Progres Pengajuan
+        And user on monitoring loan process page
         # section trigered status loan
         And user trigered api change status loan is approved
 
-    Scenario: Validate Card Limit For Type Loan AP
+    Scenario: Validate Card Limit For Type Loan PO
         Given I have been on Loan Dashboard to see the loan type of Loan AP
         When I validate the card of "Loan AP"
         Then I should see the wording dan card design of "Loan AP"
@@ -67,3 +132,23 @@ Feature: Apply Second Loan With Flagging MSME Using PO Direct
         And user click button copy
         And user should see text bottom sheet "Informasi Tambahan" in field "titleInformasiTambahan"
         And user click button lihat pinjaman
+        
+    Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
+        Given I click button loan dashboard
+        When user click button "ajukan limit baru"
+        And User select loan type "AP"
+        And User on Loan Needs Page
+        And User on nominal "Rp50 juta - 5 Miliar"
+        And user input loan tenor "30" 
+        And user click button Lanjut Isi Data Bouwheer
+        #section select Anchor
+        When user on buyer cooperating page
+        And user fill a field "BowheerName" with "Po Test Nurul"
+        And user select industry type "Agrikultur atau Perikanan"
+        And user select the date cooperating
+        And user checklist checkbox Privy term and condition
+        And user click button Lanjut Upload Dokumen      
+        And user go to page list of document for PT.Perusahaan
+        And user click buttton Pilih Metode Upload Dokumen
+        And user validate wording for "Dari Perangkat lain/ Delegasi"
+        And user click button close bottom sheet

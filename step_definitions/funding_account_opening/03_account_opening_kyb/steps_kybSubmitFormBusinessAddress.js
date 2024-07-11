@@ -4,6 +4,7 @@ const {
     onboardingAccOpeningPage,
     resetStateDao,
     uploadBusinessDocPage,
+    headerPage,
     globalVariable
 } = inject();
 
@@ -22,8 +23,30 @@ When("I agree with the terms and condition", async () => {
     await formBusinessAddressPage.checkTnC();
 });
 
-When("I allow company to store my data", async () => {
+When("I agree to carry out the Rights and Obligations", async () => {
     await formBusinessAddressPage.checkRights();
+});
+
+When("I will directing to page Rights and Obligations", async () => {
+    I.wait(3);
+    I.waitForText("Hak dan Kewajiban", 10);
+    I.waitForElement(headerPage.buttons.back);
+
+    formBusinessAddressPage.clickScrollToEndOfPage();
+
+    I.waitForElement(formBusinessAddressPage.buttons.acceptWebView, 10);
+    I.see("Setujui Hak dan Kewajiban");
+});
+
+When("I click button agree with Rights and Obligations", () => {
+    formBusinessAddressPage.agreeWithRightsAndObligations();
+});
+
+When("I will see checkbox Rights and Obligations is checked", async () => {
+    I.waitForElement(formBusinessAddressPage.checkBox.rights,10);
+    const isChecked = await I.grabAttributeFrom(formBusinessAddressPage.checkBox.rights, "checked");
+
+    I.assertEqual(isChecked, "true");
 });
 
 When("I allow to agree to use my digital signature through Privy.id", async () => {
@@ -79,7 +102,7 @@ When("I swipe to field {string} in form Business Address", (fieldName) => {
     if (
         fieldName === "address" ||
         fieldName === "rt" ||
-        fieldName === "rw" 
+        fieldName === "rw"
     ) {
         I.swipeDown(formBusinessAddressPage.dropDownsSearch.city, 800, 1000);
     }
@@ -89,7 +112,7 @@ Then("I shouldn't see message error in the below of field {string} in form Busin
     I.dontSee(formBusinessAddressPage.messageErrorFields[fieldName]);
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Business Address", async (expectedMsgError, fieldName) => {
@@ -99,14 +122,14 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I submit my business address", () => {
     formBusinessAddressPage.openAccount();
 });
 
-Then("I will directing to page upload require documents for business", () => {
+Then("I will directing to page upload require documents for business", async () => {
     I.waitForText("Pembentukan Rekening Sedang Diproses Tim Kami", 10);
     I.see("Pengecekan Dokumen");
     I.see("Proses saat ini");
@@ -115,14 +138,18 @@ Then("I will directing to page upload require documents for business", () => {
     I.see("Akta Perusahaan");
     I.see("SK Kemenkumham");
     I.see("NPWP Perusahaan");
-    I.see("Atau upload dokumen melalui:");
+    // I.see("Atau upload dokumen melalui:");
 
-    I.seeElement(uploadBusinessDocPage.buttons.uploadDocument);
+    I.waitForElement(uploadBusinessDocPage.buttons.uploadDocument, 10);
+    I.see("Upload Dokumen")
     I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data dan Daftar Direktur");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I will directing to page upload require documents for business individual", () => {
+Then("I will directing to page upload require documents for business individual", async () => {
     I.waitForText("Pembentukan Rekening Sedang Diproses Tim Kami", 10);
     I.see("Pengecekan Dokumen");
     I.see("Proses saat ini");
@@ -132,11 +159,15 @@ Then("I will directing to page upload require documents for business individual"
     I.dontSee("Akta Perusahaan");
     I.dontSee("SK Kemenkumham");
     I.dontSee("NPWP Perusahaan");
-    I.see("Atau upload dokumen melalui:");
+    // I.see("Atau upload dokumen melalui:");
 
-    I.seeElement(uploadBusinessDocPage.buttons.uploadDocument);
+    I.waitForElement(uploadBusinessDocPage.buttons.uploadDocument, 10);
+    I.see("Upload Dokumen")
     I.see("support.bisnis@amarbank.co.id");
     I.see("Verifikasi Data");
+
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I can close the page so that I can back to main dashboard", () => {

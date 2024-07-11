@@ -4,7 +4,7 @@ Feature: User open e-Statement History
     As a customer
     I want to see e-Statement History
 
-    @C109180
+    @C131977
     Scenario: User open transaction history
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -22,7 +22,7 @@ Feature: User open e-Statement History
         Then I direct to history page
         And I will see the button e-Statement
 
-    @C109181
+    @C131978
     Scenario: Download e-Statement by the latest month
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -42,7 +42,7 @@ Feature: User open e-Statement History
         Then The e-Statement downloaded
         And Receive notification email
 
-    @C109182
+    @C131979
     Scenario: Download e-Statement when e-Statement not exist
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -60,7 +60,7 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         Then Notification e-Statement not exist will appear
 
-    @C109183
+    @C131980
     Scenario: Show alert bar when success download e-Statement
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -79,7 +79,7 @@ Feature: User open e-Statement History
         And I choose the latest month to download e-Statement
         Then Alert bar success will appear
 
-    @C109184
+    @C131981
     Scenario: Show alert bar when failed download e-Statement
         Given I am a registered customer with following details:
             | userID      | niza7373 |

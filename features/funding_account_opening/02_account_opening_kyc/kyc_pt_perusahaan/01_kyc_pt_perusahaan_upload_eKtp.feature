@@ -16,6 +16,7 @@ Feature: Account Opening KYC PT Perusahaan - Upload KTP Photo
       | userIDstg   | ruth8f27 |
       | passwordStg | 1234Test |
     And I click login
+    And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account
@@ -23,7 +24,7 @@ Feature: Account Opening KYC PT Perusahaan - Upload KTP Photo
     And I choose legality business type 'company'
     And I submit my legality type
 
-  @C96537
+  @C131826
   Scenario: Upload eKTP photo successfully business type PT Perusahaan
     Given I am a customer who has selected the business type PT Perusahaan
     When I upload my eKTP photo

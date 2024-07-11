@@ -40,7 +40,7 @@ module.exports = {
     },
   
     fillSearchFriendlist(friendListname) {  
-      I.waitForElement(this.fields.searchFriendName, 10);    
+      I.waitForElement(this.fields.searchFriendName, 20);    
       I.setText(this.fields.searchFriendName, friendListname);
       I.hideDeviceKeyboard();
     },
@@ -74,7 +74,13 @@ module.exports = {
     },
   
     checkingAccountNumber() {
+      I.waitForElement(this.buttons.checkAccount, 10);
       I.click(this.buttons.checkAccount);
+    },
+
+    clickTopFriendList() {
+      I.waitForElement(this.cards.friendList, 10);
+      I.click(this.cards.friendList);
     },
   
     async saveFriendlist() {

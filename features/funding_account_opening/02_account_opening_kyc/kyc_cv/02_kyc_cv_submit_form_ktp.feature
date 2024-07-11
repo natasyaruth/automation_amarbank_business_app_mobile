@@ -16,6 +16,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
       | userIDstg   | ruthf5d5 |
       | passwordStg | 1234Test |
     And I click login
+    And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account
@@ -24,7 +25,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
-  @C96517
+  @C131820
   Scenario: Submit form KTP successfully business type CV
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

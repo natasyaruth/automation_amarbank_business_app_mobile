@@ -16,6 +16,7 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
     And I click login
+    And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account
@@ -24,7 +25,7 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
     And I submit my legality type
     And I update my last journey step to 'Data KTP'
 
-  @C96525
+  @C131725
   Scenario: Upload selfie image successfully business type Individual
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'

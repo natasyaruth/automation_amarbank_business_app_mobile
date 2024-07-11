@@ -15,6 +15,7 @@ Feature: Account Opening KYB UD - Submit Business Address
             | userIDstg   | ruth1684 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -64,7 +65,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I allow company to store my data
         And I submit my business address
 
-    @C101375
+    @C131947
     Scenario: Upload All document business type UD
         Given I am a customer who has uploaded my eKTP photo and selfie
         And has submitted business address

@@ -19,21 +19,22 @@ module.exports = {
   },
 
   openDetailAmount(){
+    I.waitForElement(this.buttons.detailAmount, 30);
     I.click(this.buttons.detailAmount);
   },
 
   async getActiveAmount(){
-    I.waitForElement(this.text.activeBalance, 20);
+    I.waitForElement(this.text.activeBalance, 30);
     return await I.grabTextFrom(this.text.activeBalance);
   },
 
   async getBlockingAmount(){
-    I.waitForElement(this.text.blockBalance, 20);
+    I.waitForElement(this.text.blockBalance, 30);
     return await I.grabTextFrom(this.text.blockBalance);
   },
 
   async getTotalAmount(){
-    I.waitForElement(this.text.totalBalance, 20);
+    I.waitForElement(this.text.totalBalance, 30);
     return await I.grabTextFrom(this.text.totalBalance);
   },
 
