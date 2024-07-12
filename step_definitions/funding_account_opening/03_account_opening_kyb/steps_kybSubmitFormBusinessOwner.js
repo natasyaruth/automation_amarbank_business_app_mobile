@@ -199,6 +199,7 @@ Then("I will directing to page business address", async () => {
     I.seeElement(formBusinessAddressPage.checkBox.rights);
     I.dontSeeElement(formBusinessAddressPage.checkBox.termsAndCondition);
     I.dontSeeElement(formBusinessAddressPage.checkBox.privy);
+    I.see("Lanjut Upload Dokumen");
 
     I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
     I.dontSee("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");

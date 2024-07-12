@@ -175,9 +175,11 @@ Then("I will directing to page director list", async () => {
     I.see("Anda wajib menambah direktur sesuai akta");
 
     const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+    const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    const eKTPNumber = await (await resetStateDao.getKTPNumber(globalVariable.login.userID, globalVariable.login.password)).ktpNumber;
 
-    I.see(globalVariable.formKtp.fullName);
-    I.see(globalVariable.formKtp.eKTPNumber);
+    I.see(fullName);
+    I.see(eKTPNumber);
     I.see(email);
     I.seeElement(formBusinessOwnerPage.buttons.addListDirector);
 

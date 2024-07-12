@@ -130,41 +130,37 @@ When("I submit my business address", () => {
 });
 
 Then("I will directing to page upload require documents for business", async () => {
-    I.waitForText("Pembentukan Rekening Sedang Diproses Tim Kami", 10);
-    I.see("Pengecekan Dokumen");
-    I.see("Proses saat ini");
-    I.see("Untuk mempercepat pembentukan rekening, Anda bisa upload dokumen langsung.");
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    I.waitForText("Pengajuan Pembukaan Rekening", 10);
+
+    I.see("Mohon persiapkan dokumen-dokumen berikut:");
     I.see("NIB");
     I.see("Akta Perusahaan");
     I.see("SK Kemenkumham");
     I.see("NPWP Perusahaan");
-    // I.see("Atau upload dokumen melalui:");
 
-    I.waitForElement(uploadBusinessDocPage.buttons.uploadDocument, 10);
-    I.see("Upload Dokumen")
-    I.see("support.bisnis@amarbank.co.id");
-    I.see("Verifikasi Data dan Daftar Direktur");
+    I.waitForElement(uploadBusinessDocPage.buttons.chooseMethodUpload, 10);
+    I.see("Pilih Metode Upload Dokumen");
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will directing to page upload require documents for business individual", async () => {
-    I.waitForText("Pembentukan Rekening Sedang Diproses Tim Kami", 10);
-    I.see("Pengecekan Dokumen");
-    I.see("Proses saat ini");
-    I.see("Untuk mempercepat pembentukan rekening, Anda bisa upload dokumen langsung.");
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    I.waitForText("Pengajuan Pembukaan Rekening", 10);
+
+    I.see("Mohon persiapkan dokumen-dokumen berikut:");
     I.see("NIB");
     I.see("Akta Pendirian");
     I.dontSee("Akta Perusahaan");
     I.dontSee("SK Kemenkumham");
     I.dontSee("NPWP Perusahaan");
-    // I.see("Atau upload dokumen melalui:");
 
-    I.waitForElement(uploadBusinessDocPage.buttons.uploadDocument, 10);
-    I.see("Upload Dokumen")
-    I.see("support.bisnis@amarbank.co.id");
-    I.see("Verifikasi Data");
+    I.waitForElement(uploadBusinessDocPage.buttons.chooseMethodUpload, 10);
+    I.see("Pilih Metode Upload Dokumen");
 
     await
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);

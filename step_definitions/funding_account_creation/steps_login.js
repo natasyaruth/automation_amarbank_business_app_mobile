@@ -150,23 +150,18 @@ Then(
 
 Then(
   "I should see pop up {string} with button {string}",
-  (expectedValue, buttonName) => {
+  async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.see(expectedValue);
     I.waitForElement(loginPage.buttons[buttonName], 10);
+  });
 
-    if (globalVariable.login.countValue === 2) {
-      loginPage.closeBottomSheet();
-    } else {
-      loginPage.tryToLogin();
-    }
-
-    loginPage.fillFieldLogin("userID", globalVariable.login.userID);
-    loginPage.fillFieldLogin("password", globalVariable.login.password);
-    loginPage.clickLoginButton();
-    I.waitForElement(transferPage.buttons.sectionBtnTrf, 10);
-  }
-);
+Then(
+  "I reset attempt failed login",
+  async () => {
+    await
+      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+  });
 
 Then(
   "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",

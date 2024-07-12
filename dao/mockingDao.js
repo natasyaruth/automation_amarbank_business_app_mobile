@@ -12,7 +12,7 @@ module.exports = {
         checkDHNKTPStg: "2b5f3d24-91bd-4aa3-a58c-fb87fb68c445",
         checkDHNNPWPStg: "6e85833c-4fed-43cc-b8b2-5a66fa23fb39",
         faceMatchStg: "6fe23a02-a1df-43a6-a29a-39e34d7d5b1a",
-        livenessStg: "",
+        livenessStg: "beac41c8-8780-410c-834e-8f03976f0778",
     },
     name: {
         checkDHNKTPDev: "[DEV] GOV Check DHN",
@@ -22,7 +22,7 @@ module.exports = {
         checkDHNKTPStg: "[STG] GOV Check DHN",
         checkDHNNPWPStg: "[STG] Cek DHN",
         faceMatchStg: "[STAGING] GOV Dukcapil Facematch",
-        livenessStg: "",
+        livenessStg: "[STAGING] Biometric Verificator Liveness V2",
     },
     path: {
         checkDHNKTPDev: "/dev-gov/regulation/blacklist/([0-9]{16})/.*",
@@ -32,7 +32,7 @@ module.exports = {
         checkDHNKTPStg: "/staging-gov/regulation/blacklist/([0-9]{16})/.*",
         checkDHNNPWPStg: "/staging-gov/dhn-verification",
         faceMatchStg: "/staging-gov/citizen/([0-9]{16})/face/recognize",
-        livenessStg: "",
+        livenessStg: "/staging-biover/liveness/check/smb-users/v2",
     },
     static: {
         endpoint: "http://10.10.8.54:5557",

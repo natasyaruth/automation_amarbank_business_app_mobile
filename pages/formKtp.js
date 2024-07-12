@@ -70,6 +70,7 @@ module.exports = {
       if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.fields[fieldName], 10);
         I.setText(this.fields[fieldName], value);
         if (fieldName === "placeOfBirth") {
           I.swipeUp(this.datePicker.dateOfBirth, 500, 500);
@@ -78,17 +79,20 @@ module.exports = {
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.dropDowns[fieldName], 10);
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.click(value);
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.dropDownsSearch[fieldName], 10);
         I.wait(1);
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.dropDownsSearch.firstItem, 10);
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
+        I.wait(1);
         I.click(this.dropDownsSearch.firstItem);
 
         if (fieldName !== "village") {
@@ -98,6 +102,7 @@ module.exports = {
       } else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
       ) {
+        I.waitForElement(this.datePicker[fieldName], 10);
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
         I.swipeDown(this.text.year, 3000, 3000);
@@ -113,6 +118,16 @@ module.exports = {
   fillField(fieldName, value) {
     I.waitForElement(this.fields[fieldName], 10);
     I.setText(this.fields[fieldName], value);
+  },
+
+  chooseFieldBirthDate() {
+    I.waitForElement(this.datePicker.dateOfBirth, 30);
+    I.click(this.datePicker.dateOfBirth);
+  },
+
+  chooseDate() {
+    I.waitForElement(this.buttons.chooseDate, 10);
+    I.click(this.buttons.chooseDate);
   },
 
   clearField(fieldName) {
@@ -144,7 +159,7 @@ module.exports = {
     return await I.grabTextFrom(this.text.blockerVerificationDesc);
   },
 
-  closePage(){
+  closePage() {
     I.waitForElement(this.buttons.closePage, 10);
     I.click(this.buttons.closePage);
   },

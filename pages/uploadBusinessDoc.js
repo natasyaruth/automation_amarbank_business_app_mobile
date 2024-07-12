@@ -6,6 +6,22 @@ module.exports = {
     uploadDocument: "~buttonUploadDoc",
     refresh: "~buttonRefresh",
     continueToDashboard: "~buttonGoToDashboard",
+    chooseMethodUpload: "~buttonNext",
+    methodViaApp: "~buttonUploadMobile",
+    methodViaOtherDevice: "~buttonUploadOtherDevice",
+    copy: "~buttonCopy",
+    directToUploadProgress: "~buttonUploadProgress",
+    sendRequestAccOpening: "~buttonSubmit",
+    refresh: "~buttonRefresh",
+    deleteNIB: "~buttonRemoveNib",
+    deleteAkta: "~buttonRemoveCompanyCert",
+    deleteSK: "~buttonRemoveCompanyLaw",
+    deleteNPWP: "~buttonRemoveCompanyNpwp",
+    directToProgressAccOpening: "~buttonNext",
+    reUpload: "~buttonReUploadDoc",
+    callCenter: "~buttonCallCenter",
+    confirmDelete: "~buttonDelete",
+    cancelDelete: "~buttonBack"
   },
   upload: {
     nib: "~buttonUploadNib",
@@ -15,6 +31,8 @@ module.exports = {
   },
   link: {
     callCenter: "~buttonCallCenter",
+    viaOtherDevice: "~buttonUploadWeb",
+    directToDashboard: "~buttonToDashboard",
   },
   messageError: {
     uploadDoc: "~textErrorUpload",
@@ -101,4 +119,94 @@ module.exports = {
     I.waitForElement(this.link.callCenter, 10);
     I.click(this.link.callCenter);
   },
+
+  clickChooseMethodUpload(){
+    I.waitForElement(this.buttons.chooseMethodUpload, 10);
+    I.click(this.buttons.chooseMethodUpload);
+  },
+
+  chooseDirectUpload(){
+    I.waitForElement(this.buttons.methodViaApp, 10);
+    I.click(this.buttons.methodViaApp);
+  },
+
+  chooseUploadFromOtherDevice(){
+    I.waitForElement(this.buttons.methodViaOtherDevice, 10);
+    I.click(this.buttons.methodViaOtherDevice);
+  },
+
+  copyLink(){
+    I.waitForElement(this.buttons.copy, 10);
+    I.click(this.buttons.copy);
+  },
+
+  clickDirectToProgressUploadDoc(){
+    I.waitForElement(this.buttons.directToUploadProgress, 10);
+    I.click(this.buttons.directToUploadProgress);
+  },
+
+  clickUpdateProgress(){
+    I.waitForElement(this.buttons.refresh, 10);
+    I.click(this.buttons.refresh);
+  },
+
+  clickLinkUploadViaOtherDevice(){
+    I.waitForElement(this.link.viaOtherDevice, 10);
+    I.click(this.link.viaOtherDevice);
+  },
+
+  deleteDocumentNIB(){
+    I.waitForElement(this.buttons.deleteNIB, 10);
+    I.click(this.buttons.deleteNIB);
+  },
+
+  deleteDocumentAktaPerusahaan(){
+    I.waitForElement(this.buttons.deleteAkta, 10);
+    I.click(this.buttons.deleteAkta);
+  },
+
+  deleteDocumentSK(){
+    I.waitForElement(this.buttons.deleteSK, 10);
+    I.click(this.buttons.deleteSK);
+  },
+
+  deleteDocumentNPWPPerusahaan(){
+    I.waitForElement(this.buttons.deleteNPWP, 10);
+    I.click(this.buttons.deleteNPWP);
+  },
+
+  clickRequestAccOpening(){
+    I.waitForElement(this.buttons.sendRequestAccOpening, 10);
+    I.click(this.buttons.sendRequestAccOpening);
+  },
+
+  clickDirectToProgressAccOpening(){
+    I.waitForElement(this.buttons.chooseMethodUpload, 10);
+    I.click(this.buttons.chooseMethodUpload);
+  },
+
+  clickLinkToMainDashboard(){
+    I.waitForElement(this.link.directToDashboard, 10);
+    I.click(this.link.directToDashboard);
+  },
+
+  confirmDelete(){
+    I.waitForElement(this.buttons.confirmDelete, 10);
+    I.click(this.buttons.confirmDelete);
+  },
+
+  cancelDelete(){
+    I.waitForElement(this.buttons.cancelDelete, 10);
+    I.click(this.buttons.cancelDelete);
+  },
+
+  reUploadDocument(){
+    I.waitForElement(this.buttons.reUpload, 10);
+    I.click(this.buttons.reUpload);
+  },
+
+  clickCallCenterProgressAccOpening(){
+    I.waitForElement(this.buttons.callCenter, 10);
+    I.click(this.buttons.callCenter);
+  }
 }

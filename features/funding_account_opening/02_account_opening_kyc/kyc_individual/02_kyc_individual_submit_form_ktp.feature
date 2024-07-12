@@ -146,7 +146,31 @@ Feature: Account Opening KYC Individual - Submit Form KTP
   Scenario: Verifying field rw contain with -
     Given I am a customer want to fill my information identity details
     When I fill field 'rt' with '-' in form KTP
-    Then I shouldn't see message error in the below of field 'rw' in form KTP  
+    Then I shouldn't see message error in the below of field 'rw' in form KTP
+
+  @C135996
+  Scenario: Submit form KTP with date of birth more than 17 years old
+    Given I am a customer want to fill my information identity details
+    When I choose birthdate with current date
+    And I fill all information identity details as followings:
+      | eKtpNumber    | 3174055109900003          |
+      | fullName      | NADYA LAROSA              |
+      | placeOfBirth  | MEDAN                     |
+      | gender        | Laki-laki                 |
+      | address       | Jl. Durian Runtuh No. 13  |
+      | rt            | 01                        |
+      | rw            | 05                        |
+      | province      | DKI JAKARTA               |
+      | city          | KOTA ADM. JAKARTA SELATAN |
+      | district      | KEBAYORAN BARU            |
+      | village       | SENAYAN                   |
+      | religion      | Katolik                   |
+      | maritalStatus | Belum Kawin               |
+    And I submit my information identity details
+    Then I will notify my age should above 17 years old
+    And I close page rejected account
+    And I will see card continue to data personal
+    And I can continue to page 'Data KTP'
 
   @C131724
   Scenario: Submit form KTP successfully business type Individual
