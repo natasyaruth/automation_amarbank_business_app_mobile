@@ -9,6 +9,7 @@ const {
   formBusinessAddressPage,
   formBusinessProfilePage,
   formBusinessOwnerPage,
+  uploadBusinessDocPage,
   resetStateDao,
   globalVariable,
 } = inject();
@@ -30,7 +31,7 @@ module.exports = {
     giroAccountMsme: "~smeBtnOpenGiro",
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
-    rejectCard: {xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]"},
+    rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
     openProgressAccount: "~openProgressAccount",
   },
   radioButtons: {
@@ -158,10 +159,13 @@ module.exports = {
         I.wait(3);
         break;
       case "Upload Document Business":
-        I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
         break;
       case "Registration Director":
         I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        break;
+      case "Detail Progress Account Opening":
+        I.waitForElement(uploadBusinessDocPage.buttons.reUpload, 10);
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -227,7 +231,7 @@ module.exports = {
     I.click(this.buttons.completeDoc);
   },
 
-  openCardReject(){
+  openCardReject() {
     I.waitForElement(this.buttons.rejectCard, 10);
     I.click(this.buttons.rejectCard);
   },
@@ -312,42 +316,42 @@ module.exports = {
     return await I.grabTextFrom(this.texts.loanLimitSme);
   },
 
-  openAllTransactionApproval (){
+  openAllTransactionApproval() {
     I.waitForElement(this.buttons.openAllTransactionApproval, 10);
     I.click(this.buttons.openAllTransactionApproval);
   },
 
-  openCardTransaction (){
+  openCardTransaction() {
     I.waitForElement(this.buttons.cardTransaction, 10);
     I.click(this.buttons.cardTransaction);
   },
 
-  clickButtonProgressAccOpeningDetail (){
+  clickButtonProgressAccOpeningDetail() {
     I.waitForElement(this.buttons.openProgressAccount, 10);
     I.click(this.buttons.openProgressAccount);
   },
 
-  async getStatusTransaction(){
+  async getStatusTransaction() {
     I.waitForElement(this.texts.transactionApprovalType, 10);
     return I.grabTextFrom(this.texts.transactionApprovalType);
   },
 
-  async getRecipientName(){
+  async getRecipientName() {
     I.waitForElement(this.texts.transactionRecipientName, 10);
     return I.grabTextFrom(this.texts.transactionRecipientName);
   },
 
-  async getRecipientBankName(){
+  async getRecipientBankName() {
     I.waitForElement(this.texts.transactionRecipientBank, 10);
     return I.grabTextFrom(this.texts.transactionRecipientBank);
   },
 
-  async getTransactionDate(){
+  async getTransactionDate() {
     I.waitForElement(this.texts.transactionDate, 10);
     return I.grabTextFrom(this.texts.transactionDate);
   },
 
-  async getAmountTransaction(){
+  async getAmountTransaction() {
     I.waitForElement(this.texts.transactionAmount, 10);
     return I.grabTextFrom(this.texts.transactionAmount);
   }
