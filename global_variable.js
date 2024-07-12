@@ -48,6 +48,12 @@ module.exports = {
         nik:"",
         numberOfDirectors: 0
     },
+    uploadDocuments:{
+        nib: false,
+        akta: false,
+        sk: false,
+        npwp: false,
+    },
     createPin:{
         newPin:"",
         otp: "",

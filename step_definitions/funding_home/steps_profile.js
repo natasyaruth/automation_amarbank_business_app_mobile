@@ -4,10 +4,12 @@ const { I,
     profilePage,
     resetStateDao,
     headerPage,
+    getDataDao,
+    onboardingAccOpeningPage,
     documentPage,
 } = inject();
 
-When("I will see card account {string}", (typeAccount) => {
+When("I will see card account {string}", async (typeAccount) => {
     if (
         typeAccount === "active"
     ) {
@@ -17,6 +19,22 @@ When("I will see card account {string}", (typeAccount) => {
         typeAccount === "on verification"
     ) {
         I.waitForText("Menunggu verifikasi data selesai", 30);
+        I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
+
+        const isPartner = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
+
+        if(
+            isPartner === false ||
+            globalVariable.onBoarding.legality === "individual"
+        ){
+            I.dontSee(onboardingAccOpeningPage.buttons.openProgressAccount);
+            I.dontSee("Progres Pembukaan Rekening");
+
+        } else{
+
+            I.waitForElement(onboardingAccOpeningPage.buttons.openProgressAccount, 10);
+            I.see("Progres Pembukaan Rekening");
+        }
 
     } else if (
         typeAccount === "complete document"

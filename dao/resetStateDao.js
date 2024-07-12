@@ -19,6 +19,22 @@ module.exports = {
         };
     },
 
+    async deleteAllDocuments(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken))
+
+        const responseDelete = await I.sendDeleteRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/business/docs"));
+        
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseDelete.status,
+            data: responseDelete.data,
+        };
+    },
+
     async getTokenLogin(userID, password) {
 
         I.haveRequestHeaders({

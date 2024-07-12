@@ -1,4 +1,4 @@
-const { I, uploadDao, resetStateDao } = inject();
+const { I, uploadDao } = inject();
 
 module.exports = {
 
@@ -21,7 +21,8 @@ module.exports = {
     reUpload: "~buttonReUploadDoc",
     callCenter: "~buttonCallCenter",
     confirmDelete: "~buttonDelete",
-    cancelDelete: "~buttonBack"
+    cancelDelete: "~buttonBack",
+    close: "~buttonClose",
   },
   upload: {
     nib: "~buttonUploadNib",
@@ -33,6 +34,12 @@ module.exports = {
     callCenter: "~buttonCallCenter",
     viaOtherDevice: "~buttonUploadWeb",
     directToDashboard: "~buttonToDashboard",
+  },
+  texts:{
+    sizeDocumentNIB: {xpath: ""},
+    sizeDocumentAkta: {xpath: ""},
+    sizeDocumentSK: {xpath: ""},
+    sizeDocumentNPWP: {xpath: ""},
   },
   messageError: {
     uploadDoc: "~textErrorUpload",
@@ -49,7 +56,7 @@ module.exports = {
   },
 
   // BUSINESS DOC ENUM
-  // 1. nib_berbasis_resiko
+  // 1. nib
   // 2. akta_pendirian
   // 3. anggaran_dasar
   // 4. akta_perubahan_terakhir
@@ -62,7 +69,7 @@ module.exports = {
     let enumDoc = 0;
 
     switch (typeDoc) {
-      case "NIB Berbasis Resiko":
+      case "NIB":
         return enumDoc = 1;
       case "Akta Perusahaan":
         return enumDoc = 2;
@@ -88,7 +95,6 @@ module.exports = {
     await
       uploadDao.uploadDocBusiness(userID, password, 7);
 
-    resetStateDao.reloadPageAfterResetState();
   },
 
   async uploadAllDocumentIndividualCompany(userID, password) {
@@ -98,7 +104,6 @@ module.exports = {
     await
       uploadDao.uploadDocBusiness(userID, password, 2);
 
-    resetStateDao.reloadPageAfterResetState();
   },
 
   async uploadOneDocument(userID, password, typeDoc) {
@@ -106,8 +111,6 @@ module.exports = {
 
     await
       uploadDao.uploadDocBusiness(userID, password, enumDoc);
-
-    resetStateDao.reloadPageAfterResetState()
   },
 
   async getMessageError() {
@@ -208,5 +211,10 @@ module.exports = {
   clickCallCenterProgressAccOpening(){
     I.waitForElement(this.buttons.callCenter, 10);
     I.click(this.buttons.callCenter);
-  }
+  },
+
+  closeBottomSheet(){
+    I.waitForElement(this.buttons.close, 10);
+    I.click(this.buttons.close);
+  },
 }
