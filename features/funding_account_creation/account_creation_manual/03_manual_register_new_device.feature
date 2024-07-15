@@ -29,12 +29,7 @@ Feature: Manual Registering New Device
         And device A in condition login with user id A
         When I try to register device B with user id A till success
         And I back to my old device
-        And I try to trigger any menu or action in old device
-        Then I will get notification page new device is detected
-        And I click button understand
-        And I will direct to page login
-        And I try to login again
-        And I will see bottom sheet register new device 
+        Then I will see the app is auto logout
 
     @C133931
     Scenario: Login same account with different device using user id password
@@ -51,19 +46,20 @@ Feature: Manual Registering New Device
         And I can login again without register again the device id
 
     @C133932
-    Scenario: Login different account with same device using biometric and condition devices already activated the biometric
+    Scenario: Login different account in same device and other user want to activated the biometric
         Given I have two Account A and B
-        And one device with biometric already activated with account B
-        When I try to login using account A via biometric
-        And I will see bottom sheet biometric still not activated
-        And I try to login using account A via user id and password
-        And I will see loading icon
-        Then I will see bottom sheet to register new device id
-        And I try to login using account B via biometric
-        And I will see bottom sheet biometric still not activated
-        And I try to login using account B via user id and password
-        And I will see loading icon
-        Then I will see bottom sheet to register new device id
+        And one device with biometric already activated with account A
+        And account B is registered with same device id
+        When I try to login using account B with user id and password
+        And I will direct to main dashboard
+        And I will see pop up to activated biometric
+        And I try to activated biometric
+        And I input biometric
+        Then I will see biometric is not recognize
+        And I try to logout
+        And I click login via biometric
+        And I will see bottom sheet biometric still not activated yet
+        And I can success login via user id and password
 
     @C133934
     Scenario: Register device with permission still not allowed yet
@@ -126,3 +122,54 @@ Feature: Manual Registering New Device
         Given I try to register my device but failed
         And my account was blocked
         Then agent will receive notification email that my account is blocked
+
+    @C137066
+    Scenario: Login and register other device success after got blocking from my device
+        Given I get blocked after failed to register my device id using device A
+        When I try to login in device B
+        And I will see bottom sheet to register new device id
+        And I register new device success in device B
+        And I try again to login in device A
+        Then I will see bottom sheet blocked information
+
+    @C137067
+    Scenario: Login and register other device failed after got blocking from my device
+        Given I get blocked after failed to register my device id using device A
+        When I try to login in device B
+        And I will see bottom sheet to register new device id
+        And I register new device but failed till blocked in device B
+        And I try again to login in device B
+        Then I will see bottom sheet blocked information    
+        And I try again to login in device A
+        Then I will see bottom sheet blocked information    
+
+    @C137068
+    Scenario: Register new device using user id and password with old device already registered before
+        Given I have user id and registered with my old device
+        When I try to login in new device
+        And I register new device
+        And I failed the facematch till blocked
+        And I back to login again in to my old device
+        Then I will direct to main dashboard
+
+    @C137069
+    Scenario: Register new device using biometric with old device already registered before
+        Given I have user id and registered with my old device
+        And my biometric was activated in old device
+        When I try to login in new device
+        And I register new device
+        And I failed the facematch till blocked
+        And I back to login again in to my old device using biometric
+        Then I will direct to main dashboard    
+
+    @C137070
+    Scenario: Register in device that same with other user
+        Given I have user id A with device A already registered
+        When I try to register again using device A
+        And I will get new user id B
+        And there is no flag in data verification user id B in CRM
+        And user id B is accepted from CRM
+        And I try to login with user id A
+        Then I will direct to main dashboard
+        And I try to login with user id B
+        Then I will direct to main dashboard
