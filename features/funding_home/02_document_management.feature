@@ -3,6 +3,7 @@ Feature: Document Management
     As a customer
     I want to view business document that I previously uploaded
 
+    @C137178
     Scenario: Close pop up inactive biometric
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -21,6 +22,7 @@ Feature: Document Management
         And I close activated my biometric via document
         Then I will see card account 'active'
 
+    @C137179
     Scenario: Click button activated biometric
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -40,6 +42,7 @@ Feature: Document Management
         Then I will direct to Tab Other
         And I will see toogle biometric is off
 
+    @C137180
     Scenario: Input password then delete
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -62,6 +65,7 @@ Feature: Document Management
         And I clear my password
         Then I will see button see document is disabled
 
+    @C137181
     Scenario: Mask Password
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -85,6 +89,7 @@ Feature: Document Management
         And I mask my password
         Then I will not see my password
 
+    @C137182
     Scenario: Unmask Password
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -106,6 +111,7 @@ Feature: Document Management
         And I unmask my password
         And I will see my password
 
+    @C137183
     Scenario: Close bottom sheet password
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -126,6 +132,7 @@ Feature: Document Management
         And I close bottom sheet password
         Then I will see card account 'active'
 
+    @C137184
     Scenario: Input wrong password once
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -148,6 +155,7 @@ Feature: Document Management
         Then I will see message error password incorrect
         And I reset attempt failed password
 
+    @C137185
     Scenario: Input wrong password twice
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -173,6 +181,7 @@ Feature: Document Management
         Then I will see message error password incorrect
         And I reset attempt failed password
 
+    @C137186
     Scenario: Input wrong password three times
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -201,6 +210,7 @@ Feature: Document Management
         Then I will directing to page login
         And I reset attempt failed password
 
+    @C137187
     Scenario: Validate pop up activated biometric only appear once click use password
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -232,6 +242,7 @@ Feature: Document Management
         And I click tab document
         Then I will see bottom sheet input password document
 
+    @C137188
     Scenario: Validate pop up activated biometric only appear once click activated biometric
         Given I am a registered customer with following details:
             | userID      | autocaea |
