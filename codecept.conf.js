@@ -161,6 +161,8 @@ exports.config = {
     firstRegistrationDao: "./dao/firstRegistrationDao.js",
 
     getDataDao: "./dao/getDataDao.js",
+
+    otherPage: "./pages/other.js",
   },
   settings: {
     logging: {

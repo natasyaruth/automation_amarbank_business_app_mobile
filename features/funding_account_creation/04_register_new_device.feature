@@ -4,8 +4,11 @@ Feature: Registering New Device
     I want to register my new device
     So that SMB app recognize my new device
 
+    # ATTENTION
+    # Please input your device/emulator id
+    
     Background: Enabled checking register new device id
-        Given I delete device id ''
+        Given I delete device id '70e84d8d58362ce8'
 
     @C133917
     Scenario: Recapture selfie picture
