@@ -1,4 +1,10 @@
-const {I, mainActivePage} = inject();
+const {
+      I, 
+      mainActivePage,
+      loanDashboardPage,
+    
+    
+      } = inject();
 
 Then(/user should see company name on card saldo/, () => {
     mainActivePage.viewCardBalance();
@@ -26,4 +32,19 @@ Then(/user should see total loan process/, () => {
 });
 Then(/user should see button apply new limit loan/, () => {
     mainActivePage.shouldSeeBtnNewLimit();
+});
+Then(/user see button Lihat Detail Pinjaman/, () => {
+    mainActivePage.shouldseeDetailLoan();
+});
+Then(/user see button Gunakan Limit/, () =>{
+    mainActivePage.shouldseeGunakanLimit();
+});
+Then(/user on Aktvitas Pinjaman page with status "Dalam Proses"/, () => {
+    loanDashboardPage.goToStatusInProcessLimitHistory();
+});
+Then(/user go to Loan Dashboard pag/, () => {
+    loanDashboardPage.goToLoanDashboard();
+});    
+Then(/user click button Aktivitas Pinjaman/, () => {
+    mainActivePage.clickBTnDirecttoHistory();
 });

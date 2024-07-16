@@ -10,12 +10,17 @@ module.exports = {
         textViewPerbankanGiro: { xpath: '//android.widget.TextView[contains(@text, "Perbankan Giro")]' },
         textViewRejectedAccountCreation: { xpath: '//android.widget.TextView[contains(@text, "Pembuatan Rekening Ditolak")]' },
         textViewRejectedLoanApplication: { xpath: '//android.widget.TextView[contains(@text, "Pembuatan Rekening & Pengajuan Pinjaman Belum Dapat Diproses")]' },
+        textviewbuttonSeeDetailLoan: { xpath: '//android.widget.TextView[contains(@text, "Lihat Detail Pinjaman")]' },
+        textviewbuttonGunakanLimit:  { xpath: '//android.widget.TextView[contains(@text, "Gunakan Limit")]' },
     },
     buttons: {
         btnNewLimit: "",
         btnEyes: "~btnEyes",
         btnHistory: "~btnHistory",
         btnTransfer: "~btnTransfer",
+        btnLoanDetail: "~buttonLoanDetail",
+        btnUseLimit: "~buttonUseLimit",
+        bTnDirecttoHistory: "~directToHistoryLoan",
     },
 
 
@@ -91,5 +96,17 @@ module.exports = {
         I.waitForElement(this.textView.companyName, 10);
         return I.grabTextFrom(this.textView.companyName);
     },
+    shouldseeDetailLoan(){
+        I.wait(2);
+        I.seeElement(this.textviewbuttonSeeDetailLoan);
+    },
+    shouldseeGunakanLimit(){
+        I.wait(2);
+        I.seeElement(this.textviewbuttonGunakanLimit);
+    },
+    clickBTnDirecttoHistory(){
+        I.wait(2);
+        I.click(this.buttons.bTnDirecttoHistory);
+    }
 
 }
