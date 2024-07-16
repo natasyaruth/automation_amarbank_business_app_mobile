@@ -12,6 +12,19 @@ module.exports = {
     downloadDeed: "~buttonDownloadAkta",
     downloadSk: "~buttonDownloadSk",
     downloadNpwp: "~buttonDownloadNpwp",
+    closePopUp: "~buttonClose",
+    activatedNow: "~buttonActiveNow",
+    seeDocument: "~buttonSeeDocument",
+    eyePassword: "~iconEyePassword",
+  },
+  links:{
+    usePassword: "~buttonUsePassword",
+  },
+  fields:{
+    password: "~textFieldPassword",
+  },
+  msgErrorFields:{
+    password: "~textErrorPassword",
   },
 
   clickTabDocument(){
@@ -29,5 +42,45 @@ module.exports = {
   clickItemLoan(){
     I.waitForElement(this.buttons.itemLoan, 10);
     I.click(this.buttons.itemLoan);
-  }
+  },
+
+  closePopUpBiometricInactive(){
+    I.waitForElement(this.buttons.closePopUp, 10);
+    I.click(this.buttons.closePopUp);
+  },
+
+  clickActivatedBiometric(){
+    I.waitForElement(this.buttons.activatedNow, 10);
+    I.click(this.buttons.activatedNow);
+  },
+
+  clickLinkUsePassword(){
+    I.waitForElement(this.links.usePassword, 10);
+    I.click(this.links.usePassword);
+  },
+
+  inputPassword(password){
+    I.waitForElement(this.fields.password, 10);
+    I.setText(this.fields.password, password);
+  },
+
+  clickIconEyePassword(){
+    I.waitForElement(this.buttons.eyePassword, 10);
+    I.click(this.buttons.eyePassword);
+  },
+
+  clearPassword(){
+    I.waitForElement(this.fields.password, 10);
+    I.clearField(this.fields.password);
+  },
+
+  clickSeeDocument(){
+    I.waitForElement(this.buttons.seeDocument, 10);
+    I.click(this.buttons.seeDocument);
+  },
+
+  async getMessageErrorPassword(){
+    I.waitForElement(this.msgErrorFields.password);
+    return await I.grabTextFrom(this.msgErrorFields.password);
+  },
 }

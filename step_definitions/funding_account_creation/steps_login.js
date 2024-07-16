@@ -90,8 +90,8 @@ Given(
   }
 );
 
-Given("I enabled to checking device id", async () => {
-  // API to enabled check device id
+Given("I delete device id {string}", async (deviceId) => {
+  // API to enabled delete device id
 });
 
 Given("I have last step journey before", async () => {
@@ -150,23 +150,18 @@ Then(
 
 Then(
   "I should see pop up {string} with button {string}",
-  (expectedValue, buttonName) => {
+  async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.see(expectedValue);
     I.waitForElement(loginPage.buttons[buttonName], 10);
+  });
 
-    if (globalVariable.login.countValue === 2) {
-      loginPage.closeBottomSheet();
-    } else {
-      loginPage.tryToLogin();
-    }
-
-    loginPage.fillFieldLogin("userID", globalVariable.login.userID);
-    loginPage.fillFieldLogin("password", globalVariable.login.password);
-    loginPage.clickLoginButton();
-    I.waitForElement(transferPage.buttons.sectionBtnTrf, 10);
-  }
-);
+Then(
+  "I reset attempt failed login",
+  async () => {
+    await
+      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+  });
 
 Then(
   "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
@@ -354,7 +349,7 @@ When("I submit my selfie photo", () => {
   loginPage.submitPhoto();
 });
 
-When("I will disabled checking device id", async () => {
+When("I will mock liveness to success", async () => {
   // API to disabled checking device id
 
   await
@@ -410,7 +405,7 @@ When("I close page verification new device", () => {
   headerPage.closePage();
 });
 
-When("I click button continue to main dashboard", () => {
+When("I click button continue to page login", () => {
   loginPage.continueToMainDashboard();
 });
 
@@ -483,8 +478,9 @@ Then("I will direct to page verification face is success", () => {
   I.dontSee(headerPage.buttons.close);
   I.dontSee(loginPage.buttons.callCenter);
 
-  I.see("Menuju Dashboard");
-  I.waitForElement(loginPage.buttons.continueToMainDashboard);
+  I.dontSee("Menuju Dashboard");
+  I.see("Masuk Akun");
+  I.waitForElement(loginPage.buttons.continueToMainDashboard, 10);
 });
 
 Then("I will see snackbar error upload photo {string}", (errorMsg) => {

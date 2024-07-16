@@ -3,6 +3,274 @@ Feature: Document Management
     As a customer
     I want to view business document that I previously uploaded
 
+    @C137178
+    Scenario: Close pop up inactive biometric
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I close activated my biometric via document
+        Then I will see card account 'active'
+
+    @C137179
+    Scenario: Click button activated biometric
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click activated my biometric via document
+        Then I will direct to Tab Other
+        And I will see toogle biometric is off
+
+    @C137180
+    Scenario: Input password then delete
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input password document
+        And I will see button see document is enabled
+        And I clear my password
+        Then I will see button see document is disabled
+
+    @C137181
+    Scenario: Mask Password
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input password document
+        And I unmask my password
+        And I will see my password
+        And I mask my password
+        Then I will not see my password
+
+    @C137182
+    Scenario: Unmask Password
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input password document
+        And I unmask my password
+        And I will see my password
+
+    @C137183
+    Scenario: Close bottom sheet password
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I close bottom sheet password
+        Then I will see card account 'active'
+
+    @C137184
+    Scenario: Input wrong password once
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input wrong password document
+        And I click see my document
+        Then I will see message error password incorrect
+        And I reset attempt failed password
+
+    @C137185
+    Scenario: Input wrong password twice
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input wrong password document
+        And I click see my document
+        And I will see message error password incorrect
+        And I input wrong password document
+        And I click see my document
+        Then I will see message error password incorrect
+        And I reset attempt failed password
+
+    @C137186
+    Scenario: Input wrong password three times
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input wrong password document
+        And I click see my document
+        And I will see message error password incorrect
+        And I input wrong password document
+        And I click see my document
+        And I will see message error password incorrect
+        And I input wrong password document
+        And I click see my document
+        Then I will directing to page login
+        And I reset attempt failed password
+
+    @C137187
+    Scenario: Validate pop up activated biometric only appear once click use password
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I close bottom sheet password
+        And I will see card account 'active'
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        And I click tab document
+        Then I will see bottom sheet input password document
+
+    @C137188
+    Scenario: Validate pop up activated biometric only appear once click activated biometric
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click activated my biometric via document
+        And I will direct to Tab Other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see card account 'active'
+        And I click tab document
+        Then I will see bottom sheet input password document    
+
     @C131645
     Scenario: Verify tab profile user individual active
         Given I am a registered customer with following details:
@@ -21,6 +289,9 @@ Feature: Document Management
         And I click tab profile
         And I will see my profile individual data
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will see document page is empty
 
     @C131646
@@ -28,12 +299,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | niza2098 |
             | password    | Test1234 |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | niza2098 |
             | password    | Test1234 |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -41,6 +312,9 @@ Feature: Document Management
         And I click tab profile
         And I will see my profile individual data
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will not see button document giro
         And I will see button document loan
@@ -66,6 +340,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on verification'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will see document page is empty
 
     @C131648
@@ -85,6 +362,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on process'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will see document page is empty
 
     @C131649
@@ -103,6 +383,9 @@ Feature: Document Management
         And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will direct to page document business
         Then I will see button document giro and document loan
         And I click document giro
@@ -125,6 +408,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on verification'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -147,6 +433,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -169,6 +458,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on process'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see document page is empty
 
@@ -188,6 +480,9 @@ Feature: Document Management
         And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will direct to page document business
         Then I will see button document giro and document loan
         And I click document giro
@@ -210,6 +505,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on verification'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -232,6 +530,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -253,6 +554,9 @@ Feature: Document Management
         And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will direct to page document business
         Then I will see button document giro and document loan
         And I click document giro
@@ -275,6 +579,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on verification'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -297,6 +604,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -318,6 +628,9 @@ Feature: Document Management
         And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I will direct to page document business
         Then I will see button document giro and document loan
         And I click document giro
@@ -340,6 +653,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'on verification'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -362,6 +678,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -384,6 +703,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro
@@ -406,6 +728,9 @@ Feature: Document Management
         And I click later
         And I will see card account 'complete document'
         When I click tab document
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         Then I will direct to page document business
         And I will see button document giro and document loan
         And I click document giro

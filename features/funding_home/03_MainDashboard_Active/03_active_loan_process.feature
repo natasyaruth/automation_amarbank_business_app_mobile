@@ -21,23 +21,28 @@ Feature: User Should See Main Dashboard Active Card On Loan Process
     Scenario: User validate Active Card main dashboard All Active Limit
         Given user on main dashboard
         When user should see value limit active
-        Then user should see activity loan wording
+        And user see button Lihat Detail Pinjaman
+        And user see button Gunakan Limit
+        And user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"         
         And user should see card balance
 
     @C109164
     Scenario: User validate Active Card main dashboard Active Limit and one loan process
         Given user on main dashboard
         When user should see value limit active
-        Then user should see activity loan wording
-        And user should see total loan process
+        And user see button Lihat Detail Pinjaman
+        And user see button Gunakan Limit
+        And user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"         
         And user should see card balance
+
 
     @C109165
     Scenario: User validate Active Card main dashboard Active Limit and one loan process countdown
         Given user on main dashboard
         When user should see value limit active
-        Then user should see activity loan wording
-        And user should see total loan process
+        And user see button Lihat Detail Pinjaman
+        And user see button Gunakan Limit
+        And user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"         
         And user should see card balance
 
     @C109166
@@ -59,3 +64,38 @@ Feature: User Should See Main Dashboard Active Card On Loan Process
         And user should see text card "Proses" on field "textCardProcess"
         And user should see text button "Ajukan Limit Baru" on field "btnLoanNew"       
         And user should see card balance
+
+    Scenario: User verify and validate button Lihat Detail Pinjaman in state All Active
+        Given user on main dashboard
+        When user should see value limit active
+        And user see button Lihat Detail Pinjaman
+        And user click button Lihat Detail Pinjaman           
+        Then user go to Loan Dashboard page
+        
+
+    Scenario: user verify and validate button Aktivitas Pinjaman in state All Active
+        Given user on main dashboard
+        When user should see value limit active     
+        And user see button Lihat Detail Pinjaman      
+        And user click button Aktivitas Pinjaman      
+        And user on Aktvitas Pinjaman page with status "Dalam Proses"
+
+    
+    Scenario: User validate Aktivitas Pinjaman in state All Active and in Process Loan
+        Given user on main dashboard
+        When user should see value limit active     
+        And user see button Lihat Detail Pinjaman      
+        And user click button Aktivitas Pinjaman
+        And user on Aktvitas Pinjaman page with status "Dalam Proses"
+        
+     
+    Scenario: user verify and validate button Aktivitas Pinjaman in state All Active and  In Process Loan with Countdown
+        Given user on main dashboard
+        When user should see value limit active     
+        And user see button Lihat Detail Pinjaman      
+        And user click button Aktivitas Pinjaman  
+        And user on Aktvitas Pinjaman page with status "Dalam Proses"
+
+    
+
+ 

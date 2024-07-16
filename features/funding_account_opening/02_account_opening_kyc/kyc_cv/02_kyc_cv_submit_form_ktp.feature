@@ -25,6 +25,52 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my legality type
     And I upload my eKTP photo
 
+  @C136005
+  Scenario: Submit form KTP successfully business type CV with NIK user Individual that already registered
+    Given I am a customer who has uploaded my eKTP photo
+    When I fill all information identity details as followings:
+      | eKtpNumber    | 3171131810770033          |
+      | eKtpNumberStg | 3172026604740009          |
+      | fullName      | NADYA LAROSA              |
+      | placeOfBirth  | MEDAN                     |
+      | dateOfBirth   | 11/11/1995                |
+      | gender        | Laki-laki                 |
+      | address       | Jl. Durian Runtuh No. 13  |
+      | rt            | 01                        |
+      | rw            | 05                        |
+      | province      | DKI JAKARTA               |
+      | city          | KOTA ADM. JAKARTA SELATAN |
+      | district      | KEBAYORAN BARU            |
+      | village       | SENAYAN                   |
+      | religion      | Katolik                   |
+      | maritalStatus | Belum Kawin               |
+    And I submit my information identity details
+    Then I will notify my information identity details has successfully submitted
+    And I will direct to page capture selfie
+
+  @C136006
+  Scenario: Submit form KTP successfully business type CV with NIK user Business that already registered
+    Given I am a customer who has uploaded my eKTP photo
+    When I fill all information identity details as followings:
+      | eKtpNumber    | 3171131810910033          |
+      | eKtpNumberStg | 3275123009920078          |
+      | fullName      | NADYA LAROSA              |
+      | placeOfBirth  | MEDAN                     |
+      | dateOfBirth   | 11/11/1995                |
+      | gender        | Laki-laki                 |
+      | address       | Jl. Durian Runtuh No. 13  |
+      | rt            | 01                        |
+      | rw            | 05                        |
+      | province      | DKI JAKARTA               |
+      | city          | KOTA ADM. JAKARTA SELATAN |
+      | district      | KEBAYORAN BARU            |
+      | village       | SENAYAN                   |
+      | religion      | Katolik                   |
+      | maritalStatus | Belum Kawin               |
+    And I submit my information identity details
+    Then I will notify my information identity details has successfully submitted
+    And I will direct to page capture selfie    
+
   @C131820
   Scenario: Submit form KTP successfully business type CV
     Given I am a customer who has uploaded my eKTP photo

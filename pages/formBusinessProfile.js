@@ -62,7 +62,7 @@ module.exports = {
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.click(value);
-        I.swipeUp(this.dropDowns[fieldName], 500, 1000);
+        I.swipeUp(this.dropDowns[fieldName], 1300, 1000);
 
       } else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1

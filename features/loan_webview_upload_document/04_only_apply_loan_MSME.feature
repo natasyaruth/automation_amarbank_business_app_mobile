@@ -310,3 +310,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey MSME
         And I see button to update the Progress
         Then I update the Progress
         And I see fields upload document
+
+    Scenario: Direct to the expired link upload document
+        Given I has been access to the link web view for upload document
+        When I am on the expired link page
+        Then I see wording "Link Telah Kedaluwarsa"
+        And I see wording "Anda dapat membuat link baru di dalam aplikasi Amar Bank Bisnis Anda"
