@@ -49,6 +49,11 @@ module.exports = {
     I.click(this.buttons.closePopUp);
   },
 
+  closeBottomSheetPassword(){
+    I.waitForElement(this.buttons.closePopUp, 10);
+    I.click(this.buttons.closePopUp);
+  },
+
   clickActivatedBiometric(){
     I.waitForElement(this.buttons.activatedNow, 10);
     I.click(this.buttons.activatedNow);
