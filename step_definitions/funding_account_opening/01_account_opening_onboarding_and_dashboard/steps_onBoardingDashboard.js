@@ -218,6 +218,18 @@ Then("I will see card continue to complete registration user invited", () => {
     onboardingAccOpeningPage.continueToKYC();
 });
 
+Then("I can click widget account rejected", () => {
+    onboardingAccOpeningPage.openCardReject();
+});
+
+Then("I will see information that I can try to register after 7 days", () => {
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.see("Pembuatan Rekening Ditolak");
+    I.see("Mohon maaf, Amar Bank belum dapat melayani Anda.");
+    I.see("Tapi jangan khawatir, Anda dapat mengulang proses registrasi kembali setelah 7 hari.");
+});
+
 When("I update my last journey step to {string}", async (stepName) => {
     await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
 });

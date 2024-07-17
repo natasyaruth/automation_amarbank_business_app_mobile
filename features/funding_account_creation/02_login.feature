@@ -17,6 +17,7 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Test1234 |
     And I click login
+    And I click later in pop up biometric
     Then I will direct to dashboard
 
   @C131545
@@ -141,6 +142,7 @@ Feature: Account login
       | passwordStg | Test1234 |
     And I click checkbox remember me
     And I click login
+    And I click later in pop up biometric
     And I choose other
     And I click logout
     Then I should see checkbox remember me is checked
@@ -166,6 +168,7 @@ Feature: Account login
       | passwordStg | Pass1234 |
     And I click login
     Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    And I reset attempt failed login
 
   @C131557
   Scenario: Login with wrong password twice
@@ -180,13 +183,15 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
     And I click login
+    And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
     Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    And I reset attempt failed login
 
   @C131558
   Scenario: Login with wrong password three times
-    Given I am a customer who has failed to login '2' times with following details:
+    Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
       | userIDstg   | stag76ee |
@@ -197,11 +202,14 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
     And I click login
+    And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
+    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
     Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
+    And I reset attempt failed login
 
   @C131559
   Scenario: Click login via biometric

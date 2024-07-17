@@ -158,6 +158,6 @@ module.exports = {
     },
     viewPageHistoryLoan(){
         I.wait(2);
-        I.seeElement(this.textView.viewPageHistoryLoan);
+        I.seeElement(this.textView.textviewhistoryloan);
     },
 }
