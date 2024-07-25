@@ -30,6 +30,7 @@ module.exports = {
         date: "",
         time: "",
         lastStep: "",
+        newDeviceID: "",
     },
     forgotPassword: {
         userID: "",

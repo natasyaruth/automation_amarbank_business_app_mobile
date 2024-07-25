@@ -6,9 +6,10 @@ Feature: Registering New Device
 
     # ATTENTION
     # Please input your device/emulator id
-    
+
     Background: Enabled checking register new device id
         Given I delete device id '70e84d8d58362ce8'
+        And I have new device id 'Test32'
 
     @C133917
     Scenario: Recapture selfie picture
@@ -17,6 +18,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -40,6 +42,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -61,6 +64,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device    
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -82,6 +86,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
@@ -103,6 +108,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
@@ -123,6 +129,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
@@ -133,15 +140,15 @@ Feature: Registering New Device
         And I click button continue to take selfie
         And I take picture selfie with no face
         And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
+        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
         And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
+        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
         And I submit my selfie photo
         And I will direct to page verification is failed
         And I understand about the information
         And I will directing to page login
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
@@ -159,6 +166,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -183,6 +191,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -200,6 +209,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -217,6 +227,7 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -232,13 +243,14 @@ Feature: Registering New Device
     @C133927
     Scenario: Login to app using different user id - account active
         Given I am a registered customer with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         When I click login
@@ -250,22 +262,24 @@ Feature: Registering New Device
         And I click button continue to page login
         And I will directing to page login
         And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
-        When I click login
+        And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'  
 
     @C135615
     Scenario: Login to app using different user id - device id of other user id has been registered
         Given I am a registered customer with following details:
-            | userID      | mich875d |
+            | userID      | ptpe5040 |
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | ptpe5040 |
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
@@ -278,20 +292,22 @@ Feature: Registering New Device
         And I click button continue to page login
         And I will directing to page login
         And I filling in form login with the following details:
-            | userID      | mich875d |
+            | userID      | ptpe5040 |
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         And I choose other
         And I click logout
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | stagb0fe |
             | passwordStg | 1234Test |
-        When I click login
+        And I reset my device id to new device
+        And I click login
         And I click button register new device
         And I click button continue to take selfie
         And I take picture selfie for matching the face
@@ -300,11 +316,22 @@ Feature: Registering New Device
         And I click button continue to page login
         And I will directing to page login
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | stagb0fe |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | ptpe5040 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
 
     @C133928
@@ -314,29 +341,46 @@ Feature: Registering New Device
             | password    | 1234Test |
             | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
             | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
         When I click login
-        And I click later
         And I click later in pop up biometric
         Then I will see card account 'on process'
 
     @C133929
-    Scenario: Login to app using different user id - account on verification
+    Scenario: Login to app using different user id - account on verification Individual
         Given I am a registered customer with following details:
             | userID      | indibec3 |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
+        And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | indibec3 |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         When I click login
-        And I click later
         And I click later in pop up biometric
         Then I will see card account 'on verification'
+
+    @C137266
+    Scenario: Login to app using different user id - account on verification Invitee
+        Given I am a registered customer with following details:
+            | userID      | ruth4dcf |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I filling in form login with the following details:
+            | userID      | ruth4dcf |
+            | password    | 1234Test |
+            | userIDstg   | stagb081 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click later in pop up biometric
+        Then I will see card account 'on verification'    

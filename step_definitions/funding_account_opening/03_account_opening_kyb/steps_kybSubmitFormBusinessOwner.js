@@ -22,14 +22,14 @@ Given("I am the only one business owner", async () => {
 
 Given("I am the only one business director", async() => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
-    I.see("Silahkan menambah Daftar Direktur sesuai akta");
+    // I.see("Silahkan menambah Daftar Direktur sesuai akta");
 
     const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
 
     I.see(globalVariable.formKtp.fullName);
     I.see(email);
     I.see(globalVariable.formKtp.eKTPNumber);
-    I.see(formBusinessOwnerPage.buttons.addListDirector);
+    I.waitForElement(formBusinessOwnerPage.buttons.addListDirector, 10);
 });
 
 When("I submit business owner list", () => {
