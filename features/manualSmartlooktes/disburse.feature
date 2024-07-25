@@ -1,5 +1,7 @@
-
-
+Feature: Disburse for recording in smartlook                                                               Using AP Direct
+In DSMB
+As a customer
+I need to validate recording from smartlook
 
 
 Scenario: Validate Loan Program Information for Type AP - Direct Loan

@@ -1,20 +1,8 @@
-Feature: Apply First Loan With Flagging Corp                                                               Using AP Direct
- As a customer lead
- I want to apply first loan using AP Achor with flaging Corp
+Feature: Combine Journey for recording in smartlook                                                               Using AP Direct
+In DSMB
+As a customer
+I need to validate recording from smartlook
 
- Background:
-  Given I am a registered customer with followng details:
-    | userID      | yahyde6f |
-    | password    | Akuntes1 |
-    | userIDstg   | bots2643 |
-    | passwordStg | Test1234 |
-  When I filling in form login with the following details:
-    | userID      | yahyde6f |
-    | password    | Akuntes1 |
-    | userIDstg   | bots2643 |
-    | passwordStg | Test1234 |
-  And I click login
-  Then I successed go to main dashbord
 
 
 Scenario: user start from Drop Off KYC In Process Loan
