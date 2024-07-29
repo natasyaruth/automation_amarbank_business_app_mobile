@@ -164,8 +164,15 @@ When("I continue to register my KYC data", () => {
 Then("I will see card continue to complete upload document business", () => {
     I.waitForText("Lihat Semua Dokumen", 10);
     I.see("Mohon lengkapi Dokumen yang dibutuhkan");
-    I.seeElement(onboardingAccOpeningPage.buttons.completeDoc);
+    I.waitForElement(onboardingAccOpeningPage.buttons.completeDoc, 10);
     onboardingAccOpeningPage.continueCompleteDoc();
+});
+
+Then("I will see card continue to see progress verification", () => {
+    I.waitForText("Menunggu verifikasi data selesai", 10);
+    I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
+    I.waitForElement(onboardingAccOpeningPage.buttons.openProgressAccount, 10);
+    onboardingAccOpeningPage.continueToProgressVerification();
 });
 
 Then("I will see card continue to complete upload document business and registration director list", () => {

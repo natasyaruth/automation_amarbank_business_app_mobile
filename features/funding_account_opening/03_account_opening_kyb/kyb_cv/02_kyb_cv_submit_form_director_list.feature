@@ -30,6 +30,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |

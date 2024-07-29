@@ -45,6 +45,16 @@ Given("I login using my user id that I recently receive through email", async ()
   loginPage.clickLoginButton();
 });
 
+Given("I reset my device id to new device", async ()=>{
+  await
+    resetStateDao.resetDeviceId(globalVariable.login.userID, globalVariable.login.password, globalVariable.login.newDeviceID);
+});
+
+Given("I delete my new device id", async ()=>{
+  await
+    resetStateDao.deleteDeviceId(globalVariable.login.newDeviceID);
+});
+
 Then("I successed go to dashbord", () => {
   ///dashboard still on development from mobile
   ///I.see('Selamat, akun Anda berhasil dibuat')
@@ -91,7 +101,11 @@ Given(
 );
 
 Given("I delete device id {string}", async (deviceId) => {
-  // API to enabled delete device id
+    await resetStateDao.deleteDeviceId(deviceId);
+});
+
+Given("I have new device id {string}", async (newDeviceId) => {
+  globalVariable.login.newDeviceID = newDeviceId;
 });
 
 Given("I have last step journey before", async () => {

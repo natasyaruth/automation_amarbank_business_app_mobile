@@ -32,7 +32,7 @@ module.exports = {
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
-    openProgressAccount: "~openProgressAccount",
+    openProgressAccount: "~btnDropoff",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -228,7 +228,13 @@ module.exports = {
   },
 
   continueCompleteDoc() {
+    I.waitForElement(this.buttons.completeDoc, 10);
     I.click(this.buttons.completeDoc);
+  },
+
+  continueToProgressVerification() {
+    I.waitForElement(this.buttons.openProgressAccount, 10);
+    I.click(this.buttons.openProgressAccount);
   },
 
   openCardReject() {

@@ -2,6 +2,30 @@ Feature: Manual Document Management
     As a customer
     I want to view business document that I previously uploaded
 
+    @C137180
+    Scenario: Input password then delete
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab document
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input password document
+        And I will see button see document is enabled
+        And I clear my password
+        Then I will see button see document is disabled
+        
     @C137170
     Scenario: Open document using biometric active
         Given I am a customer active with biometric is active

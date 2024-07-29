@@ -22,10 +22,11 @@ When("I will see card account {string}", async (typeAccount) => {
         I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
 
         const isPartner = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
+        const isIndividual = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
 
         if(
-            isPartner === false ||
-            globalVariable.onBoarding.legality === "individual"
+            isPartner === true ||
+            isIndividual === 1
         ){
             I.dontSee(onboardingAccOpeningPage.buttons.openProgressAccount);
             I.dontSee("Progres Pembukaan Rekening");

@@ -383,11 +383,11 @@ Then("I will directing to page login", () => {
   I.waitForElement(headerPage.icon.callCenter, 10);
 
   I.see("User ID");
-  I.see("Masukan user ID");
+  I.see("Masukkan user ID");
   I.waitForElement(loginPage.fields.userID, 10);
 
   I.see("Password");
-  I.see("Masukan password");
+  I.see("Masukkan password");
   I.waitForElement(loginPage.fields.password, 10);
   I.waitForElement(loginPage.icon.eyePassword, 10);
 

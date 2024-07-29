@@ -5,12 +5,12 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID      | ptpeff9b |
+            | userID      | deveb3ad |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ptpeff9b |
+            | userID      | deveb3ad |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
