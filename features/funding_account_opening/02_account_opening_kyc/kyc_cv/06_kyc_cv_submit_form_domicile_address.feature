@@ -32,6 +32,7 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
+        And I reset my state journey
 
     @C131824
     Scenario: Submit form Domicile address with new address successfully business type CV
@@ -49,3 +50,4 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
+        And I reset my state journey

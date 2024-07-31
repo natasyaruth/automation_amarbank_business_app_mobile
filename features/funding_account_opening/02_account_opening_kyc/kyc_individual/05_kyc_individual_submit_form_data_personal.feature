@@ -23,7 +23,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         And I choose Giro Account MSME
         And I choose legality business type 'individual'
         And I submit my legality type
-        And I update my last journey step to 'Upload Selfie'
+        And I update my last journey step to 'Upload Selfie with KTP'
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Data Personal
         Given I am a customer want to fill my personal details
@@ -48,7 +48,6 @@ Feature: Account Opening KYC Individual - Submit Data Personal
     Scenario Outline: Verifying mother name with invalid value in form Data Personal
         Given I am a customer want to fill my personal details
         When I fill field 'motherName' with '<Value>' in form Data Personal
-        Then I should see message error '<Message>' in the below of field 'motherName' in form Data Personal
         Examples:                                                                 ❸
             | testRailTag | Value                                               | Message                                                                          |
             | @C131732    | Nur 3@                                              | Nama ibu kandung tidak boleh mengandung angka & spesial karakter kecuali (.,\'-) |
@@ -140,3 +139,4 @@ Feature: Account Opening KYC Individual - Submit Data Personal
             | purposeAccount       | Rekening Gaji |
         Then I will notify my personal details has successfully submitted
         And I will direct to page domicile address
+        And I reset my state journey

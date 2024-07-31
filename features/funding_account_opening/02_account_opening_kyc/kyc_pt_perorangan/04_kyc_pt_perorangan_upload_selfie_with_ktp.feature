@@ -1,17 +1,16 @@
-@kycSubmitFormDataEmploymentPTPerorangan
-Feature: Account Opening KYC PT Perorangan - Submit Data Employment
+Feature: Account Opening KYC PT Perorangan - Upload Selfie with KTP
     In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer
-    I want to submit my data employment as part of the KYC Process
+    I want to upload my selfie photo with KTP as part of the KYC Process
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
-            | userID      | ruth0c1c |
+            | userID      | ruth07f9 |
             | password    | 1234Test |
             | userIDstg   | ruthdadb |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ruth0c1c |
+            | userID      | ruth07f9 |
             | password    | 1234Test |
             | userIDstg   | ruthdadb |
             | passwordStg | 1234Test |
@@ -23,14 +22,15 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Employment
         And I choose Giro Account MSME
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
-        And I update my last journey step to 'Data Domicile Address'
+        And I update my last journey step to 'Upload Selfie'
 
-    @C131840
-    Scenario: Submit form Data Employment successfully business type PT Perorangan
-        Given I am a customer who has submitted my domicile address
-        And I see fields that available in Data Employment
-        When I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
-        Then I will notify that I already fill my personal details data
+    Scenario: Upload selfie with KTP successfully business type PT Perorangan   
+        Given I am a customer who has uploaded my selfie photo
+        When I click take photo selfie with KTP
+        And I will directing to page take selfie with KTP
+        And I click take photo
+        And I will direct to page preview selfie picture with KTP
+        And I submit my selfie with KTP
+        Then I will notify my photo selfie has successfully submitted
+        And I will directing to page submit Data Personal
+        And I reset my state journey

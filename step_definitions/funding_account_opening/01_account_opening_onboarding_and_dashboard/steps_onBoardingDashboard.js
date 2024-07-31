@@ -335,3 +335,23 @@ Then("product type same with I choose before", async () =>{
 
     I.assertEqual(actualProductType, globalVariable.onBoarding.productType);
 });
+
+Then ("I will direct to page continue to register KYC Invitee", ()=>{
+    I.waitForText("Lanjutkan proses registrasi", 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    I.dontSee(headerPage.buttons.closePage);
+    I.dontSee(headerPage.buttons.back);
+
+    I.see("Anda hanya perlu melakukan:");
+    I.see("Foto eKTP");
+    I.see("Selfie");
+    I.see("Selfie dengan KTP");
+
+    I.see("Selanjutnya");
+    I.waitForElement(onboardingAccOpeningPage.buttons.next, 10);
+});
+
+Then("I reset my state journey", async()=>{
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+});

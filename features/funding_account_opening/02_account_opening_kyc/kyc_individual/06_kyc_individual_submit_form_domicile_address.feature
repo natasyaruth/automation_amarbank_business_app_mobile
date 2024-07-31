@@ -122,3 +122,4 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment Individual
+        And I reset my state journey

@@ -49,3 +49,4 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
+        And I reset my state journey

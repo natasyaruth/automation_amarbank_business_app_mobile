@@ -2,6 +2,7 @@ const {
   I,
   uploadKtpPage,
   uploadSelfiePage,
+  uploadSelfieKtpPage,
   formKtpPage,
   formPersonalDataPage,
   formDomicileAddressPage,
@@ -118,14 +119,20 @@ module.exports = {
   validatePage(pageName) {
     switch (pageName) {
       case "Upload eKTP":
-        I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
+        I.waitForText("Ambil Foto eKTP Anda", 10);
+        I.waitForElement(uploadKtpPage.buttons.directToTakePhoto, 10);
         break;
       case "Data KTP":
         I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
         break;
       case "Upload Selfie":
-        I.waitForElement(uploadSelfiePage.buttons.takePhoto, 10);
+        I.waitForText("Ambil Foto Diri Anda", 10);
+        I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
         break;
+      case "Upload Selfie with KTP":
+        I.waitForText("Ambil Foto Diri Anda dengan KTP", 10);
+        I.waitForElement(uploadSelfieKtpPage.buttons.directToTakePhoto, 10);
+        break;  
       case "Data Personal":
         I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
         I.wait(3);
@@ -186,6 +193,10 @@ module.exports = {
         await resetStateDao.resetStateFlow(5, userID, password);
         resetStateDao.reloadPageAfterResetState();
         break;
+      case "Upload Selfie with KTP":
+        await resetStateDao.resetStateFlow(6, userID, password);
+        resetStateDao.reloadPageAfterResetState();
+        break;
       case "Data Personal":
         await resetStateDao.resetStateFlow(7, userID, password);
         resetStateDao.reloadPageAfterResetState();
@@ -243,6 +254,7 @@ module.exports = {
   },
 
   continueCompleteRegistrationDirectors() {
+    I.waitForElement(this.buttons.invitedDirectors, 10);
     I.click(this.buttons.invitedDirectors);
   },
 

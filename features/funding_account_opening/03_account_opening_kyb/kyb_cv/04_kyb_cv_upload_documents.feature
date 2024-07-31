@@ -147,7 +147,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I delete document 'Akta Perusahaan'
               And I click confirm delete document
               And I will not see button request account opening
-              And I will see document 'Akta Perusahaan' is deleted
+              And I will see 'Akta Perusahaan' is empty
               And I will see 'SK Kemenkumham' still exists
               And I will see 'NPWP Perusahaan' still exists
               And I reset state upload document
@@ -287,6 +287,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will direct to page detail progress account opening
               And I close page detail progress account opening
              Then I will see card account 'on verification'
+              And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
               And I reset state upload document
 
@@ -302,6 +303,7 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I see files that need to be uploaded for type company
               And I reset state upload document
         
+        @C140435
         Scenario: Close in page upload document via link - Entry journey from bottom sheet method upload
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -357,5 +359,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click progress account opening
+              And I will direct to page detail progress account opening
               And I close page detail progress account opening
              Then I will see card account 'on verification'
+              And I reset state upload document

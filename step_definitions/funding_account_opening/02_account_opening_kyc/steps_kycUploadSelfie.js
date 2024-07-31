@@ -15,16 +15,17 @@ Given("my information about my account opening is {string}", async (expectedInfo
     I.assertEqual(actualInfo, expectedInfo);
 });
 
-When("I upload my selfie photo", async () => {
-    await 
-    uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+When("I click take my photo selfie", ()=>{
+    uploadSelfiePage.directToTakePhoto();
 });
 
-When("I skip flow upload selfie photo", async ()=>{
-    I.wait(7);
-    await
-        resetStateDao.resetStateFlow(5, globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
+When("I upload my selfie photo", async () => {
+    await 
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
+});
+
+When("I retake picture selfie", ()=>{
+    uploadSelfiePage.reTakePhoto();
 });
 
 When("I upload invited user selfie photo", async () => {
@@ -36,10 +37,12 @@ When("I upload invited user selfie photo", async () => {
 });
 
 Then("I will notify my photo selfie has successfully submitted", () =>{
-    I.waitForText("Foto diri berhasil dikirim", 10);
+    I.waitForText("Foto diri berhasil dikirim", 30);
 });
 
 Then("I will directing to page submit Data Personal", async () => {
+
+    I.waitForText("Wajib Diisi", 10);
     I.waitForElement(formPersonalDataPage.buttons.savePersonalData, 10);
     I.seeElement(formPersonalDataPage.dropDowns.lastEducation);
     I.seeElement(formPersonalDataPage.fields.motherName);
