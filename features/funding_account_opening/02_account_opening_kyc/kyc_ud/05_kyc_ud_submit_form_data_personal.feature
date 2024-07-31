@@ -1,19 +1,19 @@
-@kycSubmitFormDataPersonalPTPerorangan
-Feature: Account Opening KYC PT Perorangan - Submit Data Personal
-    In order to opening my Giro account with legality business type PT Perorangan in SMB
+@kycSubmitFormDataPersonalUD
+Feature: Account Opening KYC UD - Submit Data Personal
+    In order to opening my Giro account with legality business type UD in SMB
     As a customer
     I want to submit my data personal as part of the KYC Process
 
-    Background: User choose legality business type PT Perorangan
+    Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID      | ruth07f9 |
-            | password    | 1234Test |
-            | userIDstg   | ruthdadb |
+            | userID      | natabe66 |
+            | password    | Test1234 |
+            | userIDstg   | ruth73e1 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ruth07f9 |
-            | password    | 1234Test |
-            | userIDstg   | ruthdadb |
+            | userID      | natabe66 |
+            | password    | Test1234 |
+            | userIDstg   | ruth73e1 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -21,12 +21,12 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Personal
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
-        And I choose legality business type 'individualBusiness'
+        And I choose legality business type 'ud'
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
 
-    @C131837
-    Scenario: Submit form Data Personal successfully business type PT Perorangan
+    @C131844
+    Scenario: Submit form Data Personal successfully business type UD
         Given I am a customer want to fill my personal details
         When I submit my personal data details business and upload my npwp as followings:
             | lastEducation        | SMA          |
@@ -35,3 +35,4 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Personal
             | referencePhoneNumber | 812343455677 |
         Then I will notify my personal details has successfully submitted
         And I will direct to page domicile address
+        And I reset my state journey

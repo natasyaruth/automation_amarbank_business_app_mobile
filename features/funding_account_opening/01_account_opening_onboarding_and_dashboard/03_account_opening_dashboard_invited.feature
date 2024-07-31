@@ -16,6 +16,7 @@ Feature: Account Opening Main Dashboard User Invited
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I will direct to page continue to register KYC Invitee
         And I continue to register my KYC data
 
     @C131974
@@ -29,16 +30,21 @@ Feature: Account Opening Main Dashboard User Invited
     @C131975
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a invited customer wants to complete my KYC data
-        When I upload my eKTP photo
+        When I click take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         And I see page 'Data KTP'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
         And I can continue to page 'Data KTP'
+        And I update my last journey step to 'Upload eKTP'
 
     @C131976
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a invited customer wants to complete my KYC data
-        When I upload my eKTP photo
+        When I click take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         And I fill all information identity details as followings:
             | eKtpNumber    | 3173035601100007          |
             | fullName      | NADYA CANTIK              |
@@ -59,3 +65,34 @@ Feature: Account Opening Main Dashboard User Invited
         And I back to dashboard
         Then I will see card continue to complete registration user invited
         And I can continue to page 'Upload Selfie'
+        And I update my last journey step to 'Upload eKTP'
+
+    Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
+        Given I am a invited customer wants to complete my KYC data
+        When I click take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
+        And I fill all information identity details as followings:
+            | eKtpNumber    | 3173035601100007          |
+            | fullName      | NADYA CANTIK              |
+            | placeOfBirth  | MEDAN                     |
+            | dateOfBirth   | 11/11/1995                |
+            | gender        | Perempuan                 |
+            | address       | Jl. Durian Runtuh No. 13  |
+            | rt            | 01                        |
+            | rw            | 05                        |
+            | province      | DKI JAKARTA               |
+            | city          | KOTA ADM. JAKARTA SELATAN |
+            | district      | KEBAYORAN BARU            |
+            | village       | SENAYAN                   |
+            | religion      | Hindu                     |
+            | maritalStatus | Kawin                     |
+        And I submit my information identity details
+        And I click take my photo selfie
+        And I take picture selfie for matching the face
+        And I submit my selfie photo
+        And I see page 'Upload Selfie with KTP'
+        And I back to dashboard
+        Then I will see card continue to complete registration user invited
+        And I can continue to page 'Upload Selfie with KTP'
+        And I update my last journey step to 'Upload eKTP'

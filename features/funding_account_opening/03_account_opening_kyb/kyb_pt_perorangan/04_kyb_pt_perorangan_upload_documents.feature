@@ -7,13 +7,13 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         Given I am a registered customer with following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | rutheeab |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | rutheeab |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
@@ -58,4 +58,10 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I upload all document business for type individual company
         And I click button progress upload document
         Then I will see all document business individual company has been uploaded
-        And I will see button send request account opening
+        And I will see button request account opening is shown
+        And I click button request account opening
+        And I will direct to page thank you and need verification of my data
+        And I click progress account opening
+        And I close page detail progress account opening
+        Then I will see card account 'on verification'
+        And I reset state upload document

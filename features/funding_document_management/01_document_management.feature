@@ -553,13 +553,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto94a2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagdfb7 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto94a2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagdfb7 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'on verification'
@@ -601,12 +601,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | ruthfdcb |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | ruthfdcb |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -626,12 +626,12 @@ Feature: Document Management
             | userID      | auto590e |
             | password    | 1234Test |
             | userIDstg   | stag4c45 |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto590e |
             | password    | 1234Test |
             | userIDstg   | stag4c45 |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'on verification'
@@ -673,12 +673,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto19fc |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | assa78cf |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | auto19fc |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | assa78cf |
             | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric

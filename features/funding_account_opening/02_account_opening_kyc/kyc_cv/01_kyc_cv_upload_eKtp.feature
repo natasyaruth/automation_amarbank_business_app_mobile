@@ -24,8 +24,23 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I choose legality business type 'cv'
     And I submit my legality type
 
+  Scenario: Re-upload eKTP photo successfully
+    Given I am a customer who has selected the business type CV
+    When I click take photo eKTP
+    And I will directing to page take photo eKTP
+    And I take photo eKTP
+    And I will direct to page preview eKTP picture
+    And I retake eKTP photo
+    Then I will directing to page take photo eKTP
+    And I reset my state journey
+
   @C131819
   Scenario: Upload eKTP photo successfully business type CV
     Given I am a customer who has selected the business type CV
-    When I upload my eKTP photo
+    When I click take photo eKTP
+    And I will directing to page take photo eKTP
+    And I take photo eKTP
+    And I will direct to page preview eKTP picture
+    And I submit my eKTP photo
     Then I will directing to page submit form KTP
+    And I reset my state journey

@@ -53,7 +53,7 @@ Feature: Registering New Device
         And I click button continue to take selfie
         And I take picture selfie with face is blur
         And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'
+        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'
         And I will mock liveness to success
         And I will reset my attempt failed face match
 
@@ -62,20 +62,20 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | mich875d |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         And I reset my device id to new device    
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
         And I click button continue to take selfie
         And I take picture selfie with face is dark
         And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie kamu.'    
+        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'    
         And I will mock liveness to success
         And I will reset my attempt failed face match
 
@@ -97,7 +97,7 @@ Feature: Registering New Device
         And I click button continue to take selfie
         And I take picture selfie with no face
         And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan kamu sudah mengambil foto selfie. Silakan ulangi selfie kamu'    
+        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
         And I will mock liveness to success
         And I will reset my attempt failed face match
 
@@ -106,13 +106,13 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -127,13 +127,13 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -150,7 +150,7 @@ Feature: Registering New Device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | nata8119 |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         And I click login
         Then I will see information that my account can be opened tomorrow 
@@ -164,13 +164,13 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | nata30bc |
+            | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -275,13 +275,13 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | ptpe5040 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | stage87c |
             | passwordStg | 1234Test |
         And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | ptpe5040 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | stage87c |
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
@@ -294,7 +294,7 @@ Feature: Registering New Device
         And I filling in form login with the following details:
             | userID      | ptpe5040 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | stage87c |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -318,7 +318,7 @@ Feature: Registering New Device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
-            | userIDstg   | stagb0fe |
+            | userIDstg   | stage87c |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -328,7 +328,7 @@ Feature: Registering New Device
         And I filling in form login with the following details:
             | userID      | ptpe5040 |
             | password    | 1234Test |
-            | userIDstg   | stagfc98 |
+            | userIDstg   | stage87c |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -373,13 +373,13 @@ Feature: Registering New Device
         Given I am a registered customer with following details:
             | userID      | ruth4dcf |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | wilof09c |
             | passwordStg | 1234Test |
         And I reset my device id to new device
         And I filling in form login with the following details:
             | userID      | ruth4dcf |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | wilof09c |
             | passwordStg | 1234Test |
         When I click login
         And I click later in pop up biometric

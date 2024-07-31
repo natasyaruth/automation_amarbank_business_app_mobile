@@ -27,5 +27,10 @@ Feature: Account Opening KYC PT Perorangan - Upload KTP Photo
   @C131833
   Scenario: Upload eKTP photo successfully business type PT Perorangan
     Given I am a customer who has selected the business type PT Perorangan
-    When I upload my eKTP photo
+    When I click take photo eKTP
+    And I will directing to page take photo eKTP
+    And I take photo eKTP
+    And I will direct to page preview eKTP picture
+    And I submit my eKTP photo
     Then I will directing to page submit form KTP
+    And I reset my state journey

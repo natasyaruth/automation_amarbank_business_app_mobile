@@ -46,3 +46,4 @@ Feature: Account Opening KYC UD - Submit Form KTP
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
+    And I reset my state journey

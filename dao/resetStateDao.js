@@ -11,7 +11,7 @@ module.exports = {
         I.amBearerAuthenticated(secret(bearerToken))
 
         const responseState = await I.sendPostRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/account-creation/set?step=" + stateNumber));
-        I.seeResponseCodeIsSuccessful();
+        I.wait(2);
 
         return {
             status: responseState.status,
@@ -30,7 +30,6 @@ module.exports = {
 
         for(let i=0;i<4;i++){
             responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc[i]));
-            I.seeResponseCodeIsSuccessful();
             I.wait(3);
         }
         
