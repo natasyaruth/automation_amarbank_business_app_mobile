@@ -4,6 +4,7 @@ const {
     uploadKtpPage,
     resetStateDao,
     headerPage,
+    getDataDao,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {
@@ -96,9 +97,11 @@ Then("I can choose type account giro", () => {
 
 Then("I will directing to page capture eKTP with information {string}", async (expectedInfo) => {
     let actualInfo = await uploadKtpPage.getTextInformationType();
-    await resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    I.assertEqual(actualInfo, expectedInfo);
 
+    await
+        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+
+    I.assertEqual(actualInfo, expectedInfo);
 });
 
 Then("I will directing to Hook 1 Onboarding Account Opening", async () => {
@@ -145,6 +148,7 @@ Then("I will see card continue to data business", () => {
 
 Then("I can continue to page {string}", async (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
+    globalVariable.dashboard.lastPage = pageName;
 
     if (pageName !== "Registration Director") {
         await
@@ -218,7 +222,7 @@ Then("I will notify that my personal data details needs to be verified in main d
     I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password); 
+    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see card continue to complete registration user invited", () => {
@@ -238,7 +242,19 @@ Then("I will see information that I can try to register after 7 days", () => {
 });
 
 When("I update my last journey step to {string}", async (stepName) => {
-    await onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
+    await
+        onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
+
+    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.userID)).data;
+
+    if (
+        isInvitee === false
+    ) {
+        resetStateDao.reloadPageAfterResetState();
+    } else {
+        resetStateDao.reloadPageAfterResetStateInvitee();
+    }
+
 });
 
 Then("I will see details info of giro account MSME", async () => {
@@ -258,7 +274,7 @@ Then("I will see details info of giro account MSME", async () => {
     I.assertEqual(actualMinBalance, "FREE");
 
     // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo "+"\n"+"Minimum");
+    I.see("Biaya Saldo " + "\n" + "Minimum");
 
     const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostMsme();
     I.assertEqual(actualMinBalanceFee, "FREE");
@@ -270,16 +286,16 @@ Then("I will see details info of giro account MSME", async () => {
     I.assertEqual(actualDormantFee, "FREE");
 
     // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek /"+"\n"+"Bilyet Giro");
+    I.see("Biaya Cetak Cek /" + "\n" + "Bilyet Giro");
 
     const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeMsme();
     I.assertEqual(actualCheckBookFee, "Rp290rb");
 
     // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit "+"\n"+"Pinjaman");
+    I.see("Dapatkan Limit " + "\n" + "Pinjaman");
 
     const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitMsme();
-    I.assertEqual(actualLoanLimit, "Sampai "+"\n"+"Rp 5 Milyar");
+    I.assertEqual(actualLoanLimit, "Sampai " + "\n" + "Rp 5 Milyar");
 
     I.see("Buka Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
@@ -302,7 +318,7 @@ Then("I will see details info of giro account Corporate", async () => {
     I.assertEqual(actualMinBalance, "Rp500rb - Rp1jt");
 
     // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo "+"\n"+"Minimum");
+    I.see("Biaya Saldo " + "\n" + "Minimum");
 
     const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostCorporate();
     I.assertEqual(actualMinBalanceFee, "Rp1.000");
@@ -314,29 +330,29 @@ Then("I will see details info of giro account Corporate", async () => {
     I.assertEqual(actualDormantFee, "Rp500");
 
     // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek /"+"\n"+"Bilyet Giro");
+    I.see("Biaya Cetak Cek /" + "\n" + "Bilyet Giro");
 
     const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeCorporate();
     I.assertEqual(actualCheckBookFee, "Rp290rb");
 
     // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit "+"\n"+"Pinjaman");
+    I.see("Dapatkan Limit " + "\n" + "Pinjaman");
 
     const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitCorporate();
-    I.assertEqual(actualLoanLimit, "Diatas "+"\n"+"Rp 5 Milyar");
+    I.assertEqual(actualLoanLimit, "Diatas " + "\n" + "Rp 5 Milyar");
 
     I.see("Buka Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
 });
 
-Then("product type same with I choose before", async () =>{
+Then("product type same with I choose before", async () => {
 
     const actualProductType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
 
     I.assertEqual(actualProductType, globalVariable.onBoarding.productType);
 });
 
-Then ("I will direct to page continue to register KYC Invitee", ()=>{
+Then("I will direct to page continue to register KYC Invitee", () => {
     I.waitForText("Lanjutkan proses registrasi", 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.dontSee(headerPage.buttons.closePage);
@@ -351,7 +367,12 @@ Then ("I will direct to page continue to register KYC Invitee", ()=>{
     I.waitForElement(onboardingAccOpeningPage.buttons.next, 10);
 });
 
-Then("I reset my state journey", async()=>{
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+Then("I reset my state journey", async () => {
+
+    if (
+        globalVariable.dashboard.lastPage === ""
+    ) {
+        await
+            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    }
 });

@@ -25,7 +25,7 @@ Feature: Account Opening Main Dashboard User Invited
         When I see page 'Upload eKTP'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
-        And I can continue to page 'Upload eKTP'
+        And I see page 'Upload eKTP'
 
     @C131975
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Submit data KTP
@@ -36,7 +36,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I see page 'Data KTP'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
-        And I can continue to page 'Data KTP'
+        And I see page 'Data KTP'
         And I update my last journey step to 'Upload eKTP'
 
     @C131976
@@ -64,7 +64,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I see page 'Upload Selfie'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
-        And I can continue to page 'Upload Selfie'
+        And I see page 'Upload Selfie'
         And I update my last journey step to 'Upload eKTP'
 
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
@@ -94,5 +94,5 @@ Feature: Account Opening Main Dashboard User Invited
         And I see page 'Upload Selfie with KTP'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
-        And I can continue to page 'Upload Selfie with KTP'
+        And I see page 'Upload Selfie with KTP'
         And I update my last journey step to 'Upload eKTP'

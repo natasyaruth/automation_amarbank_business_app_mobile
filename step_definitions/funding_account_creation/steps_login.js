@@ -45,6 +45,16 @@ Given("I login using my user id that I recently receive through email", async ()
   loginPage.clickLoginButton();
 });
 
+Given("I login using user id partner", async () => {
+  const account = {
+    userID: globalVariable.login.userIDPartner,
+    password: globalVariable.login.passwordPartner
+  };
+
+  loginPage.fillInAccountInformation(account);
+  loginPage.clickLoginButton();
+});
+
 Given("I reset my device id to new device", async ()=>{
   await
     resetStateDao.resetDeviceId(globalVariable.login.userID, globalVariable.login.password, globalVariable.login.newDeviceID);
@@ -110,6 +120,16 @@ Given("I have new device id {string}", async (newDeviceId) => {
 
 Given("I have last step journey before", async () => {
   globalVariable.login.lastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
+});
+
+When("I login using user id partner", ()=>{
+  const account = {
+    userID : globalVariable.login.userIDPartner,
+    password: globalVariable.login.password,
+  }
+
+  globalVariable.login.userID = account["userID"];
+  loginPage.fillInAccountInformation(account);
 });
 
 When("I filling in form login with the following details:", (table) => {

@@ -8,6 +8,7 @@ const {
   verificationEmailPage,
   whitelistDao,
   otpDao,
+  getDataDao,
   firstRegistrationDao,
   changePhoneNumberPage,
   onboardingAccOpeningPage,
@@ -52,8 +53,6 @@ Given("I am a customer that recently registered to amarbank business with data a
     account.otp = otpCode;
 
     globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
-    
-    console.log(globalVariable.login.userID);
 });
 
 When("I choose menu registration", () => {
@@ -273,7 +272,7 @@ When(
     globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.registration.password = account["password"];
-    globalVariable.registration.businessCode = await otpDao.getBusinessCode(account["email"]);
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(account["email"])).businessCode;
 
     await whitelistDao.whitelistPhoneNumber(
       "+" + globalVariable.registration.phoneNumber

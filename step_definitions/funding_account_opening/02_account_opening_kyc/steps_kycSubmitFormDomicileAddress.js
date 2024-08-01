@@ -8,6 +8,31 @@ const {
 
 Given ("I am a customer who has submitted my personal data details", () =>{});
 
+Given("I see my eKTP address", async () =>{
+    const actualKtpAddress = await formDomicileAddressPage.getKtpAddress();
+
+    const expectedKtpAddress = globalVariable.formKtp.address+"\n"+
+                               globalVariable.formKtp.village+", "+
+                               globalVariable.formKtp.district+", "+
+                               globalVariable.formKtp.province+", "+
+                               globalVariable.formKtp.city+" ";
+    
+    I.assertEqual(actualKtpAddress, expectedKtpAddress);
+});
+
+When("register my identity details as below",
+    async (table) => {
+        const ktpData = table.parse().rowsHash();
+        uploadDao.submitIdentityDetails(ktpData, globalVariable.login.userID, globalVariable.login.password);
+
+        globalVariable.formKtp.address = ktpData["ktpaddress"];
+        globalVariable.formKtp.province = ktpData["province"];
+        globalVariable.formKtp.city = ktpData["city"];
+        globalVariable.formKtp.district = ktpData["district"];
+        globalVariable.formKtp.village = ktpData["village"];
+    }
+);
+
 When("I fill new domicile details as followings:", 
     async (table) => { 
     const newDomicile = table.parse().rowsHash();
@@ -84,37 +109,81 @@ Then("I will notify my domicile address has successfully submitted", () => {
 });
 
 Then("I will direct to page Data Employment", async () => {
+
+    I.waitForText("Jenis Pekerjaan", 10);
+    I.see("Pilih jenis pekerjaan");
+    I.see("Wajib Diisi");
     I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
-    I.seeElement(formEmploymentDataPage.dropDowns.sourceIncome);
+
+    I.see("Sumber Pendapatan");
+    I.see("Pilih sumber pendapatan");
+    I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
+
+    I.dontSee("Pendapatan Bulanan (dalam Rp)");
+    I.dontSee("Pilih pendapatan bulanan");
     I.dontSeeElement(formEmploymentDataPage.dropDowns.monthlyIncome);
+
+    I.dontSee("Rata-rata Transaksi");
+    I.dontSee("Rata-rata transaksi per bulan");
+    I.dontSeeElement(formEmploymentDataPage.field.averageTransaction);
+
+    I.dontSee("Industri Perusahaan");
+    I.dontSee("Pilih industri perusahaan");
     I.dontSeeElement(formEmploymentDataPage.dropDowns.industry);
+
+    I.dontSee("Nama Perusahaan");
+    I.dontSee("Tulis nama perusahaan");
     I.dontSeeElement(formEmploymentDataPage.field.companyName);
+
+    I.dontSee("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
     I.dontSeeElement(formEmploymentDataPage.checkBox.rights);
+
+    I.dontSee("Saya menyetujui Syarat & Ketentuan dalam pengajuan pinjaman dari PT. Bank Amar Indonesia Tbk.")
     I.dontSeeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+
+    I.dontSee("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya sesuai kebijakan privasi yang berlaku untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
     I.dontSeeElement(formEmploymentDataPage.checkBox.privy);
-    
-    await 
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will direct to page Data Employment Individual", async () => {
+    I.waitForText("Jenis Pekerjaan", 10);
+    I.see("Pilih jenis pekerjaan");
+    I.see("Wajib Diisi");
     I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
-    I.seeElement(formEmploymentDataPage.dropDowns.sourceIncome);
-    I.seeElement(formEmploymentDataPage.dropDowns.monthlyIncome);
+
+    I.see("Sumber Pendapatan");
+    I.see("Pilih sumber pendapatan");
+    I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
+
+    I.see("Pendapatan Bulanan (dalam Rp)");
+    I.see("Pilih pendapatan bulanan");
+    I.waitForElement(formEmploymentDataPage.dropDowns.monthlyIncome, 10);
+
+    I.see("Rata-rata Transaksi");
+    I.see("Rata-rata transaksi per bulan");
+    I.waitForElement(formEmploymentDataPage.field.averageTransaction, 10);
+
     I.swipeUp(
         formEmploymentDataPage.dropDowns.monthlyIncome,
         1000,
         1000
     );
-    I.seeElement(formEmploymentDataPage.dropDowns.industry);
-    I.seeElement(formEmploymentDataPage.field.companyName);
-    I.seeElement(formEmploymentDataPage.checkBox.rights);
-    I.dontSeeElement(formEmploymentDataPage.checkBox.termsAndCondition);
-    I.dontSeeElement(formEmploymentDataPage.checkBox.privy);
+
+    I.waitForText("Industri Perusahaan", 10);
+    I.see("Pilih industri perusahaan");
+    I.waitForElement(formEmploymentDataPage.dropDowns.industry, 10);
+
+    I.see("Nama Perusahaan");
+    I.see("Tulis nama perusahaan");
+    I.see("Isi \"Tidak Ada\" jika kamu bekerja sendiri");
+    I.waitForElement(formEmploymentDataPage.field.companyName, 10);
+
     I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
+    I.waitForElement(formEmploymentDataPage.checkBox.rights, 10);
+
     I.dontSee("Saya mengizinkan Amar Bank untuk menyimpan dan memproses data pribadi saya untuk pembuatan rekening dan peningkatan kualitas serta layanan dari aplikasi.");
-    I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
-    
-    await 
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.dontSeeElement(formEmploymentDataPage.checkBox.termsAndCondition);
+
+    I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat.");
+    I.dontSeeElement(formEmploymentDataPage.checkBox.privy); 
 });

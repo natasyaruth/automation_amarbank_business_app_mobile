@@ -6,11 +6,7 @@ const {
     resetStateDao,
     globalVariable } = inject();
 
-Given("I am a customer who has uploaded my selfie photo", async () => {
-    I.wait(7);
-    await
-        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
+Given("I am a customer who has uploaded my selfie photo", () => {
 });
 
 Given("I am a customer want to fill my personal details", async () => { });
@@ -104,11 +100,14 @@ Then("I will notify my personal details has successfully submitted", () => {
 
 Then("I will direct to page domicile address", async () => {
     I.waitForText("Alamat Tempat Tinggal Sekarang", 10);
-    I.seeElement(formDomicileAddressPage.radioButtons.ktpAddress);
-    I.seeElement(formDomicileAddressPage.radioButtons.newAddress);
 
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.see("Alamat Sesuai eKTP");
+    I.waitForElement(formDomicileAddressPage.radioButtons.ktpAddress, 10);
+
+    I.see("Alamat Baru");
+    I.waitForElement(formDomicileAddressPage.radioButtons.newAddress, 10);
+
+    I.dontSeeElement(formDomicileAddressPage.dropDown.typeResidence);
 });
 
 Then("I shouldn't see message error in the below of field {string} in form Data Personal", async (fieldName) => {

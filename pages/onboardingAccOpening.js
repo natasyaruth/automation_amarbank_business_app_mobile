@@ -172,7 +172,7 @@ module.exports = {
         I.waitForElement(formBusinessAddressPage.buttons.email, 10);
         break;
       case "Detail Progress Account Opening":
-        I.waitForElement(uploadBusinessDocPage.buttons.reUpload, 10);
+        I.waitForText("Pengajuanmu Sedang Diproses Tim Kami", 10);
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -183,31 +183,24 @@ module.exports = {
     switch (stepName) {
       case "Upload eKTP":
         await resetStateDao.resetStateFlow(3, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data KTP":
         await resetStateDao.resetStateFlow(4, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Upload Selfie":
         await resetStateDao.resetStateFlow(5, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Upload Selfie with KTP":
         await resetStateDao.resetStateFlow(6, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data Personal":
         await resetStateDao.resetStateFlow(7, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data Domicile Address":
         await resetStateDao.resetStateFlow(8, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data Employment":
         await resetStateDao.resetStateFlow(9, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       default:
         throw new Error("Page name is not recognize");
