@@ -5,6 +5,7 @@ const {
     formBusinessAddressPage,
     resetStateDao,
     uploadDao,
+    headerPage,
     globalVariable
 } = inject();
 
@@ -162,7 +163,7 @@ When("I clear field average transaction", () => {
     formEmploymentDataPage.clearFieldAverageTransaction();
 })
 
-Then("I will notify that I already fill my personal details data", async () => {
+Then("I will notify that I already fill my personal details data", () => {
     I.waitForText("Terima kasih telah melengkapi Data Diri", 10);
     I.see("Mohon melengkapi Data Bisnis Anda untuk melanjutkan proses pembentukan rekening");
     I.see("Digital Banking untuk Bisnis");
@@ -176,19 +177,16 @@ Then("I will notify that I already fill my personal details data", async () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I will notify that my personal data details needs to be verified first", async () => {
+Then("I will notify that my personal data details needs to be verified first", () => {
     I.waitForText("Terimakasih telah melengkapi semua data", 10);
-    I.see("Kami akan melalukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    I.dontSee(headerPage.buttons.back);
+
+    I.see("Kami akan melakukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I shouldn't see message error in the below of field company name in form Data Employment", async () => {

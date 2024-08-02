@@ -123,6 +123,13 @@ module.exports = {
         onboardingAccOpeningPage.continueCompleteData();
     },
 
+    reloadPageAfterResetStateInvitee() {
+        headerPage.clickButtonBack();
+        I.waitForElement(onboardingAccOpeningPage.buttons.next, 20);
+        I.wait(1);
+        onboardingAccOpeningPage.continueToKYC();
+    },
+
     reloadPageUserInvitedAfterResetState() {
         headerPage.clickButtonBack();
         I.waitForText("Selanjutnya", 10);

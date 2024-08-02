@@ -17,7 +17,7 @@ module.exports = {
             phoneNumber: "+62"+dataRegistration["phoneNumber"],
             fullName: dataRegistration["fullName"],
             password: dataRegistration["password"],
-            confirmPassword: dataRegistration["confirmPassword"],
+            confirmPassword: dataRegistration["password"],
             otp: dataRegistration["otp"],
             receivedInfoProduct: dataRegistration["receivedInfoProduct"],
         });
@@ -41,9 +41,9 @@ module.exports = {
             phoneNumber: "+62"+dataRegistration["phoneNumber"],
             fullName: dataRegistration["fullName"],
             password: dataRegistration["password"],
-            confirmPassword: dataRegistration["confirmPassword"],
+            confirmPassword: dataRegistration["password"],
             otp: dataRegistration["otp"],
-            receivedInfoProduct: dataRegistration["receivedInfoProduct"],
+            receivedInfoProduct: false,
             businessCode: dataRegistration["businessCode"],
         });
         

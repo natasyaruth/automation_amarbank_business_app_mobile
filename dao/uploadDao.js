@@ -149,6 +149,106 @@ module.exports = {
         }
     },
 
+    async submitProductType(type, userID, password) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData =  await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/account-picker", secret({
+            productType: type
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
+    async submitLegalityType(type, userID, password) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        let responsePostData;
+
+        if(
+            type === "Individual"
+        ){
+            responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/account-creation", secret({
+            accountType: 1,
+            applicationID: "",
+            legalityType: type,
+            source: "funding"
+            }));
+        } else{
+            responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/account-creation", secret({
+            accountType: 2,
+            applicationID: "",
+            legalityType: type,
+            source: "funding",
+            }));
+        }
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
+    async submitBusinessProfile(businessProfile, legality, userID, password) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/profile", secret({
+            legalityType: legality,
+            businessName: businessProfile["businessName"],
+            businessEmail: "abcdef@test.com",
+            businessType: businessProfile["businessField"],
+            industryType: businessProfile["industry"],
+            monthlyIncome: businessProfile["monthlyIncome"],
+            averageTransaction: businessProfile["averageTransaction"],
+            businessNPWP: businessProfile["npwp"],
+            annualEarnings: "500 juta",
+            nib: businessProfile["nib"],
+            foundedAt: businessProfile["businessDateStart"],
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
+    async submitOnePartner(businessPartner, userID, password) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/partners", secret({
+            email: businessPartner["email"],
+            fullName: businessPartner["fullName"],
+            nik: "3173062009910005",
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responsePostData.status,
+            data: responsePostData.data
+        }
+    },
+
     async submitIdentityDetails(ktpData, userID, password) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;

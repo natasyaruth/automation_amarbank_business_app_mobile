@@ -10,14 +10,16 @@ Feature: Account Opening KYC - User Invited
       | email           | revvy@gmail.com         |
       | phoneNumber     | 899967754041            |
       | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
     And I login using my user id that I recently receive through email
     And I click later in pop up biometric
     And I register initiator with partner as below
       | fullName        | RUDI                   |
       | email           | rudi.sukses@gmail.com  |
-      | nik             | 899969154041           |
-    And I register initiator with business code
+      | phoneNumber     | 899969154041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click logout
+    And I register invitee with business code
     And I login using user id partner
     And I will direct to page continue to register KYC Invitee
     And I continue to register my KYC data
@@ -25,7 +27,6 @@ Feature: Account Opening KYC - User Invited
   @C131848
   Scenario: User invited complete KYC
     Given I am a invited customer wants to complete my KYC data
-    And in page upload KTP invitee
     When I click take photo eKTP
     And I take photo eKTP
     And I submit my eKTP photo
