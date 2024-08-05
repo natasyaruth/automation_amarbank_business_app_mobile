@@ -211,14 +211,14 @@ module.exports = {
             legalityType: legality,
             businessName: businessProfile["businessName"],
             businessEmail: "abcdef@test.com",
-            businessType: businessProfile["businessField"],
-            industryType: businessProfile["industry"],
+            businessType: businessProfile["businessType"],
+            industryType: businessProfile["industryType"],
             monthlyIncome: businessProfile["monthlyIncome"],
             averageTransaction: businessProfile["averageTransaction"],
-            businessNPWP: businessProfile["npwp"],
+            businessNPWP: businessProfile["businessNPWP"],
             annualEarnings: "500 juta",
             nib: businessProfile["nib"],
-            foundedAt: businessProfile["businessDateStart"],
+            foundedAt: businessProfile["foundedAt"],
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -235,11 +235,15 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/partners", secret({
+        const partner = [
+            {
             email: businessPartner["email"],
             fullName: businessPartner["fullName"],
             nik: "3173062009910005",
-        }));
+            }
+        ];
+
+        const responsePostData = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/partners", partner);
 
         I.seeResponseCodeIsSuccessful();
 

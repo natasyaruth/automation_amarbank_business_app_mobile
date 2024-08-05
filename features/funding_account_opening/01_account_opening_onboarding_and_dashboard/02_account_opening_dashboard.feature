@@ -56,6 +56,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
+    @C141154
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'

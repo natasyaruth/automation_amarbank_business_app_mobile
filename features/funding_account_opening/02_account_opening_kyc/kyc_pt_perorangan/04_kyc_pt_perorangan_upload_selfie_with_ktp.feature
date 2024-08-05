@@ -24,6 +24,7 @@ Feature: Account Opening KYC PT Perorangan - Upload Selfie with KTP
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
 
+    @C141164
     Scenario: Upload selfie with KTP successfully business type PT Perorangan   
         Given I am a customer who has uploaded my selfie photo
         When I click take photo selfie with KTP

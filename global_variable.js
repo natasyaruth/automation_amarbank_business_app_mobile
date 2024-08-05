@@ -43,6 +43,11 @@ module.exports = {
         userID: "",
         email: "",
     },
+    changePassword:{
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+    },
     formKtp:{
         eKTPNumber: "",
         fullName:"",

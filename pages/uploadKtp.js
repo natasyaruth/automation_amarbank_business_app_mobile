@@ -2,7 +2,7 @@ const { I } = inject();
 
 module.exports = {
   buttons: {
-    directToTakePhoto: "",
+    directToTakePhoto: "~buttonTakePhoto",
     takePhoto: "~buttonTakePhoto",
     understand: "~buttonUnderstand",
     retake: "~buttonRetake",
