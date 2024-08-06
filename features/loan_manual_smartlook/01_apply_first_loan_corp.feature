@@ -1,4 +1,4 @@
-Feature: Combine Journey for recording in smartlook                                                               Using AP Direct
+Feature: Combine Journey for recording in smartlook                                                             
 In DSMB
 As a customer
 I need to validate recording from smartlook
