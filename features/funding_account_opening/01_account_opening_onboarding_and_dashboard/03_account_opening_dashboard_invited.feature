@@ -67,6 +67,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I see page 'Upload Selfie'
         And I update my last journey step to 'Upload eKTP'
 
+    @C141155
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I am a invited customer wants to complete my KYC data
         When I click take photo eKTP

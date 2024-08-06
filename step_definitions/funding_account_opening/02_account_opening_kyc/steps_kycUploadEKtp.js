@@ -97,14 +97,14 @@ Given("I register initiator with partner as below", async (table) => {
 
     // HIT BUSINESS PROFILE
     await
-        uploadDao.submitBusinessProfile(businessProfile, userID, password);
+        uploadDao.submitBusinessProfile(businessProfile, legality, userID, password);
 
     // WHITELIST EMAIL AND PHONENUMBER INVITEE
     await
         whitelistDao.whitelistEmail(dataInvitee["email"]);
 
     await
-        whitelistDao.whitelistPhoneNumber(dataInvitee["phoneNumber"]);
+        whitelistDao.whitelistPhoneNumber("+62"+dataInvitee["phoneNumber"]);
 
     // ADD PARTNER
     await
@@ -132,7 +132,7 @@ Given("I register invitee with business code", async() =>{
     // REGISTER INVITEE
     const inviteeRegister = {
         email: globalVariable.registration.emailPartner,
-        phoneNumber: "+62"+globalVariable.registration.phoneNumberPartner,
+        phoneNumber: globalVariable.registration.phoneNumberPartner,
         fullName: globalVariable.registration.fullName,
         password: globalVariable.registration.passwordPartner,
         confirmPassword: globalVariable.registration.passwordPartner,

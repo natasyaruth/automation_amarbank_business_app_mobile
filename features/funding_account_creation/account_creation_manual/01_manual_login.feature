@@ -154,6 +154,7 @@ Feature: Manual Account login
         Then I should see bottom sheet that biometric still not activated yet
         And I close bottom sheet biometric 
 
+    @C141150
     Scenario: Activated biometric app using incorrect biometric
         Given I am a registered customer
         And had activated biometric in device
@@ -164,6 +165,7 @@ Feature: Manual Account login
         And I put my wrong finger in the sensor area on my device
         Then I will see pop up biometric is failed with information biometric is not recognize
 
+    @C141151
     Scenario: Login with incorrect biometric twice
         Given I am a registered customer
         And had activated biometric in device
@@ -176,6 +178,7 @@ Feature: Manual Account login
         And I try again with wrong finger
         And I will see pop up biometric is failed with information biometric is not recognize
 
+    @C141152
     Scenario: Login with incorrect biometric many times
         Given I am a registered customer
         And had activated biometric in device
