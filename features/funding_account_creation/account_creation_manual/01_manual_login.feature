@@ -154,6 +154,7 @@ Feature: Manual Account login
         Then I should see bottom sheet that biometric still not activated yet
         And I close bottom sheet biometric 
 
+    @C141150
     Scenario: Activated biometric app using incorrect biometric
         Given I am a registered customer
         And had activated biometric in device
@@ -164,6 +165,7 @@ Feature: Manual Account login
         And I put my wrong finger in the sensor area on my device
         Then I will see pop up biometric is failed with information biometric is not recognize
 
+    @C141151
     Scenario: Login with incorrect biometric twice
         Given I am a registered customer
         And had activated biometric in device
@@ -176,6 +178,7 @@ Feature: Manual Account login
         And I try again with wrong finger
         And I will see pop up biometric is failed with information biometric is not recognize
 
+    @C141152
     Scenario: Login with incorrect biometric many times
         Given I am a registered customer
         And had activated biometric in device
@@ -187,4 +190,23 @@ Feature: Manual Account login
         Then I will see information from device too many attempts failed biometric 
         And I will see pop up biometric is failed with information need to login using user id and password
         And I click button understand
-        And I will direct to page login     
+        And I will direct to page login    
+
+    Scenario: Login account by email
+        Given I am a user want login by email
+        When I do process register 
+        And I input otp code
+        And I got email notification 
+        And I open the email
+        And I click button "Masuk Akun" on email
+        Then I directly to app on login page
+        And User ID will automatically fill on field user ID
+        And I can login by email
+        And I direct to dashboard
+
+    Scenario: Validate email content
+        Given I am a user want login by email
+        When I do process register 
+        And I input otp code
+        Then I got email notification
+        And I validate email content according to figma 
