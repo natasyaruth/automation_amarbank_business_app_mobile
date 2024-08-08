@@ -15,7 +15,7 @@ module.exports = {
     closePopUp: "~buttonClose",
     activatedNow: "~buttonActiveNow",
     seeDocument: "~buttonSeeDocument",
-    eyePassword: "~iconEyePassword",
+    eyePassword: "~iconShowHidePassword",
   },
   links:{
     usePassword: "~buttonUsePassword",
@@ -85,7 +85,7 @@ module.exports = {
   },
 
   async getMessageErrorPassword(){
-    I.waitForElement(this.msgErrorFields.password);
+    I.waitForElement(this.msgErrorFields.password, 10);
     return await I.grabTextFrom(this.msgErrorFields.password);
   },
 }

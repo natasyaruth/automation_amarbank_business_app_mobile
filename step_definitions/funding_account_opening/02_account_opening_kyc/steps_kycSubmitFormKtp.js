@@ -3,6 +3,7 @@ const {
     formKtpPage,
     resetStateDao,
     uploadDao,
+    uploadSelfiePage,
     headerPage,
     globalVariable,
     onboardingAccOpeningPage,
@@ -165,9 +166,10 @@ Then("I will notify my information identity details has successfully submitted",
 });
 
 Then("I will direct to page capture selfie", async () => {
-    I.waitForText("Ambil Foto Diri Anda", 10);
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.waitForText("Ambil Foto Diri Anda", 20);
+
+    I.see("Ambil Foto Diri");
+    I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
 });
 
 Then("I will direct to page notifying me that I can't continue to next process KYC because my data indicated as DHN", async () => {

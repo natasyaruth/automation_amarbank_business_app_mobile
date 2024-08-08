@@ -10,10 +10,15 @@ module.exports = {
         return environment;
     },
     registration: {
+        fullName: "",
+        fullNamePartner: "",
         phoneNumber: "",
+        phoneNumberPartner: "",
         otpCode: "",
         email: "",
+        emailPartner: "",
         password: "",
+        passwordPartner: "",
         companyName: "",
         businessCode: "",
         userID: "",
@@ -25,19 +30,32 @@ module.exports = {
     },
     login: {
         password: "",
+        passwordPartner: "",
         userID: "",
+        userIDPartner: "",
         countValue: "",
         date: "",
         time: "",
         lastStep: "",
+        newDeviceID: "",
     },
     forgotPassword: {
         userID: "",
         email: "",
     },
+    changePassword:{
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+    },
     formKtp:{
         eKTPNumber: "",
         fullName:"",
+        address: "",
+        province: "",
+        city: "",
+        district: "",
+        village: "",
     },
     formPersonal:{
         isUploadNpwp: true,
@@ -101,6 +119,7 @@ module.exports = {
         recipientAccNumber: "",
         date: "",
         amountTransaction: "",
+        lastPage: "",
     },
     historyTrx:{
         startDate: "",

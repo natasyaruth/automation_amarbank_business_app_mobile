@@ -32,7 +32,7 @@ Feature: Account Opening KYB UD - Submit Business Address
             | monthlyIncome      | 30 - 50 juta        |
             | averageTransaction | 2000000             |
             | npwp               | 988283213036000     |
-            | nib                | 912910111111234     |
+            | nib                | 9129101111112       |
             | businessDateStart  | 10/10/2010          |
         And I submit my business profile
         And I submit business owner list

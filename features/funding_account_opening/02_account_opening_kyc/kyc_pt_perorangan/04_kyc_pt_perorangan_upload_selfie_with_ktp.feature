@@ -1,8 +1,7 @@
-@kycSubmitFormDataPersonalPTPerorangan
-Feature: Account Opening KYC PT Perorangan - Submit Data Personal
+Feature: Account Opening KYC PT Perorangan - Upload Selfie with KTP
     In order to opening my Giro account with legality business type PT Perorangan in SMB
     As a customer
-    I want to submit my data personal as part of the KYC Process
+    I want to upload my selfie photo with KTP as part of the KYC Process
 
     Background: User choose legality business type PT Perorangan
         Given I am a registered customer with following details:
@@ -25,13 +24,14 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Personal
         And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
 
-    @C131837
-    Scenario: Submit form Data Personal successfully business type PT Perorangan
-        Given I am a customer want to fill my personal details
-        When I submit my personal data details business and upload my npwp as followings:
-            | lastEducation        | SMA          |
-            | motherName           | NADYA LAMUSU |
-            | referenceName        | IBU SAYA     |
-            | referencePhoneNumber | 812343455677 |
-        Then I will notify my personal details has successfully submitted
-        And I will direct to page domicile address
+    @C141164
+    Scenario: Upload selfie with KTP successfully business type PT Perorangan   
+        Given I am a customer who has uploaded my selfie photo
+        When I click take photo selfie with KTP
+        And I will directing to page take selfie with KTP
+        And I click take photo
+        And I will direct to page preview selfie picture with KTP
+        And I submit my selfie with KTP
+        Then I will notify my photo selfie has successfully submitted
+        And I will directing to page submit Data Personal
+        And I reset my state journey

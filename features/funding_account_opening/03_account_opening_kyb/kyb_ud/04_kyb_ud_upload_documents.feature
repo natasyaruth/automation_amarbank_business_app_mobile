@@ -5,12 +5,12 @@ Feature: Account Opening KYB UD - Submit Business Address
 
     Background: User choose legality business type UD
         Given I am a registered customer with following details:
-            | userID      | nata517f |
+            | userID      | devecac3 |
             | password    | 1234Test |
             | userIDstg   | ruth1684 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | nata517f |
+            | userID      | devecac3 |
             | password    | 1234Test |
             | userIDstg   | ruth1684 |
             | passwordStg | 1234Test |
@@ -57,5 +57,11 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I see files that need to be uploaded for type individual company
         And I upload all document business for type individual company
         And I click button progress upload document
-        Then I will see all document business individual company is uploaded
-        And I will see button send request account opening
+        Then I will see all document business individual company has been uploaded
+        And I will see button request account opening is shown
+        And I click button request account opening
+        And I will direct to page thank you and need verification of my data
+        And I click progress account opening
+        And I close page detail progress account opening
+        Then I will see card account 'on verification'
+        And I reset state upload document

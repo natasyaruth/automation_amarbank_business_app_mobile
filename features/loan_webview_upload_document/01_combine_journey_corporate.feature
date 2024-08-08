@@ -22,7 +22,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
         And I see "Minimal 3 contoh invoice dengan supplier terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AP "PT Perusahaan or CV" with Case Partial Uploaded
@@ -49,7 +49,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
         And I upload document in field "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         Then I update the Progress
         And I see fields upload document
 
@@ -62,7 +62,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see "Akta Perusahaan"
         And I see "Minimal 3 contoh invoice dengan supplier terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan or UD" with Case Partial Uploaded
@@ -85,7 +85,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I upload document in field  "Akta Perusahaan"
         And I upload document in field  "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
         Then I update the Progress
         And I see fields upload document
@@ -97,7 +97,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see Loan Id
         Then I see "Minimal 3 contoh invoice dengan supplier terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AP "Individu" with Case Partial Uploaded
@@ -118,7 +118,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see Loan Id
         And I upload document in field  "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
         Then I update the Progress
         And I see fields upload document
@@ -135,7 +135,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
         And I see "Minimal 3 contoh invoice dengan buyer terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AR "PT Perusahaan or CV" with Case Partial Uploaded
@@ -162,7 +162,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
         And I upload document in field "Minimal 3 contoh invoice dengan buyer terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         Then I update the Progress
         And I see fields upload document
 
@@ -175,7 +175,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see "Akta Perusahaan"
         And I see "Minimal 3 contoh invoice dengan buyer terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AR "PT PT Perorangan or UD" with Case Partial Uploaded
@@ -198,7 +198,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I upload document in field  "Akta Perusahaan"
         And I upload document in field  "Minimal 3 contoh invoice dengan buyer terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
         Then I update the Progress
         And I see fields upload document
@@ -210,7 +210,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see Loan Id
         Then I see "Minimal 3 contoh invoice dengan buyer terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I see "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
     Scenario: Update Progress After Upload Document with Loan Type AR "Individu" with Case Partial Uploaded
@@ -231,7 +231,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see Loan Id
         And I upload document in field  "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I upload document in field "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
+        And I upload document in field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
         Then I update the Progress
         And I see fields upload document
@@ -241,5 +241,83 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         When I am on the expired link page
         Then I see wording "Link Telah Kedaluwarsa"
         And I see wording "Anda dapat membuat link baru di dalam aplikasi Amar Bank Bisnis Anda"
+
+    Scenario: Update Progress After Upload Multiple Documents With Loan Type AP Corporate
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see "Akta Perusahaan"
+        And I see "SK Kemenkumham"
+        And I see "NPWP Perusahaan"
+        Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
+        And I click button to update the Progress
+
+    Scenario: Update Progress After Upload Multiple Documents With Loan Type AR Corporate
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see "Akta Perusahaan"
+        And I see "SK Kemenkumham"
+        And I see "NPWP Perusahaan"
+        Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
+        And I click button to update the Progress
+
+    Scenario: Delete Uploaded Document Loan Type Corporate when upload file more than 15MB
+        Given I has been access to the link web view for upload multiple data documents for AP or AR Corporate
+        When I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
+        And I delete one of the document
+        Then the deleted document will dissapear from the field
+        And I click button to update the Progres
+        And the new updated document will updated to mobile apps
+
+    Scenario: Cancel Uploading Document Loan Type Corporate
+        Given I has been access to the link web view for upload multiple data documents for AP or AR Corporate
+        When I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
+        And I see botton cancel uploading
+        And cancel the uploading document process
+        Then the uploading document will canceled and dissapear from the field
+        And I click button to update the Progres
+        And the new updated document will updated to mobile apps
+
+    Scenario: Delete The Document After Success Upload Document
+        Given I has been access to the link web view for upload multiple data documents
+        When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
+        And I see botton delete upload
+        And delete the uploading document process
+        And I see pop up confirmation delete document
+        And I click button delete
+        Then the document is deleted
+        And the document will dissapear
+        And the new deleted document will dissapear from mobile apps as well
+
+    Scenario: Cancel Document Deletion After Success Uploading Document
+        Given I has been access to the link web view for upload multiple data documents
+        When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
+        And I see botton delete upload
+        And delete the uploading document process
+        And I see pop up confirmation delete document
+        And I click button cancel
+        Then the deleting document is cancelled
+        And the document still appears in its field
+
+
 
 

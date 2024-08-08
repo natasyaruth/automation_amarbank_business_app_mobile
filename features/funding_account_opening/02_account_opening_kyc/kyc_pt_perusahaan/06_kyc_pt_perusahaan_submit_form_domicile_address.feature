@@ -1,19 +1,19 @@
-@kycSubmitFormDomicileAddressCV
-Feature: Account Opening KYC CV - Submit Domicile Address
-    In order to opening my Giro account with legality business type CV in SMB
+@kycSubmitFormDomicileAddressPTPerusahaan
+Feature: Account Opening KYC PT Perusahaan - Submit Domicile Address
+    In order to opening my Giro account with legality business type PT Perusahaan in SMB
     As a customer
     I want to submit my domiciles address as part of the KYC Process
 
-    Background: User choose legality business type CV
+    Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID      | ruth07f9 |
-            | password    | 1234Test |
-            | userIDstg   | ruthf5d5 |
+            | userID      | ruth15ff |
+            | password    | Test1234 |
+            | userIDstg   | ruth8f27 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ruth07f9 |
-            | password    | 1234Test |
-            | userIDstg   | ruthf5d5 |
+            | userID      | ruth15ff |
+            | password    | Test1234 |
+            | userIDstg   | ruth8f27 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -21,24 +21,25 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
-        And I choose legality business type 'cv'
+        And I choose legality business type 'company'
         And I submit my legality type
         And I update my last journey step to 'Data Personal'
 
-    @C131823
-    Scenario: Submit form Domicile address same with KTP successfully business type CV
+    @C131830
+    Scenario: Submit form Domicile address same with KTP successfully business type PT Perusahaan
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
+        And I reset my state journey
 
-    @C131824
-    Scenario: Submit form Domicile address with new address successfully business type CV
+    @C131831
+    Scenario: Submit form Domicile address with new address successfully business type PT Perusahaan
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill new domicile details as followings:
-            | typeResidence | Kantor                    |
+            | typeResidence | Rumah                     |
             | address       | JL. KS TUBUN NO. 27       |
             | rt            | 01                        |
             | rw            | 01                        |
@@ -49,3 +50,4 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I submit my domicile address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
+        And I reset my state journey

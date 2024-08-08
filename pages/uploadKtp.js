@@ -2,6 +2,7 @@ const { I } = inject();
 
 module.exports = {
   buttons: {
+    directToTakePhoto: "~buttonTakePhoto",
     takePhoto: "~buttonTakePhoto",
     understand: "~buttonUnderstand",
     retake: "~buttonRetake",
@@ -13,6 +14,11 @@ module.exports = {
   },
   image:{
     eKtp: "~imageEktp", 
+  },
+
+  directToTakePhoto() {
+    I.waitForElement(this.buttons.directToTakePhoto, 10);
+    I.click(this.buttons.directToTakePhoto);
   },
 
   takePhoto() {

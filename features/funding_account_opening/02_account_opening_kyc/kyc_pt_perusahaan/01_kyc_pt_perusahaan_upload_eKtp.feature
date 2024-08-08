@@ -27,5 +27,10 @@ Feature: Account Opening KYC PT Perusahaan - Upload KTP Photo
   @C131826
   Scenario: Upload eKTP photo successfully business type PT Perusahaan
     Given I am a customer who has selected the business type PT Perusahaan
-    When I upload my eKTP photo
+    When I click take photo eKTP
+    And I will directing to page take photo eKTP
+    And I take photo eKTP
+    And I will direct to page preview eKTP picture
+    And I submit my eKTP photo
     Then I will directing to page submit form KTP
+    And I reset my state journey

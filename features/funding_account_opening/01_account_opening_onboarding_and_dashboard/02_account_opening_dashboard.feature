@@ -56,17 +56,29 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
+    @C141154
+    Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
+        Given I am a customer want to open Giro Account
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I update my last journey step to 'Upload Selfie'
+        And I see page 'Upload Selfie with KTP'
+        And I back to dashboard
+        And I click later in pop up biometric
+        Then I will see card continue to data personal
+        And I can continue to page 'Upload Selfie with KTP'      
+
     @C131965
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a customer want to open Giro Account
         And I choose legality business type 'company'
         And I submit my legality type
-        And I update my last journey step to 'Upload Selfie'
+        And I update my last journey step to 'Upload Selfie with KTP'
         And I see page 'Data Personal'
         And I back to dashboard
         And I click later in pop up biometric
         Then I will see card continue to data personal
-        And I can continue to page 'Data Personal'
+        And I can continue to page 'Data Personal'  
 
     @C131966
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address

@@ -148,9 +148,9 @@ Feature: Loan Disbursement for Loan Type AP
 
   @C98037
   Scenario: Validate Disbursement Details
-   Given I have been on "Limit Tersedia"
-   When user should see field "invoice percentage disbursement"
-   Then user field LTV can be various static 80%
+    Given I have been on "Limit Tersedia"
+    When user should see field "invoice percentage disbursement"
+    Then user field LTV can be various static 80%
 
   @C98038
   Scenario: Validate Disbursement Calculations When Invoice Value 100%
@@ -166,7 +166,7 @@ Feature: Loan Disbursement for Loan Type AP
     When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
     When user should see field "Total Bunga" in the below of field "textInterestFee"
     When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
-    Then show amount disbursement calculation page if invoice value 80%  
+    Then show amount disbursement calculation page if invoice value 80%
 
 
 

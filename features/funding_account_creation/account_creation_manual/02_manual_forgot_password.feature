@@ -4,7 +4,7 @@ Feature: Manual Account Forgot Password
     I want to reset password
 
     @C133816
-    Scenario: Process reset password from email (journey from forgot password in page login)
+    Scenario: Reset password from link forgot password in page login - Individual
         Given I am a customer want to reset password
         When I direct to page login
         And I click link forgot password
@@ -18,21 +18,22 @@ Feature: Manual Account Forgot Password
         And I will direct to page reset password successful changes
         And I can click button direct to login
 
-    @C133817
-    Scenario: Process reset password from email (journey from change password in tab other)
+    @C141153
+    Scenario: Reset password from link forgot password in page login - Business
         Given I am a customer want to reset password
-        And I am on dashboard
-        When I click tab other
-        And I click menu change password
+        When I direct to page login
+        And I click link forgot password
         And I fill user id and email
         And I click reset password
+        And I will see pop up confirm reset password contain with company name
+        And I confirm to reset password
         And I will receive email reset password
         And I click reset password link in email
         And I input new password
         And I input confirm new password
         And I click reset password
         And I will direct to page reset password successful changes
-        And I can click button direct to login
+        And I can click button direct to login    
 
     @C133818
     Scenario: Check content email reset password

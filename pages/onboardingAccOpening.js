@@ -2,6 +2,7 @@ const {
   I,
   uploadKtpPage,
   uploadSelfiePage,
+  uploadSelfieKtpPage,
   formKtpPage,
   formPersonalDataPage,
   formDomicileAddressPage,
@@ -32,7 +33,7 @@ module.exports = {
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
-    openProgressAccount: "~openProgressAccount",
+    openProgressAccount: "~btnDropoff",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -118,14 +119,20 @@ module.exports = {
   validatePage(pageName) {
     switch (pageName) {
       case "Upload eKTP":
-        I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
+        I.waitForText("Ambil Foto eKTP Anda", 10);
+        I.waitForElement(uploadKtpPage.buttons.directToTakePhoto, 10);
         break;
       case "Data KTP":
         I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
         break;
       case "Upload Selfie":
-        I.waitForElement(uploadSelfiePage.buttons.takePhoto, 10);
+        I.waitForText("Ambil Foto Diri Anda", 10);
+        I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
         break;
+      case "Upload Selfie with KTP":
+        I.waitForText("Ambil Foto Diri Anda dengan KTP", 10);
+        I.waitForElement(uploadSelfieKtpPage.buttons.directToTakePhoto, 10);
+        break;  
       case "Data Personal":
         I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
         I.wait(3);
@@ -165,7 +172,7 @@ module.exports = {
         I.waitForElement(formBusinessAddressPage.buttons.email, 10);
         break;
       case "Detail Progress Account Opening":
-        I.waitForElement(uploadBusinessDocPage.buttons.reUpload, 10);
+        I.waitForText("Pengajuanmu Sedang Diproses Tim Kami", 10);
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -176,27 +183,24 @@ module.exports = {
     switch (stepName) {
       case "Upload eKTP":
         await resetStateDao.resetStateFlow(3, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data KTP":
         await resetStateDao.resetStateFlow(4, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Upload Selfie":
         await resetStateDao.resetStateFlow(5, userID, password);
-        resetStateDao.reloadPageAfterResetState();
+        break;
+      case "Upload Selfie with KTP":
+        await resetStateDao.resetStateFlow(6, userID, password);
         break;
       case "Data Personal":
         await resetStateDao.resetStateFlow(7, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data Domicile Address":
         await resetStateDao.resetStateFlow(8, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       case "Data Employment":
         await resetStateDao.resetStateFlow(9, userID, password);
-        resetStateDao.reloadPageAfterResetState();
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -228,7 +232,13 @@ module.exports = {
   },
 
   continueCompleteDoc() {
+    I.waitForElement(this.buttons.completeDoc, 10);
     I.click(this.buttons.completeDoc);
+  },
+
+  continueToProgressVerification() {
+    I.waitForElement(this.buttons.openProgressAccount, 10);
+    I.click(this.buttons.openProgressAccount);
   },
 
   openCardReject() {
@@ -237,6 +247,7 @@ module.exports = {
   },
 
   continueCompleteRegistrationDirectors() {
+    I.waitForElement(this.buttons.invitedDirectors, 10);
     I.click(this.buttons.invitedDirectors);
   },
 

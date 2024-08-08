@@ -47,6 +47,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
+    And I reset my state journey
 
   @C136006
   Scenario: Submit form KTP successfully business type CV with NIK user Business that already registered
@@ -69,7 +70,9 @@ Feature: Account Opening KYC CV - Submit Form KTP
       | maritalStatus | Belum Kawin               |
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
-    And I will direct to page capture selfie    
+    And I will direct to page capture selfie
+    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur' 
+    And I reset my state journey
 
   @C131820
   Scenario: Submit form KTP successfully business type CV
@@ -92,3 +95,5 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
+    And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'
+    And I reset my state journey

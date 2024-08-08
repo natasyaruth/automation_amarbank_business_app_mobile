@@ -36,6 +36,9 @@ module.exports = {
     district: "~fieldErrorDistrict",
     religion: "~fieldErrorReligion",
   },
+  texts:{
+    ktpAddress: {xpath: "~//android.widget.ScrollView/android.view.View[1]/android.widget.TextView[2]"},
+  },
 
   fillNewAddress(domicileAddress) {
     I.waitForElement(this.fields.address, 10);
@@ -107,5 +110,10 @@ module.exports = {
   async getMessageError(fieldName) {
     I.waitForElement(this.messageErrorFields[fieldName], 2);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  },
+
+  async getKtpAddress(fieldName) {
+    I.waitForElement(this.texts.ktpAddress, 10);
+    return await I.grabTextFrom(this.texts.ktpAddress);
   },
 }

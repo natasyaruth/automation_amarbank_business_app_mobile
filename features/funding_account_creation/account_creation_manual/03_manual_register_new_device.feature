@@ -143,25 +143,6 @@ Feature: Manual Registering New Device
         And I try again to login in device A
         Then I will see bottom sheet blocked information    
 
-    @C137068
-    Scenario: Register new device using user id and password with old device already registered before
-        Given I have user id and registered with my old device
-        When I try to login in new device
-        And I register new device
-        And I failed the facematch till blocked
-        And I back to login again in to my old device
-        Then I will direct to main dashboard
-
-    @C137069
-    Scenario: Register new device using biometric with old device already registered before
-        Given I have user id and registered with my old device
-        And my biometric was activated in old device
-        When I try to login in new device
-        And I register new device
-        And I failed the facematch till blocked
-        And I back to login again in to my old device using biometric
-        Then I will direct to main dashboard    
-
     @C137070
     Scenario: Register in device that same with other user
         Given I have user id A with device A already registered

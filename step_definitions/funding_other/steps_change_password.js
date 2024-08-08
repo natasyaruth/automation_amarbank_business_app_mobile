@@ -1,0 +1,267 @@
+const {
+    I,
+    resetStateDao,
+    headerPage,
+    changePasswordPage,
+    otherPage,
+    otpDao,
+    loginPage,
+    onboardingAccOpeningPage,
+} = inject();
+
+When("I click menu change password", ()=>{
+    otherPage.clickChangePassword();
+});
+
+When("I close page input old password", ()=>{
+    headerPage.closePage();
+});
+
+When("I click button cancel change password", ()=>{
+    changePasswordPage.clickCancel();
+});
+
+When("I input my old password", ()=>{
+    changePasswordPage.inputOldPassword(globalVariable.login.password);
+    globalVariable.changePassword.oldPassword = globalVariable.login.password;
+});
+
+When("I click next to input new password", ()=>{
+    changePasswordPage.clickNext();
+});
+
+When("I close page input new password", ()=>{
+    headerPage.closePage();
+});
+
+When("I click button back to change password", ()=>{
+    changePasswordPage.clickBackToChangePassword();
+});
+
+When("I unmask my old password", ()=>{
+    changePasswordPage.clickEyeOldPassword();
+});
+
+When("I mask my old password", ()=>{
+    changePasswordPage.clickEyeOldPassword();
+});
+
+When("I unmask my new password", ()=>{
+    changePasswordPage.clickEyeNewPassword();
+});
+
+When("I mask my new password", ()=>{
+    changePasswordPage.clickEyeNewPassword();
+});
+
+When("I unmask confirmation password", ()=>{
+    changePasswordPage.clickEyeConfirmPassword();
+});
+
+When("I mask confirmation password", ()=>{
+    changePasswordPage.clickEyeConfirmPassword();
+});
+
+When("I clear my old password", ()=>{
+    changePasswordPage.clearOldPassword();
+});
+
+When("I clear my new password", ()=>{
+    changePasswordPage.clearNewPassword();
+});
+
+When("I clear confirm password", ()=>{
+    changePasswordPage.clearConfirmPassword();
+});
+
+When("I input incorrect old password", ()=>{
+    changePasswordPage.inputOldPassword("Duysfg332876498");
+});
+
+When("I input field {string} with value {string}", (field, password)=>{
+    if(
+        field ==="newPassword"
+    ){
+        changePasswordPage.inputNewPassword(password);
+        globalVariable.changePassword.newPassword = password;
+
+    } else if(
+        field ==="confirmPassword"
+    ){
+        changePasswordPage.inputConfirmPassword(password);
+        globalVariable.changePassword.confirmPassword = password;
+    }
+});
+
+When("I confirm my new password", ()=>{
+    changePasswordPage.clickChangePassword();
+});
+
+When("I wait for 1 minutes", ()=>{
+    I.wait(60);
+});
+
+When("I click link resend OTP change password", ()=>{
+    changePasswordPage.clickResendOTP();
+});
+
+When("I input wrong OTP code", ()=>{
+    changePasswordPage.inputOTP("000000");
+});
+
+When("I input OTP change password", async()=>{
+    const phoneNumber = (await changePasswordPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
+    const otp = (await otpDao.getOTP(phoneNumber)).otp;
+
+    changePasswordPage.inputOTP(otp);
+});
+
+When("I click button direct to page login", ()=>{
+    changePasswordPage.clickUnderstand();
+});
+
+When("I login again with my new password", ()=>{
+    const newLogin = {
+        userID: globalVariable.login.userID,
+        password: globalVariable.changePassword.newPassword
+    };
+
+    loginPage.fillInAccountInformation(newLogin);
+    globalVariable.login.password = newLogin.password;
+});
+
+When("I login again with my old password", ()=>{
+    const newLogin = {
+        userID: globalVariable.login.userID,
+        password: globalVariable.changePassword.oldPassword
+    };
+
+    loginPage.fillInAccountInformation(newLogin);
+});
+
+When("I fill form login with incorrect password", ()=>{
+    const incorrectLogin = {
+        userID: globalVariable.login.userID,
+        password: "abcCV879",
+    };
+
+    loginPage.fillInAccountInformation(incorrectLogin);
+});
+
+Then("I will direct to page input old password", ()=>{
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.dontSee(headerPage.icon.callCenter);
+    I.see("Ubah Password");
+
+    I.see("Password Lama");
+    I.see("Masukkan password lama");
+    I.waitForElement(changePasswordPage.fields.oldPassword, 10);
+    I.waitForElement(changePasswordPage.icons.eyeOldPassword, 10);
+
+    I.see("Selanjutnya");
+    I.waitForElement(changePasswordPage.buttons.next, 10);
+});
+
+Then("I will see pop up cancel change password", ()=>{
+    I.waitForText("Anda yakin ingin membatalkan proses?", 10);
+    I.see("Jika ya, Anda akan mengulang proses dari awal.");
+
+    I.see("Ya, Batalkan");
+    I.waitForElement(changePasswordPage.buttons.cancel, 10);
+
+    I.see("Tidak Jadi");
+    I.waitForElement(changePasswordPage.buttons.backToChangePassword, 10);
+});
+
+Then("I will direct to page form input new password", ()=>{
+    I.waitForText("Password Baru", 10);
+    I.see("Masukkan password baru");
+    I.see("Min. 8 karakter dari huruf besar, kecil & angka");
+    I.waitForElement(changePasswordPage.fields.newPassword, 10);
+    I.waitForElement(changePasswordPage.icons.eyeNewPassword, 10);
+
+    I.see("Konfirmasi Password Baru");
+    I.see("Masukkan konfirmasi password baru");
+    I.see("Min. 8 karakter dari huruf besar, kecil & angka");
+    I.waitForElement(changePasswordPage.fields.confirmPassword, 10);
+    I.waitForElement(changePasswordPage.icons.eyeConfirmPassword, 10);
+    
+    I.see("Ubah Password");
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.dontSee(headerPage.icon.callCenter);
+
+    I.see("Ubah Password");
+    I.waitForElement(changePasswordPage.buttons.changePassword, 10);
+});
+
+Then("I will notify by message error {string} in field {string}", async (msgError, field)=>{
+    const actualMsgError = await changePasswordPage.getMessageErrorFields(field);
+
+    I.assertEqual(actualMsgError, msgError);
+});
+
+Then("I will not see message error {string} in field {string}", async (msgError, field)=>{
+    if(
+        field === "newPassword" ||
+        field === "confirmPassword"
+    ){
+        const actualMsg = await changePasswordPage.getMessageErrorFields(field);
+        I.assertEqual(actualMsg, "Min. 8 karakter dari huruf besar, kecil & angka");
+
+    } else{
+        I.wait(1);
+        I.dontSeeElement(changePasswordPage.msgErrorFields[field]);
+    }
+});
+
+Then("I will see my new password",  ()=>{
+    I.waitForText(globalVariable.changePassword.newPassword);
+});
+
+Then("I will not see my confirmation password",  ()=>{
+    I.waitForText(globalVariable.changePassword.confirmPassword);
+});
+
+Then("I will direct to page input OTP change password", async()=>{
+    I.waitForText("Kode OTP berhasil dikirim.", 20);
+    I.see("Kode OTP");
+    I.dontSeeElement(headerPage.buttons.back);
+    I.dontSeeElement(headerPage.buttons.closePage);
+    I.dontSeeElement(headerPage.icon.callCenter);
+
+    I.see("Masukkan Kode OTP");
+    I.see("Kode OTP telah dikirim ke nomor");
+
+    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
+    I.see("+62 "+phoneNumber);
+
+    I.waitForElement(changePasswordPage.fields.otp, 10);
+});
+
+Then("I will see snackbar OTP successfully sent",  ()=>{
+    I.waitForText("Kode OTP berhasil dikirim.", 20);
+});
+
+Then("I will direct to page success change password",  ()=>{
+    I.waitForText("Selamat, Password Berhasil Diubah!", 10);
+    I.dontSeeElement(headerPage.buttons.back);
+    I.dontSeeElement(headerPage.buttons.closePage);
+    I.dontSeeElement(headerPage.icon.callCenter);
+
+    I.see("Mengerti");
+    I.waitForElement(changePasswordPage.buttons.understand, 10);
+});
+
+Then("I reset back my password", async ()=>{
+    onboardingAccOpeningPage.goToTabOthers();
+    otherPage.clickChangePassword();
+
+    changePasswordPage.inputOldPassword(globalVariable.changePassword.newPassword);
+    changePasswordPage.clickNext();
+
+    changePasswordPage.inputNewPassword(globalVariable.changePassword.oldPassword);
+    changePasswordPage.inputConfirmPassword(globalVariable.changePassword.oldPassword);
+    changePasswordPage.clickChangePassword();
+
+    changePasswordPage.clickUnderstand();
+});

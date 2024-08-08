@@ -163,6 +163,10 @@ exports.config = {
     getDataDao: "./dao/getDataDao.js",
 
     otherPage: "./pages/other.js",
+
+    uploadSelfieKtpPage: "./pages/uploadSelfieKtp.js",
+
+    changePasswordPage: "./pages/changePassword.js",
   },
   settings: {
     logging: {
@@ -220,6 +224,9 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/*.feature",
       "./features/funding_transfer/*.feature",
       "./features/funding_create_pin/*.feature",
+      "./features/funding_profile/*.feature",
+      "./features/funding_document_management/*.feature",
+      "./features/funding_other/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",
       "./features/funding_home/01_MainDashboard_Hook1/*.feature",
@@ -268,7 +275,8 @@ exports.config = {
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypePO.js",
       "./step_definitions/loanDisbursement/steps_loanDisbursementTypeAR.js",
       "./step_definitions/funding_home/steps_home.js",
-      "./step_definitions/funding_home/steps_other.js",
+      "./step_definitions/funding_other/steps_other.js",
+      "./step_definitions/funding_other/steps_change_password.js",
       "./step_definitions/loanApplication/steps_limitActive.js",
       "./step_definitions/loanApplication/steps_businessLoan.js",
       "./step_definitions/loanApplication/steps_pdcDelivery.js",
@@ -280,10 +288,10 @@ exports.config = {
       "./step_definitions/loanRepayment/steps_loanRepaymentStatusSuccess.js",
       "./step_definitions/funding_home/steps_onboarding.js",
       "./step_definitions/funding_home/steps_main_active.js",
-      "./step_definitions/funding_home/steps_profile.js",
+      "./step_definitions/funding_profile/steps_profile.js",
       "./step_definitions/funding_home/steps_document.js",
       "./step_definitions/loanApplication/steps_documentManagement.js",
-      "./step_definitions/funding_home/steps_maker_and_approver.js",
+      "./step_definitions/funding_profile/steps_maker_and_approver.js",
       "./step_definitions/loanFlagging/steps_SecondloanMSME.js",
       "./step_definitions/loanFlagging/steps_firstloan.js",
       "./step_definitions/loanFlagging/steps_loanFlagging.js",
