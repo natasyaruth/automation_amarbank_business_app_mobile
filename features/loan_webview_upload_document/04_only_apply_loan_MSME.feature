@@ -316,3 +316,43 @@ Feature: Upload Data Documents For Cases Loan Only Journey MSME
         When I am on the expired link page
         Then I see wording "Link Telah Kedaluwarsa"
         And I see wording "Anda dapat membuat link baru di dalam aplikasi Amar Bank Bisnis Anda"
+
+    Scenario: Delete Uploaded Document Loan Type MSME when upload file more than 15MB
+        Given I has been access to the link web view for upload multiple data documents for AP or AR or PO MSME
+        When I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir"
+        And I delete one of the document
+        Then the deleted document will dissapear from the field
+        And I click button to update the Progres
+        And the new updated document will updated to mobile apps
+
+    Scenario: Cancel Uploading Document Loan Type MSME
+        Given I has been access to the link web view for upload multiple data documents for AP or AR or PO MSME
+        When I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir"
+        And I see botton cancel uploading
+        And cancel the uploading document process
+        Then the uploading document will canceled and dissapear from the field
+        And I click button to update the Progres
+        And the new updated document will updated to mobile apps
+
+    Scenario: Delete The Document After Success Upload Document
+        Given I has been access to the link web view for upload multiple data documents
+        When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
+        And I see botton delete upload
+        And delete the uploading document process
+        And I see pop up confirmation delete document
+        And I click button delete
+        Then the document is deleted
+        And the document will dissapear
+        And the new deleted document will dissapear from mobile apps as well
+
+    Scenario: Cancel Document Deletion After Success Uploading Document
+        Given I has been access to the link web view for upload multiple data documents
+        When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
+        And I see botton delete upload
+        And delete the uploading document process
+        And I see pop up confirmation delete document
+        And I click button cancel
+        Then the deleting document is cancelled
+        And the document still appears in its field
+
+
