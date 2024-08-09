@@ -15,7 +15,10 @@ module.exports = {
         yearSelected: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[2]" },
         yearNext: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[3]" },
         listTransferOut: { xpath: "(//android.view.View[@content-desc='itemHistory'])[2]" },
-        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]" }
+        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]" },
+        eStatementFieldPass:"~textFieldPassword",
+        eStatementFieldErrorPass:"~textErrorPassword",
+        
     },
     buttons: {
         historyBtn: "~btnHistory",
@@ -34,6 +37,10 @@ module.exports = {
         btnCloseeStatement: "~buttonClose",
         detailHistory: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[1]'},
         detailHistorySecond: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[2]'},
+        buttonNexteStatement : "~buttonNext",
+        buttonEyeeStatement : "~iconShowHidePassword",
+        buttonTryeStatement : "~buttonTry",
+        buttonUnderstandeStatement : "~buttonUnderstand",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -107,6 +114,11 @@ module.exports = {
         inTransaction: "~buttonTabTransferIn",
         outTransaction: "~buttonTabTransferOut",
     },
+
+    messageErrorFields: {
+        password: "~textErrorPassword",
+      },
+
     viewUserName() {
         I.wait(7);
         I.seeElement(this.fields.userField);
@@ -125,6 +137,44 @@ module.exports = {
         I.seeElement(this.buttons.historyBtn);
     },
 
+    seePasswordPage(){
+        I.see("Silakan masukkan password Amar Bank Bisnis kamu");
+        I.seeElement(this.buttons.buttonNexteStatement);
+        I.seeElement(this.buttons.buttonEyeeStatement);
+    },
+
+    fillPasswordeStatement() {
+        I.wait(2);
+        I.click(this.fields.eStatementFieldPass);
+        I.fillField(this.fields.eStatementFieldPass,"Ahoy1234");
+    },
+
+    fillInvalidPasswordeStatement() {
+        I.wait(2);
+        I.click(this.fields.eStatementFieldPass);
+        I.fillField(this.fields.eStatementFieldPass,"Kiwi1234");
+    },
+
+    seePasswordeStatement() {
+        I.wait(2);
+        I.see("Ahoy1234");
+    },
+
+    clickBtnNexteStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonNexteStatement);
+    },
+
+    clickBtnTryAgaineStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonTryeStatement);
+    },
+
+    clickBtnEyeeStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonEyeeStatement);
+    },
+
     viewButtonDownloadEStatement() {
         I.wait(2);
         I.seeElement(this.buttons.btneStatementDownload);
@@ -138,6 +188,26 @@ module.exports = {
     clickBtnLatesteStatement() {
         I.wait(2);
         I.click(this.buttons.btneStatementLatest);
+    },
+
+    clickBtnNexteStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonNexteStatement);
+    },
+
+    clickBtnTryeStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonTryeStatement);
+    },
+
+    clickBtnUnderstandeStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonUnderstandeStatement);
+    },
+
+    clickBtnEyeeStatement() {
+        I.wait(2);
+        I.click(this.buttons.buttonEyeeStatement);
     },
 
     validationeStatementNotExist() {
@@ -393,6 +463,15 @@ module.exports = {
         I.waitForElement(this.fields.endDateField, 10);
         I.clearField(this.fields.endDateField);
     },
+
+    async getMessageErrorFieldeStatementPassword(fieldName) {
+        if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
+          throw new Error('Field ${fieldName} is not found');
+        }
+        I.waitForElement(this.messageErrorFields[fieldName], 10);
+        return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+      },
+
     async getTransactionNameBucketList(){
         I.waitForElement(this.textFields.nameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.nameBucketlist);

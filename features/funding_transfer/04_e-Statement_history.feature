@@ -39,6 +39,9 @@ Feature: User open e-Statement History
         When I click history menu
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input valid password on field password
+        And I click button "Next"
         Then The e-Statement downloaded
         And Receive notification email
 
@@ -77,6 +80,9 @@ Feature: User open e-Statement History
         When I click history menu
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input valid password on field password
+        And I click button "Next"
         Then Alert bar success will appear
 
     @C131981
@@ -96,4 +102,129 @@ Feature: User open e-Statement History
         When I click history menu
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input valid password on field password
+        And I click button "Next"
         Then Alert bar failed will appear
+
+    
+    Scenario: Download e-statement with wrong password once
+        Given I am a registered customer with following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        When I click history menu
+        And I click button e-Statement download
+        And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
+        
+
+    Scenario: Download e-statement with wrong password twice
+        Given I am a registered customer with following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        When I click history menu
+        And I click button e-Statement download
+        And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
+        And I click button "try again"
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
+    
+
+    Scenario: Download e-statement with wrong password third
+        Given I am a registered customer with following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        When I click history menu
+        And I click button e-Statement download
+        And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
+        And I click button "try again"
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
+        And I click button "try again"
+        And I input invalid password on field password
+        And I click button "Next"
+        Then I should see pop up 'Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'understandButton'
+        And I direct to login page
+
+    
+    Scenario: Download e-statement with empty password
+        Given I am a registered customer with following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        When I click history menu
+        And I click button e-Statement download
+        And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I click button "Next"
+        Then I should see notification 'Password wajib diisi' in the below of field 'password'
+        
+    
+    Scenario: User want to see password when download e-statement
+        Given I am a registered customer with following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | niza7373 |
+            | password    | Test1234 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        And I will direct to dashboard
+        When I click history menu
+        And I click button e-Statement download
+        And I choose the latest month to download e-Statement
+        And I will direct to input password page
+        And I input valid password on field password
+        And I click eye icon on field password
+        Then I should see password inputted 
