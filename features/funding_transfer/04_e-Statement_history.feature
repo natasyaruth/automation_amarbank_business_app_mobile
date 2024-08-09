@@ -48,12 +48,12 @@ Feature: User open e-Statement History
     @C131979
     Scenario: Download e-Statement when e-Statement not exist
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -66,12 +66,12 @@ Feature: User open e-Statement History
     @C131980
     Scenario: Show alert bar when success download e-Statement
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -88,12 +88,12 @@ Feature: User open e-Statement History
     @C131981
     Scenario: Show alert bar when failed download e-Statement
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -110,12 +110,12 @@ Feature: User open e-Statement History
     @C141433
     Scenario: Download e-statement with wrong password once
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -132,12 +132,12 @@ Feature: User open e-Statement History
     @C141434
     Scenario: Download e-statement with wrong password twice
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -158,12 +158,12 @@ Feature: User open e-Statement History
     @C141435
     Scenario: Download e-statement with wrong password third
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -189,12 +189,12 @@ Feature: User open e-Statement History
     @C141436
     Scenario: Download e-statement with empty password
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -210,12 +210,12 @@ Feature: User open e-Statement History
     @C141437
     Scenario: User want to see password when download e-statement
         Given I am a registered customer with following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         When I filling in form login with the following details:
-            | userID      | niza7373 |
+            | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
@@ -225,6 +225,6 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
+        And I input valid password "Test1234" on field password
         And I click eye icon on field password
         Then I should see password inputted 

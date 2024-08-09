@@ -138,75 +138,74 @@ module.exports = {
     },
 
     seePasswordPage(){
-        I.see("Silakan masukkan password Amar Bank Bisnis kamu");
+        I.waitForText("Silakan masukkan password Amar Bank Bisnis kamu", 10);
         I.seeElement(this.buttons.buttonNexteStatement);
         I.seeElement(this.buttons.buttonEyeeStatement);
     },
 
-    fillPasswordeStatement() {
-        I.wait(2);
+    fillPasswordeStatement(password) {
+        I.waitForElement(this.fields.eStatementFieldPass, 10);
         I.click(this.fields.eStatementFieldPass);
-        I.fillField(this.fields.eStatementFieldPass,"Ahoy1234");
+        I.fillField(this.fields.eStatementFieldPass, password);
     },
 
-    fillInvalidPasswordeStatement() {
-        I.wait(2);
-        I.click(this.fields.eStatementFieldPass);
-        I.fillField(this.fields.eStatementFieldPass,"Kiwi1234");
-    },
+    // fillInvalidPasswordeStatement() {
+    //     I.wait(this.fields.eStatementFieldPass, 10);
+    //     I.click(this.fields.eStatementFieldPass);
+    //     I.fillField(this.fields.eStatementFieldPass,"Kiwi1234");
+    // },
 
     seePasswordeStatement() {
-        I.wait(2);
-        I.see("Ahoy1234");
+        I.waitForText("Test1234", 10);
     },
 
     clickBtnNexteStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonNexteStatement, 10);
         I.click(this.buttons.buttonNexteStatement);
     },
 
     clickBtnTryAgaineStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonTryeStatement,10);
         I.click(this.buttons.buttonTryeStatement);
     },
 
     clickBtnEyeeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonEyeeStatement, 10);
         I.click(this.buttons.buttonEyeeStatement);
     },
 
     viewButtonDownloadEStatement() {
-        I.wait(2);
+        I.waitForElement(10);
         I.seeElement(this.buttons.btneStatementDownload);
     },
 
     clickBtnDownloadeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btneStatementDownload, 10);
         I.click(this.buttons.btneStatementDownload);
     },
 
     clickBtnLatesteStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btneStatementLatest, 10);
         I.click(this.buttons.btneStatementLatest);
     },
 
     clickBtnNexteStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonNexteStatement, 10);
         I.click(this.buttons.buttonNexteStatement);
     },
 
     clickBtnTryeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonTryeStatement, 10);
         I.click(this.buttons.buttonTryeStatement);
     },
 
     clickBtnUnderstandeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonUnderstandeStatement, 10);
         I.click(this.buttons.buttonUnderstandeStatement);
     },
 
     clickBtnEyeeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.buttonEyeeStatement, 10);
         I.click(this.buttons.buttonEyeeStatement);
     },
 

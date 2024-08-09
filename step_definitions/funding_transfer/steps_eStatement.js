@@ -41,8 +41,8 @@ When('I will direct to input password page', () => {
     transactionHistoryPage.seePasswordPage();
 });
 
-When('I input valid password on field password', () => {
-    transactionHistoryPage.fillPasswordeStatement();
+When('I input valid password {string} on field password', (password) => {
+    transactionHistoryPage.fillPasswordeStatement(password);
 });
 
 When('I click button "Next"', () => {
@@ -83,7 +83,7 @@ When('I input invalid password on field password', () => {
 
 Then('I should see pop up {string} with button {string}', async (errorText, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(errorText);
+    I.waitForText(errorText, 10);
     I.waitForElement(transactionHistoryPage.buttons[buttonName], 10);
 });
 
