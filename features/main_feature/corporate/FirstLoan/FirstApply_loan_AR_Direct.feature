@@ -39,7 +39,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: User validate dropdown list on nominal option
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And User on Loan Needs Page
     And user click dropdown option
     Then user can validate List of Nominal Limit Credit   
@@ -48,7 +48,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And user on select loan Needs Page   
     And user click button Lanjut Isi Data Buyer    
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
@@ -58,7 +58,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: Validate Error input nominal min Rp.50000000001
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And user on select loan Needs Page 
     And User choose nominal "Lebih dari 5 Milyar"    
     And user input nominal below minimun nominal "13500000"
@@ -68,7 +68,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: user clear the text input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And user on select loan Needs Page
     And User choose nominal "Lebih dari 5 Milyar"
     And user input nominal for Corp "13500000"
@@ -78,7 +78,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: Validate error input tenor below min 30 hari 
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And user on select loan Needs Page 
     And User choose nominal "Lebih dari 5 Milyar"    
     And user input nominal for Corp "10000000000"
@@ -90,7 +90,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
   Scenario: Validate error input tenor more than 180 hari 
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
+    And User select loan type "AR"
     And user on select loan Needs Page 
     And User choose nominal "Lebih dari 5 Milyar"    
     And user input nominal for Corp "10000000000"
@@ -172,7 +172,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user upload document "2YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
-    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
@@ -219,7 +219,7 @@ Scenario: User apply first loan AR Direct with business type Individu and flagin
     #section select Anchor
     When user on buyer cooperating page
     And user select another supplier
-    And user fill a field "anchorName" with "AP Direct Tes"
+    And user fill a field "anchorName" with "AR Direct Tes"
     And user select industry type
     And user select the date cooperating
     And user input business address
@@ -256,14 +256,14 @@ Scenario: User apply first loan AR Direct with business type Individu and flagin
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And user go to page list of document for Individu
+    And And user validate description prepare the following documents 'CorpARIndividu'
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page    
     And user upload document "3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
-    And user upload document "1YearfinancialReports"
+    And user upload document "2YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
     Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
@@ -337,7 +337,7 @@ Scenario: Validate bottom sheet for Metode Upload Dokumen Dari Perangkat Lain/ D
     And user validate wording for "Dari Perangkat lain/ Delegasi"
     And user click button close bottom sheet
    
-Scenario: user can select and upload multiple document
+Scenario: user can select and upload multiple document Individu
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
@@ -347,23 +347,28 @@ Scenario: user can select and upload multiple document
   And user upload multiple document "3contohInvoicewithBuyer"
   And user upload multiple document "paymentMutation"
   And user upload multiple document "2YearfinancialReports"  
+  Then user see button Kirim Pengajuan Limit Kredit
  
 
-Scenario: user validate field after success upload document
+Scenario: user validate field after success upload document PT.Perorangan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi   
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload document "nib"
+  And user upload document "aktaperusahaan"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
   And user upload multiple document "2YearfinancialReports"
   And user verify upload all document Finance Report
-  Then user see button Kirim Pengajuan Limit Kredit
-  
+  Then user click button Kirim Pengajuan Limit Kredit
+  Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+  And user click button Lihat Progres Pengajuan
+  And user on monitoring loan process page
 
 Scenario: User add another document after the user success to uploads the previous document
   Given user already apply loan but have no upload document
@@ -372,37 +377,12 @@ Scenario: User add another document after the user success to uploads the previo
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi
-  And user upload multiple document "3contohInvoicewithSupplier"     
+  And user upload multiple document "3contohInvoicewithBuyer"     
   And user verify upload all document KTP   
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   Then user will see the document will be uploaded and show in one row below uploaded document list 
 
 
-Scenario: USer validate field after one or more than one file has been failed upload document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"     
-    And user show a retry icon when the document fails to upload
-    And user show an error message in row field if the document fails to upload 
-
-
-Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"    
-    And user upload multiple document "paymentMutation"     
-    And user see error message network problem
-    Then user click button retry 
-
- 
 Scenario: user verify pop up confirmation to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -410,7 +390,7 @@ Scenario: user verify pop up confirmation to delete uploaded file
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi  
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -426,7 +406,7 @@ Scenario: user delete uploaded file
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi 
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -444,7 +424,7 @@ Scenario: user cancel to delete uploaded file
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi 
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -462,7 +442,7 @@ Scenario: user upload file more than 15MB
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi
-  And user upload multiple document more than 15 MB "3contohInvoicewithSupplier"  
+  And user upload multiple document more than 15 MB "3contohInvoicewithBuyer"  
   
 
 Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded

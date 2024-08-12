@@ -279,7 +279,7 @@ Scenario: user validate field after success upload document
   And user verify upload all document KTP   
   And user upload multiple document "npwpOfComm"
   And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -337,7 +337,7 @@ Scenario: user verify pop up confirmation to delete uploaded file
   And user verify upload all document KTP   
   And user upload multiple document "npwpOfComm"
   And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -357,7 +357,7 @@ Scenario: user delete uploaded file
   And user verify upload all document KTP   
   And user upload multiple document "npwpOfComm"
   And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -379,7 +379,7 @@ Scenario: user cancel to delete uploaded file
   And user verify upload all document KTP   
   And user upload multiple document "npwpOfComm"
   And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
@@ -408,16 +408,12 @@ Scenario: user validate button Kirim Pengajuan Kredit Limit after all documen up
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi
-  And user on Progres Upload Dokumen
-  And user upload document "nib"
-  And user upload document "aktaperusahaan"
-  And user upload document "skkemenkumhan"
-  And user upload document "npwpComp"
+  And user on Progres Upload Dokumen  
   And user upload multiple document "KTPComm"     
   And user verify upload all document KTP   
   And user upload multiple document "npwpOfComm"
   And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi

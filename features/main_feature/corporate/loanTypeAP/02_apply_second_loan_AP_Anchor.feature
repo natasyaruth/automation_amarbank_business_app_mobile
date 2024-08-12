@@ -111,8 +111,9 @@ Scenario: User apply second loan AP anchor type with flagging Corporate UD
     And user click button Lanjut Isi Data Supplier 
     #section select Anchor    
     And user fill search anchor "PT Tirta Investama"
-    And user select result of search
-    And user select the date cooperating        
+    And click button Pilih Supplier Ini   
+    And user select year cooperating  "2020"   
+    And usr click Pilih       
     And user tick on Terms & condition
     And user click button Lanjut Upload Dokumen 
     And user validate description prepare the following documents 'SecondCorpAPPT.Perorangan' 
@@ -131,19 +132,33 @@ Scenario: User apply second loan AP anchor type with flagging Corporate UD
 
 Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
-    And user can see X button to back to Main Dashboard
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user lick button Upload Ulang Dokumen
-    Then user go back to page Progres Upload Dokumen
+    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
+    Then user can click button Upload Ulang Dokumen
 
+
+  Scenario: user validate button Simpan Dokumen when upload ulang dokumen
+    Given user on monitoring loan process page
+    When user click Upload Ulang dokumen button
+    And user go back to page Upload document page
+    Then user see button Simpan Dokumen
+
+  Scenario: user click button Simpan Dokumen
+    Given user on monitoring loan process page
+    When user click Upload Ulang dokumen button
+    And user go back to page Upload document
+    And user upload multiple document "KTPComm"  
+    Then user click button Simpan Dokumen
+    And user will back to loan process page
 
   Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
-    And user can see X button to back to Main Dashboard
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
-    Then user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
+    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
+    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
+    And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 
     
@@ -153,58 +168,26 @@ Scenario: validate progress monitoring loan checking document
     And User select loan type "AP"
     And User on Loan Needs Page
     And User choose nominal "Lebih dari 5 Milyar" 
-    And user input nominal for Corp "15000000000"
+    And user input nominal for Corp "7000000000"
     And user click button Save
-    And user input tenor "60"
-    And user click button Lanjut Isi Data Supplier 
+    And user input tenor "30"
+    And user click button Lanjut Isi Data Supplier
     #section select Anchor
-    And user fill search anchor "PT Tirta Investama"
-    And user select result of search
-    And user select the date cooperating        
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
-    #section KYC Process
-    Given user choose Business Type "PT Perusahaan"
-    And user click Selanjutnya     
-    And user click button Ambil Foto eKTP
-    And user click button Saya Mengerti
-    And user click buton take photo eKTP   
-    And user click button Kirim Foto
-    And user input and save eKTP data
-    And user click button Ambil Foto Diri
-    And user click Ambil Foto
-    And user click button Kirim Foto 
-    And user input Pendidikan terakhir "S1"
-    And user input nama ibu kandung "Susi Susanti"
-    And user input nama kerabat "Susi Similikiti"
-    And user input nomor kerbat "867300987"
-    And user upload document "npwpindividu"
-    And user click button Simpan Data Diri
-    And user click button Simpan Alamat Tempat Tinggal
-    And user select "Pegawai Swasta"
-    And user select sumber pendapatan "Pemasukan dari usaha"  
-    And click Simpan Data Pekerjaan
-    And system direct to Success screen
-    And user click button Lanjut Lengkapi Data Bisnis
-    #section KYB Process
-    And user in Profil Bisnis page
-    And user input profil bisnis and click button Simpan Profil Bisnis
-    And user input and click Simpan Daftar Direktur
-    And I fill my business address as followings:
-        | address  | Jl. Gambir Belok Kiri No. 10 |
-        | rt       | 000                          |
-        | rw       | 011                          |
-        | province | DKI JAKARTA                  |
-        | city     | JAKARTA TIMUR                |
-        | district | DUREN SAWIT                  |
-        | village  | PONDOK BAMBU                 |    
-    And user checklist checkbox term and condition  
-    And user checklist checkbox right and obligations
+    When user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the date cooperating
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
     And user click button Lanjut Upload Dokumen
     And user validate description prepare the following documents 'SecondCorpAPPT.Perorangan' 
-    And user click buttton Pilih Metode Upload Dokumen  
+    And user click buttton Pilih Metode Upload Dokumen       
     And user on bottom sheet metode upload Dokumen
-    And user validate wording for "Langsung dari Aplikasi"
+    And user validate wording for "Langsung dari Aplikasi"     
     And user click button close bottom sheet
    
 
@@ -218,6 +201,7 @@ Scenario: user can select and upload multiple document for PT.Perorangan
   And user upload multiple document "3contohInvoicewithSupplier"
   And user upload multiple document "paymentMutation"
   And user upload multiple document "2YearfinancialReports"  
+  Then user see button Kirim Pengajuan Limit Kredit
  
 
 Scenario: user validate field after success upload document
@@ -233,7 +217,11 @@ Scenario: user validate field after success upload document
   And user verify upload all document Mutasi
   And user upload multiple document "2YearfinancialReports"
   And user verify upload all document Finance Report
-  Then user see button Kirim Pengajuan Limit Kredit
+  And user click button Kirim Pengajuan Limit Kredit
+  Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+  And user click button Lihat Progres Pengajuan
+  And user on monitoring loan process page
+
   
 
 Scenario: User add another document after the user success to uploads the previous document
@@ -249,31 +237,6 @@ Scenario: User add another document after the user success to uploads the previo
   Then user will see the document will be uploaded and show in one row below uploaded document list 
 
 
-Scenario: USer validate field after one or more than one file has been failed upload document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"     
-    And user show a retry icon when the document fails to upload
-    And user show an error message in row field if the document fails to upload 
-
-
-Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"    
-    And user upload multiple document "paymentMutation"     
-    And user see error message network problem
-    Then user click button retry 
-
- 
 Scenario: user verify pop up confirmation to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -290,7 +253,7 @@ Scenario: user verify pop up confirmation to delete uploaded file
   And user click button delete file uploaded
   Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
 
-Scenario: user delete uploaded file
+Scenario: user delete uploaded file 
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page

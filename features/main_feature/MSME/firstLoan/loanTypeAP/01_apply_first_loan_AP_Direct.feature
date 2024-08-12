@@ -133,7 +133,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
-    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
@@ -170,78 +170,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
 
 
 
-  Scenario: User apply first loan AP Direct with bussiness type Individu and flaging MSME
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit 
-    And User select loan type "AP"
-    And User click button Pelajari Tipe Skema Kredit
-    And User choose nominal "Rp50 juta - 5 Miliar"  
-    And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data supplier
-    #section select Anchor
-    And user on buyer cooperating page
-    And user select another supplier
-    And user fill a field "anchorName" with "AP Direct Tes"
-    And user select industry type
-    And user select the date cooperating
-    And user input business address
-    #section supplier representatives has contact
-    And user input supplier representatives name
-    And user input contact name
-    And user input email address supplier
-    And user checklist checbox term and condition
-    And user checklist checbox privy
-    And user click button next   
-    And user click button Lanjut Lengkapi Data
-    #section KYC Process
-    Given user choose Business Type "UD"
-    And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
-    And user input and save eKTP data
-    And user click take "Foto Diri"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
-    And user select domicile address
-    When user input "Data Pekerjaan"
-    And click "Simpan Data Pekerjaan"
-    And system direct to Success screen
-    Then user click button "Lanjut Lengkapi Data Bisnis"
-    #section KYB Process
-    Given user in "Data Pekerjaan" filled
-    When user input and save "Profil Bisnis"
-    And user input and click "Simpan Daftar Direktur"
-    And user input and save "Alamat Bisnis"
-    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-    And user click OK
-    # section upload document
-    And user click button Langsung dari Aplikasi
-    And user on Progress Upload Dokumen Page
-    And user upload document "nib"
-    And user upload document "aktaperusahaan"   
-    And user upload document "3contohInvoicewithSupplier"
-    And user upload document "paymentMutation"
-    And user upload document "1YearfinancialReports"
-    And user click button Perbaharui Progres
-    And user click button Kirim Pengajuan Kredit Limit
-    Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
-    And user click button Lihat Progres Pengajuan
-    And user on monitoring loan process page
-    #section trigered status loan
-    And user trigered api change status loan is approved
-    #sectionn buttom sheet success
-    And user click button close on Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
-    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
- 
-
-
-Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
+ Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
     And User select loan type "AP"
@@ -303,7 +232,7 @@ Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
     And user click button close bottom sheet
 
    
-Scenario: user can select and upload multiple document
+Scenario: user can select and upload multiple document UD
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
@@ -315,22 +244,30 @@ Scenario: user can select and upload multiple document
   And user upload multiple document "3contohInvoicewithSupplier"
   And user upload multiple document "paymentMutation"
   And user upload multiple document "1YearfinancialReports"  
+  Then user see button Kirim Pengajuan Limit Kredit
+  
  
 
-Scenario: user validate field after success upload document for PT.Perusahaan
+Scenario: user validate field after success upload document for UD
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi
+  And user upload document "nib"
+  And user upload document "aktaperusahaan" 
   And user upload multiple document "3contohInvoicewithSupplier"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
   And user upload multiple document "1YearfinancialReports"
   And user verify upload all document Finance Report
-  Then user see button Kirim Pengajuan Limit Kredit
+  And user click button Kirim Pengajuan Limit Kredit
+  Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+  And user click button Lihat Progres Pengajuan
+  And user on monitoring loan process page
+
   
 
 Scenario: User add another document after the user success to uploads the previous document
@@ -346,31 +283,7 @@ Scenario: User add another document after the user success to uploads the previo
   Then user will see the document will be uploaded and show in one row below uploaded document list 
 
 
-Scenario: USer validate field after one or more than one file has been failed upload document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"     
-    And user show a retry icon when the document fails to upload
-    And user show an error message in row field if the document fails to upload 
 
-
-Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"    
-    And user upload multiple document "paymentMutation"     
-    And user see error message network problem
-    Then user click button retry 
-
- 
 Scenario: user verify pop up confirmation to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
