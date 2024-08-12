@@ -54,6 +54,24 @@ module.exports = {
         return {
             data: responseLogin.data.invited
         }
-    }
+    },
+
+    async getBusinessCode(email){
+
+        I.haveRequestHeaders(secret({
+          Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        }));
+    
+        const response = await I.sendGetRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/find-codes/"+email);
+    
+        I.seeResponseCodeIsSuccessful();
+    
+        const lastIndex = response.data.length - 1;
+    
+        return {
+            status: response.status,
+            businessCode: response.data[lastIndex]
+        }
+      },
 
 }

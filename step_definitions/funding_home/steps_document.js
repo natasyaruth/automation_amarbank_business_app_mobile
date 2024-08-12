@@ -2,6 +2,8 @@ const { I,
     documentPage,
     profilePage,
     otherPage,
+    globalVariable,
+    resetStateDao,
 } = inject();
 
 When("I click document giro", () => {
@@ -63,13 +65,21 @@ When("I close bottom sheet password", () => {
     documentPage.closeBottomSheetPassword();
 });
 
+When("I unmask my password document", () => {
+    documentPage.clickIconEyePassword();
+});
+
+When("I mask my password document", () => {
+    documentPage.clickIconEyePassword();
+});
+
 Then("I will direct to page document business", () => {
     I.waitForText("Dokumen", 20);
     I.dontSee("Dokumen Bisnis");
 });
 
 Then("I will see message error password incorrect", async() => {
-    const actualMsgError = documentPage.getMessageErrorPassword();
+    const actualMsgError = await documentPage.getMessageErrorPassword();
 
     I.assertEqual(actualMsgError, "Password yang dimasukkan salah");
 });
@@ -80,7 +90,7 @@ Then("I will see bottom sheet input password document", () => {
     I.waitForElement(documentPage.buttons.closePopUp, 10);
 
     I.see("Password");
-    I.see("Masukan password");
+    I.see("Masukkan password");
     I.waitForElement(documentPage.buttons.eyePassword, 10);
 
     I.see("Lihat Dokumen");
@@ -88,15 +98,16 @@ Then("I will see bottom sheet input password document", () => {
 });
 
 Then("I will see button see document is enabled", async() => {
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'enabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
 
-    I.assertEqual(isEnabled, "true");
+    I.assertEqual(isEnabled, 'false');
 });
 
 Then("I will see button see document is disabled", async() => {
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'enabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
 
-    I.assertEqual(isEnabled, "false");
+    I.assertEqual(isEnabled, 'true');
+
 });
 
 Then("I will not see button document giro", () => {
@@ -137,6 +148,12 @@ Then("I will see document page is empty", ()=>{
     I.see("Belum ada dokumen yang tersedia untuk ditampilkan.");
     I.dontSeeElement(documentPage.buttons.documentGiro);
     I.dontSeeElement(documentPage.buttons.documentLoan);
+});
+
+Then("I will see document loan is empty", ()=>{
+    I.waitForText("Pilih Nomor Pinjaman", 10);
+    I.see("Halaman Ini Masih Kosong");
+    I.see("Saat ini, belum ada aktivitas pinjaman yang tersedia untuk ditampilkan.");
 });
 
 Then("I will see button document giro and document loan", ()=>{
@@ -203,7 +220,7 @@ Then("I reset attempt failed password", async() => {
 
 Then("I will direct to Tab Other", () => {
 
-    I.waitForText("Keamanan", 20);
+    I.waitForText("Keamanan", 10);
     I.see("Ubah Password");
     I.waitForElement(otherPage.buttons.changePassword, 10);
     I.see("Lainnya");
@@ -229,8 +246,6 @@ Then("I will direct to Tab Other", () => {
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
-    I.waitForText("Keluar");
+    I.waitForText("Keluar", 20);
     I.waitForElement(otherPage.buttons.btnLogout, 10);
-
-    I.swipeDown(otherPage.buttons.deleteAccount, 500, 1000);
 });

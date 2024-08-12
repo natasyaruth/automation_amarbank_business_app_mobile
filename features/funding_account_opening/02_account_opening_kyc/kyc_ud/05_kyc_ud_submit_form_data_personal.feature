@@ -35,3 +35,4 @@ Feature: Account Opening KYC UD - Submit Data Personal
             | referencePhoneNumber | 812343455677 |
         Then I will notify my personal details has successfully submitted
         And I will direct to page domicile address
+        And I reset my state journey

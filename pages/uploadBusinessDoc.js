@@ -13,22 +13,22 @@ module.exports = {
     directToUploadProgress: "~buttonUploadProgress",
     sendRequestAccOpening: "~buttonSubmit",
     refresh: "~buttonRefresh",
-    deleteNIB: "~buttonRemoveNib",
-    deleteAkta: "~buttonRemoveCompanyCert",
-    deleteSK: "~buttonRemoveCompanyLaw",
-    deleteNPWP: "~buttonRemoveCompanyNpwp",
+    deleteNIB: "~button0",
+    deleteAkta: "~button1",
+    deleteSK: "~button2",
+    deleteNPWP: "~button3",
     directToProgressAccOpening: "~buttonNext",
-    reUpload: "~buttonReUploadDoc",
-    callCenter: "~buttonCallCenter",
+    reUpload: "~buttonUpload",
+    callCenter: {xpath: "//android.widget.TextView[@content-desc=\"buttonCallCenter\"]"},
     confirmDelete: "~buttonDelete",
     cancelDelete: "~buttonBack",
-    close: "~buttonClose",
+    close: "~buttonCloseBottomSheet",
   },
   upload: {
-    nib: "~buttonUploadNib",
-    certificate: "~buttonUploadAkta",
-    sk: "~buttonUploadSk",
-    npwp: "~buttonUploadNpwp",
+    nib: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[1]"},
+    certificate: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[2]"},
+    sk: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[3]"},
+    npwp: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[4]"},
   },
   link: {
     callCenter: "~buttonCallCenter",
@@ -36,13 +36,19 @@ module.exports = {
     directToDashboard: "~buttonToDashboard",
   },
   texts:{
-    sizeDocumentNIB: {xpath: ""},
-    sizeDocumentAkta: {xpath: ""},
-    sizeDocumentSK: {xpath: ""},
-    sizeDocumentNPWP: {xpath: ""},
+    sizeDocumentNIB: "~sizeSource0",
+    sizeDocumentAkta: "~sizeSource1",
+    sizeDocumentSK: "~sizeSource2",
+    sizeDocumentNPWP: "~sizeSource3",
   },
   messageError: {
     uploadDoc: "~textErrorUpload",
+  },
+  icons:{
+    uploadedNib: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[1]"},
+    uploadedAkta: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[2]"},
+    uploadedSK: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[3]"},
+    uploadedNpwp: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[4]"},
   },
 
   clickUploadDocument() {
@@ -83,26 +89,24 @@ module.exports = {
   },
 
   async uploadAllDocumentCompany(userID, password) {
-    await
-      uploadDao.uploadDocBusiness(userID, password, 1);
 
-    await
-      uploadDao.uploadDocBusiness(userID, password, 2);
+    const enumDoc = [1, 2, 5, 7];
 
-    await
-      uploadDao.uploadDocBusiness(userID, password, 5);
-
-    await
-      uploadDao.uploadDocBusiness(userID, password, 7);
+    for(let i=0;i<4;i++){
+      await
+        uploadDao.uploadDocBusiness(userID, password, enumDoc[i]);
+      I.wait(5);  
+    }
 
   },
 
   async uploadAllDocumentIndividualCompany(userID, password) {
     await
       uploadDao.uploadDocBusiness(userID, password, 1);
-
+      I.wait(5);  
     await
       uploadDao.uploadDocBusiness(userID, password, 2);
+      I.wait(5);  
 
   },
 
@@ -111,6 +115,8 @@ module.exports = {
 
     await
       uploadDao.uploadDocBusiness(userID, password, enumDoc);
+    
+      I.wait(2);
   },
 
   async getMessageError() {

@@ -1,17 +1,17 @@
-@kycSubmitFormDataEmploymentCV
-Feature: Account Opening KYC CV - Submit Data Employment
+@kycSubmitFormDataPersonalCV
+Feature: Account Opening KYC CV - Submit Data Personal
     In order to opening my Giro account with legality business type CV in SMB
     As a customer
-    I want to submit my data employment as part of the KYC Process
+    I want to submit my data personal as part of the KYC Process
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID      | revv04c0 |
+            | userID      | ruth07f9 |
             | password    | 1234Test |
             | userIDstg   | ruthf5d5 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | revv04c0 |
+            | userID      | ruth07f9 |
             | password    | 1234Test |
             | userIDstg   | ruthf5d5 |
             | passwordStg | 1234Test |
@@ -23,14 +23,16 @@ Feature: Account Opening KYC CV - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'cv'
         And I submit my legality type
-        And I update my last journey step to 'Data Domicile Address'
+        And I update my last journey step to 'Upload Selfie with KTP'
 
-    @C131825
-    Scenario: Submit form Data Employment successfully business type CV
-        Given I am a customer who has submitted my domicile address
-        And I see fields that available in Data Employment
-        When I fill my employment details as followings:
-            | workType     | Pegawai Swasta       |
-            | sourceIncome | Pemasukan dari Usaha |
-        And I submit my employment data
-        Then I will notify that I already fill my personal details data
+    @C131822
+    Scenario: Submit form Data Personal successfully business type CV
+        Given I am a customer want to fill my personal details
+        When I fill my personal data details as followings:
+            | lastEducation        | SMA          |
+            | motherName           | NADYA LAMUSU |
+            | referenceName        | IBU SAYA     |
+            | referencePhoneNumber | 812343455677 |
+        And I submit my personal data details
+        Then I will direct to page domicile address
+        And I reset my state journey

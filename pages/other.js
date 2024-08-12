@@ -12,4 +12,9 @@ module.exports = {
     email: "~btnToEmail",
     btnLogout: "~btnLogout",
   },
+
+  clickChangePassword(){
+    I.waitForElement(this.buttons.changePassword, 10);
+    I.click(this.buttons.changePassword);
+  },
 }

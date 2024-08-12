@@ -33,3 +33,4 @@ Feature: Account Opening KYC PT Perusahaan - Submit Data Employment
             | sourceIncome | Pemasukan dari Usaha |
         And I submit my employment data
         Then I will notify that I already fill my personal details data
+        And I reset my state journey

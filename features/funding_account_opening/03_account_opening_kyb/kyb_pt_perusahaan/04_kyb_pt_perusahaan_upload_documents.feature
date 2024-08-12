@@ -5,12 +5,12 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID      | ptpeff9b |
+            | userID      | deveb3ad |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ptpeff9b |
+            | userID      | deveb3ad |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
@@ -57,5 +57,11 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I see files that need to be uploaded for type company
         And I upload all document business for type company
         And I click button progress upload document
-        Then I will see all document business company is uploaded
-        And I will see button send request account opening
+        Then I will see all document company has been uploaded
+        And I will see button request account opening is shown
+        And I click button request account opening
+        And I will direct to page thank you and need verification of my data
+        And I click progress account opening
+        And I close page detail progress account opening
+        Then I will see card account 'on verification'
+        And I reset state upload document

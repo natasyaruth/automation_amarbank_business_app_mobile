@@ -10,7 +10,6 @@ Feature: Account Opening - Validation Auto Reject
             | email           | revvy@gmail.com         |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
-            | confirmPassword | 1234Test                |
         And I login using my user id that I recently receive through email
         And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening

@@ -16,6 +16,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -35,35 +36,13 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
         And I click activated my biometric via document
         Then I will direct to Tab Other
         And I will see toogle biometric is off
-
-    @C137180
-    Scenario: Input password then delete
-        Given I am a registered customer with following details:
-            | userID      | autocaea |
-            | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | autocaea |
-            | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
-        And I click login
-        And I will see card account 'active'
-        When I click tab document
-        And I will see pop up biometric is inactive
-        And I click direct to input password document
-        And I will see bottom sheet input password document
-        And I input password document
-        And I will see button see document is enabled
-        And I clear my password
-        Then I will see button see document is disabled
 
     @C137181
     Scenario: Mask Password
@@ -78,15 +57,16 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
         And I click direct to input password document
         And I will see bottom sheet input password document
         And I input password document
-        And I unmask my password
+        And I unmask my password document
         And I will see my password
-        And I mask my password
+        And I mask my password document
         Then I will not see my password
 
     @C137182
@@ -102,13 +82,14 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
         And I click direct to input password document
         And I will see bottom sheet input password document
         And I input password document
-        And I unmask my password
+        And I unmask my password document
         And I will see my password
 
     @C137183
@@ -124,6 +105,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -145,6 +127,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -168,6 +151,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -176,6 +160,7 @@ Feature: Document Management
         And I input wrong password document
         And I click see my document
         And I will see message error password incorrect
+        And I clear my password
         And I input wrong password document
         And I click see my document
         Then I will see message error password incorrect
@@ -194,6 +179,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -202,9 +188,11 @@ Feature: Document Management
         And I input wrong password document
         And I click see my document
         And I will see message error password incorrect
+        And I clear my password
         And I input wrong password document
         And I click see my document
         And I will see message error password incorrect
+        And I clear my password
         And I input wrong password document
         And I click see my document
         Then I will directing to page login
@@ -223,6 +211,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -255,6 +244,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab document
         And I will see pop up biometric is inactive
@@ -292,7 +282,10 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will see document page is empty
+        Then I will see button document loan
+        And I will not see button document giro
+        And I click button document loan
+        And I will see document loan is empty
 
     @C131646
     Scenario: Verify tab profile user individual active and has loan
@@ -337,7 +330,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on verification'
         When I click tab document
         And I click direct to input password document
@@ -359,7 +351,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on process'
         When I click tab document
         And I click direct to input password document
@@ -405,7 +396,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on verification'
         When I click tab document
         And I click direct to input password document
@@ -430,7 +420,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document
@@ -455,7 +444,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on process'
         When I click tab document
         And I click direct to input password document
@@ -502,7 +490,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on verification'
         When I click tab document
         And I click direct to input password document
@@ -527,7 +514,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document
@@ -567,16 +553,15 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto94a2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagdfb7 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto94a2 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagdfb7 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on verification'
         When I click tab document
         And I click direct to input password document
@@ -601,7 +586,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document
@@ -617,12 +601,12 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | ruthfdcb |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | ruthfdcb |
+            | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -642,15 +626,14 @@ Feature: Document Management
             | userID      | auto590e |
             | password    | 1234Test |
             | userIDstg   | stag4c45 |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto590e |
             | password    | 1234Test |
             | userIDstg   | stag4c45 |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'on verification'
         When I click tab document
         And I click direct to input password document
@@ -675,7 +658,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document
@@ -691,16 +673,15 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto19fc |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | assa78cf |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | auto19fc |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
+            | userIDstg   | assa78cf |
             | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document
@@ -725,7 +706,6 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I click later
         And I will see card account 'complete document'
         When I click tab document
         And I click direct to input password document

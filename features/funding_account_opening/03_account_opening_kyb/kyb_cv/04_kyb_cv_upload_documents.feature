@@ -6,12 +6,12 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         Background: User choose legality business type PT Perusahaan
             Given I am a registered customer with following details:
-                  | userID      | nata5ff1 |
+                  | userID      | deve79fc |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
               And I filling in form login with the following details:
-                  | userID      | nata5ff1 |
+                  | userID      | deve79fc |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
@@ -74,7 +74,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB'
-              And I back to dashboard
+              And I close page progress upload document
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
              Then I will see document 'NIB' is uploaded
@@ -125,7 +125,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I delete document 'NIB'
               And I will see pop up confirmation delete document
-              And I click confirm delete document 'NIB'
+              And I click confirm delete document
              Then I will see 'NIB' is empty
               And I will not see button request account opening
               And I reset state upload document
@@ -141,13 +141,13 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I delete document 'NIB'
-              And I click confirm delete document 'NIB'
+              And I click confirm delete document
               And I will not see button request account opening
              Then I will see 'NIB' is empty
               And I delete document 'Akta Perusahaan'
-              And I click confirm delete document 'Akta Perusahaan'
+              And I click confirm delete document
               And I will not see button request account opening
-              And I will see document 'Akta Perusahaan' is deleted
+              And I will see 'Akta Perusahaan' is empty
               And I will see 'SK Kemenkumham' still exists
               And I will see 'NPWP Perusahaan' still exists
               And I reset state upload document
@@ -189,7 +189,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-              And I will see all document business company is uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
@@ -200,8 +200,8 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I delete document 'SK Kemenkumham'
               And I click confirm delete document
               And I will not see button save document
-              And I will see document 'SK Kemenkumham' is deleted
-              And I upload new document business 'SK Kemenkumham'
+              And I will see 'SK Kemenkumham' is empty
+              And I upload document business 'SK Kemenkumham'
               And I click button progress upload document
              Then I will see document 'SK Kemenkumham' is uploaded
               And I will see button save document
@@ -217,12 +217,13 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-              And I will see all document business company is uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click link go to main dashboard
              Then I will see card account 'on verification'
+              And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
               And I reset state upload document
 
@@ -278,7 +279,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-              And I will see all document business company is uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
@@ -286,20 +287,31 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will direct to page detail progress account opening
               And I close page detail progress account opening
              Then I will see card account 'on verification'
+              And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
               And I reset state upload document
 
         @C136876
-        Scenario: Close in page upload document via link
+        Scenario: Close in page upload document via link - Entry journey from page upload progress
+            Given I am a customer who has submitted business address
+             When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I click link direct upload from other device
+              And I will direct to page upload document via link
+              And I close page upload document via link
+             Then I see files that need to be uploaded for type company
+              And I reset state upload document
+        
+        @C140435
+        Scenario: Close in page upload document via link - Entry journey from bottom sheet method upload
             Given I am a customer who has submitted business address
              When I choose method upload document
               And I choose upload via link
               And I will direct to page upload document via link
               And I close page upload document via link
-             Then I will see card continue to complete upload document business
-              And I can continue to page 'Upload Document Business'
-              And I see files that need to be uploaded for type company
-              And I reset state upload document
+             Then I will directing to page upload require documents for business
+              And I reset state upload document      
 
         @C136877
         Scenario: Access call center in page Request Account Opening
@@ -309,7 +321,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-              And I will see all document business company is uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
@@ -325,7 +337,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-              And I will see all document business company is uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
@@ -342,10 +354,12 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-             Then I will see all document business company is uploaded
+             Then I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click progress account opening
+              And I will direct to page detail progress account opening
               And I close page detail progress account opening
              Then I will see card account 'on verification'
+              And I reset state upload document

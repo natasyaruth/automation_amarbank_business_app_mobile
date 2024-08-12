@@ -29,6 +29,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     When I fill field '<Field>' with '1234' in form KTP
     And I clear the field '<Field>' in form KTP
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form KTP
+    And I reset my state journey
     Examples:
       | testRailTag | Field        | Field Name     |
       | @C131679    | eKtpNumber   | Nomor KTP      |
@@ -44,6 +45,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     And I submit my information identity details
     And I swipe to field '<Field>' in form KTP
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form KTP
+    And I reset my state journey
     Examples:
       | testRailTag | Field         | Field Name        |
       | @C131685    | eKtpNumber    | Nomor KTP         |
@@ -65,6 +67,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'eKtpNumber' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'eKtpNumber' in form KTP
+    And I reset my state journey
     Examples:                                                                 ❸
       | testRailTag | Value              | Message                             |
       | @C131699    | 31730aa601860007   | Nomor KTP tidak sesuai format       |
@@ -78,6 +81,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'fullName' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'fullName' in form KTP
+    And I reset my state journey
     Examples:                                                                 ❸
       | testRailTag | Value                                               | Message                                                                        |
       | @C131705    | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
@@ -90,11 +94,13 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'fullName' with 'John Doe S.Kom, M\'Kom-' in form KTP
     Then I shouldn't see message error in the below of field 'fullName' in form KTP
+    And I reset my state journey
 
   Scenario Outline: Verifying birthplace with invalid value in form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'placeOfBirth' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'placeOfBirth' in form KTP
+    And I reset my state journey
     Examples:                                                                 ❸
       | testRailTag | Value                                                          | Message                                       |
       | @C131710    | 31245                                                          | Tempat lahir tidak sesuai format              |
@@ -105,6 +111,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'address' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'address' in form KTP
+    And I reset my state journey
     Examples:                                                                 ❸
       | testRailTag | Value                                                                                                                                                   | Message                                  |
       | @C131713    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
@@ -115,11 +122,13 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'address' with 'John Doe S.Kom, M\'Kom- 11233' in form KTP
     Then I shouldn't see message error in the below of field 'address' in form KTP
+    And I reset my state journey
 
   Scenario Outline: Verifying rt with invalid value in form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'rt' with '<Value>' in form KTP
     Then I should see message error '<Message>' in the below of field 'rt' in form KTP
+    And I reset my state journey
     Examples:                                                                 ❸
       | testRailTag | Value | Message                |
       | @C131716    | ab    | RT tidak sesuai format |
@@ -131,6 +140,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'rt' with '-' in form KTP
     Then I shouldn't see message error in the below of field 'rt' in form KTP
+    And I reset my state journey
 
   Scenario Outline: Verifying rw with invalid value in form KTP
     Given I am a customer want to fill my information identity details
@@ -147,6 +157,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     Given I am a customer want to fill my information identity details
     When I fill field 'rt' with '-' in form KTP
     Then I shouldn't see message error in the below of field 'rw' in form KTP
+    And I reset my state journey
 
   @C135996
   Scenario: Submit form KTP with date of birth more than 17 years old
@@ -171,6 +182,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     And I close page rejected account
     And I will see card continue to data personal
     And I can continue to page 'Data KTP'
+    And I reset my state journey
 
   @C131724
   Scenario: Submit form KTP successfully business type Individual
@@ -193,3 +205,4 @@ Feature: Account Opening KYC Individual - Submit Form KTP
     And I submit my information identity details
     Then I will notify my information identity details has successfully submitted
     And I will direct to page capture selfie
+    And I reset my state journey

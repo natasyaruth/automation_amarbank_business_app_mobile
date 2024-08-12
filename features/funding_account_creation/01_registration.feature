@@ -19,7 +19,7 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Revvy                   |
-      | email           | revv2345@gmail.com      |
+      | email           | revvtest31@gmail.com    |
       | mobileNumber    | 8999677540              |
       | password        | 1234Test                |
       | confirmPassword | 1234Test                |

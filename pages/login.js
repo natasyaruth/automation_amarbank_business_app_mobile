@@ -50,15 +50,16 @@ module.exports = {
       if (this.fields[key] === undefined) {
         return;
       }
+      I.waitForElement(this.fields[key], 20);
       I.click(this.fields[key]);
-      I.seeElement(this.fields[key]);
+      I.wait(1);
       I.setText(this.fields[key], accountInformation[key]);
       I.hideDeviceKeyboard();
     });
   },
 
   fillFieldLogin(fieldName, txtValue) {
-    I.seeElement(this.fields[fieldName]);
+    I.waitForElement(this.fields[fieldName], 10);
     I.click(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
     I.hideDeviceKeyboard();
@@ -68,7 +69,7 @@ module.exports = {
     if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
       throw new Error('Field ${fieldName} is not found');
     }
-    I.seeElement(this.messageErrorFields[fieldName]);
+    I.waitForElement(this.messageErrorFields[fieldName], 10);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 

@@ -11,7 +11,7 @@ module.exports = {
         I.amBearerAuthenticated(secret(bearerToken))
 
         const responseState = await I.sendPostRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/account-creation/set?step=" + stateNumber));
-        I.seeResponseCodeIsSuccessful();
+        I.wait(2);
 
         return {
             status: responseState.status,
@@ -25,19 +25,19 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken))
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs"));
+        const enumDoc = [1, 2, 5, 7];
+        let responseDelete;
 
-        I.seeResponseCodeIsSuccessful();
-
-        return {
-            status: responseDelete.status,
-            data: responseDelete.data,
-        };
+        for(let i=0;i<4;i++){
+            responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc[i]));
+            I.wait(3);
+        }
+        
     },
 
     async deleteDeviceId(deviceId) {
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/device/smb-users/" + deviceId));
+        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/" + deviceId));
 
         I.seeResponseCodeIsSuccessful();
 
@@ -56,6 +56,25 @@ module.exports = {
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
             password: password,
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            bearerToken: responseLogin.data.jwt.access_token
+        }
+    },
+
+    async resetDeviceId(userID, password, deviceID) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
+            userID: userID,
+            password: password,
+            deviceID: deviceID
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -102,6 +121,13 @@ module.exports = {
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueCompleteData();
+    },
+
+    reloadPageAfterResetStateInvitee() {
+        headerPage.clickButtonBack();
+        I.waitForElement(onboardingAccOpeningPage.buttons.next, 20);
+        I.wait(1);
+        onboardingAccOpeningPage.continueToKYC();
     },
 
     reloadPageUserInvitedAfterResetState() {
