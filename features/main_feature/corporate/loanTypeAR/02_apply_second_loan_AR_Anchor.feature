@@ -124,8 +124,9 @@ Scenario: User apply second loan AR anchor type with flagging Corporate UD
     And user click button Lanjut Isi Data Supplier 
     #section select Anchor    
     And user fill search anchor "PT Tirta Investama"
-    And user select result of search
-    And user select the date cooperating        
+    And click button Pilih Supplier Ini   
+    And user select year cooperating  "2020"   
+    And usr click Pilih      
     And user tick on Terms & condition
     And user click button Lanjut Upload Dokumen 
     And user validate description prepare the following documents 'SecondCorpARPT.Perorangan' 
@@ -171,8 +172,9 @@ Scenario: Checking Credit Analyst Process
     And user click button Lanjut Isi Data Supplier 
     #section select Anchor
     And user fill search anchor "PT Tirta Investama"
-    And user select result of search
-    And user select the date cooperating        
+    And click button Pilih Supplier Ini   
+    And user select year cooperating  "2020"   
+    And usr click Pilih         
     And user click button Selanjutnya   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
@@ -347,7 +349,7 @@ Scenario: user upload file more than 15MB
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi
-  And user upload multiple document more than 15 MB "3contohInvoicewithSupplier"  
+  And user upload multiple document more than 15 MB "3contohInvoicewithBuyer"  
   Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
   
 

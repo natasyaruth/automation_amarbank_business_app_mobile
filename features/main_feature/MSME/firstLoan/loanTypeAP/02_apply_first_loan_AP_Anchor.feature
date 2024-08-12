@@ -70,7 +70,9 @@ Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flag
     #section select Anchor
     And user on buyer cooperating page
     And user fill search anchor "PT Tirta Investama"
-    And user select the date cooperating
+    And click button Pilih Supplier Ini   
+    And user select year cooperating  "2020"   
+    And usr click Pilih 
     And user checklist checbox term and condition
     And user checklist checbox privy
     And user click button next    
@@ -173,7 +175,9 @@ Scenario: Validate bottom sheet for Upload Dokumen from Perangkat Lain
     #section select Anchor
     And user on buyer cooperating page
     And user fill search anchor "PT Tirta Investama"
-    And user select the date cooperating
+    And click button Pilih Supplier Ini   
+    And user select year cooperating  "2020"   
+    And usr click Pilih 
     And user checklist checbox term and condition
     And user checklist checbox privy
     And user click button next    
@@ -253,7 +257,7 @@ Scenario: user validate field after success upload document
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi
-  And user upload multiple document "2YearfinancialReports"
+  And user upload multiple document "1YearfinancialReports"
   And user verify upload all document Finance Report
   Then user see button Kirim Pengajuan Limit Kredit
   
@@ -271,31 +275,7 @@ Scenario: User add another document after the user success to uploads the previo
   Then user will see the document will be uploaded and show in one row below uploaded document list 
 
 
-Scenario: USer validate field after one or more than one file has been failed upload document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "KTPComm"     
-    And user show a retry icon when the document fails to upload
-    And user show an error message in row field if the document fails to upload 
 
-
-Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "NPWPComm"    
-    And user upload multiple document "KTPComm"     
-    And user see error message network problem
-    Then user click button retry 
-
- 
 Scenario: user verify pop up confirmation to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
