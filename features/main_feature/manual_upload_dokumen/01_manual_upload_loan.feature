@@ -84,3 +84,44 @@ Scenario: Delete document in every list uploaded document when process deleting 
   And user will see confirmation Hapus Dokumen
   And user click Hapus button
   Then user see error message "Sedang terkendala server, mohon coba beberapa saat lagi."
+  And user stil can see button Kirim Pengajuan Limit Kredit
+
+
+Scenario: Upload multiple document and one of document is failed uploading because internet lost connection
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document "KTPComm"     
+    And user failed to upload dokumen
+    Then user show a retry icon when the document fails to upload
+    And user show an error message "Koneksi bermasalah. Periksa jaringan Anda dan coba lagi"
+    And user still can see button Kirim Pengajuan Limit Kredit
+
+
+Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document "NPWPComm"    
+    And user upload multiple document "KTPComm" 
+    And user failed to upload file NPWP
+    
+    
+
+Scenario: User validate button Kirim Pengajuan Limit Kredit disable after reupload failed dokumen
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document "3contohInvoicewithSupplier"
+    And user see the file queued for upload
+    Then user see progress bar File sedang diupload
+    And user see progress bar File menunggu diupload
