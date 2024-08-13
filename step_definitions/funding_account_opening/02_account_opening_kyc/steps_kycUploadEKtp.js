@@ -232,6 +232,9 @@ Then("I will directing to page submit form KTP", async () => {
     I.see("Provinsi");
     I.waitForElement(formKtpPage.dropDownsSearch.province, 10);
 
+    I.see("Provinsi");
+    I.waitForElement(formKtpPage.dropDownsSearch.province, 10);
+
     I.see("Agama");
     I.waitForElement(formKtpPage.dropDowns.religion, 10);
 

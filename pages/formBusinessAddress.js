@@ -57,6 +57,7 @@ module.exports = {
         ){
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
+        I.wait(2);
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);

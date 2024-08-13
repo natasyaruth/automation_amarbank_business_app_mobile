@@ -35,9 +35,26 @@ module.exports = {
         
     },
 
+    async deletePartner(businessId) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io//api/v1/user/business/partners/all/"+businessId);
+
+        I.seeResponseCodeIsSuccessful();
+
+        return{
+            status: responseDelete.status,
+            data: responseDelete.data
+        }
+        
+    },
+
     async deleteDeviceId(deviceId) {
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/" + deviceId));
+        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/"+deviceId));
 
         I.seeResponseCodeIsSuccessful();
 

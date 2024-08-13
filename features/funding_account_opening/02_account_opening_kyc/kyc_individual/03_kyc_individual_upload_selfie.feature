@@ -30,9 +30,10 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'
     When I click take my photo selfie
-    And I will direct to page take selfie
-    And I take picture selfie for matching the face
-    And I will direct to page preview selfie picture
+    And I will direct to page take selfie picture KYC
+    And I take selfie picture
+    And I will direct to page preview selfie picture KYC
     And I submit my selfie photo
+    Then I will notify my photo selfie has successfully submitted
     And I will direct to page take a selfie with KTP
     And I reset my state journey
