@@ -5,6 +5,7 @@ module.exports = {
     directToTakePhoto: "~buttonTakePhoto",
     takePhoto: "~buttonTakePhoto",
     reTakePhoto: "~buttonRetake",
+    upload: "~buttonUpload",
   },
   text: {
     infoType: "~textAccountFormation",
@@ -18,6 +19,16 @@ module.exports = {
   reTakePhoto() {
     I.waitForElement(this.buttons.reTakePhoto, 10);
     I.click(this.buttons.reTakePhoto);
+  },
+
+  takeSelfie(){
+    I.waitForElement(this.buttons.takePhoto, 10);
+    I.click(this.buttons.takePhoto);
+  },
+
+  uploadSelfie(){
+    I.waitForElement(this.buttons.upload, 10);
+    I.click(this.buttons.upload);
   },
   
   async getInformationAccount(){

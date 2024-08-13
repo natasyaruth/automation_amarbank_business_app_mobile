@@ -86,6 +86,7 @@ module.exports = {
   },
 
   saveListDirectors() {
+    this.swipeToButtonSaveListDirectors();
     I.waitForElement(this.buttons.saveListDirectors, 10);
     I.click(this.buttons.saveListDirectors);
   },

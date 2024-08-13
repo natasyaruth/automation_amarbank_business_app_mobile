@@ -35,9 +35,34 @@ module.exports = {
         
     },
 
+    async deletePartner(userID, password, emailPartner) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken))
+
+        const currentDate = new Date();
+        const timeStamps = currentDate.getTime();
+        const formattedTime = timeStamps.toString();
+
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners", {
+            userId: userID,
+            email: emailPartner,
+            deletedAt: formattedTime,
+        });
+
+        I.seeResponseCodeIsSuccessful();
+
+        return{
+            status: responseDelete.status,
+            data: responseDelete.data
+        }
+        
+    },
+
     async deleteDeviceId(deviceId) {
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/" + deviceId));
+        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/"+deviceId));
 
         I.seeResponseCodeIsSuccessful();
 

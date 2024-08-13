@@ -3,6 +3,7 @@ const { I,
     profilePage,
     otherPage,
     globalVariable,
+    getDataDao,
     resetStateDao,
 } = inject();
 
@@ -218,15 +219,26 @@ Then("I reset attempt failed password", async() => {
         resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
-Then("I will direct to Tab Other", () => {
+Then("I will direct to Tab Other", async () => {
+
+    const hasPin = (await getDataDao.hasCreatePin(globalVariable.login.userID, globalVariable.login.password)).hasPin;
 
     I.waitForText("Keamanan", 10);
     I.see("Ubah Password");
     I.waitForElement(otherPage.buttons.changePassword, 10);
     I.see("Lainnya");
 
-    I.see("Ubah PIN");
-    I.waitForElement(otherPage.buttons.changePin, 10);
+    if(
+        hasPin === true
+    ){
+        I.see("Ubah PIN");
+        I.waitForElement(otherPage.buttons.changePin, 10);
+
+    } else{
+
+        I.see("Buat PIN");
+        I.waitForElement(otherPage.buttons.changePin, 10);
+    }
 
     I.see("Hapus Akun");
     I.waitForElement(otherPage.buttons.deleteAccount, 10);

@@ -45,7 +45,6 @@ module.exports = {
   },
 
   async getMessageErrorFields(field){
-    I.wait(1);
     I.waitForElement(this.msgErrorFields[field], 10);
     return await I.grabTextFrom(this.msgErrorFields[field]);
   },
@@ -92,12 +91,12 @@ module.exports = {
 
   clearNewPassword(){
     I.waitForElement(this.fields.newPassword, 10);
-    I.clearField(this.fields.newPassword, newPassword);
+    I.clearField(this.fields.newPassword);
   },
 
   clearConfirmPassword(){
     I.waitForElement(this.fields.confirmPassword, 10);
-    I.clearField(this.fields.confirmPassword, confirmPassword);
+    I.clearField(this.fields.confirmPassword);
   },
 
   clickChangePassword(){

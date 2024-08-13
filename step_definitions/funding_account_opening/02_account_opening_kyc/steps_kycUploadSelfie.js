@@ -9,36 +9,64 @@ const {
 
 Given("I am a customer who has submitted my information identity details", () => { });
 
-Given("my information about my account opening is {string}", async (expectedInfo)=>{
+Given("my information about my account opening is {string}", async (expectedInfo) => {
     I.waitForText("Ambil Foto Diri Anda", 20);
     let actualInfo = await uploadSelfiePage.getInformationAccount();
     I.assertEqual(actualInfo, expectedInfo);
 });
 
-When("I click take my photo selfie", ()=>{
+When("I click take my photo selfie", () => {
     uploadSelfiePage.directToTakePhoto();
 });
 
+When("I take selfie picture", () => {
+    I.wait(3);
+    uploadSelfiePage.takeSelfie();
+});
+
 When("I upload my selfie photo", async () => {
-    await 
+    await
         uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
 });
 
-When("I retake picture selfie", ()=>{
+When("I retake picture selfie", () => {
     uploadSelfiePage.reTakePhoto();
 });
 
 When("I upload invited user selfie photo", async () => {
     I.wait(7);
 
-    await 
+    await
         uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
-        
+
     headerPage.clickButtonBack();
     onboardingAccOpeningPage.chooseLater()
 });
 
-Then("I will notify my photo selfie has successfully submitted", () =>{
+Then("I will direct to page preview selfie picture KYC", () => {
+    I.waitForText("Foto Selfie", 10);
+    I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
+
+    I.waitForText("Ulangi", 10);
+    I.waitForElement(uploadSelfiePage.buttons.reTakePhoto, 10);
+
+    I.waitForText("Kirim Foto", 10);
+    I.waitForElement(uploadSelfiePage.buttons.upload, 10);
+
+    I.dontSee("Ambil Foto Selfie");
+    I.dontSeeElement(uploadSelfiePage.buttons.takePhoto);
+});
+
+Then("I will direct to page take selfie picture KYC", () => {
+    I.waitForText("Foto Selfie", 10);
+    I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
+
+    I.waitForElement(uploadSelfiePage.buttons.takePhoto, 10);
+    I.dontSee(uploadSelfiePage.buttons.reTakePhoto);
+    I.dontSee("Ulangi");
+});
+
+Then("I will notify my photo selfie has successfully submitted", () => {
     I.waitForText("Foto diri berhasil dikirim", 30);
 });
 
@@ -76,7 +104,7 @@ Then("I will directing to page submit Data Personal", async () => {
 
     I.see("Simpan Data Diri");
     I.waitForElement(formPersonalDataPage.buttons.savePersonalData, 10);
-    
+
 });
 
 Then("I will directing to page submit Data Personal individual", async () => {
@@ -85,7 +113,6 @@ Then("I will directing to page submit Data Personal individual", async () => {
     I.see("Pendidikan Terakhir")
     I.see("Pilih pendidikan terakhir");
     I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
-    I.dontSeeElement(formPersonalDataPage.dropDowns.purposeAccount);
 
     I.see("Nama Ibu Kandung");
     I.see("Tulis nama ibu kandung");

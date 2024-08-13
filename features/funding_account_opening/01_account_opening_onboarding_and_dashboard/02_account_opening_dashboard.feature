@@ -16,6 +16,7 @@ Feature: Account Opening Main Dashboard
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
@@ -28,7 +29,6 @@ Feature: Account Opening Main Dashboard
         And I submit my legality type
         And I see page 'Upload eKTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
@@ -40,7 +40,6 @@ Feature: Account Opening Main Dashboard
         And I upload my eKTP photo
         And I see page 'Data KTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
@@ -52,7 +51,6 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
@@ -64,7 +62,6 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Upload Selfie'
         And I see page 'Upload Selfie with KTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
@@ -76,7 +73,6 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Upload Selfie with KTP'
         And I see page 'Data Personal'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'  
 
@@ -88,7 +84,6 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
@@ -100,7 +95,6 @@ Feature: Account Opening Main Dashboard
         And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
@@ -113,7 +107,6 @@ Feature: Account Opening Main Dashboard
         And I continue to process KYB
         And I see page 'Data Business Profile'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Continue Process KYB'
 
@@ -129,13 +122,13 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Business Owner'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Business Owner'
 
@@ -151,13 +144,13 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Director List'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
@@ -173,6 +166,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -180,7 +174,6 @@ Feature: Account Opening Main Dashboard
         And I submit business director
         And I see page 'Data Business Address'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Business Address'
 
@@ -196,6 +189,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -209,10 +203,12 @@ Feature: Account Opening Main Dashboard
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
-        And I see page 'Upload Document Business'
+        And I see page 'Method Upload Document'
         And I close page upload document
         Then I will see card continue to complete upload document business
         And I can continue to page 'Upload Document Business'
@@ -229,6 +225,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -239,7 +236,7 @@ Feature: Account Opening Main Dashboard
             | email    | bimo@trash-mail.com |
             | nik      | 3166021710820021    |
         And I save data director
-        And I submit business director
+        And I submit business director list
         And I confirm my director lists
         And I fill my business address as followings:
             | address  | Jl. Gambir Belok kanan No. 23 |
@@ -249,10 +246,12 @@ Feature: Account Opening Main Dashboard
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
-        And I see page 'Upload Document Business'
+        And I see page 'Method Upload Document'
         And I close page upload document
         Then I will see card continue to complete upload document business and registration director list
         And I can continue to page 'Registration Director'

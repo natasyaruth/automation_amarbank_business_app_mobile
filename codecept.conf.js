@@ -258,6 +258,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadEKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadSelfie.js",
+      "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadSelfieWithKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDataPersonal.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDomicileAddress.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDataEmployment.js",

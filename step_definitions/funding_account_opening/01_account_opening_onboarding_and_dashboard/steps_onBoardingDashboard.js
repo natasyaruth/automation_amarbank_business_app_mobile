@@ -97,10 +97,7 @@ Then("I can choose type account giro", () => {
 
 Then("I will directing to page capture eKTP with information {string}", async (expectedInfo) => {
     let actualInfo = await uploadKtpPage.getTextInformationType();
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-
+    
     I.assertEqual(actualInfo, expectedInfo);
 });
 
@@ -150,14 +147,20 @@ Then("I can continue to page {string}", async (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
     globalVariable.dashboard.lastPage = pageName;
 
-    if (pageName !== "Registration Director") {
+    if (pageName === "Registration Director") {
+        await
+            resetStateDao.deletePartner(globalVariable.login.userID, globalVariable.login.password, globalVariable.formDirector.email);
+
+        await
+            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    } else{
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     }
 });
 
 When("I close page upload document", () => {
-    onboardingAccOpeningPage.closePageUploadDoc();
+    headerPage.closePage();
 });
 
 When("I continue to register my KYC data", () => {
@@ -192,37 +195,33 @@ Then("I will see card continue to complete upload document business and registra
 });
 
 Then("I can see details registration director", async () => {
-    I.see("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.");
-    I.seeElement(onboardingAccOpeningPage.buttons.refresh);
+    I.waitForText("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
 
     onboardingAccOpeningPage.openDetailRegistrationDirector();
 
     const actualStatus = await onboardingAccOpeningPage.getStatus();
-    const actualProgress = await onboardingAccOpeningPage.getProgress();
+    const actualProgress = (await onboardingAccOpeningPage.getProgress()).replace(/\s+/g, '');
     const actualTextKtp = await onboardingAccOpeningPage.getTextDetail("ktp");
     const actualTextVerif = await onboardingAccOpeningPage.getTextDetail("verification");
     const actualTextSelfie = await onboardingAccOpeningPage.getTextDetail("selfie");
+    const actualTextSelfieWithKtp = await onboardingAccOpeningPage.getTextDetail("selfieKtp");
 
     I.see("Belum melakukan proses sebagai berikut:");
     I.assertEqual(actualStatus, "Belum registrasi");
-    I.assertEqual(actualProgress, "0/3");
+    I.assertEqual(actualProgress, "0/4");
     I.assertEqual(actualTextKtp, "Foto eKTP");
     I.assertEqual(actualTextVerif, "Verifikasi Data eKTP");
     I.assertEqual(actualTextSelfie, "Selfie");
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.assertEqual(actualTextSelfieWithKtp, "Selfie dengan KTP");
 });
 
 Then("I will notify that my personal data details needs to be verified in main dashboard", () => {
     I.waitForText("Perbankan Giro", 10);
     I.see("Menunggu verifikasi data selesai");
-    I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
-
-    await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
 });
 
 Then("I will see card continue to complete registration user invited", () => {
@@ -245,7 +244,7 @@ When("I update my last journey step to {string}", async (stepName) => {
     await
         onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
 
-    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.userID)).data;
+    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
 
     if (
         isInvitee === false
