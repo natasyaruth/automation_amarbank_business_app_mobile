@@ -1,4 +1,4 @@
-const { I, globalVariable} = inject();
+const { I, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
@@ -10,7 +10,7 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseLogin = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/login", secret({
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
             password: password,
         }));
@@ -22,13 +22,13 @@ module.exports = {
         }
     },
 
-    async getLastStepJourney(userID, password){
-        
+    async getLastStepJourney(userID, password) {
+
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -38,13 +38,13 @@ module.exports = {
 
     },
 
-    async isPartner(userID, password){
+    async isPartner(userID, password) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseLogin = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/login", secret({
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
             password: password,
         }));
@@ -56,13 +56,13 @@ module.exports = {
         }
     },
 
-    async hasCreatePin(userID, password){
+    async hasCreatePin(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseProfile = await I.sendGetRequest(secret("https://"+env+"-smb-user.otoku.io/api/v1/user/profile"));
+        const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
         return {
@@ -71,22 +71,38 @@ module.exports = {
         };
     },
 
-    async getBusinessCode(email){
+    async getBusinessCode(email) {
 
         I.haveRequestHeaders(secret({
-          Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         }));
-    
-        const response = await I.sendGetRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/find-codes/"+email);
-    
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/find-codes/" + email);
+
         I.seeResponseCodeIsSuccessful();
-    
+
         const lastIndex = response.data.length - 1;
-    
+
         return {
             status: response.status,
             businessCode: response.data[lastIndex]
         }
-      },
+    },
+
+    async getBusinessId(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/details");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            id: response.data.businessId
+        }
+    },
 
 }

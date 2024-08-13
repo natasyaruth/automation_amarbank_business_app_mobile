@@ -35,21 +35,13 @@ module.exports = {
         
     },
 
-    async deletePartner(userID, password, emailPartner) {
+    async deletePartner(businessId) {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-
-        I.amBearerAuthenticated(secret(bearerToken))
-
-        const currentDate = new Date();
-        const timeStamps = currentDate.getTime();
-        const formattedTime = timeStamps.toString();
-
-        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners", {
-            userId: userID,
-            email: emailPartner,
-            deletedAt: formattedTime,
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
+
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io//api/v1/user/business/partners/all/"+businessId);
 
         I.seeResponseCodeIsSuccessful();
 

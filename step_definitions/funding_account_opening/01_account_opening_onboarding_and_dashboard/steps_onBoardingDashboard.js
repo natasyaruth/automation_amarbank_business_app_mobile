@@ -148,12 +148,15 @@ Then("I can continue to page {string}", async (pageName) => {
     globalVariable.dashboard.lastPage = pageName;
 
     if (pageName === "Registration Director") {
+        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
+        
         await
-            resetStateDao.deletePartner(globalVariable.login.userID, globalVariable.login.password, globalVariable.formDirector.email);
+            resetStateDao.deletePartner(businessID);
 
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     } else{
+        
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     }
