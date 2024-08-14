@@ -40,8 +40,8 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then The e-Statement downloaded
         And Receive notification email
 
@@ -81,8 +81,8 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then Alert bar success will appear
 
     @C131981
@@ -103,8 +103,8 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then Alert bar failed will appear
 
     @C141433
@@ -125,8 +125,8 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
         
     @C141434
@@ -147,12 +147,12 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
         And I click button "try again"
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
     
     @C141435
@@ -173,16 +173,16 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
+        And I input invalid password "Sala1234" on field password
         And I click button "Next"
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
         And I click button "try again"
-        And I input invalid password on field password
+        And I input invalid password "Sala1234" on field password
         And I click button "Next"
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
         And I click button "try again"
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'understandButton'
         And I direct to login page
 
@@ -204,7 +204,7 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I click button "Next"
+        And I click button Next
         Then I should see notification 'Password wajib diisi' in the below of field 'password'
         
     @C141437
