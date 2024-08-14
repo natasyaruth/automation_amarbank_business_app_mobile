@@ -15,7 +15,10 @@ module.exports = {
         yearSelected: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[2]" },
         yearNext: { xpath: "(//android.widget.TextView[@content-desc='textYear'])[3]" },
         listTransferOut: { xpath: "(//android.view.View[@content-desc='itemHistory'])[2]" },
-        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]" }
+        listTransferIn: { xpath: "(//android.view.View[@content-desc='itemHistory'])[1]" },
+        eStatementFieldPass:"~textFieldPassword",
+        eStatementFieldErrorPass:"~textErrorPassword",
+        
     },
     buttons: {
         historyBtn: "~btnHistory",
@@ -34,6 +37,10 @@ module.exports = {
         btnCloseeStatement: "~buttonClose",
         detailHistory: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[1]'},
         detailHistorySecond: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[2]'},
+        buttonNexteStatement : "~buttonNext",
+        buttonEyeeStatement : "~iconShowHidePassword",
+        buttonTryeStatement : "~buttonTry",
+        buttonUnderstandeStatement : "~buttonUnderstand",
     },
     textFields: {
         textViewHistoryTrxPage: { xpath: '//android.widget.TextView[contains(@text, "Riwayat Transaksi")]' },
@@ -107,6 +114,11 @@ module.exports = {
         inTransaction: "~buttonTabTransferIn",
         outTransaction: "~buttonTabTransferOut",
     },
+
+    messageErrorFields: {
+        password: "~textErrorPassword",
+      },
+
     viewUserName() {
         I.wait(7);
         I.seeElement(this.fields.userField);
@@ -125,19 +137,76 @@ module.exports = {
         I.seeElement(this.buttons.historyBtn);
     },
 
+    seePasswordPage(){
+        I.waitForText("Silakan masukkan password Amar Bank Bisnis kamu", 10);
+        I.seeElement(this.buttons.buttonNexteStatement);
+        I.seeElement(this.buttons.buttonEyeeStatement);
+    },
+
+    fillPasswordeStatement(password) {
+        I.waitForElement(this.fields.eStatementFieldPass, 10);
+        I.click(this.fields.eStatementFieldPass);
+        I.fillField(this.fields.eStatementFieldPass, password);
+    },
+
+    // fillInvalidPasswordeStatement() {
+    //     I.wait(this.fields.eStatementFieldPass, 10);
+    //     I.click(this.fields.eStatementFieldPass);
+    //     I.fillField(this.fields.eStatementFieldPass,"Kiwi1234");
+    // },
+
+    seePasswordeStatement() {
+        I.waitForText("Test1234", 10);
+    },
+
+    clickBtnNexteStatement() {
+        I.waitForElement(this.buttons.buttonNexteStatement, 10);
+        I.click(this.buttons.buttonNexteStatement);
+    },
+
+    clickBtnTryAgaineStatement() {
+        I.waitForElement(this.buttons.buttonTryeStatement,10);
+        I.click(this.buttons.buttonTryeStatement);
+    },
+
+    clickBtnEyeeStatement() {
+        I.waitForElement(this.buttons.buttonEyeeStatement, 10);
+        I.click(this.buttons.buttonEyeeStatement);
+    },
+
     viewButtonDownloadEStatement() {
-        I.wait(2);
+        I.waitForElement(10);
         I.seeElement(this.buttons.btneStatementDownload);
     },
 
     clickBtnDownloadeStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btneStatementDownload, 10);
         I.click(this.buttons.btneStatementDownload);
     },
 
     clickBtnLatesteStatement() {
-        I.wait(2);
+        I.waitForElement(this.buttons.btneStatementLatest, 10);
         I.click(this.buttons.btneStatementLatest);
+    },
+
+    clickBtnNexteStatement() {
+        I.waitForElement(this.buttons.buttonNexteStatement, 10);
+        I.click(this.buttons.buttonNexteStatement);
+    },
+
+    clickBtnTryeStatement() {
+        I.waitForElement(this.buttons.buttonTryeStatement, 10);
+        I.click(this.buttons.buttonTryeStatement);
+    },
+
+    clickBtnUnderstandeStatement() {
+        I.waitForElement(this.buttons.buttonUnderstandeStatement, 10);
+        I.click(this.buttons.buttonUnderstandeStatement);
+    },
+
+    clickBtnEyeeStatement() {
+        I.waitForElement(this.buttons.buttonEyeeStatement, 10);
+        I.click(this.buttons.buttonEyeeStatement);
     },
 
     validationeStatementNotExist() {
@@ -393,6 +462,15 @@ module.exports = {
         I.waitForElement(this.fields.endDateField, 10);
         I.clearField(this.fields.endDateField);
     },
+
+    async getMessageErrorFieldeStatementPassword(fieldName) {
+        if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
+          throw new Error('Field ${fieldName} is not found');
+        }
+        I.waitForElement(this.messageErrorFields[fieldName], 10);
+        return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+      },
+
     async getTransactionNameBucketList(){
         I.waitForElement(this.textFields.nameBucketlist, 10);
         return await I.grabTextFrom(this.textFields.nameBucketlist);
