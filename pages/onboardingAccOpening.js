@@ -27,7 +27,7 @@ module.exports = {
     invitedDirectors: "~btnOpenInvited",
     completeDoc: "~btnOpenDoc",
     refresh: "~btnRefresh",
-    cardInvited: "~btnCard",
+    cardInvited: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]" },
     giroAccountCorporate: "~bbBtnOpenGiro",
     giroAccountMsme: "~smeBtnOpenGiro",
     openAllTransactionApproval: "~showAllBtn",
@@ -48,11 +48,12 @@ module.exports = {
     descCardAccOpening: "~txtDescCard",
     invitedName: "~txtInvitedName",
     email: "~txtEmailName",
-    progress: "~txtProgress",
-    status: "~",
-    ktp: "~txtPhoto",
-    verification: "~txtVerifData",
-    selfie: "~txtSelfie",
+    progress: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[3]" },
+    status: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[4]" },
+    ktp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[6]" },
+    verification: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[7]" },
+    selfie: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[8]" },
+    selfieKtp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[9]" },
     adminFeeSme: "~smeAdminFee",
     adminFeeCorporate: "~bbAdminFee",
     minBalanceSme: "~smeMinBalance",
@@ -132,7 +133,7 @@ module.exports = {
       case "Upload Selfie with KTP":
         I.waitForText("Ambil Foto Diri Anda dengan KTP", 10);
         I.waitForElement(uploadSelfieKtpPage.buttons.directToTakePhoto, 10);
-        break;  
+        break;
       case "Data Personal":
         I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
         I.wait(3);
@@ -168,8 +169,11 @@ module.exports = {
       case "Upload Document Business":
         I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
         break;
+      case "Method Upload Document":
+        I.waitForElement(uploadBusinessDocPage.buttons.chooseMethodUpload, 10);
+        break;
       case "Registration Director":
-        I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        I.waitForElement(this.buttons.cardInvited, 10);
         break;
       case "Detail Progress Account Opening":
         I.waitForText("Pengajuanmu Sedang Diproses Tim Kami", 10);
@@ -181,6 +185,12 @@ module.exports = {
 
   async updateStep(stepName, userID, password) {
     switch (stepName) {
+      case "Choose Legality Type" || "Login Invitee":
+        await resetStateDao.resetStateFlow(2, userID, password);
+        break;
+      case "Login Invitee":
+        await resetStateDao.resetStateFlow(2, userID, password);
+        break;
       case "Upload eKTP":
         await resetStateDao.resetStateFlow(3, userID, password);
         break;
@@ -264,18 +274,22 @@ module.exports = {
   },
 
   openDetailRegistrationDirector() {
+    I.waitForElement(this.buttons.cardInvited, 10);
     I.click(this.buttons.cardInvited);
   },
 
   async getStatus() {
+    I.waitForElement(this.texts.status, 10);
     return await I.grabTextFrom(this.texts.status);
   },
 
   async getProgress() {
+    I.waitForElement(this.texts.progress, 10);
     return await I.grabTextFrom(this.texts.progress);
   },
 
   async getTextDetail(idText) {
+    I.waitForElement(this.texts[idText], 10);
     return await I.grabTextFrom(this.texts[idText]);
   },
 

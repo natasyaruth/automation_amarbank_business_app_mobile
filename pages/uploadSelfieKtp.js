@@ -3,7 +3,7 @@ const { I } = inject();
 module.exports = {
 
     buttons: {
-      directToTakePhoto: "~",
+      directToTakePhoto: "~buttonTakePhoto",
       takePhoto: "~buttonTakePhoto",
       reTakePhoto: "~buttonRetake",
       upload: "~buttonUpload",

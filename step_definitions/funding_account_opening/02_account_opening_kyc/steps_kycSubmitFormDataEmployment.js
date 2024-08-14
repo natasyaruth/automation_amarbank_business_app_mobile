@@ -184,7 +184,7 @@ Then("I will notify that my personal data details needs to be verified first", (
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.dontSee(headerPage.buttons.back);
 
-    I.see("Kami akan melakukan verifikasi ulang data Anda dalam waktu kurang-lebih 2 hari kerja.");
+    I.see("Kami akan melakukan verifikasi data Anda dalam waktu kurang-lebih 2 hari kerja.");
     I.see("Lanjut ke Dashboard");
     formEmploymentDataPage.continueToDashboard();
 });

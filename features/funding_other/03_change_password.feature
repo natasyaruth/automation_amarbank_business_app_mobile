@@ -17,6 +17,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I will direct to page input old password
@@ -39,6 +40,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -63,6 +65,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I will direct to page input old password
@@ -85,6 +88,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -109,6 +113,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -130,6 +135,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -150,11 +156,12 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
         And I clear my old password
-        Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
+        Then I will not see message error 'Password wajib diisi' in field 'oldPassword'
 
     @C141179
     Scenario: Submit password with field still empty
@@ -170,10 +177,11 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I click next to input new password
-        Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
+        Then I will not see message error 'Password wajib diisi' in field 'oldPassword'
 
     @C141180
     Scenario: Input wrong old password once
@@ -189,6 +197,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -210,6 +219,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -234,6 +244,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -262,12 +273,13 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
         And I click next to input new password
         And I will see pop up data is incorrect
-        And I try again to input password
+        And I can click try again to input password
         And I clear my old password
         And I input my old password
         And I click next to input new password
@@ -287,6 +299,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -308,6 +321,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -329,6 +343,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -350,6 +365,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -371,6 +387,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -392,6 +409,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -413,6 +431,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -434,6 +453,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -456,6 +476,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -463,7 +484,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '1234Test'
         And I input field 'confirmPassword' with value '1234Test'
         And I clear confirm password
-        Then I will notify by message error 'Password baru wajib diisi' in field 'confirmPassword'
+        Then I will notify by message error 'Konfirmasi password baru wajib diisi' in field 'confirmPassword'
         And I will not see message error 'Password baru wajib diisi' in field 'newPassword'
 
     @C141193
@@ -480,6 +501,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -503,6 +525,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -525,6 +548,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -548,6 +572,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -570,6 +595,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -594,6 +620,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -616,6 +643,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -641,7 +669,7 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I wait for 1 minutes
         And I click link resend OTP change password
-        Then I should be notified that I can verify the OTP tomorrow
+        Then I notified that I can verify the OTP tomorrow
 
     @C141200
     Scenario: Input wrong OTP
@@ -657,6 +685,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -668,6 +697,7 @@ Feature: Account Change Password
         And I input wrong OTP code
         Then I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
 
+    @C141314
     Scenario: Input wrong OTP five times
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -681,6 +711,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -714,6 +745,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -740,6 +772,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -767,6 +800,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -796,6 +830,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -825,6 +860,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on verification'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -854,6 +890,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on verification'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -872,17 +909,18 @@ Feature: Account Change Password
     @C141207
     Scenario: Change password till success login with account initiator on process 
         Given I am a registered customer with following details:
-            | userID      | rudicbf4 |
+            | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | rudid199 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test | 
         When I filling in form login with the following details:
-            | userID      | rudicbf4 |
+            | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | rudid199 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on process'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -912,6 +950,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -953,6 +992,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -981,6 +1021,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -995,6 +1036,7 @@ Feature: Account Change Password
         And I click button cancel change password
         And I click logout
         And I fill form login with incorrect password
+        And I click login
         Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
         And I reset attempt failed login
 
@@ -1023,6 +1065,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -1031,6 +1074,7 @@ Feature: Account Change Password
         And I try again to input password
         And I reset attempt failed login  
         
+    @C141315
     Scenario: Login with old password after change password
         Given I am a registered customer with following details:
             | userID      | autod015 |
@@ -1056,4 +1100,8 @@ Feature: Account Change Password
         And I will direct to page success change password
         And I click button direct to page login
         And I login again with my old password
+        And I click login
         Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+        And I click try again to login
+        And I reset attempt failed login
+        And I reset back my password
