@@ -23,11 +23,6 @@ async function loadModule(condition) {
 
 loadModule(true); // Loads and uses the module if condition is true
 
-String.prototype.removePrefix = function (prefix) {
-  const hasPrefix = this.indexOf(prefix) === 0;
-  return hasPrefix ? this.substr(prefix.length) : this.toString();
-};
-
 program
   .command("export")
   .description("Export the feature gherkin testcase into file")
