@@ -99,6 +99,11 @@ module.exports = {
     I.clearField(this.fields.confirmPassword);
   },
 
+  clearOTP(){
+    I.waitForElement(this.fields.otp, 10);
+    I.clearField(this.fields.otp);
+  },
+
   clickChangePassword(){
     I.waitForElement(this.buttons.changePassword, 10);
     I.click(this.buttons.changePassword);

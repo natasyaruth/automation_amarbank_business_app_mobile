@@ -8,12 +8,12 @@ Feature: Account Opening Main Dashboard
         Given I am a registered customer with following details:
             | userID      | johnbf89 |
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | stagda20 |
             | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | johnbf89 |
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | stagda20 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -175,7 +175,7 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Address'
         And I back to dashboard
         Then I will see card continue to data business
-        And I can continue to page 'Data Business Address'
+        And I can continue to page 'Data Director List'
 
     @C131972
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
