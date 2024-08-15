@@ -44,12 +44,12 @@ program
     }
     const optionTag = options.tag;
     const rootPath = options.pathfolder;
-    const result = await recursiveFileSearch(rootPath, optionTag);
+    const result = await recursiveFileSearch(rootPath);
     const resultScenarios = extractScenarios(result, optionTag);
     const csvData = formatScenariosForCsv(resultScenarios);
     await generateAndSaveCsv(csvData, rootPath, optionTag);
 
-    async function recursiveFileSearch(path, optionTag, result = []) {
+    async function recursiveFileSearch(path, result = []) {
       const stats = await fs.stat(path);
       if (stats.isFile()) {
         result.push(path);
@@ -57,7 +57,7 @@ program
         const lists = await fs.readdir(path);
         for (const item of lists) {
           const fullPath = `${path}/${item}`;
-          await recursiveFileSearch(fullPath, optionTag, result);
+          await recursiveFileSearch(fullPath, result);
         }
       }
       return result;
