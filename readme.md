@@ -87,6 +87,6 @@ Arguments:
 Options:
   -tg, --tag <string>         filter to export gherkin testcase based on tag
   -pf, --pathfolder <string>  path folder to looking for, it needs to define since it will out of memory
-                              if not example: ./feature/funding_home
+                              if not. Example: ./feature/funding_home
   -h, --help                  display help for command
 ```
