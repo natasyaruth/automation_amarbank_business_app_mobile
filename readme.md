@@ -76,13 +76,17 @@ Commands:
 ```
 or 
 ```
-yarn commander csv -h        
-Usage: commander [options] [command]
+yarn commander export -h
+Usage: commander export [options] <string>
+
+Export the feature gherkin testcase into file
+
+Arguments:
+  string                      available value: csv, file will be stored to storage/files
 
 Options:
-  -h, --help                 display help for command
-
-Commands:
-  export [options] <string>  Export the feature gherkin testcase into file
-  help [command]             display help for command
+  -tg, --tag <string>         filter to export gherkin testcase based on tag
+  -pf, --pathfolder <string>  path folder to looking for, it needs to define since it will out of memory
+                              if not example: ./feature/funding_home
+  -h, --help                  display help for command
 ```
