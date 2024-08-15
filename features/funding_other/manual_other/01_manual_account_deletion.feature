@@ -18,13 +18,13 @@ Feature: Dashboard Manual - Account Deletion
     And I continue to verification delete account
     And I fill 5 times incorrect password account deletion
     Then my account should be block
-
+  @FuntionalTestDemo
   Scenario: Check and approve in console after user request delete account
     Given I am customer who was requested account deletion
     When I go to console of account deletion
     Then I will see my request in the console
     And I will approve the request
-
+  @FuntionalTestDemo
   Scenario: Re-login after account delete
     Given I am a customer with my account has been deleted
     When I try to login
