@@ -4,7 +4,7 @@ Feature: User Should See Detail Transaction History
     As a customer
     I need to see detail history transaction
 
-    @C96150 @FunctionalTestDemo
+    @C96150
     Scenario: User want click button filter
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -24,7 +24,7 @@ Feature: User Should See Detail Transaction History
         When I should see buttom sheet filter history
         Then I want to click button close
 
-    @C96151 @FunctionalTestDemo
+    @C96151
     Scenario: User want filtered history transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -48,7 +48,7 @@ Feature: User Should See Detail Transaction History
         And I choose the end date
         And I want to click button ok
 
-    @C124821 @FunctionalTestDemo
+    @C124821
     Scenario: Validate page history transaction state empty
         Given I am a registered customer with following details:
             | userID      | deve8f59 |
