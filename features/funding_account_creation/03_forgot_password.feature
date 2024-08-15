@@ -15,7 +15,7 @@ Feature: Account Forgot Password
     Scenario Outline: Verifying email for reset password with invalid value
         Given I am a customer want to reset password
         When I input email for reset password with value '<Value>'
-        Then I should be notified '<Message>' in the below of field 'email'
+        Then I should be notified '<Message>' in the below of field 'email' forgot password
     Examples:                                                                 ❸
         | testRailTag | Value                  | Message                    |
         | @C133805    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
@@ -35,6 +35,7 @@ Feature: Account Forgot Password
             And I click button Reset Password
         Then I will see pop up information reset password with text 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
             And I click try again to reset password
+            And I reset attempt failed login
 
     @C133809
     Scenario: Fill form reset password with user id and email is not match 3 times
@@ -56,6 +57,7 @@ Feature: Account Forgot Password
         Then I will see pop up information reset password with text 'Anda akan langsung diarahkan ke halaman Masuk Akun'
             And I click button understand to direct to page login
             And I will directing to page login
+            And I reset attempt failed login
 
     @C133810
     Scenario: Fill form reset password with user id and email is match after fill form with user id and email is not match 3 times

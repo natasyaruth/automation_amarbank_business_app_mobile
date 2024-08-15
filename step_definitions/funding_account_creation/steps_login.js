@@ -178,7 +178,7 @@ Then(
   "I should see pop up {string} with button {string}",
   async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(expectedValue);
+    I.waitForText(expectedValue, 10);
     I.waitForElement(loginPage.buttons[buttonName], 10);
   });
 

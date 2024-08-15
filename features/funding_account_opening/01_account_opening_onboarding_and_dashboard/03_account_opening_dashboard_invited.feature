@@ -8,13 +8,13 @@ Feature: Account Opening Main Dashboard User Invited
         Given I am a registered customer with following details:
             | userID      | rudia194 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | rudi3a17 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | rudia194 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | rudi3a17 |
+            | passwordStg | 1234Test |
         And I click login
         And I will direct to page continue to register KYC Invitee
         And I continue to register my KYC data
