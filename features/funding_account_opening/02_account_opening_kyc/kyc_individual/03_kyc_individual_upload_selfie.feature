@@ -6,12 +6,12 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
 
   Background: User choose legality business type Individual
     Given I am a registered customer with following details:
-      | userID      | ruth07f9 |
+      | userID      | ruth0c1c |
       | password    | 1234Test |
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
     And I filling in form login with the following details:
-      | userID      | ruth07f9 |
+      | userID      | ruth0c1c |
       | password    | 1234Test |
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
