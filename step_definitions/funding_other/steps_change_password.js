@@ -27,6 +27,23 @@ When("I input my old password", ()=>{
     globalVariable.changePassword.oldPassword = globalVariable.login.password;
 });
 
+When("I input my old password with space in the back", ()=>{
+    changePasswordPage.inputOldPassword(globalVariable.login.password+" ");
+});
+
+When("I input my old password with space in front", ()=>{
+    changePasswordPage.inputOldPassword(" ");
+    changePasswordPage.inputOldPassword(globalVariable.login.password);
+});
+
+When("I input my old password with whitespace", ()=>{
+    changePasswordPage.inputOldPassword(" ");
+});
+
+When("I input my old password with space in the middle", ()=>{
+    changePasswordPage.inputOldPassword("1234 Test");
+});
+
 When("I click next to input new password", ()=>{
     changePasswordPage.clickNext();
 });
@@ -107,6 +124,7 @@ When("I click link resend OTP change password", ()=>{
 });
 
 When("I input wrong OTP code", ()=>{
+    changePasswordPage.clearOTP();
     changePasswordPage.inputOTP("000000");
 });
 
@@ -288,6 +306,13 @@ Then("I reset back my password", async ()=>{
     changePasswordPage.inputOTP(otp);
 
     changePasswordPage.clickUnderstand();
+});
+
+Then("I reset attempt otp", async ()=>{
+    const phoneNumber = (await changePasswordPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
+
+    await
+        otpDao.resetLimitRequestOtp(phoneNumber);
 });
 
 Then("I notified that I can verify the OTP tomorrow", async () => {

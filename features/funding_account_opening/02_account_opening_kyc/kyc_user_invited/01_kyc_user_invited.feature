@@ -26,7 +26,7 @@ Feature: Account Opening KYC - User Invited
     And I will direct to page continue to register KYC Invitee
     And I continue to register my KYC data
 
-  @C131848
+  @C131848 @FuntionalTestDemo
   Scenario: User invited complete KYC
     Given I am a invited customer wants to complete my KYC data
     When I click take photo eKTP

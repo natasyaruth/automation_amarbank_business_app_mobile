@@ -22,7 +22,7 @@ Feature: User open e-Statement History
         Then I direct to history page
         And I will see the button e-Statement
 
-    @C131978
+    @C131978 @FuntionalTestDemo
     Scenario: Download e-Statement by the latest month
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -40,12 +40,12 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then The e-Statement downloaded
         And Receive notification email
 
-    @C131979
+    @C131979 
     Scenario: Download e-Statement when e-Statement not exist
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -63,7 +63,7 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         Then Notification e-Statement not exist will appear
 
-    @C131980
+    @C131980 @FuntionalTestDemo
     Scenario: Show alert bar when success download e-Statement
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -81,11 +81,11 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then Alert bar success will appear
 
-    @C131981
+    @C131981 
     Scenario: Show alert bar when failed download e-Statement
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -103,11 +103,11 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input valid password on field password
-        And I click button "Next"
+        And I input valid password "Test1234" on field password
+        And I click button Next
         Then Alert bar failed will appear
 
-    @C141433
+    @C141433 @FuntionalTestDemo
     Scenario: Download e-statement with wrong password once
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -125,11 +125,11 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
         
-    @C141434
+    @C141434 @FuntionalTestDemo
     Scenario: Download e-statement with wrong password twice
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -147,15 +147,15 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
         And I click button "try again"
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
     
-    @C141435
+    @C141435 @FuntionalTestDemo
     Scenario: Download e-statement with wrong password third
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -173,20 +173,20 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I input invalid password on field password
+        And I input invalid password "Sala1234" on field password
         And I click button "Next"
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
         And I click button "try again"
-        And I input invalid password on field password
+        And I input invalid password "Sala1234" on field password
         And I click button "Next"
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'tryAgain'
         And I click button "try again"
-        And I input invalid password on field password
-        And I click button "Next"
+        And I input invalid password "Sala1234" on field password
+        And I click button Next
         Then I should see pop up 'Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'understandButton'
         And I direct to login page
 
-    @C141436
+    @C141436 @FuntionalTestDemo
     Scenario: Download e-statement with empty password
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -204,10 +204,10 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         And I choose the latest month to download e-Statement
         And I will direct to input password page
-        And I click button "Next"
+        And I click button Next
         Then I should see notification 'Password wajib diisi' in the below of field 'password'
         
-    @C141437
+    @C141437 @FuntionalTestDemo
     Scenario: User want to see password when download e-statement
         Given I am a registered customer with following details:
             | userID      | natace13 |
