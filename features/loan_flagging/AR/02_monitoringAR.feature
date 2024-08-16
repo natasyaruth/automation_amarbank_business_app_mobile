@@ -1,13 +1,13 @@
-eature: Checking Monitoring Process
+Feature: Checking Monitoring Process
     As a customer lead
     I want to validation for processing apply loan
 
     Background:
         Given I am a registered customer with following details:
-            | userID   | bots2912  |
+            | userID   | bots2912   |
             | password | TestSmb123 |
         When I filling in form login with the following details:
-            | userID   | bots2912  |
+            | userID   | bots2912   |
             | password | TestSmb123 |
         And I click login
         And I click button Ajukan Pinjaman
@@ -18,14 +18,14 @@ eature: Checking Monitoring Process
         And I click on Select the schema
         And I am on loan Schema "AR"
         And I click button Select the schema
-        And I search anchor "PT Xyz"      
+        And I search anchor "PT Xyz"
         And I select the date of cooperating
         And I tick on tick box
         And I click button Kirim Pengajuan Pinjaman
         Then I am on success Apply Loan Page
-        
-        Scenario: Validate bottom sheet showing and loan processing page
-        Given I click button next completed data        
+
+    Scenario: Validate bottom sheet showing and loan processing page
+        Given I click button next completed data
         And I should see text bottom sheet "Selamat, Pengajuan Berhasil Dikirim" in field "titleBottomSheet"
         When I should see text bottom sheet "Pengajuanmu akan segera diproses oleh tim Amar Bank" in field "subTitleBottomSheet"
         And I should see text bottom sheet "Proses verifikasi pinjaman juga mencakup pembuatan rekening giro secara otomatis." in field "descriptionBottomSheet"
@@ -34,5 +34,4 @@ eature: Checking Monitoring Process
         Then I am on monitoring loan process page
         And I validate section checking document "Pengecekan Dokumen" on field "titleDocumentField"
 
-        
-       
+
