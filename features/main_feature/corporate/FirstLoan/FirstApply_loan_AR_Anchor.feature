@@ -1,4 +1,4 @@
-Feature: Apply First Loan With Flagging Corp                                                               Using AP Direct
+Feature: Apply First Loan With Flagging Corp Using AR Anchor
  As a customer lead
  I want to apply first loan using AP Achor with flaging Corp
 
@@ -97,6 +97,7 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
     
+ @C142601   
  Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

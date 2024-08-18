@@ -64,6 +64,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+
+  @C142647
   Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -71,23 +73,19 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data supplier
+    And user click button Lanjut Isi Data Supplier    
     #section select Anchor
     And user on buyer cooperating page
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
     And user input contact name
-    And user input email address supplier
-    And user checklist checbox term and condition
-    And user checklist checbox privy
+    And user input email address supplier    
     And user click button next   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
@@ -120,6 +118,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
         | village  | PONDOK BAMBU                 |    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
+    And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
     And user validate description prepare the following documents 'MSMEAPPT.Perorangan' 
     And user click buttton Pilih Metode Upload Dokumen
@@ -177,14 +176,12 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And User click button Pelajari Tipe Skema Kredit
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data supplier
+    And user click button Lanjut Isi data Supplier    
     #section select Anchor
     And user fill search anchor "PT Tirta Investama"
     And user select result of search
-    And user select the date cooperating        
+    And user select the year cooperating   
+    And user click Pilih     
     And user click button Selanjutnya   
     And user click button Lanjut Lengkapi Data
     #section KYC Process

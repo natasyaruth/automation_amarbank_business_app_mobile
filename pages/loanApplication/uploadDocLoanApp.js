@@ -32,6 +32,7 @@ module.exports = {
     btnDeletefile: "",
     btnConfirmdelete:"",
     btnBacktoUpload:"",
+    btnSelectMetodeUploadDoc: "",
   },
   textView: {
     titleBottomSheetDocNeeded: { xpath: '//android.widget.TextView[contains(@text, "Mohon persiapkan dokumen-dokumen berikut")]' },
@@ -53,8 +54,8 @@ module.exports = {
     financialReportBottomSheetTextViewMSME: { xpath: '//android.widget.TextView[contains(@text, "Laporan keuangan 1 tahun terakhir dan tahun berjalan.")]' },
     financialReportBottomSheetTextViewCorp: { xpath: '//android.widget.TextView[contains(@text, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.")]' },
     
-    proofOfPurchaseBottomSheetTextViewPO: { xpath: '//android.widget.TextView[contains(@text, "Minimal 3 contoh bukti pembelian dengan bouwheer saat ini atau bouwheer lainnya dengan produk yang sama.")]' },
-    paymentMutationBottomSheetTextViewPO: { xpath: '//android.widget.TextView[contains(@text, "Mutasi rekening 6 bulan terakhir yang mencerminkan transaksi dengan bouwheer.")]' },
+    proofOfPurchaseBottomSheetTextViewPO: { xpath: '//android.widget.TextView[contains(@text, "Surat Perintah Kerja (SPK) dari bouwheer saat ini atau bouwheer lainnya dengan produk yang sama")]' },
+    paymentMutationBottomSheetTextViewPO: { xpath: '//android.widget.TextView[contains(@text, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.")]' },
     uploadDocTextViewPage: { xpath: '//android.widget.TextView[contains(@text, "Upload dokumen-dokumen sebagai berikut:")]' },
     nibUploadDocTextView: { xpath: '//android.widget.TextView[contains(@text, "NIB Berbasis Resiko *")]' },
     akteCompanyUploadDocTextView: { xpath: '//android.widget.TextView[contains(@text, "Akta Perusahaan *")]' },
@@ -165,6 +166,7 @@ module.exports = {
     switch (loanType) {
       case 'CorpAPPT.Perusahaan':
         I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');
         I.seeElement(this.textView.nibBottomSheetTextView);
         I.seeElement(this.textView.akteCompanyBottomSheetTextView);
         I.seeElement(this.textView.skKemenkumhamBottomSheetTextView);
@@ -172,7 +174,7 @@ module.exports = {
         I.seeElement(this.textView.ktpComisionerTextView);
         I.seeElement(this.textView.npwpComisionerTextView);        
         let actualValueAPCorp = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAP, "text");
-        I.assertEqual(actualValueAPCorp, "Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.assertEqual(actualValueAPCorp, "Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
         I.wait(2);
         let actualValueAPCorp1 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAP, "text");
         I.assertEqual(actualValueAPCorp1, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
@@ -180,29 +182,95 @@ module.exports = {
         let actualValueAPCorp2 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
         I.assertEqual(actualValueAPCorp2, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
         I.wait(2);
-        I.click(this.buttons.btnClose);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
         break;
 
       case 'CorpARPT.Perusahaan':
         I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');
         I.seeElement(this.textView.nibBottomSheetTextView);
         I.seeElement(this.textView.akteCompanyBottomSheetTextView);
         I.seeElement(this.textView.skKemenkumhamBottomSheetTextView);
         I.seeElement(this.textView.npwpCompanyBottomSheetTextView);
         I.seeElement(this.textView.ktpComisionerTextView);
         I.seeElement(this.textView.npwpComisionerTextView);
-        let actualValueCorpAR = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
-        I.assertEqual(actualValueCorpAR, "Minimal 3 contoh bukti pembelian dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        let actualValueARCorp = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueARCorp, "Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
         I.wait(2);
         let actualValueCorpAR1 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAR, "text");
-        I.assertEqual(actualValueCorpAr1, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.assertEqual(actualValueCorpAR1, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
         I.wait(2);
         let actualValueCorpAR2 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
         I.assertEqual(actualValueCorpAR2, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
         I.wait(2);
-        I.click(this.buttons.btnClose);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
         break;
       
+      case 'CorpAPPT.Perorangan':
+        I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');
+        I.seeElement(this.textView.nibBottomSheetTextView);
+        I.seeElement(this.textView.akteCompanyBottomSheetTextView);          
+        let actualValueCorpAPUD1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValueCorpAPUD1, "Minimal 3 contoh bukti pembelian dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueCorpAPUD2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueCorpAPUD2, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.wait(2);
+        let actualValueCorpAPUD3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
+        I.assertEqual(actualValueCorpAPUD3, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+        
+      case 'CorpARPT.Perorangan':
+        I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');
+        I.seeElement(this.textView.nibBottomSheetTextView);
+        I.seeElement(this.textView.akteCompanyBottomSheetTextView);           
+        let actualValueARUD1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueARUD1, "Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueCorpARUD2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueCorpARUD2, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.wait(2);
+        let actualValueCorpARUD3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
+        I.assertEqual(actualValueCorpARUD3, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+
+      case 'CorpAPIndividu':
+        I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');                  
+        let actualValueCorpAPIndividu1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValueCorpAPIndividu1, "Minimal 3 contoh bukti pembelian dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueCorpAPIndividu2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValueCorpAPIndividu2, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.wait(2);
+        let actualValueCorpAPIndividu3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
+        I.assertEqual(actualValueCorpAPIndividu3, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+
+      case 'CorpARIndividu':
+        I.wait(2);
+        I.see('Mohon persiapkan dokumen-dokumen berikut:');                   
+        let actualValueARIndividu1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueARIndividu1, "Minimal 3 contoh invoice dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueCorpARIndividu2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueCorpARIndividu2, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.wait(2);
+        let actualValueCorpARIndividu3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewCorp, "text");
+        I.assertEqual(actualValueCorpARIndvidu3, "Laporan keuangan 2 tahun terakhir dan tahun berjalan.");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+
+
       case 'MSMEAPPT.Perusahaan':
         I.wait(2);        
         I.seeElement(this.textView.nibBottomSheetTextView);
@@ -229,6 +297,8 @@ module.exports = {
         I.seeElement(this.textView.akteCompanyBottomSheetTextView);
         I.seeElement(this.textView.skKemenkumhamBottomSheetTextView);
         I.seeElement(this.textView.npwpCompanyBottomSheetTextView);
+        I.seeElement(this.textView.ktpComisionerTextView);
+        I.seeElement(this.textView.npwpComisionerTextView);
         let actualValueARMSME = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
         I.assertEqual(actualValueARMSME, "Minimal 3 contoh bukti pembelian dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
         I.wait(2);
@@ -238,16 +308,19 @@ module.exports = {
         let actualValueARMSME3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewMSME, "text");
         I.assertEqual(actualValueARMSME3, "Laporan keuangan dalam 1 tahun terakhir.");
         I.wait(2);
-        I.click(this.buttons.btnClose);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
         break;
-      case 'PO':
+
+      case 'POPT.Perusahaan':
         I.wait(2);
         I.seeElement(this.textView.nibBottomSheetTextView);
         I.seeElement(this.textView.akteCompanyBottomSheetTextView);
         I.seeElement(this.textView.skKemenkumhamBottomSheetTextView);
         I.seeElement(this.textView.npwpCompanyBottomSheetTextView);
+        I.seeElement(this.textView.ktpComisionerTextView);
+        I.seeElement(this.textView.npwpComisionerTextView);
         let actualValuePO = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewPO, "text");
-        I.assertEqual(actualValuePO, "Minimal 3 contoh bukti pembelian dengan bouwheer saat ini atau bouwheer lainnya dengan produk yang sama.");
+        I.assertEqual(actualValuePO, "Surat Perintah Kerja (SPK) dari bouwheer saat ini atau bouwheer lainnya dengan produk yang sama");
         I.wait(2);
         let actualValuePO1 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewPO, "text");
         I.assertEqual(actualValuePO1, "Mutasi rekening 6 bulan terakhir yang mencerminkan transaksi dengan bouwheer.");
@@ -257,6 +330,55 @@ module.exports = {
         I.wait(2);
         I.click(this.buttons.btnClose);
         break;
+
+
+      case 'MSMEAPPT.Perorangan':
+        I.wait(2);        
+        I.seeElement(this.textView.nibBottomSheetTextView);
+        I.seeElement(this.textView.akteCompanyBottomSheetTextView);       
+        let actualValueAPMSMEPerorangan1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValueAPMSMEPerorangan1, "Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueAPMSMEPerorangan2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValueAPMSMEPerorangan2, "Rekening koran/mutasi rekening operasional 6 bulan terakhir.");
+        I.wait(2);
+        let actualValueAPMSMEPerorangan3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewMSME, "text");
+        I.assertEqual(actualValueAPMSMEPerorangan3, "Laporan keuangan 1 tahun terakhir dan tahun berjalan.");
+        I.wait(2);
+        I.click(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+
+      case 'MSMEARPT.Perorangan':
+        I.wait(2);
+        I.seeElement(this.textView.nibBottomSheetTextView);
+        I.seeElement(this.textView.akteCompanyBottomSheetTextView);       
+        let actualValueARMSMEPerorangan1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueARMSMEPerorangan1, "Minimal 3 contoh bukti pembelian dengan buyer saat ini atau buyer lainnya dengan produk yang sama.");
+        I.wait(2);
+        let actualValueARMSMEPerorangan2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewAR, "text");
+        I.assertEqual(actualValueARMSMEPerorangan2, "Mutasi rekening 6 bulan terakhir yang mencerminkan transaksi dengan buyer atau pembeli.");
+        I.wait(2);
+        let actualValueARMSMEPerorangan3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewMSME, "text");
+        I.assertEqual(actualValueARMSMEPerorangan3, "Laporan keuangan dalam 1 tahun terakhir.");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;
+
+      case 'POPT.Perorangan':
+        I.wait(2);
+        I.seeElement(this.textView.nibBottomSheetTextView);
+        I.seeElement(this.textView.akteCompanyBottomSheetTextView);       
+        let actualValuePOPerorangan1 = await I.grabAttributeFrom(this.textView.proofOfPurchaseBottomSheetTextViewPO, "text");
+        I.assertEqual(actualValuePOPerorangan1, "Surat Perintah Kerja (SPK) dari bouwheer saat ini atau bouwheer lainnya dengan produk yang sama");
+        I.wait(2);
+        let actualValuePOPerorangan2 = await I.grabAttributeFrom(this.textView.paymentMutationBottomSheetTextViewPO, "text");
+        I.assertEqual(actualValuePOPerorangan2, "Mutasi rekening 6 bulan terakhir yang mencerminkan transaksi dengan bouwheer.");
+        I.wait(2);
+        let actualValuePOPerorangan3 = await I.grabAttributeFrom(this.textView.financialReportBottomSheetTextViewAP, "text");
+        I.assertEqual(actualValuePOPerorangan3, "Laporan keuangan dalam 1 tahun terakhir(jika ada).");
+        I.wait(2);
+        I.seeElement(this.buttons.clickBtnSelectMetodeUploadDocument);
+        break;     
     }
   },
   clickBtnUploadDoc() {
@@ -443,5 +565,11 @@ module.exports = {
     I.wait(2);
     let actualinfoPO = I.grabAttributeFrom(this.textview.textviewinfoPO, "text");
     I.assertEqual(actualinfoPO, "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan bouwheer.");
-  }
+  },
+  clickBtnSelectMetodeUploadDocument(){
+    I.wait(2);
+    I.click(this.buttons.btnSelectMetodeUploadDoc);
+  },
+
+  
 }

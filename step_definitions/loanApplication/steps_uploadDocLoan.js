@@ -1,6 +1,6 @@
 const { upload } = require("../../pages/uploadBusinessDoc");
 
-const { I, uploadDocLoanPage} = inject();
+const { I, uploadDocLoanPage, loanTypePage} = inject();
 
 Given(/user click view required documents button/, () => {
     uploadDocLoanPage.clickBtnViewRequiredDoc();
@@ -153,4 +153,10 @@ When(/user upload multiple document more than 15 MB \"([^\"]*)\"/,(docType)=>{
 When(/user will not see button Kirim Pengajuan Limit Kredit/, () =>{
     I.seeElementDisabled(uploadDocLoanPage.buttons.btnAcceptLimitOffer);
 });
+
+When(/user on select loan Needs Page/, () =>{
+    I.wait(2);
+    I.see("Pengajuan Limit Kredit");
+});
+
 
