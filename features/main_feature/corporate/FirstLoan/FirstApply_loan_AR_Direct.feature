@@ -99,6 +99,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+@C142625
  Scenario: User apply first loan AP Direct with business type PT. Perorangan and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -114,7 +115,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user select another supplier
     And user fill a field "anchorName" with "AR Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
@@ -205,7 +207,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." 
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
-
+@C142630
 Scenario: User apply first loan AR Direct with business type Individu and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -221,7 +223,8 @@ Scenario: User apply first loan AR Direct with business type Individu and flagin
     And user select another supplier
     And user fill a field "anchorName" with "AR Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name

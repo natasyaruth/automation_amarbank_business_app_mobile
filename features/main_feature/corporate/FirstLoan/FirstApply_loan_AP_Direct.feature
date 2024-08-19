@@ -99,6 +99,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+@C142576
   Scenario: User apply first loan AP Direct with business type UD and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -114,7 +115,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user click Pilih
+    And user select the year cooperating
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
@@ -207,7 +209,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
  
-
+@C14258
   Scenario: User apply first loan AP Direct with business type Individu and flaging Corp
     Given I click button loan dashboard
     When user click button Ajukan Limit Baru
@@ -223,7 +225,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
@@ -258,7 +261,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
-    And And user validate description prepare the following documents 'CorpAPPT.Perorangan'
+    And And user validate description prepare the following documents 'CorpAPIndividu'
     And user click buttton Pilih Metode Upload Dokumen
      #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -332,8 +335,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user validate wording for "Dari Perangkat lain/ Delegasi"
     And user click button close bottom sheet
 
-   
-Scenario: user can select and upload multiple document PT.Perorangan
+@C142583
+Scenario: user can select and upload multiple document PT.Perorangan or UD
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
@@ -344,12 +347,10 @@ Scenario: user can select and upload multiple document PT.Perorangan
   And user upload document "aktaperusahaan" 
   And user upload multiple document "3contohInvoicewithSupplier"
   And user upload multiple document "paymentMutation"
-  And user upload multiple document "2YearfinancialReports"
-   Then user see button Kirim Pengajuan Limit Kredit  
-
+  And user upload multiple document "2YearfinancialReports"  
  
 
-Scenario: user validate field after success upload document for Individu
+Scenario: user validate field after success upload document for PT.Perorangan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
