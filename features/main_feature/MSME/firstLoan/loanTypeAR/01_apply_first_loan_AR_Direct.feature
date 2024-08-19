@@ -53,6 +53,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
  
+ @C142687
  Scenario: User apply second loan AR direct type with bussiness type PT.Perorangan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -60,23 +61,19 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data buyer
+    And user click button Lanjut Isi data Buyer   
     #section select Anchor
     When user on buyer cooperating page
     And user select another supplier
     And user fill a field "anchorName" with "AR Test Nurul"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
     And user input contact name
-    And user input email address supplier
-    And user checklist checbox term and condition
-    And user checklist checbox privy
+    And user input email address supplier 
     And user click button next    
     And user click button Lanjut Lengkapi Data
     #section KYC Process
@@ -109,6 +106,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
         | village  | PONDOK BAMBU                 |    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
+    And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
     And user validate description prepare the following documents 'MSMEARPT.Perorangan' 
     And user click buttton Pilih Metode Upload Dokumen
@@ -117,7 +115,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user on Progress Upload Dokumen Page
     And user upload docuemnt "nib"
     And user upload document "aktaperusahaan"
-    And user upload document "3contohInvoicewithSupplyBuyer"
+    And user upload document "3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
@@ -157,24 +155,21 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
    
-
+@C142692
 Scenario: User apply second loan AR Direct with bussiness type Individu and flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
     And User select loan type "AP"
     And User click button Pelajari Tipe Skema Kredit
     And User choose nominal "Rp50 juta - 5 Miliar"  
-    And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data Buyer
+    And user input loan tenor "30"     
     #section select Anchor
     And user on buyer cooperating page
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating
+    And user click Pilih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
@@ -185,7 +180,7 @@ Scenario: User apply second loan AR Direct with bussiness type Individu and flag
     And user click button next   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
-    Given user choose Business Type "UD"
+    Given user choose Business Type "Individu"
     And user click Selanjutnya
     And user take photo eKTP
     And user click "Saya Mengerti"
@@ -205,13 +200,15 @@ Scenario: User apply second loan AR Direct with bussiness type Individu and flag
     When user input and save "Profil Bisnis"
     And user input and click "Simpan Daftar Direktur"
     And user input and save "Alamat Bisnis"
-    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-    And user click OK
+    And user checklist checkbox term and condition  
+    And user checklist checkbox right and obligations
+    And user checklist checbox privy
+    And user click button Lanjut Upload Dokumen
+    And user validate description prepare the following documents 'MSMEAPIndividu' 
+    And user click buttton Pilih Metode Upload Dokumen    
     # section upload document
     And user click button Langsung dari Aplikasi
-    And user on Progress Upload Dokumen Page
-    And user upload docuemnt "nib"
-    And user upload document "aktaperusahaan"
+    And user on Progress Upload Dokumen Page   
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "2YearfinancialReports"
@@ -222,10 +219,7 @@ Scenario: User apply second loan AR Direct with bussiness type Individu and flag
     And user on monitoring loan process page
     #section trigered status loan
     And user trigered api change status loan is approved
-    #sectionn buttom sheet success
-    And user click button close on Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
-    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
+    
 
 Scenario: Validate bottom sheet for Upload Dokumen
      Given User on Main Dashboard
@@ -233,10 +227,7 @@ Scenario: Validate bottom sheet for Upload Dokumen
     And User select loan type "AR"
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
-    And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
+    And user input loan tenor "30"     
     And user click button Lanjut isi data buyer
     #section select Anchor
     When user on buyer cooperating page
@@ -291,23 +282,21 @@ Scenario: Validate bottom sheet for Upload Dokumen
     And user click button close bottom sheet
 
 
-
-Scenario: user can select and upload multiple document
+@C142694
+Scenario: user can select and upload multiple document Individu
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi 
-  And user upload document "nib"
-  And user upload document "aktaperusahaan" 
-  And user upload multiple document "3contohInvoicewithSupplier"
+  And user click button Langsung dari Aplikasi  
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user upload multiple document "paymentMutation"
   And user upload multiple document "1YearfinancialReports"  
   Then user see button Kirim Pengajuan Limit Kredit
  
-
-Scenario: user validate field after success upload document for PT.Perusahaan
+@C142695
+Scenario: user validate field after success upload document for Individu
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
@@ -346,7 +335,7 @@ Scenario: user verify pop up confirmation to delete uploaded file
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi  
-  And user upload multiple document "3contohInvoicewithPBuyer"
+  And user upload multiple document "3contohInvoicewithBuyer"
   And user verify upload all document Invoice
   And user upload multiple document "paymentMutation"
   And user verify upload all document Mutasi

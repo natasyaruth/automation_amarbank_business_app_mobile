@@ -53,6 +53,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
  
+ @C142708
  Scenario: User apply second loan AR Anchor type with bussiness type PT.Perusahaan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -60,10 +61,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data buyer
+    And user click button Lanjut Isi data Buyer    
     #section select Anchor
     And user fill search anchor "PT AR Anchor Tes Nurul"
     And click button Pilih Supplier Ini   
@@ -101,6 +99,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
         | village  | PONDOK BAMBU                 |    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
+    And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
     And user validate description prepare the following documents 'MSMEARPT.Perusahaan' 
     And user click buttton Pilih Metode Upload Dokumen
@@ -153,6 +152,7 @@ Scenario: validate progress monitoring loan checking document
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
+@C142713
 Scenario: User apply second loan AR Anchor with bussiness type Individu and flaging MSME
     Given I click button loan dashboard
     When user click button "ajukan pinjaman"
@@ -160,23 +160,19 @@ Scenario: User apply second loan AR Anchor with bussiness type Individu and flag
     And User click button Pelajari Tipe Skema Kredit
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi Lokasi Kantor Pusat Bank  
-    #select business location
-    And user choose business location "Jabodetabek"
-    And user click button Lanjut isi data supplier
+    And user click button Lanjut Isi data Buyer   
     #section select Anchor
     And user on buyer cooperating page
     And user select another supplier
     And user fill a field "anchorName" with "AP Direct Tes"
     And user select industry type
-    And user select the date cooperating
+    And user select the year cooperating 
+    And user click PIlih
     And user input business address
     #section supplier representatives has contact
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier
-    And user checklist checbox term and condition
-    And user checklist checbox privy
     And user click button next   
     And user click button Lanjut Lengkapi Data
     #section KYC Process
@@ -200,27 +196,27 @@ Scenario: User apply second loan AR Anchor with bussiness type Individu and flag
     When user input and save "Profil Bisnis"
     And user input and click "Simpan Daftar Direktur"
     And user input and save "Alamat Bisnis"
-    Then direct to "Selamat, Pengajuan Berhasil Dikirim"
-    And user click OK
+    And user checklist checkbox term and condition  
+    And user checklist checkbox right and obligations
+    And user checklist checbox privy
+    And user click button Lanjut Upload Dokumen
     # section upload document
+    And user validate description prepare the following documents 'MSMEAPIndividu' 
+    And user click buttton Pilih Metode Upload Dokumen
+    #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
-    And user on Progress Upload Dokumen Page
-    And user upload docuemnt "nib"
-    And user upload document "aktaperusahaan"
+    And user on Progress Upload Dokumen Page       
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "2YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
-    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
     #section trigered status loan
     And user trigered api change status loan is approved
-    #sectionn buttom sheet success
-    And user click button close on Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi on Metode Upload Dokumen
-    And user click button Dari Perangkat Lain Delegasi on Metode Upload Dokumen
+   
 
 Scenario: Validate bottom sheet for Upload Dokumen
     Given User on Main Dashboard
@@ -229,7 +225,9 @@ Scenario: Validate bottom sheet for Upload Dokumen
     And User on Loan Needs Page
     And user on buyer cooperating page
     And user fill search anchor "PT Tirta Investama"
-    And user select the date cooperating
+    And user click Pilih Supplier Ini
+    And user select the year cooperating
+    And user click Pilih
     And user checklist checbox term and condition
     And user checklist checbox privy
     And user click button next    

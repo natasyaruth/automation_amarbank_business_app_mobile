@@ -67,4 +67,43 @@ Feature: Upload Data Documents For Manual Testing
         And I click button delete
         Then system will delete the document
 
+    Scenario: Validate Upload document with file more than 15 MB
+        Given I has been access to the link web view for upload multiple data documents         
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed "1.6 MB"
+        And I see "Akta Perusahaan"
+        And I see the file size should be displayed "1.5 MB"
+        And I see "SK Kemenkumham"
+        And I see the file size should be displayed "2.4 MB"
+        And I see "NPWP Perusahaan"
+        And I see the file size should be displayed "1.5 MB"
+        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        Then I see error message "File melebihi maksimal ukuran 15MB."
+
+
+     Scenario: Validate Upload document with invalid file format
+        Given I has been access to the link web view for upload multiple data documents         
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed "1.6 MB"
+        And I see "Akta Perusahaan"
+        And I see the file size should be displayed "1.5 MB"
+        And I see "SK Kemenkumham"
+        And I see the file size should be displayed "2.4 MB"
+        And I see "NPWP Perusahaan"
+        And I see the file size should be displayed "1.5 MB"
+        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        Then I see error message invalid format "File harus dalam format PDF."
+
 

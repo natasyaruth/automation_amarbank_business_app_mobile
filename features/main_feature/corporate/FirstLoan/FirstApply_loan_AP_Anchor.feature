@@ -1,4 +1,4 @@
-Feature: Apply First Loan With Flagging Corp                                                               Using AP Direct
+Feature: Apply First Loan With Flagging Corp Using AP Anchor
  As a customer lead
  I want to apply first loan using AP Achor with flaging Corp
 
@@ -176,7 +176,6 @@ Feature: Apply First Loan With Flagging Corp                                    
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
     
-
   
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
