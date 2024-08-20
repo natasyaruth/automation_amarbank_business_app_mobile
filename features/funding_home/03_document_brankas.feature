@@ -28,15 +28,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user initiator recently from registration 1
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | deveb76d |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag7f83 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | deveb76d |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag7f83 |
             | passwordStg | 1234Test |
         And I click login
         And I click later
@@ -51,15 +51,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user initiator in process giro account opening
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | deved388 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3f63 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | deved388 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3f63 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -76,15 +76,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user initiator in process combine journey
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | deveb182 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stagcf3f |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | deveb182 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stagcf3f |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -101,15 +101,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user initiator on verification
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -122,15 +122,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user individual on verification
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -141,16 +141,16 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user invitee on verification
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rudi71d5 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
+            | userIDstg   | rudie4f1 |
+            | passwordStg | 1234Test | 
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rudi71d5 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
+            | userIDstg   | rudie4f1 |
+            | passwordStg | 1234Test | 
         And I click login
         And I click later in pop up biometric
         And I will see card account 'on verification'
@@ -187,16 +187,16 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user invitee active
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | nataf76e |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
+            | userIDstg   | nata6bde |
+            | passwordStg | 1234Test | 
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | nataf76e |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
-            | passwordStg | 1234Test |
+            | userIDstg   | nata6bde |
+            | passwordStg | 1234Test | 
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -237,15 +237,15 @@ Feature: Document Brankas
 
     Scenario: Access widget brankas on main dashboard for user combine journey active
         Given I am a registered customer with following details:
-            | userID      | autocaea |
-            | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
-            | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userID      | niza2098 |
+            | password    | Test1234 |
+            | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -262,15 +262,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey with option done enough
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -294,15 +294,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey with option not enough - choose one option
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -326,15 +326,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey with option not enough - choose more than one option
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -360,15 +360,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey with option not enough - choose all option
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -398,15 +398,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey with option not enough - choose option other
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -434,15 +434,15 @@ Feature: Document Brankas
 
     Scenario: Fill field option other and then delete
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -470,15 +470,15 @@ Feature: Document Brankas
 
     Scenario: Choose option not enough and then choose option done enough
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -512,15 +512,15 @@ Feature: Document Brankas
 
     Scenario: Fill field option other contain with number and special char
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -548,15 +548,15 @@ Feature: Document Brankas
 
     Scenario: Check feeedback and then uncheck
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -585,15 +585,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey journey to tab Profile
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -620,15 +620,15 @@ Feature: Document Brankas
 
     Scenario: Fill survey journey to tab Other
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

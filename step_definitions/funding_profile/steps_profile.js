@@ -47,7 +47,13 @@ When("I will see card account {string}", async (typeAccount) => {
     ) {
         I.waitForText("Lanjutkan Pembuatan Rekening Giro", 30);
 
+    } else if (
+        typeAccount === "account opening"
+    ) {
+        I.waitForText("Perbankan Bisnis Premium", 30);
+        I.waitForText("Buka Rekening Giro", 10);
     }
+
     globalVariable.onBoarding.status = typeAccount;
 });
 

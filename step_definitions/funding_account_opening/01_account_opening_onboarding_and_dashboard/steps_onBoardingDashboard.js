@@ -125,6 +125,10 @@ When("I see page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
 });
 
+When("I continue to complete my data", ()=>{
+    onboardingAccOpeningPage.continueCompleteData();
+});
+
 Then("I will see card continue to data personal", () => {
     I.waitForText("Lengkapi Data Personal", 10);
     I.see("Lanjutkan Pembuatan Rekening Giro");

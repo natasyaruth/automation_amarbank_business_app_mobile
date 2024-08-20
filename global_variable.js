@@ -125,4 +125,7 @@ module.exports = {
         startDate: "",
         endDate: "",
     },
+    survey:{
+        feedBack: "",
+    }
 }
