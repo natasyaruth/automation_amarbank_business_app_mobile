@@ -34,6 +34,7 @@ module.exports = {
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
     openProgressAccount: "~btnDropoff",
+    widgetDocumentSafe: "~buttonLearn",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -78,6 +79,9 @@ module.exports = {
     callCenter: "~tabCallCenter",
     document: "~tabDocument",
     others: "~tabOthers",
+  },
+  icons:{
+    redDotNotificationDoc: "~indicatorRedDot",
   },
 
   chooseLegalityBusinessType(type) {
@@ -238,6 +242,7 @@ module.exports = {
   },
 
   continueCompleteData() {
+    I.waitForElement(this.buttons.completeData, 20);
     I.click(this.buttons.completeData);
   },
 
@@ -254,6 +259,11 @@ module.exports = {
   openCardReject() {
     I.waitForElement(this.buttons.rejectCard, 10);
     I.click(this.buttons.rejectCard);
+  },
+
+  openWidgetDocumentSafe() {
+    I.waitForElement(this.buttons.widgetDocumentSafe, 10);
+    I.click(this.buttons.widgetDocumentSafe);
   },
 
   continueCompleteRegistrationDirectors() {

@@ -167,6 +167,8 @@ exports.config = {
     uploadSelfieKtpPage: "./pages/uploadSelfieKtp.js",
 
     changePasswordPage: "./pages/changePassword.js",
+
+    documentSafePage: "./pages/documentSafe.js",
   },
   settings: {
     logging: {
@@ -189,14 +191,14 @@ exports.config = {
           "reportFilename": "report"
         }
       },
-    //   "mocha-junit-reporter": {
-    //     "stdout": "./output/console.log",
-    //     "options": {
-    //       "mochaFile": "./output/result.xml",
-    //       "attachments": true //add screenshot for a failed test
-    //     }
-    // }
-   }
+      //   "mocha-junit-reporter": {
+      //     "stdout": "./output/console.log",
+      //     "options": {
+      //       "mochaFile": "./output/result.xml",
+      //       "attachments": true //add screenshot for a failed test
+      //     }
+      // }
+    }
   },
   bootstrap: null,
   timeout: 500,
