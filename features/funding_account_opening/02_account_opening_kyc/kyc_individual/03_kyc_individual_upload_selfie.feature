@@ -23,6 +23,10 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
     And I choose Giro Account MSME
     And I choose legality business type 'individual'
     And I submit my legality type
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
     And I update my last journey step to 'Data KTP'
 
   @C131725

@@ -22,6 +22,8 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
+        npwpBusinessDefault: "789645578340911",
+        npwpBusiness: "",
     },
     onBoarding:{
         legality: "",

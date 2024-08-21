@@ -23,6 +23,10 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Employment
         And I choose Giro Account MSME
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
 
     @C131840

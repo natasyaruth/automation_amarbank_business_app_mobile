@@ -21,13 +21,16 @@ Feature: Account Opening Main Dashboard
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
 
     @C131962
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
-        And I see page 'Upload eKTP'
         And I back to dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
@@ -35,8 +38,6 @@ Feature: Account Opening Main Dashboard
     @C131963
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I upload my eKTP photo
         And I see page 'Data KTP'
         And I back to dashboard
@@ -46,8 +47,6 @@ Feature: Account Opening Main Dashboard
     @C131964
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
         And I back to dashboard
@@ -57,8 +56,6 @@ Feature: Account Opening Main Dashboard
     @C141154
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
         And I see page 'Upload Selfie with KTP'
         And I back to dashboard
@@ -68,8 +65,6 @@ Feature: Account Opening Main Dashboard
     @C131965
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Upload Selfie with KTP'
         And I see page 'Data Personal'
         And I back to dashboard
@@ -79,8 +74,6 @@ Feature: Account Opening Main Dashboard
     @C131966
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
         And I back to dashboard
@@ -90,8 +83,6 @@ Feature: Account Opening Main Dashboard
     @C131967
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
         And I back to dashboard
@@ -101,8 +92,6 @@ Feature: Account Opening Main Dashboard
     @C131968
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I see page 'Data Business Profile'
@@ -113,8 +102,6 @@ Feature: Account Opening Main Dashboard
     @C131969
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'ud'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -135,8 +122,6 @@ Feature: Account Opening Main Dashboard
     @C131970
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Director List
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -157,8 +142,6 @@ Feature: Account Opening Main Dashboard
     @C131971
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -180,8 +163,6 @@ Feature: Account Opening Main Dashboard
     @C131972
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -216,8 +197,6 @@ Feature: Account Opening Main Dashboard
     @C131973
     Scenario: User can see cards continue to complete upload document and register director list
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
