@@ -1,10 +1,23 @@
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
 
 const { I, resetStateDao, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
 module.exports = {
+
+    getFileName(fileType){
+        const filePath = "./data/file_upload";
+
+        const directoryPath = path.join(__dirname, filePath);
+
+        const filteredFiles = fs.readdirSync(directoryPath).filter(file => {
+            return path.extname(file).toLowerCase() === '.'+fileType;
+        });
+
+        return filteredFiles[0];
+    },
 
     loadImageAsBase64(filePath) {
         const img = fs.readFileSync(filePath);
@@ -55,16 +68,18 @@ module.exports = {
         }
     },
 
-    async uploadDocBusiness(userID, password, enumDoc) {
+    async uploadDocBusiness(userID, password, enumDoc, fileType) {
 
-        const base64File = this.loadImageAsBase64('./data/file.pdf');
+        const fileName = this.getFileName(fileType);
+
+        const base64File = this.loadImageAsBase64('/data/file_upload/'+fileName+'.'+fileType);
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
         const responseDoc = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/user/business/docs/" + enumDoc, secret({
-            fileFormat: "pdf",
+            fileFormat: fileType,
             file: base64File,
         }));
 

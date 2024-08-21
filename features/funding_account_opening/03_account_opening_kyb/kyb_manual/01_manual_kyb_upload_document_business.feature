@@ -4,18 +4,57 @@ Feature: Account Opening KYB - Upload Document Business
     I want to upload document business as part of the KYB Process
 
     @C131927
-    Scenario: Upload document with file size more than 10 MB
+    Scenario: Upload document with file size more than 15 MB in mobile
         Given I am a registered customer
         And already register till business address
-        When I upload document with size more than 10MB
-        Then I will see message error 'Ukuran file melebihi 10MB. Silahkan coba lagi' in the below of section upload document
+        When I upload document with size more than 15MB
+        Then I will see message error 'File melebihi maksimal ukuran 15MB.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file
+        And after I delete, there is no pop up to confirm
 
     @C131928
-    Scenario: Upload document with file other than PDF
+    Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in mobile
+        Given I am a customer
+        And access link upload document
+        When I upload document with type other than PDF, JPG, PNG and JPEG
+        Then  I will see message error 'File harus dalam format PDF / JPG / JPEG / PNG.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file and reupload file
+        And after I delete, there is no pop up to confirm
+        And if I click reupload file, it would reupload again the file
+
+    Scenario: Upload document with file size more than 15 MB in web view
+        Given I am a registered customer
+        And access link upload document
+        When I upload document with size more than 15MB
+        Then I will see message error 'File melebihi maksimal ukuran 15MB.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file
+        And after I delete, there is no pop up to confirm
+
+    Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in web view
+        Given I am a registered customer
+        And access link upload document
+        When I upload document with type other than PDF, JPG, PNG and JPEG
+        Then  I will see message error 'File harus dalam format PDF / JPG / JPEG / PNG.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file and reupload file
+        And after I delete, there is no pop up to confirm
+        And if I click reupload file, it would reupload again the file    
+
+    Scenario: Upload document and get error timeout in mobile
         Given I am a registered customer
         And already register till business address
-        When I upload document with type other than PDF
-        Then  I will see message error 'File tidak boleh selain pdf' in the below of section upload document   
+        When I upload document and timeout
+        Then I will see message error 'Koneksi bermasalah. Periksa jaringan Anda dan coba lagi.' in the below of section upload document
+
+    Scenario: Delete document and get error server in mobile
+        Given I am a registered customer
+        And already register till business address
+        When I upload document
+        And I delete my document and got error
+        Then I will see snackbar error with message 'Terjadi kendala server, coba beberapa saat lagi.'
 
     @C137189
     Scenario: Check pop up permission
@@ -246,4 +285,4 @@ Feature: Account Opening KYB - Upload Document Business
     Scenario: Access link upload with SMB app still not installed yet
         Given I have device with app SMB still not installed yet
         When I access link upload document
-        Then I will notify I need to install app first
+        Then I will notify I need to install app first 
