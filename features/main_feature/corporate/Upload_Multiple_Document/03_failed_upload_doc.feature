@@ -62,4 +62,15 @@ Scenario: user upload file more than 15MB for Second Loan AR MSME Individu
   And user verify upload all document Mutasi and file size should be displayed
   And user upload multiple document more than 15 MB "1YearfinancialReports"  
   Then user see file size is displayed and error message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
-  
+
+
+Scenario: Validate Upload document with invalid file format
+  Given user already apply loan but have no upload document
+  When user click from Aktivitas pinjaman
+  And user on Aktivitas Pinjaman Page
+  And user click loan with status Pengajuan Limit & Upload Dokumen
+  And user click button Pilih Metode Upload Dokumen
+  And user click button Langsung dari Aplikasi
+  And user on Upload File Page 
+  And user upload multiple document with jpg format "3contohInvoicewithBuyer" 
+  Then user see file size is displayed and error message for upload invalid format "File harus dalam format PDF."
