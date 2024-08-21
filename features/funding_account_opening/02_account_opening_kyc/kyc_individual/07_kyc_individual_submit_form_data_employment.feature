@@ -23,6 +23,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill form Data Employment except field '<Field>'
         And I submit my employment data individual
@@ -56,6 +60,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with '<Value>'
         Then I should see message error '<Message>' in the below of field 'companyName' in form Data Employment
@@ -84,6 +92,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with 'AMARBANK'
         And I clear field company name
@@ -109,6 +121,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my average transaction with '2000000'
         And I clear field average transaction
@@ -134,6 +150,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with 'John Doe S.Kom, M\'Kom- 11233'
         Then I shouldn't see message error in the below of field company name in form Data Employment
@@ -158,6 +178,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my average transaction with "200000aB@"
         Then I shouldn't see message error in the below of field average transaction in form Data Employment    
@@ -182,6 +206,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         And I see fields that available in Data Employment
         When I fill my employment details as followings:

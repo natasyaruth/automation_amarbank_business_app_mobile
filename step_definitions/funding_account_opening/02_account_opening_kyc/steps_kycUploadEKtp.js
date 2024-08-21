@@ -32,6 +32,7 @@ Given("I register initiator with partner as below", async (table) => {
     const prodType = "CORP";
     const userID = globalVariable.login.userID;
     const password = globalVariable.login.password;
+    const npwpBusiness = globalVariable.registration.npwpBusinessDefault;
 
     const ktpInitiator = {
         ktpnumber: "3171032905930006",
@@ -67,7 +68,6 @@ Given("I register initiator with partner as below", async (table) => {
         industryType: "Jasa",
         monthlyIncome: "30 - 50 juta",
         averageTransaction: "20000000",
-        businessNPWP: "997000411185779",
         annualEarnings: "500 juta",
         nib: "3337798233333",
         foundedAt: "01-01-1991",
@@ -79,9 +79,13 @@ Given("I register initiator with partner as below", async (table) => {
     await
         uploadDao.submitProductType(prodType, userID, password);
 
+    // CHECKING NPWP
+    const isEligible = (await uploadDao.checkEligibilityNPWPBusiness(userID, password, npwpBusiness)).eligible;
+    I.assertEqual(isEligible, true);
+
     // HIT LEGALITY TYPE
     await
-        uploadDao.submitLegalityType(legality, userID, password);
+        uploadDao.submitLegalityType(legality, userID, password, npwpBusiness);    
 
     // JUMP TO FORM KTP
     await

@@ -167,7 +167,7 @@ module.exports = {
         }
     },
 
-    async submitLegalityType(type, userID, password) {
+    async submitLegalityType(type, userID, password, npwpBusiness) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -190,6 +190,7 @@ module.exports = {
             applicationID: "",
             legalityType: type,
             source: "funding",
+            businessNpwp: npwpBusiness
             }));
         }
 
@@ -215,7 +216,6 @@ module.exports = {
             industryType: businessProfile["industryType"],
             monthlyIncome: businessProfile["monthlyIncome"],
             averageTransaction: businessProfile["averageTransaction"],
-            businessNPWP: businessProfile["businessNPWP"],
             annualEarnings: "500 juta",
             nib: businessProfile["nib"],
             foundedAt: businessProfile["foundedAt"],
@@ -291,5 +291,24 @@ module.exports = {
             status: responsePostData.status,
             data: responsePostData.data
         }
+    },
+
+    async checkEligibilityNPWPBusiness(userID, password, npwpBusiness) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendPostRequest("https://"+env+"-smb-user.otoku.io/api/v1/business/check-npwp", secret({
+            npwp: npwpBusiness
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            eligible: response.data.isEligible,
+        }
+
     },
 }

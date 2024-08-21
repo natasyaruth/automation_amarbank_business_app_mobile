@@ -23,6 +23,10 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         And I choose Giro Account MSME
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Personal'
 
     Scenario Outline: Verifying form New Domicile address fields has been filled and then empty the fields

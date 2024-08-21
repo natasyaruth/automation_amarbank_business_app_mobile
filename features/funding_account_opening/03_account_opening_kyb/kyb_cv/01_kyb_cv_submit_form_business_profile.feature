@@ -23,6 +23,10 @@ Feature: Account Opening KYB CV - Submit Business Profile
         And I choose Giro Account Corporate
         And I choose legality business type 'cv'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
 
     Scenario Outline: Verifying form Business Profile fields has been filled and then empty the fields
@@ -36,7 +40,6 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | @C131851    | businessName       | Nama bisnis           |
             | @C131852    | businessField      | Jenis bisnis          |
             | @C134126    | averageTransaction | Rata - rata transaksi |
-            | @C131853    | npwp               | NPWP bisnis           |
             | @C131854    | nib                | NIB Berbasis Resiko   |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Profile
@@ -53,7 +56,6 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | @C131857    | businessField     | Jenis bisnis                 |
             | @C131858    | monthlyIncome     | Penghasilan bisnis per bulan |
             | @C134133    | averageTransaction| Rata - rata transaksi        |
-            | @C131859    | npwp              | NPWP bisnis                  |
             | @C131860    | nib               | NIB Berbasis Resiko          |
             | @C131861    | businessDateStart | Tanggal bisnis berdiri       |
 
@@ -102,16 +104,6 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | @C131868    | 912910670123412 | NIB harus 13 digit                      |
             | @C131869    | 912910          | NIB harus 13 digit                      |
 
-    Scenario Outline: Verifying NPWP field with invalid value in form Business Profile
-        Given I am a customer who has completed my KYC process
-        When I continue to process KYB
-        And I fill field 'npwp' with '<Value>' in form Business Profile
-        Then I should see message error '<Message>' in the below of field 'npwp' in form Business Profile
-        Examples:                                                                 ❸
-            | testRailTag | Value  | Message                 |
-            | @C131870    |        | NPWP bisnis wajib diisi |
-            | @C131871    | 912910 | NPWP harus 15 digit     |
-
     @C131872
     Scenario: Submit form Business Profile successfully business type CV
         Given I am a customer who has completed my KYC process
@@ -123,7 +115,6 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | businessField      | Restoran        |
             | monthlyIncome      | 30 - 50 juta    |
             | averageTransaction | 2000000         |
-            | npwp               | 906283213036000 |
             | nib                | 9129106701234   |
             | businessDateStart  | 10/10/2010      |
         And I submit my business profile
