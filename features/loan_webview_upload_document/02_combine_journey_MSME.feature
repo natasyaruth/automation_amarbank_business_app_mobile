@@ -469,7 +469,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         Then the deleting document is cancelled
         And the document still appears in its field
 
-
+## Add File Size ##
 Scenario: validate document size when upload document AP PT.Perusahaan or CV   
         Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
         When I see the wording of "Supplier"
@@ -496,7 +496,7 @@ Scenario: validate document size when upload document AP PT.Perusahaan or CV
         And I see the file size should be displayed "1.6 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.6 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
         
 
 Scenario: validate document size when upload document AR PT.Perusahaan or CV   
@@ -525,7 +525,7 @@ Scenario: validate document size when upload document AR PT.Perusahaan or CV
         And I see the file size should be displayed "1.6 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.6 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
         
 
 Scenario: validate document size when upload document AP PT.Perorangan or UD   
@@ -546,8 +546,7 @@ Scenario: validate document size when upload document AP PT.Perorangan or UD
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
-
+        And I see button to update the Progress
 
 Scenario: validate document size when upload document AR PT.Perorangan or UD   
         Given I has been access to the link web view for upload multiple data documents AR "PT Perorangan or UD"
@@ -567,7 +566,7 @@ Scenario: validate document size when upload document AR PT.Perorangan or UD
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
 
     
 Scenario: validate document size when upload document AP Individu
@@ -584,7 +583,7 @@ Scenario: validate document size when upload document AP Individu
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
 
 Scenario: validate document size when upload document AR Individu
         Given I has been access to the link web view for upload multiple data documents AR "Individu"
@@ -600,7 +599,7 @@ Scenario: validate document size when upload document AR Individu
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
 
 Scenario: validate document size when upload document PO PT.Perusahaan  
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
@@ -628,7 +627,8 @@ Scenario: validate document size when upload document PO PT.Perusahaan
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
+
 
 Scenario: validate document size when upload document PO PT.Perorangan
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
@@ -648,7 +648,8 @@ Scenario: validate document size when upload document PO PT.Perorangan
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
-        And I click button to update the Progress
+        And I see button to update the Progress
+
 
 Scenario: validate document size when upload document PO Individu
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
@@ -664,4 +665,80 @@ Scenario: validate document size when upload document PO Individu
         And I see the file size should be displayed "1.7 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.7 MB"
+        And I see button to update the Progress
+
+Scenario: Validate all the document successfully uploaded on web in AR PT.Perusahaan or CV   
+        Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
+        When I see the wording of "Buyer"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed "1.6 MB"
+        And I see "Akta Perusahaan"
+        And I see the file size should be displayed "1.6 MB"
+        And I see "SK Kemenkumham"
+        And I see the file size should be displayed "1.6 MB"
+        And I see "NPWP Perusahaan"
+        And I see the file size should be displayed "1.6 MB"
+        Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        And I see the file size should be displayed "1.6 MB"
+        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
+        And I see the file size should be displayed "1.6 MB"
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
+        And I see the file size should be displayed "1.6 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.6 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed "1.6 MB"
         And I click button to update the Progress
+        And I click button Perbarui Progress on mobile
+        And I see button Kirim Pengajuan Limit Kredit
+
+
+Scenario: Validate all the document successfully uploaded on web in AP PT.Perorangan or UD   
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed "1.7 MB"
+        And I see "Akta Perusahaan"
+        And I see the file size should be displayed "1.7 MB"    
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed "1.7 MB"
+        And I click button to update the Progress
+        And I click button Perbarui Progress on mobile
+        And I see button Kirim Pengajuan Limit Kredit
+
+
+Scenario: Validate all the document successfully uploaded on web in PO Individu
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"           
+        And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed "1.7 MB"
+        And I click button to update the Progress
+        And I click button Perbarui Progress on mobile
+        And I see button Kirim Pengajuan Limit Kredit
+        
+
+
+        
