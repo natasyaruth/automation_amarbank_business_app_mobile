@@ -90,31 +90,34 @@ module.exports = {
 
   async uploadAllDocumentCompany(userID, password) {
 
+    const fileType = 'pdf';
+
     const enumDoc = [1, 2, 5, 7];
 
     for(let i=0;i<4;i++){
       await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i]);
+        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
       I.wait(5);  
     }
 
   },
 
   async uploadAllDocumentIndividualCompany(userID, password) {
+    const fileType = 'pdf';
     await
-      uploadDao.uploadDocBusiness(userID, password, 1);
+      uploadDao.uploadDocBusiness(userID, password, 1, fileType);
       I.wait(5);  
     await
-      uploadDao.uploadDocBusiness(userID, password, 2);
+      uploadDao.uploadDocBusiness(userID, password, 2, fileType);
       I.wait(5);  
 
   },
 
-  async uploadOneDocument(userID, password, typeDoc) {
+  async uploadOneDocument(userID, password, typeDoc, fileType) {
     const enumDoc = this.getEnumDoc(typeDoc);
 
     await
-      uploadDao.uploadDocBusiness(userID, password, enumDoc);
+      uploadDao.uploadDocBusiness(userID, password, enumDoc, fileType);
     
       I.wait(2);
   },

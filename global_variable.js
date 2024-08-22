@@ -73,6 +73,7 @@ module.exports = {
         akta: false,
         sk: false,
         npwp: false,
+        fileType: "",
     },
     createPin:{
         newPin:"",
