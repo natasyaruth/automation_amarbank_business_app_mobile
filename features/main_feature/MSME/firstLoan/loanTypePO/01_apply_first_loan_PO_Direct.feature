@@ -53,6 +53,17 @@ Scenario: Validate error input tenor below min 30 hari
     And user click button Lanjut Isi Data Bouwheer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+#takeout location bisnis
+
+Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Bouwheer
+    Then user direct to Data Bouwheer Page
 
  Scenario: User apply first loan PO direct type with flagging MSME
     Given User on Main Dashboard
