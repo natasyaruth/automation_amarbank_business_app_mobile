@@ -64,6 +64,18 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+##Take out Location Bisnis
+  
+  Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier
+    Then user direct to Data Supplier Page
+
 
   @C142647
   Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME

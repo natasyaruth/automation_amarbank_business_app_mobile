@@ -216,7 +216,7 @@ Scenario: Validate Default value if system failed to get update from firebase fo
     And user will see confirmation message "After you publish, these changes are available to users."
     And user click Publish Changes button
     And user back to mobile and refresh
-    And user will see empty value on cardAP "(Distributor Financing)"   
+    And user will see empty value on card AP "(Distributor Financing)"   
     And user will see "Distributor Financing"  on card AP type on bottomsheet Pelajari Tipe Skema Kredit 
 
 Scenario: Validate Default value if system failed to get update from firebase for AR
@@ -255,4 +255,73 @@ Scenario: Validate Default value if system failed to get update from firebase fo
     And user will see empty value on card PO "(Project Financing)"    
     And user will see "Project Financing" on card PO type on bottomsheet Pelajari Tipe Skema Kredit 
 
+Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for AP
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And user on loan type screen page    
+    And user will see "Distributor Financing"
+    And user go to firebase
+    And user click remote config
+    And user search by name loanAP_type_text
+    And user edit with value 
+    And user click button Save 
+    And user click button Publish Changes
+    And user will see confirmation message "After you publish, these changes are available to users."
+    And user click Publish Changes button
+    And user back to mobile and refresh
+    And user will see empty value on card AP "()"   
+
+
+Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for AR
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And user on loan type screen page    
+    And user will see "Supplier Financing"
+    And user go to firebase
+    And user click remote config
+    And user search by name loanAR_type_text
+    And user edit with empty value
+    And user click button Save 
+    And user click button Publish Changes
+    And user will see confirmation message "After you publish, these changes are available to users."
+    And user click Publish Changes button
+    And user back to mobile and refresh
+    And user will see empty value on card AR "()"   
+    
+
+Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for PO
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And user on loan type screen page    
+    And user will see "Project Financing"
+    And user go to firebase
+    And user click remote config
+    And user search by name loanPO_type_text
+    And user edit with value 
+    And user click button Save 
+    And user click button Publish Changes
+    And user will see confirmation message "After you publish, these changes are available to users."
+    And user click Publish Changes button
+    And user back to mobile and refresh
+    And user will see empty value on card PO "()"   
+
+
+Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for all type Loan
+    Given User on Firebase 
+    When user click remote config
+    And user search by name loanAP_type_text
+    And user click edit button
+    And user edit value name back to default with "Distributor Financing."
+    And user click button Save 
+    And user edit value name back to default with "Supplier Financing."
+    And user click button Save 
+    And user edit value name back to default with "Project Financing."
+    And user click button Save 
+    And user click button Publish Changes
+    And user will see confirmation message "After you publish, these changes are available to users."
+    And user click Publish Changes button    
+    And user refresh on loan type screen page
+    And user will see card AP "Distributor Financing"
+    And user will see card AR "Supplier Financing"
+    And user will see card PO "Project Financing"
 

@@ -52,6 +52,17 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user input tenor "1"
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+
+#takeout location bisnis
+  Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Buyer
+    Then user direct to Data Buyer Page
  
  @C142687
  Scenario: User apply second loan AR direct type with bussiness type PT.Perorangan flagging MSME
@@ -61,7 +72,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi data Buyer   
+    And user click button Lanjut Isi Data Buyer   
     #section select Anchor
     When user on buyer cooperating page
     And user select another supplier

@@ -55,6 +55,17 @@ Scenario: Validate error input tenor more than 180 hari
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+## take out location bisnis#
+Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And User select loan type "AP"
+    And user on select loan Needs Page 
+    And User choose nominal "Rp50 juta - 5 Miliar"       
+    And user input tenor "1"
+    And user click button Lanjut Isi Data Supplier
+    Then user direct to Data Supplier Page
+
 @C142667
 Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flaging MSME
     Given User on Main Dashboard
@@ -64,7 +75,7 @@ Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flag
     And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
-    And user click button Lanjut Isi data Supplier    
+    And user click button Lanjut Isi Data Supplier    
     #section select Anchor
     And user on buyer cooperating page
     And user fill search anchor "PT Tirta Investama"
