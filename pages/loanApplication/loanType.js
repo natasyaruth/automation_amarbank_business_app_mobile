@@ -33,7 +33,7 @@ module.exports = {
         textwordAR: {xpath: '//android.widget.TextView[contains(@text, "Supplier Financing")]'},
         textwordPO: {xpath: '//android.widget.TextView[contains(@text, "Project Financing")]'},
         textTitleTopBarListDoc: {xpath: '//android.widget.TextView[contains(@text, "Pengajuan Limit Kredit Bisnis")]'},
-
+        texttitletooltip:  {xpath: '//android.widget.TextView[contains(@text, "Contoh Kebutuhan")]'},
 
         //Data Pekerjaan
         individuEmployeDataMSME: {xpath: '//android.widget.TextView[contains(@text, "Jenis Pekerjaan *")]'},
@@ -92,6 +92,9 @@ module.exports = {
         buttonCopy: "~buttonCopy",
         buttonUploadProgress: "~buttonUploadProgress",
         buttonUpload: "~buttonUpload",
+        buttonChevron: "~buttonCloseOnboarding",
+        buttonAjukanLimitKredit: "~btnToLoan",
+        buttonCoachmark: "~coachMark",
     },
 
     radioButtons: {
@@ -293,6 +296,10 @@ module.exports = {
 
     },
 
+    async validatetitletooltip(titletooltip){
+        let actual = await I.grabAttributeFrom(this.textField.texttitletooltip, 'text');
+        I.assertEqual(actualValue, 'Contoh Kebutuhan');
+    },
         
 
     selectSchemaLoanTypeList(selectSchemaType){
@@ -357,5 +364,14 @@ module.exports = {
 
     clickButtonPilihMetodeUploadDoc(){
         I.click(this.buttons.buttonPilihMetodeUploadDoc);
+    },
+
+    clickBtnAjukanLimitKredit(){
+        I.click(this.buttons.buttonAjukanLimitKredit);
+    },
+
+    clickbtncoachmark(){
+        I.wait(2);
+        I.click(this.buttons.buttonCoachmark);
     },
 }

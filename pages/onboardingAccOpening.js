@@ -34,6 +34,14 @@ module.exports = {
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
     openProgressAccount: "~btnDropoff",
+    widgetDocumentSafe: "~buttonLearn",
+    submitNPWP: "~nextButton",
+    backNpwp: "~btnBack",
+    confirmNpwp: "~btnConfirmed",
+    closeBottomSheet: "~buttonClose",
+  },
+  fields: {
+    npwpBusiness: "~textFieldNpwpNumber"
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -71,6 +79,10 @@ module.exports = {
     transactionRecipientBank: "~transactionRecipientBank",
     transactionDate: "~transactionDate",
     transactionAmount: "~transactionAmount",
+    npwpNumber: "~npwpNumberText",
+  },
+  msgErrorFields: {
+    npwpBusiness: "~textMsgErrorNpwpNumber",
   },
   tabs: {
     home: "~tabHome",
@@ -78,6 +90,9 @@ module.exports = {
     callCenter: "~tabCallCenter",
     document: "~tabDocument",
     others: "~tabOthers",
+  },
+  icons: {
+    redDotNotificationDoc: "~indicatorRedDot",
   },
 
   chooseLegalityBusinessType(type) {
@@ -103,13 +118,11 @@ module.exports = {
   openGiroAccountMsme() {
     I.waitForElement(this.buttons.giroAccountMsme, 10);
     I.click(this.buttons.giroAccountMsme);
-    globalVariable.onBoarding.productType = "MSME";
   },
 
   openGiroAccountCorporate() {
     I.waitForElement(this.buttons.giroAccountCorporate, 10);
     I.click(this.buttons.giroAccountCorporate);
-    globalVariable.onBoarding.productType = "CORP";
   },
 
   continueToKYC() {
@@ -238,6 +251,7 @@ module.exports = {
   },
 
   continueCompleteData() {
+    I.waitForElement(this.buttons.completeData, 20);
     I.click(this.buttons.completeData);
   },
 
@@ -254,6 +268,11 @@ module.exports = {
   openCardReject() {
     I.waitForElement(this.buttons.rejectCard, 10);
     I.click(this.buttons.rejectCard);
+  },
+
+  openWidgetDocumentSafe() {
+    I.waitForElement(this.buttons.widgetDocumentSafe, 10);
+    I.click(this.buttons.widgetDocumentSafe);
   },
 
   continueCompleteRegistrationDirectors() {
@@ -379,6 +398,46 @@ module.exports = {
   async getAmountTransaction() {
     I.waitForElement(this.texts.transactionAmount, 10);
     return I.grabTextFrom(this.texts.transactionAmount);
-  }
+  },
+
+  fillFieldNPWPBusiness(npwp) {
+    I.waitForElement(this.fields.npwpBusiness, 10);
+    I.setText(this.fields.npwpBusiness, npwp);
+  },
+
+  async getMessageErrorNPWP() {
+    I.waitForElement(this.msgErrorFields.npwpBusiness, 10);
+    return I.grabTextFrom(this.msgErrorFields.npwpBusiness);
+  },
+
+  continueToDataPersonal() {
+    I.waitForElement(this.buttons.submitNPWP, 10);
+    I.click(this.buttons.submitNPWP);
+  },
+
+  clearFieldNPWPBusiness() {
+    I.waitForElement(this.fields.npwpBusiness, 10);
+    I.clearField(this.fields.npwpBusiness);
+  },
+
+  async getNPWPBusiness() {
+    I.waitForElement(this.texts.npwpNumber, 10);
+    return I.grabTextFrom(this.texts.npwpNumber);
+  },
+
+  clickBackPopUp() {
+    I.waitForElement(this.buttons.backNpwp, 10);
+    I.click(this.buttons.submitNPWP);
+  },
+
+  confirmNPWP() {
+    I.waitForElement(this.buttons.confirmNpwp, 10);
+    I.click(this.buttons.confirmNpwp);
+  },
+
+  closeBottomSheet() {
+    I.waitForElement(this.buttons.closeBottomSheet, 10);
+    I.click(this.buttons.closeBottomSheet);
+  },
 
 }

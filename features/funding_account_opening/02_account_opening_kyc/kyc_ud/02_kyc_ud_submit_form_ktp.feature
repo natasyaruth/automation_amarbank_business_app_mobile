@@ -23,6 +23,10 @@ Feature: Account Opening KYC UD - Submit Form KTP
     And I choose Giro Account MSME
     And I choose legality business type 'ud'
     And I submit my legality type
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
     And I upload my eKTP photo
 
   @C131842

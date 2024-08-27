@@ -29,6 +29,8 @@ Before(() => {
     Given(/user on loan type page/,()=>{
         I.wait(2);
         loanTypePage.viewLoanTypePage();
+        I.seeElement(loanTypePage.buttons.buttonCoachmark);     
+
             
     });
 
@@ -254,5 +256,19 @@ Before(() => {
     When (/user will see text after reopen {string}/, async(reopentitle) => {
         I.waitForText(reopentitle, 10);
     });
+
+    
+    When(/user click button Ajukan Limit Kredit/, () => {
+        I.wait9(2);
+        loanTypePage.clickBtnAjukanLimitKredit();
+    });
+
+    When(/user will see title coacmark {strinng}/,  () =>{
+        I.wait(2);
+        loanTypePage.validatetitletooltip();
+
+    });
+    
+
 
 

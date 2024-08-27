@@ -45,8 +45,9 @@ When("I see fields that available in Business Profile", async () => {
     I.see("Rata-rata transaksi per bulan");
 
     I.waitForElement(formBusinessProfilePage.fields.npwp, 10);
+    // checking field npwp is disabled
     I.see("Nomor NPWP Bisnis");
-    I.see("Tulis nomor NPWP bisnis");
+    I.see(globalVariable.registration.npwpBusiness);
 
     I.waitForElement(formBusinessProfilePage.fields.nib, 10);
     I.see("NIB Berbasis Resiko");
@@ -100,7 +101,6 @@ When("I fill form Business Profile except field {string}", (fieldName) => {
         businessField: "Restoran",
         monthlyIncome: "30 - 50 juta",
         averageTransaction: 200000,
-        npwp: "906283213036000",
         nib: "9129106701234",
         businessDateStart: "10/10/2010",
     };

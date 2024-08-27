@@ -10,6 +10,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -30,6 +31,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -51,6 +53,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -76,6 +79,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -99,6 +103,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -121,6 +126,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -145,6 +151,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -173,6 +180,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -205,6 +213,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -221,6 +230,7 @@ Feature: Document Management
         And I will see card account 'active'
         And I choose other
         And I click logout
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -238,6 +248,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -251,6 +262,7 @@ Feature: Document Management
         And I click activated my biometric via document
         And I will direct to Tab Other
         And I click logout
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -268,6 +280,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -294,6 +307,7 @@ Feature: Document Management
             | password    | Test1234 |
             | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | niza2098 |
             | password    | Test1234 |
@@ -323,6 +337,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | indibec3 |
             | password    | 1234Test |
@@ -344,6 +359,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag8fac |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
@@ -365,6 +381,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autofb2c |
             | password    | 1234Test |
@@ -389,6 +406,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | ptpe7f28 |
             | password    | 1234Test |
@@ -413,6 +431,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag528f |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | ptpe1d52 |
             | password    | 1234Test |
@@ -437,6 +456,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag48e9 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | deve82e5 |
             | password    | 1234Test |
@@ -459,6 +479,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
@@ -483,6 +504,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
@@ -507,6 +529,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | mich4d05 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autoc10a |
             | password    | 1234Test |
@@ -531,6 +554,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag6cf7 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autoa645 |
             | password    | 1234Test |
@@ -555,6 +579,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stagdfb7 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | auto94a2 |
             | password    | 1234Test |
@@ -579,6 +604,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stagc6ce |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | auto7d0b |
             | password    | 1234Test |
@@ -603,6 +629,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
@@ -627,6 +654,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag4c45 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | auto590e |
             | password    | 1234Test |
@@ -651,6 +679,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | stag5a14 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autob386 |
             | password    | 1234Test |
@@ -675,6 +704,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | assa78cf |
             | passwordStg | Test1234 |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | auto19fc |
             | password    | 1234Test |
@@ -699,6 +729,7 @@ Feature: Document Management
             | password    | 1234Test |
             | userIDstg   | mich4d05 |
             | passwordStg | 1234Test |
+        And complete onboarding document safe
         And I filling in form login with the following details:
             | userID      | autoc10a |
             | password    | 1234Test |

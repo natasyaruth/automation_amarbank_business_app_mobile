@@ -21,6 +21,10 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form Business Profile with NPWP business indicated as DHN
         And I choose legality business type 'cv'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I mock feature submit form Business Profile into enabled
         And I update my last journey step to 'Data Employment'
         When I continue to process KYB
@@ -31,7 +35,6 @@ Feature: Account Opening - Validation Auto Reject
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
-            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         Then I will direct to page notifying me that I can't continue to next process KYB because my data indicated as DHN

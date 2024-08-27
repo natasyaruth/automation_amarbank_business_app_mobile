@@ -23,6 +23,10 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I choose Giro Account Corporate
     And I choose legality business type 'cv'
     And I submit my legality type
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
 
   @C141156
   Scenario: Re-upload eKTP photo successfully

@@ -58,13 +58,41 @@ Scenario: Verify coachmark in type Loan PO
   And user will see text loan PO "Misal Anda adalah kontraktor yang mendapat projek dari Bouwheer. Anda membutuhkan dana untuk membeli bahan baku dari berbagai macam supplier"
 
 
- Scenario: User Reopen Coach Mark after access select loan type for the second time
+ Scenario: verify user back to icon coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
     And user on Choose Type Loan Page
-    And user will see title coacmark again "Lihat Panduan Lagi"
-    And user will see text after reopen "klik ikon ini jika Anda memerlukan panduan lagi untuk mempelajari skema pinjaman."
+    And user will see title coacmark "Contoh Kebutuhan"
+    And user will see text loan AP "Bisnis Anda membutuhkan pembayaran rutin kepada supplier bahan baku agar produksi tidak berhenti."
+    And User click chevron to AR button
+    And user will see title coacmark loan "Contoh Kebutuhan"
+    And user will see text loan AR "Pembeli Anda belum membayar tagihan faktur, sementara Anda perlu dana sekarang."
+    And User click chevron to PO button
+    And user will see title coacmark  "Contoh Kebutuhan"
+    And user will see text loan PO "Misal Anda adalah kontraktor yang mendapat projek dari Bouwheer. Anda membutuhkan dana untuk membeli bahan baku dari berbagai macam supplier"
+    And user click chevron to icon coachmark
+    And user will back to icon coachmark "Lihat Panduan Lagi"
+    And user will see text "Klik ikon ini jika Anda memerlukan panduan lagi untuk mempelajari skema pinjaman."
     Then user click close button to end the coachmark
+    
+
+  Scenario: add entry point to reopen coach mark
+    Given User on Loan Dashboard
+    When user click button Ajukan Limit Baru
+    And user on Choose Type Loan Page
+    And user click coachmark icon  
+    And user will see title coacmark "Contoh Kebutuhan"
+    And user will see text loan AP "Bisnis Anda membutuhkan pembayaran rutin kepada supplier bahan baku agar produksi tidak berhenti."
+    And User click chevron to AR button
+    And user will see title coacmark loan "Contoh Kebutuhan"
+    And user will see text loan AR "Pembeli Anda belum membayar tagihan faktur, sementara Anda perlu dana sekarang."
+    And User click chevron to PO button
+    And user will see title coacmark  "Contoh Kebutuhan"
+    And user will see text loan PO "Misal Anda adalah kontraktor yang mendapat projek dari Bouwheer. Anda membutuhkan dana untuk membeli bahan baku dari berbagai macam supplier"
+    And user click chevron to icon coachmark
+    And user will back to icon coachmark "Lihat Panduan Lagi"
+    And user will see text "Klik ikon ini jika Anda memerlukan panduan lagi untuk mempelajari skema pinjaman."
+    Then user click close button to end the coachmark  
     
 
 
