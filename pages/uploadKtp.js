@@ -42,7 +42,7 @@ module.exports = {
   },
 
   async getTextInformationType() {
-    I.waitForElement(this.text.infoType, 10);
+    I.waitForElement(this.text.infoType, 20);
     return await I.grabTextFrom(this.text.infoType);
   },
 

@@ -24,6 +24,7 @@ Feature: Account Opening KYB - Upload Document Business
         And after I delete, there is no pop up to confirm
         And if I click reupload file, it would reupload again the file
 
+    @C156890
     Scenario: Upload document with file size more than 15 MB in web view
         Given I am a registered customer
         And access link upload document
@@ -33,6 +34,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I see icon to delete file
         And after I delete, there is no pop up to confirm
 
+    @C156891
     Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in web view
         Given I am a registered customer
         And access link upload document
@@ -43,12 +45,14 @@ Feature: Account Opening KYB - Upload Document Business
         And after I delete, there is no pop up to confirm
         And if I click reupload file, it would reupload again the file    
 
+    @C156892
     Scenario: Upload document and get error timeout in mobile
         Given I am a registered customer
         And already register till business address
         When I upload document and timeout
         Then I will see message error 'Koneksi bermasalah. Periksa jaringan Anda dan coba lagi.' in the below of section upload document
 
+    @C156893
     Scenario: Delete document and get error server in mobile
         Given I am a registered customer
         And already register till business address

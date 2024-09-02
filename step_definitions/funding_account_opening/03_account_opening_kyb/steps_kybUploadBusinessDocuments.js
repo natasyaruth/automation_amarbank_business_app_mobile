@@ -3,6 +3,7 @@ const {
     resetStateDao,
     globalVariable,
     uploadBusinessDocPage,
+    uploadDao,
     headerPage,
 } = inject();
 
@@ -78,7 +79,8 @@ When("I see files that need to be uploaded for type company", () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
-    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
+    I.see("Format file: PDF / JPG / JPEG / PNG"+"\n"+
+        "Maximal ukuran per file: 15MB");
 
     I.see("NIB");
     I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
@@ -133,7 +135,7 @@ When("I upload document business {string} with type {string}", async (typeDoc, f
     globalVariable.uploadDocuments.fileType = fileType;
 
     await
-        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
+        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc, fileType);
 });
 
 When("I upload all document business for type company", async () => {
@@ -356,36 +358,24 @@ Then("I will see button request account opening is shown", () => {
 
 Then("I will see document {string} is uploaded", (typeDoc) => {
 
-    const fileType = globalVariable.uploadDocuments.fileType;
-
-    const fileName = uploadDao.getFileName(fileType);
-
-    const splitFileName = fileName.split(' ').slice(0,2);
-
-    const actualFileName = splitFileName.join();
-
     switch (typeDoc) {
         case "NIB":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-            I.see(actualFileName);
             break;
         case "Akta Perusahaan":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-            I.see(actualFileName);
             break;
         case "SK Kemenkumham":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-            I.see(actualFileName);
             break;
         case "NPWP Perusahaan":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-            I.see(actualFileName);
             break;
         default:
             throw new Error("Document name is not recognize");

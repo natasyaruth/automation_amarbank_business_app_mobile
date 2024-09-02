@@ -19,6 +19,29 @@ module.exports = {
         };
     },
 
+    async updateFlagOnboardingDocumentSafeAndSurvey(userID, status){
+        
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseUpdate = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/flags/bulk-update", secret({
+            username: userID,
+            flags: {
+                brankasOnboarding: status,
+                brankasSurvey: status
+            }
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return{
+            status: responseUpdate.status,
+            data: responseUpdate.data
+        }
+
+    },
+
     async deleteAllDocuments(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
@@ -41,7 +64,7 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io//api/v1/user/business/partners/all/"+businessId);
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners/all/"+businessId);
 
         I.seeResponseCodeIsSuccessful();
 

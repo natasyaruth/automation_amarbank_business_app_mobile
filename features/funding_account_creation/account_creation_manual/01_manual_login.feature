@@ -203,7 +203,7 @@ Feature: Manual Account login
         And User ID will automatically fill on field user ID
         And I can login by email
         And I direct to dashboard
-    @C141216 @FuntionalTestDemo
+
     Scenario: Validate email content
         Given I am a user want login by email
         When I do process register 

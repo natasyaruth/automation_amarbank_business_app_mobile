@@ -63,7 +63,6 @@ When("I choose legality business type {string}", (businessType) => {
 
 When("I submit my legality type", () => {
     onboardingAccOpeningPage.continueToKYC();
-    I.wait(3);
 });
 
 When("I choose Giro Account", () => {
@@ -125,12 +124,13 @@ When("I close bottom sheet NPWP Business", () => {
     onboardingAccOpeningPage.closeBottomSheet();
 });
 
-When("I fill NPWP business", () => {
+When("I fill NPWP Business", () => {
     onboardingAccOpeningPage.fillFieldNPWPBusiness(globalVariable.registration.npwpBusinessDefault);
 });
 
 When("I fill NPWP business with {string}", (npwpBusiness) => {
     onboardingAccOpeningPage.fillFieldNPWPBusiness(npwpBusiness);
+    globalVariable.registration.npwpBusiness = npwpBusiness;
 });
 
 When("I fill NPWP Business with NPWP has been registered", () => {
@@ -473,7 +473,22 @@ Then("I will see bottom sheet NPWP Business", () => {
     I.see("Tulis nomor NPWP bisnis");
     I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
 
-    I.see("Lanjut Isi Data Personal");
+    I.see("Lanjut Isi Data personal");
+    I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
+    // checking button submit npwp is disabled
+});
+
+Then("I will see bottom sheet NPWP Business with NPWP still there", () => {
+    I.waitForText("NPWP Bisnis", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
+    I.see("Wajib Diisi");
+
+    I.see("Nomor NPWP Bisnis");
+    I.dontSee("Tulis nomor NPWP bisnis");
+    I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
+    I.see(globalVariable.registration.npwpBusiness);
+
+    I.see("Lanjut Isi Data personal");
     I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
     // checking button submit npwp is disabled
 });
@@ -505,6 +520,8 @@ Then("I see my NPWP business 15 digit and auto format", () => {
         npwpBusiness = globalVariable.registration.npwpBusinessDefault;
     }
 
+    const numberNpwp = npwpBusiness.substring(0,15);
+
     const formattedNpwp = npwpBusiness.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
 
     I.waitForText(formattedNpwp, 10);
@@ -512,7 +529,7 @@ Then("I see my NPWP business 15 digit and auto format", () => {
 });
 
 Then("I will see pop up confirm NPWP Business", async () => {
-    I.waitForText("Konfirmasi NPWP Bisnis Anda", 10);
+    I.waitForText("Konfirmasi NPWP Bisnis Anda", 20);
     I.see("Nomor NPWP Anda akan kami daftarkan pada aplikasi Amar Bank Bisnis.");
 
     I.see("Nomor NPWP:");
@@ -531,4 +548,51 @@ Then("I will see error NPWP business has been registered", async () => {
     const expectedMsgError = "Nomor NPWP sudah terdaftar di Amar Bank Bisnis";
 
     I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see field NPWP business is empty", ()=>{
+    I.wait(1);
+    I.waitForText("Tulis nomor NPWP bisnis", 10);
+});
+
+Then("I see message error NPWP should 15 digits", async () => {
+    const actualMsgError = await onboardingAccOpeningPage.getMessageErrorNPWP();
+    const expectedMsgError = "NPWP harus 15 digit";
+
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see NPWP business only number and formatted", () => {
+
+    let npwpBusiness;
+
+    if (
+        globalVariable.registration.npwpBusiness !== ""
+    ) {
+        npwpBusiness = globalVariable.registration.npwpBusiness;
+
+    } else {
+
+        npwpBusiness = globalVariable.registration.npwpBusinessDefault;
+    }
+
+    const numberNpwp = npwpBusiness.replace(/\D/g, '');
+
+    const formattedNpwp = [];
+    const npwpChar = numberNpwp.split("");
+
+    for (let i = 0; i < npwpChar.length; i++) {
+        formattedNpwp.push(npwpChar[i]);
+
+        if (formattedNpwp.length === 2 ||
+            formattedNpwp.length === 6 ||
+            formattedNpwp.length === 10 ||
+            formattedNpwp.length === 16) {
+            formattedNpwp.push(".");
+        } else if (formattedNpwp.length === 12) {
+            formattedNpwp.push("-");
+        }
+    }
+
+    I.waitForText(formattedNpwp.join(''), 10);
 });

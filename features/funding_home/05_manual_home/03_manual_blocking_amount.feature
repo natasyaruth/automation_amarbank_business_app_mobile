@@ -4,6 +4,7 @@ Feature: Dashboard Manual - Blocking amount
     I want to see my amount divided into active amount, blocking amount and total amount
     So that I'm not confused with my information amount
 
+  @C133879
   Scenario: Validate active amount, blocking amount and total amount after receive amount > 500.000 in account individual
     Given I am a customer and my individual account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 600.000,-
@@ -16,6 +17,7 @@ Feature: Dashboard Manual - Blocking amount
     And my blocking amount is Rp 500.000,-
     And my total amount is Rp 600.000,-
 
+  @C133880
   Scenario: Validate active amount, blocking amount and total amount after receive amount < 500.000 in account individual
     Given I am a customer and my individual account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 400.000,-
@@ -28,6 +30,7 @@ Feature: Dashboard Manual - Blocking amount
     And my blocking amount is Rp 400.000,-
     And my total amount is Rp 400.000,-
 
+  @C133881
   Scenario: Validate active amount, blocking amount and total amount after receive amount > 1.000.000 in account business
     Given I am a customer and my business account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 1.100.000,-
@@ -40,6 +43,7 @@ Feature: Dashboard Manual - Blocking amount
     And my blocking amount is Rp 1.000.000,-
     And my total amount is Rp 1.100.000,-
 
+  @C133882
   Scenario: Validate active amount, blocking amount and total amount after receive amount < 1.000.000 in account business
     Given I am a customer and my business account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 900.000,-
@@ -52,6 +56,7 @@ Feature: Dashboard Manual - Blocking amount
     And my blocking amount is Rp 900.000,-
     And my total amount is Rp 900.000,-
 
+  @C133883
   Scenario: Validate active amount, blocking amount and total amount after receive amount 100.000 gradually in account individual
     Given I am a customer and my individual account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 100.000,-
@@ -109,6 +114,7 @@ Feature: Dashboard Manual - Blocking amount
     And my blocking amount is Rp 500.000,-
     And my total amount is Rp 600.000,-
 
+  @C133884
   Scenario: Validate active amount, blocking amount and total amount after receive amount 100.000 gradually in account business
     Given I am a customer and my individual account recently accepted from CRM SMB
     When I receive amount or top up amount Rp 100.000,-

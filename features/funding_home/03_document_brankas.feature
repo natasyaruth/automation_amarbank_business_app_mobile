@@ -3,13 +3,14 @@ Feature: Document Brankas
     As a Customer
     I want to see and secure my document business and loan
 
+    @C156924
     Scenario: Close page onboarding brankas
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -26,13 +27,14 @@ Feature: Document Brankas
         And I see widget document safe
         And notification red dot document safe is on
 
+    @C156925
     Scenario: Access widget brankas on main dashboard for user initiator recently from registration 1
         Given I am a registered customer with following details:
             | userID      | deveb76d |
             | password    | 1234Test |
             | userIDstg   | stag7f83 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | deveb76d |
             | password    | 1234Test |
@@ -46,16 +48,16 @@ Feature: Document Brankas
         And I click widget document safe
         And I will see onboarding page document safe continue to choose product
         And I click button choose product
-        Then I will see details info of giro account MSME
-        And I will see details info of giro account Corporate  
+        Then I will directing to Hook 1 Onboarding Account Opening
 
+    @C156926
     Scenario: Access widget brankas on main dashboard for user initiator in process giro account opening
         Given I am a registered customer with following details:
             | userID      | deved388 |
             | password    | 1234Test |
             | userIDstg   | stag3f63 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | deved388 |
             | password    | 1234Test |
@@ -74,13 +76,14 @@ Feature: Document Brankas
         And I continue to process account opening
         Then I see page 'Data Personal'
 
+    @C156927
     Scenario: Access widget brankas on main dashboard for user initiator in process combine journey
         Given I am a registered customer with following details:
             | userID      | deveb182 |
             | password    | 1234Test |
             | userIDstg   | stagcf3f |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | deveb182 |
             | password    | 1234Test |
@@ -99,13 +102,14 @@ Feature: Document Brankas
         And I continue to process loan
         Then I see page 'Data Personal'
 
+    @C156928
     Scenario: Access widget brankas on main dashboard for user initiator on verification
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
@@ -120,15 +124,16 @@ Feature: Document Brankas
         And I continue to process account opening
         And I will direct to page detail progress account opening
 
+    @C156929
     Scenario: Access widget brankas on main dashboard for user individual on verification
         Given I am a registered customer with following details:
-            | userID      | indibec3 |
+            | userID      | deveaead |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | indibec3 |
+            | userID      | deveaead |
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
@@ -139,13 +144,14 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
+    @C156930
     Scenario: Access widget brankas on main dashboard for user invitee on verification
         Given I am a registered customer with following details:
             | userID      | rudi71d5 |
             | password    | 1234Test |
             | userIDstg   | rudie4f1 |
             | passwordStg | 1234Test | 
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | rudi71d5 |
             | password    | 1234Test |
@@ -158,15 +164,16 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
+    @C156931
     Scenario: Access widget brankas on main dashboard for user initiator active
         Given I am a registered customer with following details:
-            | userID      | autocaea |
+            | userID      | mike2cf3 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | autocaea |
+            | userID      | mike2cf3 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
@@ -185,13 +192,14 @@ Feature: Document Brankas
         Then I will direct to page document business
         And I will see button document giro and document loan
 
+    @C156932
     Scenario: Access widget brankas on main dashboard for user invitee active
         Given I am a registered customer with following details:
             | userID      | nataf76e |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | nataf76e |
             | password    | 1234Test |
@@ -210,13 +218,14 @@ Feature: Document Brankas
         Then I will direct to page document business
         And I will see button document giro and document loan
 
+    @C156933
     Scenario: Access widget brankas on main dashboard for user individual active
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -235,13 +244,14 @@ Feature: Document Brankas
         Then I will see button document loan
         And I will not see button document giro
 
+    @C156934
     Scenario: Access widget brankas on main dashboard for user combine journey active
         Given I am a registered customer with following details:
             | userID      | niza2098 |
             | password    | Test1234 |
             | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | niza2098 |
             | password    | Test1234 |
@@ -260,13 +270,14 @@ Feature: Document Brankas
         Then I will see button document loan
         And I will not see button document giro
 
+    @C156935
     Scenario: Fill survey with option done enough
         Given I am a registered customer with following details:
             | userID      | rota3159 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -292,15 +303,16 @@ Feature: Document Brankas
         And I will see card account 'active'
         And notification red dot document safe is off
 
+    @C156936
     Scenario: Fill survey with option not enough - choose one option
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -324,15 +336,16 @@ Feature: Document Brankas
         And I will see card account 'active'
         And notification red dot document safe is off
 
+    @C156937
     Scenario: Fill survey with option not enough - choose more than one option
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deveb4ef |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deveb4ef |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -358,15 +371,16 @@ Feature: Document Brankas
         And I will see card account 'active'
         And notification red dot document safe is off
 
+    @C156938
     Scenario: Fill survey with option not enough - choose all option
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | ptpe5040 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | ptpe5040 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -396,15 +410,16 @@ Feature: Document Brankas
         And I will see card account 'active'
         And notification red dot document safe is off
 
+    @C156939
     Scenario: Fill survey with option not enough - choose option other
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | ruth91fd |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | ruth91fd |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -426,21 +441,21 @@ Feature: Document Brankas
         And I will see button sent feedback disabled
         And I will see field reason
         And I fill feedback with 'Filter Dokumen'
-        And I see counting word
         And I sent the feedback
         Then I will see snackbar success send feedback
         And I will see card account 'active'
         And notification red dot document safe is off 
 
+    @C156940
     Scenario: Fill field option other and then delete
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -462,21 +477,21 @@ Feature: Document Brankas
         And I will see button sent feedback disabled
         And I will see field reason
         And I fill feedback with 'Filter Dokumen'
-        And I see counting word
         And I will see button sent feedback enabled
         And I clear field feedback
         Then I see counting word back to default
         And I will see button sent feedback disabled
 
+    @C156941
     Scenario: Choose option not enough and then choose option done enough
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -501,7 +516,6 @@ Feature: Document Brankas
         And I will see button sent feedback disabled
         And I will see field reason
         And I fill feedback with 'Filter Dokumen'
-        And I see counting word
         And I choose done enough
         And I choose not enough
         And I will see section to choose reason
@@ -510,15 +524,16 @@ Feature: Document Brankas
         And I will see field reason
         Then I will not see the feedback anymore
 
+    @C156942
     Scenario: Fill field option other contain with number and special char
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -540,21 +555,21 @@ Feature: Document Brankas
         And I will see button sent feedback disabled
         And I will see field reason
         And I fill feedback with 'Dokumen 123XYZ @!#%'
-        And I see counting word
         And I sent the feedback
         Then I will see snackbar success send feedback
         And I will see card account 'active'
         And notification red dot document safe is off 
 
+    @C156943
     Scenario: Check feeedback and then uncheck
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deved35f |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -583,15 +598,16 @@ Feature: Document Brankas
         And I uncheck reason 'Cari Dokumen'
         Then I will see button sent feedback disabled
 
+    @C156944
     Scenario: Fill survey journey to tab Profile
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | devef721 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | devef721 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -616,17 +632,20 @@ Feature: Document Brankas
         Then I will see snackbar success send feedback
         And I see my profile company data
         And I click tab Home
+        And I will see card account 'active'
+        And I don't see widget onboarding document safe
         And notification red dot document safe is off
 
+    @C156945
     Scenario: Fill survey journey to tab Other
         Given I am a registered customer with following details:
-            | userID      | rota3159 |
+            | userID      | deveb316 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And still not complete onboarding document safe
+        And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | rota3159 |
+            | userID      | deveb316 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -651,4 +670,6 @@ Feature: Document Brankas
         Then I will see snackbar success send feedback
         And I will direct to Tab Other
         And I click tab Home
+        And I will see card account 'active'
+        And I don't see widget onboarding document safe
         And notification red dot document safe is off

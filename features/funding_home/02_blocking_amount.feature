@@ -5,7 +5,7 @@ Feature: Blocking amount
     I want to see my amount divided into active amount, blocking amount and total amount
     So that I'm not confused with my information amount
 
-    @C109210
+    @C156912
     Scenario: Back to main dashboard from page detail account giro amount
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -24,7 +24,7 @@ Feature: Blocking amount
         And I click button back in the header page
         Then I will see card account 'active'
 
-    @C109211
+    @C156913
     Scenario: Mask/Unmask amount in main dashboard
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -42,7 +42,7 @@ Feature: Blocking amount
         When I mask my amount
         Then I will not see my active, blocking and total amount
 
-    @C109214
+    @C156914
     Scenario: Validate active amount, blocking amount and total amount after transfer using account individual active
         Given I am a registered customer with following details:
             | userID      | auto20bf |
@@ -77,7 +77,7 @@ Feature: Blocking amount
         And my blocking amount detail still Rp. 500.000
         And my total amount detail decreased
 
-    @C109215
+    @C156915
     Scenario: Validate active amount, blocking amount and total amount after transfer using account business active
         Given I am a registered customer with following details:
             | userID      | ptpe5040 |
@@ -113,7 +113,7 @@ Feature: Blocking amount
         And my blocking amount detail still Rp. 1.000.000
         And my total amount detail decreased
 
-    @C101664
+    @C156916
     Scenario: Validate Wording blocking amount with account has Loan and product type MSME
         Given I am a registered customer with following details:
             | userID      | trys5524 |
@@ -131,7 +131,7 @@ Feature: Blocking amount
         Then I will see detail blocking amount coming from loan fee
         And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
-    @C111540
+    @C156917
     Scenario: Validate Wording blocking amount with account has Loan and product type CORP
         Given I am a registered customer with following details:
             | userID      | niza2098 |
@@ -149,7 +149,7 @@ Feature: Blocking amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
-    @C111541
+    @C156918
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type MSME
         Given I am a registered customer with following details:
             | userID      | ptpe5040 |
@@ -168,7 +168,7 @@ Feature: Blocking amount
         Then I will see detail blocking amount coming from loan fee
         And I will not see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
-    @C111542
+    @C156919
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type CORP
         Given I am a registered customer with following details:
             | userID      | alfibd3e |
@@ -187,6 +187,7 @@ Feature: Blocking amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
         And I will not see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
+    @C156920
     Scenario: Validate Wording blocking amount with account hasn’t Loan, but has pending transaction and product type MSME
         Given I am a registered customer with following details:
             | userID      | mike1eb6 |
@@ -230,6 +231,7 @@ Feature: Blocking amount
         And I click detail amount
         And I will not see information 'Transaksi yang belum disetujui' in the below of field blocking amount
 
+    @C156921
     Scenario: Validate Wording blocking amount with account hasn’t Loan, but has pending transaction and product type CORP
         Given I am a registered customer with following details:
             | userID      | deve2c69 |
@@ -273,6 +275,7 @@ Feature: Blocking amount
         And I click detail amount
         And I will see information 'Saldo Minimum' in the below of field blocking amount
 
+    @C156922
     Scenario: Validate Wording blocking amount with account has loan, has pending transaction and product type MSME
         Given I am a registered customer with following details:
             | userID      | deve0f0a |
@@ -316,6 +319,7 @@ Feature: Blocking amount
         And I click detail amount
         And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
+    @C156923
     Scenario: Validate Wording blocking amount with account has loan, has pending transaction and product type CORP
         Given I am a registered customer with following details:
             | userID      | deveda71 |
