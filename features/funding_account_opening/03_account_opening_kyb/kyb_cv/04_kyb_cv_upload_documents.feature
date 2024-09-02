@@ -349,32 +349,38 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I should see bottom sheet call center with email
               And I reset state upload document
 
+        @C156887
         Scenario: Upload document with type JPG
             Given I am a customer who has submitted business address
               And I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpg'
+              And I click button progress upload document
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
               And I reset state upload document
 
+        @C156888
         Scenario: Upload document with type PNG
             Given I am a customer who has submitted business address
               And I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'png'
+              And I click button progress upload document
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
               And I reset state upload document
 
+        @C156889
         Scenario: Upload document with type JPEG
             Given I am a customer who has submitted business address
               And I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpeg'
+              And I click button progress upload document
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
               And I reset state upload document     

@@ -23,6 +23,10 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form KTP with NIK indicated as DHN business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I mock feature submit form KTP into enabled
         And I am a customer want to fill my information identity details
         When I fill all information identity details as followings:
@@ -49,6 +53,10 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form KTP with NIK indicated as DHN business type Business
         Given I choose legality business type 'cv'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I mock feature submit form KTP into enabled
         And I am a customer want to fill my information identity details
         When I fill all information identity details as followings:
@@ -75,6 +83,10 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form KTP with NIK already registered business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I am a customer want to fill my information identity details
         When I fill all information identity details as followings:
             | eKtpNumber    | 3171131810770033          |

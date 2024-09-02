@@ -7,16 +7,16 @@ Feature: Account Opening KYC - User Invited
   Background: User choose legality business
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Revvy                   |
-      | email           | revvy@gmail.com         |
-      | phoneNumber     | 899967754041            |
+      | email           | revvy00@gmail.com       |
+      | phoneNumber     | 899900754041            |
       | password        | 1234Test                |
     And I login using my user id that I recently receive through email
     And I click later in pop up biometric
     And I click later
     And I register initiator with partner as below
       | fullName        | RUDI                   |
-      | email           | rudi.bagus@gmail.com   |
-      | phoneNumber     | 899969154041           |
+      | email           | rudit.bagas@gmail.com   |
+      | phoneNumber     | 899960054041           |
       | password        | 1234Test               |
     And I choose other
     And I click logout

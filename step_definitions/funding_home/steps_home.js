@@ -1,6 +1,7 @@
 const {
     I,
     transactionHistoryPage,
+    onboardingAccOpeningPage,
     amountDetailPage,
     resetStateDao,
     globalVariable,
@@ -117,12 +118,25 @@ Given("I wait until my account name displayed", async () => {
     I.waitForText(accountName, 30);
 });
 
-Given("still not complete onboarding document safe", () => {
-    // add API to set flag incomplete document safe 
+Given("still not complete onboarding document safe and survey", async () => {
+    await
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, false);
+    I.wait(5);
 });
 
-Given("complete onboarding document safe", () => {
-    // add API to set flag complete document safe
+Given("complete onboarding document safe and survey", async () => {
+    await
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, true);
+    I.wait(5);
+});
+
+Given("notification red dot document safe is on", () => {
+    I.waitForElement(onboardingAccOpeningPage.icons.redDotNotificationDoc, 20);
+});
+
+Given("notification red dot document safe is off", () => {
+    I.wait(2);
+    I.dontSee(onboardingAccOpeningPage.icons.redDotNotificationDoc);
 });
 
 When("I click detail amount", () => {
@@ -170,7 +184,7 @@ When("I click widget document safe", () => {
     onboardingAccOpeningPage.openWidgetDocumentSafe();
 });
 
-When("I close page onboarding document safe", ()=>{
+When("I close page onboarding document safe", () => {
     headerPage.closePage();
 });
 
@@ -373,6 +387,15 @@ Then("I see widget document safe", () => {
 
     I.see("Pelajari");
     I.waitForElement(onboardingAccOpeningPage.buttons.widgetDocumentSafe, 10);
+});
+
+Then("I don't see widget onboarding document safe", () => {
+    I.dontSee("Brankas Dokumen");
+    I.dontSee("Aman");
+    I.dontSee("Gratis");
+
+    I.dontSee("Pelajari");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.widgetDocumentSafe);
 });
 
 Then("I will see onboarding page document safe continue to choose product", () => {

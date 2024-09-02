@@ -34,7 +34,6 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         Then I will direct to page notifying me that I can't continue to next process KYB because my data indicated as DHN
