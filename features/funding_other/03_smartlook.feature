@@ -2,7 +2,7 @@ Feature: Smartlook
   In order record all activity when register
   As a agent
   I want to check video recorder on Smartlook
-    @FuntionalTestDemo
+
     Scenario: Register account type PT Perusahaan with positive flow
         Given I am a user want to register account with positive flow
         When I do process register 
@@ -13,7 +13,7 @@ Feature: Smartlook
         And I upload document business
         And I check recorded step on Smartlook
         Then I see recorded step on Smartlook
-        And I play the recorded step 
+        And I play the recorded step
         And All step recorded
         
     Scenario: Register account type CV with positive flow

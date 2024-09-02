@@ -10,9 +10,18 @@ const { I,
 } = inject();
 
 When("I will see card account {string}", async (typeAccount) => {
+
+    const sourceType = await (await getDataDao.getSourceType(globalVariable.login.userID, globalVariable.login.password)).sourceType;
+
     if (
         typeAccount === "active"
     ) {
+        if (
+            sourceType === "lending"
+        ) {
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+        }
+        
         I.waitForElement(transactionHistoryPage.buttons.historyBtn, 30);
 
     } else if (
@@ -24,14 +33,14 @@ When("I will see card account {string}", async (typeAccount) => {
         const isPartner = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
         const isIndividual = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
 
-        if(
+        if (
             isPartner === true ||
             isIndividual === 1
-        ){
+        ) {
             I.dontSee(onboardingAccOpeningPage.buttons.openProgressAccount);
             I.dontSee("Progres Pembukaan Rekening");
 
-        } else{
+        } else {
 
             I.waitForElement(onboardingAccOpeningPage.buttons.openProgressAccount, 10);
             I.see("Progres Pembukaan Rekening");
@@ -51,7 +60,7 @@ When("I will see card account {string}", async (typeAccount) => {
         typeAccount === "account opening"
     ) {
         I.waitForText("Perbankan Bisnis Premium", 30);
-        I.waitForText("Buka Rekening Giro", 10);
+        I.waitForText("Pilih Rekening Giro", 10);
     }
 
     globalVariable.onBoarding.status = typeAccount;

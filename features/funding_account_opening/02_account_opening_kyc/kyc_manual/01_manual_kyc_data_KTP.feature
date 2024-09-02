@@ -25,7 +25,7 @@ Feature: Account Opening Manual - Submit Data KTP
         And I will direct to dashboard with widget continue to complete data business
         And I click continue fill my data 
         And I will direct to page form Business Profile with all fields are blank
-        And I fill my NPWP business number with npwp that has indicated as DHN before
+        And I fill NPWP business number with npwp that has indicated as DHN before
         And I fill all field as well
         And I submit my business profile form
         Then I will direct to page business partner/director

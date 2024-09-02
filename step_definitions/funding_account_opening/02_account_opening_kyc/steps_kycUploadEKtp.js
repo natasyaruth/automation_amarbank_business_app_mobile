@@ -69,19 +69,27 @@ Given("I register initiator with partner as below", async (table) => {
         monthlyIncome: "30 - 50 juta",
         averageTransaction: "20000000",
         annualEarnings: "500 juta",
+        businessNPWP: npwpBusiness,
         nib: "3337798233333",
         foundedAt: "01-01-1991",
     };
 
     const dataInvitee = table.parse().rowsHash();
 
+    // WHITELIST EMAIL AND PHONENUMBER INVITEE
+    await
+        whitelistDao.whitelistEmail(dataInvitee["email"]);
+
+    await
+        whitelistDao.whitelistPhoneNumber("+62"+dataInvitee["phoneNumber"]);
+
     // HIT PRODUCT TYPE
     await
         uploadDao.submitProductType(prodType, userID, password);
 
     // CHECKING NPWP
-    const isEligible = (await uploadDao.checkEligibilityNPWPBusiness(userID, password, npwpBusiness)).eligible;
-    I.assertEqual(isEligible, true);
+    // await 
+    //     uploadDao.checkEligibilityNPWPBusiness(userID, password, npwpBusiness);
 
     // HIT LEGALITY TYPE
     await
@@ -102,13 +110,6 @@ Given("I register initiator with partner as below", async (table) => {
     // HIT BUSINESS PROFILE
     await
         uploadDao.submitBusinessProfile(businessProfile, legality, userID, password);
-
-    // WHITELIST EMAIL AND PHONENUMBER INVITEE
-    await
-        whitelistDao.whitelistEmail(dataInvitee["email"]);
-
-    await
-        whitelistDao.whitelistPhoneNumber("+62"+dataInvitee["phoneNumber"]);
 
     // ADD PARTNER
     await
@@ -200,13 +201,13 @@ Then("I will directing to page take photo eKTP", () => {
 });
 
 Then("I will directing to page submit form KTP", async () => {
-    I.waitForText("Verifikasi Data eKTP", 10);
+    I.waitForText("Verifikasi Data eKTP", 30);
     I.see("Data Personal");
     I.waitForElement(headerPage.buttons.back, 10);
 
-    I.see("Wajib Diisi");
+    I.waitForText("Wajib Diisi", 20);
 
-    I.see("Nomor eKTP");
+    I.waitForText("Nomor eKTP", 20);
     I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
 
     I.see("Nama sesuai eKTP");

@@ -130,5 +130,6 @@ module.exports = {
     },
     survey:{
         feedBack: "",
+        lengthFeedback: ""
     }
 }

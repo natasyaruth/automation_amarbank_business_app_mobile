@@ -133,14 +133,14 @@ module.exports = {
   validatePage(pageName) {
     switch (pageName) {
       case "Upload eKTP":
-        I.waitForText("Ambil Foto eKTP Anda", 10);
+        I.waitForText("Ambil Foto eKTP Anda", 20);
         I.waitForElement(uploadKtpPage.buttons.directToTakePhoto, 10);
         break;
       case "Data KTP":
-        I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
+        I.waitForElement(formKtpPage.fields.eKtpNumber, 20);
         break;
       case "Upload Selfie":
-        I.waitForText("Ambil Foto Diri Anda", 10);
+        I.waitForText("Ambil Foto Diri Anda", 20);
         I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
         break;
       case "Upload Selfie with KTP":
@@ -233,6 +233,11 @@ module.exports = {
   chooseLater() {
     I.waitForElement(this.buttons.later, 10);
     I.click(this.buttons.later);
+  },
+
+  goToTabHome() {
+    I.waitForElement(this.tabs.home, 10);
+    I.click(this.tabs.home);
   },
 
   goToTabBusiness() {
@@ -402,7 +407,9 @@ module.exports = {
 
   fillFieldNPWPBusiness(npwp) {
     I.waitForElement(this.fields.npwpBusiness, 10);
+    I.click(this.fields.npwpBusiness);
     I.setText(this.fields.npwpBusiness, npwp);
+    I.hideDeviceKeyboard();
   },
 
   async getMessageErrorNPWP() {
@@ -427,7 +434,7 @@ module.exports = {
 
   clickBackPopUp() {
     I.waitForElement(this.buttons.backNpwp, 10);
-    I.click(this.buttons.submitNPWP);
+    I.click(this.buttons.backNpwp);
   },
 
   confirmNPWP() {

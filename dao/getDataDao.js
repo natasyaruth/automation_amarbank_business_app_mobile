@@ -71,6 +71,21 @@ module.exports = {
         };
     },
 
+    async getSourceType(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            sourceType: responseProfile.data.source,
+        };
+    },
+
     async getBusinessCode(email) {
 
         I.haveRequestHeaders(secret({

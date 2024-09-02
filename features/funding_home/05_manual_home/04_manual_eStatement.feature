@@ -3,7 +3,7 @@ Feature: Manual e-Statement
     As a customer
     I want to download e-statement and make sure i get email after download
 
-
+@C141448
 Scenario: User get email after download e-statement
     Given I am a customer that has history transaction
     When I login to app
