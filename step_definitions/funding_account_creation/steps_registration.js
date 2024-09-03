@@ -64,7 +64,7 @@ When("I see carousel onboarding", () => {
 });
 
 When("I swipe to next carousel", () => {
-  I.swipeLeft(welcomePage.image.onboarding, 600, 800);
+  I.swipeLeft(welcomePage.image.onboarding, 800, 800);
   I.wait(1);
 });
 
