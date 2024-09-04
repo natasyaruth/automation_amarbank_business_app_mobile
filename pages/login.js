@@ -36,6 +36,7 @@ module.exports = {
   link: {
     forgotPassword: "~linkForgotPassword",
     registration: "~linkRegistration",
+    loginLink: "~linkLogin"
   },
   checkbox: {
     rememberMe: "~checkBoxRememberMe",
@@ -104,8 +105,8 @@ module.exports = {
   },
 
   goToRegistrationPage() {
-    I.waitForElement(this.link.registration, 30);
-    I.click(this.link.registration);
+    I.waitForElement(this.link.loginLink, 30);
+    I.click(this.link.loginLink);
   },
 
   goToForgotPasswordPage() {
@@ -148,7 +149,7 @@ module.exports = {
   },
 
   clickLaterBiometric() {
-    I.waitForElement(this.buttons.laterBiometric, 30);
+    I.waitForElement(this.buttons.laterBiometric, 20);
     I.click(this.buttons.laterBiometric);
   },
 

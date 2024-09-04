@@ -56,7 +56,7 @@ module.exports = {
       if (this.fields[key] === undefined) {
         return;
       }
-
+      I.waitForElement(this.fields[key],1);
       I.seeElement(this.fields[key]);
 
       if (
@@ -74,7 +74,7 @@ module.exports = {
   },
 
   fillFieldRegistration(fieldName, txtValue){
-
+    I.waitForElement(this.fields[fieldName],5);
     I.seeElement(this.fields[fieldName]);
     I.setText(this.fields[fieldName], txtValue);
   },
@@ -83,7 +83,7 @@ module.exports = {
       if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
         throw new Error('Field ${fieldName} is not found');
       } 
-      I.waitForElement(this.messageErrorFields[fieldName], 2);
+      I.waitForElement(this.messageErrorFields[fieldName], 10);
       return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
