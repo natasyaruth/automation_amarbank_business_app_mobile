@@ -95,6 +95,7 @@ module.exports = {
         buttonChevron: "~buttonCloseOnboarding",
         buttonAjukanLimitKredit: "~btnToLoan",
         buttonCoachmark: "~coachMark",
+        buttonLengkapiKYC: "~buttonKYC~",
     },
 
     radioButtons: {
@@ -373,5 +374,10 @@ module.exports = {
     clickbtncoachmark(){
         I.wait(2);
         I.click(this.buttons.buttonCoachmark);
+    },
+
+    clickCOntinuetoKYC(){
+        I.wait(2);
+        I.clck(this.buttons.buttonLengkapiKYC);
     },
 }

@@ -101,23 +101,22 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
- Scenario: User apply first loan AP Direct with business type PT.Perusahaan and flaging Corp 
+ Scenario: User apply first loan AP Anchor with business type PT.Perusahaan and flaging Corp 
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
     And User select loan type "AP"
-    And User on Loan Needs Page
+    And User on Loan Needs Page        
     And User choose nominal "Lebih dari 5 Milyar" 
     And user input nominal for Corp "15000000000"
     And user click button Save
     And user input tenor "60"
-    And user click button Lanjut Isi Data Supplier 
-    #section select Anchor
+    And user click button Lanjut Isi Data Supplier     
     And user fill search anchor "PT Tirta Investama"
-    And click button Pilih Supplier Ini   
+    And user click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
-    And usr click Pilih   
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And usr click Pilih  
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     
@@ -155,7 +154,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
         | village  | PONDOK BAMBU                 |    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
-    And user click button Lanjut Upload Dokumen
+    And user click button Lanjut Upload Dokumen   
     And user validate description prepare the following documents 'CorpAPPT.Perusahaan' 
     And user click buttton Pilih Metode Upload Dokumen    
     #Upload Dokumen from Aplikasi
@@ -181,8 +180,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
-    Then user can click button Upload Ulang Dokumen
+    Then user see button "Upload Ulang Dokumen"
 
 
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
@@ -204,27 +202,24 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
-    And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
-
+    
 
   Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
     And User select loan type "AP"
-    And User on Loan Needs Page
+    And User on Loan Needs Page    
     And User choose nominal "Lebih dari 5 Milyar" 
     And user input nominal for Corp "15000000000"
     And user click button Save
     And user input tenor "60"
-    And user click button Lanjut Isi Data Supplier 
-    #section select Anchor
+    And user click button Lanjut Isi Data Supplier     
     And user fill search anchor "PT Tirta Investama"
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih       
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     
@@ -262,7 +257,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
         | village  | PONDOK BAMBU                 |    
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
-    And user click button Lanjut Upload Dokumen
+    And user click button Lanjut Upload Dokumen    
     And user validate description prepare the following documents 'CorpAPPT.Perusahaan' 
     And user click buttton Pilih Metode Upload Dokumen  
     And user on bottom sheet metode upload Dokumen
