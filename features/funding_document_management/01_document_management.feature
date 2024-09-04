@@ -664,6 +664,7 @@ Feature: Document Management
         Then I will see menu other document and loan
         And I will not see menu document giro
 
+    @C157517
     Scenario: Validate menu other document is empty
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -688,6 +689,7 @@ Feature: Document Management
         And I click menu other document
         Then I will see empty detail menu other document
 
+    @C157518
     Scenario: Cancel upload other document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -715,6 +717,7 @@ Feature: Document Management
         Then I will see menu document giro, loan and other
         And I will see button upload other document
 
+    @C157519
     Scenario: Back to menu brankas document from detail other document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -742,6 +745,7 @@ Feature: Document Management
         Then I will see menu document giro, loan and other
         And I will see button upload other document
 
+    @C157520
     Scenario: Back again to upload other document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -768,6 +772,7 @@ Feature: Document Management
         And I click back to upload other document
         Then I will see bottom sheet upload other document
 
+    @C157521
     Scenario: Upload other document with type JPG
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -796,6 +801,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
+    @C157522
     Scenario: Upload other document with type JPEG
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -824,6 +830,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
+    @C157523
     Scenario: Upload other document with type PNG
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -852,6 +859,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
+    @C157524
     Scenario: Upload other document with type PDF
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -880,6 +888,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
+    @C157525
     Scenario: Cancel delete other document in section upload
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -909,6 +918,7 @@ Feature: Document Management
         And I cancel delete other document
         Then I will see other document has been uploaded
 
+    @C157526
     Scenario: Delete other document in section upload
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -945,6 +955,7 @@ Feature: Document Management
         And I click menu other document
         And I will see empty detail menu other document
 
+    @C157527
     Scenario: Cancel delete other document in section detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -976,6 +987,7 @@ Feature: Document Management
         And I cancel delete other document
         Then I will see other document has been uploaded
 
+    @C157528
     Scenario: Delete other document in section detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -1010,6 +1022,7 @@ Feature: Document Management
         And I click confirm cancel upload other document
         And I will see empty detail menu other document
 
+    @C157529
     Scenario: Upload other document entry point detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -1040,6 +1053,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
+    @C157530
     Scenario: Upload more than one other document entry point page document brankas
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -1076,6 +1090,7 @@ Feature: Document Management
         And I will see snackbar success upload success
         And I see list document is ordering by the latest to oldest
 
+    @C157531
     Scenario: Upload more than one other document entry point detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
@@ -1114,6 +1129,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I see list document is ordering by the latest to oldest
 
+    @C157532
     Scenario: Delete all other document
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
