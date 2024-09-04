@@ -42,6 +42,39 @@ module.exports = {
 
     },
 
+    async getIdOtherDoc(userID, password, numberDoc) {
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            idDoc: response.data.id[numberDoc]
+        }
+
+    },
+
+    async deleteOtherDoc(userID, password, numberDoc){
+
+        const idDoc = await this.getIdOtherDoc(userID, password, numberDoc);
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/"+idDoc);
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+    },
+
     async deleteAllDocuments(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;

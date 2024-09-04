@@ -74,6 +74,7 @@ module.exports = {
         sk: false,
         npwp: false,
         fileType: "",
+        fileName: [],
     },
     createPin:{
         newPin:"",
