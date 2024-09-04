@@ -240,8 +240,8 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        # Then I will see menu other document
-        # And I will not see menu document loan and giro
+        Then I will see menu other document
+        And I will not see menu document loan and giro
 
     @C156934
     Scenario: Access widget brankas on main dashboard for user combine journey active
