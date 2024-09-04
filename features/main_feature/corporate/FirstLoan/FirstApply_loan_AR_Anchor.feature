@@ -113,8 +113,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih 
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data    
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC  
     #section KYC Process
     Given user choose Business Type "CV"
     And user click Selanjutnya
@@ -218,8 +218,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih    
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     

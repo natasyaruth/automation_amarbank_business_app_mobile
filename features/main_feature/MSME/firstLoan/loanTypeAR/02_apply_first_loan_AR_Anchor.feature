@@ -66,7 +66,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Then user direct to Data Buyer Page
  
  @C142708
- Scenario: User apply second loan AR Anchor type with bussiness type PT.Perusahaan flagging MSME
+ Scenario: User apply first loan AR Anchor type with bussiness type PT.Perusahaan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
     And User select loan type "AR"
@@ -79,8 +79,8 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih 
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data 
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC 
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya
@@ -165,11 +165,11 @@ Scenario: validate progress monitoring loan checking document
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 @C142713
-Scenario: User apply second loan AR Anchor with bussiness type Individu and flaging MSME
-    Given I click button loan dashboard
-    When user click button "ajukan pinjaman"
-    And User select loan type "AP"
-    And User click button Pelajari Tipe Skema Kredit
+Scenario: User apply first loan AR Anchor with bussiness type Individu and flaging MSME
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit 
+    And User select loan type "AR"    
+    And User on Loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"  
     And user input loan tenor "30" 
     And user click button Lanjut Isi data Buyer   
@@ -185,8 +185,8 @@ Scenario: User apply second loan AR Anchor with bussiness type Individu and flag
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier
-    And user click button next   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "UD"
     And user click Selanjutnya
@@ -230,26 +230,28 @@ Scenario: User apply second loan AR Anchor with bussiness type Individu and flag
     And user trigered api change status loan is approved
    
 
-Scenario: Validate bottom sheet for Upload Dokumen
+Scenario: Validate bottom sheet for Upload Dokumen   
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
-    And User select loan type "AR"
+    And User select loan type "AR"    
     And User on Loan Needs Page
-    And user on buyer cooperating page
-    And user fill search anchor "PT Tirta Investama"
-    And user click Pilih Supplier Ini
-    And user select the year cooperating
-    And user click Pilih
-    And user checklist checbox term and condition
-    And user checklist checbox privy
-    And user click button next    
-    And user click button Lanjut Lengkapi Data
+    And User choose nominal "Rp50 juta - 5 Miliar"  
+    And user input loan tenor "30" 
+    And user click button Lanjut Isi data Buyer   
     #section select Anchor
-    And user fill search anchor "PT Tirta Investama"
-    And user select result of search
-    And user select the date cooperating        
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user on buyer cooperating page
+    And user select another supplier
+    And user fill a field "anchorName" with "AP Direct Tes"
+    And user select industry type
+    And user select the year cooperating 
+    And user click PIlih
+    And user input business address
+    #section supplier representatives has contact
+    And user input supplier representatives name
+    And user input contact name
+    And user input email address supplier
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     
