@@ -31,16 +31,23 @@ Feature: Account Opening Main Dashboard
     @C131962
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a customer want to open Giro Account
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
     @C131963
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a customer want to open Giro Account
-        And I upload my eKTP photo
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         And I see page 'Data KTP'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
@@ -49,7 +56,9 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
@@ -58,7 +67,9 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Upload Selfie'
         And I see page 'Upload Selfie with KTP'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
@@ -67,7 +78,9 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Upload Selfie with KTP'
         And I see page 'Data Personal'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'  
 
@@ -76,7 +89,10 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
-        And I back to dashboard
+        When I click back in header page
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
@@ -85,7 +101,11 @@ Feature: Account Opening Main Dashboard
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
-        And I back to dashboard
+        When I click back in header page
+        And I click back in header page
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
@@ -93,85 +113,96 @@ Feature: Account Opening Main Dashboard
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
         And I see page 'Data Business Profile'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data business
-        And I can continue to page 'Continue Process KYB'
+        And I can continue to page 'Data Business Profile'
 
     @C131969
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Business Owner'
-        And I back to dashboard
+        When I click back in header page
+        And I will see form 'Data Business Profile' is filled
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data business
-        And I can continue to page 'Data Business Owner'
+        And I can continue to page 'Data Business Profile'
 
     @C131970
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Director List
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Director List'
-        And I back to dashboard
+        When I click back in header page
+        And I will see form 'Data Business Profile' is filled
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data business
-        And I can continue to page 'Data Director List'
+        And I can continue to page 'Data Business Profile'
 
     @C131971
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I submit business director
         And I see page 'Data Business Address'
-        And I back to dashboard
+        When I click back in header page
+        And I click back in header page
+        And I will see form 'Data Business Profile' is filled
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to data business
-        And I can continue to page 'Data Director List'
+        And I can continue to page 'Data Business Profile'
+        And I will see form 'Data Business Profile' is filled
 
     @C131972
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
@@ -198,14 +229,13 @@ Feature: Account Opening Main Dashboard
     Scenario: User can see cards continue to complete upload document and register director list
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
@@ -235,3 +265,18 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to complete upload document business and registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
+
+    Scenario: Check last step after back to previous page and submit data again
+        Given I am a customer want to open Giro Account
+        And I update my last journey step to 'Data Domicile Address'
+        And I see page 'Data Employment'
+        When I click back in header page
+        And I click back in header page
+        And I see page 'Data Personal'
+        And I submit my personal data details individual and upload my npwp as followings:
+            | lastEducation        | SMA           |
+            | motherName           | NADYA LAMUSU  |
+            | referenceName        | IBU SAYA      |
+            | referencePhoneNumber | 812343455677  |
+            | purposeAccount       | Rekening Gaji |
+        And I can continue to page 'Data Personal'

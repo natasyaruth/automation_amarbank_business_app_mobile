@@ -32,7 +32,6 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
     @C131931
     Scenario: Submit form Business Profile successfully business type PT Perusahaan
         Given I am a customer who has completed my KYC process
-        When I continue to process KYB
         And I see fields that available in Business Profile
         And I fill my business profile as followings:
             | businessName       | PT. ABCD        |

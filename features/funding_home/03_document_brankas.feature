@@ -69,7 +69,9 @@ Feature: Document Brankas
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         And notification red dot document safe is on
         And I click widget document safe
         And I will see onboarding page document safe continue to account opening process
@@ -94,7 +96,9 @@ Feature: Document Brankas
         And I will see card account 'on process combine journey'
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         And I will see card account 'on process combine journey'
         And notification red dot document safe is on
         And I click widget document safe

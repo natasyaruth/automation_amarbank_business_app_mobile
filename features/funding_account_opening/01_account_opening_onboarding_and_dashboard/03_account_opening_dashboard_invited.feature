@@ -23,7 +23,9 @@ Feature: Account Opening Main Dashboard User Invited
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a invited customer wants to complete my KYC data
         When I see page 'Upload eKTP'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to complete registration user invited
         And I see page 'Upload eKTP'
 
@@ -34,7 +36,9 @@ Feature: Account Opening Main Dashboard User Invited
         And I take photo eKTP
         And I submit my eKTP photo
         And I see page 'Data KTP'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to complete registration user invited
         And I see page 'Data KTP'
         And I update my last journey step to 'Login Invitee'
@@ -62,7 +66,9 @@ Feature: Account Opening Main Dashboard User Invited
             | maritalStatus | Kawin                     |
         And I submit my information identity details
         And I see page 'Upload Selfie'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to complete registration user invited
         And I see page 'Upload Selfie'
         And I update my last journey step to 'Login Invitee'
@@ -93,7 +99,9 @@ Feature: Account Opening Main Dashboard User Invited
         And I take selfie picture
         And I submit my selfie photo
         And I see page 'Upload Selfie with KTP'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will see card continue to complete registration user invited
         And I see page 'Upload Selfie with KTP'
         And I update my last journey step to 'Login Invitee'

@@ -117,4 +117,27 @@ module.exports = {
     return await I.grabTextFrom(this.text.blockerVerificationDesc);
   },
 
+  async getValue(fieldName) {
+
+    let valueField;
+    
+    if (
+
+      Object.keys(this.fields).indexOf(fieldName) !== -1 ||
+      Object.keys(this.dropDowns).indexOf(fieldName) !== -1
+
+    ) {
+      
+      valueField = await I.grabTextFrom(fieldName);
+
+    } else {
+
+      throw new Error(fieldName + " not found, please check again data naming");
+
+    }
+
+    return valueField;
+
+  },
+
 }
