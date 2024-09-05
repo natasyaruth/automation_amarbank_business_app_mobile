@@ -569,7 +569,7 @@ Then("I will get new OTP different with my first OTP", async () => {
   globalVariable.registration.otpCode = newOtp;
 });
 
-Then("I will see attempt left {string}", (leftAttempt) => {
+Then("I will see attempts left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
 });
 
