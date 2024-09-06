@@ -19,12 +19,12 @@ module.exports = {
   },
 
   async getPhoneNumber(){
-    I.waitForElement(this.label.phonenumber, 10);
+    I.waitForElement(this.label.phonenumber, 20);
     return await I.grabTextFrom(this.label.phonenumber);;
   },
 
   async getMessageError (){
-    I.waitForElement(this.msgError.otp, 10);
+    I.waitForElement(this.msgError.otp, 15);
     return await I.grabTextFrom(this.msgError.otp);
   },
 

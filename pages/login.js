@@ -101,6 +101,7 @@ module.exports = {
   },
 
   clickIconCallCenter() {
+    I.waitForElement(this.buttons.callCenter, 10);
     I.click(this.buttons.callCenter);
   },
 
