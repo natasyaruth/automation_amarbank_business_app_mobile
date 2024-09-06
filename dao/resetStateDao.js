@@ -19,8 +19,8 @@ module.exports = {
         };
     },
 
-    async updateFlagOnboardingDocumentSafeAndSurvey(userID, status){
-        
+    async updateFlagOnboardingDocumentSafeAndSurvey(userID, status) {
+
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
@@ -35,7 +35,7 @@ module.exports = {
 
         I.seeResponseCodeIsSuccessful();
 
-        return{
+        return {
             status: responseUpdate.status,
             data: responseUpdate.data
         }
@@ -59,7 +59,7 @@ module.exports = {
 
     },
 
-    async deleteOtherDoc(userID, password, numberDoc){
+    async deleteOtherDoc(userID, password, numberDoc) {
 
         const idDoc = await this.getIdOtherDoc(userID, password, numberDoc);
 
@@ -67,7 +67,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/"+idDoc);
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc);
 
         return {
             status: response.status,
@@ -84,11 +84,11 @@ module.exports = {
         const enumDoc = [1, 2, 5, 7];
         let responseDelete;
 
-        for(let i=0;i<4;i++){
-            responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc[i]));
+        for (let i = 0; i < 4; i++) {
+            responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/" + enumDoc[i]));
             I.wait(3);
         }
-        
+
     },
 
     async deletePartner(businessId) {
@@ -97,20 +97,20 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners/all/"+businessId);
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners/all/" + businessId);
 
         I.seeResponseCodeIsSuccessful();
 
-        return{
+        return {
             status: responseDelete.status,
             data: responseDelete.data
         }
-        
+
     },
 
     async deleteDeviceId(deviceId) {
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/"+deviceId));
+        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/" + deviceId));
 
         I.seeResponseCodeIsSuccessful();
 
@@ -190,14 +190,56 @@ module.exports = {
     },
 
     reloadPageAfterResetState() {
-        headerPage.clickButtonBack();
+
+        const lastPage = globalVariable.dashboard.lastPage;
+
+        if (
+
+            lastPage === "Upload eKTP" ||
+            lastPage === "Data KTP" ||
+            lastPage === "Upload Selfie" ||
+            lastPage === "Upload Selfie with KTP" ||
+            lastPage === "Data Personal" ||
+            lastPage === "Data Business Profile"
+
+        ) {
+
+            headerPage.closePage();
+            onboardingAccOpeningPage.clickCancelProcess();
+
+        } else if (
+
+            lastPage === "Data Domicile Address" ||
+            lastPage === "Data Employment" ||
+            lastPage === "Data Business Owner" ||
+            lastPage === "Data Director List" ||
+            lastPage === "Data Business Address"
+        ) {
+
+            headerPage.clickButtonBack();
+
+        } else if (
+
+            lastPage === "Upload Document Business" ||
+            lastPage === "Detail Progress Account Opening"
+
+        ) {
+
+            headerPage.closePage();
+
+        } else {
+            console.log(lastPage);
+            throw new Error("Page name is not recognize");
+        }
+
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueCompleteData();
     },
 
     reloadPageAfterResetStateInvitee() {
-        headerPage.clickButtonBack();
+        headerPage.closePage();
+        onboardingAccOpeningPage.clickCancelProcess();
         I.waitForElement(onboardingAccOpeningPage.buttons.next, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueToKYC();

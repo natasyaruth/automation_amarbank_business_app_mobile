@@ -23,6 +23,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill form Data Employment except field '<Field>'
         And I submit my employment data individual
@@ -230,12 +231,13 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I will directing to page take selfie with KTP
         And I click take photo
         And I submit my selfie with KTP
+        And I see page 'Data Personal'
         And I submit my personal data details individual and upload my npwp as followings:
             | lastEducation        | SMA           |
             | motherName           | NADYA LAMUSU  |
             | referenceName        | IBU SAYA      |
             | referencePhoneNumber | 812343455677  |
-            | purposeAccount       | Rekening Gaji |I submit my personal data details individual and upload my npwp as followings:
+            | purposeAccount       | Rekening Gaji |
             | lastEducation        | SMA           |
             | motherName           | NADYA LAMUSU  |
             | referenceName        | IBU SAYA      |
@@ -257,4 +259,3 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I will see checkbox Rights and Obligations is checked
         And I submit my employment data individual
         Then I will notify that my personal data details needs to be verified first
-        # And I reset my state journey

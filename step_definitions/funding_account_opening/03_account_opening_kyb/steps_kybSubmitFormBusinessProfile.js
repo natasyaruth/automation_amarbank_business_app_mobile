@@ -73,6 +73,10 @@ When("I fill my business profile as followings:", (table) => {
 
     const businessProfile = table.parse().rowsHash();
     formBusinessProfilePage.fillBusinessProfile(businessProfile);
+
+    Object.keys(businessProfile).forEach((key) => {
+        globalVariable.formBusinessProfile[key] = businessProfile[key];
+    });
 });
 
 When("I submit my business profile", () => {
