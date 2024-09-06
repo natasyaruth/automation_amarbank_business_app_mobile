@@ -426,7 +426,7 @@ Feature: Account registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
-    And I will see attempt left '1/5'
+    And I will see attempts left '1/5'
 
   @verificationPhoneNumber @C131638
   Scenario: Second attempt resend OTP
@@ -442,7 +442,7 @@ Feature: Account registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
-    And I will see attempt left '2/5'
+    And I will see attempts left '2/5'
 
   @verificationPhoneNumber @C131639
   Scenario: Third attempt resend OTP
@@ -458,7 +458,7 @@ Feature: Account registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
-    And I will see attempt left '3/5'
+    And I will see attempts left '3/5'
 
   @verificationPhoneNumber @C131640
   Scenario: Fourth attempt resend OTP
@@ -474,7 +474,7 @@ Feature: Account registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
-    And I will see attempt left '4/5'
+    And I will see attempts left '4/5'
 
   @verificationPhoneNumber @C131641
   Scenario: Fifth attempt resend OTP
@@ -490,7 +490,7 @@ Feature: Account registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
-    And I will see attempt left '5/5'
+    And I will see attempts left '5/5'
 
   @verificationPhoneNumber @C131642
   Scenario: Resend OTP more than five times
