@@ -647,6 +647,7 @@ Then("I should see button Buat Akun will disable", async () => {
 });
 
 Then("I should go to Verifikasi No. HP page", () => {
+  I.wait(10);
   I.see("Verifikasi Nomor HP");
   I.see("Masukkan Kode OTP");
 });

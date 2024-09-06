@@ -56,7 +56,7 @@ module.exports = {
       if (this.fields[key] === undefined) {
         return;
       }
-      I.waitForElement(this.fields[key],1);
+      I.waitForElement(this.fields[key],5);
       I.seeElement(this.fields[key]);
 
       if (
