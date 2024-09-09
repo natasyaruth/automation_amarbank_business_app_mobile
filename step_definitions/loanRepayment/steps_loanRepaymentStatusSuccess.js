@@ -129,3 +129,12 @@ When('I access the detail', async () => {
 Then('I should be see the loan type of AR', () => {
  loanRepaymentPage.goToDetailRepaymentSuccessStatusInfoLoanAR();
 });
+Then('I should be see the loan type of AP without Provisi', () =>{
+loanRepaymentPage.goToDetailAPnoProvisi();
+});
+Then(' I should be see the loan type of AR without Provisi', () => {
+loanRepaymentPage.goToDetailARnoProvisi();
+});
+Then('I should be see the loan type of PO without Provisi', () =>{
+loanRepaymentPage.goToDetailPOnoProvisi();
+});
