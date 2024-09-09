@@ -3,57 +3,63 @@ Feature: Account login
   As a customer lead
   I want to login with registered account
 
-   #@login @C75493
+  @login @case65
   Scenario: Login with registered account
     Given I am a registered customer with following details:
-      | userID   | rutha013 |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     When I filling in form login with the following details:
-      | userID   | rutha013 |
-      | password | 1234Test |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
     And I click login
-    And I click later
+    And I click later in pop up biometric
     Then I will direct to dashboard
 
-   #@login @C76892
+   @login @case66
   Scenario: Login with unregistered account
     Given I am an unregistered customer trying to login
     When I filling in form login with the following details:
-      | userID   | LOLO1212 |
-      | password | Pass1234 |
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | LOLO1212 |
+      | passwordStg | Test1234 |
     And I click login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
-   #@login @C75491
+   @login @case67
   Scenario: Input UserID without value
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userIDstg   | JOHN12j3 |
+      | passwordStg | Pass1234 |
     When I filling in form login with the following details:
-      | userID   |          |
-      | password | Pass1234 |
+      | userIDstg   |          |
+      | passwordStg | Pass1234 |
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
 
-   #@login @C75492
+   @login @case68
   Scenario: Input Password without value
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userIDstg   | JOHN12j3 |
+      | passwordStg | Pass1234 |
     When I filling in form login with the following details:
-      | userID   | JOHN12j3 |
-      | password |          |
+      | userIDstg   | JOHN12j3 |
+      | passwordStg |          |
     And I click login
     Then I should be notified 'Password wajib diisi' in the below of field 'password'
 
-   #@login @C75497
+   @login @case69
   Scenario: Login with User ID and Password is empty
     Given I am a registered customer with following details:
-      | userID   | JOHN12j3 |
-      | password | Pass1234 |
+      | userIDstg   | JOHN12j3 |
+      | passwordStg | Pass1234 |
     When I filling in form login with the following details:
-      | userID   |  |
-      | password |  |
+      | userIDstg   |  |
+      | passwordStg |  |
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
