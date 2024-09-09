@@ -64,25 +64,26 @@ Feature: Account login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
 
-   #@login @C75509
-  Scenario: Login with wrong password once
+   @case70
+   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
-      | userID   | ruth2322 |
-      | password | Test1234 |
+      | userIDstg   | yahyb7cb |
+      | passwordStg | Akuntes2 |
     When I filling in form login with the following details:
-      | userID   | ruth2322 |
-      | password | Pass1234 |
+      | userIDstg   | yahyb7cb |
+      | passwordStg | Salahtes |
     And I click login
-    Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'
+    Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    And I reset attempt failed login
 
-   #@login @C75510
+   @case71
   Scenario: Login with wrong password twice
     Given I am a customer who has failed to login '1' times with following details:
-      | userID   | ruth15ff |
-      | password | Test1234 |
+      | userIDstg   | yahyb7cb |
+      | passwordStg | Akuntes2 |
     When I filling in form login with the following details:
-      | userID   | ruth15ff |
-      | password | Pass1234 |
+      | userIDstg   | yahyb7cb |
+      | passwordStg | Salahtes |
     And I click login
     Then I should see pop up 'Jika 3 kali salah akun Anda akan terblokir.' with button 'tryAgain'  
 

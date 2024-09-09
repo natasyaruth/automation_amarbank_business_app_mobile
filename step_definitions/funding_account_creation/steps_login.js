@@ -175,7 +175,7 @@ Then(
 );
 
 Then(
-  "I should see pop up {string} with button {string}",
+  "I should see log in pop up {string} with button {string}",
   async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.waitForText(expectedValue, 10);
