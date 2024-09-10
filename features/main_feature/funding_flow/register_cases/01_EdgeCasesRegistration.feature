@@ -147,25 +147,25 @@ Feature: Account registration
     When I click link registration
     Then I will directing to page login
 
-  #@case15
-  Scenario: Access link terms and condition in page registration
-    Given I am a customer want to access menu registration
-    When I click link terms and condition
-    Then I will directing to web view terms and condition
+  # 
+  # Scenario: Access link terms and condition in page registration
+  #   Given I am a customer want to access menu registration
+  #   When I click link terms and condition
+  #   Then I will directing to web view terms and condition
 
-  #@case16
-  Scenario: Access link privacy and policy in page registration
-    Given I am a customer want to access menu registration
-    When I click link privacy and policy
-    Then I will directing to web view privacy and policy
+  #
+  # Scenario: Access link privacy and policy in page registration
+  #   Given I am a customer want to access menu registration
+  #   When I click link privacy and policy
+  #   Then I will directing to web view privacy and policy
 
-  @case17
+  @case15
   Scenario: Access call center on page registration
     Given I am a customer want to access menu registration
     When I click call center
     Then I will see helping center via email
 
-  @case18 
+  @case16 
   Scenario: Back to page form registration from pop up confirmation
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -182,13 +182,13 @@ Feature: Account registration
       | password        | 1234Test               |
       | confirmPassword | 1234Test               |
 
-  @case19   
+  @case20   
   Scenario: Back to page Onboarding from page Registration
     Given I am a customer want to access menu registration
     When I click button back in the header page
     Then I will direct to page onboarding
 
-  @case20
+  @case21
   Scenario: Create account business with business unregistered code
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
@@ -196,7 +196,7 @@ Feature: Account registration
     And I am filling field 'businessCode' with 'xxyy11'
     Then I should see message error 'Kode bisnis tidak valid, periksa e-mail kembali' in the below of field 'businessCode'
 
-#@case21
+#@case22
   Scenario: Create account business with email that is not belong to the business code
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
@@ -204,7 +204,7 @@ Feature: Account registration
     And I am filling field 'businessCode' with 'a85694'
     Then I should see message error 'E-mail tidak sesuai dengan kode bisnis.' in the below of field 'email'
 
-  @case22
+  @case23
   Scenario: Verifying field business code has been filled and then empty the field
     Given I am a customer want to access menu registration
     When I am filling field 'businessCode' with 'XYZ123'

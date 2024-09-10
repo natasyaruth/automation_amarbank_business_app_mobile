@@ -233,7 +233,7 @@ module.exports = {
   },
 
   chooseLater() {
-    I.waitForElement(this.buttons.later, 10);
+    I.waitForElement(this.buttons.later, 15);
     I.click(this.buttons.later);
   },
 

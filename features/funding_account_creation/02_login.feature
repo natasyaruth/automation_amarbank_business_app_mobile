@@ -167,7 +167,7 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
     And I click login
-    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I reset attempt failed login
 
   @C131557
@@ -183,10 +183,10 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
     And I click login
-    And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    And I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
-    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I reset attempt failed login
 
   @C131558
@@ -202,10 +202,10 @@ Feature: Account login
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
     And I click login
-    And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    And I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
-    Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+    Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
     Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes

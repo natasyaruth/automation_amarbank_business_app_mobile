@@ -106,8 +106,8 @@ module.exports = {
   },
 
   goToRegistrationPage() {
-    I.waitForElement(this.link.loginLink, 30);
-    I.click(this.link.loginLink);
+    I.waitForElement(this.link.registration, 40);
+    I.click(this.link.registration);
   },
 
   goToForgotPasswordPage() {
