@@ -6,15 +6,15 @@ Feature: Account Opening Main Dashboard User Invited
 
     Background: User invited has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID      | ruth17a5 |
-            | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userID      | rudia194 |
+            | password    | 1234Test |
+            | userIDstg   | rudi3a17 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
-            | userID      | ruth17a5 |
-            | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userID      | rudia194 |
+            | password    | 1234Test |
+            | userIDstg   | rudi3a17 |
+            | passwordStg | 1234Test |
         And I click login
         And I will direct to page continue to register KYC Invitee
         And I continue to register my KYC data
@@ -37,7 +37,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I back to dashboard
         Then I will see card continue to complete registration user invited
         And I see page 'Data KTP'
-        And I update my last journey step to 'Upload eKTP'
+        And I update my last journey step to 'Login Invitee'
 
     @C131976
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie
@@ -65,7 +65,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I back to dashboard
         Then I will see card continue to complete registration user invited
         And I see page 'Upload Selfie'
-        And I update my last journey step to 'Upload eKTP'
+        And I update my last journey step to 'Login Invitee'
 
     @C141155
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
@@ -90,10 +90,10 @@ Feature: Account Opening Main Dashboard User Invited
             | maritalStatus | Kawin                     |
         And I submit my information identity details
         And I click take my photo selfie
-        And I take picture selfie for matching the face
+        And I take selfie picture
         And I submit my selfie photo
         And I see page 'Upload Selfie with KTP'
         And I back to dashboard
         Then I will see card continue to complete registration user invited
         And I see page 'Upload Selfie with KTP'
-        And I update my last journey step to 'Upload eKTP'
+        And I update my last journey step to 'Login Invitee'

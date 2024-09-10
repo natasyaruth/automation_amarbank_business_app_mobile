@@ -56,6 +56,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with '<Value>'
         Then I should see message error '<Message>' in the below of field 'companyName' in form Data Employment
@@ -84,6 +88,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with 'AMARBANK'
         And I clear field company name
@@ -109,6 +117,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my average transaction with '2000000'
         And I clear field average transaction
@@ -134,6 +146,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my company name with 'John Doe S.Kom, M\'Kom- 11233'
         Then I shouldn't see message error in the below of field company name in form Data Employment
@@ -158,6 +174,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
         When I fill my average transaction with "200000aB@"
         Then I shouldn't see message error in the below of field average transaction in form Data Employment    
@@ -167,12 +187,12 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Given I am a registered customer with following details:
             | userID      | deve26d4 |
             | password    | 1234Test |
-            | userIDstg   | ruth530f |
+            | userIDstg   | stag2987 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve26d4 |
             | password    | 1234Test |
-            | userIDstg   | ruth530f |
+            | userIDstg   | stag2987 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -182,7 +202,47 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I choose Giro Account Corporate
         And I choose legality business type 'individual'
         And I submit my legality type
-        And I update my last journey step to 'Data Domicile Address'
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
+        And I fill all information identity details as followings:
+            | eKtpNumber    | 3173031901860007          |
+            | fullName      | NADYA LAROSA              |
+            | placeOfBirth  | MEDAN                     |
+            | dateOfBirth   | 11/11/1995                |
+            | gender        | Laki-laki                 |
+            | address       | Jl. Durian Runtuh No. 13  |
+            | rt            | 01                        |
+            | rw            | 05                        |
+            | province      | DKI JAKARTA               |
+            | city          | KOTA ADM. JAKARTA SELATAN |
+            | district      | KEBAYORAN BARU            |
+            | village       | SENAYAN                   |
+            | religion      | Katolik                   |
+            | maritalStatus | Belum Kawin               |
+        And I submit my information identity details
+        And I click take my photo selfie
+        And I will direct to page take selfie picture KYC
+        And I take selfie picture
+        And I submit my selfie photo
+        And I click take photo selfie with KTP
+        And I will directing to page take selfie with KTP
+        And I click take photo
+        And I submit my selfie with KTP
+        And I submit my personal data details individual and upload my npwp as followings:
+            | lastEducation        | SMA           |
+            | motherName           | NADYA LAMUSU  |
+            | referenceName        | IBU SAYA      |
+            | referencePhoneNumber | 812343455677  |
+            | purposeAccount       | Rekening Gaji |I submit my personal data details individual and upload my npwp as followings:
+            | lastEducation        | SMA           |
+            | motherName           | NADYA LAMUSU  |
+            | referenceName        | IBU SAYA      |
+            | referencePhoneNumber | 812343455677  |
+            | purposeAccount       | Rekening Gaji |
+        And I choose my domicile address same with my identity information
+        And I submit my domicile address    
         And I see fields that available in Data Employment
         When I fill my employment details as followings:
             | workType           | Pegawai Negeri Sipil |
@@ -197,4 +257,4 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         And I will see checkbox Rights and Obligations is checked
         And I submit my employment data individual
         Then I will notify that my personal data details needs to be verified first
-        And I reset my state journey
+        # And I reset my state journey

@@ -3,6 +3,7 @@ const {
     resetStateDao,
     globalVariable,
     uploadBusinessDocPage,
+    uploadDao,
     headerPage,
 } = inject();
 
@@ -78,6 +79,8 @@ When("I see files that need to be uploaded for type company", () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
+    I.see("Format file: PDF / JPG / JPEG / PNG"+"\n"+
+        "Maximal ukuran per file: 15MB");
 
     I.see("NIB");
     I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
@@ -106,6 +109,7 @@ When("I see files that need to be uploaded for type individual company", () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
+    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
 
     I.see("NIB");
     I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
@@ -127,9 +131,11 @@ When("I see files that need to be uploaded for type individual company", () => {
     I.waitForElement(uploadBusinessDocPage.link.viaOtherDevice, 10);
 });
 
-When("I upload document business {string}", async (typeDoc) => {
+When("I upload document business {string} with type {string}", async (typeDoc, fileType) => {
+    globalVariable.uploadDocuments.fileType = fileType;
+
     await
-        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
+        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc, fileType);
 });
 
 When("I upload all document business for type company", async () => {
@@ -216,27 +222,22 @@ Then("I will direct to page to re-upload document company", () => {
     I.waitForText("Pengajuan Pembukaan Rekening", 10);
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
-    I.see("Progres Upload Dokumen");
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
     I.dontSee(uploadBusinessDocPage.upload.nib);
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Perusahaan.pdf");
     I.dontSee(uploadBusinessDocPage.upload.certificate);
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-    I.see("SK Kemenkumham.pdf");
     I.dontSee(uploadBusinessDocPage.upload.sk);
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-    I.see("NPWP Perusahaan.pdf");
     I.dontSee(uploadBusinessDocPage.upload.npwp);
 
     I.see("Simpan Dokumen");
@@ -361,24 +362,20 @@ Then("I will see document {string} is uploaded", (typeDoc) => {
         case "NIB":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-            I.see(typeDoc + ".pdf");
             break;
         case "Akta Perusahaan":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-            I.see(typeDoc + ".pdf");
             break;
         case "SK Kemenkumham":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-            I.see(typeDoc + ".pdf");
             break;
         case "NPWP Perusahaan":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-            I.see(typeDoc + ".pdf");
             break;
         default:
             throw new Error("Document name is not recognize");
@@ -390,20 +387,16 @@ Then("I will see all document company has been uploaded", () => {
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Perusahaan.pdf");
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-    I.see("SK Kemenkumham.pdf");
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-    I.see("NPWP Perusahaan.pdf");
 
 });
 
@@ -411,11 +404,9 @@ Then("I will see all document business individual company has been uploaded", ()
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Pendirian.pdf");
 
 });
 
@@ -426,26 +417,22 @@ Then("I will not see all document company", () => {
     I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
     I.dontSee(uploadBusinessDocPage.buttons.deleteNIB);
     I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNIB);
-    I.dontSee("NIB.pdf");
     I.assertEqual(globalVariable.uploadDocuments.nib, false);
 
     I.waitForElement(uploadBusinessDocPage.upload.certificate, 10);
     I.dontSee(uploadBusinessDocPage.buttons.deleteAkta);
     I.dontSee(uploadBusinessDocPage.texts.sizeDocumentAkta);
-    I.dontSee("Akta Perusahaan.pdf");
     I.assertEqual(globalVariable.uploadDocuments.akta, false);
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.waitForElement(uploadBusinessDocPage.upload.sk, 10);
     I.dontSee(uploadBusinessDocPage.buttons.deleteSK);
     I.dontSee(uploadBusinessDocPage.texts.sizeDocumentSK);
-    I.dontSee("SK Kemenkumham.pdf");
     I.assertEqual(globalVariable.uploadDocuments.sk, false);
 
     I.waitForElement(uploadBusinessDocPage.upload.npwp, 10);
     I.dontSee(uploadBusinessDocPage.buttons.deleteNPWP);
     I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNPWP);
-    I.dontSee("NPWP Perusahaan.pdf");
     I.assertEqual(globalVariable.uploadDocuments.npwp, false);
 
 });
@@ -459,13 +446,11 @@ Then("I will see {string} is empty", (typeDoc) => {
             I.dontSee(uploadBusinessDocPage.buttons.deleteNIB);
             I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNIB);
             I.dontSee(uploadBusinessDocPage.icons.uploadedNib);
-            I.dontSee(typeDoc + ".pdf");
             break;
         case "Akta Perusahaan":
             I.dontSee(uploadBusinessDocPage.buttons.deleteAkta);
             I.dontSee(uploadBusinessDocPage.texts.sizeDocumentAkta);
             I.dontSee(uploadBusinessDocPage.icons.uploadedAkta);
-            I.dontSee(typeDoc + ".pdf");
             break;
         case "SK Kemenkumham":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
@@ -473,7 +458,6 @@ Then("I will see {string} is empty", (typeDoc) => {
             I.dontSee(uploadBusinessDocPage.buttons.deleteSK);
             I.dontSee(uploadBusinessDocPage.texts.sizeDocumentSK);
             I.dontSee(uploadBusinessDocPage.icons.uploadedSK);
-            I.dontSee(typeDoc + ".pdf");
             break;
         case "NPWP Perusahaan":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
@@ -481,7 +465,6 @@ Then("I will see {string} is empty", (typeDoc) => {
             I.dontSee(uploadBusinessDocPage.buttons.deleteNPWP);
             I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNPWP);
             I.dontSee(uploadBusinessDocPage.icons.uploadedNpwp);
-            I.dontSee(typeDoc + ".pdf");
             break;
         default:
             throw new Error("Document name is not recognize");
@@ -496,24 +479,20 @@ Then("I will see {string} still exists", (typeDoc) => {
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
             I.dontSee(uploadBusinessDocPage.upload.nib);
-            I.see(typeDoc + ".pdf");
         case "Akta Perusahaan":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
             I.dontSee(uploadBusinessDocPage.upload.certificate);
-            I.see(typeDoc + ".pdf");
         case "SK Kemenkumham":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
             I.dontSee(uploadBusinessDocPage.upload.sk);
-            I.see(typeDoc + ".pdf");
         case "NPWP Perusahaan":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
             I.dontSee(uploadBusinessDocPage.upload.npwp);
-            I.see(typeDoc + ".pdf");
         default:
             throw new Error("Document name is not recognize");
     }

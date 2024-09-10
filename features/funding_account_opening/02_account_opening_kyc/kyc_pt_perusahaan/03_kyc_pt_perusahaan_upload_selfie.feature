@@ -23,6 +23,10 @@ Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
     And I choose Giro Account Corporate
     And I choose legality business type 'company'
     And I submit my legality type
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
     And I update my last journey step to 'Data KTP'
 
   @C131828
@@ -30,9 +34,9 @@ Feature: Account Opening KYC PT Perusahaan - Upload Selfie Photo
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'
     When I click take my photo selfie
-    And I will direct to page take selfie
-    And I take picture selfie for matching the face
-    And I will direct to page preview selfie picture
+    And I will direct to page take selfie picture KYC
+    And I take selfie picture
+    And I will direct to page preview selfie picture KYC
     And I submit my selfie photo
     Then I will notify my photo selfie has successfully submitted
     And I will direct to page take a selfie with KTP

@@ -7,6 +7,7 @@ const {
     otpDao,
     loginPage,
     onboardingAccOpeningPage,
+    globalVariable,
 } = inject();
 
 When("I click menu change password", ()=>{
@@ -24,6 +25,23 @@ When("I click button cancel change password", ()=>{
 When("I input my old password", ()=>{
     changePasswordPage.inputOldPassword(globalVariable.login.password);
     globalVariable.changePassword.oldPassword = globalVariable.login.password;
+});
+
+When("I input my old password with space in the back", ()=>{
+    changePasswordPage.inputOldPassword(globalVariable.login.password+" ");
+});
+
+When("I input my old password with space in front", ()=>{
+    changePasswordPage.inputOldPassword(" ");
+    changePasswordPage.inputOldPassword(globalVariable.login.password);
+});
+
+When("I input my old password with whitespace", ()=>{
+    changePasswordPage.inputOldPassword(" ");
+});
+
+When("I input my old password with space in the middle", ()=>{
+    changePasswordPage.inputOldPassword("1234 Test");
 });
 
 When("I click next to input new password", ()=>{
@@ -106,6 +124,7 @@ When("I click link resend OTP change password", ()=>{
 });
 
 When("I input wrong OTP code", ()=>{
+    changePasswordPage.clearOTP();
     changePasswordPage.inputOTP("000000");
 });
 
@@ -127,6 +146,7 @@ When("I login again with my new password", ()=>{
     };
 
     loginPage.fillInAccountInformation(newLogin);
+    loginPage.clickLoginButton();
     globalVariable.login.password = newLogin.password;
 });
 
@@ -195,6 +215,13 @@ Then("I will direct to page form input new password", ()=>{
 });
 
 Then("I will notify by message error {string} in field {string}", async (msgError, field)=>{
+    if(
+        field === "newPassword" ||
+        field === "confirmPassword"
+    ){
+        I.wait(2);
+    }
+    
     const actualMsgError = await changePasswordPage.getMessageErrorFields(field);
 
     I.assertEqual(actualMsgError, msgError);
@@ -207,19 +234,29 @@ Then("I will not see message error {string} in field {string}", async (msgError,
     ){
         const actualMsg = await changePasswordPage.getMessageErrorFields(field);
         I.assertEqual(actualMsg, "Min. 8 karakter dari huruf besar, kecil & angka");
+        I.dontSee(msgError);
 
     } else{
         I.wait(1);
         I.dontSeeElement(changePasswordPage.msgErrorFields[field]);
+        I.dontSee(msgError);
     }
 });
 
 Then("I will see my new password",  ()=>{
-    I.waitForText(globalVariable.changePassword.newPassword);
+    I.waitForText(globalVariable.changePassword.newPassword, 10);
+});
+
+Then("I will see my confirmation password",  ()=>{
+    I.waitForText(globalVariable.changePassword.confirmPassword, 10);
+});
+
+Then("I will not see my new password",  ()=>{
+    I.dontSee(globalVariable.changePassword.newPassword);
 });
 
 Then("I will not see my confirmation password",  ()=>{
-    I.waitForText(globalVariable.changePassword.confirmPassword);
+    I.dontSee(globalVariable.changePassword.confirmPassword);
 });
 
 Then("I will direct to page input OTP change password", async()=>{
@@ -233,7 +270,7 @@ Then("I will direct to page input OTP change password", async()=>{
     I.see("Kode OTP telah dikirim ke nomor");
 
     const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-    I.see("+62 "+phoneNumber);
+    I.see(phoneNumber);
 
     I.waitForElement(changePasswordPage.fields.otp, 10);
 });
@@ -243,7 +280,7 @@ Then("I will see snackbar OTP successfully sent",  ()=>{
 });
 
 Then("I will direct to page success change password",  ()=>{
-    I.waitForText("Selamat, Password Berhasil Diubah!", 10);
+    I.waitForText("Selamat, Password Berhasil "+"\n"+"Diubah!", 10);
     I.dontSeeElement(headerPage.buttons.back);
     I.dontSeeElement(headerPage.buttons.closePage);
     I.dontSeeElement(headerPage.icon.callCenter);
@@ -263,5 +300,50 @@ Then("I reset back my password", async ()=>{
     changePasswordPage.inputConfirmPassword(globalVariable.changePassword.oldPassword);
     changePasswordPage.clickChangePassword();
 
+    const phoneNumber = (await changePasswordPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
+    const otp = (await otpDao.getOTP(phoneNumber)).otp;
+
+    changePasswordPage.inputOTP(otp);
+
     changePasswordPage.clickUnderstand();
+});
+
+Then("I reset attempt otp", async ()=>{
+    const phoneNumber = (await changePasswordPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
+
+    await
+        otpDao.resetLimitRequestOtp(phoneNumber);
+});
+
+Then("I notified that I can verify the OTP tomorrow", async () => {
+    I.waitForElement(changePasswordPage.msgErrorFields.otp, 10);
+
+    const currentDate = new Date();
+    const tomorrowDate = new Date(currentDate);
+    tomorrowDate.setDate(currentDate.getDate() + 1);
+
+    const day = tomorrowDate.getDate();
+    const formattedDay = (day < 10 ? '0' : '') + day;
+    const month = tomorrowDate.getMonth();
+    const year = tomorrowDate.getFullYear();
+    const months = [
+        "Januari", "Februari", "Maret", "April",
+        "Mei", "Juni", "Juli", "Agustus",
+        "September", "Oktober", "November", "Desember"
+    ];
+
+    const hours = tomorrowDate.getHours();
+    const minutes = tomorrowDate.getMinutes();
+    const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
+
+    let actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
+
+    I.assertEqual(actualMsgError, "Kode OTP dapat dikirim kembali pada: tanggal " + formattedDay +
+        " " + months[month] + " " + year + ", pukul " + currentTime);
+
+    I.dontSeeElement(changePasswordPage.link.resendOtp);
+    const phoneNumber = await changePasswordPage.getPhoneNumber();
+
+    await 
+        otpDao.resetLimitRequestOtp(phoneNumber.replace(/\+/g, ''));
 });

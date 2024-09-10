@@ -148,7 +148,7 @@ module.exports = {
   },
 
   clickLaterBiometric() {
-    I.waitForElement(this.buttons.laterBiometric, 30);
+    I.waitForElement(this.buttons.laterBiometric, 20);
     I.click(this.buttons.laterBiometric);
   },
 

@@ -5,14 +5,14 @@ Feature: Account Opening KYC Individual - Upload Selfie with KTP
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID      | ruth2a1e |
+            | userID      | ruth0c1c |
             | password    | 1234Test |
-            | userIDstg   | ruthf5d5 |
+            | userIDstg   | ruth530f |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ruth2a1e |
+            | userID      | ruth0c1c |
             | password    | 1234Test |
-            | userIDstg   | ruthf5d5 |
+            | userIDstg   | ruth530f |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -22,9 +22,13 @@ Feature: Account Opening KYC Individual - Upload Selfie with KTP
         And I choose Giro Account MSME
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie'
 
-    @C141160
+    @C141160 @FuntionalTestDemo
     Scenario: Upload selfie with KTP successfully business type Individual   
         Given I am a customer who has uploaded my selfie photo
         When I click take photo selfie with KTP
@@ -32,6 +36,6 @@ Feature: Account Opening KYC Individual - Upload Selfie with KTP
         And I click take photo
         And I will direct to page preview selfie picture with KTP
         And I submit my selfie with KTP
-        Then I will notify my photo selfie has successfully submitted
+        Then I will notify my selfie with KTP is successfully submitted
         And I will directing to page submit Data Personal individual
         And I reset my state journey

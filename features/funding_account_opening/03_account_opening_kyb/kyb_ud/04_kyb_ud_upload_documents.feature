@@ -22,6 +22,10 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I choose Giro Account MSME
         And I choose legality business type 'ud'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
         When I continue to process KYB
         And I fill my business profile as followings:
@@ -30,7 +34,6 @@ Feature: Account Opening KYB UD - Submit Business Address
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
-            | npwp              | 988283213036000 |
             | nib               | 9129101111112   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile

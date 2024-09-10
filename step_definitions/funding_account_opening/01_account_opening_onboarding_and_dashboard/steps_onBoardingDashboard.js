@@ -63,7 +63,6 @@ When("I choose legality business type {string}", (businessType) => {
 
 When("I submit my legality type", () => {
     onboardingAccOpeningPage.continueToKYC();
-    I.wait(3);
 });
 
 When("I choose Giro Account", () => {
@@ -80,15 +79,130 @@ When("I click later", () => {
 
 When("I choose Giro Account Corporate", () => {
     onboardingAccOpeningPage.openGiroAccountCorporate();
+    globalVariable.onBoarding.productType = "CORP";
 });
 
 When("I choose Giro Account MSME", () => {
     onboardingAccOpeningPage.openGiroAccountMsme();
+    globalVariable.onBoarding.productType = "MSME";
+});
+
+When("I see page {string}", (pageName) => {
+    onboardingAccOpeningPage.validatePage(pageName);
+});
+
+When("I continue to complete my data", () => {
+    onboardingAccOpeningPage.continueCompleteData();
+});
+
+When("I close page upload document", () => {
+    headerPage.closePage();
+});
+
+When("I continue to register my KYC data", () => {
+    onboardingAccOpeningPage.continueToKYC();
+    I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
+});
+
+When("I update my last journey step to {string}", async (stepName) => {
+    await
+        onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
+
+    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
+
+    if (
+        isInvitee === false
+    ) {
+        resetStateDao.reloadPageAfterResetState();
+    } else {
+        resetStateDao.reloadPageAfterResetStateInvitee();
+    }
+
+});
+
+When("I close bottom sheet NPWP Business", () => {
+    onboardingAccOpeningPage.closeBottomSheet();
+});
+
+When("I fill NPWP Business", () => {
+    onboardingAccOpeningPage.fillFieldNPWPBusiness(globalVariable.registration.npwpBusinessDefault);
+});
+
+When("I fill NPWP business with {string}", (npwpBusiness) => {
+    onboardingAccOpeningPage.fillFieldNPWPBusiness(npwpBusiness);
+    globalVariable.registration.npwpBusiness = npwpBusiness;
+});
+
+When("I fill NPWP Business with NPWP has been registered", () => {
+    let npwpBusiness;
+
+    if (process.env.ENVIRONMENT == "staging") {
+        if (
+            globalVariable.onBoarding.productType === "MSME"
+        ) {
+            npwpBusiness = "669819161017000";
+
+        } else if (
+            globalVariable.onBoarding.productType === "CORP"
+        ) {
+            npwpBusiness = "133779944856458";
+
+        }
+
+    } else {
+        if (
+            globalVariable.onBoarding.productType === "MSME"
+        ) {
+            npwpBusiness = "737849499494838";
+
+        } else if (
+            globalVariable.onBoarding.productType === "CORP"
+        ) {
+            npwpBusiness = "644411118990077";
+        }
+    }
+
+    onboardingAccOpeningPage.fillFieldNPWPBusiness(npwpBusiness);
+});
+
+When("I clear NPWP Business", () => {
+    onboardingAccOpeningPage.clearFieldNPWPBusiness();
+});
+
+When("I click continue to data personal", () => {
+    onboardingAccOpeningPage.continueToDataPersonal();
+});
+
+When("I click confirm NPWP Business", () => {
+    onboardingAccOpeningPage.confirmNPWP();
+});
+
+When("I click back from confirm NPWP Business", () => {
+    onboardingAccOpeningPage.clickBackPopUp();
 });
 
 Then("I will directing to page legality business", () => {
     I.waitForText("Pilih salah satu tipe bisnis Anda", 10);
-    I.wait(2);
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("PT Perusahaan");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.company, 10);
+
+    I.see("CV");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.cv, 10);
+
+    I.see("PT Perorangan");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.individualBusiness, 10);
+
+    I.see("UD (Usaha Dagang)");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.ud, 10);
+
+    I.see("Individu");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.individual, 10);
+
+    I.see("Selanjutnya");
+    I.waitForElement(onboardingAccOpeningPage.buttons.next, 10);
 });
 
 Then("I can choose type account giro", () => {
@@ -97,9 +211,6 @@ Then("I can choose type account giro", () => {
 
 Then("I will directing to page capture eKTP with information {string}", async (expectedInfo) => {
     let actualInfo = await uploadKtpPage.getTextInformationType();
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 
     I.assertEqual(actualInfo, expectedInfo);
 });
@@ -124,10 +235,6 @@ Then("I will directing to main dashboard with card loan application and account 
     I.see("Pilih Rekening Giro");
 });
 
-When("I see page {string}", (pageName) => {
-    onboardingAccOpeningPage.validatePage(pageName);
-});
-
 Then("I will see card continue to data personal", () => {
     I.waitForText("Lengkapi Data Personal", 10);
     I.see("Lanjutkan Pembuatan Rekening Giro");
@@ -150,19 +257,19 @@ Then("I can continue to page {string}", async (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
     globalVariable.dashboard.lastPage = pageName;
 
-    if (pageName !== "Registration Director") {
+    if (pageName === "Registration Director") {
+        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
+
+        await
+            resetStateDao.deletePartner(businessID);
+
+        await
+            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    } else {
+
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     }
-});
-
-When("I close page upload document", () => {
-    onboardingAccOpeningPage.closePageUploadDoc();
-});
-
-When("I continue to register my KYC data", () => {
-    onboardingAccOpeningPage.continueToKYC();
-    I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
 });
 
 Then("I will see card continue to complete upload document business", () => {
@@ -192,37 +299,33 @@ Then("I will see card continue to complete upload document business and registra
 });
 
 Then("I can see details registration director", async () => {
-    I.see("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.");
-    I.seeElement(onboardingAccOpeningPage.buttons.refresh);
+    I.waitForText("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
     I.see(globalVariable.formDirector.fullName);
     I.see(globalVariable.formDirector.email);
 
     onboardingAccOpeningPage.openDetailRegistrationDirector();
 
     const actualStatus = await onboardingAccOpeningPage.getStatus();
-    const actualProgress = await onboardingAccOpeningPage.getProgress();
+    const actualProgress = (await onboardingAccOpeningPage.getProgress()).replace(/\s+/g, '');
     const actualTextKtp = await onboardingAccOpeningPage.getTextDetail("ktp");
     const actualTextVerif = await onboardingAccOpeningPage.getTextDetail("verification");
     const actualTextSelfie = await onboardingAccOpeningPage.getTextDetail("selfie");
+    const actualTextSelfieWithKtp = await onboardingAccOpeningPage.getTextDetail("selfieKtp");
 
     I.see("Belum melakukan proses sebagai berikut:");
     I.assertEqual(actualStatus, "Belum registrasi");
-    I.assertEqual(actualProgress, "0/3");
+    I.assertEqual(actualProgress, "0/4");
     I.assertEqual(actualTextKtp, "Foto eKTP");
     I.assertEqual(actualTextVerif, "Verifikasi Data eKTP");
     I.assertEqual(actualTextSelfie, "Selfie");
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.assertEqual(actualTextSelfieWithKtp, "Selfie dengan KTP");
 });
 
 Then("I will notify that my personal data details needs to be verified in main dashboard", () => {
     I.waitForText("Perbankan Giro", 10);
     I.see("Menunggu verifikasi data selesai");
-    I.see("Proses pembuatan rekening giro maksimal dalam waktu 3x24 jam");
-
-    await
-    resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+    I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
 });
 
 Then("I will see card continue to complete registration user invited", () => {
@@ -239,22 +342,6 @@ Then("I will see information that I can try to register after 7 days", () => {
     I.see("Pembuatan Rekening Ditolak");
     I.see("Mohon maaf, Amar Bank belum dapat melayani Anda.");
     I.see("Tapi jangan khawatir, Anda dapat mengulang proses registrasi kembali setelah 7 hari.");
-});
-
-When("I update my last journey step to {string}", async (stepName) => {
-    await
-        onboardingAccOpeningPage.updateStep(stepName, globalVariable.login.userID, globalVariable.login.password);
-
-    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.userID)).data;
-
-    if (
-        isInvitee === false
-    ) {
-        resetStateDao.reloadPageAfterResetState();
-    } else {
-        resetStateDao.reloadPageAfterResetStateInvitee();
-    }
-
 });
 
 Then("I will see details info of giro account MSME", async () => {
@@ -375,4 +462,137 @@ Then("I reset my state journey", async () => {
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     }
+});
+
+Then("I will see bottom sheet NPWP Business", () => {
+    I.waitForText("NPWP Bisnis", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
+    I.see("Wajib Diisi");
+
+    I.see("Nomor NPWP Bisnis");
+    I.see("Tulis nomor NPWP bisnis");
+    I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
+
+    I.see("Lanjut Isi Data personal");
+    I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
+    // checking button submit npwp is disabled
+});
+
+Then("I will see bottom sheet NPWP Business with NPWP still there", () => {
+    I.waitForText("NPWP Bisnis", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
+    I.see("Wajib Diisi");
+
+    I.see("Nomor NPWP Bisnis");
+    I.dontSee("Tulis nomor NPWP bisnis");
+    I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
+    I.see(globalVariable.registration.npwpBusiness);
+
+    I.see("Lanjut Isi Data personal");
+    I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
+    // checking button submit npwp is disabled
+});
+
+Then("I see button submit NPWP is enabled", () => {
+    // add checking button submit npwp enabled
+});
+
+Then("I see button submit NPWP is disabled", () => {
+    // add checking button submit npwp disabled
+});
+
+Then("I don't see the NPWP business", () => {
+    I.wait(1);
+    I.dontSee(globalVariable.registration.npwpBusiness);
+});
+
+Then("I see my NPWP business 15 digit and auto format", () => {
+
+    let npwpBusiness;
+
+    if (
+        globalVariable.registration.npwpBusiness !== ""
+    ) {
+        npwpBusiness = globalVariable.registration.npwpBusiness;
+
+    } else {
+
+        npwpBusiness = globalVariable.registration.npwpBusinessDefault;
+    }
+
+    const numberNpwp = npwpBusiness.substring(0,15);
+
+    const formattedNpwp = npwpBusiness.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
+
+    I.waitForText(formattedNpwp, 10);
+    globalVariable.registration.npwpBusiness = formattedNpwp;
+});
+
+Then("I will see pop up confirm NPWP Business", async () => {
+    I.waitForText("Konfirmasi NPWP Bisnis Anda", 20);
+    I.see("Nomor NPWP Anda akan kami daftarkan pada aplikasi Amar Bank Bisnis.");
+
+    I.see("Nomor NPWP:");
+    const npwpBusiness = await onboardingAccOpeningPage.getNPWPBusiness();
+    I.assertEqual(npwpBusiness, globalVariable.registration.npwpBusiness);
+
+    I.see("Kembali");
+    I.waitForElement(onboardingAccOpeningPage.buttons.backNpwp, 10);
+
+    I.see("Konfirmasi");
+    I.waitForElement(onboardingAccOpeningPage.buttons.confirmNpwp, 10);
+});
+
+Then("I will see error NPWP business has been registered", async () => {
+    const actualMsgError = await onboardingAccOpeningPage.getMessageErrorNPWP();
+    const expectedMsgError = "Nomor NPWP sudah terdaftar di Amar Bank Bisnis";
+
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see field NPWP business is empty", ()=>{
+    I.wait(1);
+    I.waitForText("Tulis nomor NPWP bisnis", 10);
+});
+
+Then("I see message error NPWP should 15 digits", async () => {
+    const actualMsgError = await onboardingAccOpeningPage.getMessageErrorNPWP();
+    const expectedMsgError = "NPWP harus 15 digit";
+
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see NPWP business only number and formatted", () => {
+
+    let npwpBusiness;
+
+    if (
+        globalVariable.registration.npwpBusiness !== ""
+    ) {
+        npwpBusiness = globalVariable.registration.npwpBusiness;
+
+    } else {
+
+        npwpBusiness = globalVariable.registration.npwpBusinessDefault;
+    }
+
+    const numberNpwp = npwpBusiness.replace(/\D/g, '');
+
+    const formattedNpwp = [];
+    const npwpChar = numberNpwp.split("");
+
+    for (let i = 0; i < npwpChar.length; i++) {
+        formattedNpwp.push(npwpChar[i]);
+
+        if (formattedNpwp.length === 2 ||
+            formattedNpwp.length === 6 ||
+            formattedNpwp.length === 10 ||
+            formattedNpwp.length === 16) {
+            formattedNpwp.push(".");
+        } else if (formattedNpwp.length === 12) {
+            formattedNpwp.push("-");
+        }
+    }
+
+    I.waitForText(formattedNpwp.join(''), 10);
 });

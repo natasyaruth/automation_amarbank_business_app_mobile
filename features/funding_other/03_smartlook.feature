@@ -13,7 +13,7 @@ Feature: Smartlook
         And I upload document business
         And I check recorded step on Smartlook
         Then I see recorded step on Smartlook
-        And I play the recorded step 
+        And I play the recorded step
         And All step recorded
         
     Scenario: Register account type CV with positive flow

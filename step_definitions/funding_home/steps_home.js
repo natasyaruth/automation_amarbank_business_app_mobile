@@ -1,9 +1,13 @@
 const {
     I,
     transactionHistoryPage,
+    onboardingAccOpeningPage,
     amountDetailPage,
     resetStateDao,
     globalVariable,
+    documentSafePage,
+    getDataDao,
+    headerPage,
 } = inject();
 
 Given(/I am on home page/, () => {
@@ -114,6 +118,27 @@ Given("I wait until my account name displayed", async () => {
     I.waitForText(accountName, 30);
 });
 
+Given("still not complete onboarding document safe and survey", async () => {
+    await
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, false);
+    I.wait(5);
+});
+
+Given("complete onboarding document safe and survey", async () => {
+    await
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, true);
+    I.wait(5);
+});
+
+Given("notification red dot document safe is on", () => {
+    I.waitForElement(onboardingAccOpeningPage.icons.redDotNotificationDoc, 20);
+});
+
+Given("notification red dot document safe is off", () => {
+    I.wait(2);
+    I.dontSee(onboardingAccOpeningPage.icons.redDotNotificationDoc);
+});
+
 When("I click detail amount", () => {
     amountDetailPage.openDetailAmount();
     I.waitForText("Saldo Rekening Giro", 10);
@@ -144,15 +169,43 @@ When("I see my blocking amount coming from minimum amount", async () => {
 
     if (
         accType === 1
-    ){
+    ) {
         const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
-        I.assertEqual(actualBlockingAmount, "Rp"+minimumIndividual);
-    } else if(
+        I.assertEqual(actualBlockingAmount, "Rp" + minimumIndividual);
+    } else if (
         accType === 2
-    ){
+    ) {
         const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
-        I.assertEqual(actualBlockingAmount, "Rp"+minimumBusiness);
+        I.assertEqual(actualBlockingAmount, "Rp" + minimumBusiness);
     }
+});
+
+When("I click widget document safe", () => {
+    onboardingAccOpeningPage.openWidgetDocumentSafe();
+});
+
+When("I close page onboarding document safe", () => {
+    headerPage.closePage();
+});
+
+When("I click button choose product", () => {
+    I.waitForText("Pilih Produk", 10);
+    documentSafePage.clickChooseProduct();
+});
+
+When("I continue to process loan", () => {
+    I.waitForText("Lanjutkan Pengajuan Pinjaman", 10);
+    documentSafePage.clickContinueToLoanProcess();
+});
+
+When("I continue to process account opening", () => {
+    I.waitForText("Lanjutkan Pembukaan Rekening", 10);
+    documentSafePage.clickContinueToAccOpening();
+});
+
+When("I click use document safe", () => {
+    I.waitForText("Gunakan Brankas Dokumen", 10);
+    documentSafePage.clickUseDocumentSafe();
 });
 
 Then("I will not see my active, blocking and total amount", async () => {
@@ -324,5 +377,121 @@ Then("I will not see information {string} in the below of field blocking amount"
         const actualDescBlockingAmount = await amountDetailPage.getinformationBlockingAmount();
         I.assertNotEqual(actualDescBlockingAmount, information);
     }
+
+});
+
+Then("I see widget document safe", () => {
+    I.waitForText("Brankas Dokumen", 10);
+    I.see("Aman");
+    I.see("Gratis");
+
+    I.see("Pelajari");
+    I.waitForElement(onboardingAccOpeningPage.buttons.widgetDocumentSafe, 10);
+});
+
+Then("I don't see widget onboarding document safe", () => {
+    I.dontSee("Brankas Dokumen");
+    I.dontSee("Aman");
+    I.dontSee("Gratis");
+
+    I.dontSee("Pelajari");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.widgetDocumentSafe);
+});
+
+Then("I will see onboarding page document safe continue to choose product", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Terjamin Aman");
+    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mulai pembukaan rekening atau pengajuan pinjaman terlebih dahulu");
+
+    I.see("Pilih Produk");
+    I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
+});
+
+Then("I will see onboarding page document safe continue to loan process", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Terjamin Aman");
+    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, silakan lanjutkan pengajuan pinjaman Anda terlebih dahulu");
+
+    I.see("Lanjutkan Pengajuan Pinjaman");
+    I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
+});
+
+Then("I will see onboarding page document safe continue to account opening process", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Terjamin Aman");
+    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, silakan lanjutkan pembukaan rekening Anda terlebih dahulu");
+
+    I.see("Lanjutkan Pembukaan Rekening");
+    I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
+});
+
+Then("I will see onboarding page document safe data still need verification", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Terjamin Aman");
+    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mohon menunggu proses verifikasi data Anda selesai terlebih dahulu");
+    I.dontSeeElement(documentSafePage.buttons.continueOnboarding);
+
+});
+
+Then("I will see onboarding page to complete document safe", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Terjamin Aman");
+    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Gunakan Brankas Dokumen");
+    I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
 
 });

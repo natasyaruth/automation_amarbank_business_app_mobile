@@ -1,3 +1,5 @@
+const { msgError } = require("../../pages/otpConfirmation");
+
 const {
   I,
   loginPage,
@@ -7,6 +9,7 @@ const {
   globalVariable } = inject();
 
 Given("I am a customer want to reset password", () => {
+  welcomePage.clickButtonLogin();
   loginPage.goToForgotPasswordPage();
   forgotPasswordPage.isOpen();
 });
@@ -118,7 +121,13 @@ Then("I should back to page reset password with field User ID still filled", () 
 
 Then("I will see pop up information reset password with text {string}", (wordingMsg) => {
   I.waitForText("Data Yang Dimasukkan Salah", 10);
-  I.see(wordingMsg);
+  I.waitForText(wordingMsg, 10);
+});
+
+Then("I should be notified {string} in the below of field {string} forgot password", async (wordingMsg, field) => {
+  const actualMsg = await forgotPasswordPage.getMessageError(field);
+
+  I.assertEqual(actualMsg, wordingMsg);
 });
 
 Then("I will see information about the reset password can be done in the next 10 minutes", () => {

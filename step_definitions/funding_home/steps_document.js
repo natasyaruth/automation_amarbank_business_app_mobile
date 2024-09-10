@@ -3,15 +3,22 @@ const { I,
     profilePage,
     otherPage,
     globalVariable,
+    getDataDao,
     resetStateDao,
+    documentSafePage,
+    onboardingAccOpeningPage,
 } = inject();
 
 When("I click document giro", () => {
     documentPage.clickDocumentGiro();
 });
 
-When("I click tab document", () => {
+When("I click tab brankas", () => {
     documentPage.clickTabDocument();
+});
+
+When("I click tab Home", () => {
+    onboardingAccOpeningPage.goToTabHome();
 });
 
 When("I click button document loan", () => {
@@ -44,7 +51,7 @@ When("I click see my document", () => {
 
 When("I will see pop up biometric is inactive", () => {
     I.waitForElement(documentPage.buttons.closePopUp, 10);
-    I.see("Untuk melihat dokumen, Anda bisa mengaktifkan fitur Biometrik melalui Menu Lainnya");
+    I.see("Untuk membuka brankas dokumen, Anda bisa mengaktifkan fitur Biometrik melalui Menu Lainnya");
 
     I.see("Aktifkan Sekarang");
     I.waitForElement(documentPage.buttons.activatedNow, 10);
@@ -73,6 +80,39 @@ When("I mask my password document", () => {
     documentPage.clickIconEyePassword();
 });
 
+When("I choose done enough", () => {
+    documentSafePage.clickRadioButtonDoneEnough();
+});
+
+When("I choose not enough", () => {
+    documentSafePage.clickRadionButtonNotEnough();
+});
+
+When("I checklist reason {string}", (type) => {
+    documentSafePage.chooseFeedback(type);
+});
+
+When("I uncheck reason {string}", (type) => {
+    documentSafePage.chooseFeedback(type);
+});
+
+When("I fill feedback with {string}", (feedback) => {
+    documentSafePage.fillFeedback(feedback);
+    globalVariable.survey.feedBack = feedback;
+
+    const lengthFeedback = (globalVariable.survey.feedBack).length;
+    I.waitForText(lengthFeedback+"/60", 10);
+    globalVariable.survey.lengthFeedback = lengthFeedback+"/60";
+});
+
+When("I clear field feedback", () => {
+    documentSafePage.clearFeedback();
+});
+
+When("I sent the feedback", () => {
+    documentSafePage.sentFeedback();
+});
+
 Then("I will direct to page document business", () => {
     I.waitForText("Dokumen", 20);
     I.dontSee("Dokumen Bisnis");
@@ -85,7 +125,7 @@ Then("I will see message error password incorrect", async() => {
 });
 
 Then("I will see bottom sheet input password document", () => {
-    I.waitForText("Untuk melihat dokumen masukkan password Anda", 10);
+    I.waitForText("Untuk membuka brankas dokumen masukkan password Anda", 10);
     I.waitForElement(documentPage.fields.password, 10);
     I.waitForElement(documentPage.buttons.closePopUp, 10);
 
@@ -218,15 +258,26 @@ Then("I reset attempt failed password", async() => {
         resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
-Then("I will direct to Tab Other", () => {
+Then("I will direct to Tab Other", async () => {
+
+    const hasPin = (await getDataDao.hasCreatePin(globalVariable.login.userID, globalVariable.login.password)).hasPin;
 
     I.waitForText("Keamanan", 10);
     I.see("Ubah Password");
     I.waitForElement(otherPage.buttons.changePassword, 10);
     I.see("Lainnya");
 
-    I.see("Ubah PIN");
-    I.waitForElement(otherPage.buttons.changePin, 10);
+    if(
+        hasPin === true
+    ){
+        I.see("Ubah PIN");
+        I.waitForElement(otherPage.buttons.changePin, 10);
+
+    } else{
+
+        I.see("Buat PIN");
+        I.waitForElement(otherPage.buttons.changePin, 10);
+    }
 
     I.see("Hapus Akun");
     I.waitForElement(otherPage.buttons.deleteAccount, 10);
@@ -237,7 +288,6 @@ Then("I will direct to Tab Other", () => {
 
     I.see("Permintaan");
     I.see("Buku Cek / Bilyet Giro");
-    I.waitForElement(otherPage.buttons.checkBook, 10);
 
     I.see("Bantuan");
     I.see("Kami akan membantu Anda dalam pembentukan rekening ataupun pinjaman");
@@ -248,4 +298,92 @@ Then("I will direct to Tab Other", () => {
 
     I.waitForText("Keluar", 20);
     I.waitForElement(otherPage.buttons.btnLogout, 10);
+});
+
+Then("I will see pop up fill survey", async () => {
+    I.waitForText("Beri masukan Anda agar kami dapat melayani Anda lebih baik.", 10);
+    I.see("Dari 3 hal yang kami sediakan untuk brankas dokumen seperti Aman, Kapasitas Besar, dan Akses Kapan Saja, apakah bagi Anda sudah cukup? ");
+
+    I.see("Sudah Cukup");
+    I.waitForElement(documentSafePage.radioButtons.enough, 10);
+    // add to check radio button still not selected
+
+    I.see("Belum Cukup");
+    I.waitForElement(documentSafePage.radioButtons.notEnough, 10);
+    // add to check radio button still not selected
+
+    I.see("Kirim Masukan");
+    I.waitForElement(documentSafePage.buttons.sentFeedBack, 10);
+    
+    const isSentEnabled = await I.grabAttributeFrom(documentSafePage.checkBox.other, 'enabled');
+    I.assertEqual(isOtherChecked, false);
+
+});
+
+Then("I will see section to choose reason", async () => {
+    I.waitForText("Silakan pilih fitur yang mungkin Anda butuhkan untuk brankas dokumen:", 10);
+
+    I.see("Upload dokumen");
+    I.waitForElement(documentSafePage.checkBox.uploadDoc, 10);
+
+    const isUploadDocChecked = await I.grabAttributeFrom(documentSafePage.checkBox.uploadDoc, 'checked');
+    I.assertEqual(isUploadDocChecked, "false");
+
+    I.see("Kategorisasi dokumen");
+    I.waitForElement(documentSafePage.checkBox.categoryDoc, 10);
+    
+    const isCategoryChecked = await I.grabAttributeFrom(documentSafePage.checkBox.categoryDoc, 'checked');
+    I.assertEqual(isCategoryChecked, "false");
+
+    I.see("Cari dokumen dari nama/kategori");
+    I.waitForElement(documentSafePage.checkBox.searchDoc, 10);
+    
+    const isSearchDocChecked = await I.grabAttributeFrom(documentSafePage.checkBox.searchDoc, 'checked');
+    I.assertEqual(isSearchDocChecked, "false");
+
+    I.see("Lainnya");
+    I.waitForElement(documentSafePage.checkBox.other, 10);
+    
+    const isOtherChecked = await I.grabAttributeFrom(documentSafePage.checkBox.other, 'checked');
+    I.assertEqual(isOtherChecked, "false");
+
+    I.see("Kirim Masukan");
+    I.waitForElement(documentSafePage.buttons.sentFeedBack, 10);
+
+    const isSentEnabled = await I.grabAttributeFrom(documentSafePage.checkBox.other, 'enabled');
+    I.assertEqual(isOtherChecked, "false");
+});
+
+Then("I will see field reason", () => {
+    I.waitForText("Tulis fitur yang Anda butuhkan", 10);
+    I.waitForElement(documentSafePage.fields.other, 10);
+
+    I.see("0/60");
+
+    I.see("Kirim Masukan");
+    I.waitForElement(documentSafePage.buttons.sentFeedBack, 10);
+    // add to check button sent is disabled
+});
+
+Then("I will see button sent feedback enabled", () => {
+    // add to check button sent is enabled
+});
+
+Then("I see counting word back to default", () => {
+    I.wait(1);
+    I.dontSee(globalVariable.survey.lengthFeedback);
+
+    I.waitForText("0/60", 10);
+});
+
+Then("I will see button sent feedback disabled", () => {
+    // add to check button sent is disabled
+});
+
+Then("I will not see the feedback anymore", () => {
+    I.dontSee(globalVariable.survey.feedBack);
+});
+
+Then("I will see snackbar success send feedback", () => {
+    I.waitForText("Terima kasih. Masukan Anda sudah terkirim.", 10);
 });

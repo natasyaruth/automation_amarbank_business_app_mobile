@@ -17,6 +17,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I will direct to page input old password
@@ -39,6 +40,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -63,6 +65,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I will direct to page input old password
@@ -85,6 +88,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -109,6 +113,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -130,6 +135,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -150,11 +156,97 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
         And I clear my old password
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
+
+    @C143085
+    Scenario: Input old password with only whitespace
+        Given I am a registered customer with following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test | 
+        When I filling in form login with the following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I choose other
+        And I click menu change password
+        And I input my old password with whitespace
+        Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'    
+
+    @C143081
+    Scenario: Input old password with space in the front
+        Given I am a registered customer with following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test | 
+        When I filling in form login with the following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I choose other
+        And I click menu change password
+        And I input my old password with space in front
+        And I unmask my old password
+        Then I will see my password
+
+    @C143082
+    Scenario: Input old password with whitespace in the middle
+        Given I am a registered customer with following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test | 
+        When I filling in form login with the following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I choose other
+        And I click menu change password
+        And I input my old password with space in the middle
+        And I unmask my old password
+        Then I will not see my password
+        And I will not see message error 'Password wajib diisi' in field 'oldPassword'
+
+    @C143083
+    Scenario: Input old password with whitespace in the back
+        Given I am a registered customer with following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test | 
+        When I filling in form login with the following details:
+            | userID      | auto3a2f |
+            | password    | 1234Test |
+            | userIDstg   | stagcfb7 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I choose other
+        And I click menu change password
+        And I input my old password with space in the back
+        And I unmask my old password
+        Then I will not see my password
+        And I will not see message error 'Password wajib diisi' in field 'oldPassword'       
 
     @C141179
     Scenario: Submit password with field still empty
@@ -170,12 +262,13 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I click next to input new password
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
 
-    @C141180
+    @C141180 @FuntionalTestDemo
     Scenario: Input wrong old password once
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -189,6 +282,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -210,6 +304,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -220,7 +315,7 @@ Feature: Account Change Password
         Then I will see pop up data is incorrect
         And I can click try again to input password
 
-    @C141182
+    @C141182 @FuntionalTestDemo
     Scenario: Input wrong old password three times
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -234,6 +329,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -262,18 +358,19 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
         And I click next to input new password
         And I will see pop up data is incorrect
-        And I try again to input password
+        And I can click try again to input password
         And I clear my old password
         And I input my old password
         And I click next to input new password
         Then I will direct to page form input new password
 
-    @C141184
+    @C141184 @FuntionalTestDemo
     Scenario: Input new password < 8 digit
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -287,6 +384,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -294,7 +392,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '123Tes'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141185
+    @C141185 @FuntionalTestDemo
     Scenario: Input new password only lowercase
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -308,6 +406,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -315,7 +414,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'testingku'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141186
+    @C141186 @FuntionalTestDemo
     Scenario: Input new password only uppercase
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -329,6 +428,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -336,7 +436,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'TESTINGKU'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141187
+    @C141187 @FuntionalTestDemo
     Scenario: Input new password only number
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -350,6 +450,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -357,7 +458,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '12309876'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141188
+    @C141188 @FuntionalTestDemo
     Scenario: Input new password combination lowercase and number only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -371,6 +472,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -378,7 +480,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'test1234'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141189
+    @C141189 @FuntionalTestDemo
     Scenario: Input new password combination uppercase and number only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -392,6 +494,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -399,7 +502,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'TEST1234'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141190
+    @C141190 @FuntionalTestDemo
     Scenario: Input new password combination lowercase and uppercase only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -413,6 +516,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -434,6 +538,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -456,6 +561,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -463,7 +569,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '1234Test'
         And I input field 'confirmPassword' with value '1234Test'
         And I clear confirm password
-        Then I will notify by message error 'Password baru wajib diisi' in field 'confirmPassword'
+        Then I will notify by message error 'Konfirmasi password baru wajib diisi' in field 'confirmPassword'
         And I will not see message error 'Password baru wajib diisi' in field 'newPassword'
 
     @C141193
@@ -480,6 +586,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -503,6 +610,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -525,6 +633,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -548,6 +657,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -556,7 +666,7 @@ Feature: Account Change Password
         And I unmask confirmation password
         Then I will see my confirmation password
 
-    @C141197
+    @C141197 @FuntionalTestDemo
     Scenario: Input confirm password different with new password
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -570,6 +680,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -594,6 +705,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -602,7 +714,7 @@ Feature: Account Change Password
         Then I will notify by message error 'Password baru wajib diisi' in field 'newPassword'
         And I will notify by message error 'Konfirmasi password baru wajib diisi' in field 'confirmPassword'
 
-    @C141199
+    @C141199 @FuntionalTestDemo
     Scenario: Check attempt request OTP
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -616,6 +728,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -641,9 +754,9 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I wait for 1 minutes
         And I click link resend OTP change password
-        Then I should be notified that I can verify the OTP tomorrow
+        Then I notified that I can verify the OTP tomorrow
 
-    @C141200
+    @C141200 @FuntionalTestDemo
     Scenario: Input wrong OTP
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -657,6 +770,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -667,7 +781,9 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I input wrong OTP code
         Then I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+        And I reset attempt otp
 
+    @C141314 @FuntionalTestDemo
     Scenario: Input wrong OTP five times
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -681,6 +797,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -699,6 +816,7 @@ Feature: Account Change Password
         And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
         And I input wrong OTP code
         Then I should be notified that I can verify the OTP tomorrow
+        And I reset attempt otp
 
     @C141201
     Scenario: Input expired OTP
@@ -714,6 +832,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -740,6 +859,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -753,7 +873,7 @@ Feature: Account Change Password
         And I input OTP change password
         Then I will direct to page success change password
 
-    @C141203
+    @C141203 @FuntionalTestDemo
     Scenario: Change password till success login with account active initiator
         Given I am a registered customer with following details:
             | userID      | deveb4ef |
@@ -767,6 +887,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -796,6 +917,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -825,6 +947,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on verification'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -854,6 +977,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on verification'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -872,17 +996,18 @@ Feature: Account Change Password
     @C141207
     Scenario: Change password till success login with account initiator on process 
         Given I am a registered customer with following details:
-            | userID      | rudicbf4 |
+            | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | rudid199 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test | 
         When I filling in form login with the following details:
-            | userID      | rudicbf4 |
+            | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | rudid199 |
+            | userIDstg   | stag48e9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'on process'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -912,6 +1037,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
@@ -953,11 +1079,12 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input my old password
         And I click next to input new password
-         And I input field 'newPassword' with value '1234Test'
+        And I input field 'newPassword' with value '1234Test'
         And I input field 'confirmPassword' with value '1234Test'
         And I confirm my new password
         And I will see snackbar OTP successfully sent
@@ -981,6 +1108,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -995,6 +1123,7 @@ Feature: Account Change Password
         And I click button cancel change password
         And I click logout
         And I fill form login with incorrect password
+        And I click login
         Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
         And I reset attempt failed login
 
@@ -1023,6 +1152,7 @@ Feature: Account Change Password
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I choose other
         And I click menu change password
         And I input incorrect old password
@@ -1031,6 +1161,7 @@ Feature: Account Change Password
         And I try again to input password
         And I reset attempt failed login  
         
+    @C141315
     Scenario: Login with old password after change password
         Given I am a registered customer with following details:
             | userID      | autod015 |
@@ -1056,4 +1187,10 @@ Feature: Account Change Password
         And I will direct to page success change password
         And I click button direct to page login
         And I login again with my old password
+        And I click login
         Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+        And I click try again to login
+        And I reset attempt failed login
+        And I login again with my new password
+        And I click login
+        And I reset back my password

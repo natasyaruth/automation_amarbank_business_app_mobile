@@ -48,7 +48,7 @@ Given("I login using my user id that I recently receive through email", async ()
 Given("I login using user id partner", async () => {
   const account = {
     userID: globalVariable.login.userIDPartner,
-    password: globalVariable.login.passwordPartner
+    password: globalVariable.registration.passwordPartner
   };
 
   globalVariable.login.userID = account.userID;
@@ -178,7 +178,7 @@ Then(
   "I should see pop up {string} with button {string}",
   async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(expectedValue);
+    I.waitForText(expectedValue, 10);
     I.waitForElement(loginPage.buttons[buttonName], 10);
   });
 
@@ -204,7 +204,7 @@ Then(
 
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.see(
-      "Tiga kali salah memasukan data. Silahkan coba lagi pada pukul " +
+      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
       currentTime
     );
   }
@@ -249,6 +249,7 @@ When("I click registration", () => {
 
 When("I click later in pop up biometric", () => {
   loginPage.clickLaterBiometric();
+  I.wait(1);
 });
 
 When("I close bottom sheet biometric", () => {
@@ -306,7 +307,6 @@ When("I will direct to page take selfie", () => {
   I.waitForText("Selfie", 10);
   I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
 
-  I.see("Ambil Selfie");
   I.waitForElement(loginPage.buttons.takeSelfie, 10);
   I.dontSee(loginPage.buttons.reTakeSelfie);
   I.dontSee("Ulangi");

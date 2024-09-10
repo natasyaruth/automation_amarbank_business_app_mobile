@@ -8,120 +8,100 @@ Feature: Account Opening Main Dashboard
         Given I am a registered customer with following details:
             | userID      | johnbf89 |
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | stagda20 |
             | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | johnbf89 |
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | stagda20 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
 
     @C131962
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
-        And I see page 'Upload eKTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
     @C131963
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I upload my eKTP photo
         And I see page 'Data KTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
     @C131964
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data KTP'
         And I see page 'Upload Selfie'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
     @C141154
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Upload Selfie'
         And I see page 'Upload Selfie with KTP'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
     @C131965
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Upload Selfie with KTP'
         And I see page 'Data Personal'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'  
 
     @C131966
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Personal'
         And I see page 'Data Domicile Address'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
     @C131967
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Domicile Address'
         And I see page 'Data Employment'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
     @C131968
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I see page 'Data Business Profile'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Continue Process KYB'
 
     @C131969
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'ud'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -129,21 +109,19 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Business Owner'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Business Owner'
 
     @C131970
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Director List
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -151,21 +129,19 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I see page 'Data Director List'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
     @C131971
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -173,6 +149,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -180,15 +157,12 @@ Feature: Account Opening Main Dashboard
         And I submit business director
         And I see page 'Data Business Address'
         And I back to dashboard
-        And I click later in pop up biometric
         Then I will see card continue to data business
-        And I can continue to page 'Data Business Address'
+        And I can continue to page 'Data Director List'
 
     @C131972
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -196,6 +170,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -209,10 +184,12 @@ Feature: Account Opening Main Dashboard
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
-        And I see page 'Upload Document Business'
+        And I see page 'Method Upload Document'
         And I close page upload document
         Then I will see card continue to complete upload document business
         And I can continue to page 'Upload Document Business'
@@ -220,8 +197,6 @@ Feature: Account Opening Main Dashboard
     @C131973
     Scenario: User can see cards continue to complete upload document and register director list
         Given I am a customer want to open Giro Account
-        And I choose legality business type 'company'
-        And I submit my legality type
         And I update my last journey step to 'Data Employment'
         And I continue to process KYB
         And I fill my business profile as followings:
@@ -229,6 +204,7 @@ Feature: Account Opening Main Dashboard
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
             | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
@@ -239,7 +215,7 @@ Feature: Account Opening Main Dashboard
             | email    | bimo@trash-mail.com |
             | nik      | 3166021710820021    |
         And I save data director
-        And I submit business director
+        And I submit business director list
         And I confirm my director lists
         And I fill my business address as followings:
             | address  | Jl. Gambir Belok kanan No. 23 |
@@ -249,10 +225,12 @@ Feature: Account Opening Main Dashboard
             | city     | JAKARTA SELATAN               |
             | district | PANCORAN                      |
             | village  | PANCORAN                      |
-        And I agree with the terms and condition
-        And I allow company to store my data
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
         And I submit my business address
-        And I see page 'Upload Document Business'
+        And I see page 'Method Upload Document'
         And I close page upload document
         Then I will see card continue to complete upload document business and registration director list
         And I can continue to page 'Registration Director'

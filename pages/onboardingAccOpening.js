@@ -27,13 +27,21 @@ module.exports = {
     invitedDirectors: "~btnOpenInvited",
     completeDoc: "~btnOpenDoc",
     refresh: "~btnRefresh",
-    cardInvited: "~btnCard",
+    cardInvited: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]" },
     giroAccountCorporate: "~bbBtnOpenGiro",
     giroAccountMsme: "~smeBtnOpenGiro",
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
     openProgressAccount: "~btnDropoff",
+    widgetDocumentSafe: "~buttonLearn",
+    submitNPWP: "~nextButton",
+    backNpwp: "~btnBack",
+    confirmNpwp: "~btnConfirmed",
+    closeBottomSheet: "~buttonClose",
+  },
+  fields: {
+    npwpBusiness: "~textFieldNpwpNumber"
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -48,11 +56,12 @@ module.exports = {
     descCardAccOpening: "~txtDescCard",
     invitedName: "~txtInvitedName",
     email: "~txtEmailName",
-    progress: "~txtProgress",
-    status: "~",
-    ktp: "~txtPhoto",
-    verification: "~txtVerifData",
-    selfie: "~txtSelfie",
+    progress: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[3]" },
+    status: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[4]" },
+    ktp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[6]" },
+    verification: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[7]" },
+    selfie: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[8]" },
+    selfieKtp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[9]" },
     adminFeeSme: "~smeAdminFee",
     adminFeeCorporate: "~bbAdminFee",
     minBalanceSme: "~smeMinBalance",
@@ -70,6 +79,10 @@ module.exports = {
     transactionRecipientBank: "~transactionRecipientBank",
     transactionDate: "~transactionDate",
     transactionAmount: "~transactionAmount",
+    npwpNumber: "~npwpNumberText",
+  },
+  msgErrorFields: {
+    npwpBusiness: "~textMsgErrorNpwpNumber",
   },
   tabs: {
     home: "~tabHome",
@@ -77,6 +90,9 @@ module.exports = {
     callCenter: "~tabCallCenter",
     document: "~tabDocument",
     others: "~tabOthers",
+  },
+  icons: {
+    redDotNotificationDoc: "~indicatorRedDot",
   },
 
   chooseLegalityBusinessType(type) {
@@ -102,13 +118,11 @@ module.exports = {
   openGiroAccountMsme() {
     I.waitForElement(this.buttons.giroAccountMsme, 10);
     I.click(this.buttons.giroAccountMsme);
-    globalVariable.onBoarding.productType = "MSME";
   },
 
   openGiroAccountCorporate() {
     I.waitForElement(this.buttons.giroAccountCorporate, 10);
     I.click(this.buttons.giroAccountCorporate);
-    globalVariable.onBoarding.productType = "CORP";
   },
 
   continueToKYC() {
@@ -119,20 +133,20 @@ module.exports = {
   validatePage(pageName) {
     switch (pageName) {
       case "Upload eKTP":
-        I.waitForText("Ambil Foto eKTP Anda", 10);
+        I.waitForText("Ambil Foto eKTP Anda", 20);
         I.waitForElement(uploadKtpPage.buttons.directToTakePhoto, 10);
         break;
       case "Data KTP":
-        I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
+        I.waitForElement(formKtpPage.fields.eKtpNumber, 20);
         break;
       case "Upload Selfie":
-        I.waitForText("Ambil Foto Diri Anda", 10);
+        I.waitForText("Ambil Foto Diri Anda", 20);
         I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
         break;
       case "Upload Selfie with KTP":
         I.waitForText("Ambil Foto Diri Anda dengan KTP", 10);
         I.waitForElement(uploadSelfieKtpPage.buttons.directToTakePhoto, 10);
-        break;  
+        break;
       case "Data Personal":
         I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
         I.wait(3);
@@ -168,8 +182,11 @@ module.exports = {
       case "Upload Document Business":
         I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
         break;
+      case "Method Upload Document":
+        I.waitForElement(uploadBusinessDocPage.buttons.chooseMethodUpload, 10);
+        break;
       case "Registration Director":
-        I.waitForElement(formBusinessAddressPage.buttons.email, 10);
+        I.waitForElement(this.buttons.cardInvited, 10);
         break;
       case "Detail Progress Account Opening":
         I.waitForText("Pengajuanmu Sedang Diproses Tim Kami", 10);
@@ -181,6 +198,12 @@ module.exports = {
 
   async updateStep(stepName, userID, password) {
     switch (stepName) {
+      case "Choose Legality Type" || "Login Invitee":
+        await resetStateDao.resetStateFlow(2, userID, password);
+        break;
+      case "Login Invitee":
+        await resetStateDao.resetStateFlow(2, userID, password);
+        break;
       case "Upload eKTP":
         await resetStateDao.resetStateFlow(3, userID, password);
         break;
@@ -212,6 +235,11 @@ module.exports = {
     I.click(this.buttons.later);
   },
 
+  goToTabHome() {
+    I.waitForElement(this.tabs.home, 10);
+    I.click(this.tabs.home);
+  },
+
   goToTabBusiness() {
     I.waitForElement(this.tabs.business, 10);
     I.click(this.tabs.business);
@@ -228,6 +256,7 @@ module.exports = {
   },
 
   continueCompleteData() {
+    I.waitForElement(this.buttons.completeData, 20);
     I.click(this.buttons.completeData);
   },
 
@@ -244,6 +273,11 @@ module.exports = {
   openCardReject() {
     I.waitForElement(this.buttons.rejectCard, 10);
     I.click(this.buttons.rejectCard);
+  },
+
+  openWidgetDocumentSafe() {
+    I.waitForElement(this.buttons.widgetDocumentSafe, 10);
+    I.click(this.buttons.widgetDocumentSafe);
   },
 
   continueCompleteRegistrationDirectors() {
@@ -264,18 +298,22 @@ module.exports = {
   },
 
   openDetailRegistrationDirector() {
+    I.waitForElement(this.buttons.cardInvited, 10);
     I.click(this.buttons.cardInvited);
   },
 
   async getStatus() {
+    I.waitForElement(this.texts.status, 10);
     return await I.grabTextFrom(this.texts.status);
   },
 
   async getProgress() {
+    I.waitForElement(this.texts.progress, 10);
     return await I.grabTextFrom(this.texts.progress);
   },
 
   async getTextDetail(idText) {
+    I.waitForElement(this.texts[idText], 10);
     return await I.grabTextFrom(this.texts[idText]);
   },
 
@@ -365,6 +403,48 @@ module.exports = {
   async getAmountTransaction() {
     I.waitForElement(this.texts.transactionAmount, 10);
     return I.grabTextFrom(this.texts.transactionAmount);
-  }
+  },
+
+  fillFieldNPWPBusiness(npwp) {
+    I.waitForElement(this.fields.npwpBusiness, 10);
+    I.click(this.fields.npwpBusiness);
+    I.setText(this.fields.npwpBusiness, npwp);
+    I.hideDeviceKeyboard();
+  },
+
+  async getMessageErrorNPWP() {
+    I.waitForElement(this.msgErrorFields.npwpBusiness, 10);
+    return I.grabTextFrom(this.msgErrorFields.npwpBusiness);
+  },
+
+  continueToDataPersonal() {
+    I.waitForElement(this.buttons.submitNPWP, 10);
+    I.click(this.buttons.submitNPWP);
+  },
+
+  clearFieldNPWPBusiness() {
+    I.waitForElement(this.fields.npwpBusiness, 10);
+    I.clearField(this.fields.npwpBusiness);
+  },
+
+  async getNPWPBusiness() {
+    I.waitForElement(this.texts.npwpNumber, 10);
+    return I.grabTextFrom(this.texts.npwpNumber);
+  },
+
+  clickBackPopUp() {
+    I.waitForElement(this.buttons.backNpwp, 10);
+    I.click(this.buttons.backNpwp);
+  },
+
+  confirmNPWP() {
+    I.waitForElement(this.buttons.confirmNpwp, 10);
+    I.click(this.buttons.confirmNpwp);
+  },
+
+  closeBottomSheet() {
+    I.waitForElement(this.buttons.closeBottomSheet, 10);
+    I.click(this.buttons.closeBottomSheet);
+  },
 
 }

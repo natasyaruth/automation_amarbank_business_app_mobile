@@ -71,6 +71,7 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
         I.waitForElement(this.fields[fieldName], 10);
+        I.clearField(this.fields[fieldName]);
         I.setText(this.fields[fieldName], value);
         if (fieldName === "placeOfBirth") {
           I.swipeUp(this.datePicker.dateOfBirth, 500, 500);

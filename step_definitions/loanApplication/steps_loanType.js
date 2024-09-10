@@ -29,6 +29,8 @@ Before(() => {
     Given(/user on loan type page/,()=>{
         I.wait(2);
         loanTypePage.viewLoanTypePage();
+        I.seeElement(loanTypePage.buttons.buttonCoachmark);     
+
             
     });
 
@@ -231,4 +233,42 @@ Before(() => {
 
         I.waitForElement(this.buttons.buttonPilihMetodeUploadDoc,10);
     });
+
+    When(/user will see title coacmark {string}/, async (coachmarktitle) => {
+        I.waitForText(coachmarktitle, 10);    
+    });
+    
+    When(/user will see text loan AP {string}/, async (loanAP) => {
+        I.waitForText(loanAP, 10);
+    });
+    
+    When(/user will see text loan AR {string}/, async (loanAR) => {
+        I.waitForText(loanAR, 10);
+    });
+    
+    When(/user will see text loan PO {string}/, async (loanPO) => {
+        I.waitForText(loanPO, 10);
+    });
+    
+    When(/user will see title coacmark again {string}/, async (secondcoachmark) => {
+        I.waitForText(secondcoachmark, 10);
+    });
+    When (/user will see text after reopen {string}/, async(reopentitle) => {
+        I.waitForText(reopentitle, 10);
+    });
+
+    
+    When(/user click button Ajukan Limit Kredit/, () => {
+        I.wait9(2);
+        loanTypePage.clickBtnAjukanLimitKredit();
+    });
+
+    When(/user will see title coacmark {strinng}/,  () =>{
+        I.wait(2);
+        loanTypePage.validatetitletooltip();
+
+    });
+    
+
+
 

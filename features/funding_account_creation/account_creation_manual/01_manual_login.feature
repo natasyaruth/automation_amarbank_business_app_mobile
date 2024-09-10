@@ -191,7 +191,7 @@ Feature: Manual Account login
         And I will see pop up biometric is failed with information need to login using user id and password
         And I click button understand
         And I will direct to page login    
-
+    @C141215 @FuntionalTestDemo
     Scenario: Login account by email
         Given I am a user want login by email
         When I do process register 

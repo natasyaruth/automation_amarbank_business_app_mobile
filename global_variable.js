@@ -22,6 +22,8 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
+        npwpBusinessDefault: "789645578340911",
+        npwpBusiness: "",
     },
     onBoarding:{
         legality: "",
@@ -71,6 +73,7 @@ module.exports = {
         akta: false,
         sk: false,
         npwp: false,
+        fileType: "",
     },
     createPin:{
         newPin:"",
@@ -125,4 +128,8 @@ module.exports = {
         startDate: "",
         endDate: "",
     },
+    survey:{
+        feedBack: "",
+        lengthFeedback: ""
+    }
 }

@@ -167,6 +167,8 @@ exports.config = {
     uploadSelfieKtpPage: "./pages/uploadSelfieKtp.js",
 
     changePasswordPage: "./pages/changePassword.js",
+
+    documentSafePage: "./pages/documentSafe.js",
   },
   settings: {
     logging: {
@@ -189,14 +191,14 @@ exports.config = {
           "reportFilename": "report"
         }
       },
-    //   "mocha-junit-reporter": {
-    //     "stdout": "./output/console.log",
-    //     "options": {
-    //       "mochaFile": "./output/result.xml",
-    //       "attachments": true //add screenshot for a failed test
-    //     }
-    // }
-   }
+      //   "mocha-junit-reporter": {
+      //     "stdout": "./output/console.log",
+      //     "options": {
+      //       "mochaFile": "./output/result.xml",
+      //       "attachments": true //add screenshot for a failed test
+      //     }
+      // }
+    }
   },
   bootstrap: null,
   timeout: 500,
@@ -258,6 +260,7 @@ exports.config = {
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadEKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadSelfie.js",
+      "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycUploadSelfieWithKtp.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDataPersonal.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDomicileAddress.js",
       "./step_definitions/funding_account_opening/02_account_opening_kyc/steps_kycSubmitFormDataEmployment.js",
