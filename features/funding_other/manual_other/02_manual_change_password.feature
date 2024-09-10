@@ -52,3 +52,21 @@ Feature: Account Change Password
         Then I will direct to page OTP with attempt resend OTP is 0/5
         And I can input the otp
         And my password is change successfully
+
+    Scenario: Check otp attempt on Create PIN and Maker after input wrong PIN on Change Password
+        Given I am login with registered account on SMB Mobile
+        When I change my password account 
+        And I input invalid otp 5 times on section input otp
+        Then I got notification that i cannot input otp until the specified date
+        When I try to create PIN 
+        And I continue process until I am on page input OTP
+        Then I see OTP field with attempt resend OTP is 0/5
+        And No error notification
+        And I can to input valid otp
+        And I can continue the process
+        When I try to cancel the transaction that i made before
+        And I continue process until I am on page input OTP
+        And I see OTP field with attempt resend OTP is 0/5
+        And No error notification
+        And I can to input valid otp
+        And I can continue the process

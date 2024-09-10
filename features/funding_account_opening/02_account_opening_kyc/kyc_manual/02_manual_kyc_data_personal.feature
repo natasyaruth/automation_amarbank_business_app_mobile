@@ -56,3 +56,23 @@ Feature: Account Opening Manual - Submit Data Personal
         And I choose the image
         Then I will direct to page personal details
         And I see information NPWP was successfully uploaded
+
+    Scenario: Check bottomsheet on Data Personal 
+        Given I am a customer want to check bottomsheet on Data Personal
+        When I regist account
+        And I am on page data verifikasi data e-Ktp
+        And I click bottomsheet for Provinsi
+        Then User direct to field Cari Nama Provinsi
+        And Show all province on list
+        And User available to scroll the list
+        And User available to type name of province
+        When I do the same process for Kabupaten, Kecamatan and Kelurahan
+        And I continue to process 
+        And I am on page alamat tempat tinggal
+        And I click bottomsheet for Provinsi
+        Then User direct to field Cari Nama Provinsi
+        And Show all province on list
+        And User available to scroll the list
+        And User available to type name of province
+        
+    

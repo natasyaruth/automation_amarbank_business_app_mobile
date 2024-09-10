@@ -122,8 +122,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier      
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perorangan"
     And user click Selanjutnya
@@ -162,6 +162,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Direct
     And user checklist checkbox term and condition  
     And user checklist checkbox right and obligations
     And user click button Lanjut Upload Dokumen
+    And user have completed in stepper Proses KYC & KYB
+    And user on Stepper Upload Dokumen
     And And user validate description prepare the following documents 'CorpARPT.Perorangan'
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi

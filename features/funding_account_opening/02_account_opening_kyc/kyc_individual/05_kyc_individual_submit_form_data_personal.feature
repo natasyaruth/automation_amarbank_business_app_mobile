@@ -135,6 +135,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
     @C131751
     Scenario: Submit form Data Personal successfully business type individual
         Given I am a customer want to fill my personal details
+        And I see page 'Data Personal'
         When I submit my personal data details individual and upload my npwp as followings:
             | lastEducation        | SMA           |
             | motherName           | NADYA LAMUSU  |

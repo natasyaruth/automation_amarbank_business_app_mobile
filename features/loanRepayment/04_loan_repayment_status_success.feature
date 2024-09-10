@@ -59,3 +59,21 @@ Feature: Loan Repayment For Status Success
     Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
     When I access the detail
     Then I should be see the loan type of AR
+
+
+  Scenario: Validate Bill Information With Type Loan AP when flagging "Provisi dibayar diakad" and status success
+    Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+    When I access the detail
+    Then I should be see the loan type of AP without Provisi
+
+
+Scenario: Validate Bill Information With Type Loan AR when flagging "Provisi dibayar diakad" and status success
+    Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+    When I access the detail
+    Then I should be see the loan type of AR without Provisi
+
+  
+  Scenario: Validate Bill Information With Type Loan PO when flagging "Provisi dibayar diakad" and status success
+    Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information
+    When I access the detail
+    Then I should be see the loan type of PO without Provisi

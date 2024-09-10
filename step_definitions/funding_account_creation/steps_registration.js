@@ -64,7 +64,7 @@ When("I see carousel onboarding", () => {
 });
 
 When("I swipe to next carousel", () => {
-  I.swipeLeft(welcomePage.image.onboarding, 600, 800);
+  I.swipeLeft(welcomePage.image.onboarding, 800, 800);
   I.wait(1);
 });
 
@@ -569,7 +569,7 @@ Then("I will get new OTP different with my first OTP", async () => {
   globalVariable.registration.otpCode = newOtp;
 });
 
-Then("I will see attempt left {string}", (leftAttempt) => {
+Then("I will see attempts left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
 });
 
@@ -647,6 +647,7 @@ Then("I should see button Buat Akun will disable", async () => {
 });
 
 Then("I should go to Verifikasi No. HP page", () => {
+  I.wait(10);
   I.see("Verifikasi Nomor HP");
   I.see("Masukkan Kode OTP");
 });

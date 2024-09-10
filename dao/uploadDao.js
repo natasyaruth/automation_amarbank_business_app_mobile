@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const { I, resetStateDao, globalVariable } = inject();
 
@@ -53,6 +54,60 @@ module.exports = {
             status: responseSelfie.status,
             data: responseSelfie.data,
         }
+    },
+
+    async uploadOtherDoc(userID, password, fileType) {
+
+        let base64File;
+        let fileName;
+
+        const pathPdf = './data/file_upload/CV MAJU BERSAMA.pdf';
+        const pathJpg = './data/file_upload/PT ABC XYZ.jpg';
+        const pathJpeg = './data/file_upload/USAHA BISNIS KU.jpeg';
+        const pathPng = './data/file_upload/UD ABANG MEDAN.png';
+
+        switch (fileType) {
+            case "pdf":
+                base64File = this.loadImageAsBase64(pathPdf);
+                fileName = path.basename(pathPdf);
+                break;
+            case "jpg":
+                base64File = this.loadImageAsBase64(pathJpg);
+                fileName = path.basename(pathJpg);
+                break;
+            case "jpeg":
+                base64File = this.loadImageAsBase64(pathJpeg);
+                fileName = path.basename(pathJpeg);
+                break;
+            case "png":
+                base64File = this.loadImageAsBase64(pathPng);
+                fileName = path.basename(pathPng);
+                break;
+            default:
+                throw new Error("File type is not recognize");
+        }
+
+        globalVariable.uploadDocuments.fileName = fileName;
+
+        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken))
+
+        const responseDoc = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other", secret({
+            fileFormat: fileType,
+            fileName: fileName,
+            file: base64File,
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        I.wait(3);
+
+        return {
+            status: responseDoc.status,
+            data: responseDoc.data,
+        }
+
     },
 
     async uploadDocBusiness(userID, password, enumDoc, fileType) {

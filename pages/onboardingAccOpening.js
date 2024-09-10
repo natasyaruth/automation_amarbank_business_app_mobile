@@ -12,7 +12,7 @@ const {
   formBusinessOwnerPage,
   uploadBusinessDocPage,
   resetStateDao,
-  globalVariable,
+
 } = inject();
 
 module.exports = {
@@ -39,6 +39,8 @@ module.exports = {
     backNpwp: "~btnBack",
     confirmNpwp: "~btnConfirmed",
     closeBottomSheet: "~buttonClose",
+    backToCurrentPage: "~btnBack",
+    confirmBackToDashboard: "~btnConfirmed"
   },
   fields: {
     npwpBusiness: "~textFieldNpwpNumber"
@@ -231,7 +233,7 @@ module.exports = {
   },
 
   chooseLater() {
-    I.waitForElement(this.buttons.later, 10);
+    I.waitForElement(this.buttons.later, 15);
     I.click(this.buttons.later);
   },
 
@@ -445,6 +447,16 @@ module.exports = {
   closeBottomSheet() {
     I.waitForElement(this.buttons.closeBottomSheet, 10);
     I.click(this.buttons.closeBottomSheet);
+  },
+
+  clickCancelProcess(){
+    I.waitForElement(this.buttons.confirmBackToDashboard, 10);
+    I.click(this.buttons.confirmBackToDashboard);
+  },
+
+  backToAccProcess(){
+    I.waitForElement(this.buttons.backToCurrentPage, 10);
+    I.click(this.buttons.backToCurrentPage);
   },
 
 }

@@ -27,7 +27,7 @@ Feature: Account Opening - Validation Auto Reject
         And I see page 'Upload eKTP'
         And I mock feature submit form Business Profile into enabled
         And I update my last journey step to 'Data Employment'
-        When I continue to process KYB
+        When I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |

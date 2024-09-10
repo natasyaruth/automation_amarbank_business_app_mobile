@@ -69,7 +69,9 @@ Feature: Document Brankas
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         And notification red dot document safe is on
         And I click widget document safe
         And I will see onboarding page document safe continue to account opening process
@@ -94,7 +96,9 @@ Feature: Document Brankas
         And I will see card account 'on process combine journey'
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        When I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         And I will see card account 'on process combine journey'
         And notification red dot document safe is on
         And I click widget document safe
@@ -189,8 +193,7 @@ Feature: Document Brankas
         And I will see bottom sheet input password document
         And I input password document
         And I click see my document
-        Then I will direct to page document business
-        And I will see button document giro and document loan
+        Then I will direct to page document brankas
 
     @C156932
     Scenario: Access widget brankas on main dashboard for user invitee active
@@ -215,8 +218,8 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will direct to page document business
-        And I will see button document giro and document loan
+        Then I will direct to page document brankas
+        And I will see menu document giro, loan and other
 
     @C156933
     Scenario: Access widget brankas on main dashboard for user individual active
@@ -241,8 +244,8 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see button document loan
-        And I will not see button document giro
+        Then I will see menu other document
+        And I will not see menu document loan and giro
 
     @C156934
     Scenario: Access widget brankas on main dashboard for user combine journey active
@@ -267,8 +270,8 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see button document loan
-        And I will not see button document giro
+        Then I will see menu other document and loan
+        And I will not see menu document giro
 
     @C156935
     Scenario: Fill survey with option done enough
@@ -293,7 +296,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I will see pop up fill survey
         And I choose done enough
@@ -326,7 +329,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -341,13 +344,13 @@ Feature: Document Brankas
         Given I am a registered customer with following details:
             | userID      | deveb4ef |
             | password    | 1234Test |
-            | userIDstg   | staga810 |
+            | userIDstg   | cona1af3 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | deveb4ef |
             | password    | 1234Test |
-            | userIDstg   | staga810 |
+            | userIDstg   | cona1af3 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -359,7 +362,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -394,7 +397,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -433,7 +436,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -469,7 +472,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -505,7 +508,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -547,7 +550,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -583,7 +586,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab Home
         And I choose not enough
         And I will see section to choose reason
@@ -621,7 +624,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I click tab profile
         And I choose not enough
         And I will see section to choose reason
@@ -635,6 +638,12 @@ Feature: Document Brankas
         And I will see card account 'active'
         And I don't see widget onboarding document safe
         And notification red dot document safe is off
+        When I click tab brankas
+        And I input password document
+        And I click see my document
+        And I will direct to page document brankas
+        And I click tab Home
+        Then I will see card account 'active'
 
     @C156945
     Scenario: Fill survey journey to tab Other
@@ -659,7 +668,7 @@ Feature: Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will direct to page document business
+        And I will direct to page document brankas
         And I choose other
         And I choose not enough
         And I will see section to choose reason
@@ -673,3 +682,9 @@ Feature: Document Brankas
         And I will see card account 'active'
         And I don't see widget onboarding document safe
         And notification red dot document safe is off
+        When I click tab brankas
+        And I input password document
+        And I click see my document
+        And I will direct to page document brankas
+        And I click tab Home
+        Then I will see card account 'active'

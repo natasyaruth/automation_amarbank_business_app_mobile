@@ -27,8 +27,8 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
-        And I continue to process KYB
-        And I fill my business profile as followings:
+        And I see page 'Data Business Profile'
+        When I fill my business profile as followings:
             | businessName      | PT PERORANGAN TERBARU KYC TIGA |
             | industry          | Jasa                           |
             | businessField     | Restoran                       |

@@ -94,33 +94,32 @@ Feature: Account Opening Onboarding
         And I reset my state journey
 
     @C131959
-    Scenario: Back to page onboarding account opening
+    Scenario: Close page choose product entry point hook onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I click button back in the header page
-        Then I will directing to Hook 1 Onboarding Account Opening
-        And product type same with I choose before
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
+        Then I will see card account 'account opening'
 
-    @C131960
-    Scenario: Back to dashboard from page legality type entry point hook
-        Given I am a customer want to open Giro Account
-        When I swipe to card Giro Account
-        And I choose Giro Account
-        And I choose Giro Account Corporate
-        And I will directing to page legality business
-        And I click button back in the header page
-        Then I will directing to page type giro account
-        And product type same with I choose before
-
-    @C131961
-    Scenario: Back to dashboard from page legality type entry point dashboard
+    Scenario: Close page choose product entry point main dashboard
         Given I am a customer want to open Giro Account
         When I click later
         And I choose Giro Account from dashboard
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
+        Then I will see card account 'account opening' 
+
+    @C131960
+    Scenario: Back to page choose product from page choose legality type
+        Given I am a customer want to open Giro Account
+        When I swipe to card Giro Account
+        And I choose Giro Account
         And I choose Giro Account Corporate
         And I will directing to page legality business
-        And I click button back in the header page
+        And I click back in header page
         Then I will directing to page type giro account
         And product type same with I choose before
 

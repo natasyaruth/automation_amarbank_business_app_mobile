@@ -62,6 +62,15 @@ module.exports = {
     formPersonal:{
         isUploadNpwp: true,
     },
+    formBusinessProfile:{
+        businessName: "",
+        industry: "",
+        businessField: "",
+        monthlyIncome: "",
+        averageTransaction: "",
+        npwp: "",
+        nib: "",
+    },
     formDirector:{
         fullName: "",
         email:"",
@@ -74,6 +83,7 @@ module.exports = {
         sk: false,
         npwp: false,
         fileType: "",
+        fileName: [],
     },
     createPin:{
         newPin:"",

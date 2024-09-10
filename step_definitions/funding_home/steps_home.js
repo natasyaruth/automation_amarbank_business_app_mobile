@@ -121,13 +121,13 @@ Given("I wait until my account name displayed", async () => {
 Given("still not complete onboarding document safe and survey", async () => {
     await
         resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, false);
-    I.wait(5);
+    I.wait(3);
 });
 
 Given("complete onboarding document safe and survey", async () => {
     await
         resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, true);
-    I.wait(5);
+    I.wait(3);
 });
 
 Given("notification red dot document safe is on", () => {
