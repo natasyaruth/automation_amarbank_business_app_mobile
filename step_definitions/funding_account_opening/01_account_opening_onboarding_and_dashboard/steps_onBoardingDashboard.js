@@ -2,6 +2,7 @@ const {
     I,
     onboardingAccOpeningPage,
     uploadKtpPage,
+    formBusinessProfilePage,
     resetStateDao,
     headerPage,
     getDataDao,
@@ -52,8 +53,14 @@ When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
 });
 
-When("I back to dashboard", () => {
+When("I click back in header page", () => {
+    I.wait(2);
     headerPage.clickButtonBack();
+});
+
+When("I click close in header page", () => {
+    I.wait(2);
+    headerPage.closePage();
 });
 
 When("I choose legality business type {string}", (businessType) => {
@@ -89,6 +96,8 @@ When("I choose Giro Account MSME", () => {
 
 When("I see page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
+
+    globalVariable.dashboard.lastPage = pageName;
 });
 
 When("I continue to complete my data", () => {
@@ -179,6 +188,14 @@ When("I click confirm NPWP Business", () => {
 
 When("I click back from confirm NPWP Business", () => {
     onboardingAccOpeningPage.clickBackPopUp();
+});
+
+When("I cancel process account opening", () => {
+    onboardingAccOpeningPage.clickCancelProcess();
+});
+
+When("I back to continue process account opening", () => {
+    onboardingAccOpeningPage.backToAccProcess();
 });
 
 Then("I will directing to page legality business", () => {
@@ -520,7 +537,7 @@ Then("I see my NPWP business 15 digit and auto format", () => {
         npwpBusiness = globalVariable.registration.npwpBusinessDefault;
     }
 
-    const numberNpwp = npwpBusiness.substring(0,15);
+    const numberNpwp = npwpBusiness.substring(0, 15);
 
     const formattedNpwp = npwpBusiness.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
 
@@ -550,7 +567,7 @@ Then("I will see error NPWP business has been registered", async () => {
     I.assertEqual(actualMsgError, expectedMsgError);
 });
 
-Then("I see field NPWP business is empty", ()=>{
+Then("I see field NPWP business is empty", () => {
     I.wait(1);
     I.waitForText("Tulis nomor NPWP bisnis", 10);
 });
@@ -595,4 +612,33 @@ Then("I see NPWP business only number and formatted", () => {
     }
 
     I.waitForText(formattedNpwp.join(''), 10);
+});
+
+Then("I will see pop up confirm close page process account opening", () => {
+    I.waitForText("Ingin Keluar Dari Halaman Ini?", 10);
+    I.see("Jika meninggalkan halaman ini, Anda akan diminta mengulangi proses.");
+
+    I.see("Ya, Keluar");
+    I.waitForElement(onboardingAccOpeningPage.buttons.confirmBackToDashboard, 10);
+
+    I.see("Batalkan");
+    I.waitForElement(onboardingAccOpeningPage.buttons.backToCurrentPage, 10);
+});
+
+Then("I will see form {string} is filled", async (formName) => {
+
+    if (
+        formName === "Data Business Profile"
+    ) {
+        const tableForm = Object.keys(globalVariable.formBusinessProfile);
+
+        for (let i = 0; i < tableForm.length; i++) {
+            const fieldName = tableForm[i];
+            const expectedValue = tableForm[fieldName];
+            
+            const actualValue = await formBusinessProfilePage.getValue(fieldName);
+            I.assertEqual(actualValue, expectedValue);
+        }
+    }
+
 });

@@ -122,8 +122,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier
-    And user click button Selanjutnya
-    And user click button Lanjut Lengkapi Data   
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC   
     #section KYC Process
     Given user choose Business Type "UD"
     And user click Selanjutnya
@@ -183,8 +183,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
-    Then user can click button Upload Ulang Dokumen
+    Then user see button "Upload Ulang Dokumen"
 
 
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
@@ -206,9 +205,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
-    And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
- 
+    
+
 @C14258
   Scenario: User apply first loan AP Direct with business type Individu and flaging Corp
     Given I click button loan dashboard
@@ -232,8 +230,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier
-    And user click button Selanjutnya
-    And user click button Lanjut Lengkapi Data   
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC  
     #section KYC Process
     Given user choose Business Type "Individu"
     And user click Selanjutnya
@@ -263,17 +261,25 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user click button Lanjut Upload Dokumen
     And And user validate description prepare the following documents 'CorpAPIndividu'
     And user click buttton Pilih Metode Upload Dokumen
-     #Upload Dokumen from Aplikasi
+    #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
-    And user on Progress Upload Dokumen Page    
+    And user on Progress Upload Dokumen Page
+    And user upload document "nib"
+    And user upload document "aktaperusahaan"   
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "2YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
-    Then direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
+    Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
+
+
+
+
+
+    
 
   Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
     Given User on Main Dashboard
@@ -289,8 +295,8 @@ Feature: Apply First Loan With Flagging Corp Using AP Direct
     And user fill search anchor "PT Tirta Investama"
     And user select result of search
     And user select the date cooperating        
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     

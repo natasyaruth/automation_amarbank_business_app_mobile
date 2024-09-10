@@ -12,6 +12,7 @@ const {
 Given("I am a customer want to fill my information identity details", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
 });
 
@@ -25,25 +26,26 @@ Given("I am a customer who has uploaded my eKTP photo", async () => {
         uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
         uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
 });
 
 When("I fill all information identity details as followings:",
     async (table) => {
         const ktpData = table.parse().rowsHash();
-        if(process.env.ENVIRONMENT === "staging"){
-            if(
+        if (process.env.ENVIRONMENT === "staging") {
+            if (
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
-            ){
+            ) {
                 ktpData["eKtpNumber"] = ktpData["eKtpNumberStg"];
-            } 
-        } else{
-            if(
+            }
+        } else {
+            if (
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
-            ){
+            ) {
                 delete ktpData["eKtpNumberStg"];
-            } 
-        } 
+            }
+        }
 
         I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
         formKtpPage.fillInformation(ktpData);
@@ -52,7 +54,7 @@ When("I fill all information identity details as followings:",
     }
 );
 
-When("I choose birthdate with current date", () =>{
+When("I choose birthdate with current date", () => {
     formKtpPage.chooseFieldBirthDate();
     formKtpPage.chooseDate();
 })
@@ -64,6 +66,7 @@ When("I submit my information identity details", () => {
 When("I skip step upload eKTP photo", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
 });
 

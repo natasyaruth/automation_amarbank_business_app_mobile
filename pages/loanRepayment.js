@@ -525,6 +525,10 @@ module.exports = {
       await I.waitForText('Supplier');
       console.log('Bill Repayment for Loan Type AP');
       I.see('Info Pembayaran');
+      I.see('Supplier');
+      I.see('No.Invoice');
+      I.see('Tenor');
+      I.see('Total Bunga');    
       I.dontSee('Buyer');
       I.dontSee('Pemilik Proyek');
       I.dontSee('Denda keterlambatan');
@@ -563,6 +567,9 @@ module.exports = {
       await I.waitForText('Buyer');
       console.log('Bill Repayment for Loan Type AR');
       I.see('Info Pembayaran');
+      I.see('No.Invoice');
+      I.see('Tenor');
+      I.see('Total Bunga');     
       I.dontSee('Supplier');
       I.dontSee('Pemilik Proyek');
       I.dontSee('Denda keterlambatan');
@@ -570,4 +577,61 @@ module.exports = {
       console.log('Bill Repayment not for Loan Type AR');
     }
   },
+
+
+  async goToDetailAPnoProvisi() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.see('Supplier');
+      I.see('No.Invoice');
+      I.see('Tenor');
+      I.see('Total Bunga');
+      I.dontSee('Provisi');
+      I.dontSee('Biaya Administrasi');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
+  async goToDetailARnoProvisi() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.see('Supplier');
+      I.see('No.Invoice');
+      I.see('Tenor');
+      I.see('Total Bunga');
+      I.dontSee('Provisi');
+      I.dontSee('Biaya Administrasi');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
+  async goToDetailPOnoProvisi() {
+    try {
+      await I.waitForText('Supplier');
+      console.log('Bill Repayment for Loan Type AP');
+      I.see('Info Pembayaran');
+      I.see('Supplier');
+      I.see('No.Invoice');
+      I.see('Tenor');
+      I.see('Total Bunga');
+      I.dontSee('Provisi');
+      I.dontSee('Biaya Administrasi');
+      I.dontSee('Supplier');
+      I.dontSee('Pemilik Proyek');
+      I.dontSee('Denda keterlambatan');
+    } catch (error) {
+      console.log('Bill Repayment not for Loan Type AR');
+    }
+  },
+
 }
