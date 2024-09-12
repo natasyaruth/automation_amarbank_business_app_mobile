@@ -65,7 +65,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 ##Take out Location Bisnis
-  
+  @FunctTestLending
   Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

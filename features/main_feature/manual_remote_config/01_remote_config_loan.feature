@@ -1,4 +1,8 @@
+Feature: Remote config loan
+ As a customer lead
+ I want to change wording on loan by remote connfig
 
+@FunctTestLending
 Scenario: User validate Remote configuration for wording explanation of Loan AP
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -16,6 +20,8 @@ Scenario: User validate Remote configuration for wording explanation of Loan AP
     And user back to mobile and refresh
     And user will see the changes on card AP "Anda memerlukan dana untuk membayar hutang perusahaan Anda." 
 
+
+@FunctTestLending
 Scenario: User validate Remote configuration for wording type of Loan AP
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -33,7 +39,7 @@ Scenario: User validate Remote configuration for wording type of Loan AP
     And user back to mobile and refresh
     And user will see the changes on card AP type "(Account Payable)" 
     
-
+@FunctTestLending
 Scenario: User validate Remote configuration for wording explanation of Loan AR
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -51,7 +57,7 @@ Scenario: User validate Remote configuration for wording explanation of Loan AR
     And user back to mobile and refresh
     And user will see the changes on card AP "Anda memerlukan dana untuk membiayai perusahaan karena pihak lain belum membayar hutang." 
 
-
+@FunctTestLending
 Scenario: User validate Remote configuration for wording type of Loan AR
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -70,6 +76,7 @@ Scenario: User validate Remote configuration for wording type of Loan AR
     And user will see the changes on card AP type "(Account Receivable)" 
 
 
+@FunctTestLending
 Scenario: User validate Remote configuration for wording explanation of Loan PO
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -87,7 +94,7 @@ Scenario: User validate Remote configuration for wording explanation of Loan PO
     And user back to mobile and refresh
     And user will see the changes on card AP "Anda memerlukan dana untuk membeli bahan baku untuk proyek." 
 
-
+@FunctTestLending
 Scenario: User validate Remote configuration for wording type of Loan PO
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -105,7 +112,7 @@ Scenario: User validate Remote configuration for wording type of Loan PO
     And user back to mobile and refresh
     And user will see the changes on card AP type "(Project)" 
 
-
+@FunctTestLending
 Scenario: User validate for wording explanation back to default
     Given User on Firebase 
     When user click remote config
@@ -120,7 +127,7 @@ Scenario: User validate for wording explanation back to default
     And user see card AR back to deafult "Saya butuh dana dimuka karena pembeli belum bayar tagihan."
 
 #remote config Pelajari Tipe Skema Kredit
-
+@FunctTestLending
 Scenario: User validate Remote configuration of "Distributor financing"
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -139,7 +146,7 @@ Scenario: User validate Remote configuration of "Distributor financing"
     And user will see the changes on card AP type "Account Payable"     
     And user will see "Account Payable" on bottomsheet Pelajari Tipe Skema Kredit and same like card type AP
  
-
+@FunctTestLending
 Scenario: User validate Remote configuration of "Supplier" Financing”
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -158,7 +165,7 @@ Scenario: User validate Remote configuration of "Supplier" Financing”
     And user will see the changes on card AR type "Account Payable"    
     And user will see "Account Payable" on bottomsheet Pelajari Tipe Skema Kredit and same  like card AR type
 
- 
+ @FunctTestLending
 Scenario: User validate Remote configuration of “Project Financing”
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -177,7 +184,7 @@ Scenario: User validate Remote configuration of “Project Financing”
     And user will see the changes on card AP type "Project"    
     And user will see "Project" on bottomsheet Pelajari Tipe Skema Kredit and same like card PO type
 
-
+@FunctTestLending
 Scenario: User validate for remote config all type loan at the same time 
     Given User on Firebase 
     When user click remote config
@@ -200,7 +207,7 @@ Scenario: User validate for remote config all type loan at the same time
     And user click Peljari Tipe Skema Kredit button
     And user will see all type loan has changed 
 
-
+@FunctTestLending
 Scenario: Validate Default value if system failed to get update from firebase for AP
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -219,6 +226,7 @@ Scenario: Validate Default value if system failed to get update from firebase fo
     And user will see empty value on card AP "(Distributor Financing)"   
     And user will see "Distributor Financing"  on card AP type on bottomsheet Pelajari Tipe Skema Kredit 
 
+@FunctTestLending
 Scenario: Validate Default value if system failed to get update from firebase for AR
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -237,6 +245,7 @@ Scenario: Validate Default value if system failed to get update from firebase fo
     And user will see empty value on card AR "(Supplier Financing)"    
     And user will see "Supplier Financing" on card AR type on bottomsheet Pelajari Tipe Skema Kredit 
 
+@FunctTestLending
 Scenario: Validate Default value if system failed to get update from firebase for PO
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -255,6 +264,8 @@ Scenario: Validate Default value if system failed to get update from firebase fo
     And user will see empty value on card PO "(Project Financing)"    
     And user will see "Project Financing" on card PO type on bottomsheet Pelajari Tipe Skema Kredit 
 
+
+@FunctTestLending
 Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for AP
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -271,7 +282,7 @@ Scenario: Verify Type symbol “()” on type will be hardcoded and it will only
     And user back to mobile and refresh
     And user will see empty value on card AP "()"   
 
-
+@FunctTestLending
 Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for AR
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -289,6 +300,7 @@ Scenario: Verify Type symbol “()” on type will be hardcoded and it will only
     And user will see empty value on card AR "()"   
     
 
+@FunctTestLending
 Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for PO
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -303,9 +315,10 @@ Scenario: Verify Type symbol “()” on type will be hardcoded and it will only
     And user will see confirmation message "After you publish, these changes are available to users."
     And user click Publish Changes button
     And user back to mobile and refresh
-    And user will see empty value on card PO "()"   
+    And user will see empty value on card PO "()" 
 
 
+@FunctTestLending
 Scenario: Verify Type symbol “()” on type will be hardcoded and it will only replace the wording for all type Loan
     Given User on Firebase 
     When user click remote config
