@@ -10,6 +10,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
       | password    | 1234Test |
       | userIDstg   | ruthf5d5 |
       | passwordStg | 1234Test |
+    And I reset my state journey  
     And I filling in form login with the following details:
       | userID      | ruth07f9 |
       | password    | 1234Test |
@@ -23,10 +24,10 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I choose Giro Account Corporate
     And I choose legality business type 'cv'
     And I submit my legality type
-    # And I fill NPWP Business
-    # And I click continue to data personal
-    # And I click confirm NPWP Business
-    # And I see page 'Upload eKTP'
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
 
   @C141156
   Scenario: Re-upload eKTP photo successfully
@@ -37,7 +38,6 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I will direct to page preview eKTP picture
     And I retake photo eKTP
     Then I will directing to page take photo eKTP
-    And I reset my state journey
 
   @C131819
   Scenario: Upload eKTP photo successfully business type CV
@@ -48,4 +48,3 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I will direct to page preview eKTP picture
     And I submit my eKTP photo
     Then I will directing to page submit form KTP
-    And I reset my state journey

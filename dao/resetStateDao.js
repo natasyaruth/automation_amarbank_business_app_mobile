@@ -42,36 +42,67 @@ module.exports = {
 
     },
 
-    async getIdOtherDoc(userID, password, numberDoc) {
+    async getIdOtherDoc(userID, password) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
 
         I.seeResponseCodeIsSuccessful();
 
         return {
             status: response.status,
-            idDoc: response.data.id[numberDoc]
+            idDocs: response.data,
         }
 
     },
 
     async deleteOtherDoc(userID, password, numberDoc){
 
-        const idDoc = await this.getIdOtherDoc(userID, password, numberDoc);
+        const rowDoc = parseInt(numberDoc);
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/"+idDoc);
+        if (idDoc.length !== 0) {
+
+            const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc[rowDoc-1].id);
+
+            I.seeResponseCodeIsSuccessful();
 
         return {
             status: response.status,
             data: response.data
+        }
+
+        }
+    },
+
+    async deleteAllOtherDoc(userID, password) {
+
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        let response;
+
+        if (idDoc.length !== 0) {
+            for (let i = 0; i < idDoc.length; i++) {
+                response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc[i].id);
+                I.wait(3);
+            }
+
+            return {
+                status: response.status,
+                data: response.data
+            }
         }
     },
 
@@ -190,14 +221,17 @@ module.exports = {
     },
 
     reloadPageAfterResetState() {
-        headerPage.clickButtonBack();
+        headerPage.closePage();
+        onboardingAccOpeningPage.clickCancelProcess();
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueCompleteData();
     },
 
     reloadPageAfterResetStateInvitee() {
-        headerPage.clickButtonBack();
+        headerPage.closePage();
+        onboardingAccOpeningPage.clickCancelProcess();
+        I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.waitForElement(onboardingAccOpeningPage.buttons.next, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueToKYC();

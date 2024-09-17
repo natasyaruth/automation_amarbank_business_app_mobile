@@ -46,6 +46,31 @@ Feature: Document Management
         Then I will direct to Tab Other
         And I will see toogle biometric is off
 
+    @C137180
+    Scenario: Input password then delete
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | stag302d |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I will see pop up biometric is inactive
+        And I click direct to input password document
+        And I will see bottom sheet input password document
+        And I input password document
+        And I will see button see document is enabled
+        And I clear my password
+        Then I will see button see document is disabled    
+
     @C137181
     Scenario: Mask Password
         Given I am a registered customer with following details:
@@ -403,13 +428,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | stag4cce |
+            | userIDstg   | ruthfdcb |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
-            | userIDstg   | stag4cce |
+            | userIDstg   | ruthfdcb |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -465,7 +490,10 @@ Feature: Document Management
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
+        And I will see card account 'on process'
         And notification red dot document safe is on
         And I click tab brankas
         And I will see onboarding page document safe continue to account opening process
@@ -490,7 +518,9 @@ Feature: Document Management
         And I will see card account 'on process combine journey'
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I back to dashboard
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         And I will see card account 'on process combine journey'
         And notification red dot document safe is on
         And I click tab brankas
@@ -667,15 +697,15 @@ Feature: Document Management
     @C157517
     Scenario: Validate menu other document is empty
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -692,15 +722,15 @@ Feature: Document Management
     @C157518
     Scenario: Cancel upload other document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -720,15 +750,15 @@ Feature: Document Management
     @C157519
     Scenario: Back to menu brankas document from detail other document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -748,15 +778,15 @@ Feature: Document Management
     @C157520
     Scenario: Back again to upload other document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -775,15 +805,16 @@ Feature: Document Management
     @C157521
     Scenario: Upload other document with type JPG
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -795,7 +826,6 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'jpg'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -804,15 +834,16 @@ Feature: Document Management
     @C157522
     Scenario: Upload other document with type JPEG
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -824,7 +855,6 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'jpeg'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -833,15 +863,16 @@ Feature: Document Management
     @C157523
     Scenario: Upload other document with type PNG
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -853,7 +884,6 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'png'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -862,15 +892,16 @@ Feature: Document Management
     @C157524
     Scenario: Upload other document with type PDF
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -882,7 +913,6 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -891,15 +921,16 @@ Feature: Document Management
     @C157525
     Scenario: Cancel delete other document in section upload
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -911,25 +942,25 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click delete other document in section upload
-        And I will see pop up confirmation delete document
+        And I will see pop up delete other document
         And I cancel delete other document
         Then I will see other document has been uploaded
 
     @C157526
     Scenario: Delete other document in section upload
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -938,16 +969,12 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click menu other document
-        And I will see empty detail menu other document
-        And I back to page document business
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click delete other document in section upload
-        And I will see pop up confirmation delete document
+        And I will see pop up delete other document
         And I confirm delete other document
         Then I will see other document is deleted
         And I close bottom sheet upload
@@ -958,15 +985,16 @@ Feature: Document Management
     @C157527
     Scenario: Cancel delete other document in section detail menu Other Document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -980,25 +1008,27 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
+        And I click save document
+        And I will direct to page other document with document that has been uploaded is in there
         And I delete other document number '1'
-        And I will see pop up confirmation delete document
+        And I will see pop up delete other document
         And I cancel delete other document
-        Then I will see other document has been uploaded
+        Then I will direct to page other document with document that has been uploaded is in there
 
     @C157528
     Scenario: Delete other document in section detail menu Other Document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1012,28 +1042,27 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
+        And I click save document
+        And I will direct to page other document with document that has been uploaded is in there
         And I delete other document number '1'
-        And I will see pop up confirmation delete document
+        And I will see pop up delete other document
         And I confirm delete other document
-        Then I will see other document is deleted
-        And I close bottom sheet upload
-        And I click confirm cancel upload other document
-        And I will see empty detail menu other document
+        Then I will see empty detail menu other document
 
     @C157529
     Scenario: Upload other document entry point detail menu Other Document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1047,7 +1076,6 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -1056,15 +1084,16 @@ Feature: Document Management
     @C157530
     Scenario: Upload more than one other document entry point page document brankas
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1076,15 +1105,13 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
         And I back to page document business
         And I click button upload other document
-        And I upload other document with type 'pdf'
-        And I reload page upload other document
+        And I upload other document with type 'jpg'
         Then I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
@@ -1093,15 +1120,16 @@ Feature: Document Management
     @C157531
     Scenario: Upload more than one other document entry point detail menu Other Document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | devef721 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1115,15 +1143,13 @@ Feature: Document Management
         And I click button upload other document
         And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
-        And I reload page upload other document
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
         And I click button upload other document
         And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I reload page upload other document
+        And I upload other document with type 'png'
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
@@ -1132,16 +1158,16 @@ Feature: Document Management
     @C157532
     Scenario: Delete all other document
         Given I am a registered customer with following details:
-            | userID      | deve82e5 |
+            | userID      | deveb931 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And has more than one other document
         And I filling in form login with the following details:
-            | userID      | deve82e5 |
+            | userID      | deveb931 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

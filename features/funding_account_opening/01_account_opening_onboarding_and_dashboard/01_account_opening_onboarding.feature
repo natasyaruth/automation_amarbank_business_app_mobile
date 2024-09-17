@@ -11,6 +11,7 @@ Feature: Account Opening Onboarding
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
+        And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ruth07f9 |
             | password    | 1234Test |
@@ -33,6 +34,7 @@ Feature: Account Opening Onboarding
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         Then I will directing to main dashboard with card loan application and account opening
+        And I click later
         And I can choose type account giro
         And I will see details info of giro account MSME
         And I will see details info of giro account Corporate
@@ -94,13 +96,24 @@ Feature: Account Opening Onboarding
         And I reset my state journey
 
     @C131959
-    Scenario: Back to page onboarding account opening
+    Scenario: Close page choose product entry point hook onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
         And I choose Giro Account
-        And I click button back in the header page
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
         Then I will directing to Hook 1 Onboarding Account Opening
-        And product type same with I choose before
+
+    @C159197
+    Scenario: Close page choose product entry point main dashboard
+        Given I am a customer want to open Giro Account
+        When I click later
+        And I choose Giro Account from dashboard
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
+        Then I will see card account 'account opening' 
 
     @C131960
     Scenario: Back to dashboard from page legality type entry point hook
@@ -241,7 +254,6 @@ Feature: Account Opening Onboarding
         And I click confirm NPWP Business
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
-        And I reset my state journey
 
     @C156871
     Scenario: Check NPWP Business Success with type CORP
@@ -258,4 +270,3 @@ Feature: Account Opening Onboarding
         And I click confirm NPWP Business
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
-        And I reset my state journey

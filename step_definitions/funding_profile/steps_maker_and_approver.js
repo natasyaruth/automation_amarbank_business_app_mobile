@@ -74,16 +74,16 @@ When("I input PIN {string} approver", (Pin) => {
     transferPage.inputPin(Pin);
 }),
 
-When("I input incorrect password for approver", () => {
-    I.waitForText("Password", 10);
-    I.see("Silahkan masukkan password Amar Bank Bisnis kamu");
+    When("I input incorrect password for approver", () => {
+        I.waitForText("Password", 10);
+        I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
 
-    approvalTransactionPage.fillPassword("aaaa12");
-});
+        approvalTransactionPage.fillPassword("aaaa12");
+    });
 
 When("I input password for approver", () => {
     I.waitForText("Password", 10);
-    I.see("Silahkan masukkan password Amar Bank Bisnis kamu");
+    I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
 
     approvalTransactionPage.fillPassword(globalVariable.login.password);
 });
@@ -146,7 +146,7 @@ When("I input OTP to approve transaction", async () => {
 
     I.assertEqual("+" + actualPhoneNumber, phoneNumber);
 
-    const otpCode = (await otpDao.getOTP(actualPhoneNumber)).otp;
+    const otpCode = (await otpDao.getOTPWithoutToken()).otp;
     approvalTransactionPage.fillOtpCode(otpCode);
 });
 
@@ -176,7 +176,7 @@ When("I let the otp code for approve transaction expire", () => {
 When("I resend otp code to approve transaction", async () => {
     I.wait(3);
     globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
-    globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
+    globalVariable.registration.otpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
     approvalTransactionPage.resendOtp();
@@ -634,10 +634,8 @@ Then("I will see message error {string} in the below of field otp for approver",
     const actualMessageError = await approvalTransactionPage.getMessageErrorOtp();
     I.assertEqual(actualMessageError, messageError);
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-
     await
-        otpDao.resetLimitRequestOtp(phoneNumber);
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should be notified that I can verify the OTP tomorrow", async () => {
@@ -665,12 +663,14 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
-    await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
+
+    await
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will get new OTP different with my first OTP to approve transaction", async () => {
     I.wait(2);
-    const newOtpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp;
+    const newOtpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     I.assertNotEqual(newOtpCode, globalVariable.registration.otpCode);
 });
@@ -678,10 +678,8 @@ Then("I will get new OTP different with my first OTP to approve transaction", as
 Then("I will see attempt left {string}", async (attemptLeft) => {
     I.waitForText(attemptLeft, 5);
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-
     await
-        otpDao.resetLimitRequestOtp(phoneNumber)
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will not see card approver that has been approved", () => {

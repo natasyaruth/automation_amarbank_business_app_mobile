@@ -62,6 +62,14 @@ module.exports = {
     formPersonal:{
         isUploadNpwp: true,
     },
+    formBusinessProfile:{
+        businessName: "",
+        industry: "",
+        businessField: "",
+        monthlyIncome: "",
+        averageTransaction: "",
+        nib: "",
+    },
     formDirector:{
         fullName: "",
         email:"",

@@ -243,7 +243,8 @@ exports.config = {
       "./features/main_feature/corporate/loanTypeAP/*.feature",
       "./features/main_feature/corporate/loanTypeAR/*.feature",
       "./features/main_feature/loanTypeAP/*.feature",
-      "./features/main_feature/loanDisbursement/*.feature"
+      "./features/main_feature/loanDisbursement/*.feature",
+      "./features/funding_e2e/funding_e2e_account_opening/*.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",

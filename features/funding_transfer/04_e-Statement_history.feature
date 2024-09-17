@@ -22,7 +22,7 @@ Feature: User open e-Statement History
         Then I direct to history page
         And I will see the button e-Statement
 
-    @C131978 @FuntionalTestDemo
+    @C131978 
     Scenario: Download e-Statement by the latest month
         Given I am a registered customer with following details:
             | userID      | niza7373 |
@@ -63,7 +63,7 @@ Feature: User open e-Statement History
         And I click button e-Statement download
         Then Notification e-Statement not exist will appear
 
-    @C131980 @FuntionalTestDemo
+    @C131980 
     Scenario: Show alert bar when success download e-Statement
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -107,7 +107,7 @@ Feature: User open e-Statement History
         And I click button Next
         Then Alert bar failed will appear
 
-    @C141433 @FuntionalTestDemo
+    @C141433 
     Scenario: Download e-statement with wrong password once
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -129,7 +129,7 @@ Feature: User open e-Statement History
         And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
         
-    @C141434 @FuntionalTestDemo
+    @C141434 
     Scenario: Download e-statement with wrong password twice
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -155,7 +155,7 @@ Feature: User open e-Statement History
         And I click button Next
         Then I should see pop up 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'buttonTryeStatement'
     
-    @C141435 @FuntionalTestDemo
+    @C141435 
     Scenario: Download e-statement with wrong password third
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -186,7 +186,7 @@ Feature: User open e-Statement History
         Then I should see pop up 'Anda akan langsung diarahkan ke halaman Masuk Akun' with button 'understandButton'
         And I direct to login page
 
-    @C141436 @FuntionalTestDemo
+    @C141436 
     Scenario: Download e-statement with empty password
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -207,7 +207,7 @@ Feature: User open e-Statement History
         And I click button Next
         Then I should see notification 'Password wajib diisi' in the below of field 'password'
         
-    @C141437 @FuntionalTestDemo
+    @C141437 
     Scenario: User want to see password when download e-statement
         Given I am a registered customer with following details:
             | userID      | natace13 |

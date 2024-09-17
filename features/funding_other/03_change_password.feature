@@ -268,7 +268,7 @@ Feature: Account Change Password
         And I click next to input new password
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
 
-    @C141180 @FuntionalTestDemo
+    @C141180 
     Scenario: Input wrong old password once
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -315,7 +315,7 @@ Feature: Account Change Password
         Then I will see pop up data is incorrect
         And I can click try again to input password
 
-    @C141182 @FuntionalTestDemo
+    @C141182 
     Scenario: Input wrong old password three times
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -370,7 +370,7 @@ Feature: Account Change Password
         And I click next to input new password
         Then I will direct to page form input new password
 
-    @C141184 @FuntionalTestDemo
+    @C141184 
     Scenario: Input new password < 8 digit
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -392,7 +392,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '123Tes'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141185 @FuntionalTestDemo
+    @C141185 
     Scenario: Input new password only lowercase
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -414,7 +414,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'testingku'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141186 @FuntionalTestDemo
+    @C141186 
     Scenario: Input new password only uppercase
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -436,7 +436,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'TESTINGKU'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141187 @FuntionalTestDemo
+    @C141187 
     Scenario: Input new password only number
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -458,7 +458,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value '12309876'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141188 @FuntionalTestDemo
+    @C141188 
     Scenario: Input new password combination lowercase and number only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -480,7 +480,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'test1234'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141189 @FuntionalTestDemo
+    @C141189 
     Scenario: Input new password combination uppercase and number only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -502,7 +502,7 @@ Feature: Account Change Password
         And I input field 'newPassword' with value 'TEST1234'
         Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
-    @C141190 @FuntionalTestDemo
+    @C141190 
     Scenario: Input new password combination lowercase and uppercase only
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -666,7 +666,7 @@ Feature: Account Change Password
         And I unmask confirmation password
         Then I will see my confirmation password
 
-    @C141197 @FuntionalTestDemo
+    @C141197 
     Scenario: Input confirm password different with new password
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -714,7 +714,7 @@ Feature: Account Change Password
         Then I will notify by message error 'Password baru wajib diisi' in field 'newPassword'
         And I will notify by message error 'Konfirmasi password baru wajib diisi' in field 'confirmPassword'
 
-    @C141199 @FuntionalTestDemo
+    @C141199 
     Scenario: Check attempt request OTP
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
@@ -756,13 +756,14 @@ Feature: Account Change Password
         And I click link resend OTP change password
         Then I notified that I can verify the OTP tomorrow
 
-    @C141200 @FuntionalTestDemo
+    @C141200 
     Scenario: Input wrong OTP
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
             | passwordStg | 1234Test | 
+        And I reset attempt otp after login
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -781,15 +782,15 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I input wrong OTP code
         Then I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        And I reset attempt otp
 
-    @C141314 @FuntionalTestDemo
+    @C141314 
     Scenario: Input wrong OTP five times
         Given I am a registered customer with following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And I reset attempt otp after login 
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -816,7 +817,6 @@ Feature: Account Change Password
         And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
         And I input wrong OTP code
         Then I should be notified that I can verify the OTP tomorrow
-        And I reset attempt otp
 
     @C141201
     Scenario: Input expired OTP
@@ -873,7 +873,7 @@ Feature: Account Change Password
         And I input OTP change password
         Then I will direct to page success change password
 
-    @C141203 @FuntionalTestDemo
+    @C141203 
     Scenario: Change password till success login with account active initiator
         Given I am a registered customer with following details:
             | userID      | deveb4ef |
