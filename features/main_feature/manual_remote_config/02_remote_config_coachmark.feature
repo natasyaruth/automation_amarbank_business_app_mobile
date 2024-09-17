@@ -1,3 +1,9 @@
+Feature: Remote config on coachmark
+ As a customer lead
+ I want to change wording on coachmark loan by remote connfig
+
+
+@FunctTestLending
 Scenario: User validate Remote configuration for title AP coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -16,6 +22,7 @@ Scenario: User validate Remote configuration for title AP coachmark
     And user back to mobile and refresh
     And user will see coachmark title on the AP card change to "Penjelasan singkat kebutuhan Anda:"
 
+@FunctTestLending
 Scenario: User validate remote configuration changes only change on the AP card title
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -29,6 +36,7 @@ Scenario: User validate remote configuration changes only change on the AP card 
     And user will move to card PO
     And user will see user see coachmark title on card PO "Contoh Kebutuhan:"
 
+@FunctTestLending
 Scenario: User validate Remote configuration for title AR coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -47,7 +55,7 @@ Scenario: User validate Remote configuration for title AR coachmark
     And user back to mobile and refresh
     And user will see coachmark title on the AP card change to "Kebutuhan for AR:"
 
-
+@FunctTestLending
 Scenario: User validate Remote configuration for title PO coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -66,6 +74,7 @@ Scenario: User validate Remote configuration for title PO coachmark
     And user back to mobile and refresh
     And user will see coachmark title on the AP card change to "Kebutuhan for PO:"
 
+@FunctTestLending
 Scenario: User validate for title on each loan back to default
     Given User on Firebase 
     When user click remote config
@@ -97,6 +106,7 @@ Scenario: User validate for title on each loan back to default
 
 
 ### coachmark caption
+@FunctTestLending
 Scenario: User validate Remote configuration for caption AP coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -117,7 +127,7 @@ Scenario: User validate Remote configuration for caption AP coachmark
     And user see coachmark title on card AP "Contoh Kebutuhan:"
     And user will see coachmark title on the AP card change to "Bisnis Anda memerlukan dana untuk membayar hutang kepada supplier."
 
-
+@FunctTestLending
 Scenario: User validate Remote configuration for caption AR coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -138,6 +148,7 @@ Scenario: User validate Remote configuration for caption AR coachmark
     And user see coachmark title on card AR "Contoh Kebutuhan:"
     And user will see coachmark title on the AP card change to "Supplier belum membayar tagihan."
 
+@FunctTestLending
 Scenario: User validate Remote configuration for caption PO coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -161,6 +172,7 @@ Scenario: User validate Remote configuration for caption PO coachmark
 
 ##coachmark for both title and caption
 
+@FunctTestLending
 Scenario: User validate Remote configuration for title and caption AP coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -185,6 +197,8 @@ Scenario: User validate Remote configuration for title and caption AP coachmark
     And user will see coachmark title on the AP card change to "Penjelasan singkat kebutuhan Anda:"
     And user will see coachmark title on the AP card change to "Bisnis Anda memerlukan dana untuk membayar hutang kepada supplier."
 
+
+@FunctTestLending
 Scenario: User validate Remote configuration for title and caption AR coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -209,7 +223,7 @@ Scenario: User validate Remote configuration for title and caption AR coachmark
     And user will see coachmark title on the AR card change to "Kebutuhan for AR:"
     And user will see coachmark title on the AR card change to "Supplier belum membayar tagihan"
 
-
+@FunctTestLending
 Scenario: User validate Remote configuration for title and caption PO coachmark
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -235,7 +249,7 @@ Scenario: User validate Remote configuration for title and caption PO coachmark
     And user will see coachmark title on the AR card change to "Saya membutuhkan dana untuk mengerjakan projek dari bouwheer."
 
 
-
+@FunctTestLending
 Scenario: User validate for turn off coach mark
     Given User on Firebase 
     When user click remote config
@@ -249,6 +263,7 @@ Scenario: User validate for turn off coach mark
     And user back to mobile and refresh
     And user didn't see coachmark icon on loan type screen page
 
+@FunctTestLending
 Scenario: User validate for turn on coach mark
     Given User on Firebase 
     When user click remote config

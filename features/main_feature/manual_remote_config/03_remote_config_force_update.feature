@@ -1,4 +1,9 @@
+Feature: Remote config force update
+ As a customer lead
+ I want to change status of force update by remote config
 
+
+@FunctTestLendingSprint5
 Scenario: user activate internal app sharing on play store
     Given user on Playstore
     When user click menu settings
@@ -10,7 +15,7 @@ Scenario: user activate internal app sharing on play store
     And user turn on Internal app sharing
     Then user close playstore
 
-
+@FunctTestLendingSprint5
 Scenario: user install apk version 1.0
     Given user already click link for install
     When user click install
@@ -18,7 +23,7 @@ Scenario: user install apk version 1.0
     And  user open the apps
     Then user swipe up the apps
 
-
+@FunctTestLendingSprint5
 Scenario: user update on firebase and change to Flexible
     Given User on Firebase project ab-p-dsmb
     When user click remote config
@@ -30,7 +35,7 @@ Scenario: user update on firebase and change to Flexible
     And user will see confirmation message "After you publish, these changes are available to users."
     And user click Publish Changes button
 
-
+@FunctTestLendingSprint5
 Scenario: user install apk version 1.1
     Given user already open link to install
     When user on playstore
@@ -40,7 +45,7 @@ Scenario: user install apk version 1.1
 
    
 #Flexible Update
-
+@FunctTestLendingSprint5
 Scenario: User verify see dialog google to Update the version when the status is flexible
     Given user already install the old version apps
     When user click open the app
@@ -51,7 +56,7 @@ Scenario: User verify see dialog google to Update the version when the status is
     And user click X button
     Then user swipe up the apps
 
-
+@FunctTestLendingSprint5
 Scenario: user update on firebase changes to Force
     Given User on Firebase project ab-d-dsmb
     When user click remote config
@@ -65,7 +70,7 @@ Scenario: user update on firebase changes to Force
 
 
 #Force Update
-
+@FunctTestLendingSprint5
 Scenario: User verify that user has to update the apps if the status is Force
     Given user already install the old version apps
     When user click open the app
@@ -76,7 +81,7 @@ Scenario: User verify that user has to update the apps if the status is Force
     And user click X button
     Then user also exits the application
 
-   
+@FunctTestLendingSprint5
 Scenario: user update on firebase changes to None
     Given User on Firebase project ab-d-dsmb
     When user click remote config
@@ -90,12 +95,13 @@ Scenario: user update on firebase changes to None
 
 #None Update
 
+@FunctTestLendingSprint5
 Scenario: User verify that user has to update the apps if the status is None
     Given user already install the old version apps
     When user click open the app
     And user will not see any info to force update
     
-
+@FunctTestLendingSprint5
 Scenario: user update on firebase changes to Flexible
     Given User on Firebase project ab-d-dsmb
     When user click remote config
@@ -108,12 +114,14 @@ Scenario: user update on firebase changes to Flexible
     And user click Publish Changes button   
 
 #No Force Update and status remote config is flexible
+@FunctTestLendingSprint5
 Scenario: User verify no update aplication and set remote config to Flexible
     Given user already install the apps
     When user click open the app
     And user will not see any info to force update
     
 
+@FunctTestLendingSprint5
 Scenario: user update on firebase changes to Random Value
     Given User on Firebase project ab-d-dsmb
     When user click remote config
@@ -127,7 +135,8 @@ Scenario: user update on firebase changes to Random Value
 
 
 #No Force Update and status remote config is Random value
-Scenario: User verify no update aplication and set remote config to Flexible
+@FunctTestLendingSprint5
+Scenario: User verify no update aplication and set remote config with random value
     Given user already install the apps
     When user click open the app
     And user will not see any info to force update

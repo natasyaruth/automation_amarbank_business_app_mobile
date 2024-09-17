@@ -2,7 +2,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
  As a customer lead
  I want to apply first loan using AP Direct with flaging MSME
 
-
+@FunctTestLendingSprint5
  Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -77,7 +77,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-
+@FunctTestLendingSprint5
 Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flaging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

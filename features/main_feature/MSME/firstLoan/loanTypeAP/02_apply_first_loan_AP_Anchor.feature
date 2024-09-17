@@ -56,6 +56,7 @@ Scenario: Validate error input tenor more than 180 hari
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 ## take out location bisnis#
+@FunctTestLending
 Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

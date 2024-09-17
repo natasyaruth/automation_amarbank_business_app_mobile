@@ -33,10 +33,10 @@ Feature: Loan Repayment For Status Normal
   When I access "Lihat Semua"
   Then I should be direct to the history bill with filter on process
 
-
+@FunctTestLendingSprint5
   Scenario: Validate List Repayment when the status "Provisi dibayar diakad"
     Given I have been on history card "Tagihan" with filter "Sedang Berjalan" to see bill information with status success
     When I access the detail
     And I should be see the loan type AP
-    And I won't see Provisi
-    And I won't see Biaya Admin
+    And I don't see Provisi
+    And I don't see Biaya Admin
