@@ -53,6 +53,7 @@ Feature: Account Change Password
         And I can input the otp
         And my password is change successfully
 
+    @C157510 @FunctTestFundingSprint4
     Scenario: Check otp attempt on Create PIN and Maker after input wrong PIN on Change Password
         Given I am login with registered account on SMB Mobile
         When I change my password account 

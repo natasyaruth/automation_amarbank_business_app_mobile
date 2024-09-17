@@ -71,7 +71,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I click understand
         And I allowed the permission
 
-    @C137190
+    @C137190 @FunctTestFundingSprint4
     Scenario: Upload all doc PT Perusahaan via link
         Given I am a registered customer
         And already register as PT Perusahaan till business address

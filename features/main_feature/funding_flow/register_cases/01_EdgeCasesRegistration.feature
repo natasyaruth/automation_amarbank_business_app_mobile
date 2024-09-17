@@ -4,7 +4,7 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
-  @case1
+  @C159510
   Scenario: Validate wording carousel onboarding
     Given I am a customer open app amarbank business
     When I see carousel onboarding
@@ -14,121 +14,129 @@ Feature: Account registration
     And I swipe to next carousel
     And I validate wording financial and data privacy
 
-  @case2
+  @C159511
   Scenario: Verifying field fullname contain with special char (.-,')
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field 'fullName'
 
-  @case3 
+# | testRailTag  | Field           | Field Name          |
+#       | @C131573     | fullName        | Nama lengkap        |
+#       | @C131574     | email           | E-mail              |
+#       | @C131575     | mobileNumber    | Nomor handphone     |
+#       | @C131576     | password        | Password            |
+#       | @C131577   
+
+
+  @scenario_filled_and_then_empty_field
   Scenario Outline: Verifying fields has been filled and then empty the fields
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Testing'
     And I am clearing the field '<Field>'
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
-      | Field           | Field Name          |
-      | fullName        | Nama lengkap        |
-      | email           | E-mail              |
-      | mobileNumber    | Nomor handphone     |
-      | password        | Password            |
-      | confirmPassword | Konfirmasi password |
+    |testRailTag  | Field           | Field Name          |
+    | @C159512    | fullName        | Nama lengkap        |
+    | @C159513    | email           | E-mail              |
+    | @C159514    | mobileNumber    | Nomor handphone     |
+    | @C159515    | password        | Password            |
+    | @C159516    | confirmPassword | Konfirmasi password |
 
-  @case4   
+  @scenario_field_hasnot_been_filled_by_user
   Scenario Outline: Verifying one fields hasn't been filled by user
     Given I am a customer want to access menu registration
     When I fill form registration except field '<Field>'
     And I submit form registration
     Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>'
     Examples:
-      | Field           | Field Name          |
-      | fullName        | Nama lengkap        |
-      | email           | E-mail              |
-      | mobileNumber    | Nomor handphone     |
-      | password        | Password            |
-      | confirmPassword | Konfirmasi password |
+    | testRailTag  | Field           | Field Name          |
+    | @C159517     | fullName        | Nama lengkap        |
+    | @C159518     | email           | E-mail              |
+    | @C159519     | mobileNumber    | Nomor handphone     |
+    | @C159520     | password        | Password            |
+    | @C159521     | confirmPassword | Konfirmasi password |
 
-  @case5 
+  @scenario_fullname_with_invalid_value 
   Scenario Outline: Verifying full name with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'fullName'
     Examples:                                                                 ❸
-      | Value                                                | Message                                                                        |
-      | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-      | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-      |                                                      | Nama lengkap wajib diisi                                                       |
+    | testRailTag    | Value                                                | Message                                                                        |
+    | @C159522       | Ruth N@tasya!                                        | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+    | @C159523       | Ruth Natasya 1                                       | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+    | @C159524       | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+    | @C159525       | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+    | @C159526       |                                                      | Nama lengkap wajib diisi                                                       |
 
-  @case6 
+  @scenario_email_with_invalid_value 
   Scenario Outline: Verifying email with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'email' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'email'
     Examples:                                                                 ❸
-      | Value                  | Message                    |
-      | ruth.natasyagmail.com  | E-mail tidak sesuai format |
-      | ruth natasya@gmail.com | E-mail tidak sesuai format |
-      |                        | E-mail wajib diisi         |
+      | testRailTag    | Value                  | Message                    |
+      | @C159527       | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+      | @C159528       | ruth natasya@gmail.com | E-mail tidak sesuai format |
+      | @C159529       |                        | E-mail wajib diisi         |
 
-  @case7  
+  @scenario_phone_number_with_invalid_value   
   Scenario Outline: Verifying phone number with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'mobileNumber'
     Examples:                                                                 ❸
-      | Value         | Message                                                       |
-      | 89561r12367   | Nomor handphone wajib diisi                                   |
-      | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
-      | 9678995676    | Nomor handphone tidak sesuai format                           |
-      | 8678 995676   | Nomor handphone wajib diisi                                   |
-      |               | Nomor handphone wajib diisi                                   |
+    |testRailTag  | Value         | Message                                                       |
+    | @C159530    | 89561r12367   | Nomor handphone wajib diisi                                   |
+    | @C159531    | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+    | @C159532    | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit |
+    | @C159533    | 9678995676    | Nomor handphone tidak sesuai format                           |
+    | @C159534    | 8678 995676   | Nomor handphone wajib diisi                                   |
+    | @C159535    |               | Nomor handphone wajib diisi                                   |
 
-  @case8   
+  @C159536  
   Scenario: Verifying autotrim 0 after label +62 in field phonenumber
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '0895611221700'
     Then I will see '895611221700' in field 'mobileNumber'
 
-  @case9   
+  @scenario_password_with_invalid_value   
   Scenario Outline: Verifying password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'password'
     Examples:                                                                 ❸
-      | Value           | Message                                                       |
-      | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-      | Test1           | Password minimal 8 karakter                                   |
-      |                 | Password wajib diisi                                          |
+    | testRailTag  | Value           | Message                                                       |
+    | @C159537  | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159538  | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159539  | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159540  | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159541  | Test1           | Password minimal 8 karakter                                   |
+    | @C159542  |                 | Password wajib diisi                                          |
 
-  @case10   
+  @C159543   
   Scenario: Verifying field password contain with alphabeth, number and special character
     Given I am a customer want to access menu registration
     When I am filling field 'password' with 'Test1234!@'
     Then I shouldn't see message error in the below of field 'password'
 
-  @case11
+  @scenario_confirm_password_with_invalid_value
   Scenario Outline: Verifying confirm password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'confirmPassword' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'confirmPassword'
     Examples:                                                                 ❸
-      | Value           | Message                                        |
-      | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
-      |                 | Konfirmasi password wajib diisi                |
+    | testRailTag  | Value           | Message                                        |
+    |  @C159544    | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
+    |  @C159545    |                 | Konfirmasi password wajib diisi                |
 
-  @case12
+  @C159546
   Scenario: Verifying autotrim in field Full name
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with ' Ruth Natasya '
     Then I will see 'Ruth Natasya ' in field 'fullName'
 
-  @case13
+  @scenario_unmask_and_mask_password_confirm_password
   Scenario Outline: Unmask and mask the password and confirm password
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Test1234'
@@ -137,11 +145,11 @@ Feature: Account registration
     When I click icon eye in '<Field>' field
     Then I will not see my password 'Test1234' in the field
     Examples:
-      | Field           |
-      | password        |
-      | confirmPassword |
+    | testRailTag  | Field           |
+    | @C159547     | password        |
+    | @C159548     | confirmPassword |
 
-  @case14   
+  @C159549   
   Scenario: Access link login in page registration
     Given I am a customer want to access menu registration
     When I click link registration
@@ -159,13 +167,13 @@ Feature: Account registration
   #   When I click link privacy and policy
   #   Then I will directing to web view privacy and policy
 
-  @case15
+  @C159550
   Scenario: Access call center on page registration
     Given I am a customer want to access menu registration
     When I click call center
     Then I will see helping center via email
 
-  @case16 
+  @C159551 
   Scenario: Back to page form registration from pop up confirmation
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -182,29 +190,29 @@ Feature: Account registration
       | password        | 1234Test               |
       | confirmPassword | 1234Test               |
 
-  @case20   
+  @C159552   
   Scenario: Back to page Onboarding from page Registration
     Given I am a customer want to access menu registration
     When I click button back in the header page
     Then I will direct to page onboarding
 
-  @case21
+  @C159553
   Scenario: Create account business with business unregistered code
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
-    And I am filling field 'email' with 'test.automate@trash-mail.com'
+    And I am filling field 'email' with 'yahya_auto21@yopmail.com'
     And I am filling field 'businessCode' with 'xxyy11'
     Then I should see message error 'Kode bisnis tidak valid, periksa e-mail kembali' in the below of field 'businessCode'
 
-#@case22
+  @C159554
   Scenario: Create account business with email that is not belong to the business code
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
-    And I am filling field 'email' with 'test@trash-mail.com'
-    And I am filling field 'businessCode' with 'a85694'
+    And I am filling field 'email' with 'yahya_auto20@yopmail.com'
+    And I am filling field 'businessCode' with '0becd0'
     Then I should see message error 'E-mail tidak sesuai dengan kode bisnis.' in the below of field 'email'
 
-  @case23
+  @C159555
   Scenario: Verifying field business code has been filled and then empty the field
     Given I am a customer want to access menu registration
     When I am filling field 'businessCode' with 'XYZ123'
