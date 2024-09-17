@@ -56,6 +56,7 @@ Scenario: Validate error input tenor more than 180 hari
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 ## take out location bisnis#
+@FunctTestLending
 Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -82,8 +83,8 @@ Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flag
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih 
-    And user click button next   
-    And user click button Lanjut Lengkapi Data    
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya
@@ -142,7 +143,7 @@ Scenario: validate progress monitoring loan checking document
     And user can see X button to back to Main Dashboard
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user lick button Upload Ulang Dokumen
+    And user click button Upload Ulang Dokumen
     Then user go back to page Progres Upload Dokumen
 
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
@@ -185,8 +186,8 @@ Scenario: Validate bottom sheet for Upload Dokumen from Perangkat Lain
     And usr click Pilih 
     And user checklist checbox term and condition
     And user checklist checbox privy
-    And user click button next    
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya

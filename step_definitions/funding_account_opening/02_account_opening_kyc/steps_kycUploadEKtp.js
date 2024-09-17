@@ -81,7 +81,7 @@ Given("I register initiator with partner as below", async (table) => {
         whitelistDao.whitelistEmail(dataInvitee["email"]);
 
     await
-        whitelistDao.whitelistPhoneNumber("+62"+dataInvitee["phoneNumber"]);
+        whitelistDao.whitelistPhoneNumber("+62" + dataInvitee["phoneNumber"]);
 
     // HIT PRODUCT TYPE
     await
@@ -93,7 +93,7 @@ Given("I register initiator with partner as below", async (table) => {
 
     // HIT LEGALITY TYPE
     await
-        uploadDao.submitLegalityType(legality, userID, password, npwpBusiness);    
+        uploadDao.submitLegalityType(legality, userID, password, npwpBusiness);
 
     // JUMP TO FORM KTP
     await
@@ -114,7 +114,7 @@ Given("I register initiator with partner as below", async (table) => {
     // ADD PARTNER
     await
         uploadDao.submitOnePartner(dataInvitee, userID, password);
-        
+
     // GET BUSINESS CODE
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
 
@@ -123,16 +123,16 @@ Given("I register initiator with partner as below", async (table) => {
     globalVariable.registration.passwordPartner = dataInvitee["password"];
     globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
     globalVariable.registration.fullName = dataInvitee["fullName"];
-    
+
 });
 
-Given("I register invitee with business code", async() =>{
+Given("I register invitee with business code", async () => {
     // REQUEST OTP
     await
-        otpDao.requestOTP("+62"+globalVariable.registration.phoneNumberPartner);
-    
+        otpDao.requestOTP("+62" + globalVariable.registration.phoneNumberPartner);
+
     // GET OTP
-    const otp = (await otpDao.getOTP("62"+globalVariable.registration.phoneNumberPartner)).otp;
+    const otp = (await otpDao.getOTP("62" + globalVariable.registration.phoneNumberPartner)).otp;
 
     // REGISTER INVITEE
     const inviteeRegister = {
@@ -179,16 +179,8 @@ When("I upload my eKTP photo", async () => {
         uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
         uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
-});
 
-When("I upload invited user eKTP photo", async () => {
-    I.waitForText("Ambil Foto eKTP Anda", 10);
-    await
-        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
-    await
-        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageUserInvitedAfterResetState();
+    resetStateDao.reloadPageAfterResetState();
 });
 
 Then("I will direct to page preview eKTP picture", () => {

@@ -68,6 +68,7 @@ module.exports = {
         businessField: "",
         monthlyIncome: "",
         averageTransaction: "",
+        npwp: "",
         nib: "",
     },
     formDirector:{

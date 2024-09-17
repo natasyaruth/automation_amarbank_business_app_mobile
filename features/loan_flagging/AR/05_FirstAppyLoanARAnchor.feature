@@ -32,8 +32,12 @@ Feature: Apply Either Loan and select the loan
         And I select the date cooperating
         And I click button next       
         And I click button continue complete the data
-         And I choose legality business type 'company'
+        And I choose legality business type 'company'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I upload my eKTP photo
         And I will directing to page submit form KTP
         And I fill all information identity details as followings:

@@ -2,6 +2,7 @@ const {
     I,
     onboardingAccOpeningPage,
     uploadKtpPage,
+    formBusinessProfilePage,
     resetStateDao,
     headerPage,
     getDataDao,
@@ -94,6 +95,8 @@ When("I choose Giro Account MSME", () => {
 
 When("I see page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
+
+    globalVariable.dashboard.lastPage = pageName;
 });
 
 When("I continue to complete my data", () => {
@@ -557,7 +560,7 @@ Then("I see my NPWP business 15 digit and auto format", () => {
         npwpBusiness = globalVariable.registration.npwpBusinessDefault;
     }
 
-    const numberNpwp = npwpBusiness.substring(0,15);
+    const numberNpwp = npwpBusiness.substring(0, 15);
 
     const formattedNpwp = npwpBusiness.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
 
@@ -587,7 +590,7 @@ Then("I will see error NPWP business has been registered", async () => {
     I.assertEqual(actualMsgError, expectedMsgError);
 });
 
-Then("I see field NPWP business is empty", ()=>{
+Then("I see field NPWP business is empty", () => {
     I.wait(1);
     I.waitForText("Tulis nomor NPWP bisnis", 10);
 });

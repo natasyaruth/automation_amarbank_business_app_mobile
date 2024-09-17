@@ -28,7 +28,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click confirm NPWP Business
               And I see page 'Upload eKTP'
               And I update my last journey step to 'Data Employment'
-              And I continue to process KYB
+              And I see page 'Data Business Profile'
               And I fill my business profile as followings:
                   | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
                   | industry           | Jasa                                  |

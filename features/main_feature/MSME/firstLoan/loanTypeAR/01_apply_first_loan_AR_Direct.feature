@@ -54,6 +54,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 #takeout location bisnis
+@FunctTestLending
   Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -85,8 +86,8 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier 
-    And user click button next    
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perorangan"
     And user click Selanjutnya
@@ -188,8 +189,8 @@ Scenario: User apply second loan AR Direct with bussiness type Individu and flag
     And user input email address supplier
     And user checklist checbox term and condition
     And user checklist checbox privy
-    And user click button next   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "Individu"
     And user click Selanjutnya

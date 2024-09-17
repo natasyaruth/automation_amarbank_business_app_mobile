@@ -1140,10 +1140,10 @@ Feature: Account Change Password
             | userIDstg   | ruthfdcb |
             | passwordStg | Test1234 |
         And I click login
-        And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+        And I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
         And I click try again to login
         And I click login
-        And I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+        And I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
         And I click try again to login
         And I filling in form login with the following details:
             | userID      | autod015 |
@@ -1188,7 +1188,7 @@ Feature: Account Change Password
         And I click button direct to page login
         And I login again with my old password
         And I click login
-        Then I should see pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
+        Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
         And I click try again to login
         And I reset attempt failed login
         And I login again with my new password
