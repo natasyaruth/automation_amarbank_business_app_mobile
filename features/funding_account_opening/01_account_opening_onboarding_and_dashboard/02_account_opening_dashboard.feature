@@ -36,7 +36,7 @@ Feature: Account Opening Main Dashboard
         And I back to continue process account opening
         Then I can continue to page 'Upload eKTP'    
 
-    @C131962
+    @C131962 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I am a customer want to open Giro Account
         When I click close in header page
@@ -45,7 +45,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
-    @C131963
+    @C131963 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a customer want to open Giro Account
         And I click take photo eKTP
@@ -59,7 +59,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
-    @C131964
+    @C131964 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data KTP'
@@ -70,7 +70,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
-    @C141154
+    @C141154 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Upload Selfie'
@@ -81,7 +81,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
-    @C131965
+    @C131965 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Upload Selfie with KTP'
@@ -92,7 +92,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'  
 
-    @C131966
+    @C131966 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Personal'
@@ -104,7 +104,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
-    @C131967
+    @C131967 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Domicile Address'
@@ -117,7 +117,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
-    @C131968
+    @C131968 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
@@ -128,7 +128,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Profile'
 
-    @C131969
+    @C131969 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
@@ -174,7 +174,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Profile'
 
-    @C131971
+    @C131971 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
@@ -200,7 +200,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Data Business Profile'
         And I will see form 'Data Business Profile' is filled
 
-    @C131972
+    @C131972 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Employment'
@@ -274,7 +274,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Registration Director'
         And I can see details registration director
 
-    @C159198
+    @C159198 @FunctTestFundingSprint4
     Scenario: Check last step after back to previous page and submit data again
         Given I am a customer want to open Giro Account
         And I update my last journey step to 'Data Domicile Address'

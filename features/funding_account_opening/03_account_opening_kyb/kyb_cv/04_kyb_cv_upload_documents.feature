@@ -321,7 +321,7 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I should see bottom sheet call center with email
               And I reset state upload document
 
-        @C156887
+        @C156887 @FunctTestFunding
         Scenario: Upload document with type JPG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -333,7 +333,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I reset state upload document
 
-        @C156888
+        @C156888 @FunctTestFunding
         Scenario: Upload document with type PNG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -345,7 +345,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I reset state upload document
 
-        @C156889
+        @C156889 @FunctTestFunding
         Scenario: Upload document with type JPEG
             Given I am a customer who has submitted business address
               And I choose method upload document

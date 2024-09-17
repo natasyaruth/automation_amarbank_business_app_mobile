@@ -3,7 +3,7 @@ Feature: FAQ
     As a customer
     I want to figure out more about Amar bank business
 
-@C156766
+@C156766 @FunctTestFunding
 Scenario: User open menu FAQ (Business)
     Given I am a customer that want know more about Amar Bank Business
     When I login to app
@@ -14,7 +14,7 @@ Scenario: User open menu FAQ (Business)
     And I see button exit 
     And I see pagination
 
-@C156767
+@C156767 @FunctTestFunding
 Scenario: User open FAQ category (Business)
     Given I am a customer that want know more about Amar Bank Business
     When I login to app
@@ -24,7 +24,7 @@ Scenario: User open FAQ category (Business)
     Then I direct to page question
     And Pagination change according user last page
 
-@C156768
+@C156768 @FunctTestFunding
 Scenario: User open detail of question on FAQ page (Business)
     Given I am a customer that want know more about Amar Bank Business
     When I login to app
@@ -34,7 +34,7 @@ Scenario: User open detail of question on FAQ page (Business)
     And I click one of question
     Then Detail of question will display
 
-@C156769
+@C156769 @FunctTestFunding
 Scenario: User click button back on FAQ page (Business)
     Given I am a customer that want know more about Amar Bank Business
     When I login to app
@@ -45,7 +45,7 @@ Scenario: User click button back on FAQ page (Business)
     Then I returned to the previous page
     And Pagination change according user last page
     
-@C156770
+@C156770 @FunctTestFunding
 Scenario: User click button close on FAQ page (Business)
     Given I am a customer that want know more about Amar Bank Business
     When I login to app

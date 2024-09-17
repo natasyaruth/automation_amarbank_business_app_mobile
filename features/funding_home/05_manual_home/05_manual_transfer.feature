@@ -3,7 +3,7 @@ Feature: Manual Transfer
     As a customer
     I want to make sure show error when rekening is inactive or not exist
 
-@C157063
+@C157063 @FunctTestFunding 
 Scenario: Checking inactive account number for Business
     Given I am a customer that want to transfer with business account
     When I login to app

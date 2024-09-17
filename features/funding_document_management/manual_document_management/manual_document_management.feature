@@ -98,7 +98,7 @@ Feature: Manual Document Management
         And I will see loading icon
         Then I will directing to page document
 
-    @C157533
+    @C157533 @FunctTestFundingSprint4
     Scenario: Check email after success delete other document
         Given I am a customer that has other document
         And I success delete other document
@@ -127,7 +127,7 @@ Feature: Manual Document Management
         And I click file name
         Then I will see view page of the document
 
-    @C157536
+    @C157536 @FunctTestFundingSprint4
     Scenario: Download and view other document in menu other document
         Given I am a customer active
         And has been complete onboarding document brankas
@@ -140,7 +140,7 @@ Feature: Manual Document Management
         Then I will see view page of the document
         And can be download via google drive
 
-    @C157537
+    @C157537 @FunctTestFundingSprint4
     Scenario: Upload other document more than 15MB
         Given I am a customer active
         And has been complete onboarding document brankas
@@ -165,7 +165,7 @@ Feature: Manual Document Management
         And after click button save document will direct to page other document with latest file uploaded
         And snackbar green success
 
-    @C157539
+    @C157539 @FunctTestFundingSprint4
     Scenario: Upload other document other than JPG/JPEG/PNG/PDF
         Given I am a customer active
         And has been complete onboarding document brankas
@@ -175,7 +175,7 @@ Feature: Manual Document Management
         Then I will see message error "File harus dalam format PDF / JPG / JPEG / PNG."
         And display file name and icon delete
 
-    @C157540
+    @C157540 @FunctTestFundingSprint4
     Scenario: Upload other document with bad connection
         Given I am a customer active
         And has been complete onboarding document brankas
@@ -217,7 +217,7 @@ Feature: Manual Document Management
         And I click reupload document
         Then I will see file restart to upload
 
-    @C157544
+    @C157544 @FunctTestFundingSprint4
     Scenario: Failed to delete other document in section upload because server error
         Given I am a customer active
         And has been complete onboarding document brankas
@@ -228,7 +228,7 @@ Feature: Manual Document Management
         Then I will see snackbar error red "Terjadi kendala server, coba beberapa saat lagi."
         And will dissapear after 1-2 seconds
 
-    @C157545
+    @C157545 @FunctTestFundingSprint4
     Scenario: Failed to delete other document in page other document because server error
         Given I am a customer active
         And has been complete onboarding document brankas

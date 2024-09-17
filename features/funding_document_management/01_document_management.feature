@@ -719,7 +719,7 @@ Feature: Document Management
         And I click menu other document
         Then I will see empty detail menu other document
 
-    @C157518
+    @C157518 @FunctTestFundingSprint4
     Scenario: Cancel upload other document
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -889,7 +889,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
-    @C157524
+    @C157524 @FunctTestFundingSprint4
     Scenario: Upload other document with type PDF
         Given I am a registered customer with following details:
             | userID      | devef721 |
@@ -948,7 +948,7 @@ Feature: Document Management
         And I cancel delete other document
         Then I will see other document has been uploaded
 
-    @C157526
+    @C157526 @FunctTestFundingSprint4
     Scenario: Delete other document in section upload
         Given I am a registered customer with following details:
             | userID      | devef721 |
@@ -1016,7 +1016,7 @@ Feature: Document Management
         And I cancel delete other document
         Then I will direct to page other document with document that has been uploaded is in there
 
-    @C157528
+    @C157528 @FunctTestFundingSprint4
     Scenario: Delete other document in section detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | devef721 |
@@ -1050,7 +1050,7 @@ Feature: Document Management
         And I confirm delete other document
         Then I will see empty detail menu other document
 
-    @C157529
+    @C157529 @FunctTestFundingSprint4
     Scenario: Upload other document entry point detail menu Other Document
         Given I am a registered customer with following details:
             | userID      | devef721 |
