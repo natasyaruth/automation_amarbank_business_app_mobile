@@ -39,8 +39,6 @@ module.exports = {
     backNpwp: "~btnBack",
     confirmNpwp: "~btnConfirmed",
     closeBottomSheet: "~buttonClose",
-    backToCurrentPage: "~btnBack",
-    confirmBackToDashboard: "~btnConfirmed"
   },
   fields: {
     npwpBusiness: "~textFieldNpwpNumber"
@@ -440,23 +438,13 @@ module.exports = {
   },
 
   confirmNPWP() {
-    I.waitForElement(this.buttons.confirmNpwp, 10);
+    I.waitForElement(this.buttons.confirmNpwp, 30);
     I.click(this.buttons.confirmNpwp);
   },
 
   closeBottomSheet() {
     I.waitForElement(this.buttons.closeBottomSheet, 10);
     I.click(this.buttons.closeBottomSheet);
-  },
-
-  clickCancelProcess(){
-    I.waitForElement(this.buttons.confirmBackToDashboard, 10);
-    I.click(this.buttons.confirmBackToDashboard);
-  },
-
-  backToAccProcess(){
-    I.waitForElement(this.buttons.backToCurrentPage, 10);
-    I.click(this.buttons.backToCurrentPage);
   },
 
 }

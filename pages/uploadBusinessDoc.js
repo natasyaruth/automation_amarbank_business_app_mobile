@@ -119,7 +119,7 @@ module.exports = {
     await
       uploadDao.uploadDocBusiness(userID, password, enumDoc, fileType);
     
-      I.wait(2);
+    I.wait(2);
   },
 
   async getMessageError() {

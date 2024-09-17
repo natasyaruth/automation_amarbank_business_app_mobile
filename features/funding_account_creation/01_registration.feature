@@ -19,11 +19,11 @@ Feature: Account registration
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Revvy                   |
-      | email           | revvtest31@gmail.com    |
-      | mobileNumber    | 8999677540              |
-      | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
+      | fullName        | Revvy                    |
+      | email           | staging_revi_01@gmail.com|
+      | mobileNumber    | 8999677540               |
+      | password        | 1234Test                 |
+      | confirmPassword | 1234Test                 |
     And I registering the account
     And I will directing to page terms and condition
     And I click button agree with terms and condition

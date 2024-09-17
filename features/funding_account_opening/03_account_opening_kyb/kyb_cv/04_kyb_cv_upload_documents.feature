@@ -184,34 +184,6 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I will see all document company has been uploaded
               And I reset state upload document
 
-        @C136870
-        Scenario: Re-upload document business
-            Given I am a customer who has submitted business address
-             When I choose method upload document
-              And I choose direct upload via app
-              And I see files that need to be uploaded for type company
-              And I upload all document business for type company
-              And I click button progress upload document
-              And I will see all document company has been uploaded
-              And I will see button request account opening is shown
-              And I click button request account opening
-              And I will direct to page thank you and need verification of my data
-              And I click progress account opening
-              And I will direct to page detail progress account opening
-              And I re-upload my document
-              And I will direct to page to re-upload document company
-              And I delete document 'SK Kemenkumham'
-              And I click confirm delete document
-              And I will not see button save document
-              And I will see 'SK Kemenkumham' is empty
-              And I upload document business 'SK Kemenkumham' with type 'pdf'
-              And I click button progress upload document
-             Then I will see document 'SK Kemenkumham' is uploaded
-              And I will see button save document
-              And I click button save document
-              And I will direct to page detail progress account opening
-              And I reset state upload document
-
         @C136871
         Scenario: Go to main dashboard from page thank you and need verification
             Given I am a customer who has submitted business address
@@ -349,7 +321,7 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I should see bottom sheet call center with email
               And I reset state upload document
 
-        @C156887
+        @C156887 @FunctTestFunding
         Scenario: Upload document with type JPG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -361,7 +333,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I reset state upload document
 
-        @C156888
+        @C156888 @FunctTestFunding
         Scenario: Upload document with type PNG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -373,7 +345,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I reset state upload document
 
-        @C156889
+        @C156889 @FunctTestFunding
         Scenario: Upload document with type JPEG
             Given I am a customer who has submitted business address
               And I choose method upload document

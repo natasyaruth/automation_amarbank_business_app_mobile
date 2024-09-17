@@ -190,8 +190,9 @@ Feature: Manual Account login
         Then I will see information from device too many attempts failed biometric 
         And I will see pop up biometric is failed with information need to login using user id and password
         And I click button understand
-        And I will direct to page login    
-    @C141215 @FuntionalTestDemo
+        And I will direct to page login  
+
+    @C141215 
     Scenario: Login account by email
         Given I am a user want login by email
         When I do process register 

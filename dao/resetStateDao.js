@@ -42,36 +42,60 @@ module.exports = {
 
     },
 
-    async getIdOtherDoc(userID, password, numberDoc) {
+    async getIdOtherDoc(userID, password) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
 
         I.seeResponseCodeIsSuccessful();
 
         return {
             status: response.status,
-            idDoc: response.data.id[numberDoc]
+            idDocs: response.data,
         }
 
     },
 
     async deleteOtherDoc(userID, password, numberDoc) {
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
 
-        const idDoc = await this.getIdOtherDoc(userID, password, numberDoc);
-
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc);
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/"+idDoc);
 
         return {
             status: response.status,
             data: response.data
+        }
+
+        }
+    },
+
+    async deleteAllOtherDoc(userID, password) {
+
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        let response;
+
+        if (idDoc.length !== 0) {
+            for (let i = 0; i < idDoc.length; i++) {
+                response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc[i].id);
+                I.wait(3);
+            }
+
+            return {
+                status: response.status,
+                data: response.data
+            }
         }
     },
 
@@ -190,56 +214,14 @@ module.exports = {
     },
 
     reloadPageAfterResetState() {
-
-        const lastPage = globalVariable.dashboard.lastPage;
-
-        if (
-
-            lastPage === "Upload eKTP" ||
-            lastPage === "Data KTP" ||
-            lastPage === "Upload Selfie" ||
-            lastPage === "Upload Selfie with KTP" ||
-            lastPage === "Data Personal" ||
-            lastPage === "Data Business Profile"
-
-        ) {
-
-            headerPage.closePage();
-            onboardingAccOpeningPage.clickCancelProcess();
-
-        } else if (
-
-            lastPage === "Data Domicile Address" ||
-            lastPage === "Data Employment" ||
-            lastPage === "Data Business Owner" ||
-            lastPage === "Data Director List" ||
-            lastPage === "Data Business Address"
-        ) {
-
-            headerPage.clickButtonBack();
-
-        } else if (
-
-            lastPage === "Upload Document Business" ||
-            lastPage === "Detail Progress Account Opening"
-
-        ) {
-
-            headerPage.closePage();
-
-        } else {
-            console.log(lastPage);
-            throw new Error("Page name is not recognize");
-        }
-
+        headerPage.clickButtonBack();
         I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueCompleteData();
     },
 
     reloadPageAfterResetStateInvitee() {
-        headerPage.closePage();
-        onboardingAccOpeningPage.clickCancelProcess();
+        headerPage.clickButtonBack();
         I.waitForElement(onboardingAccOpeningPage.buttons.next, 20);
         I.wait(1);
         onboardingAccOpeningPage.continueToKYC();

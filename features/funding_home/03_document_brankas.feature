@@ -8,13 +8,13 @@ Feature: Document Brankas
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -27,7 +27,7 @@ Feature: Document Brankas
         And I see widget document safe
         And notification red dot document safe is on
 
-    @C156925
+    @C156925 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user initiator recently from registration 1
         Given I am a registered customer with following details:
             | userID      | deveb76d |
@@ -50,7 +50,7 @@ Feature: Document Brankas
         And I click button choose product
         Then I will directing to Hook 1 Onboarding Account Opening
 
-    @C156926
+    @C156926 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user initiator in process giro account opening
         Given I am a registered customer with following details:
             | userID      | deved388 |
@@ -69,7 +69,7 @@ Feature: Document Brankas
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        When I click close in header page
+        And I click close in header page
         And I will see pop up confirm close page process account opening
         And I cancel process account opening
         And notification red dot document safe is on
@@ -78,7 +78,7 @@ Feature: Document Brankas
         And I continue to process account opening
         Then I see page 'Data Personal'
 
-    @C156927
+    @C156927 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user initiator in process combine journey
         Given I am a registered customer with following details:
             | userID      | deveb182 |
@@ -96,7 +96,7 @@ Feature: Document Brankas
         And I will see card account 'on process combine journey'
         And I continue to complete my data
         And I see page 'Data Personal'
-        When I click close in header page
+        And I click close in header page
         And I will see pop up confirm close page process account opening
         And I cancel process account opening
         And I will see card account 'on process combine journey'
@@ -106,7 +106,7 @@ Feature: Document Brankas
         And I continue to process loan
         Then I see page 'Data Personal'
 
-    @C156928
+    @C156928 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user initiator on verification
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
@@ -128,7 +128,7 @@ Feature: Document Brankas
         And I continue to process account opening
         And I will direct to page detail progress account opening
 
-    @C156929
+    @C156929 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user individual on verification
         Given I am a registered customer with following details:
             | userID      | deveaead |
@@ -148,7 +148,7 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
-    @C156930
+    @C156930 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user invitee on verification
         Given I am a registered customer with following details:
             | userID      | rudi71d5 |
@@ -168,18 +168,18 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
-    @C156931
+    @C156931 @FunctTestFunding
     Scenario: Access widget brankas on main dashboard for user initiator active
         Given I am a registered customer with following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -226,13 +226,13 @@ Feature: Document Brankas
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -601,7 +601,7 @@ Feature: Document Brankas
         And I uncheck reason 'Cari Dokumen'
         Then I will see button sent feedback disabled
 
-    @C156944
+    @C156944 @FunctTestFunding
     Scenario: Fill survey journey to tab Profile
         Given I am a registered customer with following details:
             | userID      | devef721 |

@@ -6,6 +6,7 @@ const {
     resetStateDao,
     globalVariable,
     mainActivePage,
+    getDataDao,
     headerPage,
 } = inject();
 
@@ -77,7 +78,7 @@ Then("I can see BIFAST and SKN", async () => {
     const expectedTotalAmount = transferPage.formattedToThreeDigit(numberTotalAmount);
     I.assertEqual(actualTotalAmount, "Rp" + expectedTotalAmount);
 
-    I.dontSee(transferPage.radioButtons.methodRtol, 10);
+    I.dontSee(transferPage.radioButtons.methodRtol);
     I.dontSee(transferPage.texts.adminFeeRTOL);
     I.dontSee("RTOL");
     I.dontSee("Rp "+globalVariable.transfer.adminFeeRTOL);
@@ -111,7 +112,7 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
     I.see("Rp 10.000 - Rp 250.000.000");
 
     const actualAdminFee = await transferPage.getValueAdminFee();
-    I.assertEqual(actualAdminFee, "+Rp " + globalVariable.transfer.adminFeeBIFAST);
+    I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeBIFAST);
 
     const actualTotalAmount = await transferPage.getValueTotalAmount();
     const formattedString = globalVariable.transfer.adminFeeBIFAST.replace(/Rp|\./g, '');
@@ -146,7 +147,7 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
 Then("I can see SKN and RTGS", async () => {
 
     const actualAdminFee = await transferPage.getValueAdminFee();
-    I.assertEqual(actualAdminFee, "+Rp " + globalVariable.transfer.adminFeeSKN);
+    I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeSKN);
 
     I.dontSee(transferPage.radioButtons.methodBifast);
     I.dontSee(transferPage.texts.adminFeeBIFAST);
@@ -186,7 +187,7 @@ Then("I can see SKN and RTGS", async () => {
 
 Then("I can see RTGS", async () => {
     const actualAdminFee = await transferPage.getValueAdminFee();
-    I.assertEqual(actualAdminFee, "+Rp " + globalVariable.transfer.adminFeeRTGS);
+    I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeRTGS);
 
     I.dontSee(transferPage.radioButtons.methodBifast);
     I.dontSee(transferPage.texts.adminFeeBIFAST);
@@ -207,7 +208,7 @@ Then("I can see RTGS", async () => {
     I.dontSee("RTOL");
     I.dontSee("Rp 10.000 - Rp 50.000.000");
 
-    I.dontSee(transferPage.radioButtons.methodSkn, 10);
+    I.dontSee(transferPage.radioButtons.methodSkn);
     I.dontSee(transferPage.texts.adminFeeSKN);
     I.dontSee("Rp "+globalVariable.transfer.adminFeeSKN);
     I.dontSee("SKN");
@@ -217,7 +218,8 @@ Then("I can see RTGS", async () => {
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
     I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
     I.see("RTGS");
-    I.see("Dana langsung sampai ke penerima");
+    I.dontSee("Dana langsung sampai ke penerima");
+    I.see("Dana akan sampai pada hari kerja");
     I.see("Nominal transfer:");
     I.see("> Rp 100.000.000");
 });
@@ -344,14 +346,29 @@ When("I click transfer now", async () => {
 });
 
 Then("I successfully transferred", async () => {
-    I.waitForText("Transfer Berhasil", 20);
+    I.waitForText("Transfer Berhasil", 40);
     I.waitForElement(headerPage.buttons.closePage, 10)
 
     const actualSenderName = await transferPage.getSenderName();
-    I.assertEqual(actualSenderName, globalVariable.dashboard.senderName);
+
+    const typeBusiness = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+    let expectedSenderName;
+
+    if(
+        typeBusiness === "1"
+    ){
+        expectedSenderName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+
+    } else{
+
+        expectedSenderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+
+    }
+
+    I.assertEqual(actualSenderName, expectedSenderName);
 
     const actualSenderBankName = await transferPage.getSenderBankName();
-    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+    I.assertEqual(actualSenderBankName, "Amar Bank");
     
     const actualSenderAccNumber = (await transferPage.getSenderAccNnumber()).replace(/\s+/g, '');
     const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;

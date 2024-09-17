@@ -53,6 +53,7 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
         I.waitForElement(this.fields[fieldName], 10);
+        I.clearField(this.fields[fieldName]);
         I.setText(this.fields[fieldName], value);
 
       } else if (
@@ -61,7 +62,9 @@ module.exports = {
 
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
+        I.wait(2);
         I.click(value);
+        I.wait(2);
         I.swipeUp(this.dropDowns[fieldName], 1300, 1000);
 
       } else if (
@@ -120,15 +123,24 @@ module.exports = {
   async getValue(fieldName) {
 
     let valueField;
-    
+
     if (
 
-      Object.keys(this.fields).indexOf(fieldName) !== -1 ||
+      Object.keys(this.fields).indexOf(fieldName) !== -1
+
+    ) {
+
+      I.waitForElement(this.fields[fieldName], 10);
+      valueField = await I.grabTextFrom(this.fields[fieldName]);
+
+    } else if (
+
       Object.keys(this.dropDowns).indexOf(fieldName) !== -1
 
     ) {
-      
-      valueField = await I.grabTextFrom(fieldName);
+
+      I.waitForElement(this.dropDowns[fieldName], 10);
+      valueField = await I.grabTextFrom(this.dropDowns[fieldName]);
 
     } else {
 

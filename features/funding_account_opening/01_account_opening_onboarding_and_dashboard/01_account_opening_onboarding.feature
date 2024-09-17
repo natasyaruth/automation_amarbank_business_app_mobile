@@ -11,6 +11,7 @@ Feature: Account Opening Onboarding
             | password    | 1234Test |
             | userIDstg   | stagb081 |
             | passwordStg | 1234Test |
+        And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ruth07f9 |
             | password    | 1234Test |
@@ -33,6 +34,7 @@ Feature: Account Opening Onboarding
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         Then I will directing to main dashboard with card loan application and account opening
+        And I click later
         And I can choose type account giro
         And I will see details info of giro account MSME
         And I will see details info of giro account Corporate
@@ -81,7 +83,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131958
+    @C131958 @FunctTestFunding
     Scenario: User choose legality business type Individu
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -101,7 +103,17 @@ Feature: Account Opening Onboarding
         And I click close in header page
         And I will see pop up confirm close page process account opening
         And I cancel process account opening
-        Then I will see card account 'account opening'
+        Then I will directing to Hook 1 Onboarding Account Opening
+
+    @C159197
+    Scenario: Close page choose product entry point main dashboard
+        Given I am a customer want to open Giro Account
+        When I click later
+        And I choose Giro Account from dashboard
+        And I click close in header page
+        And I will see pop up confirm close page process account opening
+        And I cancel process account opening
+        Then I will see card account 'account opening' 
 
     Scenario: Close page choose product entry point main dashboard
         Given I am a customer want to open Giro Account
@@ -201,7 +213,7 @@ Feature: Account Opening Onboarding
         Then I will see bottom sheet NPWP Business with NPWP still there
         And I see button submit NPWP is enabled
 
-    @C156868
+    @C156868 @FunctTestFunding
     Scenario: Check NPWP business that has been registered with type MSME
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -213,7 +225,7 @@ Feature: Account Opening Onboarding
         And I click continue to data personal
         Then I will see error NPWP business has been registered
 
-    @C156869
+    @C156869 @FunctTestFunding
     Scenario: Check NPWP business that has been registered with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -240,9 +252,8 @@ Feature: Account Opening Onboarding
         And I click confirm NPWP Business
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
-        And I reset my state journey
 
-    @C156871
+    @C156871 @FunctTestFunding
     Scenario: Check NPWP Business Success with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -257,4 +268,3 @@ Feature: Account Opening Onboarding
         And I click confirm NPWP Business
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
-        And I reset my state journey
