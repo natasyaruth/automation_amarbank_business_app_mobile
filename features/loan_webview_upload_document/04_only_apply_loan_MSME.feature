@@ -261,7 +261,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
