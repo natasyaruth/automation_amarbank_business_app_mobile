@@ -57,7 +57,8 @@ Feature: Account Opening Manual - Submit Data Personal
         Then I will direct to page personal details
         And I see information NPWP was successfully uploaded
 
-    Scenario: Check bottomsheet on Data Personal 
+    @C159207 @FunctTestFundingSprint4
+    Scenario: Check bottomsheet on Data Personal
         Given I am a customer want to check bottomsheet on Data Personal
         When I regist account
         And I am on page data verifikasi data e-Ktp
@@ -74,5 +75,3 @@ Feature: Account Opening Manual - Submit Data Personal
         And Show all province on list
         And User available to scroll the list
         And User available to type name of province
-        
-    

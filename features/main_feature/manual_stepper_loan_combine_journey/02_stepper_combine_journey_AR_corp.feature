@@ -2,7 +2,7 @@ Feature: Apply First Loan With Flagging Corp Using AR
  As a customer lead
  I want to apply first loan using AR with flaging Corp
 
-
+@FunctTestLendingSprint5
 Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -81,7 +81,7 @@ Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-
+@FunctTestLendingSprint5
 Scenario: User apply first loan AP Direct with business type PT. Perorangan and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -163,3 +163,4 @@ Scenario: User apply first loan AP Direct with business type PT. Perorangan and 
     Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
+

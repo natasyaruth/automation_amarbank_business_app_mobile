@@ -55,6 +55,7 @@ Scenario: Validate error input tenor below min 30 hari
 
 #takeout location bisnis
 
+@FunctTestLending
 Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

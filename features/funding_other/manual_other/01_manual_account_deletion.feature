@@ -20,7 +20,7 @@ Feature: Dashboard Manual - Account Deletion
     And I fill 5 times incorrect password account deletion
     Then my account should be block
 
-  @C133876 @FuntionalTestDemo
+  @C133876 
   Scenario: Check and approve in console after user request delete account
     Given I am customer who was requested account deletion
     When I go to console of account deletion

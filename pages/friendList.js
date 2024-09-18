@@ -40,7 +40,7 @@ module.exports = {
     },
   
     fillSearchFriendlist(friendListname) {  
-      I.waitForElement(this.fields.searchFriendName, 20);    
+      I.waitForElement(this.fields.searchFriendName, 30);    
       I.setText(this.fields.searchFriendName, friendListname);
       I.hideDeviceKeyboard();
     },

@@ -149,6 +149,14 @@ Given("I register invitee with business code", async () => {
     globalVariable.login.userIDPartner = (await firstRegistrationDao.firstRegistrationPartner(inviteeRegister)).userID;
 });
 
+When("I swipe to button save data eKTP", async () => {
+    
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.waitForElement(formKtpPage.buttons.saveEktp, 20);
+});
+
 When("I click take photo eKTP", () => {
     uploadKtpPage.directToTakePhoto();
 });

@@ -2,6 +2,7 @@ Feature: Apply First Loan With Flagging MSME Using AR
  As a customer lead
  I want to apply first loan using AR with flaging MSME
 
+@FunctTestLendingSprint5
 Scenario: User apply second loan AR direct type with bussiness type PT.Perorangan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -77,6 +78,7 @@ Scenario: User apply second loan AR direct type with bussiness type PT.Peroranga
     And user on monitoring loan process page
 
 
+@FunctTestLendingSprint5
 Scenario: User apply first loan AR Anchor type with bussiness type PT.Perusahaan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -148,7 +150,7 @@ Scenario: User apply first loan AR Anchor type with bussiness type PT.Perusahaan
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
    
-
+@FunctTestLendingSprint5
 Scenario: User apply first loan AR Anchor with bussiness type Individu and flaging MSME
    Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 

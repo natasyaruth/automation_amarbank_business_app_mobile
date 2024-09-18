@@ -6,6 +6,7 @@ const {
     resetStateDao,
     headerPage,
     getDataDao,
+    hookOnBoardingPage,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {
@@ -54,12 +55,10 @@ When("I swipe to card Giro Account", () => {
 });
 
 When("I click back in header page", () => {
-    I.wait(2);
     headerPage.clickButtonBack();
 });
 
 When("I click close in header page", () => {
-    I.wait(2);
     headerPage.closePage();
 });
 
@@ -190,12 +189,12 @@ When("I click back from confirm NPWP Business", () => {
     onboardingAccOpeningPage.clickBackPopUp();
 });
 
-When("I cancel process account opening", () => {
-    onboardingAccOpeningPage.clickCancelProcess();
-});
-
 When("I back to continue process account opening", () => {
     onboardingAccOpeningPage.backToAccProcess();
+});
+
+When("I cancel process account opening", () => {
+    onboardingAccOpeningPage.clickCancelProcess();
 });
 
 Then("I will directing to page legality business", () => {
@@ -241,15 +240,33 @@ Then("I will directing to page type giro account", async () => {
 });
 
 Then("I will directing to main dashboard with card loan application and account opening", async () => {
-    I.waitForElement(onboardingAccOpeningPage.buttons.openLoan, 10);
-    I.see("Pilihan Produk");
-    I.see("Rp 5 Milyar");
-    I.see("Pinjaman untuk Bisnis dari Amar Bank");
-    I.see("Dapatkan pinjaman untuk pembiayaan transaksi bisnis Anda.");
+    
+    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+    I.see("Pinjaman Untuk Bisnis");
+    I.see("Kredit Bisnis untuk berbagai kebutuhan usaha");
+    I.see("Benefit");
+    I.see("Bunga Kompetitif");
+    I.see("Proses Cepat dan Mudah");
+    I.see("Digital Banking untuk Bisnis");
+    I.see("Hanya dengan:");
+    I.see("Ajukan Limit Kredit");
+    I.waitForElement(hookOnBoardingPage.buttons.bTnStartLoan, 10);
 
-    I.see("Perbankan Bisnis Premium");
-    I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
+    onboardingAccOpeningPage.swipeToCardGiroAccount();
+    
+    I.waitForText("Rekening Untuk Bisnis", 10);
+    I.see("Dapatkan Rekening Giro");
+    I.see("Layanan Digital Banking untuk mengelola bisnis Anda.");
+
+    I.see("Benefit");
+    I.see("Bebas Biaya Admin Bulanan");
+    I.see("Transaksi Real-Time");
+    I.see("Semua Proses dari Hp Anda");
+    I.see("e-Statement");
+    I.dontSee("Multiple User");
+    I.dontSee("Debit Card");
     I.see("Pilih Rekening Giro");
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10);
 });
 
 Then("I will see card continue to data personal", () => {
@@ -266,7 +283,7 @@ Then("I will see card continue to data business", () => {
     I.see("Lanjutkan Pembuatan Rekening Giro");
     I.see("Perbankan Giro");
     I.see("Pinjaman");
-    I.seeElement(onboardingAccOpeningPage.buttons.completeData);
+    I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 10);
     onboardingAccOpeningPage.continueCompleteData();
 });
 
@@ -362,7 +379,7 @@ Then("I will see information that I can try to register after 7 days", () => {
 });
 
 Then("I will see details info of giro account MSME", async () => {
-    I.waitForText("Silahkan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
+    I.waitForText("Silakan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
     I.see("Pilih Rekening Giro");
 
     // CHECKING ADMIN FEE
@@ -481,6 +498,12 @@ Then("I reset my state journey", async () => {
     }
 });
 
+Then("I reset my state journey invitee", async () => {
+
+    await
+        resetStateDao.resetStateFlow(2, globalVariable.login.userID, globalVariable.login.password);
+});
+
 Then("I will see bottom sheet NPWP Business", () => {
     I.waitForText("NPWP Bisnis", 10);
     I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
@@ -490,7 +513,7 @@ Then("I will see bottom sheet NPWP Business", () => {
     I.see("Tulis nomor NPWP bisnis");
     I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
 
-    I.see("Lanjut Isi Data personal");
+    I.waitForText("Lanjut Isi Data Personal", 10);
     I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
     // checking button submit npwp is disabled
 });
@@ -505,7 +528,7 @@ Then("I will see bottom sheet NPWP Business with NPWP still there", () => {
     I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
     I.see(globalVariable.registration.npwpBusiness);
 
-    I.see("Lanjut Isi Data personal");
+    I.see("Lanjut Isi Data Personal");
     I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
     // checking button submit npwp is disabled
 });
@@ -630,14 +653,36 @@ Then("I will see form {string} is filled", async (formName) => {
     if (
         formName === "Data Business Profile"
     ) {
+        const formattedNpwp = globalVariable.registration.npwpBusinessDefault.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
+
+        globalVariable.formBusinessProfile.npwp = formattedNpwp;
+
         const tableForm = Object.keys(globalVariable.formBusinessProfile);
 
         for (let i = 0; i < tableForm.length; i++) {
             const fieldName = tableForm[i];
-            const expectedValue = tableForm[fieldName];
-            
-            const actualValue = await formBusinessProfilePage.getValue(fieldName);
-            I.assertEqual(actualValue, expectedValue);
+            const expectedValue = globalVariable.formBusinessProfile[fieldName];
+
+            if (
+                fieldName === "averageTransaction"
+            ) {
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+                const splitAvg = globalVariable.formBusinessProfile.averageTransaction.split('');
+
+                for (let i = splitAvg.length - 3; i > 0; i -= 3) {
+                    splitAvg.splice(i, 0, '.');
+                }
+
+                const expectedAvg = splitAvg.join('');
+
+                I.waitForText(expectedAvg, 10);
+
+            } else {
+
+                I.waitForText(expectedValue, 10);
+            }
+
         }
     }
 
