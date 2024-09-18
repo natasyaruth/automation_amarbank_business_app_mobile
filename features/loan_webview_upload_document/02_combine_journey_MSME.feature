@@ -16,7 +16,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -31,7 +31,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -43,7 +43,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -59,7 +59,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Minimal 3 contoh invoice dengan supplier terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -71,7 +71,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -82,7 +82,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -129,7 +129,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -144,7 +144,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -156,7 +156,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -172,7 +172,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Minimal 3 contoh invoice dengan buyer terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -184,7 +184,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -195,7 +195,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Minimal 3 contoh invoice dengan buyer terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -242,7 +242,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -257,7 +257,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -269,7 +269,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -285,7 +285,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Surat Perintah Kerja (SPK) dari bouwheer"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -297,7 +297,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -308,7 +308,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Surat Perintah Kerja (SPK) dari bouwheer"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -364,7 +364,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -383,7 +383,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -402,7 +402,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -421,7 +421,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -481,7 +481,7 @@ Scenario: validate document size when upload document AP PT.Perusahaan or CV
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed  "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -510,7 +510,7 @@ Scenario: validate document size when upload document AR PT.Perusahaan or CV
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -540,7 +540,7 @@ Scenario: validate document size when upload document AP PT.Perorangan or UD
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"    
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -561,7 +561,7 @@ Scenario: validate document size when upload document AR PT.Perorangan or UD
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed  "1.7 MB"   
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -617,7 +617,7 @@ Scenario: validate document size when upload document PO PT.Perusahaan
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.7 MB"
@@ -647,7 +647,7 @@ Scenario: validate document size when upload document PO PT.Perorangan
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed  "1.7 MB"    
         And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
         And I see the file size should be displayed "1.7 MB"
@@ -687,7 +687,7 @@ Scenario: Validate all the document successfully uploaded on web in AR PT.Perusa
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -719,7 +719,7 @@ Scenario: Validate all the document successfully uploaded on web in AP PT.Perora
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"    
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -764,7 +764,7 @@ Scenario: Validate all the document successfully uploaded on web in PO Individu
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed  "1.2 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed      
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
         And I see the file size should be displayed  "1.2 MB"
@@ -817,7 +817,7 @@ Scenario: Validate all the document successfully uploaded on web in PO Individu
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.4 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.8 MB"
@@ -879,7 +879,7 @@ Scenario: Validate all the document successfully uploaded on web in PO Individu
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed  "1.7 MB"    
         And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
         And I see the file size should be displayed "1.7 MB"

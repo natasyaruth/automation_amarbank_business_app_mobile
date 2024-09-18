@@ -32,7 +32,7 @@ module.exports = {
     },
     textFieldName: {
       fieldNIB: 'NIB',
-      fieldAktaPerusahaan: 'Akta Perusahaan',
+      fieldAktaPerusahaan: 'Akta Pendirian',
       fieldSKKemenkumham: 'SK Kemenkumham',
       fieldNPWPPerusahaan: 'NPWP Perusahaan',
       fieldKTPKomisionerdanPemegangSaham: 'KTP Komisioner & Pemegang Saham',
@@ -89,7 +89,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
@@ -141,7 +141,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
@@ -192,7 +192,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
@@ -243,7 +243,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
@@ -294,7 +294,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
@@ -345,7 +345,7 @@ module.exports = {
         I.seeElement(this.sectionUploadDocuments.button.buttonAction0);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction0, 'data/file.pdf');
         break;
-      case 'Akta Perusahaan':
+      case 'Akta Pendirian':
         I.see(this.sectionUploadDocuments.textFieldName.fieldAktaPerusahaan);
         I.seeElement(this.sectionUploadDocuments.button.buttonAction1);
         I.attachFile(this.sectionUploadDocuments.button.buttonAction1, 'data/file.pdf');
