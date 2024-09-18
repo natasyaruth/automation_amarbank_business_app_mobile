@@ -132,7 +132,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user checklist checkbox right and obligations
     And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
-    And user validate description prepare the following documents 'MSMEAPPT.Perorangan' 
+    And user validate description prepare the following documents 'MSMEARUD' 
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
