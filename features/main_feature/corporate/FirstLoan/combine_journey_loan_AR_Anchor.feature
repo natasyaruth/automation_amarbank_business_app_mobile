@@ -158,11 +158,12 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
     And user upload document "nib"
-    And user upload document "aktaperusahaan"
-    And user upload document "skkemenkumhan"
-    And user upload document "npwpComp"
-    And user upload document "ktpofComm"    
-    And user upload document "npwpOfComm"
+    And user upload document "aktapendirian"
+    And user upload document "skkemenkumhanpendirian"
+    And user upload document "npwpbisnis"
+    And user upload document "aktaperubahanterakhir"    
+    And user upload document "skkemenkumhanperubahanakhir"
+    And user upload  document "ktpdannpwp"     
     And user upload document "3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
     And user upload document "2YearfinancialReports"
@@ -171,6 +172,15 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
+
+  
+  Scenario: Validate bottom sheet for Metode Upload Dokumen 
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    Then user will see bottom sheet metode upload Dokumen
     
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
@@ -203,68 +213,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 
-  Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit 
-    And User select loan type "AR"
-    And User on Loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar" 
-    And user input nominal for Corp "15000000000"
-    And user click button Save
-    And user input tenor "60"
-    And user click button Lanjut Isi Data Supplier 
-    #section select Anchor
-    And user fill search anchor "PT Tirta Investama"
-    And click button Pilih Supplier Ini   
-    And user select year cooperating  "2020"   
-    And usr click Pilih    
-    And user click button Lanjut Melengkapi Data  
-    And user click button Lanjut Proses KYC
-    #section KYC Process
-    Given user choose Business Type "PT Perusahaan"
-    And user click Selanjutnya     
-    And user click button Ambil Foto eKTP
-    And user click button Saya Mengerti
-    And user click buton take photo eKTP   
-    And user click button Kirim Foto
-    And user input and save eKTP data
-    And user click button Ambil Foto Diri
-    And user click Ambil Foto
-    And user click button Kirim Foto 
-    And user input Pendidikan terakhir "S1"
-    And user input nama ibu kandung "Susi Susanti"
-    And user input nama kerabat "Susi Similikiti"
-    And user input nomor kerbat "867300987"
-    And user upload document "npwpindividu"
-    And user click button Simpan Data Diri
-    And user click button Simpan Alamat Tempat Tinggal
-    And user select "Pegawai Swasta"
-    And user select sumber pendapatan "Pemasukan dari usaha"  
-    And click Simpan Data Pekerjaan
-    And system direct to Success screen
-    And user click button Lanjut Lengkapi Data Bisnis
-    #section KYB Process
-    And user in Profil Bisnis page
-    And user input profil bisnis and click button Simpan Profil Bisnis
-    And user input and click Simpan Daftar Direktur
-    And I fill my business address as followings:
-        | address  | Jl. Gambir Belok Kiri No. 10 |
-        | rt       | 000                          |
-        | rw       | 011                          |
-        | province | DKI JAKARTA                  |
-        | city     | JAKARTA TIMUR                |
-        | district | DUREN SAWIT                  |
-        | village  | PONDOK BAMBU                 |    
-    And user checklist checkbox term and condition  
-    And user checklist checkbox right and obligations
-    And user click button Lanjut Upload Dokumen
-    And user go to page list of document for PT.Perusahaan
-    And user click buttton Pilih Metode Upload Dokumen  
-    And user on bottom sheet metode upload Dokumen
-    And user validate wording for "Langsung dari Aplikasi"
-    And user click button close bottom sheet
-   
-Scenario: user can select and upload multiple document PT.Perorangan
+  Scenario: user can select and upload multiple document PT.Perorangan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
