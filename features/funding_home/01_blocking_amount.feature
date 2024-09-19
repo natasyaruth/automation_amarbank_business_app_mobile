@@ -1,5 +1,5 @@
 @blocking_amount
-Feature: Blocking amount
+Feature: Home - Blocking amount
     In order to detail amount of customer
     As a customer
     I want to see my amount divided into active amount, blocking amount and total amount
@@ -18,6 +18,7 @@ Feature: Blocking amount
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see card account 'active'
         And I wait until my account name displayed
         When I click detail amount
@@ -37,6 +38,7 @@ Feature: Blocking amount
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I mask my amount
@@ -55,6 +57,7 @@ Feature: Blocking amount
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
@@ -90,6 +93,7 @@ Feature: Blocking amount
             | userIDstg   | ruthfdcb |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
@@ -126,6 +130,7 @@ Feature: Blocking amount
             | userIDstg   | stag6dbb |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee
@@ -144,6 +149,7 @@ Feature: Blocking amount
             | userIDstg   | stag11b6 |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
@@ -162,6 +168,7 @@ Feature: Blocking amount
             | userIDstg   | stag2add |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         When I see my blocking amount is Rp 0
         And I click detail amount
@@ -181,6 +188,7 @@ Feature: Blocking amount
             | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I wait until my account name displayed
         When I see my blocking amount coming from minimum amount
         When I click detail amount
@@ -200,6 +208,7 @@ Feature: Blocking amount
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee
@@ -244,6 +253,7 @@ Feature: Blocking amount
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee and minimum amount
@@ -288,6 +298,7 @@ Feature: Blocking amount
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee
@@ -332,6 +343,7 @@ Feature: Blocking amount
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee and minimum amount

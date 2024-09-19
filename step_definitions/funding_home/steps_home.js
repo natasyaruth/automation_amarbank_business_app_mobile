@@ -7,6 +7,7 @@ const {
     globalVariable,
     documentSafePage,
     getDataDao,
+    surveyRatingPage,
     headerPage,
 } = inject();
 
@@ -139,6 +140,16 @@ Given("notification red dot document safe is off", () => {
     I.dontSee(onboardingAccOpeningPage.icons.redDotNotificationDoc);
 });
 
+Given("still not fill survey rating account opening", async () => {
+
+    // add API automation to turn on rating feature
+});
+
+Given("has been filled survey rating account opening", async () => {
+
+    // add API automation to turn off rating feature
+});
+
 When("I click detail amount", () => {
     amountDetailPage.openDetailAmount();
     I.waitForText("Saldo Rekening Giro", 10);
@@ -206,6 +217,37 @@ When("I continue to process account opening", () => {
 When("I click use document safe", () => {
     I.waitForText("Gunakan Brankas Dokumen", 10);
     documentSafePage.clickUseDocumentSafe();
+});
+
+When("I sent feedback survey", () => {
+    documentSafePage.sentFeedback();
+});
+
+When("I give {string} ratings", (ratings) => {
+    surveyRatingPage.clickRating(ratings);
+});
+
+When("I fill feedback survey {string}", async (feedback) => {
+    surveyRatingPage.fillFeedback(feedback);
+
+    const counter = await surveyRatingPage.getCountWord();
+
+    globalVariable.survey.feedBack = feedback;
+
+    const lengthFeedback = globalVariable.survey.feedBack.length;
+
+    if(
+        lengthFeedback < 259
+    ){
+
+        I.assertEqual(counter, globalVariable.survey.feedBack.length + "/259");
+
+    } else {
+
+        I.assertEqual(counter, "259/259");
+
+    }
+
 });
 
 Then("I will not see my active, blocking and total amount", async () => {
@@ -493,5 +535,104 @@ Then("I will see onboarding page to complete document safe", () => {
 
     I.see("Gunakan Brankas Dokumen");
     I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
+
+});
+
+Then("I will see pop up rating survey account opening", () => {
+    I.waitForText("Berikan penilaian terhadap aplikasi Amar Bank Bisnis", 10);
+    I.see("(1 Sangat Tidak Puas, 5 Sangat Puas)");
+
+    I.waitForElement(surveyRatingPage.buttons.oneStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.twoStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.threeStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.fourStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.fiveStar, 10);
+
+    I.dontSee("Mengapa Memberi Penilaian Tersebut?");
+    I.dontSee("Tulis disini...");
+    I.dontSeeElement(surveyRatingPage.fields.feedback);
+    I.dontSeeElement(surveyRatingPage.texts.counter);
+
+    I.dontSee("Kirim Penilaian");
+    I.dontSeeElement(surveyRatingPage.buttons.send);
+});
+
+Then("I will not see pop up rating survey account opening", () => {
+
+    I.wait(2);
+
+    I.dontSee("Berikan penilaian terhadap aplikasi Amar Bank Bisnis");
+    I.dontSee("(1 Sangat Tidak Puas, 5 Sangat Puas)");
+
+    I.dontSeeElement(surveyRatingPage.buttons.oneStar);
+});
+
+Then("I will see field text feedback survey", () => {
+    I.waitForText("Mengapa Memberi Penilaian Tersebut?", 10);
+    I.see("Tulis disini...");
+    I.waitForElement(surveyRatingPage.fields.feedback, 10);
+    I.waitForElement(surveyRatingPage.texts.counter, 10);
+
+    I.see("Kirim Penilaian");
+    I.waitForElement(surveyRatingPage.buttons.send, 10);
+});
+
+Then("I will not see field text feedback survey", () => {
+
+    I.wait(2);
+
+    I.dontSee("Mengapa Memberi Penilaian Tersebut?");
+    I.dontSee("Tulis disini...");
+    I.dontSeeElement(surveyRatingPage.fields.feedback);
+    I.dontSeeElement(surveyRatingPage.texts.counter);
+
+    I.dontSee("Kirim Penilaian");
+    I.dontSeeElement(surveyRatingPage.buttons.send);
+});
+
+Then("I will see snackbar my survey is sent", () => {
+    I.waitForText("Terima kasih. Penilaian Anda sudah terkirim.", 10);
+});
+
+Then("I will see rating survey is in main dashboard", () => {
+
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+    I.waitForText("Berikan penilaian terhadap aplikasi Amar Bank Bisnis", 10);
+    I.see("(1 Sangat Tidak Puas, 5 Sangat Puas)");
+
+    I.waitForElement(surveyRatingPage.buttons.oneStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.twoStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.threeStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.fourStar, 10);
+    I.waitForElement(surveyRatingPage.buttons.fiveStar, 10);
+
+    I.dontSee("Mengapa Memberi Penilaian Tersebut?");
+    I.dontSee("Tulis disini...");
+    I.dontSeeElement(surveyRatingPage.fields.feedback);
+    I.dontSeeElement(surveyRatingPage.texts.counter);
+
+    I.dontSee("Kirim Penilaian");
+    I.dontSeeElement(surveyRatingPage.buttons.send);
+});
+
+Then("I will not see rating survey is in main dashboard", () => {
+
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+
+    I.dontSee("Berikan penilaian terhadap aplikasi Amar Bank Bisnis");
+    I.dontSee("(1 Sangat Tidak Puas, 5 Sangat Puas)");
+
+    I.dontSeeElement(surveyRatingPage.buttons.oneStar);
+});
+
+Then("I will see field is filled with character only 259 char", () => {
+    const trimmedWords = globalVariable.survey.feedBack.substring(0,259);
+    
+    I.waitForText(trimmedWords, 10);
+});
+
+Then("I will see field feedback is filled", ()=>{
+
+    I.waitForText(globalVariable.survey.feedBack, 10);
 
 });
