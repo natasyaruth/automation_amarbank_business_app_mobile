@@ -91,6 +91,15 @@ When('I click "Info Selengkapnya" in limit card for type Loan PO', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
+When('I should be see Program Loan Information for type PO', () => {
+    loanDisbursementPage.validateProgramLoanInformationPO();
+});
+
+When('I should be see Program Loan Information for type PO below 100', () => {
+    loanDisbursementPage.validateProgramLoanPOLTVBelow100();
+});
+
+
 Then('I should be see loan program information section for that card has anchor for type Loan PO', () => {
  loanDisbursementPage.validateProgramLoanInformation();
 });
