@@ -16,6 +16,17 @@ When('I click button "Gunakan Limit" in card type Loan AP', () => {
  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
+    
+When('I am on Anchor Detail Page', () => { 
+    I.wait(3)
+    loanDisbursementPage.validatecountdownlimit();
+    I.dontsee('No.Pinjaman');
+    I.dontSee('Masa Aktif');
+    I.dontSee('Tenor');
+    I.dontSeeElement(this.buttons.buttonDownloadReport);
+
+});
+
 When('I have any past due date in type AP', () => {
  I.wait(3);
 });
@@ -126,6 +137,10 @@ Then('I should be see anchor has card in anchor detail page', async () => {
  await loanDisbursementPage.validateAlreadyUploadInvoiceAP();
 });
 
+Then('I should see Invoice with status ongoing', () => {
+     loanDisbursementPage.validateOngoinginvoice();
+});
+
 // Scenario: Validate page Loan Program Information for type AP
 Given('I have been in anchor detail page to validate loan program information for type AP', () => {
  loanDisbursementPage.openLoanDashboard();
@@ -139,7 +154,11 @@ When('I click button "Info Selengkapnya" for type AP', () => {
 });
 
 Then('I should be see Program Loan Information for type AP', () => {
- loanDisbursementPage.validateProgramLoanInformation();
+ loanDisbursementPage.validateProgramLoanInformationAP();
+});
+
+Then('I should be see Program Loan Information for type AP LTV < 100', () => {
+
 });
 
 //Scenario: Close Section Loan Program Information for type AP 

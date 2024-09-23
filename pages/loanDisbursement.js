@@ -68,6 +68,7 @@ module.exports = {
     textFieldInvoiceDueDate: "~textFieldInvoiceDueDate",
     textFieldPicName: "~textFieldPicName",
     textFieldPicNumber: "~textFieldPicNumber",
+    textcountdown: "~textcountdownlimit",
   },
 
   toastBars: {
@@ -140,6 +141,7 @@ module.exports = {
     }
   },
 
+
   async validateLoanTenorLessThanPastDueDate() {
     const loanTenorLessThanPastDueDate = await I.dontSee('Pengajuan Anda Melebihi Batas Aktif Fasilitas');
     if (loanTenorLessThanPastDueDate) {
@@ -163,6 +165,17 @@ module.exports = {
     }
   },
 
+  async validateOngoinginvoice() {
+    I.wait(10);
+    const alreadyUploadInvoice = await I.waitForElement(this.buttons.buttonDetailInvoice);
+    if (alreadyUploadInvoice) {
+      I.see('Invoice Tersedia');
+      I.seeElement(this.cards.cardLimitAP)
+      I.see('Segera Cairkan Invoice');
+      I.see('Segera Kirim Dokumen Pencairan');     
+    }
+  },
+
   async validateNotUploadInvoiceYetAP() {
     I.wait(10);
     const notUploadInvoiceYet = await I.seeElement(this.buttons.buttonDetailLimit);
@@ -182,13 +195,94 @@ module.exports = {
     I.click(this.buttons.buttonDetailLimit);
   },
 
-  validateProgramLoanInformation() {
+  validateProgramLoanInformationAP() {
     I.wait(5);
     I.waitForText('Informasi Program Pinjaman');
-    // I.see('Tenor 30 hari');
-    // I.see('Bunga per Tahun 14.4 %');
+    I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+    I.see('Tipe Pinjaman');
+    I.see('Supplier');
+    I.see('No. Pinjaman');
+    I.see('Masa Aktif');
+    I.see('Tenor');
+    I.see('Pencairan Nilai Invoice');
+    I.see('Bunga per Tahun');
+    I.see('Biaya Administrasi');    
+    },
 
-  },
+    validateProgramLoanAPLTVBelow100(){
+      I.wait(5);
+    I.waitForText('Informasi Program Pinjaman');
+    I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+    I.see('Tipe Pinjaman');
+    I.see('Supplier');
+    I.see('No. Pinjaman');
+    I.see('Masa Aktif');
+    I.see('Tenor');    
+    I.see('Pencairan Nilai Invoice');
+    I.see('Anda wajib membayar terlebih dahulu selisih antara nominal invoice dan nominal yang dicairkan ke supplier Anda');
+    I.see('Upload bukti pembayaran pada saat pencairan.');
+    I.see('Bunga per Tahun');
+    },
+
+    validateProgramLoanInformationAR() {
+      I.wait(5);
+      I.waitForText('Informasi Program Pinjaman');
+      I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+      I.see('Tipe Pinjaman');
+      I.see('Supplier');
+      I.see('No. Pinjaman');
+      I.see('Masa Aktif');
+      I.see('Tenor');
+      I.see('Pencairan Nilai Invoice');
+      I.see('Bunga per Tahun');
+      I.see('Biaya Administrasi');    
+    },
+
+    validateProgramLoanARLTVBelow100(){
+      I.wait(5);
+    I.waitForText('Informasi Program Pinjaman');
+    I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+    I.see('Tipe Pinjaman');
+    I.see('Supplier');
+    I.see('No. Pinjaman');
+    I.see('Masa Aktif');
+    I.see('Tenor');    
+    I.see('Pencairan Nilai Invoice');
+    I.see('Anda wajib membayar terlebih dahulu selisih antara nominal invoice dan nominal yang dicairkan ke supplier Anda');
+    I.see('Upload bukti pembayaran pada saat pencairan.');
+    I.see('Bunga per Tahun');
+    },
+
+
+    validateProgramLoanInformationPO() {
+      I.wait(5);
+      I.waitForText('Informasi Program Pinjaman');
+      I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+      I.see('Tipe Pinjaman');
+      I.see('Supplier');
+      I.see('No. Pinjaman');
+      I.see('Masa Aktif');
+      I.see('Tenor');
+      I.see('Pencairan Nilai Invoice');
+      I.see('Bunga per Tahun');
+      I.see('Biaya Administrasi');    
+    },
+
+    validateProgramLoanPOLTVBelow100(){
+      I.wait(5);
+    I.waitForText('Informasi Program Pinjaman');
+    I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
+    I.see('Tipe Pinjaman');
+    I.see('Supplier');
+    I.see('No. Pinjaman');
+    I.see('Masa Aktif');
+    I.see('Tenor');    
+    I.see('Pencairan Nilai Invoice');
+    I.see('Anda wajib membayar terlebih dahulu selisih antara nominal invoice dan nominal yang dicairkan ke supplier Anda');
+    I.see('Upload bukti pembayaran pada saat pencairan.');
+    I.see('Bunga per Tahun');
+    },
+
 
   closeProgramLoanInformation() {
     I.click(this.buttons.buttonClose);
@@ -689,5 +783,11 @@ module.exports = {
   takeInvoiceFromGalery() {
     I.wait()
 
-  }
+  },
+
+  async validatecountdownlimit(){    
+    actualValue = I.grabTextFromField(this.textFields.textcountdown);
+    I.assertEqual(actualValue,'Masa aktif limit tinggal 180 hari lagi');
+  },
+
 }
