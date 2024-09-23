@@ -15,7 +15,7 @@ Feature: Account Opening KYC - User Invited
     And I click later
     And I register initiator with partner as below
       | fullName        | RUDI                   |
-      | email           | rudit.bagas@gmail.com   |
+      | email           | rudit.bagas@gmail.com  |
       | phoneNumber     | 899960054041           |
       | password        | 1234Test               |
     And I choose other
