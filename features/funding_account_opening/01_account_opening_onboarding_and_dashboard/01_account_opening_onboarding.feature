@@ -101,8 +101,8 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         Then I will directing to Hook 1 Onboarding Account Opening
 
     @C159197
@@ -111,17 +111,8 @@ Feature: Account Opening Onboarding
         When I click later
         And I choose Giro Account from dashboard
         And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
-        Then I will see card account 'account opening' 
-
-    Scenario: Close page choose product entry point main dashboard
-        Given I am a customer want to open Giro Account
-        When I click later
-        And I choose Giro Account from dashboard
-        And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         Then I will see card account 'account opening' 
 
     @C131960
@@ -268,3 +259,179 @@ Feature: Account Opening Onboarding
         And I click confirm NPWP Business
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
+
+    @C160378
+    Scenario: Exit Survey with option will continue later
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I will see button sent feedback and back is enabled
+        And I submit my exit survey
+        Then I will see snackbar thank you and reason feedback is successfully sent
+        And after 3-4 seconds, snackbar thank you and reason feedback is disappear
+        And I will see card account 'on process' 
+
+    @C160379
+    Scenario: Exit Survey with option need time to compare with other apps
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Sedang membandingkan dengan aplikasi lain'
+        And I will see button sent feedback and back is enabled
+        And I submit my exit survey
+        Then I will see snackbar thank you and reason feedback is successfully sent
+        And after 3-4 seconds, snackbar thank you and reason feedback is disappear
+        And I will see card account 'on process'
+
+    @C160380
+    Scenario: Exit Survey with option not sure with the benefit
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Tidak paham dengan keuntungan yang ditawarkan'
+        And I will see button sent feedback and back is enabled
+        And I submit my exit survey
+        Then I will see snackbar thank you and reason feedback is successfully sent
+        And after 3-4 seconds, snackbar thank you and reason feedback is disappear
+        And I will see card account 'on process'
+
+    @C160381
+    Scenario: Exit Survey with option already have app with benefit same with Amarbank Business
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Sudah memiliki aplikasi menawarkan keuntungan yang serupa'
+        And I will see button sent feedback and back is enabled
+        And I submit my exit survey
+        Then I will see snackbar thank you and reason feedback is successfully sent
+        And after 3-4 seconds, snackbar thank you and reason feedback is disappear
+        And I will see card account 'on process'
+
+    @C160382
+    Scenario: Exit Survey with fill feedback
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Lainnya'
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+        And I will see field feedback exit survey
+        And I fill feedback exit survey with 'Kurang berminat'
+        And I will see button sent feedback and back is enabled
+        And I submit my exit survey
+        Then I will see snackbar thank you and reason feedback is successfully sent
+        And after 3-4 seconds, snackbar thank you and reason feedback is disappear
+        And I will see card account 'on process'
+
+    @C160383
+    Scenario: Fill feedback exit survey and then choose other option
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Lainnya'
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+        And I will see field feedback exit survey
+        And I fill feedback exit survey with 'Kurang berminat'
+        And I will see button sent feedback and back is enabled
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        Then I will not see field feedback exit survey
+        And I will see button sent feedback and back is enabled
+        And I click option exit survey 'Lainnya'
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+        And I will see field feedback exit survey
+        And I will not see the feedback anymore
+
+    @C160406
+    Scenario: Fill feedback exit survey and then delete
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Lainnya'
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+        And I will see field feedback exit survey
+        And I fill feedback exit survey with 'Kurang berminat'
+        And I clear field feedback exit survey
+        Then I will not see the feedback anymore
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+
+    @C160407
+    Scenario: Fill feedback exit survey with length char more than 60
+        Given I am a customer want to open Giro Account
+        And I click later
+        And I choose Giro Account from dashboard
+        And I choose Giro Account MSME
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        When I click close in header page
+        And I will see pop up exit survey
+        And I click option exit survey 'Lainnya'
+        And I will see button sent feedback is disabled
+        And I will see button back is enabled
+        And I will see field feedback exit survey
+        And I fill feedback exit survey with 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lorem ip'
+        Then I will see feedback filled with character only 60 char

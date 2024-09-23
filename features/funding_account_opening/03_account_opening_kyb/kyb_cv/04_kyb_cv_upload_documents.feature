@@ -6,13 +6,15 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         Background: User choose legality business type PT Perusahaan
             Given I am a registered customer with following details:
-                  | userID      | deve79fc |
+                  | userID      | deve875b |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |   
-              And I reset state upload document    
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
               And I filling in form login with the following details:
-                  | userID      | deve79fc |
+                  | userID      | deve875b |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
@@ -44,10 +46,10 @@ Feature: Account Opening KYB CV - Upload Document Business
                   | address  | Jl. Gambir Belok Kiri No. 10 |
                   | rt       | 000                          |
                   | rw       | 011                          |
-                  | province | ACEH                         |
-                  | city     | KAB. ACEH TIMUR              |
-                  | district | DARUL AMAN                   |
-                  | village  |                              |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
               And I agree to carry out the Rights and Obligations
               And I will directing to page Rights and Obligations
               And I click button agree with Rights and Obligations
@@ -159,6 +161,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button progress upload document
               And I will see all document company has been uploaded
               And I will see button request account opening is shown
+              And I click button progress upload document
               And I delete all document company
              Then I will not see all document company
               And I will not see button request account opening
@@ -204,6 +207,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         @C136873
         Scenario: Close page Progress upload Document (condition: no uploaded yet)
             Given I am a customer who has submitted business address
+             And complete onboarding document safe and survey
              When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
@@ -344,10 +348,10 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'Akta Perubahan Terakhir' with type 'pdf'
-              And I upload document business 'SK Kemenkumham Pendirian Perubahan Terakhir' with type 'pdf'
+              And I upload document business 'SK Kemenkumham Perubahan Terakhir' with type 'pdf'
               And I click button progress upload document
               Then I will see document 'Akta Perubahan Terakhir' is uploaded
-              And I will see document 'SK Kemenkumham Pendirian Perubahan Terakhir' is uploaded
+              And I will see document 'SK Kemenkumham Perubahan Terakhir' is uploaded
               And I will not see button request account opening
 
         @C160189

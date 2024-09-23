@@ -10,6 +10,7 @@ Feature: Account Opening KYC Individual - Submit Form KTP
       | password    | 1234Test |
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
+    And I reset my state journey  
     And I filling in form login with the following details:
       | userID      | ruth0c1c |
       | password    | 1234Test |

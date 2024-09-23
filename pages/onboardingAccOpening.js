@@ -39,9 +39,12 @@ module.exports = {
     backNpwp: "~btnBack",
     confirmNpwp: "~btnConfirmed",
     closeBottomSheet: "~buttonClose",
+    sentFeedBack: "~yesBtn",
+    cancelFeedBack: "~cancelBtn"
   },
   fields: {
-    npwpBusiness: "~textFieldNpwpNumber"
+    npwpBusiness: "~textFieldNpwpNumber",
+    fieldFeedback: "~otherField",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -49,6 +52,11 @@ module.exports = {
     individualBusiness: "~optionPTPerorangan",
     ud: "~optionUD",
     individual: "~optionIndividu",
+    rbProcessLater: "~checklist1",
+    rbComparingApp: "~checklist2",
+    rbNotSure: "~checklist3",
+    rbHasOtherApp: "~checklist4",
+    rbOther: "~checklist5",
   },
   texts: {
     userId: "~txtUserName",
@@ -93,6 +101,10 @@ module.exports = {
   },
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
+  },
+  statusEnabled: {
+    buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
+    buttonCancelProcess: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[7]"},
   },
 
   chooseLegalityBusinessType(type) {
@@ -427,6 +439,11 @@ module.exports = {
     I.clearField(this.fields.npwpBusiness);
   },
 
+  clearFieldFeedback() {
+    I.waitForElement(this.fields.fieldFeedback, 10);
+    I.clearField(this.fields.fieldFeedback);
+  },
+
   async getNPWPBusiness() {
     I.waitForElement(this.texts.npwpNumber, 10);
     return I.grabTextFrom(this.texts.npwpNumber);
@@ -445,6 +462,72 @@ module.exports = {
   closeBottomSheet() {
     I.waitForElement(this.buttons.closeBottomSheet, 10);
     I.click(this.buttons.closeBottomSheet);
+  },
+
+  clickRbProcessLater() {
+    I.waitForElement(this.radioButtons.rbProcessLater, 10);
+    I.click(this.radioButtons.rbProcessLater);
+  },
+
+  clickRbComparingApp() {
+    I.waitForElement(this.radioButtons.rbComparingApp, 10);
+    I.click(this.radioButtons.rbComparingApp);
+  },
+
+  clickRbNotSure() {
+    I.waitForElement(this.radioButtons.rbNotSure, 10);
+    I.click(this.radioButtons.rbNotSure);
+  },
+
+  clickRbHasOtherApp() {
+    I.waitForElement(this.radioButtons.rbHasOtherApp, 10);
+    I.click(this.radioButtons.rbHasOtherApp);
+  },
+
+  clickRbOther() {
+    I.waitForElement(this.radioButtons.rbOther, 10);
+    I.click(this.radioButtons.rbOther);
+  },
+
+  fillFeedBack(text) {
+    I.waitForElement(this.fields.fieldFeedback, 10);
+    I.click(this.fields.fieldFeedback);
+    I.type(text, 100);
+    I.hideDeviceKeyboard();
+  },
+
+  backToProcessAcc() {
+    I.waitForElement(this.buttons.cancelFeedBack, 10);
+    I.click(this.buttons.cancelFeedBack);
+  },
+
+  sendExitSurvey() {
+    I.waitForElement(this.buttons.sentFeedBack, 10);
+    I.click(this.buttons.sentFeedBack);
+  },
+
+  clickOptionExitSurvey(option) {
+
+    switch (option) {
+
+      case "Proses akan dilanjutkan nanti":
+        this.clickRbProcessLater();
+        break;
+      case "Sedang membandingkan dengan aplikasi lain":
+        this.clickRbComparingApp();
+        break;
+      case "Tidak paham dengan keuntungan yang ditawarkan":
+        this.clickRbNotSure();
+        break;
+      case "Sudah memiliki aplikasi menawarkan keuntungan yang serupa":
+        this.clickRbHasOtherApp();
+        break;
+      case "Lainnya":
+        this.clickRbOther();
+        break;
+      default:
+        throw new Error("Option "+option+" is not recognize. Please check again");  
+    }
   },
 
 }

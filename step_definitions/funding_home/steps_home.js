@@ -9,6 +9,7 @@ const {
     getDataDao,
     surveyRatingPage,
     headerPage,
+    mockingDao
 } = inject();
 
 Given(/I am on home page/, () => {
@@ -142,12 +143,16 @@ Given("notification red dot document safe is off", () => {
 
 Given("still not fill survey rating account opening", async () => {
 
-    // add API automation to turn on rating feature
+    await
+        mockingDao.configCSATSurveyON();
+
 });
 
 Given("has been filled survey rating account opening", async () => {
 
-    // add API automation to turn off rating feature
+    await
+        mockingDao.configCSATSurveyOFF();
+
 });
 
 When("I click detail amount", () => {
@@ -236,9 +241,9 @@ When("I fill feedback survey {string}", async (feedback) => {
 
     const lengthFeedback = globalVariable.survey.feedBack.length;
 
-    if(
+    if (
         lengthFeedback < 259
-    ){
+    ) {
 
         I.assertEqual(counter, globalVariable.survey.feedBack.length + "/259");
 
@@ -626,12 +631,12 @@ Then("I will not see rating survey is in main dashboard", () => {
 });
 
 Then("I will see field is filled with character only 259 char", () => {
-    const trimmedWords = globalVariable.survey.feedBack.substring(0,259);
-    
+    const trimmedWords = globalVariable.survey.feedBack.substring(0, 259);
+
     I.waitForText(trimmedWords, 10);
 });
 
-Then("I will see field feedback is filled", ()=>{
+Then("I will see field feedback is filled", () => {
 
     I.waitForText(globalVariable.survey.feedBack, 10);
 
