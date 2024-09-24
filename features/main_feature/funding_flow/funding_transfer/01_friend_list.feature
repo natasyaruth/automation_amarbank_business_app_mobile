@@ -10,15 +10,21 @@ Feature: User add friend list
         Given I am a registered customer with following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | yahyb7cb |
+            | passwordStg | Akuntes2 |
+            # | userIDstg   | stag76ee |
+            # | passwordStg | Test1234 |
         When I filling in form login with the following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | yahyb7cb |
+            | passwordStg | Akuntes2 |
+            # | userIDstg   | stag76ee |
+            # | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         Then I will direct to dashboard
+       
 
     #@C96935
     Scenario: User click back button
@@ -31,8 +37,8 @@ Feature: User add friend list
     Scenario: User search friend list
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
-        And I input name 'NEGARA ADIL MAKMUR' from the search box
-        Then I find name 'NEGARA ADIL MAKMUR' from the list
+        And I input name 'BISNIS PERORANGAN' from the search box
+        Then I find name 'BISNIS PERORANGAN' from the list
 
     #@C96937
     Scenario: User search friend list and the name is not found
