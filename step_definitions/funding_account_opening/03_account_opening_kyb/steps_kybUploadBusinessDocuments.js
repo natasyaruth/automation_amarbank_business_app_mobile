@@ -167,8 +167,11 @@ When("I upload all document business for type company", async () => {
 });
 
 When("I upload all document business for type individual company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
     await
-        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password);
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password, legalityType);
 });
 
 When("I upload all document business required for type company", async () => {
@@ -176,11 +179,12 @@ When("I upload all document business required for type company", async () => {
         uploadBusinessDocPage.uploadAllDocumentCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
 });
 
-When("I upload all document business required for type company", async () => {
+When("I upload all document business required for type individual company", async () => {
 
     const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
     await
-        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(globalVariable.login.userID, globalVariable.login.password, legalityType);
 });
 
 When("I delete document {string}", async (typeDoc) => {
@@ -585,13 +589,16 @@ Then("I will see all document required company has been uploaded", () => {
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
 
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
     I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
-
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(1);
 
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
@@ -629,13 +636,15 @@ Then("I will see all document business individual company has been uploaded", as
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
         I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
 
-        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-
         I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
         I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
@@ -678,13 +687,15 @@ Then("I will see all document required business individual company has been uplo
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
         I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
 
-        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-
         I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
         I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
         I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);

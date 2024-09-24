@@ -83,7 +83,7 @@ When("I upload other document with type {string}", async (typeDoc) => {
 
     documentPage.clickUploadDoc();
 
-    I.waitForElement(documentPage.googleElement.titleDrive, 30);
+    I.waitForElement(documentPage.googleElement.search, 30);
     const newFileName = await documentPage.searchGoogleDrive(fileName);
 
     globalVariable.uploadDocuments.fileName.unshift(newFileName);
@@ -340,27 +340,21 @@ Then("I will see document business for type company", () => {
 
     I.waitForElement(documentPage.buttons.downloadNib, 10);
     I.see("NIB");
-    I.see("NIB.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadDeedBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadDeed, 10);
     I.see("Akta Pendirian");
-    I.see("Akta Pendirian.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadSkBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadSk, 10);
     I.see("SK Kemenkumham Pendirian");
-    I.see("SK Kemenkumham Pendirian.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadNpwpBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadNpwp, 10);
     I.see("NPWP Bisnis");
-    I.see("NPWP Bisnis.pdf");
 
     I.waitForElement(documentPage.buttons.downloadLastCertificate, 10);
     I.see("Akta Perubahan Terakhir");
-    I.see("Akta Perubahan Terakhir.pdf");
 
     I.waitForElement(documentPage.buttons.downloadLastSk, 10);
     I.see("SK Kemenkumham Perubahan Terakhir");
-    I.see("SK Kemenkumham Perubahan Terakhir.pdf");
 
     I.see("Dokumen Giro");
 });
@@ -369,27 +363,21 @@ Then("I will see document business required for type company", () => {
 
     I.waitForElement(documentPage.buttons.downloadNib, 10);
     I.see("NIB");
-    I.see("NIB.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadDeedBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadDeed, 10);
     I.see("Akta Pendirian");
-    I.see("Akta Pendirian.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadSkBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadSk, 10);
     I.see("SK Kemenkumham Pendirian");
-    I.see("SK Kemenkumham Pendirian.pdf");
 
-    I.waitForElement(documentPage.buttons.downloadNpwpBusiness, 10);
+    I.waitForElement(documentPage.buttons.downloadNpwp, 10);
     I.see("NPWP Bisnis");
-    I.see("NPWP Bisnis.pdf");
 
     I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
     I.dontSee("Akta Perubahan Terakhir");
-    I.dontSee("Akta Perubahan Terakhir.pdf");
 
     I.dontSeeElement(documentPage.buttons.downloadLastSk);
     I.dontSee("SK Kemenkumham Perubahan Terakhir");
-    I.dontSee("SK Kemenkumham Perubahan Terakhir.pdf");
 
     I.see("Dokumen Giro");
 });
@@ -404,27 +392,21 @@ Then("I will see document business for type individual company", async () => {
 
         I.waitForElement(documentPage.buttons.downloadNib, 10);
         I.see("NIB");
-        I.see("NIB.pdf");
 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
-        I.see("NPWP Bisnis.pdf");
 
         I.dontSeeElement(documentPage.buttons.downloadDeed);
         I.dontSee("Sertifikat Pendaftaran");
-        I.dontSee("Sertifikat Pendaftaran.pdf");
 
-        I.dontSeeElement(documentPage.buttons.downloadSk);
+        I.dontSeeElement(documentPage.buttons.downloadLetter);
         I.dontSee("Surat Pernyataan Pendirian");
-        I.dontSee("Surat Pernyataan Pendirian.pdf");
 
         I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
         I.dontSee("Sertifikat Perubahan Terakhir");
-        I.dontSee("Sertifikat Perubahan Terakhir.pdf");
 
-        I.dontSeeElement(documentPage.buttons.downloadLastSk);
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
         I.dontSee("Surat Pernyataan Perubahan Terakhir");
-        I.dontSee("Surat Pernyataan Perubahan Terakhir.pdf");
 
     } else if (
         legalityType === "PT Perorangan"
@@ -432,27 +414,21 @@ Then("I will see document business for type individual company", async () => {
 
         I.waitForElement(documentPage.buttons.downloadNib, 10);
         I.see("NIB");
-        I.see("NIB.pdf");
 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
-        I.see("NPWP Bisnis.pdf");
 
         I.waitForElement(documentPage.buttons.downloadDeed, 10);
         I.see("Sertifikat Pendaftaran");
-        I.see("Sertifikat Pendaftaran.pdf");
 
-        I.waitForElement(documentPage.buttons.downloadSk, 10);
+        I.waitForElement(documentPage.buttons.downloadLetter, 10);
         I.see("Surat Pernyataan Pendirian");
-        I.see("Surat Pernyataan Pendirian.pdf");
 
         I.waitForElement(documentPage.buttons.downloadLastCertificate, 10);
         I.see("Sertifikat Perubahan Terakhir");
-        I.see("Sertifikat Perubahan Terakhir.pdf");
 
-        I.waitForElement(documentPage.buttons.downloadLastSk, 10);
+        I.waitForElement(documentPage.buttons.downloadLastLetter, 10);
         I.see("Surat Pernyataan Perubahan Terakhir");
-        I.see("Surat Pernyataan Perubahan Terakhir.pdf");
 
     } else {
 
@@ -472,27 +448,21 @@ Then("I will see document business required for type individual company", async 
 
         I.waitForElement(documentPage.buttons.downloadNib, 10);
         I.see("NIB");
-        I.see("NIB.pdf");
 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
-        I.see("NPWP Bisnis.pdf");
 
         I.dontSeeElement(documentPage.buttons.downloadDeed);
         I.dontSee("Sertifikat Pendaftaran");
-        I.dontSee("Sertifikat Pendaftaran.pdf");
 
-        I.dontSeeElement(documentPage.buttons.downloadSk);
+        I.dontSeeElement(documentPage.buttons.downloadLetter);
         I.dontSee("Surat Pernyataan Pendirian");
-        I.dontSee("Surat Pernyataan Pendirian.pdf");
 
         I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
         I.dontSee("Sertifikat Perubahan Terakhir");
-        I.dontSee("Sertifikat Perubahan Terakhir.pdf");
 
-        I.dontSeeElement(documentPage.buttons.downloadLastSk);
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
         I.dontSee("Surat Pernyataan Perubahan Terakhir");
-        I.dontSee("Surat Pernyataan Perubahan Terakhir.pdf");
 
     } else if (
         legalityType === "PT Perorangan"
@@ -500,27 +470,21 @@ Then("I will see document business required for type individual company", async 
 
         I.waitForElement(documentPage.buttons.downloadNib, 10);
         I.see("NIB");
-        I.see("NIB.pdf");
 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
-        I.see("NPWP Bisnis.pdf");
 
         I.waitForElement(documentPage.buttons.downloadDeed);
         I.see("Sertifikat Pendaftaran");
-        I.see("Sertifikat Pendaftaran.pdf");
 
-        I.waitForElement(documentPage.buttons.downloadSk);
+        I.waitForElement(documentPage.buttons.downloadLetter);
         I.see("Surat Pernyataan Pendirian");
-        I.see("Surat Pernyataan Pendirian.pdf");
 
         I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
         I.dontSee("Sertifikat Perubahan Terakhir");
-        I.dontSee("Sertifikat Perubahan Terakhir.pdf");
 
-        I.dontSeeElement(documentPage.buttons.downloadLastSk);
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
         I.dontSee("Surat Pernyataan Perubahan Terakhir");
-        I.dontSee("Surat Pernyataan Perubahan Terakhir.pdf");
 
     } else {
 

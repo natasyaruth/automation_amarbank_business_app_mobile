@@ -248,6 +248,7 @@ Feature: Registering New Device
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
         And I reset my device id to new device
+        And don’t have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
@@ -268,7 +269,12 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I will see card account 'active'  
+        And I will see card account 'active'
+        And I see red dot notification center
+        And I click notification center
+        And I see notification register new device successfully changes
+        And I click notification center
+        And I will direct to detail register new device successfully changes
 
     @C135615
     Scenario: Login to app using different user id - device id of other user id has been registered

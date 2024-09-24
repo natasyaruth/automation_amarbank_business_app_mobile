@@ -33,8 +33,10 @@ module.exports = {
     login: {
         password: "",
         passwordPartner: "",
+        passwordFriendlist: "",
         userID: "",
         userIDPartner: "",
+        userIDFriendlist: "",
         countValue: "",
         date: "",
         time: "",
