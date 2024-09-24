@@ -55,6 +55,7 @@ Scenario: Validate error input tenor below min 30 hari
 
 #takeout location bisnis
 
+@FunctTestLending
 Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -67,8 +68,7 @@ Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
 
  Scenario: User apply first loan PO direct type with flagging MSME
     Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button "ajukan pinjaman"
+    When user click button Ajukan Limit Kredit    
     And User select loan type "PO"
     And User on Loan Needs Page
     And User on nominal "Rp50 juta - 5 Miliar"
@@ -80,8 +80,8 @@ Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     And user select industry type
     And user select the year cooperating  
     And user click Pilih
-    And user click button next 
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya
@@ -170,8 +170,7 @@ Scenario: Checking Credit Analyst Process
 
 Scenario: Validate bottom sheet for Upload Dokumen
     Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button "ajukan pinjaman"
+    When user click button Ajukan Limit Kredit    
     And User select loan type "PO"
     And User on Loan Needs Page
     And User on nominal "Rp50 juta - 5 Miliar"
@@ -182,8 +181,8 @@ Scenario: Validate bottom sheet for Upload Dokumen
     And user fill a field "BowheerName" with "PO test"
     And user select industry type
     And user select the date cooperating  
-    And user click button next 
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya

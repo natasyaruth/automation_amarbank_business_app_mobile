@@ -10,6 +10,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
+        And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ptpeff9b |
             | password    | 1234Test |
@@ -28,8 +29,8 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
-        When I continue to process KYB
-        And I fill my business profile as followings:
+        And I see page 'Data Business Profile'
+        When I fill my business profile as followings:
             | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
             | industry           | Jasa                                  |
             | businessField      | Restoran                              |

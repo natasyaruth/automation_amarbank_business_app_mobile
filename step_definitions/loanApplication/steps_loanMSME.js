@@ -83,11 +83,6 @@ When('I click button next', () => {
     //selectLoanAmountPage.validateCompletedDataSection();
 //});
 
-When("I submit my legality type", () => {
-    onboardingAccOpeningPage.continueToKYC();
-    I.wait(3);
-});
-
 Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
     const legalityType = globalVariable.onBoarding.legality;
 

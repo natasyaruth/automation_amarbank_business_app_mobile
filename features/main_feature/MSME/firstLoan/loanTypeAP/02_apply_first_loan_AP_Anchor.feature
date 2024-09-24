@@ -56,6 +56,7 @@ Scenario: Validate error input tenor more than 180 hari
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 ## take out location bisnis#
+@FunctTestLending
 Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -82,8 +83,8 @@ Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flag
     And click button Pilih Supplier Ini   
     And user select year cooperating  "2020"   
     And usr click Pilih 
-    And user click button next   
-    And user click button Lanjut Lengkapi Data    
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya
@@ -121,12 +122,13 @@ Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flag
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
-    And user upload docuemnt "nib"
-    And user upload document "aktaperusahaan"
-    And user upload document "skkemenkumhan"
-    And user upload document "npwpofComp"
-    And user upload document "KTPOfComm"
-    And user upload document "npwpofComm"
+    And user upload docuemnt "nib"   
+    And user upload document "aktapendirian"
+    And user upload document "skkemenkumhanpendirian"
+    And user upload document "npwpbisnis"
+    And user upload document "aktaperubahanterakhir"    
+    And user upload document "skkemenkumhanperubahanakhir"
+    And user upload document "ktpdannpwpcom"
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
@@ -142,7 +144,7 @@ Scenario: validate progress monitoring loan checking document
     And user can see X button to back to Main Dashboard
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user lick button Upload Ulang Dokumen
+    And user click button Upload Ulang Dokumen
     Then user go back to page Progres Upload Dokumen
 
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
@@ -166,64 +168,15 @@ Scenario: validate progress monitoring loan checking document
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
-
-
-Scenario: Validate bottom sheet for Upload Dokumen from Perangkat Lain
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit 
-    When user click button "ajukan pinjaman"
-    And User select loan type "AP"
-    And User on Loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"  
-    And user input loan tenor "30"     
-    And user click button Lanjut isi data supplier    
-    #section select Anchor
-    And user on buyer cooperating page
-    And user fill search anchor "PT Tirta Investama"
-    And click button Pilih Supplier Ini   
-    And user select year cooperating  "2020"   
-    And usr click Pilih 
-    And user checklist checbox term and condition
-    And user checklist checbox privy
-    And user click button next    
-    And user click button Lanjut Lengkapi Data
-    #section KYC Process
-    Given user choose Business Type "PT Perusahaan"
-    And user click Selanjutnya
-    And user take photo eKTP
-    And user click "Saya Mengerti"
-    And user click "Ambil Foto eKTP"
-    And user click "Kirim Foto"
-    And user input and save eKTP data
-    And user click take "Foto Diri"
-    And user click "Kirim Foto"
-    And user input and save personal individual data
-    And user select domicile address
-    When user input "Data Pekerjaan"
-    And click Simpan Data Pekerjaan
-    And system direct to Success screen
-    Then user click button Lanjut Lengkapi Data Bisnis
-    #section KYB Process
-    And user in Profil Bisnis page
-    And user input profil bisnis and click button Simpan Profil Bisnis
-    And user input and click Simpan Daftar Direktur
-    And I fill my business address as followings:
-        | address  | Jl. Gambir Belok Kiri No. 10 |
-        | rt       | 000                          |
-        | rw       | 011                          |
-        | province | DKI JAKARTA                  |
-        | city     | JAKARTA TIMUR                |
-        | district | DUREN SAWIT                  |
-        | village  | PONDOK BAMBU                 |    
-    And user checklist checkbox term and condition  
-    And user checklist checkbox right and obligations
-    And user click button Lanjut Upload Dokumen
-    And user validate description prepare the following documents 'MSMEAPPT.Perusahaan' 
-    And user click buttton Pilih Metode Upload Dokumen  
-    And user on bottom sheet metode upload Dokumen
-    And user validate wording for "Dari Perangkat lain/ Delegasi"
-    And user click button close bottom sheet
+Scenario: Validate bottom sheet for Metode Upload Dokumen 
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    Then user will see bottom sheet metode upload Dokumen
    
+
 
 Scenario: user can select and upload multiple document for PT.Perusahaan
   Given user already apply loan but have no upload document

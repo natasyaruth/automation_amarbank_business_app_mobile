@@ -11,12 +11,23 @@ Given(/user validate text prepare the following documents/, () => {
 When(/user validate description prepare the following documents \"([^\"]*)\"/,(loanType)=>{
     uploadDocLoanPage.validateBottomSheetDocNeededContent(loanType);
 });
+
+Then(/user click buttton Pilih Metode Upload Dokumen/, () => {
+    I.wait(2);
+    uploadDocLoanPage.clickBtnSelectMetodeUploadDocument();
+});
+
+Then(/user will see bottom sheet metode upload Dokumen/, () => {
+    I.wait(2);
+    uploadDocLoanPage.validatebottomsheetmetodeupload();
+});
+
 Then(/user click button upload documents/, () => {
     uploadDocLoanPage.clickBtnUploadDoc();
 });
 
 // section upload document
-Given(/user on upload document page/, () => {
+Given(/user on Progress Upload Dokumen Page/, () => {
     uploadDocLoanPage.viewUploadDocPage();
 });
 When(/user upload document \"([^\"]*)\"/,(docType)=>{

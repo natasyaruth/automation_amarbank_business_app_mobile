@@ -14,41 +14,61 @@ module.exports = {
     sendRequestAccOpening: "~buttonSubmit",
     refresh: "~buttonRefresh",
     deleteNIB: "~button0",
-    deleteAkta: "~button1",
+    deleteNPWP: "~button1",
+    deleteAktaBusiness: "~button1",
+    deleteNPWPBusiness: "~button3",
+    deleteAkta: "~button2",
+    deleteSKBusiness: "~button2",
     deleteSK: "~button2",
-    deleteNPWP: "~button3",
+    deleteLastCertificate: "~button4",
+    deleteLastSk: "~button5",
     directToProgressAccOpening: "~buttonNext",
     reUpload: "~buttonUpload",
-    callCenter: {xpath: "//android.widget.TextView[@content-desc=\"buttonCallCenter\"]"},
+    callCenter: { xpath: "//android.widget.TextView[@content-desc=\"buttonCallCenter\"]" },
     confirmDelete: "~buttonDelete",
     cancelDelete: "~buttonBack",
     close: "~buttonCloseBottomSheet",
   },
   upload: {
-    nib: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[1]"},
-    certificate: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[2]"},
-    sk: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[3]"},
-    npwp: {xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[4]"},
+    nib: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[1]" },
+    certificateBusiness: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[2]" },
+    certificate: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[3]" },
+    sk: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[4]" },
+    skBusiness: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[3]" },
+    npwp: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[2]" },
+    npwpBusiness: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[4]" },
+    lastCertificate: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[5]" },
+    lastSk: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[6]" },
   },
   link: {
     callCenter: "~buttonCallCenter",
     viaOtherDevice: "~buttonUploadWeb",
     directToDashboard: "~buttonToDashboard",
   },
-  texts:{
+  texts: {
     sizeDocumentNIB: "~sizeSource0",
-    sizeDocumentAkta: "~sizeSource1",
+    sizeDocumentAktaBusiness: "~sizeSource1",
+    sizeDocumentAkta: "~sizeSource2",
     sizeDocumentSK: "~sizeSource2",
-    sizeDocumentNPWP: "~sizeSource3",
+    sizeDocumentSKBusiness: "~sizeSource3",
+    sizeDocumentNPWPBusiness: "~sizeSource3",
+    sizeDocumentNPWP: "~sizeSource1",
+    sizeDocumentLastCertificate: "~sizeSource4",
+    sizeDocumentLastSk: "~sizeSource5",
   },
   messageError: {
     uploadDoc: "~textErrorUpload",
   },
-  icons:{
-    uploadedNib: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[1]"},
-    uploadedAkta: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[2]"},
-    uploadedSK: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[3]"},
-    uploadedNpwp: {xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[4]"},
+  icons: {
+    uploadedNib: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[1]" },
+    uploadedAkta: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[3]" },
+    uploadedAktaBusiness: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[2]" },
+    uploadedSK: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[4]" },
+    uploadedSKBusiness: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[3]" },
+    uploadedNpwp: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[2]" },
+    uploadedNpwpBusiness: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[4]" },
+    uploadedLastCertificate: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[5]" },
+    uploadedLastSk: { xpath: "(//android.view.View[@content-desc=\"iconUploaded\"])[6]" },
   },
 
   clickUploadDocument() {
@@ -62,14 +82,16 @@ module.exports = {
   },
 
   // BUSINESS DOC ENUM
-  // 1. nib
-  // 2. akta_pendirian
-  // 3. anggaran_dasar
-  // 4. akta_perubahan_terakhir
-  // 5. npwp
-  // 6. surat_pernyataan_pendirian_pt
-  // 7. sk_kemenkumham
-  // 8. others
+  // 1 -> nib
+  // 2 -> akta_pendirian
+  // 3 -> anggaran_dasar
+  // 4 -> akta_perubahan_terakhir / sertifikat_perubahan_terakhir
+  // 5 -> npwp_business
+  // 6 -> surat_pernyataan_pendirian_pt
+  // 7 -> sk_kemenkumham
+  // 8 -> others
+  // 9 -> sk_kemenkumham_perubahan
+  // 10 -> surat_pernyataan_perubahan_terakhir
 
   getEnumDoc(typeDoc) {
     let enumDoc = 0;
@@ -77,12 +99,24 @@ module.exports = {
     switch (typeDoc) {
       case "NIB":
         return enumDoc = 1;
-      case "Akta Perusahaan":
+      case "Akta Pendirian":
         return enumDoc = 2;
-      case "SK Kemenkumham":
+      case "Akta Perubahan Terakhir":
+        return enumDoc = 4;
+      case "Sertifikat Perubahan Terakhir":
+        return enumDoc = 4;
+      case "Sertifikat Pendaftaran":
         return enumDoc = 7;
-      case "NPWP Perusahaan":
+      case "NPWP Bisnis":
         return enumDoc = 5;
+      case "Surat Pernyataan Pendirian":
+        return enumDoc = 6;
+      case "SK Kemenkumham Pendirian":
+        return enumDoc = 7;
+      case "SK Kemenkumham Perubahan Terakhir":
+        return enumDoc = 9;
+      case "Surat Pernyataan Perubahan Terakhir":
+        return enumDoc = 10;
       default:
         throw new Error("Document name is not recognize");
     }
@@ -92,24 +126,72 @@ module.exports = {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 2, 5, 7];
+    const enumDoc = [1, 2, 4, 5, 7, 9];
 
-    for(let i=0;i<4;i++){
+    for (let i = 0; i < enumDoc.length; i++) {
       await
         uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
-      I.wait(5);  
+      I.wait(5);
     }
 
   },
 
-  async uploadAllDocumentIndividualCompany(userID, password) {
+  async uploadAllDocumentCompanyRequired(userID, password) {
+
     const fileType = 'pdf';
-    await
-      uploadDao.uploadDocBusiness(userID, password, 1, fileType);
-      I.wait(5);  
-    await
-      uploadDao.uploadDocBusiness(userID, password, 2, fileType);
-      I.wait(5);  
+
+    const enumDoc = [1, 2, 5, 7];
+
+    for (let i = 0; i < enumDoc.length; i++) {
+      await
+        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+      I.wait(5);
+    }
+
+  },
+
+  async uploadAllDocumentIndividualCompanyRequired(userID, password) {
+
+    const fileType = 'pdf';
+
+    const enumDoc = [1, 5, 7, 6];
+
+    for (let i = 0; i < enumDoc.length; i++) {
+      await
+        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+      I.wait(5);
+    }
+
+  },
+
+  async uploadAllDocumentIndividualCompany(userID, password, legalityType) {
+    const fileType = 'pdf';
+
+    const enumDocUD = [1, 5];
+
+    const enumDocIndividualComp = [1, 5, 7, 6, 4, 10];
+
+    if (
+
+      legalityType === "UD"
+
+    ) {
+      for (let i = 0; i < enumDocUD.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(userID, password, enumDocUD[i], fileType);
+        I.wait(5);
+      }
+    } else if (
+
+      legalityType === "PT Perorangan"
+
+    ) {
+      for (let i = 0; i < enumDocIndividualComp.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(userID, password, enumDocIndividualComp[i], fileType);
+        I.wait(5);
+      }
+    }
 
   },
 
@@ -118,8 +200,8 @@ module.exports = {
 
     await
       uploadDao.uploadDocBusiness(userID, password, enumDoc, fileType);
-    
-      I.wait(2);
+
+    I.wait(2);
   },
 
   async getMessageError() {
@@ -132,97 +214,122 @@ module.exports = {
     I.click(this.link.callCenter);
   },
 
-  clickChooseMethodUpload(){
+  clickChooseMethodUpload() {
     I.waitForElement(this.buttons.chooseMethodUpload, 10);
     I.click(this.buttons.chooseMethodUpload);
   },
 
-  chooseDirectUpload(){
+  chooseDirectUpload() {
     I.waitForElement(this.buttons.methodViaApp, 10);
     I.click(this.buttons.methodViaApp);
   },
 
-  chooseUploadFromOtherDevice(){
+  chooseUploadFromOtherDevice() {
     I.waitForElement(this.buttons.methodViaOtherDevice, 10);
     I.click(this.buttons.methodViaOtherDevice);
   },
 
-  copyLink(){
+  copyLink() {
     I.waitForElement(this.buttons.copy, 10);
     I.click(this.buttons.copy);
   },
 
-  clickDirectToProgressUploadDoc(){
+  clickDirectToProgressUploadDoc() {
     I.waitForElement(this.buttons.directToUploadProgress, 10);
     I.click(this.buttons.directToUploadProgress);
   },
 
-  clickUpdateProgress(){
+  clickUpdateProgress() {
     I.waitForElement(this.buttons.refresh, 10);
     I.click(this.buttons.refresh);
   },
 
-  clickLinkUploadViaOtherDevice(){
+  clickLinkUploadViaOtherDevice() {
     I.waitForElement(this.link.viaOtherDevice, 10);
     I.click(this.link.viaOtherDevice);
   },
 
-  deleteDocumentNIB(){
+  deleteDocumentNIB() {
     I.waitForElement(this.buttons.deleteNIB, 10);
     I.click(this.buttons.deleteNIB);
   },
 
-  deleteDocumentAktaPerusahaan(){
+  deleteDocumentAktaBusiness() {
+    I.waitForElement(this.buttons.deleteAktaBusiness, 10);
+    I.click(this.buttons.deleteAktaBusiness);
+  },
+
+  deleteDocumentAkta() {
     I.waitForElement(this.buttons.deleteAkta, 10);
     I.click(this.buttons.deleteAkta);
   },
 
-  deleteDocumentSK(){
+  deleteDocumentSK() {
     I.waitForElement(this.buttons.deleteSK, 10);
     I.click(this.buttons.deleteSK);
   },
 
-  deleteDocumentNPWPPerusahaan(){
+  deleteDocumentSKBusiness() {
+    I.waitForElement(this.buttons.deleteSKBusiness, 10);
+    I.click(this.buttons.deleteSKBusiness);
+  },
+
+  deleteDocumentNPWPBusiness() {
+    I.waitForElement(this.buttons.deleteNPWPBusiness, 10);
+    I.click(this.buttons.deleteNPWPBusiness);
+  },
+
+  deleteDocumentNPWP() {
     I.waitForElement(this.buttons.deleteNPWP, 10);
     I.click(this.buttons.deleteNPWP);
   },
 
-  clickRequestAccOpening(){
+  deleteDocumentLastAkta() {
+    I.waitForElement(this.buttons.deleteLastCertificate, 10);
+    I.click(this.buttons.deleteLastCertificate);
+  },
+
+  deleteDocumentLastSK() {
+    I.waitForElement(this.buttons.deleteLastSk, 10);
+    I.click(this.buttons.deleteLastSk);
+  },
+
+  clickRequestAccOpening() {
     I.waitForElement(this.buttons.sendRequestAccOpening, 10);
     I.click(this.buttons.sendRequestAccOpening);
   },
 
-  clickDirectToProgressAccOpening(){
+  clickDirectToProgressAccOpening() {
     I.waitForElement(this.buttons.chooseMethodUpload, 10);
     I.click(this.buttons.chooseMethodUpload);
   },
 
-  clickLinkToMainDashboard(){
+  clickLinkToMainDashboard() {
     I.waitForElement(this.link.directToDashboard, 10);
     I.click(this.link.directToDashboard);
   },
 
-  confirmDelete(){
+  confirmDelete() {
     I.waitForElement(this.buttons.confirmDelete, 10);
     I.click(this.buttons.confirmDelete);
   },
 
-  cancelDelete(){
+  cancelDelete() {
     I.waitForElement(this.buttons.cancelDelete, 10);
     I.click(this.buttons.cancelDelete);
   },
 
-  reUploadDocument(){
+  reUploadDocument() {
     I.waitForElement(this.buttons.reUpload, 10);
     I.click(this.buttons.reUpload);
   },
 
-  clickCallCenterProgressAccOpening(){
+  clickCallCenterProgressAccOpening() {
     I.waitForElement(this.buttons.callCenter, 10);
     I.click(this.buttons.callCenter);
   },
 
-  closeBottomSheet(){
+  closeBottomSheet() {
     I.waitForElement(this.buttons.close, 10);
     I.click(this.buttons.close);
   },

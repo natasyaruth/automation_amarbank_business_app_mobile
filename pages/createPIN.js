@@ -3,9 +3,9 @@ const { I } = inject();
 module.exports = {
   fields: {
     password: "~textFieldPassword",
-    newPIN: "~textFieldPin",
+    newPIN: "~textFieldPIN",
     otpcode: "~textFieldOtp",
-    confirmPIN: "~textFieldPin",
+    confirmPIN: "~textFieldPIN",
   },
   buttons: {
     login: "~buttonLogin",
@@ -21,11 +21,11 @@ module.exports = {
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~buttonCreatePin",
     understand: "~buttonUnderstand",
-    otherMenu: "~",
-    createPIN: "~",
-    changePassword: "~",
+    otherMenu: "~tabOthers",
+    createPIN: "~btnPin",
+    changePassword: "~btnPassword",
     changePIN: "~",
-    emailSupport: "~",
+    emailSupport: "~btnToEmail",
     closeOurTeam: "~",
   },
   icon: {
@@ -170,8 +170,8 @@ module.exports = {
   },
 
   goToCreatePIN() {
+    I.waitForElement(this.buttons.createPIN, 20);
     I.click(this.buttons.createPIN);
-
   },
 
   goToChangePIN() {

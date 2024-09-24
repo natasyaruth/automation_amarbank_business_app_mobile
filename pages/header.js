@@ -39,6 +39,7 @@ module.exports = {
         I.waitForInvisible(this.buttons.close, 5);
     },
     closeWebView(){
+        I.waitForElement(this.buttons.closeWebView, 10);
         I.click(this.buttons.closeWebView);
     },
     closePage(){
