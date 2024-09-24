@@ -244,7 +244,8 @@ exports.config = {
       "./features/main_feature/corporate/loanTypeAR/*.feature",
       "./features/main_feature/loanTypeAP/*.feature",
       "./features/main_feature/loanDisbursement/*.feature",
-      "./features/main_feature/funding_flow/register_cases/*.feature"
+      "./features/main_feature/funding_flow/register_cases/*.feature",
+      "./features/main_feature/funding_flow/funding_transfer/*.feature"
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
