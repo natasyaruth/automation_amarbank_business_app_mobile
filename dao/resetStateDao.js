@@ -104,13 +104,13 @@ module.exports = {
 
         let response;
 
-        if (listIdDocs.length !== 0) {
+        if (listIdDocs !== null) {
 
             for (let i = 0; i < listIdDocs.length; i++) {
 
                 if (
 
-                    listIdDocs[i].type === "nib"
+                    listIdDocs[i].type === "nib_berbasis_resiko"
                 ) {
 
                     response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/1");
@@ -139,7 +139,7 @@ module.exports = {
 
                 } else if (
 
-                    listIdDocs[i].type === "npwp_business"
+                    listIdDocs[i].type === "npwp"
                 ) {
 
                     response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/5");
@@ -173,12 +173,6 @@ module.exports = {
                     response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/10");
 
                 }
-
-                return {
-                    status: response.status,
-                    data: response.data
-                }
-
             }
 
         }
@@ -283,9 +277,9 @@ module.exports = {
     },
 
     reloadPageAfterResetState() {
-        headerPage.clickButtonBack();
-        I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
-        I.wait(1);
+        headerPage.closePage();
+        onboardingAccOpeningPage.clickRbProcessLater();
+        onboardingAccOpeningPage.sendExitSurvey();
         onboardingAccOpeningPage.continueCompleteData();
     },
 

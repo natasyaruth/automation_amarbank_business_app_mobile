@@ -11,11 +11,12 @@ const { I,
 
 When("I will see card account {string}", async (typeAccount) => {
 
-    const sourceType = await (await getDataDao.getSourceType(globalVariable.login.userID, globalVariable.login.password)).sourceType;
-
     if (
         typeAccount === "active"
     ) {
+        
+        const sourceType = (await getDataDao.getSourceType(globalVariable.login.userID, globalVariable.login.password)).sourceType;
+
         if (
             sourceType === "lending"
         ) {

@@ -190,11 +190,40 @@ When("I click back from confirm NPWP Business", () => {
 });
 
 When("I back to continue process account opening", () => {
-    onboardingAccOpeningPage.backToAccProcess();
+    onboardingAccOpeningPage.backToProcessAcc();
 });
 
-When("I cancel process account opening", () => {
-    onboardingAccOpeningPage.clickCancelProcess();
+When("I submit my exit survey", () => {
+    onboardingAccOpeningPage.sendExitSurvey();
+});
+
+When("I click option exit survey {string}", (option) => {
+    onboardingAccOpeningPage.clickOptionExitSurvey(option);
+});
+
+When("I fill feedback exit survey with {string}", (feedback) => {
+    onboardingAccOpeningPage.fillFeedBack(feedback);
+
+    globalVariable.survey.feedBack = feedback;
+
+    const lengthFeedback = globalVariable.survey.feedBack.length;
+
+    if (
+        lengthFeedback < 60
+    ) {
+
+        I.waitForText(lengthFeedback + "/60", 10);
+
+    } else {
+
+        I.waitForText("60/60", 10);
+
+    }
+});
+
+When("I clear field feedback exit survey", ()=>{
+    I.wait(1);
+    onboardingAccOpeningPage.clearFieldFeedback();
 });
 
 Then("I will directing to page legality business", () => {
@@ -240,7 +269,7 @@ Then("I will directing to page type giro account", async () => {
 });
 
 Then("I will directing to main dashboard with card loan application and account opening", async () => {
-    
+
     I.waitForText("Apa kebutuhan Anda saat ini?", 10);
     I.see("Pinjaman Untuk Bisnis");
     I.see("Kredit Bisnis untuk berbagai kebutuhan usaha");
@@ -253,7 +282,7 @@ Then("I will directing to main dashboard with card loan application and account 
     I.waitForElement(hookOnBoardingPage.buttons.bTnStartLoan, 10);
 
     onboardingAccOpeningPage.swipeToCardGiroAccount();
-    
+
     I.waitForText("Rekening Untuk Bisnis", 10);
     I.see("Dapatkan Rekening Giro");
     I.see("Layanan Digital Banking untuk mengelola bisnis Anda.");
@@ -270,7 +299,7 @@ Then("I will directing to main dashboard with card loan application and account 
 });
 
 Then("I will see card continue to data personal", () => {
-    I.waitForText("Lengkapi Data Personal", 10);
+    I.waitForText("Lengkapi Data Personal", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
     I.see("Perbankan Giro");
     I.see("Pinjaman");
@@ -279,7 +308,7 @@ Then("I will see card continue to data personal", () => {
 });
 
 Then("I will see card continue to data business", () => {
-    I.waitForText("Lengkapi Data Bisnis", 10);
+    I.waitForText("Lengkapi Data Bisnis", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
     I.see("Perbankan Giro");
     I.see("Pinjaman");
@@ -287,23 +316,9 @@ Then("I will see card continue to data business", () => {
     onboardingAccOpeningPage.continueCompleteData();
 });
 
-Then("I can continue to page {string}", async (pageName) => {
+Then("I can continue to page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
     globalVariable.dashboard.lastPage = pageName;
-
-    if (pageName === "Registration Director") {
-        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
-
-        await
-            resetStateDao.deletePartner(businessID);
-
-        await
-            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    } else {
-
-        await
-            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    }
 });
 
 Then("I will see card continue to complete upload document business", () => {
@@ -489,6 +504,19 @@ Then("I will direct to page continue to register KYC Invitee", () => {
 });
 
 Then("I reset my state journey", async () => {
+
+    const listBusinessPartner = (await getDataDao.getListBusineePartners(globalVariable.login.userID, globalVariable.login.password)).listBusinessPartners;
+
+    if(
+        listBusinessPartner !== null
+    ){
+
+        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
+
+        await
+            resetStateDao.deletePartner(businessID);
+
+    } 
 
     if (
         globalVariable.dashboard.lastPage === ""
@@ -686,4 +714,108 @@ Then("I will see form {string} is filled", async (formName) => {
         }
     }
 
+});
+
+Then("I will see pop up exit survey", async () => {
+    I.waitForText("Ingin Keluar Dari Halaman Ini?", 10);
+    I.see("Jika meninggalkan halaman ini, Anda akan diminta mengulangi proses.");
+    I.see("Pilih alasan dibawah ini agar kami bisa melayani Anda lebih baik lagi");
+
+    I.waitForText("Proses akan dilanjutkan nanti", 10);
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbProcessLater, 10);
+
+    I.see("Sedang membandingkan dengan aplikasi lain");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbComparingApp, 10);
+
+    I.see("Tidak paham dengan keuntungan yang ditawarkan");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbNotSure, 10);
+
+    I.see("Sudah memiliki aplikasi menawarkan keuntungan yang serupa");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbHasOtherApp, 10);
+
+    I.see("Lainnya");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbOther, 10);
+
+    I.see("Ya, Keluar");
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "false");
+
+    I.see("Batalkan");
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see button sent feedback and back is enabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "true");
+
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see button sent feedback is disabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "false");
+});
+
+Then("I will see button back is enabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see field feedback exit survey", () => {
+    I.waitForText("Tulis alasan lainnya", 10);
+    I.waitForElement(onboardingAccOpeningPage.fields.fieldFeedback, 10);
+
+    I.see("0/60");
+});
+
+Then("I will not see field feedback exit survey", () => {
+    I.wait(1);
+
+    I.dontSee("Tulis alasan lainnya");
+    I.dontSeeElement(onboardingAccOpeningPage.fields.fieldFeedback);
+
+    I.dontSee("0/60");
+});
+
+Then("I will see feedback filled with character only 60 char", () => {
+
+    const trimmedWords = globalVariable.survey.feedBack.substring(0, 60);
+
+    I.waitForText(trimmedWords, 10);
+    I.see("60/60");
+});
+
+Then("I will see snackbar thank you and reason feedback is successfully sent", () => {
+
+    I.waitForText("Terima kasih. Alasan Anda sudah terkirim.", 10);
+
+});
+
+Then("after 3-4 seconds, snackbar thank you and reason feedback is disappear", ()=>{
+
+    I.wait(4);
+    I.dontSee("Terima kasih. Alasan Anda sudah terkirim.");
+});
+
+Then("I will not see the feedback anymore", ()=>{
+    I.wait(1);
+    I.dontSee(globalVariable.survey.feedBack);
 });

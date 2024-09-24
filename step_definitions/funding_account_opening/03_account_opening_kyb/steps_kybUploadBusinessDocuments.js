@@ -84,25 +84,18 @@ When("I see files that need to be uploaded for type company", () => {
         "Maximal ukuran per file: 15MB");
 
     I.see("NIB");
-    I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
-
     I.see("Akta Pendirian");
-    I.waitForElement(uploadBusinessDocPage.upload.certificateBusiness, 10);
-
     I.see("SK Kemenkumham Pendirian");
-    I.waitForElement(uploadBusinessDocPage.upload.skBusiness, 10);
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
     I.see("NPWP Bisnis");
-    I.waitForElement(uploadBusinessDocPage.upload.npwpBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
     I.see("Akta Perubahan Terakhir");
-    I.waitForElement(uploadBusinessDocPage.upload.lastCertificate, 10);
-
     I.see("SK Kemenkumham Perubahan Terakhir");
-    I.waitForElement(uploadBusinessDocPage.upload.lastSk, 10);
-
+    
     I.see("Perbarui Progres");
     I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
 
@@ -116,7 +109,8 @@ When("I see files that need to be uploaded for type individual company", async (
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
-    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
     const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
@@ -127,22 +121,11 @@ When("I see files that need to be uploaded for type individual company", async (
     ) {
 
         I.see("NIB");
-        I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
-
         I.see("NPWP Bisnis");
-        I.waitForElement(uploadBusinessDocPage.upload.npwp, 10);
-
         I.dontSee("Sertifikat Pendaftaran");
-        I.dontSeeElement(uploadBusinessDocPage.upload.certificate);
-
         I.dontSee("Surat Pernyataan Pendirian");
-        I.dontSeeElement(uploadBusinessDocPage.upload.sk);
-
-        I.dontSee("Sertifikat Perubahan Terakhir (jika ada)");
-        I.dontSeeElement(uploadBusinessDocPage.upload.lastCertificate);
-
-        I.dontSee("Surat Pernyataan Perubahan Terakhir (jika ada)");
-        I.dontSeeElement(uploadBusinessDocPage.upload.lastSk);
+        I.dontSee("Sertifikat Perubahan Terakhir");
+        I.dontSee("Surat Pernyataan Perubahan Terakhir");
 
     } else if (
 
@@ -151,25 +134,14 @@ When("I see files that need to be uploaded for type individual company", async (
     ) {
 
         I.see("NIB");
-        I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
-
         I.see("NPWP Bisnis");
-        I.waitForElement(uploadBusinessDocPage.upload.npwp, 10);
-
         I.see("Sertifikat Pendaftaran");
-        I.waitForElement(uploadBusinessDocPage.upload.certificate, 10);
-
         I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
         I.see("Surat Pernyataan Pendirian");
-        I.waitForElement(uploadBusinessDocPage.upload.sk, 10);
-
-        I.see("Sertifikat Perubahan Terakhir (jika ada)");
-        I.waitForElement(uploadBusinessDocPage.upload.lastCertificate, 10);
-
-        I.see("Surat Pernyataan Perubahan Terakhir (jika ada)");
-        I.waitForElement(uploadBusinessDocPage.upload.lastSk, 10);
-
+        I.see("Sertifikat Perubahan Terakhir");
+        I.see("Surat Pernyataan Perubahan Terakhir");
+        
     } else {
 
         throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
@@ -197,6 +169,18 @@ When("I upload all document business for type company", async () => {
 When("I upload all document business for type individual company", async () => {
     await
         uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password);
+});
+
+When("I upload all document business required for type company", async () => {
+    await
+        uploadBusinessDocPage.uploadAllDocumentCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
+});
+
+When("I upload all document business required for type company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+    await
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I delete document {string}", async (typeDoc) => {
@@ -276,22 +260,29 @@ When("I delete all document company", () => {
     uploadBusinessDocPage.deleteDocumentAktaBusiness();
     uploadBusinessDocPage.confirmDelete();
 
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
     uploadBusinessDocPage.deleteDocumentSKBusiness();
     uploadBusinessDocPage.confirmDelete();
 
     I.wait(2);
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
     uploadBusinessDocPage.deleteDocumentNPWPBusiness();
     uploadBusinessDocPage.confirmDelete();
 
     I.wait(2);
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
     uploadBusinessDocPage.deleteDocumentLastAkta();
     uploadBusinessDocPage.confirmDelete();
 
     I.wait(2);
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
     uploadBusinessDocPage.deleteDocumentLastSK();
     uploadBusinessDocPage.confirmDelete();
 
@@ -486,6 +477,7 @@ Then("I will see document {string} is uploaded", async (typeDoc) => {
             break;
 
         case "Sertifikat Pendaftaran":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
             break;
@@ -527,24 +519,28 @@ Then("I will see document {string} is uploaded", async (typeDoc) => {
 
         case "Akta Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
             break;
 
         case "Sertifikat Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
             break;
 
         case "SK Kemenkumham Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
             break;
 
         case "Surat Pernyataan Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
             break;
@@ -563,12 +559,15 @@ Then("I will see all document company has been uploaded", () => {
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
 
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
     I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
@@ -708,24 +707,24 @@ Then("I will not see all document company", () => {
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNIB);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNIB);
 
-    I.waitForElement(uploadBusinessDocPage.upload.certificateBusiness, 10);
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAktaBusiness);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness);
 
-    I.waitForElement(uploadBusinessDocPage.upload.skBusiness, 10);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
+
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSKBusiness);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
-    I.waitForElement(uploadBusinessDocPage.upload.npwpBusiness, 10);
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness);
 
-    I.waitForElement(uploadBusinessDocPage.upload.lastCertificate, 10);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
+
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
 
-    I.waitForElement(uploadBusinessDocPage.upload.lastSk, 10);
     I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
     I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
 
@@ -923,7 +922,4 @@ Then("I will see {string} still exists", async (typeDoc) => {
 Then("I reset state upload document", async () => {
     await
         resetStateDao.deleteAllDocuments(globalVariable.login.userID, globalVariable.login.password);
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });

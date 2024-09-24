@@ -111,9 +111,6 @@ When("I swipe to field {string} in form Business Address", (fieldName) => {
 
 Then("I shouldn't see message error in the below of field {string} in form Business Address", async (fieldName) => {
     I.dontSee(formBusinessAddressPage.messageErrorFields[fieldName]);
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Business Address", async (expectedMsgError, fieldName) => {
@@ -121,9 +118,6 @@ Then("I should see message error {string} in the below of field {string} in form
     let textMsgError = await formBusinessAddressPage.getMessageError(fieldName);
     let actualMsgError = textMsgError.trimEnd();
     I.assertEqual(actualMsgError, expectedMsgError);
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I submit my business address", () => {

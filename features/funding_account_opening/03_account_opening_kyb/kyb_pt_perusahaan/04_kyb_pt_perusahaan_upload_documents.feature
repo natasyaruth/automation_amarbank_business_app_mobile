@@ -9,7 +9,9 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
-        And I reset state upload document      
+        And I reset state upload document
+        And I reset my state journey
+        And complete onboarding document safe and survey   
         And I filling in form login with the following details:
             | userID      | deveb3ad |
             | password    | 1234Test |
@@ -43,10 +45,10 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
             | address  | Jl. Gambir Belok Kiri No. 10 |
             | rt       | 000                          |
             | rw       | 011                          |
-            | province | ACEH                         |
-            | city     | KAB. ACEH TIMUR              |
-            | district | DARUL AMAN                   |
-            | village  |                              |
+            | province | DKI JAKARTA                  |
+            | city     | JAKARTA SELATAN              |
+            | district | PANCORAN                     |
+            | village  | PANCORAN                     |
         And I agree to carry out the Rights and Obligations
         And I will directing to page Rights and Obligations
         And I click button agree with Rights and Obligations

@@ -299,7 +299,7 @@ Feature: Document Management
         Then I will see bottom sheet input password document    
 
     @C131645
-    Scenario: Verify tab profile user individual active
+    Scenario: Verify content document brankas user individual active
         Given I am a registered customer with following details:
             | userID      | ruth9ba1 |
             | password    | 1234Test |
@@ -324,7 +324,7 @@ Feature: Document Management
         And I will not see menu document loan and giro
 
     @C131646
-    Scenario: Verify tab profile user individual active and has loan
+    Scenario: Verify content document brankas user individual active and has loan
         Given I am a registered customer with following details:
             | userID      | niza2098 |
             | password    | Test1234 |
@@ -349,7 +349,7 @@ Feature: Document Management
         And I will not see menu document giro
 
     @C131649
-    Scenario: Verify tab profile user PT Perusahaan active
+    Scenario: Verify content document brankas user PT Perusahaan active
         Given I am a registered customer with following details:
             | userID      | autofb2c |
             | password    | 1234Test |
@@ -374,7 +374,7 @@ Feature: Document Management
         And I will see document business for type company
 
     @C131653
-    Scenario: Verify tab profile user CV active
+    Scenario: Verify content document brankas user CV active
         Given I am a registered customer with following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
@@ -399,7 +399,7 @@ Feature: Document Management
         And I will see document business for type company
 
     @C131656
-    Scenario: Verify tab profile user PT Perorangan active
+    Scenario: Verify content document brankas user PT Perorangan active
         Given I am a registered customer with following details:
             | userID      | autoa645 |
             | password    | 1234Test |
@@ -424,7 +424,7 @@ Feature: Document Management
         And I will see document business for type individual company
 
     @C131659
-    Scenario: Verify tab profile user UD active
+    Scenario: Verify content document brankas user UD active
         Given I am a registered customer with following details:
             | userID      | autod015 |
             | password    | 1234Test |
@@ -490,12 +490,12 @@ Feature: Document Management
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click close in header page\
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         And I will see card account 'on process'
         And notification red dot document safe is on
-        And I click tab brankas
+        When I click tab brankas
         And I will see onboarding page document safe continue to account opening process
         And I continue to process account opening
         Then I see page 'Data Personal'
@@ -519,11 +519,11 @@ Feature: Document Management
         And I continue to complete my data
         And I see page 'Data Personal'
         And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         And I will see card account 'on process combine journey'
         And notification red dot document safe is on
-        And I click tab brankas
+        When I click tab brankas
         And I will see onboarding page document safe continue to loan process
         And I continue to process loan
         Then I see page 'Data Personal'
