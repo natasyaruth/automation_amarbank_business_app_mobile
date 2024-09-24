@@ -98,13 +98,14 @@ Feature: User add friend list
         Then I can't see toastbar "Data berhasil disimpan ke daftar penerima"
         And name of receiver should not be added in friendlist
 
+   
     #@C96942
     Scenario: User add friend list and validate account number and name
         Given I am a customer who wants to Transfer and has friend list
         When I choose menu Transfer from main dashboard
         And I click Transfer to Receiver Name
         And I can choose Bank name
-        And I search 'Bank Amar (Senyumku)' in search box bank name
+        And I search 'Bank Amar Indonesia' in search box bank name
         And I tap on bank name
         And I input account number '1602000018'
         And I click on check
