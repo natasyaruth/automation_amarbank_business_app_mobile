@@ -5,7 +5,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID      | deveb3ad |
+            | userID      | deve0ebc |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
@@ -13,7 +13,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I reset my state journey
         And complete onboarding document safe and survey   
         And I filling in form login with the following details:
-            | userID      | deveb3ad |
+            | userID      | deve0ebc |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |

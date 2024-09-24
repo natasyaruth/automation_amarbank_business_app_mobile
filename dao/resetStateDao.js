@@ -457,4 +457,19 @@ module.exports = {
 
     },
 
+    async deleteAllNotification(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
 }

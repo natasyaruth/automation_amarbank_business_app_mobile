@@ -388,4 +388,31 @@ module.exports = {
         }
 
     },
+
+    async pushNotificationMaintananceApp(userID) {
+
+        I.haveRequestHeaders(secret({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        }));
+
+        const currentDate = new Date();
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications", {
+            userId: userID,
+            category: "Info",
+            title: "Peringatan Pemeliharaan Sistem",
+            summary: "Pemeliharan sistem pada " + day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB",
+            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada "+"\n" 
+                         +day + "/" + month + "/" + year +" jam 23.00-01.00 WIB. Selama waktu ini, akses Anda "+"\n"
+                         +"pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
+        });
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+    },
 }
