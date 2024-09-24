@@ -4,7 +4,7 @@ Feature: BusinessCodeInv
   As a customer lead
   I want to register for an account
 
-   #@coba1
+   @coba1
    Scenario: Create a new account
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
@@ -27,7 +27,7 @@ Feature: BusinessCodeInv
     Then my account should be created
     And I click later in pop up biometric
 
-    @coba
+    #@coba
     Scenario: Login with registered account
     Given I am a registered customer with following details:
       | userIDstg   | yahydfc3  |
@@ -47,8 +47,14 @@ Feature: BusinessCodeInv
     And I submit my legality type
     Then I will see bottom sheet NPWP Business
     And I fill NPWP business
+    And I click continue to data personal
+    And I will see pop up confirm NPWP Business
+    And I click confirm NPWP Business
+    Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
+    And product type same with I choose before
     
     
+
 
 #     @C131952
 #     Scenario: User choose Giro Account
