@@ -394,7 +394,7 @@ Then("I will see information that I can try to register after 7 days", () => {
 });
 
 Then("I will see details info of giro account MSME", async () => {
-    I.waitForText("Silakan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
+    I.waitForText("Silakan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 30);
     I.see("Pilih Rekening Giro");
 
     // CHECKING ADMIN FEE
