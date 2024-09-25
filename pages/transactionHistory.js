@@ -175,7 +175,6 @@ module.exports = {
     },
 
     viewButtonDownloadEStatement() {
-        I.waitForElement(10);
         I.waitForElement(this.buttons.btneStatementDownload,10);
         I.seeElement(this.buttons.btneStatementDownload);
     },
