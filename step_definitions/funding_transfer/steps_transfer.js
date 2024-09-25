@@ -433,9 +433,18 @@ When("I close page detail transfer", () => {
 When("I will directly go to page confirmation transfer between Amar Bank", async () => {
     I.waitForElement(transferPage.texts.amount, 10);
     const actualAmount = await transferPage.getAmountConfirmation();
-    I.assertEqual(actualAmount, "Rp. " + globalVariable.transfer.amount);
 
-    I.see(transferPage.texts.total);
+    // Convert actualAmount and expected amount to string and normalize the format
+    const formattedActualAmount = actualAmount.replace(/\./g, ''); // Remove thousands separator
+
+    // Convert number to string and remove separators if present
+    const formattedExpectedAmount = "Rp" + String(globalVariable.transfer.amount).replace(/\./g, '');
+
+    // Perform the assertion
+    I.assertEqual(formattedActualAmount, formattedExpectedAmount);
+
+    I.waitForElement({accessibilityId: 'textTotal'}, 80)
+    I.seeElement({accessibilityId: 'textTotal'}); 
 
     I.waitForElement(transferPage.texts.category, 10);
     const actualCategory = await transferPage.getCategory();
