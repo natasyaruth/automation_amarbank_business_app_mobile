@@ -224,7 +224,7 @@ module.exports = {
     I.see('Bunga per Tahun');
     },
 
-    validateProgramLoanInformationAR() {
+    validateProgramLoanAR() {
       I.wait(5);
       I.waitForText('Informasi Program Pinjaman');
       I.waitForText('Program Pinjaman ini berlaku untuk semua pencairan invoice pembelian ke supplier Anda');
