@@ -32,6 +32,7 @@ module.exports = {
   },
 
   clickResendEmailLink(){
+    I.waitForElement(this.link.resendEmail, 20);
     I.click(this.link.resendEmail);
   },
 

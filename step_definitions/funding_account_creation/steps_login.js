@@ -138,6 +138,14 @@ When("I filling in form login with the following details:", (table) => {
   loginPage.fillInAccountInformation(account);
 });
 
+When("I login with account friendlist", () => {
+  
+  loginPage.fillFieldLogin(loginPage.fields.userID, globalVariable.login.userIDFriendlist);
+  loginPage.fillFieldLogin(loginPage.fields.password, globalVariable.login.passwordFriendlist);
+
+  loginPage.clickLoginButton();
+});
+
 When("I click login", () => {
   loginPage.clickLoginButton();
 });

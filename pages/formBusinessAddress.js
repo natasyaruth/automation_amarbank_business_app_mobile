@@ -50,6 +50,8 @@ module.exports = {
       if(
         Object.keys(this.fields).indexOf(fieldName) !== -1
         ){
+        I.waitForElement(this.fields[fieldName], 10);
+        I.clearField(this.fields[fieldName]);
         I.setText(this.fields[fieldName], value);
 
       } else if (

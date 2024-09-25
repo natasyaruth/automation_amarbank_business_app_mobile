@@ -10,6 +10,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Address
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
+        And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ptpeff9b |
             | password    | 1234Test |

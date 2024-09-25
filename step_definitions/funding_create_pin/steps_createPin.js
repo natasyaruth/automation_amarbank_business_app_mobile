@@ -17,6 +17,21 @@ Given("I am a customer who wants to create PIN from menu other", () => { });
 
 Given("I am a customer who wants to change PIN from menu other", () => { });
 
+Given("has friendlist with following details:", (table) => {
+
+    const account = table.parse().rowsHash();
+
+    if (process.env.ENVIRONMENT == "staging") {
+        globalVariable.login.passwordFriendlist = account["passwordStg"];
+        globalVariable.login.userIDFriendlist = account["userIDstg"];
+    } else {
+        globalVariable.login.passwordFriendlist = account["password"];
+        globalVariable.login.userIDFriendlist = account["userID"];
+    }
+
+    // add API automation delete all notif
+});
+
 When("I don't have a PIN", () => { });
 
 Then("I go to page other ", () => {
@@ -79,15 +94,15 @@ When("I submit my password", () => {
 });
 
 When("I submit my old pin", () => {
-    
+
 });
 
-Then("I should see pop up message {string}", async (expectedMsgError) => {     
+Then("I should see pop up message {string}", async (expectedMsgError) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.waitForText(expectedMsgError, 10);
 });
 
-Then ("I can click try again", ()=>{
+Then("I can click try again", () => {
     createPINPage.tryAgain();
 
     createPINPage.inputPassword(globalVariable.login.password);
@@ -133,7 +148,13 @@ Then("I should direct to Dashboard", () => {
     I.waitForElement(createPINPage.buttons.btnTransfer, 10);
 });
 
-When("I reset my PIN", () =>{
+When("I reset my PIN", () => {
+
+});
+
+When("I click understand", () => {
+
+    createPINPage.clickButtonUnderstand();
 
 });
 
@@ -167,9 +188,9 @@ When("I input expired OTP", () => {
     createPINPage.fillInOtpCode(globalVariable.createPin.otp);
 });
 
-When("I will receive email contain with OTP", async() => {
+When("I will receive email contain with OTP", async () => {
     const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
-    
+
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
@@ -180,14 +201,14 @@ When("I will receive email contain with OTP", async() => {
 });
 
 When("I input OTP", async () => {
-    
+
     const otpCode = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     createPINPage.fillInOtpCode(otpCode);
 });
 
-When("I input old PIN", ()=>{
-    
+When("I input old PIN", () => {
+
 });
 
 When("I click button Close", () => {
@@ -195,11 +216,11 @@ When("I click button Close", () => {
     createPINPage.clickButtonClose();
 });
 
-When("I click button cancel create PIN", ()=>{
+When("I click button cancel create PIN", () => {
     createPINPage.clickButtonCancel();
 });
 
-When("I click button back to fill password", ()=>{
+When("I click button back to fill password", () => {
     createPINPage.clickButtonBack();
 });
 
@@ -247,6 +268,7 @@ Then("I will go back to other page", () => {
     I.waitForElement(createPINPage.buttons.changePIN, 10);
 
 });
+
 Then("I will see toastbar {string}", (successPINMessage) => {
     I.see(successPINMessage);
 });
@@ -255,4 +277,12 @@ Then("I can directly go to page login", () => {
     I.waitForText("Mengerti", 10);
     createPINPage.clickButtonUnderstand();
     createPINPage.goToLoginPage();
+});
+
+Then("I will direct to page PIN has been successfully changes", () => {
+
+    I.waitForText("Selamat, PIN Berhasil Diubah!", 10);
+    I.waitForText("Mengerti", 10);
+
+    I.waitForElement(createPINPage.buttons.understand, 10);
 });

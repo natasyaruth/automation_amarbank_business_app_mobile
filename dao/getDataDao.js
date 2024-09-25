@@ -86,6 +86,21 @@ module.exports = {
         };
     },
 
+    async getLegalityType(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseProfile.status,
+            legalityType: responseProfile.data.legalityType,
+        };
+    },
+
     async getBusinessCode(email) {
 
         I.haveRequestHeaders(secret({
@@ -118,6 +133,40 @@ module.exports = {
             status: response.status,
             id: response.data.businessId
         }
+    },
+
+    async getListDocBusiness(userID, password){
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            listDocBusiness: response.data
+        }
+
+    },
+
+    async getListBusineePartners(userID, password){
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            listBusinessPartners: response.data
+        }
+
     },
 
 }

@@ -1,4 +1,4 @@
-Feature: Document Brankas
+Feature: Home - Document Brankas
     In order to open and manage my Document
     As a Customer
     I want to see and secure my document business and loan
@@ -27,7 +27,7 @@ Feature: Document Brankas
         And I see widget document safe
         And notification red dot document safe is on
 
-    @C156925 @FunctTestFunding
+    @C156925 
     Scenario: Access widget brankas on main dashboard for user initiator recently from registration 1
         Given I am a registered customer with following details:
             | userID      | deveb76d |
@@ -50,7 +50,7 @@ Feature: Document Brankas
         And I click button choose product
         Then I will directing to Hook 1 Onboarding Account Opening
 
-    @C156926 @FunctTestFunding
+    @C156926 
     Scenario: Access widget brankas on main dashboard for user initiator in process giro account opening
         Given I am a registered customer with following details:
             | userID      | deved388 |
@@ -70,15 +70,15 @@ Feature: Document Brankas
         And I continue to complete my data
         And I see page 'Data Personal'
         And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         And notification red dot document safe is on
-        And I click widget document safe
+        When I click widget document safe
         And I will see onboarding page document safe continue to account opening process
         And I continue to process account opening
         Then I see page 'Data Personal'
 
-    @C156927 @FunctTestFunding
+    @C156927 
     Scenario: Access widget brankas on main dashboard for user initiator in process combine journey
         Given I am a registered customer with following details:
             | userID      | deveb182 |
@@ -97,16 +97,16 @@ Feature: Document Brankas
         And I continue to complete my data
         And I see page 'Data Personal'
         And I click close in header page
-        And I will see pop up confirm close page process account opening
-        And I cancel process account opening
+        And I click option exit survey 'Proses akan dilanjutkan nanti'
+        And I submit my exit survey
         And I will see card account 'on process combine journey'
         And notification red dot document safe is on
-        And I click widget document safe
+        When I click widget document safe
         And I will see onboarding page document safe continue to loan process
         And I continue to process loan
         Then I see page 'Data Personal'
 
-    @C156928 @FunctTestFunding
+    @C156928 
     Scenario: Access widget brankas on main dashboard for user initiator on verification
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
@@ -128,7 +128,7 @@ Feature: Document Brankas
         And I continue to process account opening
         And I will direct to page detail progress account opening
 
-    @C156929 @FunctTestFunding
+    @C156929 
     Scenario: Access widget brankas on main dashboard for user individual on verification
         Given I am a registered customer with following details:
             | userID      | deveaead |
@@ -148,7 +148,7 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
-    @C156930 @FunctTestFunding
+    @C156930 
     Scenario: Access widget brankas on main dashboard for user invitee on verification
         Given I am a registered customer with following details:
             | userID      | rudi71d5 |
@@ -168,7 +168,7 @@ Feature: Document Brankas
         And I click widget document safe
         Then I will see onboarding page document safe data still need verification
 
-    @C156931 @FunctTestFunding
+    @C156931 
     Scenario: Access widget brankas on main dashboard for user initiator active
         Given I am a registered customer with following details:
             | userID      | mike2cf3 |
@@ -601,7 +601,7 @@ Feature: Document Brankas
         And I uncheck reason 'Cari Dokumen'
         Then I will see button sent feedback disabled
 
-    @C156944 @FunctTestFunding
+    @C156944 
     Scenario: Fill survey journey to tab Profile
         Given I am a registered customer with following details:
             | userID      | devef721 |

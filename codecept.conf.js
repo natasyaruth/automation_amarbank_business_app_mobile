@@ -169,6 +169,8 @@ exports.config = {
     changePasswordPage: "./pages/changePassword.js",
 
     documentSafePage: "./pages/documentSafe.js",
+
+    surveyRatingPage: "./pages/surveyRating.js",
   },
   settings: {
     logging: {
@@ -224,8 +226,10 @@ exports.config = {
       "./features/funding_account_opening/03_account_opening_kyb/kyb_ud/*.feature",
       "./features/funding_account_opening/02_account_opening_kyc/*.feature",
       "./features/funding_account_opening/03_account_opening_kyb/*.feature",
+      "./features/funding_transaction/01_transaction_pin_management/*.feature",
+      "./features/funding_transaction/02_transaction_transfer/*.feature",
+      "./features/funding_transaction/03_transaction_history/*.feature",
       "./features/funding_transfer/*.feature",
-      "./features/funding_create_pin/*.feature",
       "./features/funding_profile/*.feature",
       "./features/funding_document_management/*.feature",
       "./features/funding_other/*.feature",
@@ -238,13 +242,12 @@ exports.config = {
       "./features/main_feature/loan_app_journey/01_Registration.feature",
       "./features/main_feature/account_opening_only/*.feature",
       "./features/main_feature/MSME/secondLoan/loanTypeAP/*.feature",
-      "./features/funding_create_pin/05_create_pin_manual.feature",
-      "./features/funding_create_pin/04_forgot_pin_journey.feature",
       "./features/main_feature/corporate/loanTypeAP/*.feature",
       "./features/main_feature/corporate/loanTypeAR/*.feature",
       "./features/main_feature/loanTypeAP/*.feature",
       "./features/main_feature/loanDisbursement/*.feature",
       "./features/main_feature/funding_flow/register_cases/*.feature",
+      "./features/main_feature/funding_flow/funding_transfer/*.feature",
       "./features/funding_e2e/funding_e2e_account_opening/*.feature",
     ],
     steps: ["./step_definitions/funding_account_creation/steps_registration.js",

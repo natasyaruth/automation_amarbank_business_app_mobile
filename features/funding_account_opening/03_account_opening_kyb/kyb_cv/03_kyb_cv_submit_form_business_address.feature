@@ -10,6 +10,7 @@ Feature: Account Opening KYB CV - Submit Business Address
             | password    | 1234Test |
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
+        And I reset my state journey     
         And I filling in form login with the following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
@@ -124,10 +125,10 @@ Feature: Account Opening KYB CV - Submit Business Address
             | address  | Jl. Gambir Belok Kiri No. 10 |
             | rt       | 000                          |
             | rw       | 011                          |
-            | province | ACEH                         |
-            | city     | KAB. ACEH TIMUR              |
-            | district | DARUL AMAN                   |
-            | village  |                              |
+            | province | DKI JAKARTA                  |
+            | city     | JAKARTA SELATAN              |
+            | district | PANCORAN                     |
+            | village  | PANCORAN                     |
         And I agree to carry out the Rights and Obligations
         And I will directing to page Rights and Obligations
         And I click button agree with Rights and Obligations
