@@ -39,7 +39,7 @@ module.exports = {
         detailHistorySecond: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[2]'},
         buttonNexteStatement : "~buttonNext",
         buttonEyeeStatement : "~iconShowHidePassword",
-        buttonTryeStatement : "~buttonTry",
+        buttonTryeStatement : "~buttonTryAgain",
         buttonUnderstandeStatement : "~buttonUnderstand",
     },
     textFields: {
