@@ -17,6 +17,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         Then I direct to history page
@@ -35,6 +36,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -58,6 +60,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -76,6 +79,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -98,6 +102,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -120,6 +125,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -142,6 +148,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -199,6 +206,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
@@ -220,6 +228,7 @@ Feature: User open e-Statement History
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I click history menu
         And I click button e-Statement download
