@@ -138,7 +138,7 @@ module.exports = {
     },
 
     seePasswordPage(){
-        I.waitForText("Silakan masukkan password Amar Bank Bisnis kamu", 10);
+        I.waitForText("Silakan masukkan password Amar Bank Bisnis Anda", 10);
         I.seeElement(this.buttons.buttonNexteStatement);
         I.seeElement(this.buttons.buttonEyeeStatement);
     },
