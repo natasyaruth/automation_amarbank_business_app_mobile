@@ -3,3 +3,17 @@
 # For a detailed guide to building and testing on Android, read the docs:
 # https://circleci.com/docs/language-android/ for more details.
 version: 2.1
+
+orbs:
+  node: circleci/node@x.y
+
+jobs:
+  install-node-specific-version:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: "20.10.0"
+      - run: node --version
