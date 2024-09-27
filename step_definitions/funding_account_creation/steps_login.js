@@ -138,6 +138,14 @@ When("I filling in form login with the following details:", (table) => {
   loginPage.fillInAccountInformation(account);
 });
 
+When("I login with account friendlist", () => {
+  
+  loginPage.fillFieldLogin(loginPage.fields.userID, globalVariable.login.userIDFriendlist);
+  loginPage.fillFieldLogin(loginPage.fields.password, globalVariable.login.passwordFriendlist);
+
+  loginPage.clickLoginButton();
+});
+
 When("I click login", () => {
   loginPage.clickLoginButton();
 });
@@ -175,10 +183,10 @@ Then(
 );
 
 Then(
-  "I should see pop up {string} with button {string}",
+  "I should see log in pop up {string} with button {string}",
   async (expectedValue, buttonName) => {
     I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(expectedValue);
+    I.waitForText(expectedValue, 10);
     I.waitForElement(loginPage.buttons[buttonName], 10);
   });
 

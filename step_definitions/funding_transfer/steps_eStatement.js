@@ -45,7 +45,11 @@ When('I input valid password {string} on field password', (password) => {
     transactionHistoryPage.fillPasswordeStatement(password);
 });
 
-When('I click button "Next"', () => {
+When('I input invalid password {string} on field password', (password) => {
+    transactionHistoryPage.fillPasswordeStatement(password);
+});
+
+When('I click button Next', () => {
     transactionHistoryPage.clickBtnNexteStatement();
 });
 

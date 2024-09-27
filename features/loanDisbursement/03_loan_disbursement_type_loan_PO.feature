@@ -44,12 +44,19 @@ Feature: Loan Disbursement for Loan Type PO
   Then I direct to anchor detail page
 
  @C98058
- Scenario: Validate Loan Program Information for Type Loan PO
-  Given I have been in anchor detail page to validate loan program information for type Loan PO
-  When I click "Info Selengkapnya" in limit card for type Loan PO
-  Then I should be see loan program information section for that card has anchor for type Loan PO
-  And I close the loan information section for type Loan PO
-  And I back to the anchor detail for type Loan PO
+ Scenario: Validate page Loan Program Information for type PO LTV 100%
+    Given I have been in anchor detail page to validate loan program information for type AP
+    When I click buton "Gunakan Limit" in card type Loan PO
+    And I am on Anchor Detail Page
+    And I click button "Info Selengkapnya" for type PO
+    Then I should be see Program Loan Information for type PO
+
+Scenario: Validate page Loan Program Information for type PO LTV < 100%
+    Given I have been in anchor detail page to validate loan program information for type AP
+    When I click buton "Gunakan Limit" in card type Loan PO
+    And I am on Anchor Detail Page
+    And I click button "Info Selengkapnya" for type PO < 100%
+    Then I should be see Program Loan Information for type PO
 
  @C98059
  Scenario: Take Picture to Upload Invoice Type PO

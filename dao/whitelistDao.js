@@ -33,10 +33,6 @@ module.exports = {
       contact_address: email,
     });
 
-    if (!response) {
-      throw new Error("failed to whitelist email");
-    }
-
     return {
       status: response.status,
       data: response.data,

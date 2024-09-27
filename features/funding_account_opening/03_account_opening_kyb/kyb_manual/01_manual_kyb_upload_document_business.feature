@@ -3,19 +3,62 @@ Feature: Account Opening KYB - Upload Document Business
     As a customer
     I want to upload document business as part of the KYB Process
 
-    @C131927
-    Scenario: Upload document with file size more than 10 MB
+    @C131927 @FunctTestFunding
+    Scenario: Upload document with file size more than 15 MB in mobile
         Given I am a registered customer
         And already register till business address
-        When I upload document with size more than 10MB
-        Then I will see message error 'Ukuran file melebihi 10MB. Silahkan coba lagi' in the below of section upload document
+        When I upload document with size more than 15MB
+        Then I will see message error 'File melebihi maksimal ukuran 15MB.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file
+        And after I delete, there is no pop up to confirm
 
     @C131928
-    Scenario: Upload document with file other than PDF
+    Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in mobile
+        Given I am a customer
+        And access link upload document
+        When I upload document with type other than PDF, JPG, PNG and JPEG
+        Then  I will see message error 'File harus dalam format PDF / JPG / JPEG / PNG.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file and reupload file
+        And after I delete, there is no pop up to confirm
+        And if I click reupload file, it would reupload again the file
+
+    @C156890 @FunctTestFunding
+    Scenario: Upload document with file size more than 15 MB in web view
+        Given I am a registered customer
+        And access link upload document
+        When I upload document with size more than 15MB
+        Then I will see message error 'File melebihi maksimal ukuran 15MB.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file
+        And after I delete, there is no pop up to confirm
+
+    @C156891 @FunctTestFunding
+    Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in web view
+        Given I am a registered customer
+        And access link upload document
+        When I upload document with type other than PDF, JPG, PNG and JPEG
+        Then  I will see message error 'File harus dalam format PDF / JPG / JPEG / PNG.' in the below of section upload document
+        And I see filename and size of the file
+        And I see icon to delete file and reupload file
+        And after I delete, there is no pop up to confirm
+        And if I click reupload file, it would reupload again the file    
+
+    @C156892 @FunctTestFunding
+    Scenario: Upload document and get error timeout in mobile
         Given I am a registered customer
         And already register till business address
-        When I upload document with type other than PDF
-        Then  I will see message error 'File tidak boleh selain pdf' in the below of section upload document   
+        When I upload document and timeout
+        Then I will see message error 'Koneksi bermasalah. Periksa jaringan Anda dan coba lagi.' in the below of section upload document
+
+    @C156893
+    Scenario: Delete document and get error server in mobile
+        Given I am a registered customer
+        And already register till business address
+        When I upload document
+        And I delete my document and got error
+        Then I will see snackbar error with message 'Terjadi kendala server, coba beberapa saat lagi.'
 
     @C137189
     Scenario: Check pop up permission
@@ -28,7 +71,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I click understand
         And I allowed the permission
 
-    @C137190
+    @C137190 @FunctTestFundingSprint4
     Scenario: Upload all doc PT Perusahaan via link
         Given I am a registered customer
         And already register as PT Perusahaan till business address
@@ -37,7 +80,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         And I upload all document
         Then I will see all document are uploaded successfully
-        And I will not see button send request account opening
+        And I will see button complete upload document business
 
     @C137191
     Scenario: Upload all doc CV via link
@@ -48,7 +91,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         And I upload all document
         Then I will see all document are uploaded successfully
-        And I will not see button send request account opening
+        And I will see button complete upload document business
 
     @C137192
     Scenario: Upload all doc UD via link
@@ -59,7 +102,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         And I upload all document
         Then I will see all document are uploaded successfully
-        And I will not see button send request account opening
+        And I will see button complete upload document business
 
     @C137193
     Scenario: Upload all doc PT Perorangan via link
@@ -70,7 +113,63 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         And I upload all document
         Then I will see all document are uploaded successfully
-        And I will not see button send request account opening
+        And I will see button complete upload document business
+
+    @C160193
+    Scenario: Upload document PT Perusahaan only required
+        Given I am a registered customer
+        And already register as PT Perusahaan till business address
+        When I click upload via other device
+        And I copy link
+        And I access the link
+        And I upload only required document
+        Then I will see all required document are uploaded successfully
+        And I will see button complete upload document business
+
+    @C160194
+    Scenario: Upload document CV only required
+        Given I am a registered customer
+        And already register as CV till business address
+        When I click upload via other device
+        And I copy link
+        And I access the link
+        And I upload only required document
+        Then I will see all required document are uploaded successfully
+        And I will see button complete upload document business
+
+    @C160195
+    Scenario: Upload document PT Perorangan only required
+        Given I am a registered customer
+        And already register as PT Perorangan till business address
+        When I click upload via other device
+        And I copy link
+        And I access the link
+        And I upload only required document
+        Then I will see all required document are uploaded successfully
+        And I will see button complete upload document business
+
+    @C160196
+    Scenario: Checking button complete upload document if user upload un-required document each business type (PT Perusahaan, CV and PT Perorangan)
+        Given I am a registered customer
+        And already register as PT Perusahaan/CV/PT Perorangan till business address
+        When I click upload via other device
+        And I copy link
+        And I access the link
+        And I upload only unrequired document
+        Then I will see unrequired document are uploaded successfully
+        And I will not see button complete upload document business
+
+    @C160197
+    Scenario: Checking button complete upload document if user has upload all required document and then delete one of the required document
+        Given I am a registered customer
+        And already register as PT Perusahaan/CV/PT Perorangan till business address
+        When I click upload via other device
+        And I copy link
+        And I access the link
+        And I upload all document
+        And I will see button complete upload document business
+        And I delete one of the required document
+        Then I will not see button complete upload document business
 
     @C137194
     Scenario: Upload some doc via link
@@ -126,7 +225,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         Then I will see documents that I remove recently is not there anymore
 
-    @C137199
+    @C137199 @FunctTestFunding
     Scenario: Delete document from link upload and check in app
         Given I am a registered customer
         And already register till business address

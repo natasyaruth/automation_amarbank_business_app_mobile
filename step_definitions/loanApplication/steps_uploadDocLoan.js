@@ -1,6 +1,6 @@
 const { upload } = require("../../pages/uploadBusinessDoc");
 
-const { I, uploadDocLoanPage} = inject();
+const { I, uploadDocLoanPage, loanTypePage} = inject();
 
 Given(/user click view required documents button/, () => {
     uploadDocLoanPage.clickBtnViewRequiredDoc();
@@ -11,12 +11,23 @@ Given(/user validate text prepare the following documents/, () => {
 When(/user validate description prepare the following documents \"([^\"]*)\"/,(loanType)=>{
     uploadDocLoanPage.validateBottomSheetDocNeededContent(loanType);
 });
+
+Then(/user click buttton Pilih Metode Upload Dokumen/, () => {
+    I.wait(2);
+    uploadDocLoanPage.clickBtnSelectMetodeUploadDocument();
+});
+
+Then(/user will see bottom sheet metode upload Dokumen/, () => {
+    I.wait(2);
+    uploadDocLoanPage.validatebottomsheetmetodeupload();
+});
+
 Then(/user click button upload documents/, () => {
     uploadDocLoanPage.clickBtnUploadDoc();
 });
 
 // section upload document
-Given(/user on upload document page/, () => {
+Given(/user on Progress Upload Dokumen Page/, () => {
     uploadDocLoanPage.viewUploadDocPage();
 });
 When(/user upload document \"([^\"]*)\"/,(docType)=>{
@@ -153,4 +164,10 @@ When(/user upload multiple document more than 15 MB \"([^\"]*)\"/,(docType)=>{
 When(/user will not see button Kirim Pengajuan Limit Kredit/, () =>{
     I.seeElementDisabled(uploadDocLoanPage.buttons.btnAcceptLimitOffer);
 });
+
+When(/user on select loan Needs Page/, () =>{
+    I.wait(2);
+    I.see("Pengajuan Limit Kredit");
+});
+
 

@@ -17,7 +17,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -38,7 +38,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -60,7 +60,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -84,7 +84,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -152,7 +152,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -180,7 +180,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -251,7 +251,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -278,7 +278,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'on process'
         When I go to page other
         And I click menu delete account
@@ -305,7 +305,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'on verification'
         When I go to page other
         And I click menu delete account
@@ -353,7 +353,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'active'
         When I go to page other
         And I click menu delete account
@@ -380,7 +380,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'complete document'
         When I go to page other
         And I click menu delete account
@@ -407,7 +407,7 @@ Feature: Account Deletion
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
-        And I click later
+        And I click later in pop up biometric
         And I will see card account 'on verification'
         When I go to page other
         And I click menu delete account

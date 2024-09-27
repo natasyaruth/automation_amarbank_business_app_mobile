@@ -32,6 +32,7 @@ Given("I register initiator with partner as below", async (table) => {
     const prodType = "CORP";
     const userID = globalVariable.login.userID;
     const password = globalVariable.login.password;
+    const npwpBusiness = globalVariable.registration.npwpBusinessDefault;
 
     const ktpInitiator = {
         ktpnumber: "3171032905930006",
@@ -67,21 +68,32 @@ Given("I register initiator with partner as below", async (table) => {
         industryType: "Jasa",
         monthlyIncome: "30 - 50 juta",
         averageTransaction: "20000000",
-        businessNPWP: "997000411185779",
         annualEarnings: "500 juta",
+        businessNPWP: npwpBusiness,
         nib: "3337798233333",
         foundedAt: "01-01-1991",
     };
 
     const dataInvitee = table.parse().rowsHash();
 
+    // WHITELIST EMAIL AND PHONENUMBER INVITEE
+    await
+        whitelistDao.whitelistEmail(dataInvitee["email"]);
+
+    await
+        whitelistDao.whitelistPhoneNumber("+62" + dataInvitee["phoneNumber"]);
+
     // HIT PRODUCT TYPE
     await
         uploadDao.submitProductType(prodType, userID, password);
 
+    // CHECKING NPWP
+    // await 
+    //     uploadDao.checkEligibilityNPWPBusiness(userID, password, npwpBusiness);
+
     // HIT LEGALITY TYPE
     await
-        uploadDao.submitLegalityType(legality, userID, password);
+        uploadDao.submitLegalityType(legality, userID, password, npwpBusiness);
 
     // JUMP TO FORM KTP
     await
@@ -99,17 +111,10 @@ Given("I register initiator with partner as below", async (table) => {
     await
         uploadDao.submitBusinessProfile(businessProfile, legality, userID, password);
 
-    // WHITELIST EMAIL AND PHONENUMBER INVITEE
-    await
-        whitelistDao.whitelistEmail(dataInvitee["email"]);
-
-    await
-        whitelistDao.whitelistPhoneNumber("+62"+dataInvitee["phoneNumber"]);
-
     // ADD PARTNER
     await
         uploadDao.submitOnePartner(dataInvitee, userID, password);
-        
+
     // GET BUSINESS CODE
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
 
@@ -118,16 +123,16 @@ Given("I register initiator with partner as below", async (table) => {
     globalVariable.registration.passwordPartner = dataInvitee["password"];
     globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
     globalVariable.registration.fullName = dataInvitee["fullName"];
-    
+
 });
 
-Given("I register invitee with business code", async() =>{
+Given("I register invitee with business code", async () => {
     // REQUEST OTP
     await
-        otpDao.requestOTP("+62"+globalVariable.registration.phoneNumberPartner);
-    
+        otpDao.requestOTP("+62" + globalVariable.registration.phoneNumberPartner);
+
     // GET OTP
-    const otp = (await otpDao.getOTP("62"+globalVariable.registration.phoneNumberPartner)).otp;
+    const otp = (await otpDao.getOTP("62" + globalVariable.registration.phoneNumberPartner)).otp;
 
     // REGISTER INVITEE
     const inviteeRegister = {
@@ -142,6 +147,14 @@ Given("I register invitee with business code", async() =>{
     };
 
     globalVariable.login.userIDPartner = (await firstRegistrationDao.firstRegistrationPartner(inviteeRegister)).userID;
+});
+
+When("I swipe to button save data eKTP", async () => {
+    
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.waitForElement(formKtpPage.buttons.saveEktp, 20);
 });
 
 When("I click take photo eKTP", () => {
@@ -166,16 +179,8 @@ When("I upload my eKTP photo", async () => {
         uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
         uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageAfterResetState();
-});
 
-When("I upload invited user eKTP photo", async () => {
-    I.waitForText("Ambil Foto eKTP Anda", 10);
-    await
-        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
-    await
-        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
-    resetStateDao.reloadPageUserInvitedAfterResetState();
+    resetStateDao.reloadPageAfterResetState();
 });
 
 Then("I will direct to page preview eKTP picture", () => {
@@ -196,13 +201,13 @@ Then("I will directing to page take photo eKTP", () => {
 });
 
 Then("I will directing to page submit form KTP", async () => {
-    I.waitForText("Verifikasi Data eKTP", 10);
+    I.waitForText("Verifikasi Data eKTP", 30);
     I.see("Data Personal");
     I.waitForElement(headerPage.buttons.back, 10);
 
-    I.see("Wajib Diisi");
+    I.waitForText("Wajib Diisi", 20);
 
-    I.see("Nomor eKTP");
+    I.waitForText("Nomor eKTP", 20);
     I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
 
     I.see("Nama sesuai eKTP");

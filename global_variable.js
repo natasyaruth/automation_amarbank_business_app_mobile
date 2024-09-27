@@ -22,6 +22,8 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
+        npwpBusinessDefault: "789645578340911",
+        npwpBusiness: "",
     },
     onBoarding:{
         legality: "",
@@ -31,8 +33,10 @@ module.exports = {
     login: {
         password: "",
         passwordPartner: "",
+        passwordFriendlist: "",
         userID: "",
         userIDPartner: "",
+        userIDFriendlist: "",
         countValue: "",
         date: "",
         time: "",
@@ -60,6 +64,15 @@ module.exports = {
     formPersonal:{
         isUploadNpwp: true,
     },
+    formBusinessProfile:{
+        businessName: "",
+        industry: "",
+        businessField: "",
+        monthlyIncome: "",
+        averageTransaction: "",
+        npwp: "",
+        nib: "",
+    },
     formDirector:{
         fullName: "",
         email:"",
@@ -71,6 +84,8 @@ module.exports = {
         akta: false,
         sk: false,
         npwp: false,
+        fileType: "",
+        fileName: [],
     },
     createPin:{
         newPin:"",
@@ -125,4 +140,8 @@ module.exports = {
         startDate: "",
         endDate: "",
     },
+    survey:{
+        feedBack: "",
+        lengthFeedback: ""
+    }
 }

@@ -12,6 +12,7 @@ const {
 Given("I am a customer want to fill my information identity details", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
 });
 
@@ -25,25 +26,36 @@ Given("I am a customer who has uploaded my eKTP photo", async () => {
         uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
         uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
+});
+
+Given("my mocking DHN currently is off", async()=>{
+
+    await
+        mockingDao.disabledCheckDHNKTP();
+
+    await
+        mockingDao.disabledCheckDHNNPWP();
+
 });
 
 When("I fill all information identity details as followings:",
     async (table) => {
         const ktpData = table.parse().rowsHash();
-        if(process.env.ENVIRONMENT === "staging"){
-            if(
+        if (process.env.ENVIRONMENT === "staging") {
+            if (
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
-            ){
+            ) {
                 ktpData["eKtpNumber"] = ktpData["eKtpNumberStg"];
-            } 
-        } else{
-            if(
+            }
+        } else {
+            if (
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
-            ){
+            ) {
                 delete ktpData["eKtpNumberStg"];
-            } 
-        } 
+            }
+        }
 
         I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
         formKtpPage.fillInformation(ktpData);
@@ -52,7 +64,7 @@ When("I fill all information identity details as followings:",
     }
 );
 
-When("I choose birthdate with current date", () =>{
+When("I choose birthdate with current date", () => {
     formKtpPage.chooseFieldBirthDate();
     formKtpPage.chooseDate();
 })
@@ -64,6 +76,7 @@ When("I submit my information identity details", () => {
 When("I skip step upload eKTP photo", async () => {
     await
         resetStateDao.resetStateFlow(3, globalVariable.login.userID, globalVariable.login.password);
+
     resetStateDao.reloadPageAfterResetState();
 });
 
@@ -172,7 +185,7 @@ Then("I will direct to page capture selfie", async () => {
     I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
 });
 
-Then("I will direct to page notifying me that I can't continue to next process KYC because my data indicated as DHN", async () => {
+Then("I will direct to page notifying me that I can't continue to next process KYC because my data is indicated as DHN", async () => {
     I.waitForElement(headerPage.buttons.closePage, 20);
     I.waitForElement(headerPage.icon.callCenter, 10);
 
@@ -227,12 +240,20 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
     I.dontSee("Untuk informasi lebih lanjut, silakan");
     I.dontSee("Hubungi Kami");
     I.dontSeeElement(formKtpPage.buttons.helpDHN);
+});
 
-    await
-        mockingDao.disabledCheckDHNKTP();
+Then("I will direct to dashboard with info other director data indicated as DHN", async () => {
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
-    await
-        mockingDao.disabledCheckDHNNPWP();
+    I.see("Amar Bank belum bisa melayani Anda.");
+    I.see("Salah satu direktur terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+
+    I.dontSee("Untuk informasi lebih lanjut, silakan");
+    I.dontSee("Hubungi Kami");
+    I.dontSeeElement(formKtpPage.buttons.helpDHN);
 });
 
 Then("I will direct to dashboard with widget account is rejected", async () => {

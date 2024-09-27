@@ -3,6 +3,8 @@ const {
     resetStateDao,
     globalVariable,
     uploadBusinessDocPage,
+    uploadDao,
+    getDataDao,
     headerPage,
 } = inject();
 
@@ -78,21 +80,22 @@ When("I see files that need to be uploaded for type company", () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
     I.see("NIB");
-    I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
+    I.see("Akta Pendirian");
+    I.see("SK Kemenkumham Pendirian");
 
-    I.see("Akta Perusahaan");
-    I.waitForElement(uploadBusinessDocPage.upload.certificate, 10);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
-    I.see("SK Kemenkumham");
-    I.waitForElement(uploadBusinessDocPage.upload.sk, 10);
+    I.see("NPWP Bisnis");
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
-    I.see("NPWP Perusahaan");
-    I.waitForElement(uploadBusinessDocPage.upload.npwp, 10);
-
+    I.see("Akta Perubahan Terakhir");
+    I.see("SK Kemenkumham Perubahan Terakhir");
+    
     I.see("Perbarui Progres");
     I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
 
@@ -100,25 +103,49 @@ When("I see files that need to be uploaded for type company", () => {
     I.waitForElement(uploadBusinessDocPage.link.viaOtherDevice, 10);
 });
 
-When("I see files that need to be uploaded for type individual company", () => {
+When("I see files that need to be uploaded for type individual company", async () => {
 
     I.waitForText("Progres Upload Dokumen", 10);
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
     I.see("Pengajuan Pembukaan Rekening");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
-    I.see("NIB");
-    I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
-    I.see("Akta Pendirian");
-    I.dontSee("Akta Perusahaan");
-    I.waitForElement(uploadBusinessDocPage.upload.certificate, 10);
+    if (
 
-    I.dontSee("SK Kemenkumham");
-    I.dontSee(uploadBusinessDocPage.upload.sk);
+        legalityType === "UD"
 
-    I.dontSee("NPWP Perusahaan");
-    I.dontSee(uploadBusinessDocPage.upload.npwp);
+    ) {
+
+        I.see("NIB");
+        I.see("NPWP Bisnis");
+        I.dontSee("Sertifikat Pendaftaran");
+        I.dontSee("Surat Pernyataan Pendirian");
+        I.dontSee("Sertifikat Perubahan Terakhir");
+        I.dontSee("Surat Pernyataan Perubahan Terakhir");
+
+    } else if (
+
+        legalityType === "PT Perorangan"
+
+    ) {
+
+        I.see("NIB");
+        I.see("NPWP Bisnis");
+        I.see("Sertifikat Pendaftaran");
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.see("Surat Pernyataan Pendirian");
+        I.see("Sertifikat Perubahan Terakhir");
+        I.see("Surat Pernyataan Perubahan Terakhir");
+        
+    } else {
+
+        throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
+    }
 
     I.see("Perbarui Progres");
     I.waitForElement(uploadBusinessDocPage.buttons.refresh, 10);
@@ -127,9 +154,11 @@ When("I see files that need to be uploaded for type individual company", () => {
     I.waitForElement(uploadBusinessDocPage.link.viaOtherDevice, 10);
 });
 
-When("I upload document business {string}", async (typeDoc) => {
+When("I upload document business {string} with type {string}", async (typeDoc, fileType) => {
+    globalVariable.uploadDocuments.fileType = fileType;
+
     await
-        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc);
+        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc, fileType);
 });
 
 When("I upload all document business for type company", async () => {
@@ -138,24 +167,91 @@ When("I upload all document business for type company", async () => {
 });
 
 When("I upload all document business for type individual company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
     await
-        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password);
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password, legalityType);
 });
 
-When("I delete document {string}", (typeDoc) => {
+When("I upload all document business required for type company", async () => {
+    await
+        uploadBusinessDocPage.uploadAllDocumentCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
+});
+
+When("I upload all document business required for type individual company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+    await
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(globalVariable.login.userID, globalVariable.login.password, legalityType);
+});
+
+When("I delete document {string}", async (typeDoc) => {
+
     switch (typeDoc) {
         case "NIB":
             uploadBusinessDocPage.deleteDocumentNIB();
             break;
-        case "Akta Perusahaan":
-            uploadBusinessDocPage.deleteDocumentAktaPerusahaan();
+
+        case "Akta Pendirian":
+            uploadBusinessDocPage.deleteDocumentAktaBusiness();
             break;
-        case "SK Kemenkumham":
+
+        case "Sertifikat Pendaftaran":
+            uploadBusinessDocPage.deleteDocumentAkta();
+            break;
+
+        case "SK Kemenkumham Pendirian":
+            uploadBusinessDocPage.deleteDocumentSKBusiness();
+            break;
+
+        case "Surat Pernyataan Pendirian":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             uploadBusinessDocPage.deleteDocumentSK();
             break;
-        case "NPWP Perusahaan":
-            uploadBusinessDocPage.deleteDocumentNPWPPerusahaan();
+
+        case "NPWP Bisnis":
+
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+            if (
+
+                legalityType === "UD" ||
+                legalityType === "PT Perorangan"
+
+            ) {
+
+                uploadBusinessDocPage.deleteDocumentNPWP();
+
+            } else {
+
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+                uploadBusinessDocPage.deleteDocumentNPWPBusiness();
+
+            }
             break;
+
+        case "Akta Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            uploadBusinessDocPage.deleteDocumentLastAkta();
+            break;
+
+        case "Sertifikat Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            uploadBusinessDocPage.deleteDocumentLastAkta();
+            break;
+
+        case "SK Kemenkumham Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            uploadBusinessDocPage.deleteDocumentLastSK();
+            break;
+
+        case "Surat Pernyataan Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            uploadBusinessDocPage.deleteDocumentLastSK();
+            break;
+
         default:
             throw new Error("Document name is not recognize");
     }
@@ -165,13 +261,33 @@ When("I delete all document company", () => {
     uploadBusinessDocPage.deleteDocumentNIB();
     uploadBusinessDocPage.confirmDelete();
 
-    uploadBusinessDocPage.deleteDocumentAktaPerusahaan();
+    uploadBusinessDocPage.deleteDocumentAktaBusiness();
     uploadBusinessDocPage.confirmDelete();
 
-    uploadBusinessDocPage.deleteDocumentSK();
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
+    uploadBusinessDocPage.deleteDocumentSKBusiness();
     uploadBusinessDocPage.confirmDelete();
 
-    uploadBusinessDocPage.deleteDocumentNPWPPerusahaan();
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
+    uploadBusinessDocPage.deleteDocumentNPWPBusiness();
+    uploadBusinessDocPage.confirmDelete();
+
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    uploadBusinessDocPage.deleteDocumentLastAkta();
+    uploadBusinessDocPage.confirmDelete();
+
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.wait(2);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    uploadBusinessDocPage.deleteDocumentLastSK();
     uploadBusinessDocPage.confirmDelete();
 
 });
@@ -216,27 +332,22 @@ Then("I will direct to page to re-upload document company", () => {
     I.waitForText("Pengajuan Pembukaan Rekening", 10);
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForElement(headerPage.icon.callCenter, 10);
-    I.see("Progres Upload Dokumen");
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
     I.dontSee(uploadBusinessDocPage.upload.nib);
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Perusahaan.pdf");
     I.dontSee(uploadBusinessDocPage.upload.certificate);
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-    I.see("SK Kemenkumham.pdf");
     I.dontSee(uploadBusinessDocPage.upload.sk);
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-    I.see("NPWP Perusahaan.pdf");
     I.dontSee(uploadBusinessDocPage.upload.npwp);
 
     I.see("Simpan Dokumen");
@@ -355,31 +466,89 @@ Then("I will see button request account opening is shown", () => {
     I.see("Ajukan Pembukaan Rekening");
 });
 
-Then("I will see document {string} is uploaded", (typeDoc) => {
+Then("I will see document {string} is uploaded", async (typeDoc) => {
 
     switch (typeDoc) {
+
         case "NIB":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-            I.see(typeDoc + ".pdf");
             break;
-        case "Akta Perusahaan":
+
+        case "Akta Pendirian":
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
+            break;
+
+        case "Sertifikat Pendaftaran":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-            I.see(typeDoc + ".pdf");
             break;
-        case "SK Kemenkumham":
+
+        case "SK Kemenkumham Pendirian":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
+            break;
+
+        case "Surat Pernyataan Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-            I.see(typeDoc + ".pdf");
             break;
-        case "NPWP Perusahaan":
+
+        case "NPWP Bisnis":
+
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+            if (
+
+                legalityType === "UD" ||
+                legalityType === "PT Perorangan"
+
+            ) {
+
+                I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+                I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+
+            } else {
+
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+                I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
+                I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+
+            }
+            break;
+
+        case "Akta Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-            I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
-            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-            I.see(typeDoc + ".pdf");
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
             break;
+
+        case "Sertifikat Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+            break;
+
+        case "SK Kemenkumham Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+            break;
+
+        case "Surat Pernyataan Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+            break;
+
         default:
             throw new Error("Document name is not recognize");
     }
@@ -390,140 +559,378 @@ Then("I will see all document company has been uploaded", () => {
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
 
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Perusahaan.pdf");
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-    I.see("SK Kemenkumham.pdf");
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-    I.see("NPWP Perusahaan.pdf");
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
+
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
 
 });
 
-Then("I will see all document business individual company has been uploaded", () => {
+Then("I will see all document required company has been uploaded", () => {
 
     I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
     I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-    I.see("NIB.pdf");
 
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-    I.see("Akta Pendirian.pdf");
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
+
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(1);
+
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
+
+});
+
+Then("I will see all document business individual company has been uploaded", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+    if (
+
+        legalityType === "UD"
+
+    ) {
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+
+    } else if (
+
+        legalityType === "PT Perorangan"
+
+    ) {
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+
+    } else {
+
+        throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
+    }
+
+});
+
+Then("I will see all document required business individual company has been uploaded", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+    if (
+
+        legalityType === "UD"
+
+    ) {
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+
+    } else if (
+
+        legalityType === "PT Perorangan"
+
+    ) {
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
+
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
+        I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+        I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+        I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+
+        I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
+        I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
+
+    } else {
+
+        throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
+    }
 
 });
 
 Then("I will not see all document company", () => {
 
     I.wait(1);
-    I.swipeDown(uploadBusinessDocPage.upload.certificate, 500, 1000);
+
     I.waitForElement(uploadBusinessDocPage.upload.nib, 10);
-    I.dontSee(uploadBusinessDocPage.buttons.deleteNIB);
-    I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNIB);
-    I.dontSee("NIB.pdf");
-    I.assertEqual(globalVariable.uploadDocuments.nib, false);
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNIB);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNIB);
 
-    I.waitForElement(uploadBusinessDocPage.upload.certificate, 10);
-    I.dontSee(uploadBusinessDocPage.buttons.deleteAkta);
-    I.dontSee(uploadBusinessDocPage.texts.sizeDocumentAkta);
-    I.dontSee("Akta Perusahaan.pdf");
-    I.assertEqual(globalVariable.uploadDocuments.akta, false);
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAktaBusiness);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.waitForElement(uploadBusinessDocPage.upload.sk, 10);
-    I.dontSee(uploadBusinessDocPage.buttons.deleteSK);
-    I.dontSee(uploadBusinessDocPage.texts.sizeDocumentSK);
-    I.dontSee("SK Kemenkumham.pdf");
-    I.assertEqual(globalVariable.uploadDocuments.sk, false);
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
 
-    I.waitForElement(uploadBusinessDocPage.upload.npwp, 10);
-    I.dontSee(uploadBusinessDocPage.buttons.deleteNPWP);
-    I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNPWP);
-    I.dontSee("NPWP Perusahaan.pdf");
-    I.assertEqual(globalVariable.uploadDocuments.npwp, false);
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSKBusiness);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness);
+
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness);
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+    I.wait(2);
+
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+
+    I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
+    I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
 
 });
 
-Then("I will see {string} is empty", (typeDoc) => {
+Then("I will see {string} is empty", async (typeDoc) => {
 
     I.wait(1);
 
     switch (typeDoc) {
+
         case "NIB":
-            I.dontSee(uploadBusinessDocPage.buttons.deleteNIB);
-            I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNIB);
-            I.dontSee(uploadBusinessDocPage.icons.uploadedNib);
-            I.dontSee(typeDoc + ".pdf");
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNIB);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNIB);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNib);
             break;
-        case "Akta Perusahaan":
-            I.dontSee(uploadBusinessDocPage.buttons.deleteAkta);
-            I.dontSee(uploadBusinessDocPage.texts.sizeDocumentAkta);
-            I.dontSee(uploadBusinessDocPage.icons.uploadedAkta);
-            I.dontSee(typeDoc + ".pdf");
+
+        case "Akta Pendirian":
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAktaBusiness);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedAktaBusiness);
             break;
-        case "SK Kemenkumham":
+
+        case "Sertifikat Pendaftaran":
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAkta);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAkta);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedAkta);
+            break;
+
+        case "SK Kemenkumham Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-            I.wait(1);
-            I.dontSee(uploadBusinessDocPage.buttons.deleteSK);
-            I.dontSee(uploadBusinessDocPage.texts.sizeDocumentSK);
-            I.dontSee(uploadBusinessDocPage.icons.uploadedSK);
-            I.dontSee(typeDoc + ".pdf");
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSKBusiness);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSKBusiness);
             break;
-        case "NPWP Perusahaan":
+
+        case "Surat Pernyataan Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-            I.wait(1);
-            I.dontSee(uploadBusinessDocPage.buttons.deleteNPWP);
-            I.dontSee(uploadBusinessDocPage.texts.sizeDocumentNPWP);
-            I.dontSee(uploadBusinessDocPage.icons.uploadedNpwp);
-            I.dontSee(typeDoc + ".pdf");
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSK);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSK);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
             break;
+
+        case "NPWP Bisnis":
+
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+            if (
+
+                legalityType === "UD" ||
+                legalityType === "PT Perorangan"
+
+            ) {
+
+                I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWP);
+                I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWP);
+                I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNpwp);
+
+            } else {
+
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+                I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
+                I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+                I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNpwpBusiness);
+
+            }
+            break;
+
+        case "Akta Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
+            break;
+
+        case "Sertifikat Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
+            break;
+
+        case "SK Kemenkumham Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedLastSk);
+            break;
+
+        case "Surat Pernyataan Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
+            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedLastCertificate);
+            break;
+
         default:
             throw new Error("Document name is not recognize");
     }
 
 });
 
-Then("I will see {string} still exists", (typeDoc) => {
+Then("I will see {string} still exists", async (typeDoc) => {
 
     switch (typeDoc) {
         case "NIB":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-            I.dontSee(uploadBusinessDocPage.upload.nib);
-            I.see(typeDoc + ".pdf");
-        case "Akta Perusahaan":
+            I.dontSeeElement(uploadBusinessDocPage.upload.nib);
+
+        case "Akta Pendirian":
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.certificateBusiness);
+            break;
+
+        case "Sertifikat Pendaftaran":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-            I.dontSee(uploadBusinessDocPage.upload.certificate);
-            I.see(typeDoc + ".pdf");
-        case "SK Kemenkumham":
+            I.dontSeeElement(uploadBusinessDocPage.upload.certificate);
+            break;
+
+        case "SK Kemenkumham Pendirian":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.skBusiness);
+            break;
+
+        case "Surat Pernyataan Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-            I.dontSee(uploadBusinessDocPage.upload.sk);
-            I.see(typeDoc + ".pdf");
-        case "NPWP Perusahaan":
-            I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-            I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
-            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
-            I.dontSee(uploadBusinessDocPage.upload.npwp);
-            I.see(typeDoc + ".pdf");
+            I.dontSeeElement(uploadBusinessDocPage.upload.sk);
+            break;
+
+        case "NPWP Bisnis":
+
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+            if (
+
+                legalityType === "UD" ||
+                legalityType === "PT Perorangan"
+
+            ) {
+
+                I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+                I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
+                I.dontSeeElement(uploadBusinessDocPage.upload.npwp);
+
+            } else {
+
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+                I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
+                I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
+                I.dontSeeElement(uploadBusinessDocPage.upload.npwpBusiness);
+            }
+            break;
+
+        case "Akta Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.lastCertificate);
+            break;
+
+        case "Sertifikat Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.lastCertificate);
+            break;
+
+        case "SK Kemenkumham Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.lastSk);
+            break;
+
+        case "Surat Pernyataan Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
+            I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+            I.dontSeeElement(uploadBusinessDocPage.upload.lastSk);
+            break;
+
         default:
             throw new Error("Document name is not recognize");
     }
 
 });
 
-Then("I reset state upload document", async () => {    
+Then("I reset state upload document", async () => {
     await
         resetStateDao.deleteAllDocuments(globalVariable.login.userID, globalVariable.login.password);
-
-    await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);    
 });

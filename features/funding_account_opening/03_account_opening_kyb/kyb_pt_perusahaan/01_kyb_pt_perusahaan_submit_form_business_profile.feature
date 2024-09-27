@@ -23,12 +23,15 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
         And I choose Giro Account Corporate
         And I choose legality business type 'company'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
 
     @C131931
     Scenario: Submit form Business Profile successfully business type PT Perusahaan
         Given I am a customer who has completed my KYC process
-        When I continue to process KYB
         And I see fields that available in Business Profile
         And I fill my business profile as followings:
             | businessName       | PT. ABCD        |
@@ -36,7 +39,6 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Profile
             | businessField      | Restoran        |
             | monthlyIncome      | 30 - 50 juta    |
             | averageTransaction | 2000000         |
-            | npwp               | 906283213036000 |
             | nib                | 9129106701234   |
             | businessDateStart  | 10/10/2010      |
         And I submit my business profile

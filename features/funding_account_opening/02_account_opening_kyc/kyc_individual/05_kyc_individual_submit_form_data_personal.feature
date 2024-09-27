@@ -23,6 +23,10 @@ Feature: Account Opening KYC Individual - Submit Data Personal
         And I choose Giro Account MSME
         And I choose legality business type 'individual'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie with KTP'
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Data Personal
@@ -131,6 +135,7 @@ Feature: Account Opening KYC Individual - Submit Data Personal
     @C131751
     Scenario: Submit form Data Personal successfully business type individual
         Given I am a customer want to fill my personal details
+        And I see page 'Data Personal'
         When I submit my personal data details individual and upload my npwp as followings:
             | lastEducation        | SMA           |
             | motherName           | NADYA LAMUSU  |

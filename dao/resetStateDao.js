@@ -1,4 +1,4 @@
-const { I, headerPage, onboardingAccOpeningPage, globalVariable } = inject();
+const { I, headerPage, onboardingAccOpeningPage, globalVariable, getDataDao } = inject();
 
 const env = globalVariable.returnEnvi();
 
@@ -19,20 +19,163 @@ module.exports = {
         };
     },
 
-    async deleteAllDocuments(userID, password) {
+    async updateFlagOnboardingDocumentSafeAndSurvey(userID, status) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseUpdate = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/flags/bulk-update", secret({
+            username: userID,
+            flags: {
+                brankasOnboarding: status,
+                brankasSurvey: status
+            }
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: responseUpdate.status,
+            data: responseUpdate.data
+        }
+
+    },
+
+    async getIdOtherDoc(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
-        I.amBearerAuthenticated(secret(bearerToken))
+        I.amBearerAuthenticated(secret(bearerToken));
 
-        const enumDoc = [1, 2, 5, 7];
-        let responseDelete;
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
 
-        for(let i=0;i<4;i++){
-            responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/"+enumDoc[i]));
-            I.wait(3);
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            idDocs: response.data,
         }
-        
+
+    },
+
+    async deleteOtherDoc(userID, password) {
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc);
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
+    async deleteAllOtherDoc(userID, password) {
+
+        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        let response;
+
+        if (idDoc.length !== 0) {
+            for (let i = 0; i < idDoc.length; i++) {
+                response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc[i].id);
+                I.wait(3);
+            }
+
+            return {
+                status: response.status,
+                data: response.data
+            }
+        }
+    },
+
+    async deleteAllDocuments(userID, password) {
+
+        const listIdDocs = (await getDataDao.getListDocBusiness(userID, password)).listDocBusiness;
+
+        let response;
+
+        if (listIdDocs !== null) {
+
+            for (let i = 0; i < listIdDocs.length; i++) {
+
+                if (
+
+                    listIdDocs[i].type === "nib_berbasis_resiko"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/1");
+
+                } else if (
+
+                    listIdDocs[i].type === "akta_pendirian"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/2");
+
+                } else if (
+
+                    listIdDocs[i].type === "anggaran_dasar"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/3");
+
+                } else if (
+
+                    listIdDocs[i].type === "akta_perubahan_terakhir" ||
+                    listIdDocs[i].type === "sertifikat_perubahan_terakhir"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/4");
+
+                } else if (
+
+                    listIdDocs[i].type === "npwp"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/5");
+
+                } else if (
+
+                    listIdDocs[i].type === "surat_pernyataan_pendirian_pt"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/6");
+
+                } else if (
+
+                    listIdDocs[i].type === "sk_kemenkumham"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/7");
+
+                } else if (
+
+                    listIdDocs[i].type === "sk_kemenkumham_perubahan"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/9");
+
+                } else if (
+
+                    listIdDocs[i].type === "surat_pernyataan_perubahan_terakhir"
+                ) {
+
+                    response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/docs/10");
+
+                }
+            }
+
+        }
     },
 
     async deletePartner(businessId) {
@@ -41,20 +184,20 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io//api/v1/user/business/partners/all/"+businessId);
+        const responseDelete = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/partners/all/" + businessId);
 
         I.seeResponseCodeIsSuccessful();
 
-        return{
+        return {
             status: responseDelete.status,
             data: responseDelete.data
         }
-        
+
     },
 
     async deleteDeviceId(deviceId) {
 
-        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/"+deviceId));
+        const responseDelete = await I.sendDeleteRequest(secret("https://" + env + "-smb-device.otoku.io/api/v1/device/smb-users/" + deviceId));
 
         I.seeResponseCodeIsSuccessful();
 
@@ -134,9 +277,9 @@ module.exports = {
     },
 
     reloadPageAfterResetState() {
-        headerPage.clickButtonBack();
-        I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 20);
-        I.wait(1);
+        headerPage.closePage();
+        onboardingAccOpeningPage.clickRbProcessLater();
+        onboardingAccOpeningPage.sendExitSurvey();
         onboardingAccOpeningPage.continueCompleteData();
     },
 
@@ -311,6 +454,21 @@ module.exports = {
             status: responseBusinessDetails.status,
             hasPendingTransaction: responseBusinessDetails.data.hasPendingTransaction,
         };
+
+    },
+
+    async deleteAllNotification(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
 
     },
 

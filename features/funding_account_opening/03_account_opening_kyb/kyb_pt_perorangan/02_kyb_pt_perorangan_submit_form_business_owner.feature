@@ -23,14 +23,17 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
         And I choose Giro Account MSME
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
-        When I continue to process KYB
+        And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
             | industry          | Jasa            |
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
-            | npwp              | 906283213036000 |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile

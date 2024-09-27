@@ -6,12 +6,12 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
 
   Background: User choose legality business type Individual
     Given I am a registered customer with following details:
-      | userID      | ruth07f9 |
+      | userID      | ruth0c1c |
       | password    | 1234Test |
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
     And I filling in form login with the following details:
-      | userID      | ruth07f9 |
+      | userID      | ruth0c1c |
       | password    | 1234Test |
       | userIDstg   | ruth530f |
       | passwordStg | 1234Test |
@@ -23,6 +23,10 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
     And I choose Giro Account MSME
     And I choose legality business type 'individual'
     And I submit my legality type
+    And I fill NPWP Business
+    And I click continue to data personal
+    And I click confirm NPWP Business
+    And I see page 'Upload eKTP'
     And I update my last journey step to 'Data KTP'
 
   @C131725

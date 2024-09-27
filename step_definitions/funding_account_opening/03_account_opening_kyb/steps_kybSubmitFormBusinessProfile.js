@@ -45,8 +45,9 @@ When("I see fields that available in Business Profile", async () => {
     I.see("Rata-rata transaksi per bulan");
 
     I.waitForElement(formBusinessProfilePage.fields.npwp, 10);
+    // checking field npwp is disabled
     I.see("Nomor NPWP Bisnis");
-    I.see("Tulis nomor NPWP bisnis");
+    I.see(globalVariable.registration.npwpBusiness);
 
     I.waitForElement(formBusinessProfilePage.fields.nib, 10);
     I.see("NIB Berbasis Resiko");
@@ -72,6 +73,12 @@ When("I fill my business profile as followings:", (table) => {
 
     const businessProfile = table.parse().rowsHash();
     formBusinessProfilePage.fillBusinessProfile(businessProfile);
+
+    delete businessProfile["businessDateStart"];
+
+    Object.keys(businessProfile).forEach((key) => {
+        globalVariable.formBusinessProfile[key] = businessProfile[key];
+    });
 });
 
 When("I submit my business profile", () => {
@@ -100,7 +107,6 @@ When("I fill form Business Profile except field {string}", (fieldName) => {
         businessField: "Restoran",
         monthlyIncome: "30 - 50 juta",
         averageTransaction: 200000,
-        npwp: "906283213036000",
         nib: "9129106701234",
         businessDateStart: "10/10/2010",
     };
@@ -187,7 +193,7 @@ Then("I will directing to page director list", async () => {
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I will direct to page notifying me that I can't continue to next process KYB because my data indicated as DHN", async () => {
+Then("I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN", async () => {
     const actualTitle = await formBusinessProfilePage.getTitleValidationBlocker();
     I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
 

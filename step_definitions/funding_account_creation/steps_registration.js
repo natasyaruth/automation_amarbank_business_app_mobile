@@ -34,13 +34,13 @@ Given("I am a customer that recently registered to amarbank business with data a
   
   const account = registration.parse().rowsHash();
 
-    await whitelistDao.whitelistPhoneNumber(
-      "+62" + account["phoneNumber"]
-    );
+    // await whitelistDao.whitelistPhoneNumber(
+    //   "+62" + account["phoneNumber"]
+    // );
 
-    await whitelistDao.whitelistEmail(
-      account["email"]
-    );
+    // await whitelistDao.whitelistEmail(
+    //   account["email"]
+    // );
 
     globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
     globalVariable.registration.email = account["email"];
@@ -64,7 +64,7 @@ When("I see carousel onboarding", () => {
 });
 
 When("I swipe to next carousel", () => {
-  I.swipeLeft(welcomePage.image.onboarding, 600, 800);
+  I.swipeLeft(welcomePage.image.onboarding, 800, 800);
   I.wait(1);
 });
 
@@ -149,7 +149,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
 });
  
 When("I verifying my email by login by user id", async () => {
-  I.wait(3);
+  I.wait(20);
   verificationEmailPage.isOpen();
 
   I.see("Segera Cek E-mail");
@@ -569,7 +569,7 @@ Then("I will get new OTP different with my first OTP", async () => {
   globalVariable.registration.otpCode = newOtp;
 });
 
-Then("I will see attempt left {string}", (leftAttempt) => {
+Then("I will see attempts left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
 });
 
@@ -647,6 +647,7 @@ Then("I should see button Buat Akun will disable", async () => {
 });
 
 Then("I should go to Verifikasi No. HP page", () => {
+  I.wait(10);
   I.see("Verifikasi Nomor HP");
   I.see("Masukkan Kode OTP");
 });

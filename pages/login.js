@@ -36,6 +36,7 @@ module.exports = {
   link: {
     forgotPassword: "~linkForgotPassword",
     registration: "~linkRegistration",
+    loginLink: "~linkLogin"
   },
   checkbox: {
     rememberMe: "~checkBoxRememberMe",
@@ -100,11 +101,12 @@ module.exports = {
   },
 
   clickIconCallCenter() {
+    I.waitForElement(this.buttons.callCenter, 10);
     I.click(this.buttons.callCenter);
   },
 
   goToRegistrationPage() {
-    I.waitForElement(this.link.registration, 30);
+    I.waitForElement(this.link.registration, 40);
     I.click(this.link.registration);
   },
 
@@ -148,7 +150,7 @@ module.exports = {
   },
 
   clickLaterBiometric() {
-    I.waitForElement(this.buttons.laterBiometric, 30);
+    I.waitForElement(this.buttons.laterBiometric, 20);
     I.click(this.buttons.laterBiometric);
   },
 
