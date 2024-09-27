@@ -12,43 +12,74 @@ const env = {
     enabled: process.env.TESTRAIL_ENABLED || false,
     runId: process.env.TESTRAIL_RUN_ID || undefined,
     closeTestRun: process.env.TESTRAIL_CLOSE_RUN || false,
-  }
+  },
 };
+
+let defaultAppium = {
+  require: "./helpers/JetpackComposeHelper.js",
+  appiumV2: true,
+  // app: "./assets/app/app-development-debug.apk",
+  platform: "Android",
+  device: "emulator",
+  path: "/wd/hub",
+  desiredCapabilities: {
+    platformName: "Android",
+    // platformVersion: "12.0",
+    automationName: "UiAutomator2",
+    newCommandTimeout: 300,
+    deviceName: "emulator-5554",
+    appPackage: "id.co.amarbank.smb.staging", //staging
+    // appPackage: "id.co.amarbank.smb.dev", //Dev
+    appActivity: "id.co.amarbank.smb.ui.MainActivity",
+    autoGrantPermissions: true,
+  },
+};
+
+if (process.env.BROWSERSTACK) {
+  defaultAppium = {
+    require: "./helpers/JetpackComposeHelper.js",
+    app: "bs://4f316929d16d562cf3596143df482ca87a9df5da",
+    appiumV2: true,
+    autoGrantPermissions: true,
+    host: "hub-cloud.browserstack.com",
+    port: 4444,
+    platform: "android",
+    user: "qatestingtechnol1",
+    key: "ubKJg1fyqyprtJMiJedy",
+    platformName: "android",
+    platformVersion: 13.0,
+    deviceName: "Google Pixel 7 Pro",
+    device: "Google Pixel 7 Pro",
+    desiredCapabilities: {
+      platformName: "android",
+      platformVersion: "13.0",
+      // automationName: "UIAutomator2",
+      newCommandTimeout: 300000,
+      androidDeviceReadyTimeout: 300000,
+      androidInstallTimeout: 90000,
+      appWaitDuration: 300000,
+      autoGrantPermissions: true,
+    },
+  };
+}
 
 exports.config = {
   output: "./output",
   helpers: {
-    Appium: {
-      require: "./helpers/JetpackComposeHelper.js",
-      appiumV2: true,
-      // app: "./assets/app/app-development-debug.apk",
-      platform: "Android",
-      device: "emulator",
-      path: "/wd/hub",
-      desiredCapabilities: {
-        platformName: "Android",
-        // platformVersion: "12.0",
-        automationName: "UiAutomator2",
-        newCommandTimeout: 300,
-        deviceName: "emulator-5554",
-        appPackage: "id.co.amarbank.smb.staging", //staging
-        // appPackage: "id.co.amarbank.smb.dev", //Dev
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
-        autoGrantPermissions: true
-      }
-    },
+    Appium: defaultAppium,
     ChaiWrapper: {
-      require: "codeceptjs-chai"
+      require: "codeceptjs-chai",
     },
     REST: {
       endpoint: "https://dev-api-sms.otoku.io",
       defaultHeaders: {
-        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
+        Authorization:
+          "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg==",
         "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+        Accept: "application/json",
+      },
     },
-    JSONResponse: {}
+    JSONResponse: {},
   },
   include: {
     I: "./steps_file.js",
@@ -76,7 +107,8 @@ exports.config = {
 
     selectLoanAmountPage: "./pages/loanApplication/selectLoanAmountTenor.js",
 
-    loanMonitoringProcessPage: "./pages/loanApplication/loanMonitoringProcess.js",
+    loanMonitoringProcessPage:
+      "./pages/loanApplication/loanMonitoringProcess.js",
 
     forgotPasswordPage: "./pages/forgotPassword.js",
 
@@ -174,24 +206,24 @@ exports.config = {
   },
   settings: {
     logging: {
-      level: 'warn',
+      level: "warn",
     },
   },
   mocha: {
-    "reporterOptions": {
+    reporterOptions: {
       "codeceptjs-cli-reporter": {
-        "stdout": "-",
-        "options": {
-          "verbose": true,
-          "steps": true
-        }
+        stdout: "-",
+        options: {
+          verbose: true,
+          steps: true,
+        },
       },
-      "mochawesome": {
-        "stdout": "./output/console.log",
-        "options": {
-          "reportDir": "./output",
-          "reportFilename": "report"
-        }
+      mochawesome: {
+        stdout: "./output/console.log",
+        options: {
+          reportDir: "./output",
+          reportFilename: "report",
+        },
       },
       //   "mocha-junit-reporter": {
       //     "stdout": "./output/console.log",
@@ -200,14 +232,15 @@ exports.config = {
       //       "attachments": true //add screenshot for a failed test
       //     }
       // }
-    }
+    },
   },
   bootstrap: null,
   timeout: 500,
   teardown: null,
   hooks: [],
   gherkin: {
-    features: ["./features/*.feature",
+    features: [
+      "./features/*.feature",
       "./features/loanApplication/loanTypeAP/*.feature",
       "./features/loanApplication/loanTypeAR/*.feature",
       "./features/loanApplication/loanTypePO/*.feature",
@@ -250,7 +283,8 @@ exports.config = {
       "./features/main_feature/funding_flow/funding_transfer/*.feature",
       "./features/funding_e2e/funding_e2e_account_opening/*.feature",
     ],
-    steps: ["./step_definitions/funding_account_creation/steps_registration.js",
+    steps: [
+      "./step_definitions/funding_account_creation/steps_registration.js",
       "./step_definitions/funding_account_creation/steps_login.js",
       "./step_definitions/loanApplication/steps_loanType.js",
       "./step_definitions/loanApplication/steps_selectAnchor.js",
@@ -305,38 +339,39 @@ exports.config = {
       "./step_definitions/loanFlagging/steps_loanFlagging.js",
       "./step_definitions/loanFlagging/steps_monitoring.js",
       "./step_definitions/loanFlagging/steps_selectAnchor.js",
-      "./step_definitions/loanFlagging/steps_submitLoan.js"
+      "./step_definitions/loanFlagging/steps_submitLoan.js",
     ],
   },
   plugins: {
     screenshotOnFail: {
-      enabled: true
+      enabled: true,
     },
     tryTo: {
-      enabled: true
+      enabled: true,
     },
     retryFailedStep: {
-      enabled: true
+      enabled: true,
     },
     retryTo: {
-      enabled: true
+      enabled: true,
     },
     eachElement: {
-      enabled: true
+      enabled: true,
     },
     pauseOnFail: {},
-    testrail: env.testrail
+    testrail: env.testrail,
   },
   stepTimeout: 0,
-  stepTimeoutOverride: [{
+  stepTimeoutOverride: [
+    {
       pattern: "wait.*",
-      timeout: 0
+      timeout: 0,
     },
     {
       pattern: "amOnPage",
-      timeout: 0
-    }
+      timeout: 0,
+    },
   ],
   tests: "./*_test.js",
-  name: "amarbank-smb-mobile-testing"
+  name: "amarbank-smb-mobile-testing",
 };
