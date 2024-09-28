@@ -1,4 +1,8 @@
 require("dotenv").config();
+require("./heal");
+
+// const getRelease = require("./latest_releas.staging.js");
+// console.log(getRelease);
 
 const env = {
   testrail: {
@@ -15,6 +19,14 @@ const env = {
   },
 };
 
+let appPackage = "id.co.amarbank.smb.dev";
+if (
+  process.env.ENVIRONMENT != undefined &&
+  process.env.ENVIRONMENT == "staging"
+) {
+  appPackage = "id.co.amarbank.smb.staging";
+}
+
 let defaultAppium = {
   require: "./helpers/JetpackComposeHelper.js",
   appiumV2: true,
@@ -28,8 +40,7 @@ let defaultAppium = {
     automationName: "UiAutomator2",
     newCommandTimeout: 300,
     deviceName: "emulator-5554",
-    appPackage: "id.co.amarbank.smb.staging", //staging
-    // appPackage: "id.co.amarbank.smb.dev", //Dev
+    appPackage: appPackage,
     appActivity: "id.co.amarbank.smb.ui.MainActivity",
     autoGrantPermissions: true,
   },
@@ -38,14 +49,14 @@ let defaultAppium = {
 if (process.env.BROWSERSTACK) {
   defaultAppium = {
     require: "./helpers/JetpackComposeHelper.js",
-    app: "bs://4f316929d16d562cf3596143df482ca87a9df5da",
+    app: process.env.BROWSERSTACK_APPID_HASHED,
     appiumV2: true,
     autoGrantPermissions: true,
     host: "hub-cloud.browserstack.com",
     port: 4444,
     platform: "android",
-    user: "qatestingtechnol1",
-    key: "ubKJg1fyqyprtJMiJedy",
+    user: process.env.BROWSERSTACK_USERNAME,
+    key: process.env.BROWSERSTACK_API_KEY,
     platformName: "android",
     platformVersion: 13.0,
     deviceName: "Google Pixel 7 Pro",
@@ -53,7 +64,6 @@ if (process.env.BROWSERSTACK) {
     desiredCapabilities: {
       platformName: "android",
       platformVersion: "13.0",
-      // automationName: "UIAutomator2",
       newCommandTimeout: 300000,
       androidDeviceReadyTimeout: 300000,
       androidInstallTimeout: 90000,
@@ -343,6 +353,9 @@ exports.config = {
     ],
   },
   plugins: {
+    heal: {
+      enabled: false,
+    },
     screenshotOnFail: {
       enabled: true,
     },
@@ -374,4 +387,19 @@ exports.config = {
   ],
   tests: "./*_test.js",
   name: "amarbank-smb-mobile-testing",
+  ai: {
+    request: async (messages) => {
+      const OpenAI = require("openai");
+      const openai = new OpenAI({
+        apiKey: "",
+      });
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo-0125",
+        messages,
+      });
+
+      return completion?.choices[0]?.message?.content;
+    },
+  },
 };

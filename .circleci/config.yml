@@ -16,4 +16,4 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: "20.10.0"
-      - run: node --version
+      - run: node --version && yarn install

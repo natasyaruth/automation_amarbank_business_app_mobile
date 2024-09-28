@@ -47,6 +47,10 @@ Run All tests for staging environment
 ENVIRONMENT=staging npx codeceptjs run
 ```
 
+```
+ENVIRONMENT=staging BROWSERSTACK=true npx codeceptjs run --debug --step --verbose
+```
+
 
 ## Commander
 
