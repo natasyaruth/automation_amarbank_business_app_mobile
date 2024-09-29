@@ -110,3 +110,12 @@ else
   echo "Upload failed or app_url not found. Node.js script will not be run again."
   exit 1
 fi
+
+# Check if the file exists
+if [ -f "$apk_file" ]; then
+    # Remove the file
+    rm "$apk_file"
+    echo "File $apk_file has been removed."
+else
+    echo "File $apk_file does not exist."
+fi
