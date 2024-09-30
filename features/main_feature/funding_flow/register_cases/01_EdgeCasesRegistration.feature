@@ -4,7 +4,7 @@ Feature: Edge Cases Account registration
   As a customer lead
   I want to register for an account
 
-  @case1
+  @case1 @C159510
   Scenario: Validate wording carousel onboarding
     Given I am a customer open app amarbank business
     When I see carousel onboarding
