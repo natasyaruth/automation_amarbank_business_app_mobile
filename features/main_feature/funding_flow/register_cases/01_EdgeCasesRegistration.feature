@@ -1,10 +1,10 @@
 @regisAcc2
-Feature: Account registration
+Feature: Edge Cases Account registration
   In order to open an SMB account
   As a customer lead
   I want to register for an account
 
-  @case1
+  @case1 @C159510
   Scenario: Validate wording carousel onboarding
     Given I am a customer open app amarbank business
     When I see carousel onboarding
@@ -20,7 +20,7 @@ Feature: Account registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field 'fullName'
 
-  @case3 
+  @case3
   Scenario Outline: Verifying fields has been filled and then empty the fields
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Testing'
@@ -34,7 +34,7 @@ Feature: Account registration
       | password        | Password            |
       | confirmPassword | Konfirmasi password |
 
-  @case4   
+  @case4
   Scenario Outline: Verifying one fields hasn't been filled by user
     Given I am a customer want to access menu registration
     When I fill form registration except field '<Field>'
@@ -48,7 +48,7 @@ Feature: Account registration
       | password        | Password            |
       | confirmPassword | Konfirmasi password |
 
-  @case5 
+  @case5
   Scenario Outline: Verifying full name with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with '<Value>'
@@ -61,7 +61,7 @@ Feature: Account registration
       | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       |                                                      | Nama lengkap wajib diisi                                                       |
 
-  @case6 
+  @case6
   Scenario Outline: Verifying email with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'email' with '<Value>'
@@ -72,7 +72,7 @@ Feature: Account registration
       | ruth natasya@gmail.com | E-mail tidak sesuai format |
       |                        | E-mail wajib diisi         |
 
-  @case7  
+  @case7
   Scenario Outline: Verifying phone number with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '<Value>'
@@ -86,13 +86,13 @@ Feature: Account registration
       | 8678 995676   | Nomor handphone wajib diisi                                   |
       |               | Nomor handphone wajib diisi                                   |
 
-  @case8   
+  @case8
   Scenario: Verifying autotrim 0 after label +62 in field phonenumber
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '0895611221700'
     Then I will see '895611221700' in field 'mobileNumber'
 
-  @case9   
+  @case9
   Scenario Outline: Verifying password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
@@ -106,7 +106,7 @@ Feature: Account registration
       | Test1           | Password minimal 8 karakter                                   |
       |                 | Password wajib diisi                                          |
 
-  @case10   
+  @case10
   Scenario: Verifying field password contain with alphabeth, number and special character
     Given I am a customer want to access menu registration
     When I am filling field 'password' with 'Test1234!@'
@@ -141,13 +141,13 @@ Feature: Account registration
       | password        |
       | confirmPassword |
 
-  @case14   
+  @case14
   Scenario: Access link login in page registration
     Given I am a customer want to access menu registration
     When I click link registration
     Then I will directing to page login
 
-  # 
+  #
   # Scenario: Access link terms and condition in page registration
   #   Given I am a customer want to access menu registration
   #   When I click link terms and condition
@@ -165,7 +165,7 @@ Feature: Account registration
     When I click call center
     Then I will see helping center via email
 
-  @case16 
+  @case16
   Scenario: Back to page form registration from pop up confirmation
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -182,7 +182,7 @@ Feature: Account registration
       | password        | 1234Test               |
       | confirmPassword | 1234Test               |
 
-  @case20   
+  @case20
   Scenario: Back to page Onboarding from page Registration
     Given I am a customer want to access menu registration
     When I click button back in the header page
@@ -196,7 +196,7 @@ Feature: Account registration
     And I am filling field 'businessCode' with 'xxyy11'
     Then I should see message error 'Kode bisnis tidak valid, periksa e-mail kembali' in the below of field 'businessCode'
 
-#@case22
+  #@case22
   Scenario: Create account business with email that is not belong to the business code
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
