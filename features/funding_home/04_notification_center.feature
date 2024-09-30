@@ -3,6 +3,7 @@ Feature: Home - Notification Center
     As a Customer
     I want to see all notification from SMB App in Main dashboard
 
+    @C160816
     Scenario: Close page notification center
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -22,6 +23,7 @@ Feature: Home - Notification Center
         And I close page notification center
         Then I will see card account 'active'  
 
+    @C160817
     Scenario: Back to page notification center from back in header page
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -41,6 +43,7 @@ Feature: Home - Notification Center
         And I click back in header page
         Then I will direct to page notification center
 
+    @C160818
     Scenario: Validate page notification center with notification still empty
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -67,6 +70,32 @@ Feature: Home - Notification Center
         And I click tab All notification
         And I will see notification is empty
 
+    @C160819
+    Scenario: Checking Detail notification app in maintenance
+        Given I am a registered customer with following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | staga29c |
+            | passwordStg | 1234Test |
+        And has been filled survey rating account opening
+        And I only have '1' notification 'Maintenance App' in notification center
+        And I filling in form login with the following details:
+            | userID      | autocaea |
+            | password    | 1234Test |
+            | userIDstg   | staga29c |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I see red dot notification center
+        When I click notification center
+        Then I see notification Maintenance App Temporary
+        And I click bucketlist notification info
+        And I will direct to detail Maintenance App Temporary
+        And I click understand the notification
+        And I will direct to page notification center
+
+    @C160820
     Scenario: Checking Detail notification PIN successfully change
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -97,8 +126,11 @@ Feature: Home - Notification Center
         Then I see notification PIN successfully changes
         And I click bucketlist notification info
         And I will direct to detail notification PIN successfully changes
+        And I click understand the notification
+        And I will direct to page notification center
         And I reset back my PIN Transaction
 
+    @C160821
     Scenario: Checking Detail notification password successfully change
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -132,8 +164,11 @@ Feature: Home - Notification Center
         Then I see notification password successfully changes
         And I click bucketlist notification info
         And I will direct to detail password successfully changes
+        And I click understand the notification
+        And I will direct to page notification center
         And I reset back my password
 
+    @C160822
     Scenario: Checking Detail notification Transfer In Overbook
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -179,6 +214,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160823
     Scenario: Checking Detail notification Transfer Out BIFAST
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -217,6 +253,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160824
     Scenario: Checking Detail notification Transfer Out RTOL
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -255,6 +292,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160825
     Scenario: Checking Detail notification Transfer Out SKN
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -293,6 +331,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160826
     Scenario: Checking Detail notification Transfer Out RTGS
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -331,6 +370,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160827
     Scenario: Checking Detail notification Transfer Out Overbook
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -367,6 +407,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160828
     Scenario: Checking Detail notification Transfer Out to account Individual
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -403,6 +444,7 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
+    @C160829
     Scenario: Checking ordering list notification center
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -423,6 +465,7 @@ Feature: Home - Notification Center
         And I will direct to page notification center
         Then I will see notification is sorted by the latest to oldest
 
+    @C160830
     Scenario: Categorize notification center based on Info
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -444,6 +487,7 @@ Feature: Home - Notification Center
         And I click tab Info notification
         Then I will see notification categorize by Info
 
+    @C160831
     Scenario: Categorize notification center based on transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -465,6 +509,7 @@ Feature: Home - Notification Center
         And I click tab Transaction notification
         Then I will see notification categorize by Transaction
 
+    @C160832
     Scenario: Categorize notification center based on Loan
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -486,6 +531,7 @@ Feature: Home - Notification Center
         And I click tab Loan notification
         Then I will see notification is empty
 
+    @C160833
     Scenario: Categorize notification center based on All
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -509,6 +555,7 @@ Feature: Home - Notification Center
         And I click tab All notification
         Then I will see all categorize notification
 
+    @C160834
     Scenario: Read all notification
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -522,7 +569,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
-        And I have '3' notification 'Maintanance App' in notification center
+        And I have '3' notification 'Maintenance App' in notification center
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -532,6 +579,7 @@ Feature: Home - Notification Center
         And I close page notification center
         Then I don't see red dot notification center
 
+    @C160835
     Scenario: Read some notification
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -545,7 +593,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
-        And I have '3' notification 'Maintanance App' in notification center
+        And I have '3' notification 'Maintenance App' in notification center
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
