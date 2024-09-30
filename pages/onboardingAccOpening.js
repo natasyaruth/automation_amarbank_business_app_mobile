@@ -12,7 +12,7 @@ const {
   formBusinessOwnerPage,
   uploadBusinessDocPage,
   resetStateDao,
-  globalVariable,
+
 } = inject();
 
 module.exports = {
@@ -39,9 +39,12 @@ module.exports = {
     backNpwp: "~btnBack",
     confirmNpwp: "~btnConfirmed",
     closeBottomSheet: "~buttonClose",
+    sentFeedBack: "~yesBtn",
+    cancelFeedBack: "~cancelBtn"
   },
   fields: {
-    npwpBusiness: "~textFieldNpwpNumber"
+    npwpBusiness: "~textFieldNpwpNumber",
+    fieldFeedback: "~otherField",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -49,6 +52,11 @@ module.exports = {
     individualBusiness: "~optionPTPerorangan",
     ud: "~optionUD",
     individual: "~optionIndividu",
+    rbProcessLater: "~checklist1",
+    rbComparingApp: "~checklist2",
+    rbNotSure: "~checklist3",
+    rbHasOtherApp: "~checklist4",
+    rbOther: "~checklist5",
   },
   texts: {
     userId: "~txtUserName",
@@ -94,6 +102,10 @@ module.exports = {
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
   },
+  statusEnabled: {
+    buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
+    buttonCancelProcess: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[7]"},
+  },
 
   chooseLegalityBusinessType(type) {
     I.waitForElement(this.radioButtons[type], 10);
@@ -133,14 +145,14 @@ module.exports = {
   validatePage(pageName) {
     switch (pageName) {
       case "Upload eKTP":
-        I.waitForText("Ambil Foto eKTP Anda", 10);
+        I.waitForText("Ambil Foto eKTP Anda", 20);
         I.waitForElement(uploadKtpPage.buttons.directToTakePhoto, 10);
         break;
       case "Data KTP":
-        I.waitForElement(formKtpPage.fields.eKtpNumber, 10);
+        I.waitForElement(formKtpPage.fields.eKtpNumber, 20);
         break;
       case "Upload Selfie":
-        I.waitForText("Ambil Foto Diri Anda", 10);
+        I.waitForText("Ambil Foto Diri Anda", 20);
         I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
         break;
       case "Upload Selfie with KTP":
@@ -233,6 +245,11 @@ module.exports = {
   chooseLater() {
     I.waitForElement(this.buttons.later, 15);
     I.click(this.buttons.later);
+  },
+
+  goToTabHome() {
+    I.waitForElement(this.tabs.home, 10);
+    I.click(this.tabs.home);
   },
 
   goToTabBusiness() {
@@ -402,7 +419,9 @@ module.exports = {
 
   fillFieldNPWPBusiness(npwp) {
     I.waitForElement(this.fields.npwpBusiness, 10);
+    I.click(this.fields.npwpBusiness);
     I.setText(this.fields.npwpBusiness, npwp);
+    I.hideDeviceKeyboard();
   },
 
   async getMessageErrorNPWP() {
@@ -420,6 +439,11 @@ module.exports = {
     I.clearField(this.fields.npwpBusiness);
   },
 
+  clearFieldFeedback() {
+    I.waitForElement(this.fields.fieldFeedback, 10);
+    I.clearField(this.fields.fieldFeedback);
+  },
+
   async getNPWPBusiness() {
     I.waitForElement(this.texts.npwpNumber, 10);
     return I.grabTextFrom(this.texts.npwpNumber);
@@ -427,17 +451,83 @@ module.exports = {
 
   clickBackPopUp() {
     I.waitForElement(this.buttons.backNpwp, 10);
-    I.click(this.buttons.submitNPWP);
+    I.click(this.buttons.backNpwp);
   },
 
   confirmNPWP() {
-    I.waitForElement(this.buttons.confirmNpwp, 10);
+    I.waitForElement(this.buttons.confirmNpwp, 30);
     I.click(this.buttons.confirmNpwp);
   },
 
   closeBottomSheet() {
     I.waitForElement(this.buttons.closeBottomSheet, 10);
     I.click(this.buttons.closeBottomSheet);
+  },
+
+  clickRbProcessLater() {
+    I.waitForElement(this.radioButtons.rbProcessLater, 10);
+    I.click(this.radioButtons.rbProcessLater);
+  },
+
+  clickRbComparingApp() {
+    I.waitForElement(this.radioButtons.rbComparingApp, 10);
+    I.click(this.radioButtons.rbComparingApp);
+  },
+
+  clickRbNotSure() {
+    I.waitForElement(this.radioButtons.rbNotSure, 10);
+    I.click(this.radioButtons.rbNotSure);
+  },
+
+  clickRbHasOtherApp() {
+    I.waitForElement(this.radioButtons.rbHasOtherApp, 10);
+    I.click(this.radioButtons.rbHasOtherApp);
+  },
+
+  clickRbOther() {
+    I.waitForElement(this.radioButtons.rbOther, 10);
+    I.click(this.radioButtons.rbOther);
+  },
+
+  fillFeedBack(text) {
+    I.waitForElement(this.fields.fieldFeedback, 10);
+    I.click(this.fields.fieldFeedback);
+    I.type(text, 100);
+    I.hideDeviceKeyboard();
+  },
+
+  backToProcessAcc() {
+    I.waitForElement(this.buttons.cancelFeedBack, 10);
+    I.click(this.buttons.cancelFeedBack);
+  },
+
+  sendExitSurvey() {
+    I.waitForElement(this.buttons.sentFeedBack, 10);
+    I.click(this.buttons.sentFeedBack);
+  },
+
+  clickOptionExitSurvey(option) {
+
+    switch (option) {
+
+      case "Proses akan dilanjutkan nanti":
+        this.clickRbProcessLater();
+        break;
+      case "Sedang membandingkan dengan aplikasi lain":
+        this.clickRbComparingApp();
+        break;
+      case "Tidak paham dengan keuntungan yang ditawarkan":
+        this.clickRbNotSure();
+        break;
+      case "Sudah memiliki aplikasi menawarkan keuntungan yang serupa":
+        this.clickRbHasOtherApp();
+        break;
+      case "Lainnya":
+        this.clickRbOther();
+        break;
+      default:
+        throw new Error("Option "+option+" is not recognize. Please check again");  
+    }
   },
 
 }

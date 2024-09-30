@@ -1,9 +1,10 @@
+@registration1
 Feature: Account registration
   In order to open an SMB account
   As a customer lead
   I want to register for an account
 
-  @C131570 @welcome_onboarding
+  @C131570
   Scenario: Validate wording carousel onboarding
     Given I am a customer open app amarbank business
     When I see carousel onboarding
@@ -13,16 +14,16 @@ Feature: Account registration
     And I swipe to next carousel
     And I validate wording financial and data privacy
 
-  @registration1 @C131571
+  @C131571
   Scenario: Create a new account
     Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Revvy                   |
-      | email           | revvtest31@gmail.com    |
-      | mobileNumber    | 8999677540              |
-      | password        | 1234Test                |
-      | confirmPassword | 1234Test                |
+      | fullName        | Revvy                    |
+      | email           | staging_revi_01@gmail.com|
+      | mobileNumber    | 8999677540               |
+      | password        | 1234Test                 |
+      | confirmPassword | 1234Test                 |
     And I registering the account
     And I will directing to page terms and condition
     And I click button agree with terms and condition
@@ -35,13 +36,12 @@ Feature: Account registration
     And I verifying my email by login by user id
     Then my account should be created
 
-  @registration1 @C131572
+  @C131572
   Scenario: Verifying field fullname contain with special char (.-,')
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field 'fullName'
 
-  @registration1 @scenario_clearfilled_and_then_empty_field
   Scenario Outline: Verifying fields has been filled and then empty the fields
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Testing'
@@ -55,7 +55,6 @@ Feature: Account registration
       | @C131576     | password        | Password            |
       | @C131577     | confirmPassword | Konfirmasi password |
 
-  @registration1 @scenario_negative_one_field_is_not_filled_by_user
   Scenario Outline: Verifying one fields hasn't been filled by user
     Given I am a customer want to access menu registration
     When I fill form registration except field '<Field>'
@@ -69,7 +68,6 @@ Feature: Account registration
       | @C131581     | password        | Password            |
       | @C131582     | confirmPassword | Konfirmasi password |
 
-  @registration1 @scenario_negative_field_fullName_with_invalid_value
   Scenario Outline: Verifying full name with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with '<Value>'
@@ -82,7 +80,6 @@ Feature: Account registration
       | @C131586     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       | @C131587     |                                                      | Nama lengkap wajib diisi                                                       |
 
-  @registration1 @scenario_negative_field_email_with_invalid_value
   Scenario Outline: Verifying email with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'email' with '<Value>'
@@ -93,7 +90,6 @@ Feature: Account registration
       | @C131589     | ruth natasya@gmail.com | E-mail tidak sesuai format |
       | @C131590     |                        | E-mail wajib diisi         |
 
-  @registration1 @scenario_negative_field_phoneNumber_with_invalid_value
   Scenario Outline: Verifying phone number with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '<Value>'
@@ -107,13 +103,12 @@ Feature: Account registration
       | @C131595     | 8678 995676   | Nomor handphone wajib diisi                                   |
       | @C131596     |               | Nomor handphone wajib diisi                                   |
 
-  @registration1 @C131597
+  @C131597
   Scenario: Verifying autotrim 0 after label +62 in field phonenumber
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '0895611221700'
     Then I will see '895611221700' in field 'mobileNumber'
 
-  @registration1 @scenario_negative_field_password_with_invalid_value
   Scenario Outline: Verifying password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
@@ -127,13 +122,12 @@ Feature: Account registration
       | @C131602     | Test1           | Password minimal 8 karakter                                   |
       | @C131603     |                 | Password wajib diisi                                          |
 
-  @registration1 @C131604
+  @C131604
   Scenario: Verifying field password contain with alphabeth, number and special character
     Given I am a customer want to access menu registration
     When I am filling field 'password' with 'Test1234!@'
     Then I shouldn't see message error in the below of field 'password'
 
-  @registration1 @scenario_negative_field_confirm_password_with_invalid_value
   Scenario Outline: Verifying confirm password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'confirmPassword' with '<Value>'
@@ -143,13 +137,12 @@ Feature: Account registration
       | @C131605     | TESTINGPASSWORD | Konfirmasi password harus sama dengan password |
       | @C131606     |                 | Konfirmasi password wajib diisi                |
 
-  @registration1 @C131607
+  @C131607
   Scenario: Verifying autotrim in field Full name
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with ' Ruth Natasya '
     Then I will see 'Ruth Natasya ' in field 'fullName'
 
-  @registration1 @scenario_icon_eye
   Scenario Outline: Unmask and mask the password and confirm password
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Test1234'
@@ -162,7 +155,6 @@ Feature: Account registration
       | @C131608     | password        |
       | @C131609     | confirmPassword |
 
-  @registration1 @C131610
   Scenario: Access link login in page registration
     Given I am a customer want to access menu registration
     When I click link registration
@@ -174,7 +166,7 @@ Feature: Account registration
     When I click call center
     Then I will see helping center via email
 
-  @registration1 @C131614
+  @C131614
   Scenario: Back to page form registration from pop up confirmation
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -191,7 +183,7 @@ Feature: Account registration
       | password        | 1234Test               |
       | confirmPassword | 1234Test               |
 
-  @registration1 @C131615
+  @C131615
   Scenario: Back to page Onboarding from page Registration
     Given I am a customer want to access menu registration
     When I click button back in the header page
@@ -230,8 +222,8 @@ Feature: Account registration
     And I am filling field 'email' with 'test@trash-mail.com'
     And I am filling field 'businessCode' with 'a85694'
     Then I should see message error 'E-mail tidak sesuai dengan kode bisnis.' in the below of field 'email'
-
-  @registration1 @C131619
+  
+  @C131619
   Scenario: Verifying field business code has been filled and then empty the field
     Given I am a customer want to access menu registration
     When I am filling field 'businessCode' with 'XYZ123'
@@ -293,7 +285,7 @@ Feature: Account registration
     When I am on page PDP consent
     Then I see text consent PDP
 
-  @verificationPhoneNumber @C131624
+  @C131624
   Scenario: Verifying phone number with wrong OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -306,7 +298,7 @@ Feature: Account registration
     When I verifying my phone number by entering the wrong code
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
-  @verificationPhoneNumber @C131625
+  @C131625
   Scenario: Verifying phone number with expired OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -320,7 +312,7 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
 
-  @verificationPhoneNumber @C131626
+  @C131626
   Scenario: Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -333,7 +325,7 @@ Feature: Account registration
     When I verifying my phone number by entering the wrong code five times
     Then I should be notified that I can reverify the phone number tomorrow
 
-  @verificationPhoneNumber @C131627
+  @C131627
   Scenario: Create account with wrong code otp four times then input valid code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya        |
@@ -347,7 +339,7 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  @hangePhoneNumber @C131628
+  @C131628
   Scenario: Create account with phone number has been updated on the verification page
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -363,7 +355,7 @@ Feature: Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  @hangePhoneNumber @C131629
+  @C131629
   Scenario: Change phonenumber with old phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -377,7 +369,6 @@ Feature: Account registration
     And I filling new phonenumber with my old phonenumber
     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
 
-  @hangePhoneNumber @scenario_negative_field_phoneNumber_in_changePhoneNumber_with_invalid_value
   Scenario Outline: Verifying new phone number with invalid value
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -399,7 +390,7 @@ Feature: Account registration
       | @C131634     | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
       | @C131635     |               | Nomor handphone wajib diisi                                   | 81234567892  |
 
-  @hangePhoneNumber @C131636
+  @C131636
   Scenario: Back to page Verification phonenumber from page change phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -413,7 +404,7 @@ Feature: Account registration
     And I click button back in the header page
     Then I will direct to page verification phonenumber
 
-  @verificationPhoneNumber @C131637
+  @C131637
   Scenario: First attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -428,7 +419,7 @@ Feature: Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '1/5'
 
-  @verificationPhoneNumber @C131638
+  @C131638
   Scenario: Second attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -444,7 +435,7 @@ Feature: Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '2/5'
 
-  @verificationPhoneNumber @C131639
+  @C131639
   Scenario: Third attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -460,7 +451,7 @@ Feature: Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '3/5'
 
-  @verificationPhoneNumber @C131640
+  @C131640
   Scenario: Fourth attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -476,7 +467,7 @@ Feature: Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '4/5'
 
-  @verificationPhoneNumber @C131641
+  @C131641
   Scenario: Fifth attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -492,7 +483,7 @@ Feature: Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '5/5'
 
-  @verificationPhoneNumber @C131642
+  @C131642
   Scenario: Resend OTP more than five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -507,7 +498,7 @@ Feature: Account registration
     Then I should be notified that I can reverify the phone number tomorrow
     And I cannot change my phonenumber
 
-  @verificationPhoneNumber @C131643
+  @C131643
   Scenario: Verify state count attempt error when try to resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -522,7 +513,7 @@ Feature: Account registration
     And I verifying my phone number by entering the wrong code four times
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
-  @verificationEmail @C131644
+  @C131644
   Scenario: Resend email verification
     Given I am a customer had been registering and verify phonenumber with following details:
       | fullName        | Ruth Natasya       |

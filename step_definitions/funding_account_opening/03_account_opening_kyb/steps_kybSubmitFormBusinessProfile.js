@@ -73,6 +73,12 @@ When("I fill my business profile as followings:", (table) => {
 
     const businessProfile = table.parse().rowsHash();
     formBusinessProfilePage.fillBusinessProfile(businessProfile);
+
+    delete businessProfile["businessDateStart"];
+
+    Object.keys(businessProfile).forEach((key) => {
+        globalVariable.formBusinessProfile[key] = businessProfile[key];
+    });
 });
 
 When("I submit my business profile", () => {
@@ -187,7 +193,7 @@ Then("I will directing to page director list", async () => {
         resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
 });
 
-Then("I will direct to page notifying me that I can't continue to next process KYB because my data indicated as DHN", async () => {
+Then("I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN", async () => {
     const actualTitle = await formBusinessProfilePage.getTitleValidationBlocker();
     I.assertEqual(actualTitle, "Amar Bank belum bisa melayani Anda.");
 

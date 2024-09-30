@@ -60,10 +60,6 @@ When("I see field reason and my email", async() => {
     I.see("Kirim Permintaan Hapus Akun");
 });
 
-When("I click close in header page", () => {
-    headerPage.closeWebView();
-});
-
 When("I fill my password account deletion", () => {
     accountDeletionPage.fillPassword(globalVariable.login.password);
 });

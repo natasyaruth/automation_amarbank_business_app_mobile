@@ -10,6 +10,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
             | password    | 1234Test |
             | userIDstg   | rutheeab |
             | passwordStg | 1234Test |
+        And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |
@@ -28,8 +29,8 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
-        When I continue to process KYB
-        And I fill my business profile as followings:
+        And I see page 'Data Business Profile'
+        When I fill my business profile as followings:
             | businessName       | PT PERORANGAN TERBARU KYC TIGA |
             | industry           | Jasa                           |
             | businessField      | Restoran                       |

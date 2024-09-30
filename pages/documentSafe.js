@@ -19,6 +19,9 @@ module.exports = {
     searchDoc: "~checkboxSearchDoc",
     other: "~checkboxOther",
   },
+  statusElement: {
+    buttonSentFeedBack: {xpath: "//android.view.View/android.view.View/android.widget.ScrollView/android.view.View[3]"}
+  },
 
   clickChooseProduct() {
     I.waitForElement(this.buttons.continueOnboarding, 10);

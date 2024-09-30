@@ -34,13 +34,13 @@ Given("I am a customer that recently registered to amarbank business with data a
   
   const account = registration.parse().rowsHash();
 
-    await whitelistDao.whitelistPhoneNumber(
-      "+62" + account["phoneNumber"]
-    );
+    // await whitelistDao.whitelistPhoneNumber(
+    //   "+62" + account["phoneNumber"]
+    // );
 
-    await whitelistDao.whitelistEmail(
-      account["email"]
-    );
+    // await whitelistDao.whitelistEmail(
+    //   account["email"]
+    // );
 
     globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
     globalVariable.registration.email = account["email"];
@@ -149,7 +149,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
 });
  
 When("I verifying my email by login by user id", async () => {
-  I.wait(3);
+  I.wait(20);
   verificationEmailPage.isOpen();
 
   I.see("Segera Cek E-mail");

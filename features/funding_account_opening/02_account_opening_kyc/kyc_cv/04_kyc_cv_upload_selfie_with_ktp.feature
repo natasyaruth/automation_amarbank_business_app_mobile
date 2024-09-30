@@ -28,7 +28,7 @@ Feature: Account Opening KYC CV - Upload Selfie with KTP
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie'
 
-    @C141158 @FuntionalTestDemo
+    @C141158 
     Scenario: Upload selfie with KTP successfully business type CV   
         Given I am a customer who has uploaded my selfie photo
         When I click take photo selfie with KTP

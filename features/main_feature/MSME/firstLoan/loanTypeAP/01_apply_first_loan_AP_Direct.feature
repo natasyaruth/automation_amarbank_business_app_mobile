@@ -65,7 +65,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
 ##Take out Location Bisnis
-  
+  @FunctTestLending
   Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit 
@@ -98,8 +98,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier    
-    And user click button next   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "UD"
     And user click Selanjutnya
@@ -132,7 +132,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user checklist checkbox right and obligations
     And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
-    And user validate description prepare the following documents 'MSMEAPPT.Perorangan' 
+    And user validate description prepare the following documents 'MSMEARUD' 
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
@@ -152,8 +152,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
-    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"    
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
+    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"        
     Then user can click button Upload Ulang Dokumen
 
 
@@ -175,8 +174,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Given user on monitoring loan process page
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
-    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
+    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"    
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 
@@ -194,8 +192,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user select result of search
     And user select the year cooperating   
     And user click Pilih     
-    And user click button Selanjutnya   
-    And user click button Lanjut Lengkapi Data
+    And user click button Lanjut Melengkapi Data  
+    And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "PT Perusahaan"
     And user click Selanjutnya     

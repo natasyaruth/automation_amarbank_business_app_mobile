@@ -2,9 +2,11 @@ const {
     I,
     onboardingAccOpeningPage,
     uploadKtpPage,
+    formBusinessProfilePage,
     resetStateDao,
     headerPage,
     getDataDao,
+    hookOnBoardingPage,
     globalVariable } = inject();
 
 Given("I am a customer want to open Giro Account", () => {
@@ -52,8 +54,12 @@ When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
 });
 
-When("I back to dashboard", () => {
+When("I click back in header page", () => {
     headerPage.clickButtonBack();
+});
+
+When("I click close in header page", () => {
+    headerPage.closePage();
 });
 
 When("I choose legality business type {string}", (businessType) => {
@@ -63,7 +69,6 @@ When("I choose legality business type {string}", (businessType) => {
 
 When("I submit my legality type", () => {
     onboardingAccOpeningPage.continueToKYC();
-    I.wait(3);
 });
 
 When("I choose Giro Account", () => {
@@ -90,6 +95,8 @@ When("I choose Giro Account MSME", () => {
 
 When("I see page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
+
+    globalVariable.dashboard.lastPage = pageName;
 });
 
 When("I continue to complete my data", () => {
@@ -125,12 +132,13 @@ When("I close bottom sheet NPWP Business", () => {
     onboardingAccOpeningPage.closeBottomSheet();
 });
 
-When("I fill NPWP business", () => {
+When("I fill NPWP Business", () => {
     onboardingAccOpeningPage.fillFieldNPWPBusiness(globalVariable.registration.npwpBusinessDefault);
 });
 
 When("I fill NPWP business with {string}", (npwpBusiness) => {
     onboardingAccOpeningPage.fillFieldNPWPBusiness(npwpBusiness);
+    globalVariable.registration.npwpBusiness = npwpBusiness;
 });
 
 When("I fill NPWP Business with NPWP has been registered", () => {
@@ -181,6 +189,43 @@ When("I click back from confirm NPWP Business", () => {
     onboardingAccOpeningPage.clickBackPopUp();
 });
 
+When("I back to continue process account opening", () => {
+    onboardingAccOpeningPage.backToProcessAcc();
+});
+
+When("I submit my exit survey", () => {
+    onboardingAccOpeningPage.sendExitSurvey();
+});
+
+When("I click option exit survey {string}", (option) => {
+    onboardingAccOpeningPage.clickOptionExitSurvey(option);
+});
+
+When("I fill feedback exit survey with {string}", (feedback) => {
+    onboardingAccOpeningPage.fillFeedBack(feedback);
+
+    globalVariable.survey.feedBack = feedback;
+
+    const lengthFeedback = globalVariable.survey.feedBack.length;
+
+    if (
+        lengthFeedback < 60
+    ) {
+
+        I.waitForText(lengthFeedback + "/60", 10);
+
+    } else {
+
+        I.waitForText("60/60", 10);
+
+    }
+});
+
+When("I clear field feedback exit survey", ()=>{
+    I.wait(1);
+    onboardingAccOpeningPage.clearFieldFeedback();
+});
+
 Then("I will directing to page legality business", () => {
     I.waitForText("Pilih salah satu tipe bisnis Anda", 10);
     I.waitForElement(headerPage.buttons.back, 10);
@@ -224,19 +269,37 @@ Then("I will directing to page type giro account", async () => {
 });
 
 Then("I will directing to main dashboard with card loan application and account opening", async () => {
-    I.waitForElement(onboardingAccOpeningPage.buttons.openLoan, 10);
-    I.see("Pilihan Produk");
-    I.see("Rp 5 Milyar");
-    I.see("Pinjaman untuk Bisnis dari Amar Bank");
-    I.see("Dapatkan pinjaman untuk pembiayaan transaksi bisnis Anda.");
 
-    I.see("Perbankan Bisnis Premium");
-    I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
+    I.waitForText("Apa kebutuhan Anda saat ini?", 10);
+    I.see("Pinjaman Untuk Bisnis");
+    I.see("Kredit Bisnis untuk berbagai kebutuhan usaha");
+    I.see("Benefit");
+    I.see("Bunga Kompetitif");
+    I.see("Proses Cepat dan Mudah");
+    I.see("Digital Banking untuk Bisnis");
+    I.see("Hanya dengan:");
+    I.see("Ajukan Limit Kredit");
+    I.waitForElement(hookOnBoardingPage.buttons.bTnStartLoan, 10);
+
+    onboardingAccOpeningPage.swipeToCardGiroAccount();
+
+    I.waitForText("Rekening Untuk Bisnis", 10);
+    I.see("Dapatkan Rekening Giro");
+    I.see("Layanan Digital Banking untuk mengelola bisnis Anda.");
+
+    I.see("Benefit");
+    I.see("Bebas Biaya Admin Bulanan");
+    I.see("Transaksi Real-Time");
+    I.see("Semua Proses dari Hp Anda");
+    I.see("e-Statement");
+    I.dontSee("Multiple User");
+    I.dontSee("Debit Card");
     I.see("Pilih Rekening Giro");
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccount, 10);
 });
 
 Then("I will see card continue to data personal", () => {
-    I.waitForText("Lengkapi Data Personal", 10);
+    I.waitForText("Lengkapi Data Personal", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
     I.see("Perbankan Giro");
     I.see("Pinjaman");
@@ -245,31 +308,17 @@ Then("I will see card continue to data personal", () => {
 });
 
 Then("I will see card continue to data business", () => {
-    I.waitForText("Lengkapi Data Bisnis", 10);
+    I.waitForText("Lengkapi Data Bisnis", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
     I.see("Perbankan Giro");
     I.see("Pinjaman");
-    I.seeElement(onboardingAccOpeningPage.buttons.completeData);
+    I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 10);
     onboardingAccOpeningPage.continueCompleteData();
 });
 
-Then("I can continue to page {string}", async (pageName) => {
+Then("I can continue to page {string}", (pageName) => {
     onboardingAccOpeningPage.validatePage(pageName);
     globalVariable.dashboard.lastPage = pageName;
-
-    if (pageName === "Registration Director") {
-        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
-
-        await
-            resetStateDao.deletePartner(businessID);
-
-        await
-            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    } else {
-
-        await
-            resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
-    }
 });
 
 Then("I will see card continue to complete upload document business", () => {
@@ -345,7 +394,7 @@ Then("I will see information that I can try to register after 7 days", () => {
 });
 
 Then("I will see details info of giro account MSME", async () => {
-    I.waitForText("Silahkan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 10);
+    I.waitForText("Silakan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 30);
     I.see("Pilih Rekening Giro");
 
     // CHECKING ADMIN FEE
@@ -456,12 +505,31 @@ Then("I will direct to page continue to register KYC Invitee", () => {
 
 Then("I reset my state journey", async () => {
 
+    const listBusinessPartner = (await getDataDao.getListBusineePartners(globalVariable.login.userID, globalVariable.login.password)).listBusinessPartners;
+
+    if(
+        listBusinessPartner !== null
+    ){
+
+        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
+
+        await
+            resetStateDao.deletePartner(businessID);
+
+    } 
+
     if (
         globalVariable.dashboard.lastPage === ""
     ) {
         await
             resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
     }
+});
+
+Then("I reset my state journey invitee", async () => {
+
+    await
+        resetStateDao.resetStateFlow(2, globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will see bottom sheet NPWP Business", () => {
@@ -472,6 +540,21 @@ Then("I will see bottom sheet NPWP Business", () => {
     I.see("Nomor NPWP Bisnis");
     I.see("Tulis nomor NPWP bisnis");
     I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
+
+    I.waitForText("Lanjut Isi Data Personal", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
+    // checking button submit npwp is disabled
+});
+
+Then("I will see bottom sheet NPWP Business with NPWP still there", () => {
+    I.waitForText("NPWP Bisnis", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
+    I.see("Wajib Diisi");
+
+    I.see("Nomor NPWP Bisnis");
+    I.dontSee("Tulis nomor NPWP bisnis");
+    I.waitForElement(onboardingAccOpeningPage.fields.npwpBusiness, 10);
+    I.see(globalVariable.registration.npwpBusiness);
 
     I.see("Lanjut Isi Data Personal");
     I.waitForElement(onboardingAccOpeningPage.buttons.submitNPWP, 10);
@@ -505,6 +588,8 @@ Then("I see my NPWP business 15 digit and auto format", () => {
         npwpBusiness = globalVariable.registration.npwpBusinessDefault;
     }
 
+    const numberNpwp = npwpBusiness.substring(0, 15);
+
     const formattedNpwp = npwpBusiness.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
 
     I.waitForText(formattedNpwp, 10);
@@ -512,7 +597,7 @@ Then("I see my NPWP business 15 digit and auto format", () => {
 });
 
 Then("I will see pop up confirm NPWP Business", async () => {
-    I.waitForText("Konfirmasi NPWP Bisnis Anda", 10);
+    I.waitForText("Konfirmasi NPWP Bisnis Anda", 20);
     I.see("Nomor NPWP Anda akan kami daftarkan pada aplikasi Amar Bank Bisnis.");
 
     I.see("Nomor NPWP:");
@@ -531,4 +616,206 @@ Then("I will see error NPWP business has been registered", async () => {
     const expectedMsgError = "Nomor NPWP sudah terdaftar di Amar Bank Bisnis";
 
     I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see field NPWP business is empty", () => {
+    I.wait(1);
+    I.waitForText("Tulis nomor NPWP bisnis", 10);
+});
+
+Then("I see message error NPWP should 15 digits", async () => {
+    const actualMsgError = await onboardingAccOpeningPage.getMessageErrorNPWP();
+    const expectedMsgError = "NPWP harus 15 digit";
+
+    I.assertEqual(actualMsgError, expectedMsgError);
+});
+
+Then("I see NPWP business only number and formatted", () => {
+
+    let npwpBusiness;
+
+    if (
+        globalVariable.registration.npwpBusiness !== ""
+    ) {
+        npwpBusiness = globalVariable.registration.npwpBusiness;
+
+    } else {
+
+        npwpBusiness = globalVariable.registration.npwpBusinessDefault;
+    }
+
+    const numberNpwp = npwpBusiness.replace(/\D/g, '');
+
+    const formattedNpwp = [];
+    const npwpChar = numberNpwp.split("");
+
+    for (let i = 0; i < npwpChar.length; i++) {
+        formattedNpwp.push(npwpChar[i]);
+
+        if (formattedNpwp.length === 2 ||
+            formattedNpwp.length === 6 ||
+            formattedNpwp.length === 10 ||
+            formattedNpwp.length === 16) {
+            formattedNpwp.push(".");
+        } else if (formattedNpwp.length === 12) {
+            formattedNpwp.push("-");
+        }
+    }
+
+    I.waitForText(formattedNpwp.join(''), 10);
+});
+
+Then("I will see pop up confirm close page process account opening", () => {
+    I.waitForText("Ingin Keluar Dari Halaman Ini?", 10);
+    I.see("Jika meninggalkan halaman ini, Anda akan diminta mengulangi proses.");
+
+    I.see("Ya, Keluar");
+    I.waitForElement(onboardingAccOpeningPage.buttons.confirmBackToDashboard, 10);
+
+    I.see("Batalkan");
+    I.waitForElement(onboardingAccOpeningPage.buttons.backToCurrentPage, 10);
+});
+
+Then("I will see form {string} is filled", async (formName) => {
+
+    if (
+        formName === "Data Business Profile"
+    ) {
+        const formattedNpwp = globalVariable.registration.npwpBusinessDefault.replace(/(\d{2})(\d{3})(\d{3})(\d{1})(\d{3})(\d{3})/, '$1.$2.$3.$4-$5.$6');
+
+        globalVariable.formBusinessProfile.npwp = formattedNpwp;
+
+        const tableForm = Object.keys(globalVariable.formBusinessProfile);
+
+        for (let i = 0; i < tableForm.length; i++) {
+            const fieldName = tableForm[i];
+            const expectedValue = globalVariable.formBusinessProfile[fieldName];
+
+            if (
+                fieldName === "averageTransaction"
+            ) {
+                I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+                const splitAvg = globalVariable.formBusinessProfile.averageTransaction.split('');
+
+                for (let i = splitAvg.length - 3; i > 0; i -= 3) {
+                    splitAvg.splice(i, 0, '.');
+                }
+
+                const expectedAvg = splitAvg.join('');
+
+                I.waitForText(expectedAvg, 10);
+
+            } else {
+
+                I.waitForText(expectedValue, 10);
+            }
+
+        }
+    }
+
+});
+
+Then("I will see pop up exit survey", async () => {
+    I.waitForText("Ingin Keluar Dari Halaman Ini?", 10);
+    I.see("Jika meninggalkan halaman ini, Anda akan diminta mengulangi proses.");
+    I.see("Pilih alasan dibawah ini agar kami bisa melayani Anda lebih baik lagi");
+
+    I.waitForText("Proses akan dilanjutkan nanti", 10);
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbProcessLater, 10);
+
+    I.see("Sedang membandingkan dengan aplikasi lain");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbComparingApp, 10);
+
+    I.see("Tidak paham dengan keuntungan yang ditawarkan");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbNotSure, 10);
+
+    I.see("Sudah memiliki aplikasi menawarkan keuntungan yang serupa");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbHasOtherApp, 10);
+
+    I.see("Lainnya");
+    I.waitForElement(onboardingAccOpeningPage.radioButtons.rbOther, 10);
+
+    I.see("Ya, Keluar");
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "false");
+
+    I.see("Batalkan");
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see button sent feedback and back is enabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "true");
+
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see button sent feedback is disabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.sentFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledSentFeedback = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSendFeedback, 'enabled');
+    I.assertEqual(isEnabledSentFeedback, "false");
+});
+
+Then("I will see button back is enabled", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.cancelFeedBack, 10);
+
+    I.wait(1);
+    const isEnabledCancel = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonCancelProcess, 'enabled');
+    I.assertEqual(isEnabledCancel, "true");
+});
+
+Then("I will see field feedback exit survey", () => {
+    I.waitForText("Tulis alasan lainnya", 10);
+    I.waitForElement(onboardingAccOpeningPage.fields.fieldFeedback, 10);
+
+    I.see("0/60");
+});
+
+Then("I will not see field feedback exit survey", () => {
+    I.wait(1);
+
+    I.dontSee("Tulis alasan lainnya");
+    I.dontSeeElement(onboardingAccOpeningPage.fields.fieldFeedback);
+
+    I.dontSee("0/60");
+});
+
+Then("I will see feedback filled with character only 60 char", () => {
+
+    const trimmedWords = globalVariable.survey.feedBack.substring(0, 60);
+
+    I.waitForText(trimmedWords, 10);
+    I.see("60/60");
+});
+
+Then("I will see snackbar thank you and reason feedback is successfully sent", () => {
+
+    I.waitForText("Terima kasih. Alasan Anda sudah terkirim.", 10);
+
+});
+
+Then("after 3-4 seconds, snackbar thank you and reason feedback is disappear", ()=>{
+
+    I.wait(4);
+    I.dontSee("Terima kasih. Alasan Anda sudah terkirim.");
+});
+
+Then("I will not see the feedback anymore", ()=>{
+    I.wait(1);
+    I.dontSee(globalVariable.survey.feedBack);
 });

@@ -16,7 +16,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -31,7 +31,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -43,7 +43,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -59,7 +59,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Minimal 3 contoh invoice dengan supplier terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -71,7 +71,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -82,7 +82,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Supplier name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Minimal 3 contoh invoice dengan supplier terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -129,7 +129,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -144,7 +144,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -156,7 +156,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -172,7 +172,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Minimal 3 contoh invoice dengan buyer terkait"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -184,7 +184,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -195,7 +195,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Buyer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Minimal 3 contoh invoice dengan buyer terkait"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -242,7 +242,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         And I see "KTP & NPWP Komisioner & Pemegang Saham"
@@ -257,7 +257,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         Then I update the Progress
         And I see fields upload document
@@ -269,7 +269,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham"
         And I upload document in field "NPWP Perusahaan"
         And I upload document in field "KTP & NPWP Komisioner & Pemegang Saham"
@@ -285,7 +285,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         Then I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "Surat Perintah Kerja (SPK) dari bouwheer"
         And I see "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I see "Laporan Keuangan dalam 1 tahun"
@@ -297,7 +297,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field "Akta Perusahaan"
+        And I upload document in field "Akta Pendirian"
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -308,7 +308,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see Bouwheer name
         And I see Loan Id
         And I upload document in field "NIB"
-        And I upload document in field  "Akta Perusahaan"
+        And I upload document in field  "Akta Pendirian"
         And I upload document in field  "Surat Perintah Kerja (SPK) dari bouwheer"
         And I upload document in field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
         And I upload document in field "Laporan Keuangan dalam 1 tahun"
@@ -364,7 +364,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -383,7 +383,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -402,7 +402,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -421,7 +421,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see "SK Kemenkumham"
         And I see "NPWP Perusahaan"
         Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
@@ -470,6 +470,7 @@ Feature:  Upload Data Documents For Cases Combine Journey MSME
         And the document still appears in its field
 
 ## Add File Size ##
+@FunctTestLending
 Scenario: validate document size when upload document AP PT.Perusahaan or CV   
         Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
         When I see the wording of "Supplier"
@@ -480,7 +481,7 @@ Scenario: validate document size when upload document AP PT.Perusahaan or CV
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed  "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -498,7 +499,7 @@ Scenario: validate document size when upload document AP PT.Perusahaan or CV
         And I see the file size should be displayed "1.6 MB"
         And I see button to update the Progress
         
-
+@FunctTestLending
 Scenario: validate document size when upload document AR PT.Perusahaan or CV   
         Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
         When I see the wording of "Buyer"
@@ -509,7 +510,7 @@ Scenario: validate document size when upload document AR PT.Perusahaan or CV
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -528,6 +529,7 @@ Scenario: validate document size when upload document AR PT.Perusahaan or CV
         And I see button to update the Progress
         
 
+@FunctTestLending
 Scenario: validate document size when upload document AP PT.Perorangan or UD   
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
         When I see the wording of "Supplier"
@@ -538,7 +540,7 @@ Scenario: validate document size when upload document AP PT.Perorangan or UD
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"    
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -548,6 +550,7 @@ Scenario: validate document size when upload document AP PT.Perorangan or UD
         And I see the file size should be displayed "1.7 MB"
         And I see button to update the Progress
 
+@FunctTestLending
 Scenario: validate document size when upload document AR PT.Perorangan or UD   
         Given I has been access to the link web view for upload multiple data documents AR "PT Perorangan or UD"
         When I see the wording of "Buyer"
@@ -558,7 +561,7 @@ Scenario: validate document size when upload document AR PT.Perorangan or UD
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed  "1.7 MB"   
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -568,7 +571,8 @@ Scenario: validate document size when upload document AR PT.Perorangan or UD
         And I see the file size should be displayed "1.7 MB"
         And I see button to update the Progress
 
-    
+
+@FunctTestLending    
 Scenario: validate document size when upload document AP Individu
         Given I has been access to the link web view for upload multiple data documents AP "Individu"
         When I see the wording of "Supplier"
@@ -585,6 +589,7 @@ Scenario: validate document size when upload document AP Individu
         And I see the file size should be displayed "1.7 MB"
         And I see button to update the Progress
 
+@FunctTestLending
 Scenario: validate document size when upload document AR Individu
         Given I has been access to the link web view for upload multiple data documents AR "Individu"
         When I see the wording of "Buyer"
@@ -601,9 +606,10 @@ Scenario: validate document size when upload document AR Individu
         And I see the file size should be displayed "1.7 MB"
         And I see button to update the Progress
 
+@FunctTestLending
 Scenario: validate document size when upload document PO PT.Perusahaan  
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
-        When I see the wording of "Supplier"
+        Given I has been access to the link web view for upload multiple data documents PO "PT Perorangan or UD"
+        When I see the wording of "Bouwheer"
         And I see Supplier name
         And I see Loan Id
         And I see wording of "Format file: PDF"
@@ -611,7 +617,7 @@ Scenario: validate document size when upload document PO PT.Perusahaan
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.7 MB"
@@ -630,9 +636,10 @@ Scenario: validate document size when upload document PO PT.Perusahaan
         And I see button to update the Progress
 
 
+@FunctTestLending
 Scenario: validate document size when upload document PO PT.Perorangan
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
-        When I see the wording of "Supplier"
+        Given I has been access to the link web view for upload multiple data documents PO "PT Perorangan or UD"
+        When I see the wording of "Bouwheer"
         And I see Supplier name
         And I see Loan Id
         And I see wording of "Format file: PDF"
@@ -640,7 +647,7 @@ Scenario: validate document size when upload document PO PT.Perorangan
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed  "1.7 MB"    
         And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
         And I see the file size should be displayed "1.7 MB"
@@ -651,6 +658,7 @@ Scenario: validate document size when upload document PO PT.Perorangan
         And I see button to update the Progress
 
 
+@FunctTestLending
 Scenario: validate document size when upload document PO Individu
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
         When I see the wording of "Supplier"
@@ -667,6 +675,8 @@ Scenario: validate document size when upload document PO Individu
         And I see the file size should be displayed "1.7 MB"
         And I see button to update the Progress
 
+
+@FunctTestLending
 Scenario: Validate all the document successfully uploaded on web in AR PT.Perusahaan or CV   
         Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
         When I see the wording of "Buyer"
@@ -677,7 +687,7 @@ Scenario: Validate all the document successfully uploaded on web in AR PT.Perusa
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.6 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.6 MB"
         And I see "SK Kemenkumham"
         And I see the file size should be displayed "1.6 MB"
@@ -698,6 +708,7 @@ Scenario: Validate all the document successfully uploaded on web in AR PT.Perusa
         And I see button Kirim Pengajuan Limit Kredit
 
 
+@FunctTestLending
 Scenario: Validate all the document successfully uploaded on web in AP PT.Perorangan or UD   
         Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
         When I see the wording of "Supplier"
@@ -708,7 +719,7 @@ Scenario: Validate all the document successfully uploaded on web in AP PT.Perora
         And I see wording of "Anda dapat upload langsung beberapa file"
         And I see "NIB"
         And I see the file size should be displayed "1.7 MB"
-        And I see "Akta Perusahaan"
+        And I see "Akta Pendirian"
         And I see the file size should be displayed "1.7 MB"    
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
         And I see the file size should be displayed "1.7 MB"
@@ -720,10 +731,10 @@ Scenario: Validate all the document successfully uploaded on web in AP PT.Perora
         And I click button Perbarui Progress on mobile
         And I see button Kirim Pengajuan Limit Kredit
 
-
+@FunctTestLending
 Scenario: Validate all the document successfully uploaded on web in PO Individu
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
-        When I see the wording of "Supplier"
+        Given I has been access to the link web view for upload multiple data documents PO "PT Perorangan or UD"
+        When I see the wording of "Bouwheer"
         And I see Supplier name
         And I see Loan Id
         And I see wording of "Format file: PDF"
@@ -741,4 +752,169 @@ Scenario: Validate all the document successfully uploaded on web in PO Individu
         
 
 
+    ##Click button “Upload Dokumen Selesai” after upload all mandatory
+    @FunctTestLendingSprint5
+    Scenario: Verify after upload all mandatory documents in combine journey AP MSME
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed  "1.2 MB"
+        And I see "Akta Pendirian"
+        And I see the file size should be displayed      
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
+        And I see the file size should be displayed  "1.2 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.2 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed  "1.2 MB"
+        Then I see button Upload Dokumen Selesai
+
+    @FunctTestLendingSprint5
+    Scenario: User successfully uploaded all documents in web for loan AP
+        Given I has upload all documents in web
+        When I clik button Upload Dokumen Selesai
+        And I see dialog box confirmation 'Upload Dokumen Selesai'
+        And I click button Mengerti
+        Then I see on Mobile and all documents have uploaded 
+        And I see button Kirim Pengajuan Limit Kredit
+
+    @FunctTestLendingSprint5
+    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
+        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
+        When I see the wording of "Supplier"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file" 
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.8 MB"
+        And I see button Kirim Dokumen
+
+
+    @FunctTestLendingSprint5
+    Scenario: User successfully re-Upload documents
+        Given I has reupload documents in web
+        When I clik button Kirim Dokumen
+        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
+        And I click button Mengerti
+        Then I back to upload document page
+   
+    #Loan AR
+    @FunctTestLendingSprint5
+    Scenario: Verify after upload all mandatory documents in combine journey AR MSME
+        Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
+        When I see the wording of "Buyer"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed "1.7 MB"
+        And I see "Akta Pendirian"
+        And I see the file size should be displayed "1.4 MB"
+        And I see "SK Kemenkumham"
+        And I see the file size should be displayed "1.8 MB"
+        And I see "NPWP Perusahaan"
+        And I see the file size should be displayed "1.2 MB"
+        Then I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        And I see the file size should be displayed  "1.2 MB"
+        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
+        And I see the file size should be displayed  "1.2 MB"
+        And I upload multiple documents of field "Minima l contoh invoice dengan buyer terkait"
+        And I see the file size should be displayed  "1.2 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed  "1.2 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed  "1.2 MB"
+        Then I see button Upload Dokumen Selesai
+
+    @FunctTestLendingSprint5
+    Scenario: User successfully uploaded all documents in web for loan AR
+        Given I has upload all documents in web
+        When I clik button Upload Dokumen Selesai
+        And I see dialog box confirmation 'Upload Dokumen Selesai'
+        And I click button Mengerti
+        Then I see on Mobile and all documents have uploaded 
+        And I see button Kirim Pengajuan Limit Kredit
+
+    @FunctTestLendingSprint5
+    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
+        Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
+        When I see the wording of "Buyer"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file" 
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.8 MB"
+        And I see button Kirim Dokumen
+
+    
+    @FunctTestLendingSprint5
+    Scenario: User successfully re-Upload documents
+        Given I has reupload documents in web
+        When I clik button Kirim Dokumen
+        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
+        And I click button Mengerti
+        Then I back to upload document page
+
+
+##Loan PO 
+    @FunctTestLendingSprint5
+    Scenario: Verify after upload all mandatory documents in combine journey PO MSME
+         Given I has been access to the link web view for upload multiple data documents PO "PT Perorangan or UD"
+        When I see the wording of "Bouwheer"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file"
+        And I see "NIB"
+        And I see the file size should be displayed
+        And I see "Akta Pendirian"
+        And I see the file size should be displayed  "1.7 MB"    
+        And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
+        And I see the file size should be displayed "1.7 MB"
+        And I upload multiple documents of field "Laporan Keuangan dalam 1 tahun terakhir dan tahun berjalan"
+        And I see the file size should be displayed "1.7 MB"
+        Then I see button Upload Dokumen Selesai
         
+    @FunctTestLendingSprint5
+     Scenario: User successfully uploaded all documents in web for loan PO
+        Given I has upload all documents in web
+        When I clik button Upload Dokumen Selesai
+        And I see dialog box confirmation 'Upload Dokumen Selesai'
+        And I click button Mengerti
+        Then I see on Mobile and all documents have uploaded 
+        And I see button Kirim Pengajuan Limit Kredit
+
+    @FunctTestLendingSprint5
+    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
+        Given I has been access to the link web view for upload multiple data documents PO "PT.Perorangan or UD"
+        When I see the wording of "Bouwheer"
+        And I see Supplier name
+        And I see Loan Id
+        And I see wording of "Format file: PDF"
+        And I see wording of "Maximal ukuran per file: 15B"
+        And I see wording of "Anda dapat upload langsung beberapa file" 
+        And I upload multiple documents of field "Surat Perintah Kerja (SPK) dari bouwheer"
+        And I see the file size should be displayed "1.8 MB"
+        And I see button Kirim Dokumen
+
+    @FunctTestLendingSprint5
+    Scenario: User successfully re-Upload documents
+        Given I has reupload documents in web
+        When I clik button Kirim Dokumen
+        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
+        And I click button Mengerti
+        Then I back to upload document page

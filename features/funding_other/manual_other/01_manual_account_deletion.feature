@@ -3,6 +3,7 @@ Feature: Dashboard Manual - Account Deletion
     As a customer
     I want to delete my account
 
+  @C133875
   Scenario: Verify account deletion with incorrect password 5 times
     Given I am a registered customer with following details:
       | userID   | autocaea |
@@ -18,19 +19,21 @@ Feature: Dashboard Manual - Account Deletion
     And I continue to verification delete account
     And I fill 5 times incorrect password account deletion
     Then my account should be block
-  @FuntionalTestDemo
+
+  @C133876 
   Scenario: Check and approve in console after user request delete account
     Given I am customer who was requested account deletion
     When I go to console of account deletion
     Then I will see my request in the console
     And I will approve the request
-  @FuntionalTestDemo
+
   Scenario: Re-login after account delete
     Given I am a customer with my account has been deleted
     When I try to login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
     And I can click button try again
 
+  @C133878
   Scenario: Register customer individual after delete account with same ID number
     Given I am a customer with account already deleted
     And I already do the registration 1

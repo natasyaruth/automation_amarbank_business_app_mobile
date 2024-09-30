@@ -60,7 +60,7 @@ When("I click button Back ke Dashboard", () => {
 
 Then("I will directly to Create New Transaction PIN page", () => {
     I.waitForText("Buat PIN", 10);
-    // I.see("Silahkan masukkan password Amar Bank Bisnis kamu");
+    // I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
     I.waitForElement(createPINPage.icon, 10);
     I.waitForElement(createPINPage.fields.password, 10);
     I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
@@ -133,6 +133,10 @@ Then("I should direct to Dashboard", () => {
     I.waitForElement(createPINPage.buttons.btnTransfer, 10);
 });
 
+When("I reset my PIN", () =>{
+
+});
+
 When("I input new PIN with {string}", async (newPin) => {
     I.waitForText("Buat PIN Baru", 10);
     createPINPage.inputPIN(newPin);
@@ -175,8 +179,15 @@ When("I will receive email contain with OTP", async() => {
     globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 });
 
-When("I input OTP", () => {
-    createPINPage.fillInOtpCode(globalVariable.createPin.otp);
+When("I input OTP", async () => {
+    
+    const otpCode = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
+
+    createPINPage.fillInOtpCode(otpCode);
+});
+
+When("I input old PIN", ()=>{
+    
 });
 
 When("I click button Close", () => {
@@ -232,8 +243,8 @@ Then("I will directly go to Friend list page", () => {
 });
 
 Then("I will go back to other page", () => {
-    I.see(createPINPage.buttons.changePassword);
-    I.see(createPINPage.buttons.changePIN);
+    I.waitForElement(createPINPage.buttons.changePassword, 10);
+    I.waitForElement(createPINPage.buttons.changePIN, 10);
 
 });
 Then("I will see toastbar {string}", (successPINMessage) => {

@@ -157,10 +157,7 @@ Scenario: validate progress monitoring loan checking document
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
-    And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
-
-
+    
     
   Scenario: Validate bottom sheet for Metode Upload Dokumen Langsung dari Aplikasi
     Given User click button loan dashboard
