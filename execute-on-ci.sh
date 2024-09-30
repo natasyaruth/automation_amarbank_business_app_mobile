@@ -95,7 +95,6 @@ if [ $? -eq 0 ] && [ -n "$app_url" ]; then
   echo "Running Node.js script again with the app_url..."
   
   # Run the Node.js script for the second time, passing the app_url as an argument
-  # echo "Already Running.."
   # This are example format of grapping the testcase based on tagging
   # value of this format will be sending to codeceptjs:browserstack
   # grepStr="--grep \@C159510|\@C133894"
