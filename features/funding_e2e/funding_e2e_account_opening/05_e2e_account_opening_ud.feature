@@ -1,24 +1,24 @@
-@e2e_acc_opening_cv
-Feature: Account Opening - CV
-  In order to opening my Giro account with legality business type CV in SMB
+@e2e_acc_opening_ud
+Feature: Account Opening - UD
+  In order to opening my Giro account with legality business type UD in SMB
   As a customer
   I should complete process KYC and KYB
 
-  @C161001
-  Scenario: Complete KYC and KYB business type CV
+  @C161022
+  Scenario: Complete KYC and KYB business type UD
     Given I am a customer that recently registered to amarbank business with data as below
-        | fullName        | Staging                 |
-        | email           | cv_staging_01@gmail.com |
-        | phoneNumber     | 878900754041            |
-        | password        | 1234Test                |
-        | confirmPassword | 1234Test                |
+        | fullName        | Staging                            |
+        | email           | ud_staging_01@gmail.com |
+        | phoneNumber     | 812340984041                       |
+        | password        | 1234Test                           |
+        | confirmPassword | 1234Test                           |
     And I login using my user id that I recently receive through email
     And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
-    And I choose legality business type 'cv'
+    And I choose legality business type 'ud'
     And I submit my legality type
     And I fill NPWP Business
     And I click continue to data personal
@@ -79,10 +79,10 @@ Feature: Account Opening - CV
     And I will directing to page upload require documents for business
     And I choose method upload document
     And I choose direct upload via app
-    And I see files that need to be uploaded for type company
-    And I upload all document business for type company
+    And I see files that need to be uploaded for type individual company
+    And I upload all document business for type individual company
     And I click button progress upload document
-    And I will see all document company has been uploaded
+    And I will see all document business individual company has been uploaded
     And I click button request account opening
     And I click link go to main dashboard
     Then I will see card account 'on verification'

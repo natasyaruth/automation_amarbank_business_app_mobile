@@ -34,13 +34,13 @@ Given("I am a customer that recently registered to amarbank business with data a
   
   const account = registration.parse().rowsHash();
 
-    // await whitelistDao.whitelistPhoneNumber(
-    //   "+62" + account["phoneNumber"]
-    // );
+    await whitelistDao.whitelistPhoneNumber(
+      "+62" + account["phoneNumber"]
+    );
 
-    // await whitelistDao.whitelistEmail(
-    //   account["email"]
-    // );
+    await whitelistDao.whitelistEmail(
+      account["email"]
+    );
 
     globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
     globalVariable.registration.email = account["email"];
@@ -53,6 +53,7 @@ Given("I am a customer that recently registered to amarbank business with data a
     account.otp = otpCode;
 
     globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+    globalVariable.login.userIDInitiator = globalVariable.login.userID;
 });
 
 When("I choose menu registration", () => {

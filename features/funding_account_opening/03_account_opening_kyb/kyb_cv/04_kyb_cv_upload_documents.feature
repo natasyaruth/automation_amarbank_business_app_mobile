@@ -150,6 +150,8 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see 'Akta Pendirian' is empty
               And I will see 'SK Kemenkumham Pendirian' still exists
               And I will see 'NPWP Bisnis' still exists
+              And I will see 'Akta Perubahan Terakhir' still exists
+              And I will see 'SK Kemenkumham Perubahan Terakhir' still exists
 
         @C136868
         Scenario: Delete all document
@@ -237,6 +239,8 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will not see button request account opening
               And I will see 'Akta Pendirian' is empty
               And I will see 'SK Kemenkumham Pendirian' is empty
+              And I will see 'Akta Perubahan Terakhir' is empty
+              And I will see 'SK Kemenkumham Perubahan Terakhir' is empty
 
         @C136875
         Scenario: Close in page information progress verification

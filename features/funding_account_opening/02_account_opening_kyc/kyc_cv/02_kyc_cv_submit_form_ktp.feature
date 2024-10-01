@@ -34,7 +34,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
       | eKtpNumber    | 3171131810770033          |
-      | eKtpNumberStg | 3172026604740009          |
+      | eKtpNumberStg | 3494397967994519          |
       | fullName      | NADYA LAROSA              |
       | placeOfBirth  | MEDAN                     |
       | dateOfBirth   | 11/11/1995                |

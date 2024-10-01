@@ -140,8 +140,16 @@ When("I filling in form login with the following details:", (table) => {
 
 When("I login with account friendlist", () => {
   
-  loginPage.fillFieldLogin(loginPage.fields.userID, globalVariable.login.userIDFriendlist);
-  loginPage.fillFieldLogin(loginPage.fields.password, globalVariable.login.passwordFriendlist);
+  loginPage.fillFieldLogin("userID", globalVariable.login.userIDFriendlist);
+  loginPage.fillFieldLogin("password", globalVariable.login.passwordFriendlist);
+
+  loginPage.clickLoginButton();
+});
+
+When("I login using account initiator", () => {
+  
+  loginPage.fillFieldLogin("userID", globalVariable.login.userIDInitiator);
+  loginPage.fillFieldLogin("password", globalVariable.login.password);
 
   loginPage.clickLoginButton();
 });
@@ -301,7 +309,7 @@ When("I will see bottom sheet permission", () => {
   I.waitForText("Amar Bank membutuhkan izin perangkat", 10);
   I.see("Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
   I.see("Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
-  I.see("Kami memastikan data kamu tidak akan disalahgunakan.");
+  I.see("Kami memastikan data Anda tidak akan disalahgunakan.");
 
   I.see("Saya Mengerti");
   I.waitForElement(loginPage.buttons.understand, 10);

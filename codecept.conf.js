@@ -171,6 +171,8 @@ exports.config = {
     documentSafePage: "./pages/documentSafe.js",
 
     surveyRatingPage: "./pages/surveyRating.js",
+
+    notificationCenterPage: "./pages/notificationCenter.js",
   },
   settings: {
     logging: {
