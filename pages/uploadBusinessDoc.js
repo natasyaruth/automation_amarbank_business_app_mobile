@@ -50,7 +50,7 @@ module.exports = {
     sizeDocumentAktaBusiness: "~sizeSource1",
     sizeDocumentAkta: "~sizeSource2",
     sizeDocumentSK: "~sizeSource2",
-    sizeDocumentSKBusiness: "~sizeSource3",
+    sizeDocumentSKBusiness: "~sizeSource2",
     sizeDocumentNPWPBusiness: "~sizeSource3",
     sizeDocumentNPWP: "~sizeSource1",
     sizeDocumentLastCertificate: "~sizeSource4",
@@ -104,7 +104,7 @@ module.exports = {
       case "Akta Perubahan Terakhir":
         return enumDoc = 4;
       case "Sertifikat Perubahan Terakhir":
-        return enumDoc = 4;
+        return enumDoc = 9;
       case "Sertifikat Pendaftaran":
         return enumDoc = 7;
       case "NPWP Bisnis":
@@ -126,7 +126,7 @@ module.exports = {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 2, 4, 5, 7, 9];
+    const enumDoc = [1, 2, 7, 5, 4, 9];
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
@@ -140,7 +140,7 @@ module.exports = {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 2, 5, 7];
+    const enumDoc = [1, 2, 7, 5];
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
@@ -154,7 +154,7 @@ module.exports = {
 
     const fileType = 'pdf';
 
-    const enumDocIndividualComp = [1, 5, 2, 6];
+    const enumDocIndividualComp = [1, 5, 7, 6];
     const enumDocUD = [1, 5];
 
     if (
@@ -186,7 +186,7 @@ module.exports = {
 
     const enumDocUD = [1, 5];
 
-    const enumDocIndividualComp = [1, 5, 2, 6, 4, 10];
+    const enumDocIndividualComp = [1, 5, 7, 6, 9, 10];
 
     if (
 

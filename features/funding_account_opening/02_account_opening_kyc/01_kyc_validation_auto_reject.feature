@@ -7,9 +7,9 @@ Feature: Account Opening - Validation Auto Reject
 
     Background: Do register phase one
         Given I am a customer that recently registered to amarbank business with data as below
-            | fullName        | Revvy                   |
-            | email           | revvy@gmail.com         |
-            | phoneNumber     | 899967754041            |
+            | fullName        | Testing                 |
+            | email           | testing_11@gmail.com    |
+            | phoneNumber     | 813968854041            |
             | password        | 1234Test                |
             | confirmPassword | 1234Test                |
         And my mocking DHN currently is off    
@@ -24,27 +24,16 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form KTP with NIK indicated as DHN business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
-        And I mock feature submit form KTP into enabled
-        And I am a customer want to fill my information identity details
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         When I fill all information identity details as followings:
-            | eKtpNumber    | 9983035601860007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
+            | eKtpNumber    | 3171131810766033          |
+            | eKtpNumberStg | 3993022901860007          |
+        And I mock feature submit form KTP into enabled    
+        And I swipe to button save data eKTP    
         And I submit my information identity details
         Then I will direct to page notifying me that I can't continue to next process KYC because my data is indicated as DHN
         And I close page rejected account
@@ -58,23 +47,15 @@ Feature: Account Opening - Validation Auto Reject
         And I click continue to data personal
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
-        And I mock feature submit form KTP into enabled
-        And I am a customer want to fill my information identity details
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         When I fill all information identity details as followings:
-            | eKtpNumber    | 6683035601830007          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
+            | eKtpNumber    | 3171131810766033          |
+            | eKtpNumberStg | 3993022901860007          |
+        And I mock feature submit form KTP into enabled    
+        And I swipe to button save data eKTP    
         And I submit my information identity details
         Then I will direct to page notifying me that I can't continue to next process KYC because my data is indicated as DHN
         And I close page rejected account
@@ -84,27 +65,15 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form KTP with NIK already registered business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
-        And I am a customer want to fill my information identity details
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
         When I fill all information identity details as followings:
             | eKtpNumber    | 3171131810770033          |
-            | eKtpNumberStg | 3172026604740009          |
-            | fullName      | NADYA LAROSA              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Laki-laki                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Katolik                   |
-            | maritalStatus | Belum Kawin               |
+            | eKtpNumberStg | 3494397967994519          |
+        And I swipe to button save data eKTP    
         And I submit my information identity details
         Then I will direct to page notifying me that I can't continue to next process KYC because my data already registered
         And I close page rejected account
@@ -116,9 +85,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 5 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -144,9 +110,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 4 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -172,9 +135,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 3 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -202,9 +162,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 2 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -232,9 +189,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 1 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -262,9 +216,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give rating less than 4 and then more than 4 in account rejected  DHN
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP
@@ -293,9 +244,6 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give rating more than 4 and then less than 4 in account rejected  DHN
         Given I choose legality business type 'individual'
         And I submit my legality type
-        And I fill NPWP Business
-        And I click continue to data personal
-        And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I click take photo eKTP
         And I will directing to page take photo eKTP

@@ -48,6 +48,7 @@ When("I fill all information identity details as followings:",
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
             ) {
                 ktpData["eKtpNumber"] = ktpData["eKtpNumberStg"];
+                delete ktpData["eKtpNumberStg"];
             }
         } else {
             if (
@@ -207,7 +208,7 @@ Then("I will direct to page notifying me that I can't continue to next process K
     I.see("Amar Bank belum bisa melayanimu");
 
     I.see("Data eKTP-mu sudah terdaftar");
-    I.see("Tapi jangan khawatir, kamu bisa coba daftar kembali setelah 7 hari");
+    I.see("Tapi jangan khawatir, Anda bisa coba daftar kembali setelah 7 hari");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");
     I.dontSee("Hubungi Kami");
@@ -234,7 +235,7 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
     I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
     I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
-    I.see("Amar Bank belum bisa melayani Anda.");
+    I.waitForText("Amar Bank belum bisa melayani Anda.", 20);
     I.see("Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari. ");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");
@@ -248,7 +249,7 @@ Then("I will direct to dashboard with info other director data indicated as DHN"
     I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
     I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
-    I.see("Amar Bank belum bisa melayani Anda.");
+    I.waitForText("Amar Bank belum bisa melayani Anda.", 20);
     I.see("Salah satu direktur terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");

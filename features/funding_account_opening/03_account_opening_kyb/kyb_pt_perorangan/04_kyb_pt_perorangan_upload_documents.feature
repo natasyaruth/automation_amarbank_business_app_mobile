@@ -7,7 +7,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         Given I am a registered customer with following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |
-            | userIDstg   | rutheeab |
+            | userIDstg   | stag5d7e |
             | passwordStg | 1234Test |
         And I reset state upload document
         And I reset my state journey
@@ -15,7 +15,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I filling in form login with the following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |
-            | userIDstg   | rutheeab |
+            | userIDstg   | stag5d7e |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

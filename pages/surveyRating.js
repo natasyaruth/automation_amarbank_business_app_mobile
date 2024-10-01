@@ -14,7 +14,8 @@ module.exports = {
     feedback: "~textFieldRate"
   },
   texts: {
-    counter: "~textFieldCounter"
+    counter: "~textFieldCounter",
+    editText: {xpath: "//android.view.View[3]/android.widget.EditText"}
   },
 
   clickRating(index) {
@@ -53,7 +54,14 @@ module.exports = {
 
   fillFeedback(text) {
     I.waitForElement(this.fields.feedback, 10);
-    I.setText(this.fields.feedback, text);
+    I.click(this.fields.feedback);
+    I.type(text, 100);
+    I.hideDeviceKeyboard();
+  },
+
+  async getValueFieldFeedback(){
+    I.waitForElement(this.texts.editText, 10);
+    return await I.grabTextFrom(this.texts.editText);
   },
 
   sentFeedBack() {

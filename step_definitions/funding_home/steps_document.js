@@ -418,13 +418,13 @@ Then("I will see document business for type individual company", async () => {
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
 
-        I.waitForElement(documentPage.buttons.downloadDeed, 10);
+        I.waitForElement(documentPage.buttons.downloadSk, 10);
         I.see("Sertifikat Pendaftaran");
 
         I.waitForElement(documentPage.buttons.downloadLetter, 10);
         I.see("Surat Pernyataan Pendirian");
 
-        I.waitForElement(documentPage.buttons.downloadLastCertificate, 10);
+        I.waitForElement(documentPage.buttons.downloadLastSk, 10);
         I.see("Sertifikat Perubahan Terakhir");
 
         I.waitForElement(documentPage.buttons.downloadLastLetter, 10);
@@ -452,13 +452,13 @@ Then("I will see document business required for type individual company", async 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
 
-        I.dontSeeElement(documentPage.buttons.downloadDeed);
+        I.dontSeeElement(documentPage.buttons.downloadSk);
         I.dontSee("Sertifikat Pendaftaran");
 
         I.dontSeeElement(documentPage.buttons.downloadLetter);
         I.dontSee("Surat Pernyataan Pendirian");
 
-        I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
+        I.dontSeeElement(documentPage.buttons.downloadLastSk);
         I.dontSee("Sertifikat Perubahan Terakhir");
 
         I.dontSeeElement(documentPage.buttons.downloadLastLetter);
@@ -474,13 +474,13 @@ Then("I will see document business required for type individual company", async 
         I.waitForElement(documentPage.buttons.downloadNpwp, 10);
         I.see("NPWP Bisnis");
 
-        I.waitForElement(documentPage.buttons.downloadDeed);
+        I.waitForElement(documentPage.buttons.downloadSk);
         I.see("Sertifikat Pendaftaran");
 
         I.waitForElement(documentPage.buttons.downloadLetter);
         I.see("Surat Pernyataan Pendirian");
 
-        I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
+        I.dontSeeElement(documentPage.buttons.downloadLastSk);
         I.dontSee("Sertifikat Perubahan Terakhir");
 
         I.dontSeeElement(documentPage.buttons.downloadLastLetter);

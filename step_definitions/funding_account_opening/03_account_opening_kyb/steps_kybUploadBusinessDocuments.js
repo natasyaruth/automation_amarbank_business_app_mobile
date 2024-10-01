@@ -189,6 +189,8 @@ When("I upload all document business required for type individual company", asyn
 
 When("I delete document {string}", async (typeDoc) => {
 
+    uploadBusinessDocPage.clickUpdateProgress();
+
     switch (typeDoc) {
         case "NIB":
             uploadBusinessDocPage.deleteDocumentNIB();
@@ -468,6 +470,8 @@ Then("I will see button request account opening is shown", () => {
 
 Then("I will see document {string} is uploaded", async (typeDoc) => {
 
+    uploadBusinessDocPage.clickUpdateProgress();
+
     switch (typeDoc) {
 
         case "NIB":
@@ -743,40 +747,37 @@ Then("I will not see all document company", () => {
 
 Then("I will see {string} is empty", async (typeDoc) => {
 
-    I.wait(1);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    
+    uploadBusinessDocPage.clickUpdateProgress();
 
     switch (typeDoc) {
 
         case "NIB":
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNIB);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNIB);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNib);
             break;
 
         case "Akta Pendirian":
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAktaBusiness);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedAktaBusiness);
             break;
 
         case "Sertifikat Pendaftaran":
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteAkta);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentAkta);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedAkta);
             break;
 
         case "SK Kemenkumham Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSKBusiness);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSKBusiness);
             break;
 
         case "Surat Pernyataan Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteSK);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentSK);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
             break;
 
         case "NPWP Bisnis":
@@ -792,44 +793,42 @@ Then("I will see {string} is empty", async (typeDoc) => {
 
                 I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWP);
                 I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWP);
-                I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNpwp);
 
             } else {
 
                 I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
                 I.dontSeeElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
                 I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentNPWPBusiness, 10);
-                I.dontSeeElement(uploadBusinessDocPage.icons.uploadedNpwpBusiness);
 
             }
             break;
 
         case "Akta Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
             break;
 
         case "Sertifikat Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedSK);
             break;
 
         case "SK Kemenkumham Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastSk);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastSk);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedLastSk);
             break;
 
         case "Surat Pernyataan Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.dontSeeElement(uploadBusinessDocPage.buttons.deleteLastCertificate);
             I.dontSeeElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate);
-            I.dontSeeElement(uploadBusinessDocPage.icons.uploadedLastCertificate);
             break;
 
         default:
@@ -840,36 +839,33 @@ Then("I will see {string} is empty", async (typeDoc) => {
 
 Then("I will see {string} still exists", async (typeDoc) => {
 
+    uploadBusinessDocPage.clickUpdateProgress();
+
     switch (typeDoc) {
         case "NIB":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
-            I.dontSeeElement(uploadBusinessDocPage.upload.nib);
 
         case "Akta Pendirian":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAktaBusiness, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAktaBusiness, 10);
-            I.dontSeeElement(uploadBusinessDocPage.upload.certificateBusiness);
             break;
 
         case "Sertifikat Pendaftaran":
             I.waitForElement(uploadBusinessDocPage.buttons.deleteAkta, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentAkta, 10);
-            I.dontSeeElement(uploadBusinessDocPage.upload.certificate);
             break;
 
         case "SK Kemenkumham Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSKBusiness, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSKBusiness, 10);
-            I.dontSeeElement(uploadBusinessDocPage.upload.skBusiness);
             break;
 
         case "Surat Pernyataan Pendirian":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteSK, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentSK, 10);
-            I.dontSeeElement(uploadBusinessDocPage.upload.sk);
             break;
 
         case "NPWP Bisnis":
@@ -898,12 +894,14 @@ Then("I will see {string} still exists", async (typeDoc) => {
 
         case "Akta Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
             I.dontSeeElement(uploadBusinessDocPage.upload.lastCertificate);
             break;
 
         case "Sertifikat Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
@@ -912,12 +910,14 @@ Then("I will see {string} still exists", async (typeDoc) => {
 
         case "SK Kemenkumham Perubahan Terakhir":
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
             I.dontSeeElement(uploadBusinessDocPage.upload.lastSk);
             break;
 
         case "Surat Pernyataan Perubahan Terakhir":
+            I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
             I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
             I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);

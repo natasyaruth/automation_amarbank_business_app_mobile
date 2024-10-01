@@ -1,24 +1,24 @@
-@e2e_acc_opening_cv
-Feature: Account Opening - CV
-  In order to opening my Giro account with legality business type CV in SMB
+@e2e_acc_opening_pt_perusahaan
+Feature: Account Opening - PT Perusahaan
+  In order to opening my Giro account with legality business type PT Perusahaan in SMB
   As a customer
   I should complete process KYC and KYB
 
-  @C161001
-  Scenario: Complete KYC and KYB business type CV
+  @C161020
+  Scenario: Complete KYC and KYB business type PT Perusahaan
     Given I am a customer that recently registered to amarbank business with data as below
-        | fullName        | Staging                 |
-        | email           | cv_staging_01@gmail.com |
-        | phoneNumber     | 878900754041            |
-        | password        | 1234Test                |
-        | confirmPassword | 1234Test                |
+        | fullName        | Staging                            |
+        | email           | pt_perusahaan_staging_01@gmail.com |
+        | phoneNumber     | 878900754041                       |
+        | password        | 1234Test                           |
+        | confirmPassword | 1234Test                           |
     And I login using my user id that I recently receive through email
     And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
-    And I choose legality business type 'cv'
+    And I choose legality business type 'company'
     And I submit my legality type
     And I fill NPWP Business
     And I click continue to data personal

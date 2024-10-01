@@ -4,6 +4,7 @@ Feature: Account Opening - Individual
   As a customer
   I should complete process KYC and KYB
 
+  @C161000
   Scenario: Complete KYC and KYB business type Individual
     Given I am a customer that recently registered to amarbank business with data as below
         | fullName        | Staging                 |
