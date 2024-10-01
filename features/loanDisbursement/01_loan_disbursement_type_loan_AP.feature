@@ -136,11 +136,11 @@ Feature: Loan Disbursement for Loan Type AP
     Then direct to the created PIN
 
   @C98035
-  Scenario: Continue Disburse The Loan When Input False Pin
+  Scenario Outline: Continue Disburse The Loan When Input False Pin
     Given I haven been in calculation page of amount
     When I click button continue disburse loan with input false PIN
     Then I should be see <Error_Message>
-  Example: Input PIN Disbursement
+    Examples:
       | PIN  | Error_Message            |
       | 1234 | Pin salah silakan ulangi |
       |      | Pin wajib diisi          |
@@ -174,21 +174,3 @@ Feature: Loan Disbursement for Loan Type AP
     When user should see field "Total Bunga" in the below of field "textInterestFee"
     When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
     Then show amount disbursement calculation page if invoice value 80%
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
