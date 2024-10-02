@@ -53,6 +53,7 @@ Given("I am a customer that recently registered to amarbank business with data a
     account.otp = otpCode;
 
     globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+    globalVariable.login.userIDInitiator = globalVariable.login.userID;
 });
 
 When("I choose menu registration", () => {
@@ -149,7 +150,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
 });
  
 When("I verifying my email by login by user id", async () => {
-  I.wait(3);
+  I.wait(20);
   verificationEmailPage.isOpen();
 
   I.see("Segera Cek E-mail");

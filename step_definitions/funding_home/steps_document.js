@@ -19,7 +19,14 @@ Given("has more than one other document", async () => {
 
     await
         uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, fileType);
-})
+});
+
+Given("don't have any other document", async () => {
+
+    await
+        resetStateDao.deleteAllOtherDoc(globalVariable.login.userID, globalVariable.login.password);
+
+});
 
 When("I click document giro", () => {
     documentPage.clickDocumentGiro();
@@ -46,7 +53,7 @@ When("I click confirm cancel upload other document", () => {
 });
 
 When("I click back to upload other document", () => {
-    headerPage.clickButtonBack();
+    documentPage.backToUpload();
 });
 
 When("I click delete other document in section upload", () => {
@@ -54,13 +61,41 @@ When("I click delete other document in section upload", () => {
 });
 
 When("I upload other document with type {string}", async (typeDoc) => {
-    await
-        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, typeDoc);
+
+    let fileName;
+
+    switch (typeDoc) {
+        case "pdf":
+            fileName = "CV MAJU BERSAMA";
+            break;
+        case "jpg":
+            fileName = "PT ABC XYZ";
+            break;
+        case "jpeg":
+            fileName = "USAHA BISNIS KU";
+            break;
+        case "png":
+            fileName = "UD ABANG MEDAN";
+            break;
+        default:
+            throw new Error("File type is not recognize");
+    }
+
+    documentPage.clickUploadDoc();
+
+    I.waitForElement(documentPage.googleElement.search, 30);
+    const newFileName = await documentPage.searchGoogleDrive(fileName);
+
+    globalVariable.uploadDocuments.fileName.unshift(newFileName);
+    documentPage.clickFirstOptionSearch();
 });
 
 When("I delete other document number {string}", async (numberDoc) => {
-    await
-        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, typeDoc);
+
+    const rowDoc = parseInt(numberDoc);
+
+    documentPage.deleteOtherDoc(numberDoc - 1);
+
 });
 
 When("I confirm delete other document", () => {
@@ -172,6 +207,31 @@ When("I sent the feedback", () => {
     documentSafePage.sentFeedback();
 });
 
+When("I delete all other document", async () => {
+
+    const numberDoc = await I.grabNumberOfVisibleElements('//android.widget.TextView[@content-desc[starts-with(., ' + documentPage.texts.fileName.slice(1) + ')]]');
+
+    console.log(numberDoc);
+
+    for (let i = 0; i < numberDoc; i++) {
+        documentPage.deleteOtherDoc(0);
+        documentPage.confirmDeleteDoc();
+        I.waitForText("Dokumen Lainnya", 10);
+        I.wait(2);
+    };
+});
+
+Then("I will see pop up delete other document", () => {
+    I.waitForText("Hapus Dokumen", 10);
+    I.waitForText("Apakah Anda yakin akan menghapus dokumen ini?", 10);
+
+    I.see("Kembali");
+    I.waitForElement(documentPage.buttons.cancelDelete, 10);
+
+    I.see("Hapus");
+    I.waitForElement(documentPage.buttons.confirmDelete, 10);
+});
+
 Then("I will direct to page document brankas", () => {
     I.waitForText("Brankas Dokumen", 10);
     I.dontSee("Dokumen Bisnis");
@@ -277,41 +337,159 @@ Then("I will see document loan is empty", () => {
 });
 
 Then("I will see document business for type company", () => {
+
     I.waitForElement(documentPage.buttons.downloadNib, 10);
     I.see("NIB");
-    I.see("NIB.pdf");
 
-    I.seeElement(documentPage.buttons.downloadDeed);
-    I.see("Akta Perusahaan");
-    I.see("Akta Perusahaan.pdf");
+    I.waitForElement(documentPage.buttons.downloadDeed, 10);
+    I.see("Akta Pendirian");
 
-    I.seeElement(documentPage.buttons.downloadSk);
-    I.see("SK Kemenkumham");
-    I.see("SK Kemenkumham.pdf");
+    I.waitForElement(documentPage.buttons.downloadSk, 10);
+    I.see("SK Kemenkumham Pendirian");
 
-    I.seeElement(documentPage.buttons.downloadNpwp);
-    I.see("NPWP Perusahaan");
-    I.see("NPWP Perusahaan.pdf");
+    I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+    I.see("NPWP Bisnis");
+
+    I.waitForElement(documentPage.buttons.downloadLastCertificate, 10);
+    I.see("Akta Perubahan Terakhir");
+
+    I.waitForElement(documentPage.buttons.downloadLastSk, 10);
+    I.see("SK Kemenkumham Perubahan Terakhir");
 
     I.see("Dokumen Giro");
 });
 
-Then("I will see document business for type individual company", () => {
+Then("I will see document business required for type company", () => {
+
     I.waitForElement(documentPage.buttons.downloadNib, 10);
     I.see("NIB");
-    I.see("NIB.pdf");
 
-    I.seeElement(documentPage.buttons.downloadDeed);
-    I.see("Akta Perusahaan");
-    I.see("Akta Perusahaan.pdf");
+    I.waitForElement(documentPage.buttons.downloadDeed, 10);
+    I.see("Akta Pendirian");
 
-    I.dontSeeElement(documentPage.buttons.downloadSk);
-    I.dontSee("SK Kemenkumham");
-    I.dontSee("SK Kemenkumham.pdf");
+    I.waitForElement(documentPage.buttons.downloadSk, 10);
+    I.see("SK Kemenkumham Pendirian");
 
-    I.dontSeeElement(documentPage.buttons.downloadNpwp);
-    I.dontSee("NPWP Perusahaan");
-    I.dontSee("NPWP Perusahaan.pdf");
+    I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+    I.see("NPWP Bisnis");
+
+    I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
+    I.dontSee("Akta Perubahan Terakhir");
+
+    I.dontSeeElement(documentPage.buttons.downloadLastSk);
+    I.dontSee("SK Kemenkumham Perubahan Terakhir");
+
+    I.see("Dokumen Giro");
+});
+
+Then("I will see document business for type individual company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+    if (
+        legalityType === "UD"
+    ) {
+
+        I.waitForElement(documentPage.buttons.downloadNib, 10);
+        I.see("NIB");
+
+        I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+        I.see("NPWP Bisnis");
+
+        I.dontSeeElement(documentPage.buttons.downloadDeed);
+        I.dontSee("Sertifikat Pendaftaran");
+
+        I.dontSeeElement(documentPage.buttons.downloadLetter);
+        I.dontSee("Surat Pernyataan Pendirian");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastCertificate);
+        I.dontSee("Sertifikat Perubahan Terakhir");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
+        I.dontSee("Surat Pernyataan Perubahan Terakhir");
+
+    } else if (
+        legalityType === "PT Perorangan"
+    ) {
+
+        I.waitForElement(documentPage.buttons.downloadNib, 10);
+        I.see("NIB");
+
+        I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+        I.see("NPWP Bisnis");
+
+        I.waitForElement(documentPage.buttons.downloadSk, 10);
+        I.see("Sertifikat Pendaftaran");
+
+        I.waitForElement(documentPage.buttons.downloadLetter, 10);
+        I.see("Surat Pernyataan Pendirian");
+
+        I.waitForElement(documentPage.buttons.downloadLastSk, 10);
+        I.see("Sertifikat Perubahan Terakhir");
+
+        I.waitForElement(documentPage.buttons.downloadLastLetter, 10);
+        I.see("Surat Pernyataan Perubahan Terakhir");
+
+    } else {
+
+        throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
+    }
+
+    I.see("Dokumen Giro");
+});
+
+Then("I will see document business required for type individual company", async () => {
+
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+
+    if (
+        legalityType === "UD"
+    ) {
+
+        I.waitForElement(documentPage.buttons.downloadNib, 10);
+        I.see("NIB");
+
+        I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+        I.see("NPWP Bisnis");
+
+        I.dontSeeElement(documentPage.buttons.downloadSk);
+        I.dontSee("Sertifikat Pendaftaran");
+
+        I.dontSeeElement(documentPage.buttons.downloadLetter);
+        I.dontSee("Surat Pernyataan Pendirian");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastSk);
+        I.dontSee("Sertifikat Perubahan Terakhir");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
+        I.dontSee("Surat Pernyataan Perubahan Terakhir");
+
+    } else if (
+        legalityType === "PT Perorangan"
+    ) {
+
+        I.waitForElement(documentPage.buttons.downloadNib, 10);
+        I.see("NIB");
+
+        I.waitForElement(documentPage.buttons.downloadNpwp, 10);
+        I.see("NPWP Bisnis");
+
+        I.waitForElement(documentPage.buttons.downloadSk);
+        I.see("Sertifikat Pendaftaran");
+
+        I.waitForElement(documentPage.buttons.downloadLetter);
+        I.see("Surat Pernyataan Pendirian");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastSk);
+        I.dontSee("Sertifikat Perubahan Terakhir");
+
+        I.dontSeeElement(documentPage.buttons.downloadLastLetter);
+        I.dontSee("Surat Pernyataan Perubahan Terakhir");
+
+    } else {
+
+        throw new Error("Please check legality type of user. Only works if user id is from UD or PT Perorangan");
+    }
 
     I.see("Dokumen Giro");
 });
@@ -383,7 +561,7 @@ Then("I will see pop up fill survey", async () => {
     I.waitForElement(documentSafePage.buttons.sentFeedBack, 10);
 
     const isSentEnabled = await I.grabAttributeFrom(documentSafePage.statusElement.buttonSentFeedBack, 'enabled');
-    I.assertEqual(isOtherChecked, false);
+    I.assertEqual(isSentEnabled, "false");
 
 });
 
@@ -476,7 +654,7 @@ Then("I will see button upload other document", () => {
 });
 
 Then("I will direct to detail menu other document", () => {
-    I.waitForText("Dokumen Lainnya", 10);
+    I.waitForText("Dokumen Lainnya", 30);
     I.waitForElement(headerPage.buttons.back, 10);
 
     I.waitForElement(documentPage.buttons.deleteDetail, 10);
@@ -487,7 +665,7 @@ Then("I will direct to detail menu other document", () => {
 });
 
 Then("I will see empty detail menu other document", () => {
-    I.waitForText("Dokumen Lainnya", 10);
+    I.waitForText("Dokumen Lainnya", 30);
     I.waitForElement(headerPage.buttons.back, 10);
 
     I.see("Halaman Ini Masih Kosong");
@@ -504,7 +682,8 @@ Then("I will see bottom sheet upload other document", () => {
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
     I.see("Upload Dokumen");
 
-    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
     I.see("Dokumen Lainnya");
 
@@ -530,17 +709,20 @@ Then("I will see pop up confirm cancel upload other document", () => {
 
 Then("I will see other document has been uploaded", async () => {
 
-    I.waitForText("Upload Dokumen", 10);
+    I.waitForText("Upload Dokumen", 30);
     I.dontSeeElement(documentPage.buttons.closeBottomSheet);
 
-    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
     I.see("Dokumen Lainnya");
 
     I.see("Upload Dokumen");
     I.dontSeeElement(documentPage.buttons.upload);
-    I.waitForElement(documentPage.texts.fileSize, 10);
-    I.waitForElement(documentPage.buttons.deleteDoc, 10);
+    I.waitForElement(documentPage.buttons.deleteDoc, 30);
+    I.waitForElement(documentPage.icons.completeUpload, 20);
+    I.waitForElement(documentPage.texts.fileSize, 20);
+    I.dontSeeElement(documentPage.buttons.upload);
 
     I.see("Simpan Dokumen")
     I.waitForElement(documentPage.buttons.saveDocument, 10);
@@ -553,7 +735,8 @@ Then("I will see other document is deleted", () => {
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
     I.see("Upload Dokumen");
 
-    I.see("Format file: PDF / JPG / JPEG / PNG Maximal ukuran per file: 15MB");
+    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
+        "Maximal ukuran per file: 15MB");
 
     I.see("Dokumen Lainnya");
 
@@ -573,13 +756,15 @@ Then("I will see snackbar success upload success", () => {
     I.waitForText("Dokumen berhasil disimpan", 10);
 });
 
-Then("I will direct to page other document with document that has been uploaded is in there", () => {
-    I.waitForText("Dokumen Lainnya", 10);
+Then("I will direct to page other document with document that has been uploaded is in there", async () => {
+    I.waitForText("Dokumen Lainnya", 30);
     I.waitForElement(headerPage.buttons.back, 10);
 
-    I.waitForText(globalVariable.uploadDocuments.fileName[0], 10);
-    I.waitForElement(documentPage.buttons.deleteDetail, 10);
-    I.waitForElement(documentPage.buttons.downloadOtherDoc, 10);
+    const actualFileName = await documentPage.getFileNameInListOtherDoc(0);
+    I.assertEqual(actualFileName, globalVariable.uploadDocuments.fileName[0]);
+
+    I.waitForElement(documentPage.buttons.deleteDetail + "0", 10);
+    I.waitForElement(documentPage.buttons.downloadOtherDoc + "0", 10);
 
     I.see("Upload Dokumen Lainnya");
     I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
@@ -587,10 +772,16 @@ Then("I will direct to page other document with document that has been uploaded 
 
 Then("I see list document is ordering by the latest to oldest", async () => {
 
-    // add function to get list file name
+    const listFileName = globalVariable.uploadDocuments.fileName;
+
+    for (let i = 0; i < listFileName.length; i++) {
+        const titleLatest = await documentPage.getFileNameInListOtherDoc(i);
+        I.assertEqual(titleLatest, listFileName[i]);
+    }
 });
 
 Then("I will see other document more than one", async () => {
 
-    // add function to get list file name
+    I.waitForElement(documentPage.texts.fileName + "0", 10);
+    I.waitForElement(documentPage.texts.fileName + "1", 10);
 });

@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I, globalVariable } = inject();
 
 module.exports = {
   fields: {
@@ -17,31 +17,31 @@ module.exports = {
     category: "~textCategory",
     subCategory: "~textSubCategory",
     note: "~textNote",
-    confirmSenderName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[2]"},
-    confirmSenderAccNumber: {xpath: "//android.view.View/android.view.View/android.widget.TextView[5]"},
-    confirmSenderBankName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[3]"},
-    confirmRecipientName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[6]"},
-    confirmRecipientAccNumber: {xpath: "//android.view.View/android.view.View/android.widget.TextView[9]"},
-    confirmRecipientBankName: {xpath: "//android.view.View/android.view.View/android.widget.TextView[7]"},
-    confirmAdminFee: {xpath: "//android.view.View/android.view.View/android.widget.TextView[15]"},
-    senderName: {xpath: "//android.widget.ScrollView/android.widget.TextView[2]"},
-    senderBankName: {xpath: "//android.widget.ScrollView/android.widget.TextView[3]"},
-    senderAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[5]"},
-    receiverName: {xpath: "//android.widget.ScrollView/android.widget.TextView[6]"},
-    receiverBankName: {xpath: "//android.widget.ScrollView/android.widget.TextView[7]"},
-    receiverAccNumber: {xpath: "//android.widget.ScrollView/android.widget.TextView[9]"},
-    referenceNumber: {xpath: "//android.widget.ScrollView/android.view.View[1]/android.widget.TextView"},
-    dateTransfer: {xpath: "//android.widget.ScrollView/android.widget.TextView[14]"},
-    timeTransfer: {xpath: "//android.widget.ScrollView/android.widget.TextView[16]"},
-    variableSenderConfirmationPage: {xpath: "//android.widget.TextView[2]"},
+    confirmSenderName: { xpath: "//android.view.View/android.view.View/android.widget.TextView[2]" },
+    confirmSenderAccNumber: { xpath: "//android.view.View/android.view.View/android.widget.TextView[5]" },
+    confirmSenderBankName: { xpath: "//android.view.View/android.view.View/android.widget.TextView[3]" },
+    confirmRecipientName: { xpath: "//android.view.View/android.view.View/android.widget.TextView[6]" },
+    confirmRecipientAccNumber: { xpath: "//android.view.View/android.view.View/android.widget.TextView[9]" },
+    confirmRecipientBankName: { xpath: "//android.view.View/android.view.View/android.widget.TextView[7]" },
+    confirmAdminFee: { xpath: "//android.view.View/android.view.View/android.widget.TextView[15]" },
+    senderName: { xpath: "//android.widget.ScrollView/android.widget.TextView[2]" },
+    senderBankName: { xpath: "//android.widget.ScrollView/android.widget.TextView[3]" },
+    senderAccNumber: { xpath: "//android.widget.ScrollView/android.widget.TextView[5]" },
+    receiverName: { xpath: "//android.widget.ScrollView/android.widget.TextView[6]" },
+    receiverBankName: { xpath: "//android.widget.ScrollView/android.widget.TextView[7]" },
+    receiverAccNumber: { xpath: "//android.widget.ScrollView/android.widget.TextView[9]" },
+    referenceNumber: { xpath: "//android.widget.ScrollView/android.view.View[1]/android.widget.TextView" },
+    dateTransfer: { xpath: "//android.widget.ScrollView/android.widget.TextView[14]" },
+    timeTransfer: { xpath: "//android.widget.ScrollView/android.widget.TextView[16]" },
+    variableSenderConfirmationPage: { xpath: "//android.widget.TextView[2]" },
     adminFeeRTOL: "~feeRTOL",
     adminFeeBIFAST: "~feeBifast",
     adminFeeRTGS: "~feeRTGS",
     adminFeeSKN: "~feeSKN",
-    titleActiveSaldo: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[1]'},
-    titleAmountTransfer: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[3]'},
-    titleAdminFee: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[5]'},
-    titleTotalAmount: {xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[7]'},
+    titleActiveSaldo: { xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[1]' },
+    titleAmountTransfer: { xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[3]' },
+    titleAdminFee: { xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[5]' },
+    titleTotalAmount: { xpath: '//android.view.View/android.widget.ScrollView/android.widget.TextView[7]' },
     textBalanceAmount: "~textBalanceAmount",
     textTransferAmount: "~textTransferAmount",
     textTransferFee: "~textTransferFee",
@@ -54,23 +54,23 @@ module.exports = {
   buttons: {
     methodTransfer: "~buttonChoseMethod",
     refresh: "~buttonRefresh",
-    closeSubCategory: "~buttonClose", 
-    closeDetailTransferPage: "~buttonClose",    
+    closeSubCategory: "~buttonClose",
+    closeDetailTransferPage: "~buttonClose",
     transfer: "~buttonTransfer",
     sectionBtnTrf: "~btnTransfer",
-    copy: {xpath: "//android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[2]"},
+    copy: { xpath: "//android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[2]" },
     share: "~buttonShare",
     checkStatus: "~buttonCheckStatus",
     checkMethod: "~buttonChangeMethod",
     backToDashboard: "~buttonBackToDashboard",
-    callCenter:"~buttonCallCenter",
+    callCenter: "~buttonCallCenter",
     tryAgain: "~",
   },
   cards: {
     category: "~itemCategory",
     subCategory: "~itemSubCategory",
-  }, 
-  radioButtons:{
+  },
+  radioButtons: {
     methodRtol: "~optionRTOL",
     methodRtgs: "~optionRTGS",
     methodBifast: "~optionBifast",
@@ -86,320 +86,334 @@ module.exports = {
     balance: "~textBalanceError",
   },
 
-  inputAmountTransfer(amount){
+  inputAmountTransfer(amount) {
     I.waitForElement(this.fields.amount, 10);
     I.setText(this.fields.amount, amount);
   },
 
-  async getMessageErrorFieldOnOnInquiryTransfer (fieldName) {
-    if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
+  async getMessageErrorFieldOnOnInquiryTransfer(fieldName) {
+    if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
       throw new Error('Field ${fieldName} is not found');
     }
     I.waitForElement(this.messageErrorFields[fieldName], 10);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
-  async getMessageErrorField(fieldName){
+  async getMessageErrorField(fieldName) {
     I.waitForElement(this.messageErrorFields[fieldName], 10)
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
-  async getBalance(){
+  async getBalance() {
     I.waitForElement(this.texts.balance, 10)
     return await I.grabTextFrom(this.texts.balance);
   },
 
-  async getMessageErrorAmount(){
+  async getMessageErrorAmount() {
     I.waitForElement(this.messageErrorFields.amount, 10)
     return await I.grabTextFrom(this.messageErrorFields.amount);
   },
 
-  async getMessageErrorPIN(){
+  async getMessageErrorPIN() {
     I.waitForElement(this.messageErrorFields.pin, 10)
     return await I.grabTextFrom(this.messageErrorFields.pin);
   },
 
-  async getMessageErrorNotes(){
+  async getMessageErrorNotes() {
     I.waitForElement(this.messageErrorFields.notes, 10);
     return await I.grabTextFrom(this.messageErrorFields.notes);
   },
 
-  async getAmountConfirmation(){
+  async getAmountConfirmation() {
     I.waitForElement(this.texts.amount, 10);
     return await I.grabTextFrom(this.texts.amount);
   },
 
-  async getServiceMethod(){
+  async getServiceMethod() {
     I.waitForElement(this.texts.service, 10);
     return await I.grabTextFrom(this.texts.service);
   },
 
-  async getTotal(){
+  async getTotal() {
     I.waitForElement(this.texts.total, 10);
     return await I.grabTextFrom(this.texts.total);
   },
 
-  async getCategory(){
+  async getCategory() {
     I.waitForElement(this.texts.category, 10);
     return await I.grabTextFrom(this.texts.category);
   },
 
-  async getNotes(){
+  async getNotes() {
     I.waitForElement(this.texts.note, 10);
     return await I.grabTextFrom(this.texts.note);
   },
 
-  async getMessageWarningPIN(){
+  async getMessageWarningPIN() {
     return await I.grabTextFrom(this.messageErrors.warningErrorPin);
   },
 
-  async getMessageBlockedPin(){
+  async getMessageBlockedPin() {
     return await I.grabTextFrom(this.messageErrors.blockedPin);
   },
 
-  chooseCategory(category){
+  chooseCategory(category) {
     I.waitForElement(this.dropdownLists.category, 10);
     I.click(this.dropdownLists.category);
     I.waitForElement(this.buttons.closeSubCategory, 10);
     I.click(category);
   },
 
-  fillNotes(notes){
+  fillNotes(notes) {
     I.waitForElement(this.fields.notes, 10);
     I.setText(this.fields.notes, notes);
   },
 
-  chooseMethodTransfer(){
+  chooseMethodTransfer() {
     I.waitForElement(this.buttons.methodTransfer, 10);
     I.click(this.buttons.methodTransfer);
   },
 
-  nextProcessTransfer(){
+  nextProcessTransfer() {
     I.waitForElement(this.buttons.methodTransfer, 10);
     I.click(this.buttons.methodTransfer);
   },
 
-  chooseRtol(){
+  chooseRtol() {
     I.waitForElement(this.radioButtons.methodRtol, 10);
     I.click(this.radioButtons.methodRtol);
   },
 
-  chooseSkn(){
+  chooseSkn() {
     I.waitForElement(this.radioButtons.methodSkn, 10);
     I.click(this.radioButtons.methodSkn);
   },
 
-  chooseRtgs(){
+  chooseRtgs() {
     I.waitForElement(this.radioButtons.methodRtgs, 10);
     I.click(this.radioButtons.methodRtgs);
   },
 
-  chooseBifast(){
+  chooseBifast() {
     I.waitForElement(this.radioButtons.methodBifast, 10);
     I.click(this.radioButtons.methodBifast);
   },
 
-  processTransfer(){
+  processTransfer() {
     I.waitForElement(this.buttons.transfer, 10);
     I.click(this.buttons.transfer);
   },
 
-  confirmTransfer(){
+  confirmTransfer() {
     I.waitForElement(this.buttons.transfer, 10);
     I.click(this.buttons.transfer);
   },
 
-  inputPin(pin){
+  inputPin(pin) {
     I.waitForElement(this.fields.pin, 10);
     I.fillField(this.fields.pin, pin);
     I.hideDeviceKeyboard();
   },
 
-  shareReceipt(){
+  shareReceipt() {
     I.click(this.buttons.share);
   },
 
-  backToDashboard(){
+  backToDashboard() {
     I.click(this.buttons.backToDashboard);
   },
 
-  callAmarTeamService(){
+  callAmarTeamService() {
     I.click(this.buttons.callCenter);
   },
 
-  clickTry(){
+  clickTry() {
     I.waitForElement(this.buttons.tryAgain, 10);
     I.click(this.buttons.tryAgain);
   },
 
-  viewPageFriendList(){
+  viewPageFriendList() {
     I.waitForElement(this.fields.receiverListPage, 10);
   },
 
-  viewPageTrfMethodeList(){
+  viewPageTrfMethodeList() {
     I.waitForElement(this.fields.transferMethodePage, 10);
   },
 
-  clickSectionBtnTransfer(){
+  clickSectionBtnTransfer() {
     I.waitForElement(this.buttons.sectionBtnTrf, 20);
     I.click(this.buttons.sectionBtnTrf);
   },
 
-  closePageAfterTransfer(){
+  closePageAfterTransfer() {
     I.waitForElement(this.buttons.closeDetailTransferPage, 10);
     I.click(this.buttons.closeDetailTransferPage);
   },
 
-  async getReceiverName(){
+  async getReceiverName() {
     I.waitForElement(this.texts.receiverName, 10);
     return I.grabTextFrom(this.texts.receiverName);
   },
 
-  async getReceiverBankName(){
+  async getReceiverBankName() {
     I.waitForElement(this.texts.receiverBankName, 10);
     return I.grabTextFrom(this.texts.receiverBankName);
   },
 
-  async getReceiverAccNnumber(){
+  async getReceiverAccNnumber() {
     I.waitForElement(this.texts.receiverAccNumber, 10);
     return I.grabTextFrom(this.texts.receiverAccNumber);
   },
 
-  async getSenderName(){
+  async getSenderName() {
     I.waitForElement(this.texts.senderName, 10);
     return I.grabTextFrom(this.texts.senderName);
   },
 
-  async getSenderBankName(){
+  async getSenderBankName() {
     I.waitForElement(this.texts.senderBankName, 10);
     return I.grabTextFrom(this.texts.senderBankName);
   },
 
-  async getSenderAccNnumber(){
+  async getSenderAccNnumber() {
     I.waitForElement(this.texts.senderAccNumber, 10);
     return I.grabTextFrom(this.texts.senderAccNumber);
   },
 
-  async getConfirmSenderName(){
+  async getConfirmSenderName() {
     I.waitForElement(this.texts.variableSenderConfirmationPage, 10);
     return I.grabTextFrom(this.texts.variableSenderConfirmationPage);
   },
 
-  async getAdminFeeRTOL(){
+  async getAdminFeeRTOL() {
     I.waitForElement(this.texts.adminFeeRTOL, 10);
     return I.grabTextFrom(this.texts.adminFeeRTOL);
   },
 
-  async getAdminFeeBIFAST(){
+  async getAdminFeeBIFAST() {
     I.waitForElement(this.texts.adminFeeBIFAST, 10);
     return I.grabTextFrom(this.texts.adminFeeBIFAST);
   },
 
-  async getAdminFeeRTGS(){
+  async getAdminFeeRTGS() {
     I.waitForElement(this.texts.adminFeeRTGS, 10);
     return I.grabTextFrom(this.texts.adminFeeRTGS);
   },
 
-  async getAdminFeeSKN(){
+  async getAdminFeeSKN() {
     I.waitForElement(this.texts.adminFeeSKN, 10);
     return I.grabTextFrom(this.texts.adminFeeSKN);
   },
 
-  async getAmountActive(){
+  async getAmountActive() {
     I.waitForElement(this.texts.balance, 10);
     return I.grabTextFrom(this.texts.balance);
   },
 
-  async getTitleAmountActive(){
+  async getTitleAmountActive() {
     I.waitForElement(this.texts.titleActiveSaldo, 10);
     return I.grabTextFrom(this.texts.titleActiveSaldo);
   },
 
-  async getTitleAmountTransfer(){
+  async getTitleAmountTransfer() {
     I.waitForElement(this.texts.titleAmountTransfer, 10);
     return I.grabTextFrom(this.texts.titleAmountTransfer);
   },
 
-  async getTitleAdminFee(){
+  async getTitleAdminFee() {
     I.waitForElement(this.texts.titleAdminFee, 10);
     return I.grabTextFrom(this.texts.titleAdminFee);
   },
 
-  async getTitleTotalAmount(){
+  async getTitleTotalAmount() {
     I.waitForElement(this.texts.titleTotalAmount, 10);
     return I.grabTextFrom(this.texts.titleTotalAmount);
   },
 
-  async getValueAmountActive(){
+  async getValueAmountActive() {
     I.waitForElement(this.texts.textBalanceAmount, 10);
     return I.grabTextFrom(this.texts.textBalanceAmount);
   },
 
-  async getValueAmountTransfer(){
+  async getValueAmountTransfer() {
     I.waitForElement(this.texts.textTransferAmount, 10);
     return I.grabTextFrom(this.texts.textTransferAmount);
   },
 
-  async getValueAdminFee(){
+  async getValueAdminFee() {
     I.waitForElement(this.texts.textTransferFee, 10);
     return I.grabTextFrom(this.texts.textTransferFee);
   },
 
-  async getValueTotalAmount(){
+  async getValueTotalAmount() {
     I.waitForElement(this.texts.textTotalAmount, 10);
     return I.grabTextFrom(this.texts.textTotalAmount);
   },
 
-  async getDateTransfer(){
+  async getDateTransfer() {
     I.waitForElement(this.texts.dateTransfer, 10);
     return I.grabTextFrom(this.texts.dateTransfer);
   },
 
-  formattedToThreeDigit(amount){
+  formattedToThreeDigit(amount) {
     const numberAmount = parseInt(amount);
 
     const numberString = numberAmount.toString().split('');
 
     for (let i = numberString.length - 3; i > 0; i -= 3) {
-        numberString.splice(i, 0, '.');
+      numberString.splice(i, 0, '.');
     }
     const formattedAmount = numberString.join('');
 
     return formattedAmount;
   },
 
-  async getConfirmSenderName(){
+  async getConfirmSenderName() {
     I.waitForElement(this.texts.confirmSenderName, 10);
     return I.grabTextFrom(this.texts.confirmSenderName);
   },
 
-  async getConfirmSenderAccNumber(){
+  async getConfirmSenderAccNumber() {
     I.waitForElement(this.texts.confirmSenderAccNumber, 10);
     return I.grabTextFrom(this.texts.confirmSenderAccNumber);
   },
 
-  async getConfirmSenderBankName(){
+  async getConfirmSenderBankName() {
     I.waitForElement(this.texts.confirmSenderBankName, 10);
     return I.grabTextFrom(this.texts.confirmSenderBankName);
   },
 
-  async getConfirmRecipientName(){
+  async getConfirmRecipientName() {
     I.waitForElement(this.texts.confirmRecipientName, 10);
     return I.grabTextFrom(this.texts.confirmRecipientName);
   },
 
-  async getConfirmRecipientAccNumber(){
+  async getConfirmRecipientAccNumber() {
     I.waitForElement(this.texts.confirmRecipientAccNumber, 10);
     return I.grabTextFrom(this.texts.confirmRecipientAccNumber);
   },
 
-  async getConfirmRecipientBankName(){
+  async getConfirmRecipientBankName() {
     I.waitForElement(this.texts.confirmRecipientBankName, 10);
     return I.grabTextFrom(this.texts.confirmRecipientBankName);
   },
 
-  async getConfirmAdminFee(){
+  async getConfirmAdminFee() {
     I.waitForElement(this.texts.confirmAdminFee, 10);
     return I.grabTextFrom(this.texts.confirmAdminFee);
   },
+
+  getAmount() {
+    const amount = globalVariable.transfer.amount;
+
+    const numberString = amount.toString().split('');
+
+    for (let i = numberString.length - 3; i > 0; i -= 3) {
+      numberString.splice(i, 0, '.');
+    }
+
+    const stringAmount = numberString.join('');
+
+    return "Rp" + stringAmount;
+  }
 }

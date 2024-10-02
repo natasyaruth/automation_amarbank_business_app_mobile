@@ -39,7 +39,7 @@ module.exports = {
         detailHistorySecond: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[2]'},
         buttonNexteStatement : "~buttonNext",
         buttonEyeeStatement : "~iconShowHidePassword",
-        buttonTryeStatement : "~buttonTry",
+        buttonTryeStatement : "~buttonTryAgain",
         buttonUnderstandeStatement : "~buttonUnderstand",
     },
     textFields: {
@@ -138,7 +138,7 @@ module.exports = {
     },
 
     seePasswordPage(){
-        I.waitForText("Silakan masukkan password Amar Bank Bisnis kamu", 10);
+        I.waitForText("Silakan masukkan password Amar Bank Bisnis Anda", 10);
         I.seeElement(this.buttons.buttonNexteStatement);
         I.seeElement(this.buttons.buttonEyeeStatement);
     },
@@ -175,7 +175,7 @@ module.exports = {
     },
 
     viewButtonDownloadEStatement() {
-        I.waitForElement(10);
+        I.waitForElement(this.buttons.btneStatementDownload,10);
         I.seeElement(this.buttons.btneStatementDownload);
     },
 

@@ -40,7 +40,7 @@ module.exports = {
     },
   
     fillSearchFriendlist(friendListname) {  
-      I.waitForElement(this.fields.searchFriendName, 20);    
+      I.waitForElement(this.fields.searchFriendName, 30);    
       I.setText(this.fields.searchFriendName, friendListname);
       I.hideDeviceKeyboard();
     },
@@ -60,15 +60,18 @@ module.exports = {
     },
       
     chooseBank(){
+      I.waitForElement(this.dropDowns.firstItem,10)
       I.click(this.dropDowns.firstItem);
     },
   
     searchBankName(bankName) {
+      I.waitForElement(this.fields.searchBank, 20);
       I.setText(this.fields.searchBank, bankName);
       I.hideDeviceKeyboard();
     },
   
     fillAccountNumber(accountnumber) {
+      I.waitForElement(this.fields.accountNumber, 20);
       I.setText(this.fields.accountNumber, accountnumber);
       I.hideDeviceKeyboard();
     },

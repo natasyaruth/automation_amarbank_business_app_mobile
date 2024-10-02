@@ -10,6 +10,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
       | password    | 1234Test |
       | userIDstg   | ruthf5d5 |
       | passwordStg | 1234Test |
+    And I reset my state journey  
     And I filling in form login with the following details:
       | userID      | ruth07f9 |
       | password    | 1234Test |
@@ -37,7 +38,6 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I will direct to page preview eKTP picture
     And I retake photo eKTP
     Then I will directing to page take photo eKTP
-    And I reset my state journey
 
   @C131819
   Scenario: Upload eKTP photo successfully business type CV
@@ -48,4 +48,3 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I will direct to page preview eKTP picture
     And I submit my eKTP photo
     Then I will directing to page submit form KTP
-    And I reset my state journey

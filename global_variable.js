@@ -1,10 +1,10 @@
 module.exports = {
 
-    returnEnvi(){
+    returnEnvi() {
         let environment;
-        if(process.env.ENVIRONMENT == "staging"){
+        if (process.env.ENVIRONMENT == "staging") {
             environment = "staging";
-        } else{
+        } else {
             environment = "dev";
         }
         return environment;
@@ -22,10 +22,10 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
-        npwpBusinessDefault: "789645578340911",
+        npwpBusinessDefault: "449645570040911",
         npwpBusiness: "",
     },
-    onBoarding:{
+    onBoarding: {
         legality: "",
         status: "",
         productType: "",
@@ -33,8 +33,11 @@ module.exports = {
     login: {
         password: "",
         passwordPartner: "",
+        passwordFriendlist: "",
         userID: "",
         userIDPartner: "",
+        userIDInitiator: "",
+        userIDFriendlist: "",
         countValue: "",
         date: "",
         time: "",
@@ -45,24 +48,24 @@ module.exports = {
         userID: "",
         email: "",
     },
-    changePassword:{
+    changePassword: {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
     },
-    formKtp:{
+    formKtp: {
         eKTPNumber: "",
-        fullName:"",
+        fullName: "",
         address: "",
         province: "",
         city: "",
         district: "",
         village: "",
     },
-    formPersonal:{
+    formPersonal: {
         isUploadNpwp: true,
     },
-    formBusinessProfile:{
+    formBusinessProfile: {
         businessName: "",
         industry: "",
         businessField: "",
@@ -71,13 +74,13 @@ module.exports = {
         npwp: "",
         nib: "",
     },
-    formDirector:{
+    formDirector: {
         fullName: "",
-        email:"",
-        nik:"",
+        email: "",
+        nik: "",
         numberOfDirectors: 0
     },
-    uploadDocuments:{
+    uploadDocuments: {
         nib: false,
         akta: false,
         sk: false,
@@ -85,21 +88,22 @@ module.exports = {
         fileType: "",
         fileName: [],
     },
-    createPin:{
-        newPin:"",
+    createPin: {
+        newPin: "",
         otp: "",
     },
-    friendList:{
-        bankName:"",
-        receiverName:"",
+    friendList: {
+        bankName: "",
+        receiverName: "",
         friendListName: "",
         friendListAccNumber: "",
     },
-    transfer:{
-        amount:0,
-        service:"",
-        note:"",
-        category:"",
+    transfer: {
+        amount: 0,
+        amountTransfer: "",
+        service: "",
+        note: "",
+        category: "",
         accountNumber: "",
         date: "",
         senderName: "",
@@ -119,7 +123,7 @@ module.exports = {
         method: "",
         totalAmount: "",
     },
-    dashboard:{
+    dashboard: {
         activeAmount: "",
         blockingAmount: "",
         totalAmount: "",
@@ -134,12 +138,17 @@ module.exports = {
         amountTransaction: "",
         lastPage: "",
     },
-    historyTrx:{
+    historyTrx: {
         startDate: "",
         endDate: "",
     },
-    survey:{
+    survey: {
         feedBack: "",
         lengthFeedback: ""
+    },
+    notificationCenter: {
+        desc: "",
+        date: "",
+        descTrx: "",
     }
 }

@@ -4,7 +4,7 @@ module.exports = {
 
   buttons: {
     continueOnboarding: "~buttonChooseProduct",
-    sentFeedBack: "~buttonSubmitSurvey",
+    sentFeedBack: "~buttonSend",
   },
   fields: {
     other: "~textFieldOther",

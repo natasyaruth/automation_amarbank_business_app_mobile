@@ -30,6 +30,16 @@ Given("I am a customer who has uploaded my eKTP photo", async () => {
     resetStateDao.reloadPageAfterResetState();
 });
 
+Given("my mocking DHN currently is off", async()=>{
+
+    await
+        mockingDao.disabledCheckDHNKTP();
+
+    await
+        mockingDao.disabledCheckDHNNPWP();
+
+});
+
 When("I fill all information identity details as followings:",
     async (table) => {
         const ktpData = table.parse().rowsHash();
@@ -38,6 +48,7 @@ When("I fill all information identity details as followings:",
                 Object.keys(ktpData).indexOf("eKtpNumberStg") !== -1
             ) {
                 ktpData["eKtpNumber"] = ktpData["eKtpNumberStg"];
+                delete ktpData["eKtpNumberStg"];
             }
         } else {
             if (
@@ -175,7 +186,7 @@ Then("I will direct to page capture selfie", async () => {
     I.waitForElement(uploadSelfiePage.buttons.directToTakePhoto, 10);
 });
 
-Then("I will direct to page notifying me that I can't continue to next process KYC because my data indicated as DHN", async () => {
+Then("I will direct to page notifying me that I can't continue to next process KYC because my data is indicated as DHN", async () => {
     I.waitForElement(headerPage.buttons.closePage, 20);
     I.waitForElement(headerPage.icon.callCenter, 10);
 
@@ -197,7 +208,7 @@ Then("I will direct to page notifying me that I can't continue to next process K
     I.see("Amar Bank belum bisa melayanimu");
 
     I.see("Data eKTP-mu sudah terdaftar");
-    I.see("Tapi jangan khawatir, kamu bisa coba daftar kembali setelah 7 hari");
+    I.see("Tapi jangan khawatir, Anda bisa coba daftar kembali setelah 7 hari");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");
     I.dontSee("Hubungi Kami");
@@ -224,18 +235,26 @@ Then("I will direct to dashboard with info my data indicated as DHN", async () =
     I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
     I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
-    I.see("Amar Bank belum bisa melayani Anda.");
+    I.waitForText("Amar Bank belum bisa melayani Anda.", 20);
     I.see("Anda / Bisnis Anda terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari. ");
 
     I.dontSee("Untuk informasi lebih lanjut, silakan");
     I.dontSee("Hubungi Kami");
     I.dontSeeElement(formKtpPage.buttons.helpDHN);
+});
 
-    await
-        mockingDao.disabledCheckDHNKTP();
+Then("I will direct to dashboard with info other director data indicated as DHN", async () => {
+    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.document, 10);
+    I.waitForElement(onboardingAccOpeningPage.tabs.others, 10);
 
-    await
-        mockingDao.disabledCheckDHNNPWP();
+    I.waitForText("Amar Bank belum bisa melayani Anda.", 20);
+    I.see("Salah satu direktur terdaftar dalam DHN (Daftar Hitam Nasional) sehingga tidak dapat melanjutkan proses saat ini. Silahkan mencoba lagi dalam 7 hari.");
+
+    I.dontSee("Untuk informasi lebih lanjut, silakan");
+    I.dontSee("Hubungi Kami");
+    I.dontSeeElement(formKtpPage.buttons.helpDHN);
 });
 
 Then("I will direct to dashboard with widget account is rejected", async () => {

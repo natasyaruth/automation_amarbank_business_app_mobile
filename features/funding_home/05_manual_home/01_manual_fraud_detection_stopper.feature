@@ -1,4 +1,4 @@
-Feature: Manual Fraud Detection - Stopper
+Feature: Dashboard Manual - Stopper Fraud Detection
     In order to avoid fraud from user
     As a customer
     I want to see validation in amarbank business app if user indicated as fraud

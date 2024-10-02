@@ -5,12 +5,15 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
 
     Background: User choose legality business type PT Perusahaan
         Given I am a registered customer with following details:
-            | userID      | deveb3ad |
+            | userID      | deve0ebc |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
+        And I reset state upload document
+        And I reset my state journey
+        And complete onboarding document safe and survey   
         And I filling in form login with the following details:
-            | userID      | deveb3ad |
+            | userID      | deve0ebc |
             | password    | 1234Test |
             | userIDstg   | ruthbd98 |
             | passwordStg | 1234Test |
@@ -42,15 +45,39 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
             | address  | Jl. Gambir Belok Kiri No. 10 |
             | rt       | 000                          |
             | rw       | 011                          |
-            | province | ACEH                         |
-            | city     | KAB. ACEH TIMUR              |
-            | district | DARUL AMAN                   |
-            | village  |                              |
+            | province | DKI JAKARTA                  |
+            | city     | JAKARTA SELATAN              |
+            | district | PANCORAN                     |
+            | village  | PANCORAN                     |
         And I agree to carry out the Rights and Obligations
         And I will directing to page Rights and Obligations
         And I click button agree with Rights and Obligations
         And I will see checkbox Rights and Obligations is checked
         When I submit my business address
+
+    @C160206
+    Scenario: Upload only document required business type PT Perusahaan   
+        Given I am a customer who has submitted business address
+        And I choose method upload document
+        And I choose direct upload via app
+        And I see files that need to be uploaded for type company
+        And I upload all document business required for type company
+        And I click button progress upload document
+        Then I will see all document required company has been uploaded
+        And I will see button request account opening is shown
+        And I click button request account opening
+        And I will direct to page thank you and need verification of my data
+        And I click progress account opening
+        And I will direct to page detail progress account opening
+        And I close page detail progress account opening
+        Then I will see card account 'on verification'    
+        And I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I will direct to page document brankas
+        And I click document giro
+        And I will see document business required for type company   
 
     @C131939
     Scenario: Upload All document business type PT Perusahaan
@@ -67,4 +94,10 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I click progress account opening
         And I close page detail progress account opening
         Then I will see card account 'on verification'
-        And I reset state upload document
+        And I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I will direct to page document brankas
+        And I click document giro
+        And I will see document business for type company

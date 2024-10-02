@@ -13,6 +13,8 @@ module.exports = {
         checkDHNNPWPStg: "6e85833c-4fed-43cc-b8b2-5a66fa23fb39",
         faceMatchStg: "6fe23a02-a1df-43a6-a29a-39e34d7d5b1a",
         livenessStg: "beac41c8-8780-410c-834e-8f03976f0778",
+        csatDev: "2b0b8f98-a20b-4dd6-b648-42a1dceecce4",
+        csatStg: "",
     },
     name: {
         checkDHNKTPDev: "[DEV] GOV Check DHN",
@@ -23,6 +25,8 @@ module.exports = {
         checkDHNNPWPStg: "[STG] Cek DHN",
         faceMatchStg: "[STAGING] GOV Dukcapil Facematch",
         livenessStg: "[STAGING] Biometric Verificator Liveness V2",
+        csatDev: "[DEV] CSAT Check Show CSAT",
+        csatStg: "",
     },
     path: {
         checkDHNKTPDev: "/dev-gov/regulation/blacklist/([0-9]{16})/.*",
@@ -33,6 +37,8 @@ module.exports = {
         checkDHNNPWPStg: "/staging-gov/dhn-verification",
         faceMatchStg: "/staging-gov/citizen/([0-9]{16})/face/recognize",
         livenessStg: "/staging-biover/liveness/check/smb-users/v2",
+        csatDev: "/dev-csat/api/v1/csat/journey/ACCOUNT_CREATION",
+        csatStg: "",
     },
     static: {
         endpoint: "http://10.10.8.54:5557",
@@ -75,6 +81,8 @@ module.exports = {
         "\"sunglassesOn\": false,\"maskOn\": false,\"veilOn\": false},\"imageQuality\": {\"blur\": false,\"dark\": false,\"grayscale\": false},\"liveness\": {\"status\": true,"+
         "\"probability\": 100}}",
         livenessError: "{\"code\": 1100,\"message\": \"internal server error\",\"messageKey\": \"err.system.service.unavailable\"}",
+        csatOn: "{\"isRatingNeeded\": true,\"id\": \"\"}",
+        csatOff: "{\"isRatingNeeded\": false,\"id\": \"\"}",
     },
 
     async enabledCheckDHNKTP() {
@@ -806,6 +814,154 @@ module.exports = {
                     },
                     header: "null",
                     body: this.body.livenessFaceIsNotDetected
+                }
+            });
+        }
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            data: response.data,
+        }
+    },
+
+    async configCSATSurveyON() {
+
+        let response;
+
+        if (
+            env === "dev"
+        ) {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.csatDev, {
+                id: this.idFlag.csatDev,
+                name: this.name.csatDev,
+                endpoint: this.static.endpoint,
+                prefix: this.static.prefix,
+                path: this.path.csatDev,
+                method: "POST",
+                tags: [
+                    ""
+                ],
+                isRegex: false,
+                enabled: true,
+                request: {
+                    patternType: "null",
+                    header: "null",
+                    body: "null"
+                },
+                response: {
+                    statusCode: 200,
+                    fault: {
+                        type: "",
+                        value: ""
+                    },
+                    header: "null",
+                    body: this.body.csatOn
+                }
+            });
+        } else if (
+            env === "staging"
+        ) {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.csatStg, {
+                id: this.idFlag.csatStg,
+                name: this.name.csatStg,
+                endpoint: this.static.endpoint,
+                prefix: this.static.prefix,
+                path: this.path.csatStg,
+                method: "POST",
+                tags: [
+                    ""
+                ],
+                isRegex: false,
+                enabled: true,
+                request: {
+                    patternType: "null",
+                    header: "null",
+                    body: "null"
+                },
+                response: {
+                    statusCode: 200,
+                    fault: {
+                        type: "",
+                        value: ""
+                    },
+                    header: "null",
+                    body: this.body.csatOn
+                }
+            });
+        }
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            data: response.data,
+        }
+    },
+
+    async configCSATSurveyOFF() {
+
+        let response;
+
+        if (
+            env === "dev"
+        ) {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.csatDev, {
+                id: this.idFlag.csatDev,
+                name: this.name.csatDev,
+                endpoint: this.static.endpoint,
+                prefix: this.static.prefix,
+                path: this.path.csatDev,
+                method: "POST",
+                tags: [
+                    ""
+                ],
+                isRegex: false,
+                enabled: true,
+                request: {
+                    patternType: "null",
+                    header: "null",
+                    body: "null"
+                },
+                response: {
+                    statusCode: 200,
+                    fault: {
+                        type: "",
+                        value: ""
+                    },
+                    header: "null",
+                    body: this.body.csatOff
+                }
+            });
+        } else if (
+            env === "staging"
+        ) {
+            response = I.sendPutRequest("https://dev-smb-wiremock-server-svc.otoku.io/stub/" + this.idFlag.csatStg, {
+                id: this.idFlag.csatStg,
+                name: this.name.csatStg,
+                endpoint: this.static.endpoint,
+                prefix: this.static.prefix,
+                path: this.path.csatStg,
+                method: "POST",
+                tags: [
+                    ""
+                ],
+                isRegex: false,
+                enabled: true,
+                request: {
+                    patternType: "null",
+                    header: "null",
+                    body: "null"
+                },
+                response: {
+                    statusCode: 200,
+                    fault: {
+                        type: "",
+                        value: ""
+                    },
+                    header: "null",
+                    body: this.body.csatOff
                 }
             });
         }

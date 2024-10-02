@@ -57,16 +57,7 @@ Then(/user click button direct history loan/, () => {
 Then(/user close form upload doc/, () => {
     hookOnBoardingPage.clickBtnClose();
 });
-Then("I will directing to main dashboard with card loan application and account opening", async () => {
-    I.waitForElement(hookOnBoardingPage.buttons.bTnStartLoan, 10);
-    I.see("Pilihan Produk");
-    I.see("Kredit Bisnis untuk berbagai kebutuhan usaha");
-   
 
-    I.see("Perbankan Bisnis Premium");
-    I.seeElement(onboardingAccOpeningPage.buttons.openAccount);
-    I.see("Pilih Rekening Giro");    
-});
 Then(/user click button Aktivitas Pinjaman/, () => {
     hookOnBoardingPage.clickDirectHistory();
 

@@ -94,6 +94,15 @@ When('I click "Info Selengkapnya" in limit card for type AR', () => {
  loanDisbursementPage.goToProgramLoanInformation();
 });
 
+When('I should be see Program Loan Information for type AR', () =>{
+    loanDisbursementPage.validateProgramLoanInformationAR();
+});
+
+When('I should be see Program Loan Information for type AR below 100', () => {
+    loanDisbursementPage.validateProgramLoanARLTVBelow100();
+});
+
+
 Then('I should be see loan program information section for that card has anchor for type AR', () => {
  loanDisbursementPage.validateProgramLoanInformationAR();
 });

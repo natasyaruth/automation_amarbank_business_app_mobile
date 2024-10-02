@@ -15,7 +15,7 @@ Feature: Account Opening KYC - User Invited
     And I click later
     And I register initiator with partner as below
       | fullName        | RUDI                   |
-      | email           | rudit.bagas@gmail.com   |
+      | email           | rudit.bagas@gmail.com  |
       | phoneNumber     | 899960054041           |
       | password        | 1234Test               |
     And I choose other
@@ -26,7 +26,7 @@ Feature: Account Opening KYC - User Invited
     And I will direct to page continue to register KYC Invitee
     And I continue to register my KYC data
 
-  @C131848 @FuntionalTestDemo
+  @C131848 
   Scenario: User invited complete KYC
     Given I am a invited customer wants to complete my KYC data
     When I click take photo eKTP

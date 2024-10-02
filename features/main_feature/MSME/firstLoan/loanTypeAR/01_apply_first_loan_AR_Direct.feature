@@ -1,7 +1,22 @@
 Feature: Apply First Loan With Flagging MSME Using AR Direct
   As a customer lead
   I want to apply first loan using AR Direct with flagging MSME
+  As a customer lead
+  I want to apply first loan using AR Direct with flagging MSME
 
+  Background:
+    Given I am a registered customer with following details:
+      | userID      | yahyde6f |
+      | password    | Akuntes1 |
+      | userIDstg   | bots2643 |
+      | passwordStg | Test1234 |
+    When I filling in form login with the following details:
+      | userID      | yahyde6f |
+      | password    | Akuntes1 |
+      | userIDstg   | bots2643 |
+      | passwordStg | Test1234 |
+    And I click login
+    Then I successed go to dashbord
   Background:
     Given I am a registered customer with following details:
       | userID      | yahyde6f |
@@ -18,7 +33,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
 
   @C142704
   Scenario: Verify bottom sheet Loan Schema
+  @C142704
+  Scenario: Verify bottom sheet Loan Schema
     Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
     When user click button Ajukan Limit Kredit
     And User click button Pelajari Tipe Skema Kredit
     Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
@@ -26,7 +44,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
 
   @C142705
   Scenario: User apply first loan AR direct and want to see AR loan schema
+  @C142705
+  Scenario: User apply first loan AR direct and want to see AR loan schema
     Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
     When user click button Ajukan Limit Kredit
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Supplier Financing"
@@ -36,9 +57,14 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
 
   @C142706
   Scenario: Validate error input tenor below min 30 hari
+  @C142706
+  Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
+    When user click button Ajukan Limit Kredit
     And User select loan type "AR"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
@@ -47,9 +73,14 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
 
   @C142707
   Scenario: Validate error input tenor more than 180 hari
+  @C142707
+  Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
+    When user click button Ajukan Limit Kredit
     And User select loan type "AR"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
@@ -62,7 +93,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
   Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
+    When user click button Ajukan Limit Kredit
     And User select loan type "AP"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
@@ -73,8 +107,12 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
   Scenario: User apply combine journey AR direct type with bussiness type PT.Perorangan flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
+    When user click button Ajukan Limit Kredit
     And User select loan type "AR"
     And User on Loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
+    And user click button Lanjut Isi Data Buyer
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input loan tenor "30"
     And user click button Lanjut Isi Data Buyer
@@ -89,6 +127,8 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     #section supplier representatives has contact
     And user input supplier representatives name
     And user input contact name
+    And user input email address supplier
+    And user click button Lanjut Melengkapi Data
     And user input email address supplier
     And user click button Lanjut Melengkapi Data
     And user click button Lanjut Proses KYC
@@ -121,15 +161,29 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
       | district | DUREN SAWIT                  |
       | village  | PONDOK BAMBU                 |
     And user checklist checkbox term and condition
+      | address  | Jl. Gambir Belok Kiri No. 10 |
+      | rt       | 000                          |
+      | rw       | 011                          |
+      | province | DKI JAKARTA                  |
+      | city     | JAKARTA TIMUR                |
+      | district | DUREN SAWIT                  |
+      | village  | PONDOK BAMBU                 |
+    And user checklist checkbox term and condition
     And user checklist checkbox right and obligations
     And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
+    And user validate description prepare the following documents 'MSMEARPT.Perorangan'
     And user validate description prepare the following documents 'MSMEARPT.Perorangan'
     And user click buttton Pilih Metode Upload Dokumen
     # section upload document
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
     And user upload docuemnt "nib"
+    And user upload document "sertifikatpendaftaran"
+    And user upload document "npwpbisnis"
+    And user upload document "suratpernyataanpendirian"
+    And user upload document "sertifikatperubahanterakhir"
+    And user upload document "suratpernyataanperubahanakhir"
     And user upload document "sertifikatpendaftaran"
     And user upload document "npwpbisnis"
     And user upload document "suratpernyataanpendirian"
@@ -149,6 +203,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
+    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     Then user can click button Upload Ulang Dokumen
 
@@ -164,6 +219,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document
+    And user upload multiple document "KTPComm"
     And user upload multiple document "KTPComm"
     Then user click button Simpan Dokumen
     And user will back to loan process page
@@ -186,9 +242,12 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And User click button Pelajari Tipe Skema Kredit
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input loan tenor "30"
+    And User choose nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
     #section select Anchor
     And user on buyer cooperating page
     And user select another supplier
+    And user fill a field "anchorName" with "AR Direct Tes"
     And user fill a field "anchorName" with "AR Direct Tes"
     And user select industry type
     And user select the year cooperating
@@ -201,8 +260,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user checklist checbox term and condition
     And user checklist checbox privy
     And user click button Lanjut Melengkapi Data
+    And user click button Lanjut Melengkapi Data
     And user click button Lanjut Proses KYC
     #section KYC Process
+    Given user choose Business Type "UD"
     Given user choose Business Type "UD"
     And user click Selanjutnya
     And user take photo eKTP
@@ -224,9 +285,12 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user input and click "Simpan Daftar Direktur"
     And user input and save "Alamat Bisnis"
     And user checklist checkbox term and condition
+    And user checklist checkbox term and condition
     And user checklist checkbox right and obligations
     And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
+    And user validate description prepare the following documents 'MSMEARUD'
+    And user click buttton Pilih Metode Upload Dokumen
     And user validate description prepare the following documents 'MSMEARUD'
     And user click buttton Pilih Metode Upload Dokumen
     # section upload document
@@ -235,7 +299,12 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user upload document "nib"
     And user upload document "npwpbisnis"
     And user upload document "3contohInvoicewithBuyer"
+    And user on Progress Upload Dokumen Page
+    And user upload document "nib"
+    And user upload document "npwpbisnis"
+    And user upload document "3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
+    And user upload document "1YearfinancialReports"
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
     And user click button Kirim Pengajuan Kredit Limit
@@ -296,7 +365,10 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click button Langsung dari Aplikasi
     And user upload multiple document "3contohInvoicewithBuyer"
     And user upload multiple document "paymentMutation"
+    And user upload multiple document "3contohInvoicewithBuyer"
+    And user upload multiple document "paymentMutation"
     And user see error message network problem
+    Then user click button retry
     Then user click button retry
 
   @Sprint6Lending @C142718
@@ -355,6 +427,17 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     And user click button Kembali
     Then pop up confirmation will disappear
 
+
+  @C142721
+  Scenario: user upload file more than 15MB
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document more than 15 MB "3contohInvoicewithBuyer"
+    Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
 
   @C142721
   Scenario: user upload file more than 15MB
