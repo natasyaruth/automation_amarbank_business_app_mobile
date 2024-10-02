@@ -23,6 +23,21 @@ class JetpackComposeHelper extends Appium {
     return await super.grabTextFrom(this._getParentLocator(identifier));
   }
 
+  async CheckIsElementVisible(identifier, timeout = 0) {
+    try {
+      const element = await super.waitForElement(
+        this._getParentLocator(identifier),
+        timeout
+      );
+      if (!element) {
+        return Promise.resolve(false);
+      }
+      return Promise.resolve(true);
+    } catch (error) {
+      return Promise.resolve(false);
+    }
+  }
+
   _getParentLocator(identifier) {
     if (!identifier) {
       throw new Error("Identifier is required");

@@ -150,16 +150,33 @@ module.exports = {
 
   },
 
-  async uploadAllDocumentIndividualCompanyRequired(userID, password) {
+  async uploadAllDocumentIndividualCompanyRequired(userID, password, legalityType) {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 5, 7, 6];
+    const enumDocIndividualComp = [1, 5, 2, 6];
+    const enumDocUD = [1, 5];
 
-    for (let i = 0; i < enumDoc.length; i++) {
-      await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
-      I.wait(5);
+    if (
+
+      legalityType === "UD"
+
+    ) {
+      for (let i = 0; i < enumDocUD.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(userID, password, enumDocUD[i], fileType);
+        I.wait(5);
+      }
+    } else if (
+
+      legalityType === "PT Perorangan"
+
+    ) {
+      for (let i = 0; i < enumDocIndividualComp.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(userID, password, enumDocIndividualComp[i], fileType);
+        I.wait(5);
+      }
     }
 
   },
@@ -169,7 +186,7 @@ module.exports = {
 
     const enumDocUD = [1, 5];
 
-    const enumDocIndividualComp = [1, 5, 7, 6, 4, 10];
+    const enumDocIndividualComp = [1, 5, 2, 6, 4, 10];
 
     if (
 

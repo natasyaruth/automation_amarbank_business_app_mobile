@@ -157,8 +157,24 @@ Then('I should be see Program Loan Information for type AP', () => {
  loanDisbursementPage.validateProgramLoanInformationAP();
 });
 
-Then('I should be see Program Loan Information for type AP LTV < 100', () => {
+Then('I click button "Info Selengkapnya" for type AP < 100%', () => {
+    loanDisbursementPage.validateProgramLoanAPLTVBelow100();
+})
 
+Then('I click button "Info Selengkapnya" for type PO', () => {
+loanDisbursementPage.validateProgramLoanInformationPO();
+});
+
+Then('I click button "Info Selengkapnya" for type PO < 100%', () => {
+    loanDisbursementPage.validateProgramLoanPOLTVBelow100();
+});
+
+Then(' I click "Info Selengkapnya" in limit card for type AR', () =>{
+    loanDisbursementPage.validateProgramLoanAR();
+});
+
+Then('I click "Info Selengkapnya" in limit card for type AR < 100%', () => {
+    loanDisbursementPage.validateProgramLoanARLTVBelow100();
 });
 
 //Scenario: Close Section Loan Program Information for type AP 

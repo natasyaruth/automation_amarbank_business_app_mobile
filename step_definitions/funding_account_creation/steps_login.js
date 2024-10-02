@@ -33,22 +33,25 @@ Given(
   }
 );
 
-Given("I login using my user id that I recently receive through email", async () => {
-  welcomePage.clickButtonLogin();
+Given(
+  "I login using my user id that I recently receive through email",
+  async () => {
+    welcomePage.clickButtonLogin();
 
-  const account = {
-    userID: globalVariable.login.userID,
-    password: globalVariable.login.password
-  };
+    const account = {
+      userID: globalVariable.login.userID,
+      password: globalVariable.login.password,
+    };
 
-  loginPage.fillInAccountInformation(account);
-  loginPage.clickLoginButton();
-});
+    loginPage.fillInAccountInformation(account);
+    loginPage.clickLoginButton();
+  }
+);
 
 Given("I login using user id partner", async () => {
   const account = {
     userID: globalVariable.login.userIDPartner,
-    password: globalVariable.registration.passwordPartner
+    password: globalVariable.registration.passwordPartner,
   };
 
   globalVariable.login.userID = account.userID;
@@ -57,14 +60,16 @@ Given("I login using user id partner", async () => {
   loginPage.clickLoginButton();
 });
 
-Given("I reset my device id to new device", async ()=>{
-  await
-    resetStateDao.resetDeviceId(globalVariable.login.userID, globalVariable.login.password, globalVariable.login.newDeviceID);
+Given("I reset my device id to new device", async () => {
+  await resetStateDao.resetDeviceId(
+    globalVariable.login.userID,
+    globalVariable.login.password,
+    globalVariable.login.newDeviceID
+  );
 });
 
-Given("I delete my new device id", async ()=>{
-  await
-    resetStateDao.deleteDeviceId(globalVariable.login.newDeviceID);
+Given("I delete my new device id", async () => {
+  await resetStateDao.deleteDeviceId(globalVariable.login.newDeviceID);
 });
 
 Then("I successed go to dashbord", () => {
@@ -78,7 +83,7 @@ Then("I successed go to dashbord", () => {
 });
 
 Then("I click menu loan dashboard", () => {
-  I.click()
+  I.click();
 });
 
 Given("I am a registered customer with following details:", (table) => {
@@ -113,7 +118,7 @@ Given(
 );
 
 Given("I delete device id {string}", async (deviceId) => {
-    await resetStateDao.deleteDeviceId(deviceId);
+  await resetStateDao.deleteDeviceId(deviceId);
 });
 
 Given("I have new device id {string}", async (newDeviceId) => {
@@ -121,7 +126,12 @@ Given("I have new device id {string}", async (newDeviceId) => {
 });
 
 Given("I have last step journey before", async () => {
-  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
+  globalVariable.login.lastStep = (
+    await getDataDao.getLastStepJourney(
+      globalVariable.login.userID,
+      globalVariable.login.password
+    )
+  ).step;
 });
 
 When("I filling in form login with the following details:", (table) => {
@@ -138,6 +148,19 @@ When("I filling in form login with the following details:", (table) => {
   loginPage.fillInAccountInformation(account);
 });
 
+When("I login with account friendlist", () => {
+  loginPage.fillFieldLogin(
+    loginPage.fields.userID,
+    globalVariable.login.userIDFriendlist
+  );
+  loginPage.fillFieldLogin(
+    loginPage.fields.password,
+    globalVariable.login.passwordFriendlist
+  );
+
+  loginPage.clickLoginButton();
+});
+
 When("I click login", () => {
   loginPage.clickLoginButton();
 });
@@ -146,8 +169,12 @@ When("I click link registration", () => {
   loginPage.goToRegistrationPage();
 });
 
-Then("I will direct to dashboard", () => {
-  I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
+Then("I will direct to dashboard", async () => {
+  if (await I.CheckIsElementVisible("~buttonStarFive", 5)) {
+    I.seeElement("~buttonStarFive");
+  } else {
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
+  }
 });
 
 Given("I am an unregistered customer trying to login", () => {
@@ -180,14 +207,12 @@ Then(
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.waitForText(expectedValue, 10);
     I.waitForElement(loginPage.buttons[buttonName], 10);
-  });
+  }
+);
 
-Then(
-  "I reset attempt failed login",
-  async () => {
-    await
-      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
-  });
+Then("I reset attempt failed login", async () => {
+  await resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+});
 
 Then(
   "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
@@ -205,7 +230,7 @@ Then(
     I.waitForText("Data Yang Dimasukkan Salah", 10);
     I.see(
       "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-      currentTime
+        currentTime
     );
   }
 );
@@ -259,7 +284,9 @@ When("I close bottom sheet biometric", () => {
 When("I will see bottom sheet register new device", () => {
   I.waitForElement(loginPage.buttons.close, 10);
   I.waitForText("Perangkat Baru Terdeteksi", 10);
-  I.see("Daftarkan perangkat ini untuk dapat mengakses akun Anda. Demi keamanan, Anda tidak dapat mengakses akun Amar Bank Bisnis melalui perangkat lama lagi.");
+  I.see(
+    "Daftarkan perangkat ini untuk dapat mengakses akun Anda. Demi keamanan, Anda tidak dapat mengakses akun Amar Bank Bisnis melalui perangkat lama lagi."
+  );
 
   I.see("Batal");
   I.waitForElement(loginPage.buttons.cancelNewDevice, 10);
@@ -277,7 +304,9 @@ When("I will direct to page verification new device", () => {
   I.waitForElement(loginPage.buttons.callCenter, 10);
 
   I.waitForText("Verifikasi Data Anda Menggunakan Selfie", 10);
-  I.see("Untuk mengubah data, silakan lakukan selfie seperti pada saat Anda registrasi awal untuk memastikan data Anda benar.");
+  I.see(
+    "Untuk mengubah data, silakan lakukan selfie seperti pada saat Anda registrasi awal untuk memastikan data Anda benar."
+  );
 
   I.see("Lanjut Ambil Selfie");
   I.waitForElement(loginPage.buttons.continueSelfie, 10);
@@ -291,8 +320,12 @@ When("I will see bottom sheet permission", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
   I.waitForText("Amar Bank membutuhkan izin perangkat", 10);
-  I.see("Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
-  I.see("Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
+  I.see(
+    "Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini."
+  );
+  I.see(
+    "Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini."
+  );
   I.see("Kami memastikan data kamu tidak akan disalahgunakan.");
 
   I.see("Saya Mengerti");
@@ -305,7 +338,10 @@ When("I understand about the permission", () => {
 
 When("I will direct to page take selfie", () => {
   I.waitForText("Selfie", 10);
-  I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
+  I.waitForText(
+    "Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong",
+    10
+  );
 
   I.waitForElement(loginPage.buttons.takeSelfie, 10);
   I.dontSee(loginPage.buttons.reTakeSelfie);
@@ -320,8 +356,7 @@ When("I take picture selfie for matching the face", () => {
 When("I take picture selfie with face is blur", async () => {
   I.wait(3);
 
-  await
-    mockingDao.livenessFaceBlur();
+  await mockingDao.livenessFaceBlur();
 
   loginPage.takePicture();
 });
@@ -329,8 +364,7 @@ When("I take picture selfie with face is blur", async () => {
 When("I take picture selfie with face is dark", async () => {
   I.wait(3);
 
-  await
-    mockingDao.livenessFaceBlur();
+  await mockingDao.livenessFaceBlur();
 
   loginPage.takePicture();
 });
@@ -338,8 +372,7 @@ When("I take picture selfie with face is dark", async () => {
 When("I take picture selfie with no face", async () => {
   I.wait(3);
 
-  await
-    mockingDao.livenessFaceNotDetected();
+  await mockingDao.livenessFaceNotDetected();
 
   loginPage.takePicture();
 });
@@ -347,8 +380,7 @@ When("I take picture selfie with no face", async () => {
 When("I take picture selfie with face is blur and dark", async () => {
   I.wait(3);
 
-  await
-    mockingDao.livenessFaceBlurAndDark();
+  await mockingDao.livenessFaceBlurAndDark();
 
   loginPage.takePicture();
 });
@@ -356,8 +388,7 @@ When("I take picture selfie with face is blur and dark", async () => {
 When("I take picture selfie with server is error", async () => {
   I.wait(3);
 
-  await
-    mockingDao.livenessError();
+  await mockingDao.livenessError();
 
   loginPage.takePicture();
 });
@@ -378,8 +409,7 @@ When("I submit my selfie photo", () => {
 When("I will mock liveness to success", async () => {
   // API to disabled checking device id
 
-  await
-    mockingDao.livenessSuccess();
+  await mockingDao.livenessSuccess();
 });
 
 When("I will direct to page verification is failed", () => {
@@ -391,16 +421,28 @@ When("I will direct to page verification is failed", () => {
 
   const hours = tomorrowDate.getHours();
   const minutes = tomorrowDate.getMinutes();
-  const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
+  const currentTime =
+    hours.toString().padStart(2, "0") +
+    ":" +
+    minutes.toString().padStart(2, "0");
 
   const day = tomorrowDate.getDate();
-  const formattedDay = (day < 10 ? '0' : '') + day;
+  const formattedDay = (day < 10 ? "0" : "") + day;
   const month = tomorrowDate.getMonth();
   const year = tomorrowDate.getFullYear();
   const months = [
-    "Januari", "Februari", "Maret", "April",
-    "Mei", "Juni", "Juli", "Agustus",
-    "September", "Oktober", "November", "Desember"
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
   ];
 
   globalVariable.login.date = formattedDay + " " + months[month] + " " + year;
@@ -409,7 +451,9 @@ When("I will direct to page verification is failed", () => {
   I.waitForElement(loginPage.buttons.callCenter, 10);
 
   I.waitForText("Verifikasi Data Gagal", 10);
-  I.see("Amar Bank belum bisa melayani Anda di perangkat baru. Saat ini akun Anda terblokir dalam 1x24 jam.");
+  I.see(
+    "Amar Bank belum bisa melayani Anda di perangkat baru. Saat ini akun Anda terblokir dalam 1x24 jam."
+  );
 
   I.see("Saya Mengerti");
   I.waitForElement(loginPage.buttons.understand, 10);
@@ -439,7 +483,9 @@ Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
   I.see("Masuk dengan Biometrik");
-  I.see("Fitur masuk dengan Biometrik belum aktif. Anda dapat mengaktifkan fitur ini melalui Menu Lainnya.")
+  I.see(
+    "Fitur masuk dengan Biometrik belum aktif. Anda dapat mengaktifkan fitur ini melalui Menu Lainnya."
+  );
 });
 
 Then("I should see new page with text {string} displayed", (actualMessage) => {
@@ -490,15 +536,17 @@ Then("I should see bottom sheet call center with email", () => {
   I.see("Hubungi Tim Kami");
   I.see(
     "Kami akan membantu Anda dalam" +
-    "\n" +
-    "pembentukan rekening ataupun pinjaman"
+      "\n" +
+      "pembentukan rekening ataupun pinjaman"
   );
   I.see("support.bisnis@amarbank.co.id");
 });
 
 Then("I will direct to page verification face is success", () => {
   I.waitForText("Verifikasi Data Berhasil", 20);
-  I.see("Anda dapat menggunakan kembali fitur Amar Bank Bisnis di perangkat ini.");
+  I.see(
+    "Anda dapat menggunakan kembali fitur Amar Bank Bisnis di perangkat ini."
+  );
 
   I.dontSee(headerPage.buttons.back);
   I.dontSee(headerPage.buttons.close);
@@ -515,20 +563,23 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 });
 
 Then("I will reset my attempt failed face match", async () => {
-  await
-    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
+  await resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
 });
 
-Then("I will see information that my account can be opened tomorrow", async () => {
-  I.waitForElement(loginPage.buttons.close, 10);
+Then(
+  "I will see information that my account can be opened tomorrow",
+  async () => {
+    I.waitForElement(loginPage.buttons.close, 10);
 
-  I.see("Akun Anda Terblokir");
-  I.see("Silakan coba lagi pada");
+    I.see("Akun Anda Terblokir");
+    I.see("Silakan coba lagi pada");
 
-  const actualInfo = await loginPage.getInfoMessageBlocked();
-  const expInfo = globalVariable.login.date + ", pukul " + globalVariable.login.time;
-  I.assertEqual(actualInfo, expInfo);
-});
+    const actualInfo = await loginPage.getInfoMessageBlocked();
+    const expInfo =
+      globalVariable.login.date + ", pukul " + globalVariable.login.time;
+    I.assertEqual(actualInfo, expInfo);
+  }
+);
 
 Then("my last journey step is not change", async () => {
   const actualLastStep = (await getDataDao.getLastStepJourney()).step;

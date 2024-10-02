@@ -44,12 +44,19 @@ Feature: Loan Disbursement for Loan Type AR
   Then I direct to anchor detail page
 
  @C98077
- Scenario: Validate Loan Program Information for Type Loan AR
-  Given I have been in anchor detail for type AR
-  When I click "Info Selengkapnya" in limit card for type AR
-  Then I should be see loan program information section for that card has anchor for type AR
-  And I close the loan information section for type AR
-  And I back to the anchor detail for type AR
+ Scenario: Validate Loan Program Information for Type Loan AR LTV 100%
+    Given I have been in anchor detail page to validate loan program information for type AP
+    When I click buton "Gunakan Limit" in card type Loan AR
+    And I am on Anchor Detail Page
+    And I click "Info Selengkapnya" in limit card for type AR < 100%
+    Then I should be see Program Loan Information for type AR
+
+Scenario: Validate Loan Program Information for Type Loan AR LTV  < 100%
+    Given I have been in anchor detail page to validate loan program information for type AP
+    When I click buton "Gunakan Limit" in card type Loan AR
+    And I am on Anchor Detail Page
+    And I click "Info Selengkapnya" in limit card for type AR < 100%
+    Then I should be see Program Loan Information for type AR
 
  @C98078
  Scenario: Take Picture to Upload Invoice Type Loan AR
