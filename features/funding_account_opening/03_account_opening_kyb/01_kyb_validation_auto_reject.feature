@@ -7,8 +7,8 @@ Feature: Account Opening - Validation Auto Reject
 
     Background: Do register phase one
         Given I am a customer that recently registered to amarbank business with data as below
-            | fullName        | Revvy                   |
-            | email           | revvy@gmail.com         |
+            | fullName        | Testing                 |
+            | email           | testing_21@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And my mocking DHN currently is off    

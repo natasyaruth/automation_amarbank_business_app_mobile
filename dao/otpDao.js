@@ -2,6 +2,9 @@ const { I, resetStateDao, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
+const userID = globalVariable.login.userID;
+const password = globalVariable.login.password;
+
 module.exports = {
 
   async requestOTP(phoneNumber) {
@@ -22,7 +25,7 @@ module.exports = {
     };
   },
 
-  async requestOTPUsingToken(userID, password) {
+  async requestOTPUsingToken() {
 
     const bearerToken = await resetStateDao.getTokenLogin(userID, password);
 
@@ -38,7 +41,7 @@ module.exports = {
     };
   },
 
-  async getOTPUsingToken(userID, password) {
+  async getOTPUsingToken() {
 
     const bearerToken = await resetStateDao.getTokenLogin(userID, password);
 
@@ -84,7 +87,7 @@ module.exports = {
     };
   },
 
-  async getOTPCreatePIN(userID, password) {
+  async getOTPCreatePIN() {
 
     const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -115,7 +118,7 @@ module.exports = {
     return response.data[lastIndex];
   },
 
-  async resetLimitRequestOtpUsingToken(userID, password) {
+  async resetLimitRequestOtpUsingToken() {
 
     const bearerToken = await resetStateDao.getTokenLogin(userID, password);
 

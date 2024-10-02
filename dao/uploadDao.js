@@ -5,6 +5,9 @@ const { I, resetStateDao, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
+const userID = globalVariable.login.userID;
+const password = globalVariable.login.password;
+
 module.exports = {
 
     loadImageAsBase64(filePath) {
@@ -13,7 +16,7 @@ module.exports = {
         return Buffer.from(img).toString('base64');
     },
 
-    async uploadKTP(userID, password) {
+    async uploadKTP() {
 
         const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
 
@@ -35,7 +38,7 @@ module.exports = {
 
     },
 
-    async uploadSelfie(userID, password) {
+    async uploadSelfie() {
 
         const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
 
@@ -56,7 +59,7 @@ module.exports = {
         }
     },
 
-    async uploadOtherDoc(userID, password, fileType) {
+    async uploadOtherDoc(fileType) {
 
         let base64File;
         let fileName;
@@ -110,7 +113,7 @@ module.exports = {
 
     },
 
-    async uploadDocBusiness(userID, password, enumDoc, fileType) {
+    async uploadDocBusiness(enumDoc, fileType) {
 
         let base64File;
 
@@ -148,7 +151,7 @@ module.exports = {
         }
     },
 
-    async allowDeviceData(userID, password) {
+    async allowDeviceData() {
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
@@ -170,7 +173,7 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount, userID, password) {
+    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
@@ -196,7 +199,7 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber, userID, password) {
+    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
@@ -221,7 +224,7 @@ module.exports = {
         }
     },
 
-    async submitProductType(type, userID, password) {
+    async submitProductType(type) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -239,7 +242,7 @@ module.exports = {
         }
     },
 
-    async submitLegalityType(type, userID, password, npwpBusiness) {
+    async submitLegalityType(type, npwpBusiness) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -274,7 +277,7 @@ module.exports = {
         }
     },
 
-    async submitBusinessProfile(businessProfile, legality, userID, password) {
+    async submitBusinessProfile(businessProfile, legality) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -302,7 +305,7 @@ module.exports = {
         }
     },
 
-    async submitOnePartner(businessPartner, userID, password) {
+    async submitOnePartner(businessPartner) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -326,7 +329,7 @@ module.exports = {
         }
     },
 
-    async submitIdentityDetails(ktpData, userID, password) {
+    async submitIdentityDetails(ktpData) {
 
         const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
 
@@ -366,7 +369,7 @@ module.exports = {
         }
     },
 
-    async checkEligibilityNPWPBusiness(userID, password, npwpBusiness) {
+    async checkEligibilityNPWPBusiness(npwpBusiness) {
 
         let npwp = "";
 
@@ -389,7 +392,7 @@ module.exports = {
 
     },
 
-    async pushNotificationMaintananceApp(userID) {
+    async pushNotificationMaintananceApp() {
 
         I.haveRequestHeaders(secret({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="

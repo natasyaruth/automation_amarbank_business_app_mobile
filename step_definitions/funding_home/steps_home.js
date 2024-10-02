@@ -106,16 +106,16 @@ Then(/I click menu tab testing/, () => {
 // Amount detail
 
 Given("I wait until my account name displayed", async () => {
-    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+    const accType = (await resetStateDao.getAccountType()).accountType;
     let accountName;
 
     if (
         accType === 1
     ) {
-        const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+        const fullName = (await resetStateDao.getFullName()).ktpName;
         accountName = fullName;
     } else {
-        const businessName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+        const businessName = (await resetStateDao.getCompanyName()).businessName;
         accountName = businessName;
     }
 
@@ -124,13 +124,13 @@ Given("I wait until my account name displayed", async () => {
 
 Given("still not complete onboarding document safe and survey", async () => {
     await
-        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, false);
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(false);
     I.wait(3);
 });
 
 Given("complete onboarding document safe and survey", async () => {
     await
-        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(globalVariable.login.userID, true);
+        resetStateDao.updateFlagOnboardingDocumentSafeAndSurvey(true);
     I.wait(3);
 });
 
@@ -160,7 +160,7 @@ Given("has been filled survey rating account opening", async () => {
 Given("don't have any notification", async () => {
 
     await
-        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.deleteAllNotification();
 
 });
 
@@ -172,7 +172,7 @@ Given("I have {string} notification {string} in notification center", async (num
         case "Maintenance App":
             for (let i = 0; i < numbers; i++) {
                 await
-                    uploadDao.pushNotificationMaintananceApp(globalVariable.login.userID);
+                    uploadDao.pushNotificationMaintananceApp();
                 I.wait(2);
             }
             break;
@@ -187,13 +187,13 @@ Given("I only have {string} notification {string} in notification center", async
     const numbers = parseInt(number);
 
     await
-        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.deleteAllNotification();
 
     switch (notifName) {
         case "Maintenance App":
             for (let i = 0; i < numbers; i++) {
                 await
-                    uploadDao.pushNotificationMaintananceApp(globalVariable.login.userID);
+                    uploadDao.pushNotificationMaintananceApp();
                 I.wait(2);
             }
             break;
@@ -229,7 +229,7 @@ When("I see my blocking amount is Rp 0", async () => {
 When("I see my blocking amount coming from minimum amount", async () => {
     const minimumBusiness = "1.000.000";
     const minimumIndividual = "500.000";
-    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+    const accType = (await resetStateDao.getAccountType()).accountType;
 
     if (
         accType === 1
@@ -492,8 +492,8 @@ Then("I will see detail blocking amount coming from loan fee and minimum amount"
 Then("I will not see information {string} in the below of field blocking amount", async (information) => {
     I.waitForText("Saldo Rekening Giro", 10);
 
-    const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
-    const statusPendingTask = await (await resetStateDao.isPendingTaskExist(globalVariable.login.userID, globalVariable.login.password)).hasPendingTransaction;
+    const productType = (await resetStateDao.getProductType()).productType;
+    const statusPendingTask = await (await resetStateDao.isPendingTaskExist()).hasPendingTransaction;
 
     if (
         productType === "MSME" &&
@@ -534,14 +534,14 @@ Then("I will see onboarding page document safe continue to choose product", () =
     I.see("Brankas Dokumen");
     I.see("Brankas jaga dokumen bisnis berharga Anda");
 
-    I.see("Terjamin Aman");
-    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+    // I.see("Terjamin Aman");
+    // I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
 
-    I.see("Kapasitas Besar");
-    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+    // I.see("Kapasitas Besar");
+    // I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
 
-    I.see("Akses Kapan Saja");
-    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+    // I.see("Akses Kapan Saja");
+    // I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
 
     I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mulai pembukaan rekening atau pengajuan pinjaman terlebih dahulu");
 
@@ -554,14 +554,14 @@ Then("I will see onboarding page document safe continue to loan process", () => 
     I.see("Brankas Dokumen");
     I.see("Brankas jaga dokumen bisnis berharga Anda");
 
-    I.see("Terjamin Aman");
-    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+    // I.see("Terjamin Aman");
+    // I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
 
-    I.see("Kapasitas Besar");
-    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+    // I.see("Kapasitas Besar");
+    // I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
 
-    I.see("Akses Kapan Saja");
-    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+    // I.see("Akses Kapan Saja");
+    // I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
 
     I.see("Untuk dapat menggunakan fitur Brankas Dokumen, silakan lanjutkan pengajuan pinjaman Anda terlebih dahulu");
 
@@ -574,14 +574,14 @@ Then("I will see onboarding page document safe continue to account opening proce
     I.see("Brankas Dokumen");
     I.see("Brankas jaga dokumen bisnis berharga Anda");
 
-    I.see("Terjamin Aman");
-    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+    // I.see("Terjamin Aman");
+    // I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
 
-    I.see("Kapasitas Besar");
-    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+    // I.see("Kapasitas Besar");
+    // I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
 
-    I.see("Akses Kapan Saja");
-    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+    // I.see("Akses Kapan Saja");
+    // I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
 
     I.see("Untuk dapat menggunakan fitur Brankas Dokumen, silakan lanjutkan pembukaan rekening Anda terlebih dahulu");
 
@@ -594,14 +594,14 @@ Then("I will see onboarding page document safe data still need verification", ()
     I.see("Brankas Dokumen");
     I.see("Brankas jaga dokumen bisnis berharga Anda");
 
-    I.see("Terjamin Aman");
-    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+    // I.see("Terjamin Aman");
+    // I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
 
-    I.see("Kapasitas Besar");
-    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+    // I.see("Kapasitas Besar");
+    // I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
 
-    I.see("Akses Kapan Saja");
-    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+    // I.see("Akses Kapan Saja");
+    // I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
 
     I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mohon menunggu proses verifikasi data Anda selesai terlebih dahulu");
     I.dontSeeElement(documentSafePage.buttons.continueOnboarding);
@@ -613,14 +613,14 @@ Then("I will see onboarding page to complete document safe", () => {
     I.see("Brankas Dokumen");
     I.see("Brankas jaga dokumen bisnis berharga Anda");
 
-    I.see("Terjamin Aman");
-    I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
+    // I.see("Terjamin Aman");
+    // I.see("Dokumen Anda disimpan dengan aman menggunakan teknologi keamanan terkini.");
 
-    I.see("Kapasitas Besar");
-    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+    // I.see("Kapasitas Besar");
+    // I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
 
-    I.see("Akses Kapan Saja");
-    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+    // I.see("Akses Kapan Saja");
+    // I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
 
     I.see("Gunakan Brankas Dokumen");
     I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);

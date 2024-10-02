@@ -7,9 +7,7 @@ const {
     resetStateDao,
 } = inject();
 
-const dummyPswrd = "Ruth!@#$$";
 const dummyPIN = "121212";
-
 
 Given("I am a customer who wants to create PIN", () => { });
 
@@ -82,7 +80,7 @@ Then("I will directly to Create New Transaction PIN page", () => {
 });
 
 When("I input incorrect password", () => {
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
 });
 
 When("I input incorrect old pin", () => {
@@ -115,22 +113,22 @@ When("I input password", () => {
 });
 
 When("I submit incorrect password twice", () => {
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
     createPINPage.submitPassword();
     createPINPage.tryAgain();
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
     createPINPage.submitPassword();
 });
 
 
 When("I submit incorrect password three times", () => {
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
     createPINPage.submitPassword();
     createPINPage.tryAgain();
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
     createPINPage.submitPassword();
     createPINPage.tryAgain();
-    createPINPage.inputPassword(dummyPswrd);
+    createPINPage.inputPassword(globalVariable.login.dummyPassword);
     createPINPage.submitPassword();
 });
 
@@ -189,7 +187,7 @@ When("I input expired OTP", () => {
 });
 
 When("I will receive email contain with OTP", async () => {
-    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+    const email = (await resetStateDao.getEmail()).email;
 
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
@@ -197,12 +195,12 @@ When("I will receive email contain with OTP", async () => {
     I.see("Kode verifikasi telah dikirim ke e-mail");
     I.wait(3);
 
-    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
+    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN()).otp;
 });
 
 When("I input OTP", async () => {
 
-    const otpCode = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
+    const otpCode = (await otpDao.getOTPCreatePIN()).otp;
 
     createPINPage.fillInOtpCode(otpCode);
 });

@@ -152,6 +152,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -167,7 +168,6 @@ Feature: Document Management
         And I input wrong password document
         And I click see my document
         Then I will see message error password incorrect
-        And I reset attempt failed password
 
     @C137185
     Scenario: Input wrong password twice
@@ -177,6 +177,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -196,7 +197,6 @@ Feature: Document Management
         And I input wrong password document
         And I click see my document
         Then I will see message error password incorrect
-        And I reset attempt failed password
 
     @C137186
     Scenario: Input wrong password three times
@@ -206,6 +206,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -229,7 +230,6 @@ Feature: Document Management
         And I input wrong password document
         And I click see my document
         Then I will directing to page login
-        And I reset attempt failed password
 
     @C137187
     Scenario: Validate pop up activated biometric only appear once click use password
@@ -363,7 +363,7 @@ Feature: Document Management
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I will see card account 'active'
+        And I will see card account 'active'                
         When I click tab brankas
         And I click direct to input password document
         And I input password document

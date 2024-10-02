@@ -48,7 +48,7 @@ Then("I will direct to page take a selfie with KTP", async()=>{
     I.waitForText("Ambil Foto Diri Anda dengan KTP", 10);
 
     const businessType = globalVariable.onBoarding.legality;
-    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
+    const isInvitee = (await getDataDao.isPartner()).data;
 
     if(
         isInvitee === false

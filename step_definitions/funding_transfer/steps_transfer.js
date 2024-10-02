@@ -351,17 +351,17 @@ Then("I successfully transferred", async () => {
 
     const actualSenderName = await transferPage.getSenderName();
 
-    const typeBusiness = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+    const typeBusiness = (await resetStateDao.getAccountType()).accountType;
     let expectedSenderName;
 
     if (
         typeBusiness === "1"
     ) {
-        expectedSenderName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+        expectedSenderName = (await resetStateDao.getFullName()).ktpName;
 
     } else {
 
-        expectedSenderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+        expectedSenderName = (await resetStateDao.getCompanyName()).businessName;
 
     }
 
@@ -372,7 +372,7 @@ Then("I successfully transferred", async () => {
     I.assertEqual(actualSenderBankName, "Amar Bank");
 
     const actualSenderAccNumber = (await transferPage.getSenderAccNnumber()).replace(/\s+/g, '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
+    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
     const actualReceiverName = await transferPage.getReceiverName();
@@ -477,7 +477,7 @@ When("I input wrong PIN", () => {
 
 When("I reset attempt failed PIN", async () => {
     await
-        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+        resetStateDao.resetAttemptFailedLogin();
 });
 
 When("I try again to input PIN", () => {
@@ -560,18 +560,18 @@ Then("I am on page transfer confirmation", async () => {
     I.waitForText("Konfirmasi Transfer", 20);
     I.waitForElement(headerPage.buttons.back);
 
-    const businessType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+    const businessType = (await resetStateDao.getAccountType()).accountType;
     let expectedSenderName;
     let expectedSenderBankName = "Amar Bank"
 
     if (
         businessType === 1
     ) {
-        expectedSenderName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+        expectedSenderName = (await resetStateDao.getFullName()).ktpName;
 
     } else {
 
-        expectedSenderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+        expectedSenderName = (await resetStateDao.getCompanyName()).businessName;
     }
 
     const actualSenderName = await transferPage.getConfirmSenderName();
@@ -583,7 +583,7 @@ Then("I am on page transfer confirmation", async () => {
     globalVariable.transfer.senderBankName = expectedSenderBankName;
 
     const actualSenderAccNumber = (await transferPage.getConfirmSenderAccNumber()).replace(/\s+/g, '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
+    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
     const actualRecipientName = await transferPage.getConfirmRecipientName();
