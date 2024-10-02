@@ -78,7 +78,7 @@ When("I input PIN {string} approver", (Pin) => {
         I.waitForText("Password", 10);
         I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
 
-        approvalTransactionPage.fillPassword("aaaa12");
+        approvalTransactionPage.fillPassword(globalVariable.login.dummyPassword);
     });
 
 When("I input password for approver", () => {
@@ -141,7 +141,7 @@ When("I input OTP to approve transaction", async () => {
     I.see("Masukkan Kode OTP");
     I.see("Kode OTP telah dikirim ke nomor");
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
+    const phoneNumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
     const actualPhoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
 
     I.assertEqual("+" + actualPhoneNumber, phoneNumber);
@@ -176,7 +176,7 @@ When("I let the otp code for approve transaction expire", () => {
 When("I resend otp code to approve transaction", async () => {
     I.wait(3);
     globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
-    globalVariable.registration.otpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
+    globalVariable.registration.otpCode = (await otpDao.getOTPUsingToken()).otp;
 
     I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
     approvalTransactionPage.resendOtp();
@@ -337,7 +337,7 @@ Then("I will direct to page need approval from other director", async () => {
 
     I.waitForText("Menunggu Persetujuan Transaksi", 20);
 
-    globalVariable.registration.companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+    globalVariable.registration.companyName = (await resetStateDao.getCompanyName()).businessName;
     const actualSenderName = await approvalTransactionPage.getSenderName();
     I.assertEqual(actualSenderName, globalVariable.registration.companyName);
 
@@ -346,7 +346,7 @@ Then("I will direct to page need approval from other director", async () => {
     I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
 
     const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
+    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
     globalVariable.transfer.senderAccountNumber = expectedSenderAccNumber;
 
@@ -370,7 +370,7 @@ Then("I will direct to page need approval from other director", async () => {
 
     I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
-    const expectedMakerName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    const expectedMakerName = (await resetStateDao.getFullName()).ktpName;
     I.assertEqual(actualMakerName, expectedMakerName);
     globalVariable.transfer.makerName = expectedMakerName;
 
@@ -601,14 +601,14 @@ Then("I can click try again to input PIN", async () => {
     approvalTransactionPage.clickButtonTryAgain();
 
     await
-        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+        resetStateDao.resetAttemptFailedLogin();
 });
 
 Then("I can click try again to input password", async () => {
     approvalTransactionPage.clickButtonTryAgain();
 
     await
-        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+        resetStateDao.resetAttemptFailedLogin();
 });
 
 Then("I will notify I will direct lo login page", async () => {
@@ -619,7 +619,7 @@ Then("I will notify I will direct lo login page", async () => {
     I.see("Mengerti");
 
     await
-        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+        resetStateDao.resetAttemptFailedLogin();
 });
 
 Then("I click button direct to login", () => {
@@ -635,7 +635,7 @@ Then("I will see message error {string} in the below of field otp for approver",
     I.assertEqual(actualMessageError, messageError);
 
     await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+        otpDao.resetLimitRequestOtpUsingToken();
 });
 
 Then("I should be notified that I can verify the OTP tomorrow", async () => {
@@ -665,12 +665,12 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
 
     await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+        otpDao.resetLimitRequestOtpUsingToken();
 });
 
 Then("I will get new OTP different with my first OTP to approve transaction", async () => {
     I.wait(2);
-    const newOtpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
+    const newOtpCode = (await otpDao.getOTPUsingToken()).otp;
 
     I.assertNotEqual(newOtpCode, globalVariable.registration.otpCode);
 });
@@ -679,7 +679,7 @@ Then("I will see attempt left {string}", async (attemptLeft) => {
     I.waitForText(attemptLeft, 5);
 
     await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+        otpDao.resetLimitRequestOtpUsingToken();
 });
 
 Then("I will not see card approver that has been approved", () => {
@@ -783,7 +783,7 @@ Then("I will see detail card maker that has been approved", async () => {
 
     I.see("Disetujui oleh");
     const actualApprovedBy = await approvalTransactionPage.getNameApprovedBy();
-    const expectedApprovedBy = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    const expectedApprovedBy = (await resetStateDao.getFullName()).ktpName;
     I.assertEqual(actualApprovedBy, expectedApprovedBy);
 
     I.see("Nomor Referensi");
@@ -877,7 +877,7 @@ Then("I will see detail card maker that has been rejected", async () => {
 
     I.see("Ditolak oleh");
     const actualRejectedName = await approvalTransactionPage.getNameRejectedBy();
-    const expectedRejectedName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    const expectedRejectedName = (await resetStateDao.getFullName()).ktpName;
     I.assertEqual(actualRejectedName, expectedRejectedName);
 
     I.see("Nomor Referensi");
@@ -970,7 +970,7 @@ Then("I will see detail card maker that has been canceled", async () => {
 
     I.see("Dibatalkan oleh");
     const actualCanceledName = await approvalTransactionPage.getNameCanceledBy();
-    const expectedCanceledName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    const expectedCanceledName = (await resetStateDao.getFullName()).ktpName;
     I.assertEqual(actualCanceledName, expectedCanceledName);
 
     I.see("Nomor Referensi");

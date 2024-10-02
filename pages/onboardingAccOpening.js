@@ -208,34 +208,34 @@ module.exports = {
     }
   },
 
-  async updateStep(stepName, userID, password) {
+  async updateStep(stepName) {
     switch (stepName) {
       case "Choose Legality Type" || "Login Invitee":
-        await resetStateDao.resetStateFlow(2, userID, password);
+        await resetStateDao.resetStateFlow(2);
         break;
       case "Login Invitee":
-        await resetStateDao.resetStateFlow(2, userID, password);
+        await resetStateDao.resetStateFlow(2);
         break;
       case "Upload eKTP":
-        await resetStateDao.resetStateFlow(3, userID, password);
+        await resetStateDao.resetStateFlow(3);
         break;
       case "Data KTP":
-        await resetStateDao.resetStateFlow(4, userID, password);
+        await resetStateDao.resetStateFlow(4);
         break;
       case "Upload Selfie":
-        await resetStateDao.resetStateFlow(5, userID, password);
+        await resetStateDao.resetStateFlow(5);
         break;
       case "Upload Selfie with KTP":
-        await resetStateDao.resetStateFlow(6, userID, password);
+        await resetStateDao.resetStateFlow(6);
         break;
       case "Data Personal":
-        await resetStateDao.resetStateFlow(7, userID, password);
+        await resetStateDao.resetStateFlow(7);
         break;
       case "Data Domicile Address":
-        await resetStateDao.resetStateFlow(8, userID, password);
+        await resetStateDao.resetStateFlow(8);
         break;
       case "Data Employment":
-        await resetStateDao.resetStateFlow(9, userID, password);
+        await resetStateDao.resetStateFlow(9);
         break;
       default:
         throw new Error("Page name is not recognize");

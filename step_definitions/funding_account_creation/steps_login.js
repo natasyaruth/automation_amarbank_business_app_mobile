@@ -59,7 +59,7 @@ Given("I login using user id partner", async () => {
 
 Given("I reset my device id to new device", async ()=>{
   await
-    resetStateDao.resetDeviceId(globalVariable.login.userID, globalVariable.login.password, globalVariable.login.newDeviceID);
+    resetStateDao.resetDeviceId(globalVariable.login.newDeviceID);
 });
 
 Given("I delete my new device id", async ()=>{
@@ -121,7 +121,7 @@ Given("I have new device id {string}", async (newDeviceId) => {
 });
 
 Given("I have last step journey before", async () => {
-  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
+  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
 });
 
 When("I filling in form login with the following details:", (table) => {
@@ -202,7 +202,7 @@ Then(
   "I reset attempt failed login",
   async () => {
     await
-      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+      resetStateDao.resetAttemptFailedLogin();
   });
 
 Then(
@@ -532,7 +532,7 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 
 Then("I will reset my attempt failed face match", async () => {
   await
-    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
+    resetStateDao.resetAttemptFailedFaceMatch();
 });
 
 Then("I will see information that my account can be opened tomorrow", async () => {

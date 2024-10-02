@@ -15,17 +15,22 @@ Given("has more than one other document", async () => {
     const fileType = 'pdf';
 
     await
-        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, fileType);
+        uploadDao.uploadOtherDoc(fileType);
 
     await
-        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, fileType);
+        uploadDao.uploadOtherDoc(fileType);
 });
 
 Given("don't have any other document", async () => {
 
     await
-        resetStateDao.deleteAllOtherDoc(globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.deleteAllOtherDoc();
 
+});
+
+Given("never entered wrong password", async () => {
+    await
+        resetStateDao.resetAttemptFailedLogin();
 });
 
 When("I click document giro", () => {
@@ -384,7 +389,7 @@ Then("I will see document business required for type company", () => {
 
 Then("I will see document business for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+    const legalityType = (await getDataDao.getLegalityType()).legalityType;
 
     if (
         legalityType === "UD"
@@ -440,7 +445,7 @@ Then("I will see document business for type individual company", async () => {
 
 Then("I will see document business required for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+    const legalityType = (await getDataDao.getLegalityType()).legalityType;
 
     if (
         legalityType === "UD"
@@ -498,14 +503,9 @@ Then("I will see toogle biometric is off", () => {
     I.waitForElement(otherPage.buttons.toogleBiometric, 10);
 });
 
-Then("I reset attempt failed password", async () => {
-    await
-        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
-});
-
 Then("I will direct to Tab Other", async () => {
 
-    const hasPin = (await getDataDao.hasCreatePin(globalVariable.login.userID, globalVariable.login.password)).hasPin;
+    const hasPin = (await getDataDao.hasCreatePin()).hasPin;
 
     I.waitForText("Keamanan", 10);
     I.see("Ubah Password");

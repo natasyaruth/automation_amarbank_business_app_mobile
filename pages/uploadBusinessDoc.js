@@ -122,7 +122,7 @@ module.exports = {
     }
   },
 
-  async uploadAllDocumentCompany(userID, password) {
+  async uploadAllDocumentCompany() {
 
     const fileType = 'pdf';
 
@@ -130,13 +130,13 @@ module.exports = {
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+        uploadDao.uploadDocBusiness(enumDoc[i], fileType);
       I.wait(5);
     }
 
   },
 
-  async uploadAllDocumentCompanyRequired(userID, password) {
+  async uploadAllDocumentCompanyRequired() {
 
     const fileType = 'pdf';
 
@@ -144,13 +144,13 @@ module.exports = {
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+        uploadDao.uploadDocBusiness(enumDoc[i], fileType);
       I.wait(5);
     }
 
   },
 
-  async uploadAllDocumentIndividualCompanyRequired(userID, password, legalityType) {
+  async uploadAllDocumentIndividualCompanyRequired(legalityType) {
 
     const fileType = 'pdf';
 
@@ -164,7 +164,7 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocUD.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocUD[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocUD[i], fileType);
         I.wait(5);
       }
     } else if (
@@ -174,14 +174,14 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocIndividualComp.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocIndividualComp[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocIndividualComp[i], fileType);
         I.wait(5);
       }
     }
 
   },
 
-  async uploadAllDocumentIndividualCompany(userID, password, legalityType) {
+  async uploadAllDocumentIndividualCompany(legalityType) {
     const fileType = 'pdf';
 
     const enumDocUD = [1, 5];
@@ -195,7 +195,7 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocUD.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocUD[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocUD[i], fileType);
         I.wait(5);
       }
     } else if (
@@ -205,18 +205,18 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocIndividualComp.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocIndividualComp[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocIndividualComp[i], fileType);
         I.wait(5);
       }
     }
 
   },
 
-  async uploadOneDocument(userID, password, typeDoc, fileType) {
+  async uploadOneDocument(typeDoc, fileType) {
     const enumDoc = this.getEnumDoc(typeDoc);
 
     await
-      uploadDao.uploadDocBusiness(userID, password, enumDoc, fileType);
+      uploadDao.uploadDocBusiness(enumDoc, fileType);
 
     I.wait(2);
   },
