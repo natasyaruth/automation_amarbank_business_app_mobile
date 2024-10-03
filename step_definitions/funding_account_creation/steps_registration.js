@@ -37,13 +37,13 @@ Given(
   async (registration) => {
     const account = registration.parse().rowsHash();
 
-    // await whitelistDao.whitelistPhoneNumber(
-    //   "+62" + account["phoneNumber"]
-    // );
+    await whitelistDao.whitelistPhoneNumber(
+      "+62" + account["phoneNumber"]
+    );
 
-    // await whitelistDao.whitelistEmail(
-    //   account["email"]
-    // );
+    await whitelistDao.whitelistEmail(
+      account["email"]
+    );
 
     globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
     globalVariable.registration.email = account["email"];
@@ -55,12 +55,9 @@ Given(
       await otpDao.getOTP(globalVariable.registration.phoneNumber)
     ).otp;
     account.otp = otpCode;
-
-    globalVariable.login.userID = (
-      await firstRegistrationDao.firstRegistration(account)
-    ).userID;
-  }
-);
+    globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+    globalVariable.login.userIDInitiator = globalVariable.login.userID;
+});
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();

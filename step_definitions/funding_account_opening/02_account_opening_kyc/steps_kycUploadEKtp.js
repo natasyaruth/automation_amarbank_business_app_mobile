@@ -85,35 +85,35 @@ Given("I register initiator with partner as below", async (table) => {
 
     // HIT PRODUCT TYPE
     await
-        uploadDao.submitProductType(prodType, userID, password);
+        uploadDao.submitProductType(prodType);
 
     // CHECKING NPWP
     // await 
-    //     uploadDao.checkEligibilityNPWPBusiness(userID, password, npwpBusiness);
+    //     uploadDao.checkEligibilityNPWPBusiness(npwpBusiness);
 
     // HIT LEGALITY TYPE
     await
-        uploadDao.submitLegalityType(legality, userID, password, npwpBusiness);
+        uploadDao.submitLegalityType(legality, npwpBusiness);
 
     // JUMP TO FORM KTP
     await
-        resetStateDao.resetStateFlow(3, userID, password);
+        resetStateDao.resetStateFlow(3);
 
     // HIT FORM KTP
     await
-        uploadDao.submitIdentityDetails(ktpInitiator, userID, password);
+        uploadDao.submitIdentityDetails(ktpInitiator);
 
     // JUMP TO BUSINESS PROFILE
     await
-        resetStateDao.resetStateFlow(9, userID, password);
+        resetStateDao.resetStateFlow(9);
 
     // HIT BUSINESS PROFILE
     await
-        uploadDao.submitBusinessProfile(businessProfile, legality, userID, password);
+        uploadDao.submitBusinessProfile(businessProfile, legality);
 
     // ADD PARTNER
     await
-        uploadDao.submitOnePartner(dataInvitee, userID, password);
+        uploadDao.submitOnePartner(dataInvitee);
 
     // GET BUSINESS CODE
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
@@ -176,9 +176,9 @@ When("I submit my eKTP photo", () => {
 When("I upload my eKTP photo", async () => {
     I.waitForText("Ambil Foto eKTP Anda", 10);
     await
-        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.allowDeviceData();
     await
-        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+        uploadDao.uploadKTP();
 
     resetStateDao.reloadPageAfterResetState();
 });

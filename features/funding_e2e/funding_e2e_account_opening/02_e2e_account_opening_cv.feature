@@ -4,6 +4,7 @@ Feature: Account Opening - CV
   As a customer
   I should complete process KYC and KYB
 
+  @C161001
   Scenario: Complete KYC and KYB business type CV
     Given I am a customer that recently registered to amarbank business with data as below
         | fullName        | Staging                 |
@@ -66,10 +67,10 @@ Feature: Account Opening - CV
         | address  | Jl. Gambir Belok Kiri No. 10 |
         | rt       | 000                          |
         | rw       | 011                          |
-        | province | ACEH                         |
-        | city     | KAB. ACEH TIMUR              |
-        | district | DARUL AMAN                   |
-        | village  |                              |
+        | province | DKI JAKARTA                  |
+        | city     | JAKARTA SELATAN              |
+        | district | PANCORAN                     |
+        | village  | PANCORAN                     |
     And I agree to carry out the Rights and Obligations
     And I will directing to page Rights and Obligations
     And I click button agree with Rights and Obligations

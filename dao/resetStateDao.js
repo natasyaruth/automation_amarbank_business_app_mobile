@@ -2,9 +2,12 @@ const { I, headerPage, onboardingAccOpeningPage, globalVariable, getDataDao } = 
 
 const env = globalVariable.returnEnvi();
 
+const userID = globalVariable.login.userID;
+const password = globalVariable.login.password;
+
 module.exports = {
 
-    async resetStateFlow(stateNumber, userID, password) {
+    async resetStateFlow(stateNumber) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -19,7 +22,7 @@ module.exports = {
         };
     },
 
-    async updateFlagOnboardingDocumentSafeAndSurvey(userID, status) {
+    async updateFlagOnboardingDocumentSafeAndSurvey(status) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -42,7 +45,7 @@ module.exports = {
 
     },
 
-    async getIdOtherDoc(userID, password) {
+    async getIdOtherDoc() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -59,8 +62,8 @@ module.exports = {
 
     },
 
-    async deleteOtherDoc(userID, password) {
-        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+    async deleteOtherDoc() {
+        const idDoc = (await this.getIdOtherDoc()).idDocs;
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -75,9 +78,9 @@ module.exports = {
 
     },
 
-    async deleteAllOtherDoc(userID, password) {
+    async deleteAllOtherDoc() {
 
-        const idDoc = (await this.getIdOtherDoc(userID, password)).idDocs;
+        const idDoc = (await this.getIdOtherDoc()).idDocs;
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -98,9 +101,9 @@ module.exports = {
         }
     },
 
-    async deleteAllDocuments(userID, password) {
+    async deleteAllDocuments() {
 
-        const listIdDocs = (await getDataDao.getListDocBusiness(userID, password)).listDocBusiness;
+        const listIdDocs = (await getDataDao.getListDocBusiness()).listDocBusiness;
 
         let response;
 
@@ -207,7 +210,7 @@ module.exports = {
         };
     },
 
-    async getTokenLogin(userID, password) {
+    async getTokenLogin() {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -225,7 +228,7 @@ module.exports = {
         }
     },
 
-    async resetDeviceId(userID, password, deviceID) {
+    async resetDeviceId(deviceID) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -244,7 +247,7 @@ module.exports = {
         }
     },
 
-    async resetAttemptFailedLogin(userID) {
+    async resetAttemptFailedLogin() {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -261,7 +264,7 @@ module.exports = {
         }
     },
 
-    async resetAttemptFailedFaceMatch(userID) {
+    async resetAttemptFailedFaceMatch() {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -297,7 +300,7 @@ module.exports = {
         I.click("Selanjutnya");
     },
 
-    async getProductType(userID, password) {
+    async getProductType() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -313,7 +316,7 @@ module.exports = {
 
     },
 
-    async getAccountType(userID, password) {
+    async getAccountType() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -329,7 +332,7 @@ module.exports = {
 
     },
 
-    async getFullName(userID, password) {
+    async getFullName() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -345,7 +348,7 @@ module.exports = {
 
     },
 
-    async getKTPNumber(userID, password) {
+    async getKTPNumber() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -361,7 +364,7 @@ module.exports = {
 
     },
 
-    async getPhoneNumber(userID, password) {
+    async getPhoneNumber() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -377,7 +380,7 @@ module.exports = {
 
     },
 
-    async getEmail(userID, password) {
+    async getEmail() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -393,7 +396,7 @@ module.exports = {
 
     },
 
-    async getAccountNumber(userID, password) {
+    async getAccountNumber() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -409,7 +412,7 @@ module.exports = {
 
     },
 
-    async getCompanyName(userID, password) {
+    async getCompanyName() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -425,7 +428,7 @@ module.exports = {
 
     },
 
-    async getBusinessPartnerUserID(userID, password) {
+    async getBusinessPartnerUserID() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -441,7 +444,7 @@ module.exports = {
 
     },
 
-    async isPendingTaskExist(userID, password) {
+    async isPendingTaskExist() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -457,7 +460,7 @@ module.exports = {
 
     },
 
-    async deleteAllNotification(userID, password) {
+    async deleteAllNotification() {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 

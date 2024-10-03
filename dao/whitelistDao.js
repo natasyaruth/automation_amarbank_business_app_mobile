@@ -29,7 +29,7 @@ module.exports = {
       Authorization: "Basic dHVuYWlrdW1vYmlsZToxOTNJN1Y1RVFU"
     }));
 
-    const response = await I.sendPostRequest("https://"+env+"-api-notification.tunaiku.com/notification/whitelist", {
+    const response = await I.sendPostRequest("https://dev-api-notification.tunaiku.com/notification/whitelist", {
       contact_address: email,
     });
 

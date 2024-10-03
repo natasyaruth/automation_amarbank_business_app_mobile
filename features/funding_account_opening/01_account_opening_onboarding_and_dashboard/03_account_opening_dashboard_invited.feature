@@ -53,19 +53,7 @@ Feature: Account Opening Main Dashboard User Invited
         And I submit my eKTP photo
         And I fill all information identity details as followings:
             | eKtpNumber    | 3173035601100007          |
-            | fullName      | NADYA CANTIK              |
-            | placeOfBirth  | MEDAN                     |
-            | dateOfBirth   | 11/11/1995                |
-            | gender        | Perempuan                 |
-            | address       | Jl. Durian Runtuh No. 13  |
-            | rt            | 01                        |
-            | rw            | 05                        |
-            | province      | DKI JAKARTA               |
-            | city          | KOTA ADM. JAKARTA SELATAN |
-            | district      | KEBAYORAN BARU            |
-            | village       | SENAYAN                   |
-            | religion      | Hindu                     |
-            | maritalStatus | Kawin                     |
+        And I swipe to button save data eKTP    
         And I submit my information identity details
         And I see page 'Upload Selfie'
         And I click close in header page

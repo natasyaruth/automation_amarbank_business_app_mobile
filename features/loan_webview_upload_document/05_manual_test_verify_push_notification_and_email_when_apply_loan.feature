@@ -86,16 +86,3 @@ Feature: Verification Push Notification and Email Notification
         And I see wording "Gagal menampilkan daftar dokumen yang diperlukan"
         And I see wording "Anda dapat mencoba lagi nanti atau pilih menu bantuan untuk melaporkan masalah."
         And I see link "Coba Lagi"
-
-
-
-
-
-
-
-
-
-
-
-
-

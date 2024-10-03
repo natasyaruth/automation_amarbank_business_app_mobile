@@ -21,6 +21,8 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
+    infoNotif: {xpath: ""},
+    infoNotifDetail: {xpath: ""},
     title: "~textTitle",
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",
@@ -72,6 +74,11 @@ module.exports = {
     return await I.grabTextFrom(this.texts.time+index);
   },
 
+  clickUnderstand(){
+    I.waitForElement(this.buttons.understand, 10);
+    I.click(this.buttons.understand);
+  },
+
   openDetailNotifInfo(index){
     I.waitForElement(this.buttons.detailNotificationInfo+index, 10);
     I.click(this.buttons.detailNotificationInfo+index);
@@ -100,6 +107,16 @@ module.exports = {
   async getTitle(){
     I.waitForElement(this.texts.title, 10);
     return await I.grabTextFrom(this.texts.title);
+  },
+
+  async getInfoNotif(){
+    I.waitForElement(this.texts.infoNotif, 10);
+    return await I.grabTextFrom(this.texts.infoNotif);
+  },
+
+  async getInfoNotifDetail(){
+    I.waitForElement(this.texts.infoNotifDetail, 10);
+    return await I.grabTextFrom(this.texts.infoNotifDetail);
   },
 
 }

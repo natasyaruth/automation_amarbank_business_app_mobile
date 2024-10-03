@@ -60,12 +60,9 @@ Given("I login using user id partner", async () => {
   loginPage.clickLoginButton();
 });
 
-Given("I reset my device id to new device", async () => {
-  await resetStateDao.resetDeviceId(
-    globalVariable.login.userID,
-    globalVariable.login.password,
-    globalVariable.login.newDeviceID
-  );
+Given("I reset my device id to new device", async ()=>{
+  await
+    resetStateDao.resetDeviceId(globalVariable.login.newDeviceID);
 });
 
 Given("I delete my new device id", async () => {
@@ -126,12 +123,7 @@ Given("I have new device id {string}", async (newDeviceId) => {
 });
 
 Given("I have last step journey before", async () => {
-  globalVariable.login.lastStep = (
-    await getDataDao.getLastStepJourney(
-      globalVariable.login.userID,
-      globalVariable.login.password
-    )
-  ).step;
+  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
 });
 
 When("I filling in form login with the following details:", (table) => {
@@ -148,15 +140,17 @@ When("I filling in form login with the following details:", (table) => {
   loginPage.fillInAccountInformation(account);
 });
 
-When("I login with account friendlist", () => {
-  loginPage.fillFieldLogin(
-    loginPage.fields.userID,
-    globalVariable.login.userIDFriendlist
-  );
-  loginPage.fillFieldLogin(
-    loginPage.fields.password,
-    globalVariable.login.passwordFriendlist
-  );
+When("I login with account friendlist", () => { 
+  loginPage.fillFieldLogin("userID", globalVariable.login.userIDFriendlist);
+  loginPage.fillFieldLogin("password", globalVariable.login.passwordFriendlist);
+
+  loginPage.clickLoginButton();
+});
+
+When("I login using account initiator", () => {
+  
+  loginPage.fillFieldLogin("userID", globalVariable.login.userIDInitiator);
+  loginPage.fillFieldLogin("password", globalVariable.login.password);
 
   loginPage.clickLoginButton();
 });
@@ -210,9 +204,12 @@ Then(
   }
 );
 
-Then("I reset attempt failed login", async () => {
-  await resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
-});
+Then(
+  "I reset attempt failed login",
+  async () => {
+    await
+      resetStateDao.resetAttemptFailedLogin();
+  });
 
 Then(
   "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
@@ -320,13 +317,9 @@ When("I will see bottom sheet permission", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
   I.waitForText("Amar Bank membutuhkan izin perangkat", 10);
-  I.see(
-    "Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini."
-  );
-  I.see(
-    "Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini."
-  );
-  I.see("Kami memastikan data kamu tidak akan disalahgunakan.");
+  I.see("Akses Kamera dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
+  I.see("Akses Lokasi dibutuhkan untuk memverifikasi bahwa Anda adalah pemilik akun pada perangkat ini.");
+  I.see("Kami memastikan data Anda tidak akan disalahgunakan.");
 
   I.see("Saya Mengerti");
   I.waitForElement(loginPage.buttons.understand, 10);
@@ -563,7 +556,8 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 });
 
 Then("I will reset my attempt failed face match", async () => {
-  await resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
+  await
+    resetStateDao.resetAttemptFailedFaceMatch();
 });
 
 Then(
