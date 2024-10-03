@@ -50,6 +50,8 @@ Given("I see information and benefit of Giro Account", () => {
     I.see("Pilih Rekening Giro");
 });
 
+Given("I am on main dashboard", ()=>{});
+
 When("I swipe to card Giro Account", () => {
     onboardingAccOpeningPage.swipeToCardGiroAccount();
 });
@@ -84,13 +86,19 @@ When("I click later", () => {
 });
 
 When("I choose Giro Account Corporate", () => {
+    I.wait(2);
     onboardingAccOpeningPage.openGiroAccountCorporate();
     globalVariable.onBoarding.productType = "CORP";
 });
 
 When("I choose Giro Account MSME", () => {
+    I.wait(2);
     onboardingAccOpeningPage.openGiroAccountMsme();
     globalVariable.onBoarding.productType = "MSME";
+});
+
+When("I submit my giro type", () => {
+    onboardingAccOpeningPage.submitTypeGiro();
 });
 
 When("I see page {string}", (pageName) => {
@@ -114,7 +122,7 @@ When("I continue to register my KYC data", () => {
 
 When("I update my last journey step to {string}", async (stepName) => {
     await
-        onboardingAccOpeningPage.updateStep(stepName, );
+        onboardingAccOpeningPage.updateStep(stepName,);
 
     const isInvitee = (await getDataDao.isPartner()).data;
 
@@ -221,7 +229,7 @@ When("I fill feedback exit survey with {string}", (feedback) => {
     }
 });
 
-When("I clear field feedback exit survey", ()=>{
+When("I clear field feedback exit survey", () => {
     I.wait(1);
     onboardingAccOpeningPage.clearFieldFeedback();
 });
@@ -393,92 +401,51 @@ Then("I will see information that I can try to register after 7 days", () => {
     I.see("Tapi jangan khawatir, Anda dapat mengulang proses registrasi kembali setelah 7 hari.");
 });
 
-Then("I will see details info of giro account MSME", async () => {
-    I.waitForText("Silakan pilih salah 1 rekening giro yang sesuai dengan kebutuhan bisnis Anda", 30);
+Then("I will see details info of giro account Corporate and MSME", async () => {
+
+    I.waitForElement(headerPage.buttons.closePage, 30);
     I.see("Pilih Rekening Giro");
+    I.see("Silakan pilih salah satu rekening giro yang sesuai dengan kebutuhan bisnis Anda");
 
-    // CHECKING ADMIN FEE
-    I.see("Biaya Admin");
-
-    const actualAdminFee = await onboardingAccOpeningPage.getAdminFeeMsme();
-    I.assertEqual(actualAdminFee, "FREE");
+    // CHECKING LOAN LIMIT
+    I.see("Limit Pinjaman");
+    I.see("Hingga" + "\n" + "5 Miliar");
+    I.see("Lebih dari" + "\n" + "5 Miliar");
 
     // CHECKING MIN BALANCE
     I.see("Saldo Minimum");
-
-    const actualMinBalance = await onboardingAccOpeningPage.getMinBalanceMsme();
-    I.assertEqual(actualMinBalance, "FREE");
-
-    // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo " + "\n" + "Minimum");
-
-    const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostMsme();
-    I.assertEqual(actualMinBalanceFee, "FREE");
-
-    // CHECKING DORMANT FEE
-    I.see("Biaya Dorman");
-
-    const actualDormantFee = await onboardingAccOpeningPage.getDormantFeeMsme();
-    I.assertEqual(actualDormantFee, "FREE");
-
-    // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek /" + "\n" + "Bilyet Giro");
-
-    const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeMsme();
-    I.assertEqual(actualCheckBookFee, "Rp290rb");
-
-    // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit " + "\n" + "Pinjaman");
-
-    const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitMsme();
-    I.assertEqual(actualLoanLimit, "Sampai " + "\n" + "Rp 5 Milyar");
-
-    I.see("Buka Giro");
-    I.seeElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
-    I.see("*Biaya dapat berubah sewaktu-waktu sesuai ketentuan Bank")
-
-});
-
-Then("I will see details info of giro account Corporate", async () => {
+    I.see("Rp0");
+    I.see("Rp500rb -" + "\n" + " Rp1jt*");
 
     // CHECKING ADMIN FEE
     I.see("Biaya Admin");
-
-    const actualAdminFee = await onboardingAccOpeningPage.getAdminFeeCorporate();
-    I.assertEqual(actualAdminFee, "FREE");
-
-    // CHECKING MIN BALANCE
-    I.see("Saldo Minimum");
-
-    const actualMinBalance = await onboardingAccOpeningPage.getMinBalanceCorporate();
-    I.assertEqual(actualMinBalance, "Rp500rb - Rp1jt");
+    I.see("GRATIS");
+    I.see("GRATIS");
 
     // CHECKING MIN BALANCE FEE
-    I.see("Biaya Saldo " + "\n" + "Minimum");
-
-    const actualMinBalanceFee = await onboardingAccOpeningPage.getMinCostCorporate();
-    I.assertEqual(actualMinBalanceFee, "Rp1.000");
+    I.see("Biaya Saldo Minimum");
+    I.see("GRATIS");
+    I.see("Rp1.000");
 
     // CHECKING DORMANT FEE
     I.see("Biaya Dorman");
-
-    const actualDormantFee = await onboardingAccOpeningPage.getDormantFeeCorporate();
-    I.assertEqual(actualDormantFee, "Rp500");
+    I.see("GRATIS");
+    I.see("Rp500");
 
     // CHECKING CHECK BOOK FEE
-    I.see("Biaya Cetak Cek /" + "\n" + "Bilyet Giro");
+    I.see("Biaya Cetak" + "\n" + "Cek/Bilyet Giro");
+    I.see("Rp290rb");
+    I.see("Rp290rb");
 
-    const actualCheckBookFee = await onboardingAccOpeningPage.getCheckBookFeeCorporate();
-    I.assertEqual(actualCheckBookFee, "Rp290rb");
+    I.see("Pilih");
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
 
-    // CHECKING LOAN LIMIT
-    I.see("Dapatkan Limit " + "\n" + "Pinjaman");
-
-    const actualLoanLimit = await onboardingAccOpeningPage.getLoanLimitCorporate();
-    I.assertEqual(actualLoanLimit, "Diatas " + "\n" + "Rp 5 Milyar");
+    I.see("*Perorangan Rp500rb, Non-Perorangan Rp1jt " + "\n"
+        + "**Biaya dapat berubah sewaktu-waktu sesuai ketentuan Bank");
 
     I.see("Buka Giro");
-    I.seeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
+    I.waitForElement(onboardingAccOpeningPage.buttons.submitTypeGiro, 10);
 });
 
 Then("product type same with I choose before", async () => {
@@ -507,16 +474,16 @@ Then("I reset my state journey", async () => {
 
     const listBusinessPartner = (await getDataDao.getListBusineePartners()).listBusinessPartners;
 
-    if(
+    if (
         listBusinessPartner !== null
-    ){
+    ) {
 
         const businessID = (await getDataDao.getBusinessId()).id;
 
         await
             resetStateDao.deletePartner(businessID);
 
-    } 
+    }
 
     if (
         globalVariable.dashboard.lastPage === ""
@@ -809,13 +776,13 @@ Then("I will see snackbar thank you and reason feedback is successfully sent", (
 
 });
 
-Then("after 3-4 seconds, snackbar thank you and reason feedback is disappear", ()=>{
+Then("after 3-4 seconds, snackbar thank you and reason feedback is disappear", () => {
 
     I.wait(4);
     I.dontSee("Terima kasih. Alasan Anda sudah terkirim.");
 });
 
-Then("I will not see the feedback anymore", ()=>{
+Then("I will not see the feedback anymore", () => {
     I.wait(1);
     I.dontSee(globalVariable.survey.feedBack);
 });

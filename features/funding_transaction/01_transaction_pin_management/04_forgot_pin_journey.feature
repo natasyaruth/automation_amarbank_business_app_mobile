@@ -1,4 +1,4 @@
-#@forgot_pin
+@forgot_pin
 Feature: User forgot PIN and want to create new
     In order to transfer
     As a customer
@@ -18,7 +18,7 @@ Feature: User forgot PIN and want to create new
         And I click login
         Then I will direct to Main Dashboard
 
-    #@C109139
+    @C109139
     Scenario: User wants to create pin from forgot PIN
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -26,12 +26,12 @@ Feature: User forgot PIN and want to create new
         And I click link forgot pin
         And I input password
         And I submit my password
-        And I input new PIN
-        And I input confirmation new PIN
+        And I input new PIN with "111111"
+        And I confirm create PIN
         And I input OTP
         Then I will go back to other page
 
-    #@C109140
+    @C109140
     Scenario: User input incorrect password once from forgot PIN
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -41,7 +41,7 @@ Feature: User forgot PIN and want to create new
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    #@C109141
+    @C109141
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -51,7 +51,7 @@ Feature: User forgot PIN and want to create new
         And I submit my password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    #@C109142
+    @C109142
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -62,7 +62,7 @@ Feature: User forgot PIN and want to create new
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I directly go to page login
 
-    #@C109143
+    @C109143
     Scenario: User want to see their password
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -72,7 +72,7 @@ Feature: User forgot PIN and want to create new
         And I click icon eye
         Then I will see my password
 
-    #@C109144
+    @C109144
     Scenario: User don't want to see their password
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -82,7 +82,7 @@ Feature: User forgot PIN and want to create new
         And I click icon eye twice
         Then I will not see my password
 
-    #@C109145
+    @C109145
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -90,11 +90,11 @@ Feature: User forgot PIN and want to create new
         And I click link forgot pin
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
+        And I create PIN with "123456"
         And I input incorrect confirmation new PIN
         Then I will see message error "PIN yang dimasukkan tidak sesuai"
 
-    #@C109146
+    @C109146
     Scenario: User input incorrect OTP
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
@@ -102,7 +102,7 @@ Feature: User forgot PIN and want to create new
         And I click link forgot pin
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I create PIN with "123456"
+        And I confirm create PIN
         And I input incorrect OTP
         Then I will see message error "Kode OTP yang Anda masukkan salah"

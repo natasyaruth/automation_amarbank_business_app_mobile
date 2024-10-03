@@ -18,7 +18,7 @@ Feature: Create PIN manual test case
         Given I am a customer who want to create PIN
         When I click create PIN from menu transfer or other
         And I input password
-        And I input new PIN
+        And I input new PIN with "111111"
         And I confirm new PIN
         Then I will receive email contain with code verification
         And template same with figma
@@ -27,7 +27,7 @@ Feature: Create PIN manual test case
         Given I am a customer who want to change PIN
         When I click change PIN in menu other
         And I input password
-        And I input new PIN
+        And I input new PIN with "111111"
         And I confirm new PIN
         Then I will receive email contain with code verification
         And template same with figma
@@ -36,7 +36,7 @@ Feature: Create PIN manual test case
         Given I am a customer who forgot PIN
         When I click link forgot password in menu input PIN transfer
         And I input password
-        And I input new PIN
+        And I input new PIN with "111111"
         And I confirm new PIN
         Then I will receive email contain with code verification
         And template same with figma

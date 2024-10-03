@@ -116,6 +116,7 @@ module.exports = {
   },
 
   nexttoTransferPage() {
+    I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },
 
@@ -175,8 +176,8 @@ module.exports = {
   },
 
   goToChangePIN() {
-    I.click(this.buttons.changePIN);
-
+    I.waitForElement(this.buttons.createPIN, 20);
+    I.click(this.buttons.createPIN);
   },
 
   closeBottomSheet() {
