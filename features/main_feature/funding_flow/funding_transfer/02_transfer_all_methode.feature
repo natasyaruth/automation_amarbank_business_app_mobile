@@ -1,4 +1,4 @@
-@transfer_all_method
+# @regressionTest
 Feature: User transfer with all transfer method
     In order to transfer
     As a customer

@@ -291,6 +291,7 @@ exports.config = {
       "./features/main_feature/loanDisbursement/*.feature",
       "./features/main_feature/funding_flow/register_cases/*.feature",
       "./features/main_feature/funding_flow/funding_transfer/*.feature",
+      "./features/main_feature/funding_flow/pin_management/*.feature",
       "./features/funding_e2e/funding_e2e_account_opening/*.feature",
     ],
     steps: [

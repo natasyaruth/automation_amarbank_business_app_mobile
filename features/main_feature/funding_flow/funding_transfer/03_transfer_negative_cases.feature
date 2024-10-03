@@ -1,4 +1,4 @@
-@transfer_negative_cases
+# @regressionTest
 Feature: User Want to Transfer with Negative Cases
     In home
     As a customer
@@ -218,7 +218,7 @@ Feature: User Want to Transfer with Negative Cases
         Then I see PIN message error 'Anda akan langsung diarahkan ke halaman Masuk Akun'
         And I click understand to page login
         And I will directing to page login
-        And I reset attempt failed PIN        
+        And I reset attempt failed PIN
 
     @C135522
     Scenario: Transfer with amount more than admin fee RTOL
@@ -308,7 +308,7 @@ Feature: User Want to Transfer with Negative Cases
         And I choose transfer service BIFAST
         Then I shouldn't see message error total amount more than active amount
         And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount    
+        Then I see message error total amount shouldn't more than active amount
 
     @C135525
     Scenario: Transfer with amount more than admin fee RTGS
@@ -338,4 +338,4 @@ Feature: User Want to Transfer with Negative Cases
         And I choose transfer service BIFAST
         Then I shouldn't see message error total amount more than active amount
         And I choose transfer service RTGS
-        Then I see message error total amount shouldn't more than active amount   
+        Then I see message error total amount shouldn't more than active amount
