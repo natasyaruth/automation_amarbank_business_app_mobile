@@ -51,7 +51,7 @@ When("I see field reason and my email", async() => {
     I.waitForText("Beritahu mengapa Anda ingin menghapus akun ?", 10);
     I.see("Permintaan Hapus Akun");
 
-    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+    const email = (await resetStateDao.getEmail()).email;
 
     I.see("Informasi proses hapus akun akan dikirim ke email Anda: " + globalVariable.registration.email);
     I.seeElement(accountDeletionPage.fields.reason);
@@ -65,7 +65,7 @@ When("I fill my password account deletion", () => {
 });
 
 When("I fill incorrect password account deletion", () => {
-    accountDeletionPage.fillPassword("fgjd1234");
+    accountDeletionPage.fillPassword(globalVariable.login.dummyPassword);
 });
 
 When("I fill my reason account deletion with {string}", (reason) => {

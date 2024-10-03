@@ -34,6 +34,7 @@ module.exports = {
         password: "",
         passwordPartner: "",
         passwordFriendlist: "",
+        dummyPassword: "Ruth!@#$$",
         userID: "",
         userIDPartner: "",
         userIDInitiator: "",
@@ -150,5 +151,12 @@ module.exports = {
         desc: "",
         date: "",
         descTrx: "",
-    }
+    },
+    profile:{
+        fullName: "",
+        phoneNumber: "",
+        email: "",
+        domicileAddress: "",
+        companyName: "",
+    },
 }

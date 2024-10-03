@@ -17,7 +17,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then I successed go to dashbord
 
 
-  @C142593
+  @Sprint6Lending @C142593
   Scenario: Verify bottom sheet Loan Schema
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -26,7 +26,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
     And user click back button to back to type loan page
 
-  @C142594
+  @Sprint6Lending @C142594
   Scenario: User apply combine journey loan AR Anchor and want to see AR loan schema
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -37,7 +37,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user validate content loan schema "AR"
     And user click back to loan type page
 
-  @C142595
+  @Sprint6Lending @C142595
   Scenario: User validate dropdown list on nominal option
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -47,7 +47,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user can validate List of Nominal Limit Credit
     And user can click close button and back to loan needs page
 
-  @C142596
+  @Sprint6Lending @C142596
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -57,7 +57,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
 
-  @C142597
+  @Sprint6Lending @C142597
   Scenario: Validate Error input nominal min Rp.50000000001
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -68,7 +68,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Save
     Then user can see error message "Min Rp.5.000.000.001, Max Rp.25.000.000.000" in the field "errorAmountLoanField"
 
-  @C142598
+  @Sprint6Lending @C142598
   Scenario: user clear the text input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -79,7 +79,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user click button clear to delete all input nominal and back to zero
     And user click back button to back to page drop down option nominal
 
-  @C142599
+  @Sprint6Lending @C142599
   Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -92,7 +92,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-  @C142600
+  @Sprint6Lending @C142600
   Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -105,7 +105,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Lanjut Isi Data Buyer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-  @C142601
+  @Sprint6Lending @C142601
   Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -182,7 +182,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-
+  @Sprint6Lending @C161656
   Scenario: User apply first loan AR Anchor with business type UD and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -254,7 +254,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user on monitoring loan process page
 
 
-  @C14260
+  @Sprint6Lending @C142606
   Scenario: Validate bottom sheet for Metode Upload Dokumen
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -263,7 +263,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Pilih Metode Upload Dokumen
     Then user will see bottom sheet metode upload Dokumen
 
-  @C142602
+  @Sprint6Lending @C142602
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
@@ -271,14 +271,14 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     Then user can click button Upload Ulang Dokumen
 
-  @C142603
+  @Sprint6Lending @C142603
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document
     Then user see button Simpan Dokumen
 
-  @C142604
+  @Sprint6Lending @C142604
   Scenario: user click button Simpan Dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
@@ -287,8 +287,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
-
-  @C142605
+  @Sprint6Lending @C142605
   Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
@@ -297,7 +296,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
-  @C142607
+  @Sprint6Lending @C142607
   Scenario: user can select and upload multiple document PT.Perorangan
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -316,7 +315,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user upload document "2YearfinancialReports"
     Then user see button Kirim Pengajuan Limit Kredit
 
-  @C142608
+  @Sprint6Lending @C142608
   Scenario: user validate field after success upload document Individu
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -337,7 +336,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     # section trigered status loan
     And user trigered api change status loan is approved
 
-  @C142609
+  @Sprint6Lending @C142609
   Scenario: User add another document after the user success to uploads the previous document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -350,8 +349,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user upload multiple document "3contohInvoicewithBuyer"
     Then user will see the document will be uploaded and show in one row below uploaded document list
 
-
-  @C142610
+  @Sprint6Lending @C142610
   Scenario: user verify pop up confirmation to delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -368,7 +366,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button delete file uploaded
     Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
 
-  @C142611
+  @Sprint6Lending @C142611
   Scenario: user delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -387,7 +385,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Hapus
     Then user back to Progres Upload Dokumen page
 
-  @C142612
+  @Sprint6Lending @C142612
   Scenario: user cancel to delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -406,7 +404,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user click button Kembali
     Then pop up confirmation will disappear
 
-  @C142613
+  @Sprint6Lending @C142613
   Scenario: user upload file more than 15MB
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -417,7 +415,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user upload multiple document more than 15 MB "3contohInvoicewithBuyer"
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
 
-
+  @Sprint6Lending @C161658
   Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -434,7 +432,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user verify upload all document Finance Report
     And user see button Kirim Pengajuan Limit Kredit
 
-  @C142614
+  @Sprint6Lending @C142614
   Scenario: user have not upload mandatory document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -445,9 +443,31 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user on Progres Upload Dokumen
     Then user will not see button Kirim Pengajuan Limit Kredit
 
-  @C142615
+  @Sprint6Lending @C142615
   Scenario: user back to main dashboard from progress loan page
     Given user on monitoring loan process page
     And user can see X button to back to Main Dashboard
     And user click X button
     Then user back to Main Dashboard page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

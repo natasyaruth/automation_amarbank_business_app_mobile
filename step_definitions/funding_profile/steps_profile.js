@@ -14,15 +14,15 @@ When("I will see card account {string}", async (typeAccount) => {
     if (
         typeAccount === "active"
     ) {
-        
-        const sourceType = (await getDataDao.getSourceType(globalVariable.login.userID, globalVariable.login.password)).sourceType;
+
+        const sourceType = (await getDataDao.getSourceType()).sourceType;
 
         if (
             sourceType === "lending"
         ) {
             I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
         }
-        
+
         I.waitForElement(transactionHistoryPage.buttons.historyBtn, 30);
 
     } else if (
@@ -31,8 +31,8 @@ When("I will see card account {string}", async (typeAccount) => {
         I.waitForText("Menunggu verifikasi data selesai", 30);
         I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
 
-        const isPartner = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
-        const isIndividual = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
+        const isPartner = (await getDataDao.isPartner()).data;
+        const isIndividual = (await resetStateDao.getAccountType()).accountType;
 
         if (
             isPartner === true ||
@@ -71,48 +71,6 @@ When("I click tab profile", () => {
     profilePage.clickTabProfile();
 });
 
-When("I see my profile company data", () => {
-    I.waitForText("Direktur", 10);
-    I.waitForText(globalVariable.login.userID.toUpperCase(), 10);
-
-    if (
-        globalVariable.onBoarding.status === "active"
-    ) {
-        I.seeElement(profilePage.buttons.copyAccNumber);
-
-    } else {
-        I.dontSeeElement(profilePage.buttons.copyAccNumber);
-    }
-
-    I.waitForText("Tipe Industri", 10);
-    I.waitForText("Jenis Bisnis", 10);
-    I.waitForText("Tanggal Berdiri", 10);
-    I.waitForText("Alamat Bisnis", 10);
-    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 10);
-    I.swipeUp(profilePage.buttons.transactionApprovalDetail, 800, 800);
-});
-
-When("I see my profile individual company data", () => {
-    I.waitForText("Pemilik Bisnis", 10);
-    I.see(globalVariable.login.userID.toUpperCase());
-
-    if (
-        globalVariable.onBoarding.status === "active"
-    ) {
-        I.seeElement(profilePage.buttons.copyAccNumber);
-
-    } else {
-        I.dontSeeElement(profilePage.buttons.copyAccNumber);
-    }
-
-    I.see("Tipe Industri");
-    I.see("Jenis Bisnis");
-    I.see("Tanggal Berdiri");
-    I.see("Alamat Bisnis");
-    I.seeElement(profilePage.buttons.documentProcuration);
-    I.swipeUp(profilePage.buttons.documentProcuration, 500, 800);
-});
-
 When("I click document business", () => {
     profilePage.clickDocumentBusiness();
 });
@@ -131,18 +89,220 @@ When("I back to page document business", () => {
     headerPage.clickButtonBack();
 });
 
-Then("I will see my profile individual data", () => {
-    I.waitForText("Individu", 10);
-    I.see(globalVariable.login.userID.toUpperCase());
+When("I click unhide the information", () => {
+    profilePage.clickEyeInfoProfile();
+});
+
+When("I click hide the information", () => {
+    profilePage.clickEyeInfoProfile();
+});
+
+When("I click detail business profile", () => {
+    profilePage.openMenuBusinessProfile();
+});
+
+When("I close bottom sheet input password profile", () => {
+    profilePage.closeBottomSheet();
+});
+
+When("I input my password", () => {
+    documentPage.inputPassword(globalVariable.login.password);
+});
+
+When("I input wrong password", () => {
+    documentPage.inputPassword(globalVariable.login.dummyPassword);
+});
+
+When("I want to see my password", () => {
+    documentPage.clickIconEyePassword();
+});
+
+When("I don't want to see my password", () => {
+    documentPage.clickIconEyePassword();
+    I.wait(1);
+    documentPage.clickIconEyePassword();
+});
+
+When("I click to see my profile data", ()=>{
+    documentPage.clickSeeDocument();
+});
+
+Then("I see my profile company data", async () => {
+    I.waitForText("Direktur", 10);
+
+    I.see("Profil");
+
+    I.dontSee(globalVariable.login.userID.toUpperCase());
+
+    const actualName = await profilePage.getName();
+    const expectedName = (await getDataDao.getName()).name;
+    I.assertEqual(actualName, "Hi, " + expectedName);
+
+    I.dontSee("Nomor Rekening Giro");
+    I.dontSeeElement(profilePage.buttons.copyAccNumber);
+
+    I.waitForElement(profilePage.buttons.showHide, 10);
+
+    I.see("E-mail");
+    const actualEmail = await profilePage.getEmail();
+    const expectedEmail = (await resetStateDao.getEmail()).email;
+    I.assertNotEqual(actualEmail, expectedEmail);
+    globalVariable.profile.email = expectedEmail;
+
+    I.see("Nomor Handphone");
+    const actualPhonenumber = await profilePage.getPhonenumber();
+    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const expectedPhonenumber = "+62 " + phonenumber.substring(3);
+    I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
+    globalVariable.profile.phoneNumber = expectedPhonenumber;
+
+    I.see("Alamat Tempat Tinggal");
+    const actualAddress = await profilePage.getDomicileAddress();
+    const address = (await getDataDao.getFullAddress()).address;
+    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const expectedAddress = address + "\n" + fullAddress
+    I.assertNotEqual(actualAddress, expectedAddress);
+    globalVariable.profile.domicileAddress = expectedAddress;
+
+    I.see("Nama Bisnis");
+    const actualCompanyName = await profilePage.getCompanyName();
+    const expectedCompanyName = (await resetStateDao.getCompanyName()).businessName;
+    I.assertEqual(actualCompanyName, expectedCompanyName);
+    globalVariable.profile.companyName = expectedCompanyName;
+
+    I.see("Profil Bisnis");
+    I.waitForElement(profilePage.buttons.businessProfile, 10);
 
     if (
         globalVariable.onBoarding.status === "active"
     ) {
-        I.seeElement(profilePage.buttons.copyAccNumber);
+
+        I.see("Persetujuan Transaksi Bisnis");
+        I.waitForElement(profilePage.buttons.transactionApprovalDetail, 10);
+    } else {
+
+        I.dontSee("Persetujuan Transaksi Bisnis");
+        I.dontSeeElement(profilePage.buttons.transactionApprovalDetail);
+    }
+
+    I.dontSee("Tipe Industri");
+    I.dontSee("Jenis Bisnis");
+    I.dontSee("Tanggal Berdiri");
+    I.dontSee("Alamat Bisnis");
+    I.dontSeeElement(profilePage.buttons.documentProcuration);
+    I.dontSeeElement(profilePage.buttons.documentBusiness);
+});
+
+Then("I see my profile individual company data", async () => {
+    I.waitForText("Pemilik Bisnis", 10);
+
+    I.see("Profil");
+
+    I.dontSee(globalVariable.login.userID.toUpperCase());
+
+    const actualName = await profilePage.getName();
+    const expectedName = (await getDataDao.getName()).name;
+    I.assertEqual(actualName, "Hi, " + expectedName);
+
+    I.dontSee("Nomor Rekening Giro");
+    I.dontSeeElement(profilePage.buttons.copyAccNumber);
+
+    I.waitForElement(profilePage.buttons.showHide, 10);
+
+    I.see("E-mail");
+    const actualEmail = await profilePage.getEmail();
+    const expectedEmail = (await resetStateDao.getEmail()).email;
+    I.assertNotEqual(actualEmail, expectedEmail);
+    globalVariable.profile.email = expectedEmail;
+
+    I.see("Nomor Handphone");
+    const actualPhonenumber = await profilePage.getPhonenumber();
+    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const expectedPhonenumber = "+62 " + phonenumber.substring(3);
+    I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
+    globalVariable.profile.phoneNumber = expectedPhonenumber;
+
+    I.see("Alamat Tempat Tinggal");
+    const actualAddress = await profilePage.getDomicileAddress();
+    const address = (await getDataDao.getFullAddress()).address;
+    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const expectedAddress = address + "\n" + fullAddress
+    I.assertNotEqual(actualAddress, expectedAddress);
+    globalVariable.profile.domicileAddress = expectedAddress;
+
+    I.see("Nama Bisnis");
+    const actualCompanyName = await profilePage.getCompanyName();
+    const expectedCompanyName = (await resetStateDao.getCompanyName()).businessName;
+    I.assertEqual(actualCompanyName, expectedCompanyName);
+    globalVariable.profile.companyName = expectedCompanyName;
+
+    I.see("Profil Bisnis");
+    I.waitForElement(profilePage.buttons.businessProfile, 10);
+
+    I.dontSee("Persetujuan Transaksi Bisnis");
+    I.dontSeeElement(profilePage.buttons.transactionApprovalDetail);
+
+    I.dontSee("Tipe Industri");
+    I.dontSee("Jenis Bisnis");
+    I.dontSee("Tanggal Berdiri");
+    I.dontSee("Alamat Bisnis");
+    I.dontSeeElement(profilePage.buttons.documentProcuration);
+    I.dontSeeElement(profilePage.buttons.documentBusiness);
+});
+
+Then("I will see my profile individual data", async () => {
+    I.waitForText("Individu", 10);
+    I.see("Profil");
+
+    I.dontSee(globalVariable.login.userID.toUpperCase());
+
+    const actualName = await profilePage.getName();
+    const expectedName = (await getDataDao.getName()).name;
+    I.assertEqual(actualName, "Hi, " + expectedName);
+
+    I.see("Nomor Rekening Giro");
+    if (
+        globalVariable.onBoarding.status === "active"
+    ) {
+        I.waitForElement(profilePage.buttons.copyAccNumber, 10);
+        const actualAccNumber = await profilePage.getAccNumber();
+        const expectedAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+        I.assertEqual(actualAccNumber, expectedAccNumber);
 
     } else {
         I.dontSeeElement(profilePage.buttons.copyAccNumber);
+        const actualAccNumber = await profilePage.getAccNumber();
+        I.assertEqual(actualAccNumber, "-");
     }
+
+    I.waitForElement(profilePage.buttons.showHide, 10);
+
+    I.see("E-mail");
+    const actualEmail = await profilePage.getEmail();
+    const expectedEmail = (await resetStateDao.getEmail()).email;
+    I.assertNotEqual(actualEmail, expectedEmail);
+    globalVariable.profile.email = expectedEmail;
+
+    I.see("Nomor Handphone");
+    const actualPhonenumber = await profilePage.getPhonenumber();
+    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const expectedPhonenumber = "+62 " + phonenumber.substring(3);
+    I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
+    globalVariable.profile.phoneNumber = expectedPhonenumber;
+
+    I.see("Alamat Tempat Tinggal");
+    const actualAddress = await profilePage.getDomicileAddress();
+    const address = (await getDataDao.getFullAddress()).address;
+    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const expectedAddress = address + "\n" + fullAddress
+    I.assertNotEqual(actualAddress, expectedAddress);
+    globalVariable.profile.domicileAddress = expectedAddress;
+
+    I.dontSee("Nama Bisnis");
+    I.dontSeeElement(profilePage.texts.businessName);
+
+    I.dontSee("Profil Bisnis");
+    I.dontSeeElement(profilePage.buttons.businessProfile);
 
     I.dontSee("Tipe Industri");
     I.dontSee("Jenis Bisnis");
@@ -154,4 +314,122 @@ Then("I will see my profile individual data", () => {
 
 Then("I will not see button document business", () => {
     I.dontSeeElement(profilePage.buttons.documentBusiness);
+});
+
+Then("I will see my profile data is blank", () => {
+    I.waitForText("Profil", 10);
+
+    I.waitForText("Data Bisnis Masih Kosong", 10);
+    I.waitForText("Anda harus menyelesaikan proses registrasi terlebih dahulu", 10);
+    I.dontSeeElement(headerPage.buttons.back);
+    I.dontSeeElement(headerPage.buttons.closePage);
+});
+
+Then("I will direct to detail business profile", async () => {
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.see("Profil Bisnis")
+
+    I.see("Profil");
+
+    const actualCompanyName = await profilePage.getCompanyName();
+    I.assertEqual(actualCompanyName, globalVariable.profile.companyName);
+
+    I.see("Nomor Rekening Giro");
+    I.waitForElement(profilePage.buttons.copyAccNumber, 10);
+    const actualAccNumber = await profilePage.getAccNumber();
+    const expectedAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    I.assertEqual(actualAccNumber, expectedAccNumber);
+
+    I.see("Tipe Industri");
+    const actualIndustryType = await profilePage.getIndustry();
+    const expectedIndustryType = (await getDataDao.getIndustryType()).industryType;
+    I.assertEqual(actualIndustryType, expectedIndustryType);
+
+    I.see("Jenis Bisnis");
+    const actualBusinessType = await profilePage.getBusinessType();
+    const expectedBusinessType = (await getDataDao.getBusinessType()).businessType;
+    I.assertEqual(actualBusinessType, expectedBusinessType);
+
+    const months = [
+        "Januari", "Februari", "Maret", "April",
+        "Mei", "Juni", "Juli", "Agustus",
+        "September", "Oktober", "November", "Desember"
+    ];
+
+    I.see("Tanggal Berdiri");
+    let foundedDate = "";
+    const actualFoundedDate = await profilePage.getFoundedDate();
+    foundedDate = (await getDataDao.getFoundedDate()).foundedAt;
+    const dates = foundedDate.replace(/-/, '');
+    const date = dates.substring(0, 1);
+    let month = dates.substring(2, 3);
+    const year = dates.substring(4, 7);
+
+    if (
+        month.substring(0, 0) === "0"
+    ) {
+        month = month.substring(0, 1);
+    }
+
+    I.assertEqual(actualFoundedDate, date + " " + months[month] + " " + year);
+
+    I.see("Alamat Bisnis");
+    const actualBusinessAddress = await profilePage.getBusinessAddress();
+    const expectedBusinessAddress = (await getDataDao.getBusinessAddress()).fullAddress;
+    I.assertEqual(actualBusinessAddress, expectedBusinessAddress);
+});
+
+Then("I will see bottom sheet input password profile", async () => {
+    I.waitForElement(profilePage.buttons.close, 10);
+
+    I.see("Untuk membuka data masukkan password Anda");
+    I.see("Password");
+    I.see("Masukan password");
+    I.waitForElement(documentPage.fields.password, 10);
+    I.waitForElement(documentPage.buttons.eyePassword, 10);
+
+    I.see("Lihat Data");
+    I.waitForElement(documentPage.buttons.seeDocument, 10);
+
+    const isDisabled = await I.grabAttributeFrom(profilePage.statusElement.buttonSeeData, 'enabled');
+    I.assertEqual(isDisabled, 'false');
+});
+
+Then("I will see email, phonenumber and domicile address is unmasked", async () => {
+    
+    const actualEmail = await profilePage.getEmail();
+    I.assertNotEqual(actualEmail, globalVariable.profile.email);
+
+    const actualPhonenumber = await profilePage.getPhonenumber();
+    I.assertNotEqual(actualPhonenumber, globalVariable.profile.phoneNumber);
+
+    const actualAddress = await profilePage.getDomicileAddress();
+    I.assertNotEqual(actualAddress, globalVariable.profile.domicileAddress);
+
+});
+
+Then("I will see email, phonenumber and domicile address is masked", () => {
+    
+    I.waitForElement(profilePage.buttons.showHide, 10);
+
+    I.dontSee(globalVariable.profile.email);
+    I.dontSee(globalVariable.profile.phoneNumber);
+    I.dontSee(globalVariable.profile.domicileAddress);
+
+});
+
+Then("I will see button to see my data is disabled", async () => {
+    
+    I.wait(1);
+    const isDisabled = await I.grabAttributeFrom(profilePage.statusElement.buttonSeeData, 'enabled');
+    I.assertEqual(isDisabled, 'false');
+
+});
+
+Then("I will see button to see my data is enabled", async () => {
+    
+    I.wait(1);
+    const isDisabled = await I.grabAttributeFrom(profilePage.statusElement.buttonSeeData, 'enabled');
+    I.assertEqual(isDisabled, 'true');
+
 });

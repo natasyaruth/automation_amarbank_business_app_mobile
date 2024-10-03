@@ -21,7 +21,7 @@ Given("I am a customer with User ID and email has already requested a password r
   loginPage.goToForgotPasswordPage();
   forgotPasswordPage.isOpen();
 
-  const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+  const email = (await resetStateDao.getEmail()).email;
 
   forgotPasswordPage.fillUserID(globalVariable.login.userID);
   forgotPasswordPage.fillEmail(email);
@@ -48,7 +48,7 @@ When("I input email for reset password with value {string}", (email) => {
 });
 
 When("I input email for reset password", async ()=>{
-  const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+  const email = (await resetStateDao.getEmail()).email;
   forgotPasswordPage.fillEmail(email);
 });
 
@@ -72,7 +72,7 @@ When("I click button confirmation reset password", async () => {
   let actualUserID = await forgotPasswordPage.getUserID();
   let actualCompanyName = await forgotPasswordPage.getCompanyName();
 
-  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+  const companyName = (await resetStateDao.getCompanyName()).businessName;
 
   I.assertEqual(actualUserID, globalVariable.login.userID);
   I.assertEqual(actualCompanyName, companyName);
@@ -84,7 +84,7 @@ When("I click button back from pop up reset password", async () => {
   let actualUserID = await forgotPasswordPage.getUserID();
   let actualCompanyName = await forgotPasswordPage.getCompanyName();
 
-  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+  const companyName = (await resetStateDao.getCompanyName()).businessName;
 
   I.assertEqual(actualUserID, globalVariable.login.userID);
   I.assertEqual(actualCompanyName, companyName);

@@ -1,9 +1,16 @@
 Feature: Apply First Loan With Flagging MSME Using PO Direct
   As a customer lead
   I want to apply first loan using PO Direct with MSME has flag
+  As a customer lead
+  I want to apply first loan using PO Direct with MSME has flag
 
   Background:
+  Background:
     Given I am a registered customer with followng details:
+      | userID      | yahyde6f |
+      | password    | Akuntes1 |
+      | userIDstg   | bots2643 |
+      | passwordStg | Test1234 |
       | userID      | yahyde6f |
       | password    | Akuntes1 |
       | userIDstg   | bots2643 |
@@ -13,9 +20,15 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
       | password    | Akuntes1 |
       | userIDstg   | bots2643 |
       | passwordStg | Test1234 |
+      | userID      | yahyde6f |
+      | password    | Akuntes1 |
+      | userIDstg   | bots2643 |
+      | passwordStg | Test1234 |
     And I click login
     Then I successed go to dashbord
 
+  @C142725
+  Scenario: Verify bottom sheet Loan Schema
   @C142725
   Scenario: Verify bottom sheet Loan Schema
     Given User on Main Dashboard
@@ -26,7 +39,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
 
   @C142726
   Scenario: User apply first loan PO direct and want to see PO loan schema
+  @C142726
+  Scenario: User apply first loan PO direct and want to see PO loan schema
     Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
     When user click button Ajukan Limit Kredit
     #section wants to see loan schema
     And User click button Pelajari Tipe Skema Kredit
@@ -35,15 +51,22 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
 
   @C142727
   Scenario: Validate error input tenor below min 30 hari
+  @C142727
+  Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
     And User select loan type "PO"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
+    And user click button Lanjut Isi Data Bouwheer
     And user click button Lanjut Isi Data Bouwheer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
+  @C142728
+  Scenario: Validate error input tenor more than 180 hari
   @C142728
   Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
@@ -51,30 +74,40 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And User select loan type "PO"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
     And user click button Lanjut Isi Data Bouwheer
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
   #takeout location bisnis
+  #takeout location bisnis
 
   @FunctTestLending
+  @C161668
   Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
+    When user click button Ajukan Limit Kredit
     And User select loan type "AP"
+    And user on select loan Needs Page
+    And User choose nominal "Rp50 juta - 5 Miliar"
     And user on select loan Needs Page
     And User choose nominal "Rp50 juta - 5 Miliar"
     And user input tenor "1"
     And user click button Lanjut Isi Data Bouwheer
     Then user direct to Data Bouwheer Page
 
-  @C142729
+  @Sprint6Lending @C142729
   Scenario: User apply combine journey PO direct type CV with flagging MSME
     Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
     When user click button Ajukan Limit Kredit
     And User select loan type "PO"
     And User on Loan Needs Page
     And User on nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
+    And user click button Lanjut Isi Data Bouwheer
     And user input loan tenor "30"
     And user click button Lanjut Isi Data Bouwheer
     #section select Anchor
@@ -82,10 +115,13 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user fill a field "BowheerName" with "PO test"
     And user select industry type
     And user select the year cooperating
+    And user select the year cooperating
     And user click Pilih
+    And user click button Lanjut Melengkapi Data
     And user click button Lanjut Melengkapi Data
     And user click button Lanjut Proses KYC
     #section KYC Process
+    Given user choose Business Type "CV"
     Given user choose Business Type "CV"
     And user click Selanjutnya
     And user take photo eKTP
@@ -114,15 +150,25 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user input and click "Simpan Daftar Direktur"
     And user input "Alamat Bisnis"
     And user checklist checkbox term and condition
+    And user input "Alamat Bisnis"
+    And user checklist checkbox term and condition
     And user checklist checkbox right and obligations
     And user checklist checkbox privy
     And user click button Lanjut Upload Dokumen
+    And user validate description prepare the following documents 'MSMEPOCV'
     And user validate description prepare the following documents 'MSMEPOCV'
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
     And user upload docuemnt "nib"
+    And user upload document "aktapendirian"
+    And user upload document "skkemenkumhanpendirian"
+    And user upload document "npwpbisnis"
+    And user upload document "aktaperubahanterakhir"
+    And user upload document "skkemenkumhanperubahanakhir"
+    And user upload document "ktpcomm"
+    And user upload document "npwpcomm"
     And user upload document "aktapendirian"
     And user upload document "skkemenkumhanpendirian"
     And user upload document "npwpbisnis"
@@ -139,7 +185,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-
+  @Sprint6Lending @C161669
   Scenario: User combine journey PO direct type PT.Perorangan with flagging MSME
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -208,13 +254,16 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-
+  @Sprint6Lending @C161670
   Scenario: User combine journey PO direct type UD with flagging MSME
     Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
     When user click button Ajukan Limit Kredit
     And User select loan type "PO"
     And User on Loan Needs Page
     And User on nominal "Rp50 juta - 5 Miliar"
+    And user input loan tenor "30"
+    And user click button Lanjut Isi Data Bouwheer
     And user input loan tenor "30"
     And user click button Lanjut Isi Data Bouwheer
     #section select Anchor
@@ -224,8 +273,12 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user select the year cooperating
     And user click Pilih
     And user click button Lanjut Melengkapi Data
+    And user select the year cooperating
+    And user click Pilih
+    And user click button Lanjut Melengkapi Data
     And user click button Lanjut Proses KYC
     #section KYC Process
+    Given user choose Business Type "UD"
     Given user choose Business Type "UD"
     And user click Selanjutnya
     And user take photo eKTP
@@ -254,9 +307,12 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user input and click "Simpan Daftar Direktur"
     And user input "Alamat Bisnis"
     And user checklist checkbox term and condition
+    And user input "Alamat Bisnis"
+    And user checklist checkbox term and condition
     And user checklist checkbox right and obligations
     And user checklist checkbox privy
     And user click button Lanjut Upload Dokumen
+    And user validate description prepare the following documents 'MSMEPOUD'
     And user validate description prepare the following documents 'MSMEPOUD'
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
@@ -274,7 +330,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user on monitoring loan process page
 
 
-  @C142730
+  @Sprint6Lending @C142730
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
     And user can see X button to back to Main Dashboard
@@ -284,14 +340,14 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Upload Ulang Dokumen
     Then user go back to page Progres Upload Dokumen
 
-  @C142731
+  @Sprint6Lending @C142731
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document
     Then user see button Simpan Dokumen
 
-  @C142732
+  @Sprint6Lending @C142732
   Scenario: user click button Simpan Dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
@@ -300,7 +356,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
-  @C142733
+  @Sprint6Lending @C142733
   Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
     And user can see X button to back to Main Dashboard
@@ -310,7 +366,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 
-  @C142734
+  @Sprint6Lending @C142734
   Scenario: Validate bottom sheet for Metode Upload Dokumen
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -319,7 +375,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Pilih Metode Upload Dokumen
     Then user will see bottom sheet metode upload Dokumen
 
-  @C142735
+  @Sprint6Lending @C142735
   Scenario: user can select and upload multiple document for PT.Perusahaan
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -339,7 +395,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document "paymentMutation"
     And user upload multiple document "1YearfinancialReports"
 
-  @C142736
+  @Sprint6Lending @C142736
   Scenario: user validate field after success upload document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -365,7 +421,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user verify upload all document Finance Report
     Then user see button Kirim Pengajuan Limit Kredit
 
-  @C142737
+  @Sprint6Lending @C142737
   Scenario: User add another document after the user success to uploads the previous document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -398,8 +454,28 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user verify upload all document Finance Report
     And user click button delete file uploaded
     Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
+  @C142738
+  Scenario: user verify pop up confirmation to delete uploaded file
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document "ktpcomm"
+    And user verify upload all document KTP
+    And user upload multiple document "npwpcomm"
+    And user verify upload all document NPWP
+    And user upload multiple document "SPkdok"
+    And user verify upload all document SPK Bouwheer
+    And user upload multiple document "paymentMutation"
+    And user verify upload all document Mutasi
+    And user upload multiple document "1YearfinancialReports"
+    And user verify upload all document Finance Report
+    And user click button delete file uploaded
+    Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
 
-  @C142739
+  @Sprint6Lending @C142739
   Scenario: user delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -444,6 +520,28 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
     And user click button Kembali
     Then pop up confirmation will disappear
+  @C142740
+  Scenario: user cancel to delete uploaded file
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    And user click button Langsung dari Aplikasi
+    And user upload multiple document "ktpcomm"
+    And user verify upload all document KTP
+    And user upload multiple document "npwpcomm"
+    And user verify upload all document NPWP
+    And user upload multiple document "SPKdok"
+    And user verify upload all document SPK Bouwheer
+    And user upload multiple document "paymentMutation"
+    And user verify upload all document Mutasi
+    And user upload multiple document "1YearfinancialReports"
+    And user verify upload all document Finance Report
+    And user click button delete file uploaded
+    And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
+    And user click button Kembali
+    Then pop up confirmation will disappear
 
   @C142741
   Scenario: user upload file more than 15MB
@@ -456,7 +554,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document more than 15 MB "ktpcomm"
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
 
-  @C142742
+  @Sprint6Lending @C142742
   Scenario: user validate button Kirim Pengajuan Kredit Limit after all documen uploaded
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -484,7 +582,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user verify upload all document Finance Report
     And user see button Kirim Pengajuan Limit Kredit
 
-  @C142743
+  @Sprint6Lending @C142743
   Scenario: user have not upload mandatory document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -495,7 +593,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user on Progres Upload Dokumen
     Then user will not see button Kirim Pengajuan Limit Kredit
 
-  @C142744
+  @Sprint6Lending @C142744
   Scenario: user back to main dashboard from progress loan page
     Given user on monitoring loan process page
     And user can see X button to back to Main Dashboard

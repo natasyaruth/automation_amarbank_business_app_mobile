@@ -17,7 +17,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then I successed go to dashbord
 
 
-  @c142544
+  @Sprint6Lending @C142544
   Scenario: Verify bottom sheet Loan Schema
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -26,7 +26,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
     And user click back button to back to type loan page
 
-  @C142545
+  @Sprint6Lending @C142545
   Scenario: User apply first loan AP Anchor and want to see AP loan schema
     Given User on Main Dashboard
     #section select loan type
@@ -38,7 +38,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user validate content loan schema "AP"
     And user click back to loan type page
 
-  @C142546
+  @Sprint6Lending @C142546
   Scenario: User validate dropdown list on nominal option
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -48,7 +48,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then user can validate List of Nominal Limit Credit
     And user can click close button and back to loan needs page
 
-  @C142547
+  @Sprint6Lending @C142547
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -58,7 +58,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
 
-  @C142548
+  @Sprint6Lending @C142548
   Scenario: Validate Error input nominal min Rp.50000000001
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -69,7 +69,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Save
     Then user can see error message "Min Rp.5.000.000.001, Max Rp.25.000.000.000" in the field "errorAmountLoanField"
 
-  @C142549
+  @Sprint6Lending @C142549
   Scenario: user clear the text input nominal
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -80,7 +80,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then user click button clear to delete all input nominal and back to zero
     And user click back button to back to page drop down option nominal
 
-  @C142550
+  @Sprint6Lending @C142550
   Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -93,7 +93,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-  @C142551
+  @Sprint6Lending @C142551
   Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -106,8 +106,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
 
-
-  @C142552
+  @Sprint6Lending @C142552
   Scenario: User apply combine journey loan AP Anchor with business type PT.Perusahaan and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
@@ -184,21 +183,21 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
-  @C142553
+  @Sprint6Lending @C142553
   Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
     Then user see button "Upload Ulang Dokumen"
 
-  @C142554
+  @Sprint6Lending @C142554
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document page
     Then user see button Simpan Dokumen
 
-  @C142555
+  @Sprint6Lending @C142555
   Scenario: user click button Simpan Dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
@@ -207,14 +206,14 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
-  @C142556
+  @Sprint6Lending @C142556
   Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
 
-  @C142557
+  @Sprint6Lending @C142557
   Scenario: Validate bottom sheet for Metode Upload Dokumen
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -223,7 +222,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Pilih Metode Upload Dokumen
     Then user will see bottom sheet metode upload Dokumen
 
-  @C142558
+  @Sprint6Lending @C142558
   Scenario: user can select and upload multiple document for PT.Perusahaan
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -244,7 +243,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user upload multiple document "2YearfinancialReports"
     Then user see button Kirim Pengajuan Limit Kredit
 
-  @C142559
+  @Sprint6Lending @C142559
   Scenario: user validate field after success upload document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -275,8 +274,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     # section trigered status loan
     And user trigered api change status loan is approved
 
-
-  @C142560
+  @Sprint6Lending @C142560
   Scenario: User add another document after the user success to uploads the previous document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -288,8 +286,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user verify upload all document KTP dan NPWP
     Then user will see the document will be uploaded and show in one row below uploaded document list
 
-
-  @C142561
+  @Sprint6Lending @C142561
   Scenario: user verify pop up confirmation to delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -308,7 +305,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button delete file uploaded
     Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
 
-  @C142562
+  @Sprint6Lending @C142562
   Scenario: user delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -322,7 +319,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Hapus
     Then user back to Progres Upload Dokumen page
 
-  @C142563
+  @Sprint6Lending @C142563
   Scenario: user cancel to delete uploaded file
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -343,7 +340,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user click button Kembali
     Then pop up confirmation will disappear
 
-  @C142564
+  @Sprint6Lending @C142564
   Scenario: user upload file more than 15MB
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -354,7 +351,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user upload multiple document more than 15 MB "ktpdannpwp"
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
 
-  @C142565
+  @Sprint6Lending @C142565
   Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -379,7 +376,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user verify upload all document Finance Report
     And user see button Kirim Pengajuan Limit Kredit
 
-  @C142566
+  @Sprint6Lending @C142566
   Scenario: user have not upload mandatory document
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
@@ -390,7 +387,7 @@ Feature: Apply First Loan With Flagging Corp Using AP Anchor
     And user on Progres Upload Dokumen
     Then user will not see button Kirim Pengajuan Limit Kredit
 
-  @C142567
+  @Sprint6Lending @C142567
   Scenario: user back to main dashboard from progress loan page
     Given user on monitoring loan process page
     And user can see X button to back to Main Dashboard
