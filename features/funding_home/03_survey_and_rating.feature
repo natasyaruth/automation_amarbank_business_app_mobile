@@ -17,6 +17,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -53,6 +54,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -89,6 +91,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -127,6 +130,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -165,6 +169,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -203,6 +208,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -243,6 +249,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -283,6 +290,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -320,6 +328,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'
@@ -358,6 +367,7 @@ Feature: Home - Survey and Rating
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individual'
         And I submit my legality type
         And I see page 'Upload eKTP'

@@ -428,7 +428,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And I approve the transaction
         And I click button create PIN
         And I input password
-        And I input new PIN
+        And I input new PIN with "111111"
         And I input confirm new PIN
         And I input OTP 
         And I click button next
@@ -448,7 +448,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And I reject the transaction
         And I click button create PIN
         And I input password
-        And I input new PIN
+        And I input new PIN with "111111"
         And I input confirm new PIN
         And I input OTP 
         And I click button next

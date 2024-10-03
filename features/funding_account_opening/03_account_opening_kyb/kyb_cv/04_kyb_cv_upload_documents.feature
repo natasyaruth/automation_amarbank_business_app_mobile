@@ -24,6 +24,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I swipe to card Giro Account
               And I choose Giro Account
               And I choose Giro Account Corporate
+        And I submit my giro type
               And I choose legality business type 'cv'
               And I submit my legality type
               And I fill NPWP Business

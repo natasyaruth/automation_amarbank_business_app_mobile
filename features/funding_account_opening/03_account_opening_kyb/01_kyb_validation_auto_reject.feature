@@ -21,6 +21,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form Business Profile with NPWP business indicated as DHN
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -79,6 +80,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 5 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -111,6 +113,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 4 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -143,6 +146,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 3 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -177,6 +181,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 2 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -211,6 +216,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 1 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business

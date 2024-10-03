@@ -9,7 +9,7 @@ module.exports = {
     understand: "~buttonUnderstand",
   },
   tabs: {
-    all: "~buttonNotification",
+    all: "~buttonChipAll",
     info: "~buttonChipInfo",
     transaction: "~buttonChipTransaction",
     loan: "~buttonChipLoan",
@@ -21,8 +21,8 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: ""},
-    infoNotifDetail: {xpath: ""},
+    infoNotif: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotifDetail: {xpath: "//android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",
@@ -94,9 +94,19 @@ module.exports = {
     return await I.grabTextFrom(this.texts.description);
   },
 
+  async getLatestDescription(){
+    I.waitForElement(this.texts.description+"0", 10);
+    return await I.grabTextFrom(this.texts.description+"0");
+  },
+
   async getTransferAmount(){
     I.waitForElement(this.texts.amount, 10);
     return await I.grabTextFrom(this.texts.amount);
+  },
+
+  async getLatestTransferAmount(){
+    I.waitForElement(this.texts.amount+"0", 10);
+    return await I.grabTextFrom(this.texts.amount+"0");
   },
 
   async getStatusTrx(){
@@ -104,9 +114,19 @@ module.exports = {
     return await I.grabTextFrom(this.texts.statusTrx);
   },
 
+  async getLatestStatusTrx(){
+    I.waitForElement(this.texts.statusTrx+"0", 10);
+    return await I.grabTextFrom(this.texts.statusTrx+"0");
+  },
+
   async getTitle(){
     I.waitForElement(this.texts.title, 10);
     return await I.grabTextFrom(this.texts.title);
+  },
+
+  async getLatestTitle(){
+    I.waitForElement(this.texts.title+"0", 10);
+    return await I.grabTextFrom(this.texts.title+"0");
   },
 
   async getInfoNotif(){

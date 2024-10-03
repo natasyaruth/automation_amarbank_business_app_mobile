@@ -2,9 +2,6 @@ const { I, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
-const userID = globalVariable.login.userID;
-const password = globalVariable.login.password;
-
 module.exports = {
 
     async getTokenLogin() {
@@ -14,8 +11,8 @@ module.exports = {
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: userID,
-            password: password,
+            userID: globalVariable.login.userID,
+            password: globalVariable.login.password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -27,7 +24,7 @@ module.exports = {
 
     async getLastStepJourney() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -48,8 +45,8 @@ module.exports = {
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: userID,
-            password: password,
+            userID: globalVariable.login.userID,
+            password: globalVariable.login.password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -61,7 +58,7 @@ module.exports = {
 
     async hasCreatePin() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -76,7 +73,7 @@ module.exports = {
 
     async getSourceType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -91,7 +88,7 @@ module.exports = {
 
     async getLegalityType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -106,7 +103,7 @@ module.exports = {
 
     async getName() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -121,7 +118,7 @@ module.exports = {
 
     async getFullAddress() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -160,7 +157,7 @@ module.exports = {
 
     async getBusinessId() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -176,7 +173,7 @@ module.exports = {
 
     async getListDocBusiness() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -193,7 +190,7 @@ module.exports = {
 
     async getListBusineePartners() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -210,7 +207,7 @@ module.exports = {
 
     async getIndustryType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -226,7 +223,7 @@ module.exports = {
 
     async getBusinessType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -242,7 +239,7 @@ module.exports = {
 
     async getFoundedDate() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -258,7 +255,7 @@ module.exports = {
 
     async getBusinessAddress() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -269,6 +266,54 @@ module.exports = {
         return {
             status: response.status,
             fullAddress: response.data.fullAddress
+        }
+    },
+
+    async getActiveAmount() {
+
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v2/user/business/details");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            activeBalance: response.data.activeBalance
+        }
+    },
+
+    async getBlockingAmount() {
+
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v2/user/business/details");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            blockedAmount: response.data.blockedAmount
+        }
+    },
+
+    async getTotalAmount() {
+
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v2/user/business/details");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            totalBalance: response.data.totalBalance
         }
     },
 }

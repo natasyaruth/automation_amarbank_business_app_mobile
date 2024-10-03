@@ -2,14 +2,11 @@ const { I, headerPage, onboardingAccOpeningPage, globalVariable, getDataDao } = 
 
 const env = globalVariable.returnEnvi();
 
-const userID = globalVariable.login.userID;
-const password = globalVariable.login.password;
-
 module.exports = {
 
     async resetStateFlow(stateNumber) {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -29,7 +26,7 @@ module.exports = {
         });
 
         const responseUpdate = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/flags/bulk-update", secret({
-            username: userID,
+            username: globalVariable.login.userID,
             flags: {
                 brankasOnboarding: status,
                 brankasSurvey: status
@@ -47,7 +44,7 @@ module.exports = {
 
     async getIdOtherDoc() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -65,7 +62,7 @@ module.exports = {
     async deleteOtherDoc() {
         const idDoc = (await this.getIdOtherDoc()).idDocs;
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -82,7 +79,7 @@ module.exports = {
 
         const idDoc = (await this.getIdOtherDoc()).idDocs;
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -217,8 +214,8 @@ module.exports = {
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: userID,
-            password: password,
+            userID: globalVariable.login.userID,
+            password: globalVariable.login.password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -235,8 +232,8 @@ module.exports = {
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: userID,
-            password: password,
+            userID: globalVariable.login.userID,
+            password: globalVariable.login.password,
             deviceID: deviceID
         }));
 
@@ -254,7 +251,7 @@ module.exports = {
         });
 
         const responseReset = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login/reset-attempts", secret({
-            userID: userID,
+            userID: globalVariable.login.userID,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -302,7 +299,7 @@ module.exports = {
 
     async getProductType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -318,7 +315,7 @@ module.exports = {
 
     async getAccountType() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -334,7 +331,7 @@ module.exports = {
 
     async getFullName() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -350,7 +347,7 @@ module.exports = {
 
     async getKTPNumber() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -366,7 +363,7 @@ module.exports = {
 
     async getPhoneNumber() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -382,7 +379,7 @@ module.exports = {
 
     async getEmail() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -398,7 +395,7 @@ module.exports = {
 
     async getAccountNumber() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -414,7 +411,7 @@ module.exports = {
 
     async getCompanyName() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -430,7 +427,7 @@ module.exports = {
 
     async getBusinessPartnerUserID() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -446,7 +443,7 @@ module.exports = {
 
     async isPendingTaskExist() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -462,7 +459,7 @@ module.exports = {
 
     async deleteAllNotification() {
 
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 

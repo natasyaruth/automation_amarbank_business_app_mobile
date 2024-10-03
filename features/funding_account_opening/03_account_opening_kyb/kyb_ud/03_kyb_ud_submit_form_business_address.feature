@@ -22,6 +22,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'ud'
         And I submit my legality type
         And I fill NPWP Business
