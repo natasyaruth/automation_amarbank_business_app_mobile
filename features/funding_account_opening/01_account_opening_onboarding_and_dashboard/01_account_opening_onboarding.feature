@@ -85,7 +85,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131958
+    @C131958 @FunctTestFunding
     Scenario: User choose legality business type Individu
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -214,7 +214,7 @@ Feature: Account Opening Onboarding
         Then I will see bottom sheet NPWP Business with NPWP still there
         And I see button submit NPWP is enabled
 
-    @C156868
+    @C156868 @FunctTestFunding
     Scenario: Check NPWP business that has been registered with type MSME
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -227,7 +227,7 @@ Feature: Account Opening Onboarding
         And I click continue to data personal
         Then I will see error NPWP business has been registered
 
-    @C156869
+    @C156869 @FunctTestFunding
     Scenario: Check NPWP business that has been registered with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -257,7 +257,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C156871
+    @C156871 @FunctTestFunding
     Scenario: Check NPWP Business Success with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account

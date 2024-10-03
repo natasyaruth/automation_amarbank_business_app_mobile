@@ -115,7 +115,8 @@ Then("I can't see toastbar {string}", (expectedMessageError)=>{
     I.dontSee(expectedMessageError);
 });
 
-Then("I can see toastbar {string}", (messageInfo)=>{    
+Then("I can see toastbar {string}", (messageInfo)=>{   
+    I.waitForElement(messageInfo,10) 
     I.see(messageInfo);
 });
 

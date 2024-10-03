@@ -1,8 +1,9 @@
-Feature: Account Opening Manual - Data Bisnis
+Feature: Account Opening Manual - Submit Data Business
     In order to opening my Giro account in SMB
     As a customer
     I want to submit my data personal as part of the KYB Process
 
+    @C159213 @FunctTestFundingSprint4
     Scenario: Check bottomsheet on Data Bisnis 
         Given I am a customer want to check bottomsheet on Data Bisnis
         When I regist account

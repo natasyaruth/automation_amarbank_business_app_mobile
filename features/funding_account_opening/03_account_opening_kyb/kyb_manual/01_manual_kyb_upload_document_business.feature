@@ -3,7 +3,7 @@ Feature: Account Opening KYB - Upload Document Business
     As a customer
     I want to upload document business as part of the KYB Process
 
-    @C131927
+    @C131927 @FunctTestFunding
     Scenario: Upload document with file size more than 15 MB in mobile
         Given I am a registered customer
         And already register till business address
@@ -24,7 +24,7 @@ Feature: Account Opening KYB - Upload Document Business
         And after I delete, there is no pop up to confirm
         And if I click reupload file, it would reupload again the file
 
-    @C156890
+    @C156890 @FunctTestFunding
     Scenario: Upload document with file size more than 15 MB in web view
         Given I am a registered customer
         And access link upload document
@@ -34,7 +34,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I see icon to delete file
         And after I delete, there is no pop up to confirm
 
-    @C156891
+    @C156891 @FunctTestFunding
     Scenario: Upload document with file other than PDF, JPG, PNG and JPEG in web view
         Given I am a registered customer
         And access link upload document
@@ -45,7 +45,7 @@ Feature: Account Opening KYB - Upload Document Business
         And after I delete, there is no pop up to confirm
         And if I click reupload file, it would reupload again the file    
 
-    @C156892
+    @C156892 @FunctTestFunding
     Scenario: Upload document and get error timeout in mobile
         Given I am a registered customer
         And already register till business address
@@ -71,7 +71,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I click understand
         And I allowed the permission
 
-    @C137190
+    @C137190 @FunctTestFundingSprint4
     Scenario: Upload all doc PT Perusahaan via link
         Given I am a registered customer
         And already register as PT Perusahaan till business address
@@ -225,7 +225,7 @@ Feature: Account Opening KYB - Upload Document Business
         And I access the link
         Then I will see documents that I remove recently is not there anymore
 
-    @C137199
+    @C137199 @FunctTestFunding
     Scenario: Delete document from link upload and check in app
         Given I am a registered customer
         And already register till business address

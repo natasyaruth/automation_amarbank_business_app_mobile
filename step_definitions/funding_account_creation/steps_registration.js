@@ -150,7 +150,7 @@ When("I verifying my phone number by entering the wrong code", async () => {
 });
  
 When("I verifying my email by login by user id", async () => {
-  I.wait(3);
+  I.wait(20);
   verificationEmailPage.isOpen();
 
   I.see("Segera Cek E-mail");

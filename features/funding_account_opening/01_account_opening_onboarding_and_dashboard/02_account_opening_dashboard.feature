@@ -37,7 +37,7 @@ Feature: Account Opening Main Dashboard
         And I back to continue process account opening
         Then I see page 'Upload eKTP'    
 
-    @C131962
+    @C131962 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -51,7 +51,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
-    @C131963
+    @C131963 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -70,7 +70,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data KTP'
 
-    @C131964
+    @C131964 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -86,7 +86,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie'
 
-    @C141154
+    @C141154 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -102,7 +102,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
-    @C131965
+    @C131965 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -118,7 +118,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Personal'  
 
-    @C131966
+    @C131966 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -135,7 +135,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Domicile Address'
 
-    @C131967
+    @C131967 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -153,7 +153,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
-    @C131968
+    @C131968 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -169,7 +169,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Profile'
 
-    @C131969
+    @C131969 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I choose legality business type 'ud'
         And I submit my legality type
@@ -225,7 +225,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
-    @C131971
+    @C131971 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -255,7 +255,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
-    @C131972
+    @C131972 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
         Given I choose legality business type 'company'
         And I submit my legality type
@@ -339,7 +339,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Registration Director'
         And I can see details registration director
 
-    @C159198
+    @C159198 @FunctTestFundingSprint4
     Scenario: Check last step after back to previous page and submit data again
         Given I choose legality business type 'company'
         And I submit my legality type

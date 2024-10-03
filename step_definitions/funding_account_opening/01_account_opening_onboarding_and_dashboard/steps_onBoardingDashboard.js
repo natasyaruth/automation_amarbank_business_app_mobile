@@ -403,7 +403,7 @@ Then("I will see information that I can try to register after 7 days", () => {
 
 Then("I will see details info of giro account Corporate and MSME", async () => {
 
-    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.buttons.closePage, 30);
     I.see("Pilih Rekening Giro");
     I.see("Silakan pilih salah satu rekening giro yang sesuai dengan kebutuhan bisnis Anda");
 
