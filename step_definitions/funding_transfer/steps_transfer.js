@@ -521,6 +521,12 @@ Then("I see PIN message error {string}", async (expectedMessageErrorPIN) => {
     I.waitForText(expectedMessageErrorPIN, 10);
 });
 
+
+ Then("I will be able to see message error {string}", async (expectedMessageErrorPIN) => {
+    I.waitForText("PIN yang dimasukkan salah, silakan coba lagi", 10);
+    I.waitForText(expectedMessageErrorPIN, 10);
+ });
+
 Then("I am on receiver list page", () => {
     transferPage.viewPageFriendList();
 });
