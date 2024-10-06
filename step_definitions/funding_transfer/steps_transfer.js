@@ -443,8 +443,9 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
     // Perform the assertion
     I.assertEqual(formattedActualAmount, formattedExpectedAmount);
 
-    I.waitForElement({accessibilityId: 'textTotal'}, 80)
-    I.seeElement({accessibilityId: 'textTotal'}); 
+    I.waitForElement({ xpath: '//android.widget.TextView[@content-desc="textTotal"]' }, 104);
+    I.seeElement({ xpath: '//android.widget.TextView[@content-desc="textTotal"]' });
+    
 
     I.waitForElement(transferPage.texts.category, 10);
     const actualCategory = await transferPage.getCategory();
