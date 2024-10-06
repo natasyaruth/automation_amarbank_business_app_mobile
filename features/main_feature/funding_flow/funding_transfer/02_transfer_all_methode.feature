@@ -47,9 +47,10 @@ Feature: User transfer with all transfer method
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I will directly go to page confirmation transfer
+        And I will directly go to page confirmation transfer between Amar Bank
+        And I click transfer now
         And I input wrong PIN
-        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
+        Then I will be able to see message error "PIN yang dimasukkan salah, silakan coba lagi"
 
     @C96931
     Scenario: User Success Transfer RTOL
