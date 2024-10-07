@@ -92,7 +92,7 @@ Feature: User transfer with all transfer method
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '200000000'
+        And I input amount '250000001'
         And I choose category 'Tagihan'
         And I input notes with 'Test SKN'
         And I click choose bank transfer service

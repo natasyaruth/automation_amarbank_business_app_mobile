@@ -172,7 +172,7 @@ Then("I can see SKN and RTGS", async () => {
     const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
     I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
     I.see("SKN");
-    I.see("Dana langsung sampai ke penerima");
+    I.see("Dana akan sampai dalam ± 3 hari kerja");
     I.see("Nominal transfer:");
     I.see("Rp 10.000 - Rp 1.000.000.000");
 
@@ -180,7 +180,7 @@ Then("I can see SKN and RTGS", async () => {
     const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
     I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
     I.see("RTGS");
-    I.see("Dana langsung sampai ke penerima");
+    I.see("Dana akan sampai pada hari kerja");
     I.see("Nominal transfer:");
     I.see("> Rp 100.000.000");
 });
