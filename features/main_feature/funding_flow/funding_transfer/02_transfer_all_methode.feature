@@ -83,6 +83,7 @@ Feature: User transfer with all transfer method
         Then I can see BIFAST and SKN
         And I choose transfer service BIFAST
         And I click transfer
+        And I am on page transfer confirmation
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
