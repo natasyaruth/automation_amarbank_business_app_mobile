@@ -46,7 +46,7 @@ Scenario: User validate status Pengajuan Limit
 Scenario: User continue journey from status Pengajuan Limit
     Given user on Aktivitas Pinjaman
     When user click card with status Pengajuan Limit
-    And user on Ajukan Pinjaman Bisnis Page    
+    And user on Pengajuan Limit Kredit Bisnis page 
     And user click button Lanjut Melengkapi Data
     And user click back button
 

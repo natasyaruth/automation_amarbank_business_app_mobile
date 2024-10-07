@@ -55,7 +55,7 @@ Scenario: User validate status Pengajuan Limit on apply loan only
 
 Scenario: User continue journey apply loan only from status Pengajuan Limit
     Given user on Aktivitas Pinjaman
-    When user click card with status Pengajuan Limit
+    When user click card with status Pengajuan Limit 
     And user on Ajukan Pinjaman Bisnis Page
     And user on buyer cooperating page
     And user select another buyer
