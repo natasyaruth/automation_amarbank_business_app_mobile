@@ -316,4 +316,26 @@ module.exports = {
             totalBalance: response.data.totalBalance
         }
     },
+
+    async getNotificationList(category) {
+
+        if(
+            category === "all"
+        ){
+            category = "";
+        }
+
+        const bearerToken = (await this.getTokenLogin()).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications/?category="+category);
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            listNotification: response.data
+        }
+    },
 }

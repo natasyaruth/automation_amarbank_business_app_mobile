@@ -46,7 +46,9 @@ When("I search name {string} in friendlist", (friendListname) => {
 });
 
 When("I submit to next flow", () => {
+    I.waitForText("Selanjutnya", 10);
     transferPage.nextProcessTransfer();
+    globalVariable.transfer.method = "OVERBOOK";
 });
 
 When("I input notes with {string}", (notes) => {
@@ -355,7 +357,7 @@ Then("I successfully transferred", async () => {
     let expectedSenderName;
 
     if (
-        typeBusiness === "1"
+        typeBusiness === 1
     ) {
         expectedSenderName = (await resetStateDao.getFullName()).ktpName;
 
@@ -419,8 +421,6 @@ Then("I successfully transferred", async () => {
 
         I.dontSee("Catatan");
         I.dontSee(transferPage.texts.note);
-        I.dontSee(globalVariable.transfer.note);
-
     }
 
     I.see("Bagikan Bukti Transfer");

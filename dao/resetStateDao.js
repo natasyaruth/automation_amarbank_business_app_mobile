@@ -225,6 +225,24 @@ module.exports = {
         }
     },
 
+    async getTokenLoginPartner() {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
+            userID: globalVariable.login.userIDPartner,
+            password: globalVariable.login.passwordPartner,
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            bearerToken: responseLogin.data.jwt.access_token
+        }
+    },
+
     async resetDeviceId(deviceID) {
 
         I.haveRequestHeaders({
@@ -267,7 +285,7 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
-        const responseReset = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/verify/selfie/" + userID);
+        const responseReset = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/verify/selfie/" + globalVariable.login.userID);
 
         I.seeResponseCodeIsSuccessful();
 
@@ -460,6 +478,21 @@ module.exports = {
     async deleteAllNotification() {
 
         const bearerToken = (await this.getTokenLogin()).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
+    async deleteAllNotificationPartner() {
+
+        const bearerToken = (await this.getTokenLoginPartner()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
