@@ -19,6 +19,7 @@ Feature: Account Opening - Validation Auto Reject
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
 
     @C131781
     Scenario: Submit form KTP with NIK indicated as DHN business type Individual

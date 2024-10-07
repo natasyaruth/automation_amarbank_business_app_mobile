@@ -4,13 +4,12 @@ Feature: Home - Notification Center
     I want to see all notification from SMB App in Main dashboard
 
     @C160816
-    Scenario: Close page notification center
+    Scenario: Close page notification center  
         Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
             | userIDstg   | staga29c |
-            | passwordStg | 1234Test |
-        And has been filled survey rating account opening    
+            | passwordStg | 1234Test |    
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -29,8 +28,7 @@ Feature: Home - Notification Center
             | userID      | autocaea |
             | password    | 1234Test |
             | userIDstg   | staga29c |
-            | passwordStg | 1234Test |
-        And has been filled survey rating account opening    
+            | passwordStg | 1234Test | 
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -38,6 +36,7 @@ Feature: Home - Notification Center
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I have '1' notification 'Maintenance' in notification center
         When I click notification center
         And I click bucketlist notification info
         And I click back in header page
@@ -50,7 +49,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
-        And has been filled survey rating account opening    
+        And don't have any notification  
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -77,7 +76,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
-        And has been filled survey rating account opening
         And I only have '1' notification 'Maintenance App' in notification center
         And I filling in form login with the following details:
             | userID      | autocaea |
@@ -102,8 +100,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -112,14 +109,15 @@ Feature: Home - Notification Center
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
-        When I click tab other
+        When I choose other
         And I click change transaction pin
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I input new PIN with "111111"
+        And I confirm create PIN
         And I input OTP
         And I will direct to page PIN has been successfully changes
         And I click understand
+        And I click tab Home
         And I will see card account 'active'
         And I see red dot notification center
         And I click notification center
@@ -128,7 +126,6 @@ Feature: Home - Notification Center
         And I will direct to detail notification PIN successfully changes
         And I click understand the notification
         And I will direct to page notification center
-        And I reset back my PIN Transaction
 
     @C160821
     Scenario: Checking Detail notification password successfully change
@@ -137,8 +134,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | staga29c |
             | passwordStg | 1234Test |
-        And has been filled survey rating account opening
-        And don’t have any notification
+        # And don't have any notification
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -147,12 +143,12 @@ Feature: Home - Notification Center
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
-        When I click tab other
+        When I choose other
         And I click menu change password
         And I input my old password
         And I click next to input new password
-        And I input field 'newPassword' with value 'Test1234'
-        And I input field 'confirmPassword' with value 'Test1234'
+        And I input field 'newPassword' with value '1234Test'
+        And I input field 'confirmPassword' with value '1234Test'
         And I confirm my new password
         And I will see snackbar OTP successfully sent
         And I input OTP change password
@@ -166,7 +162,6 @@ Feature: Home - Notification Center
         And I will direct to detail password successfully changes
         And I click understand the notification
         And I will direct to page notification center
-        And I reset back my password
 
     @C160822
     Scenario: Checking Detail notification Transfer In Overbook
@@ -175,8 +170,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And has friendlist with following details:
             | userID      | ruth6a44 |
             | password    | 1234Test |
@@ -221,8 +215,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -260,8 +253,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -299,8 +291,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -338,8 +329,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -377,8 +367,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -414,8 +403,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -451,7 +439,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -472,7 +459,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -494,7 +480,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -516,7 +501,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -538,7 +522,6 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -562,8 +545,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -586,8 +568,7 @@ Feature: Home - Notification Center
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |    
-        And has been filled survey rating account opening
-        And don’t have any notification
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |

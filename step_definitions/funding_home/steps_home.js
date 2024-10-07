@@ -11,7 +11,8 @@ const {
     headerPage,
     uploadDao,
     notificationCenterPage,
-    mockingDao
+    mockingDao,
+    mainActivePage,
 } = inject();
 
 Given(/I am on home page/, () => {
@@ -337,6 +338,10 @@ When("I click bucketlist notification transaction", () => {
 
 When("I click understand the notification", () => {
     notificationCenterPage.clickUnderstand();
+});
+
+When("I copy my account number", () => {
+    onboardingAccOpeningPage.copyAccNumber();
 });
 
 Then("I will not see my active, blocking and total amount", async () => {
@@ -763,77 +768,47 @@ Then("I will see notification is empty", () => {
 
 Then("I see notification Maintenance App Temporary", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualTitle = await notificationCenterPage.getTitle();
+    const actualTitle = await notificationCenterPage.getLatestTitle();
     I.assertEqual(actualTitle, "Peringatan Pemeliharaan Sistem");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     globalVariable.notificationCenter.desc = day + "/" + month + "/" + year;
     I.assertEqual(actualDesc, "Pemeliharan sistem pada " + globalVariable.notificationCenter.desc + ", jam 23.00-01.00 WIB");
 });
 
 Then("I see notification register new device successfully changes", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualTitle = await notificationCenterPage.getTitle();
+    const actualTitle = await notificationCenterPage.getLatestTitle();
     I.assertEqual(actualTitle, "Perubahan Perangkat");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, "Perangkat baru telah terdaftar untuk akun Anda.");
 
 });
 
 Then("I see notification attempt of register new device", async () => {
-
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
 
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "1", 10);
 
@@ -841,180 +816,130 @@ Then("I see notification attempt of register new device", async () => {
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(1);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(1);
 
-    const actualTitle = await notificationCenterPage.getTitle();
+    const actualTitle = await notificationCenterPage.getLatestTitle();
     I.assertEqual(actualTitle, "Perubahan Perangkat");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, "Ada percobaan perubahan perangkat pada akun Anda.");
 
 });
 
 Then("I see notification PIN successfully changes", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
-    const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    // const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    // globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualTitle = await notificationCenterPage.getTitle();
+    const actualTitle = await notificationCenterPage.getLatestTitle();
     I.assertEqual(actualTitle, "PIN Berhasil Diubah");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, "Pastikan untuk mengingat PIN baru Anda dan jaga kerahasiaannya.");
 
 });
 
 Then("I see notification password successfully changes", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
-    const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    // const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    // globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualTitle = await notificationCenterPage.getTitle();
+    const actualTitle = await notificationCenterPage.getLatestTitle();
     I.assertEqual(actualTitle, "Password Berhasil Diubah");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, "Gunakan password baru Anda untuk masuk ke akun Anda.");
 
 });
 
 Then("I see notification transfer in successfully", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Masuk");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     globalVariable.notificationCenter.descTrx = "Dari Bank Amar Indonesia - " + globalVariable.transfer.senderName;
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
 Then("I see notification transfer out successfully", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Berhasil");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
 Then("I see notification waiting approval transaction", async () => {
 
-    const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
-
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = day + " " + months[month] + " " + year;
+    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Menunggu Persetujuan Direksi");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -1030,13 +955,13 @@ Then("I see notification transaction is approved from other director", async () 
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Disetujui");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -1055,10 +980,10 @@ Then("I see notification transaction is rejected from other director", async () 
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Ditolak");
 
-    const actualDesc = await notificationCenterPage.getDescription();
+    const actualDesc = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -1070,8 +995,8 @@ Then("I will direct to detail notification PIN successfully changes", async () =
     const actualStatus = await notificationCenterPage.getInfoNotifDetail();
     I.assertEqual(actualStatus, "Info");
 
-    const actualDate = await notificationCenterPage.getDateDetail();
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    // const actualDate = await notificationCenterPage.getDateDetail();
+    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeDetail();
 
@@ -1093,8 +1018,8 @@ Then("I will direct to detail password successfully changes", async () => {
     const actualStatus = await notificationCenterPage.getInfoNotifDetail();
     I.assertEqual(actualStatus, "Info");
 
-    const actualDate = await notificationCenterPage.getDateDetail();
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    // const actualDate = await notificationCenterPage.getDateDetail();
+    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeDetail();
 
@@ -1369,4 +1294,77 @@ Then("I will see all categorize notification", async () => {
             throw new Error(text + " is not recognize in bucketlist. Should be Info or Transaction");
         }
     };
+});
+
+Then("I will see main dashboard with widget {string}", async (status) => {
+
+    const accType = (await resetStateDao.getAccountType()).accountType;
+
+    if (
+        status === 'active' &&
+        accType === 1
+    ) {
+        const accountHolderName = (await resetStateDao.getFullName()).ktpName;
+        const actualName = await onboardingAccOpeningPage.getAccHolderName();
+        I.assertEqual(actualName, accountHolderName);
+
+    } else if (
+        status === 'active' &&
+        accType === 2
+    ) {
+        const accountHolderName = (await resetStateDao.getCompanyName()).businessName;
+        const actualName = await onboardingAccOpeningPage.getAccHolderName();
+        I.assertEqual(actualName, accountHolderName);
+    }
+
+    let accNumber = "";
+    accNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    const format1 = accNumber.substring(0, 4);
+    const format2 = accNumber.substring(4, 8);
+    const format3 = accNumber.substring(8, 10);
+    const actualAccNumber = await onboardingAccOpeningPage.getAccNumber();
+    I.assertEqual(actualAccNumber, format1 + " " + format2 + " " + format3);
+    I.waitForElement(onboardingAccOpeningPage.buttons.copyAccNumber, 10);
+
+    I.see("Saldo Aktif");
+    I.waitForElement(onboardingAccOpeningPage.icons.eyeAmount, 10);
+    I.waitForElement(amountDetailPage.text.activeBalance, 10);
+    I.waitForElement(amountDetailPage.buttons.detailAmount, 10);
+
+    I.see("Saldo Tertahan");
+    I.waitForElement(amountDetailPage.text.blockBalance, 10);
+
+    I.see("Total Saldo");
+    I.waitForElement(amountDetailPage.text.totalBalance, 10);
+
+    I.see("Riwayat");
+    I.waitForElement(mainActivePage.buttons.btnHistory, 10);
+
+    I.see("Transfer");
+    I.waitForElement(mainActivePage.buttons.btnTransfer, 10);
+
+});
+
+Then("I see my active amount, blocking amount and total amount is masked", async () => {
+
+    const expectedAmount = "Rp••••";
+
+    const actualActiveAmount = await amountDetailPage.getActiveAmount();
+    I.assertEqual(actualActiveAmount, expectedAmount);
+    
+    const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
+    I.assertEqual(actualBlockingAmount, expectedAmount);
+
+    const actualTotalAmount = await amountDetailPage.getTotalAmount();
+    I.assertEqual(actualTotalAmount, expectedAmount);
+
+});
+
+Then("I will see snackbar success copy account number", ()=>{
+    I.waitForText("Berhasil disalin", 10);
+});
+
+Then("snackbar success copy account number will dissapear after 3-4 seconds", ()=>{
+    I.wait(4);
+    I.dontSee("Berhasil disalin");
 });

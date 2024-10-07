@@ -87,7 +87,7 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
+        And I create PIN with "123456"
         And I input incorrect confirmation new PIN
         Then I will see message error "PIN yang dimasukkan tidak sesuai"
 
@@ -98,8 +98,8 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I create PIN with "123456"
+        And I confirm create PIN
         And I input incorrect OTP
         Then I will see message error "Kode OTP yang Anda masukkan salah"
 
@@ -110,8 +110,8 @@ Feature: User create PIN from other menu
         And I click create transaction pin
         And I input password
         And I submit my password
-        And I input new PIN with '111111'
-        And I input confirmation new PIN '111111'
+        And I create PIN with '111111'
+        And I confirm create PIN
         And I will receive email contain with OTP
         And I input OTP
         Then My PIN successfully created

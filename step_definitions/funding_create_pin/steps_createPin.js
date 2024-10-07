@@ -46,7 +46,6 @@ When("I click change transaction pin", () => {
     createPINPage.goToChangePIN();
 });
 
-
 When("I click link forgot pin", () => {
     createPINPage.clickButtonForgotPIN();
 });
@@ -152,19 +151,35 @@ When("I reset my PIN", () => {
 
 When("I click understand", () => {
 
-    createPINPage.clickButtonUnderstand();
+    createPINPage.nexttoTransferPage();
 
 });
 
-When("I input new PIN with {string}", async (newPin) => {
+When("I input old PIN with {string}", async (pin) => {
+    I.waitForText("Masukkan PIN Lama", 10);
+    createPINPage.inputPIN(pin);
+});
+
+When("I input new PIN with {string}", async (pin) => {
+    I.waitForText("Buat PIN Baru", 10);
+    createPINPage.inputPIN(pin);
+    globalVariable.createPin.newPin = pin;
+});
+
+When("I confirm my new PIN", () => {
+    I.waitForText("Konfirmasi PIN Baru", 10);
+    createPINPage.inputConfirmationPIN(globalVariable.createPin.newPin);
+});
+
+When("I create PIN with {string}", async (newPin) => {
     I.waitForText("Buat PIN Baru", 10);
     createPINPage.inputPIN(newPin);
     globalVariable.createPin.newPin = newPin;
 });
 
-When("I input confirmation new PIN {string}", (confirmPin) => {
+When("I confirm create PIN", () => {
     I.waitForText("Konfirmasi PIN Baru", 10);
-    createPINPage.inputPIN(confirmPin);
+    createPINPage.inputConfirmationPIN(globalVariable.createPin.newPin);
 });
 
 Then("I will see message error {string} in the below of field confirmation pin", async (expectedMessageError) => {
@@ -203,6 +218,10 @@ When("I will receive email contain with OTP", async () => {
 
 When("I input OTP", async () => {
 
+    I.waitForText("Verifikasi E-mail", 20);
+    I.see("Masukkan Kode Verifikasi");
+    I.see("Kode verifikasi telah dikirim ke e-mail");
+    
     const otpCode = (await otpDao.getOTPCreatePIN()).otp;
 
     createPINPage.fillInOtpCode(otpCode);
@@ -285,5 +304,5 @@ Then("I will direct to page PIN has been successfully changes", () => {
     I.waitForText("Selamat, PIN Berhasil Diubah!", 10);
     I.waitForText("Mengerti", 10);
 
-    I.waitForElement(createPINPage.buttons.understand, 10);
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
 });

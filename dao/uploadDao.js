@@ -5,9 +5,6 @@ const { I, resetStateDao, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
-const userID = globalVariable.login.userID;
-const password = globalVariable.login.password;
-
 module.exports = {
 
     loadImageAsBase64(filePath) {
@@ -20,7 +17,7 @@ module.exports = {
 
         const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -42,7 +39,7 @@ module.exports = {
 
         const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -92,7 +89,7 @@ module.exports = {
 
         globalVariable.uploadDocuments.fileName = fileName;
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -134,7 +131,7 @@ module.exports = {
                 throw new Error("File type is not recognize");
         }
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -152,7 +149,7 @@ module.exports = {
     },
 
     async allowDeviceData() {
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -177,7 +174,7 @@ module.exports = {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -203,7 +200,7 @@ module.exports = {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -226,7 +223,7 @@ module.exports = {
 
     async submitProductType(type) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -244,7 +241,7 @@ module.exports = {
 
     async submitLegalityType(type, npwpBusiness) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -279,7 +276,7 @@ module.exports = {
 
     async submitBusinessProfile(businessProfile, legality) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -307,7 +304,7 @@ module.exports = {
 
     async submitOnePartner(businessPartner) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -331,7 +328,7 @@ module.exports = {
 
     async submitIdentityDetails(ktpData) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -375,7 +372,7 @@ module.exports = {
 
         npwp = npwpBusiness;
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -404,7 +401,7 @@ module.exports = {
         const year = currentDate.getFullYear();
 
         const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications", {
-            userId: userID,
+            userId: "",
             category: "Info",
             title: "Peringatan Pemeliharaan Sistem",
             summary: "Pemeliharan sistem pada " + day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB",
