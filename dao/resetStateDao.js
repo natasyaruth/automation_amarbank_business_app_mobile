@@ -1,9 +1,8 @@
 const { I, headerPage, onboardingAccOpeningPage, globalVariable, getDataDao } = inject();
-
 const env = globalVariable.returnEnvi();
-
 const userID = globalVariable.login.userID;
 const password = globalVariable.login.password;
+
 
 module.exports = {
 
@@ -211,14 +210,12 @@ module.exports = {
     },
 
     async getTokenLogin() {
-
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
-
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
             userID: userID,
-            password: password,
+            password: password
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -381,9 +378,7 @@ module.exports = {
     },
 
     async getEmail() {
-
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-
         I.amBearerAuthenticated(secret(bearerToken));
 
         const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));

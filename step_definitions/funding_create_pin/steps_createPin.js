@@ -1,10 +1,10 @@
 const {
     I,
-    createPINPage,
     headerPage,
     globalVariable,
     otpDao,
     resetStateDao,
+    createPINPage
 } = inject();
 
 const dummyPIN = "121212";
@@ -187,9 +187,12 @@ When("I input expired OTP", () => {
 });
 
 When("I will receive email contain with OTP", async () => {
+    I.waitForText("Verifikasi E-mail", 20);
+    // const account = table.parse().rowsHash();
+    // globalVariable.login.password = account["passwordStg"];
+    // globalVariable.login.userID = account["userIDstg"];
     const email = (await resetStateDao.getEmail()).email;
-
-    I.waitForText("Verifikasi E-mail", 10);
+    // I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
@@ -229,7 +232,7 @@ When("I should see close confirmation pop up", () => {
 });
 
 When("I click button Cancel", () => {
-    createPINPage.clickButtonClose();
+    createPINPage.clickButtonCancelNo();
 });
 
 When("I click button yes, cancel it", () => {
