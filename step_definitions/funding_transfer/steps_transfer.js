@@ -630,7 +630,7 @@ Then("I am on page transfer confirmation", async () => {
 
   I.see("Total");
   const actualTotalTransfer = await transferPage.getTotal();
-  I.assertEqual(actualTotalTransfer, "Rp" + globalVariable.transfer.totalAmount);
+  I.assertEqual(actualTotalTransfer, globalVariable.transfer.totalAmount);
 
   I.see("Kategori");
   const actualCategory = await transferPage.getCategory();

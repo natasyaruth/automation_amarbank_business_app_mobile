@@ -211,13 +211,8 @@ module.exports = {
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-<<<<<<< HEAD
-            userID: userID,
-            password: password
-=======
             userID: globalVariable.login.userID,
             password: globalVariable.login.password,
->>>>>>> 5f3d0c590215ec4c3fb67fe1cdfb3bf2f341d532
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -380,13 +375,9 @@ module.exports = {
     },
 
     async getEmail() {
-<<<<<<< HEAD
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-=======
 
         const bearerToken = (await this.getTokenLogin()).bearerToken;
 
->>>>>>> 5f3d0c590215ec4c3fb67fe1cdfb3bf2f341d532
         I.amBearerAuthenticated(secret(bearerToken));
 
         const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
