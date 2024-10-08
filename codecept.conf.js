@@ -33,7 +33,7 @@ let defaultAppium = {
   // app: "./assets/app/app-development-debug.apk",
   platform: "Android",
   device: "emulator",
-  path: "/wd/hub",
+  path: "/",
   desiredCapabilities: {
     platformName: "Android",
     // platformVersion: "12.0",
