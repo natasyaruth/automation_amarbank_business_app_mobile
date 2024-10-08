@@ -16,6 +16,9 @@ module.exports = {
     confirm: "~buttonConfirm",
     continueRegist: "~btnNext",
     acceptWebView: "~acceptWebviewBtn",
+    readTnC: "~buttonReadTnc",
+    backPDP: "~buttonNext",
+    closePDP: "~buttonLogout"
   },
   messageErrorFields:{
     fullName: "~textMsgErrorFullName",
@@ -38,9 +41,8 @@ module.exports = {
     companyName: "~labelCompanyName",
   },
   checkButton:{
-    firstPdp: "~cbShareValidInfo",
-    secondPdp: "~cBShareToOthers",
-    thirdPdp: "~cbReceiveInfoProduct",
+    firstPdp: "~cbReadAccept",
+    secondPdp: "~cbReceiveInfoProduct",
   },
   text:{
     firstPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank. *"])]' },
@@ -50,6 +52,10 @@ module.exports = {
   scroll:{
     scrollToButton: "~scrollContentWebview",
   },
+  statusElement:{
+    buttonLogin: {xpath: ""},
+    buttonRegist: {xpath: ""},
+  }
 
   fillInAccountInformation(accountInformation) {
     Object.keys(accountInformation).forEach((key) => {
@@ -160,16 +166,13 @@ module.exports = {
   },
 
   clickCheckboxPDPMandatory(){
-    I.waitForElement(this.checkButton.firstPdp, 5);
+    I.waitForElement(this.checkButton.firstPdp, 10);
     I.checkOption(this.checkButton.firstPdp);
-    I.checkOption(this.checkButton.secondPdp);
-    I.wait(5);
   },
 
   clickCheckboxPDPOptional(){
-    I.waitForElement(this.checkButton.firstPdp, 10);
-    I.checkOption(this.checkButton.thirdPdp);
-    I.wait(5);
+    I.waitForElement(this.checkButton.secondPdp, 10);
+    I.checkOption(this.checkButton.secondPdp);
   },
 
   clickButtonCreateAccountPdp(buttonName){
@@ -193,6 +196,11 @@ module.exports = {
     I.click(this.buttons.acceptWebView);
   },
 
+  agreeWithPDP() {
+    I.waitForElement(this.buttons.acceptWebView);
+    I.click(this.buttons.acceptWebView);
+  },
+
   continueRegistration(){
     I.click(this.buttons.continueRegist);
   },
@@ -200,5 +208,20 @@ module.exports = {
   clickScrollToEndOfPage(){
     I.waitForElement(this.scroll.scrollToButton, 10);
     I.click(this.scroll.scrollToButton);
+  },
+
+  readTnC(){
+    I.waitForElement(this.buttons.readTnC);
+    I.click(this.buttons.readTnC);
+  },
+
+  cancelPDP(){
+    I.waitForElement(this.buttons.closePDP);
+    I.click(this.buttons.closePDP);
+  },
+
+  backToPDP(){
+    I.waitForElement(this.buttons.backPDP);
+    I.click(this.buttons.backPDP);
   },
 };

@@ -67,20 +67,6 @@ Given("I delete my new device id", async ()=>{
     resetStateDao.deleteDeviceId(globalVariable.login.newDeviceID);
 });
 
-Then("I successed go to dashbord", () => {
-  ///dashboard still on development from mobile
-  ///I.see('Selamat, akun Anda berhasil dibuat')
-  I.wait(10);
-  // loginPage.fillInAccountInformation(account);
-  // loginPage.clickLoginButton();
-  // I.waitForText("Data Yang Dimasukkan Salah", 10);
-  // loginPage.tryToLogin();
-});
-
-Then("I click menu loan dashboard", () => {
-  I.click()
-});
-
 Given("I am a registered customer with following details:", (table) => {
   welcomePage.clickButtonLogin();
 
@@ -123,6 +109,14 @@ Given("I have last step journey before", async () => {
   globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
 });
 
+Given("I am an unregistered customer trying to login", () => {
+  welcomePage.clickButtonLogin();
+});
+
+Given("I am customer that already on page login", () => {
+  welcomePage.clickButtonLogin();
+});
+
 When("I filling in form login with the following details:", (table) => {
   const account = table.parse().rowsHash();
 
@@ -161,70 +155,6 @@ When("I click link registration", () => {
   loginPage.goToRegistrationPage();
 });
 
-Then("I will direct to dashboard", () => {
-  I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
-});
-
-Given("I am an unregistered customer trying to login", () => {
-  welcomePage.clickButtonLogin();
-});
-
-Then("I should see pop up with text {string} displayed", (actualMessage) => {
-  I.waitForText(actualMessage, 10);
-});
-
-Then(
-  "I should see pop up with text {string} and {string} displayed",
-  (infoMessage1, infoMessage2) => {
-    I.waitForText(infoMessage1);
-    I.waitForText(infoMessage2);
-  }
-);
-
-Then(
-  "I should be notified {string} in the below of field {string}",
-  async (expectedMsgError, fieldName) => {
-    actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
-    I.assertEqual(actualMessage, expectedMsgError);
-  }
-);
-
-Then(
-  "I should see log in pop up {string} with button {string}",
-  async (expectedValue, buttonName) => {
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.waitForText(expectedValue, 10);
-    I.waitForElement(loginPage.buttons[buttonName], 10);
-  });
-
-Then(
-  "I reset attempt failed login",
-  async () => {
-    await
-      resetStateDao.resetAttemptFailedLogin();
-  });
-
-Then(
-  "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
-  () => {
-    const currentDate = new Date();
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const addMinutes = minutes + 10;
-
-    const currentTime =
-      hours.toString().padStart(2, "0") +
-      ":" +
-      addMinutes.toString().padStart(2, "0");
-
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(
-      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-      currentTime
-    );
-  }
-);
-
 When("I click icon eye password", () => {
   loginPage.clickIconEyePassword();
 });
@@ -232,18 +162,6 @@ When("I click icon eye password", () => {
 When("I click icon eye password twice", () => {
   loginPage.clickIconEyePassword();
   loginPage.clickIconEyePassword();
-});
-
-Then("I should see my password", () => {
-  I.waitForText(globalVariable.login.password, 10);
-});
-
-Then("I should not see my password", () => {
-  I.dontSee(globalVariable.login.password);
-});
-
-Given("I am customer that already on page login", () => {
-  welcomePage.clickButtonLogin();
 });
 
 When("I click button login via biometric", () => {
@@ -339,6 +257,20 @@ When("I take picture selfie with face is blur", async () => {
     mockingDao.livenessFaceBlur();
 
   loginPage.takePicture();
+});
+
+When("I will see pop up option PDP login", async ()=>{
+  I.waitForText("Persetujuan Penggunaan Data dan Informasi Pribadi", 10);
+  I.see("Wajib dicentang");
+
+  I.see("Saya telah membaca dan memberikan persetujuan kepada PT Bank Amar Indonesia, Tbk untuk keperluan yang telah disampaikan.".trimEnd());
+  I.waitForElement(registrationPage.checkButton.firstPdp, 10);
+
+  I.see("Saya menyetujui PT Bank Amar Indonesia, Tbk untuk mengirimkan informasi pemasaran, termasuk produk, promosi, dan penawaran khusus.".trimEnd());
+  I.waitForElement(registrationPage.checkButton.secondPdp, 10);
+
+  const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonLogin, 'enabled');
+  I.assertEqual(isEnabled, 'false');
 });
 
 When("I take picture selfie with face is dark", async () => {
@@ -450,6 +382,33 @@ When("I click button continue to page login", () => {
   loginPage.continueToMainDashboard();
 });
 
+When("I click checkbox remember me", () => {
+  loginPage.checkRememberMe();
+});
+
+When("I click logout", () => {
+  I.wait(3);
+  I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+  loginPage.clickLogout();
+});
+
+When("I click try again to login", () => {
+  I.wait(1);
+  loginPage.tryToLogin();
+});
+
+When("I click to see terms and conditions", ()=>{
+  registrationPage.readTnC();
+});
+
+When("I want continue to see PDP", ()=>{
+  registrationPage.backToPDP();
+});
+
+When("I cancel continue to see PDP", ()=>{
+  registrationPage.cancelPDP();
+});
+
 Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
@@ -467,21 +426,6 @@ Then("I should see field {string} on page Forgot Password", (fieldName) => {
 
 Then("I should see field {string} on page Registration", (fieldName) => {
   I.waitForElement(registrationPage.fields[fieldName], 10);
-});
-
-When("I click checkbox remember me", () => {
-  loginPage.checkRememberMe();
-});
-
-When("I click logout", () => {
-  I.wait(3);
-  I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-  loginPage.clickLogout();
-});
-
-When("I click try again to login", () => {
-  I.wait(1);
-  loginPage.tryToLogin();
 });
 
 Then("I click button loan dashboard", () => {
@@ -564,4 +508,99 @@ Then("I will see information my account has been blocked", ()=>{
   I.waitForElement(loginPage.buttons.close, 10);
 
   I.see("Akun Anda Terblokir");
+});
+
+Then("I successed go to dashbord", () => {
+  I.wait(10);
+});
+
+Then("I click menu loan dashboard", () => {
+  I.click()
+});
+
+Then("I will direct to dashboard", () => {
+  I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
+});
+
+Then("I should see pop up with text {string} displayed", (actualMessage) => {
+  I.waitForText(actualMessage, 10);
+});
+
+Then(
+  "I should see pop up with text {string} and {string} displayed",
+  (infoMessage1, infoMessage2) => {
+    I.waitForText(infoMessage1);
+    I.waitForText(infoMessage2);
+  }
+);
+
+Then(
+  "I should be notified {string} in the below of field {string}",
+  async (expectedMsgError, fieldName) => {
+    actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
+    I.assertEqual(actualMessage, expectedMsgError);
+  }
+);
+
+Then(
+  "I should see log in pop up {string} with button {string}",
+  async (expectedValue, buttonName) => {
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText(expectedValue, 10);
+    I.waitForElement(loginPage.buttons[buttonName], 10);
+  });
+
+Then(
+  "I reset attempt failed login",
+  async () => {
+    await
+      resetStateDao.resetAttemptFailedLogin();
+  });
+
+Then(
+  "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
+  () => {
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const addMinutes = minutes + 10;
+
+    const currentTime =
+      hours.toString().padStart(2, "0") +
+      ":" +
+      addMinutes.toString().padStart(2, "0");
+
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.see(
+      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
+      currentTime
+    );
+  }
+);
+
+Then("I should see my password", () => {
+  I.waitForText(globalVariable.login.password, 10);
+});
+
+Then("I should not see my password", () => {
+  I.dontSee(globalVariable.login.password);
+});
+
+Then("I see pop up Terms Updates", ()=>{
+  I.waitForText("Pembaruan Ketentuan", 10);
+  I.see("Demi keamanan dan kenyamanan data pribadi Anda, baca dan pahami ketentuan terbaru dari PT Amar Bank Indonesia Tbk.");
+
+  I.see("Baca Syarat & Ketentuan");
+  I.waitForElement(registrationPage.buttons.readTnC, 10);
+});
+
+Then("I see pop up confirm to exit", ()=>{
+  I.waitForText("Persetujuan Dibutuhkan", 10);
+  I.see("Anda harus menyetujui kebijakan pelindungan data pribadi untuk dapat terus menggunakan aplikasi ini.");
+
+  I.see("Lanjutkan");
+  I.waitForElement(registrationPage.buttons.backRegist, 10);
+
+  I.see("Keluar");
+  I.waitForElement(registrationPage.buttons.closePDP, 10);
 });

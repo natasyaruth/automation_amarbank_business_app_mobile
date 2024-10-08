@@ -469,4 +469,42 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click later in pop up biometric
-        Then I will see card account 'on verification'    
+        Then I will see card account 'on verification'
+
+    @C162154
+    Scenario: Register new device with PDP still not submitted yet
+        Given I am a registered customer with following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I click button continue to take selfie
+        And I take picture selfie for matching the face
+        And I submit my selfie photo
+        And I will direct to page verification face is success
+        And I click button continue to page login
+        And I will directing to page login
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I see pop up Terms Updates
+        And I click to see terms and conditions
+        And I will directing to page PDP
+        And I click button agree to PDP
+        And I will see pop up option PDP login
+        And I check option already and read the condition PDP
+        And I check option I agree Amarbank send me new information and innovation from the bank
+        And I click login
+        And I click later in pop up biometric
+        Then I will see card account 'active' 
