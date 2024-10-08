@@ -217,3 +217,122 @@ Feature: Account login
     When I click button login via biometric
     Then I should see bottom sheet that biometric still not activated yet
     And I close bottom sheet biometric
+
+  @C162149
+  Scenario: Exit process PDP
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And still not agree with PDP concern
+    When I filling in form login with the following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I click login
+    And I see pop up Terms Updates
+    And I click to see terms and conditions
+    And I will directing to page PDP
+    And I click close in header page
+    And I see pop up confirm to exit 
+    And I cancel continue to see PDP
+    Then I will directing to page login
+
+  @C162150
+  Scenario: Back to process PDP  
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And still not agree with PDP concern
+    When I filling in form login with the following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I click login
+    And I see pop up Terms Updates
+    And I click to see terms and conditions
+    And I will directing to page PDP
+    And I click close in header page
+    And I see pop up confirm to exit 
+    And I want continue to see PDP
+    Then I will directing to page PDP
+
+  @C162151
+  Scenario: Login using existing user active with PDP still not submitted yet
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And still not agree with PDP concern
+    When I filling in form login with the following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I click login
+    And I see pop up Terms Updates
+    And I click to see terms and conditions
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP login
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I click login
+    And I click later in pop up biometric
+    Then I will see card account 'active'
+
+  @C162152
+  Scenario: Login using existing user on verification with PDP still not submitted yet
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And still not agree with PDP concern
+    When I filling in form login with the following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I click login
+    And I see pop up Terms Updates
+    And I click to see terms and conditions
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP login
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I click login
+    And I click later in pop up biometric
+    Then I will see card account 'on verification'
+
+  @C162153
+  Scenario: Login using existing user on process with PDP still not submitted yet
+    Given I am a registered customer with following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And still not agree with PDP concern
+    When I filling in form login with the following details:
+      | userID      | autocaea |
+      | password    | 1234Test |
+      | userIDstg   | stag76ee |
+      | passwordStg | Test1234 |
+    And I click login
+    And I see pop up Terms Updates
+    And I click to see terms and conditions
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP login
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I click login
+    And I click later in pop up biometric
+    Then I will see card account 'on process'
