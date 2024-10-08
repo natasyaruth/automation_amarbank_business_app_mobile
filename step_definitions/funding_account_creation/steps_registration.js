@@ -69,7 +69,7 @@ When("I swipe to next carousel", () => {
 });
 
 When("I validate wording funding business", () => {
-  I.see("Dapatkan Pendaanan untuk Bisnis Anda");
+  I.see("Dapatkan Pendanaan untuk Bisnis Anda");
   I.see("Menyediakan fasilitas pinjaman untuk mendapatkan modal usaha dan pengembangan bisnis Anda")
 });
 
@@ -381,6 +381,7 @@ Then("I will directing to page login", () => {
   I.waitForElement(headerPage.buttons.back, 10);
   I.waitForElement(headerPage.icon.callCenter, 10);
 
+  I.wait(10);
   I.see("User ID");
   I.see("Masukkan user ID");
   I.waitForElement(loginPage.fields.userID, 10);
