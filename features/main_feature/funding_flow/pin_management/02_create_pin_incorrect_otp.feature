@@ -1,4 +1,4 @@
-@regressionTest
+# @regressionTest
 Feature: User create PIN Journey Transfer Incorrect OTP
     In order to transfer
     As a customer
@@ -22,37 +22,37 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         Then I will direct to dashboard
 
 
-    # @C109110
-    # Scenario: User want to see their password
-    #     Given I am a customer who wants to create PIN
-    #     When I choose menu Transfer from main dashboard
-    #     And I see pop up Create PIN
-    #     And I click button Create PIN
-    #     And I input password
-    #     And I click icon eye
-    #     Then I will see my password
+    @C109110
+    Scenario: User want to see their password
+        Given I am a customer who wants to create PIN
+        When I choose menu Transfer from main dashboard
+        And I see pop up Create PIN
+        And I click button Create PIN
+        And I input password
+        And I click icon eye
+        Then I will see my password
 
-    # @C109111
-    # Scenario: User don't want to see their password
-    #     Given I am a customer who wants to create PIN
-    #     When I choose menu Transfer from main dashboard
-    #     And I see pop up Create PIN
-    #     And I click button Create PIN
-    #     And I input password
-    #     And I click icon eye twice
-    #     Then I will not see my password
+    @C109111
+    Scenario: User don't want to see their password
+        Given I am a customer who wants to create PIN
+        When I choose menu Transfer from main dashboard
+        And I see pop up Create PIN
+        And I click button Create PIN
+        And I input password
+        And I click icon eye twice
+        Then I will not see my password
 
-    # @C109112
-    # Scenario: User input incorrect confirmation PIN
-    #     Given I am a customer who wants to create PIN
-    #     When I choose menu Transfer from main dashboard
-    #     And I see pop up Create PIN
-    #     And I click button Create PIN
-    #     And I input password
-    #     And I submit my password
-    #     And I input new PIN with '111111'
-    #     And I input confirmation new PIN '123456'
-    #     Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
+    @C109112
+    Scenario: User input incorrect confirmation PIN
+        Given I am a customer who wants to create PIN
+        When I choose menu Transfer from main dashboard
+        And I see pop up Create PIN
+        And I click button Create PIN
+        And I input password
+        And I submit my password
+        And I input new PIN with '111111'
+        And I input confirmation new PIN '123456'
+        Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
     @C109113
     Scenario: User Successfully Get Email for OTP and input incorrect OTP
@@ -63,21 +63,21 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I input password
         And I submit my password
         And I input new PIN with '111111'
-        And I input confirmation new PIN '111111'
+        And I confirm my new PIN
         And I will receive email contain with OTP
         And I input incorrect OTP
         Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code
 
-    # @C109114
-    # Scenario: User Successfully Get Email for OTP and input expired OTP
-    #     Given I am a customer who wants to create PIN
-    #     When I choose menu Transfer from main dashboard
-    #     And I see pop up Create PIN
-    #     And I click button Create PIN
-    #     And I input password
-    #     And I submit my password
-    #     And I input new PIN with '111111'
-    #     And I input confirmation new PIN '111111'
-    #     And I will receive email contain with OTP
-    #     And I input expired OTP
-    #     Then I will see message error "Kode verifikasi yang dimasukan sudah kedaluwarsa" in the below of field otp code
+    @C109114
+    Scenario: User Successfully Get Email for OTP and input expired OTP
+        Given I am a customer who wants to create PIN
+        When I choose menu Transfer from main dashboard
+        And I see pop up Create PIN
+        And I click button Create PIN
+        And I input password
+        And I submit my password
+        And I input new PIN with '111111'
+        And I confirm my new PIN
+        And I will receive email contain with OTP
+        And I input expired OTP
+        Then I will see message error "Kode verifikasi yang dimasukan sudah kedaluwarsa" in the below of field otp code

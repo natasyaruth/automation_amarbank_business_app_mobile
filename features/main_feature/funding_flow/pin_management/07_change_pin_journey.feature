@@ -16,7 +16,8 @@ Feature: User change PIN from other menu
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test |
         And I click login
-        Then I will direct to Main Dashboard
+        And I click later in pop up biometric 
+        Then I will direct to dashboard
 
     @C109132
     Scenario: User wants to change transcation PIN

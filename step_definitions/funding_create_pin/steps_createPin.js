@@ -32,8 +32,7 @@ Given("has friendlist with following details:", (table) => {
 
 When("I don't have a PIN", () => { });
 
-Then("I go to page other ", () => {
-    Then("I can see change password and create transaction pin", () => { });
+Then("I can see change password and create transaction pin", () => { 
     I.waitForElement(createPINPage.buttons.changePassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
@@ -202,12 +201,8 @@ When("I input expired OTP", () => {
 });
 
 When("I will receive email contain with OTP", async () => {
-    I.waitForText("Verifikasi E-mail", 20);
-    // const account = table.parse().rowsHash();
-    // globalVariable.login.password = account["passwordStg"];
-    // globalVariable.login.userID = account["userIDstg"];
     const email = (await resetStateDao.getEmail()).email;
-    // I.waitForText("Verifikasi E-mail", 10);
+    I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
@@ -242,6 +237,10 @@ When("I click button cancel create PIN", () => {
 
 When("I click button back to fill password", () => {
     createPINPage.clickButtonBack();
+});
+
+When("I click back button to PIN", () => {
+    createPINPage.clickButtonBackPinConfirm();
 });
 
 When("I should see close confirmation pop up", () => {
