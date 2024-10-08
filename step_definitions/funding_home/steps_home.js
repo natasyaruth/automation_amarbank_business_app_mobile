@@ -165,6 +165,18 @@ Given("don't have any notification", async () => {
 
 });
 
+Given("we don't have any notification", async () => {
+
+    await
+        resetStateDao.deleteAllNotification();
+
+    I.wait(2);
+    
+    await
+        resetStateDao.deleteAllNotificationPartner();
+
+});
+
 Given("I have {string} notification {string} in notification center", async (number, notifName) => {
 
     const numbers = parseInt(number);
@@ -179,7 +191,9 @@ Given("I have {string} notification {string} in notification center", async (num
             break;
         default:
             throw new Error("Notification name is not recognize");
-    }
+    };
+
+    globalVariable.notificationCenter.numberOfNotif = numbers;
 
 });
 
@@ -202,6 +216,16 @@ Given("I only have {string} notification {string} in notification center", async
             throw new Error("Notification name is not recognize");
     }
 
+});
+
+Given("has notification in notification center", async () => {
+    const listNotification = (await getDataDao.getNotificationList("")).listNotification;
+
+    if(
+        listNotification.length === 0
+    ){
+        throw new Error("Notification list is empty for user id: "+globalVariable.login.userID+", please provide the list first");
+    }
 });
 
 When("I click detail amount", () => {
@@ -333,7 +357,11 @@ When("I click bucketlist notification info", () => {
 });
 
 When("I click bucketlist notification transaction", () => {
-    notificationCenterPage.openDetailNotifTransaction(0);
+    notificationCenterPage.openDetailNotifInfo(0);
+});
+
+When("I click notification center attempt register new device", () => {
+    notificationCenterPage.openDetailNotifInfo(1);
 });
 
 When("I click understand the notification", () => {
@@ -342,6 +370,24 @@ When("I click understand the notification", () => {
 
 When("I copy my account number", () => {
     onboardingAccOpeningPage.copyAccNumber();
+});
+
+When("I open all unread notification", () => {
+    const numbers = globalVariable.notificationCenter.numberOfNotif;
+
+    for (let i = 0; i < numbers; i++) {
+        notificationCenterPage.openDetailNotifInfo(i);
+        notificationCenterPage.clickUnderstand();
+        I.waitForElement(notificationCenterPage.tabs.all, 10);
+    };
+});
+
+When("I open the latest notification", () => {
+
+    notificationCenterPage.openDetailNotifInfo(0);
+    notificationCenterPage.clickUnderstand();
+    I.waitForElement(notificationCenterPage.tabs.all, 10);
+
 });
 
 Then("I will not see my active, blocking and total amount", async () => {
@@ -740,7 +786,8 @@ Then("I see red dot notification center", () => {
 });
 
 Then("I don't see red dot notification center", () => {
-    I.waitForElement(notificationCenterPage.buttons.notifCenter, 20);
+    I.waitForElement(mainActivePage.buttons.btnHistory, 30);
+    I.wait(3);
     I.dontSeeElement(notificationCenterPage.indicators.notifRedDot);
 });
 
@@ -748,7 +795,7 @@ Then("I will direct to page notification center", () => {
     I.waitForText("Notifikasi", 10);
     I.waitForElement(headerPage.buttons.closePage, 10);
 
-    I.see("Semua");
+    I.waitForText("Semua", 10);
     I.waitForElement(notificationCenterPage.tabs.all, 10);
 
     I.see("Info");
@@ -768,13 +815,17 @@ Then("I will see notification is empty", () => {
 
 Then("I see notification Maintenance App Temporary", async () => {
 
+    const day = globalVariable.getCurrentDateWithoutZero();
+    const month = globalVariable.getMonth();
+    const year = globalVariable.getCurrentYear();
+
     I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -795,7 +846,7 @@ Then("I see notification register new device successfully changes", async () => 
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -816,16 +867,63 @@ Then("I see notification attempt of register new device", async () => {
     I.assertEqual(actualStatus, "Info");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(1);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(1);
 
-    const actualTitle = await notificationCenterPage.getLatestTitle();
+    const actualTitle = await notificationCenterPage.getTitleBucketlist(1);
     I.assertEqual(actualTitle, "Perubahan Perangkat");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
+    const actualDesc = await notificationCenterPage.getDescBucketlist(1);
     I.assertEqual(actualDesc, "Ada percobaan perubahan perangkat pada akun Anda.");
+
+});
+
+Then("I see two notification attempt of register new device", async () => {
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "1", 10);
+
+    I.dontSeeElement(notificationCenterPage.indicators.notifRedDotBucketlist + "2");
+
+    const actualStatus1 = await notificationCenterPage.getInfoNotifBucketlist(0);
+    I.assertEqual(actualStatus1, "Info");
+
+    const actualStatus2 = await notificationCenterPage.getInfoNotifBucketlist(1);
+    I.assertEqual(actualStatus2, "Info");
+
+    I.dontSeeElement(notificationCenterPage.texts.infoNotif + "2");
+
+    const actualDate1 = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate1, globalVariable.notificationCenter.date);
+
+    const actualDate2 = await notificationCenterPage.getDateBucketlist(1);
+    I.assertEqual(actualDate2, globalVariable.notificationCenter.date);
+
+    I.dontSeeElement(notificationCenterPage.texts.date + "2");
+
+    const actualTime1 = await notificationCenterPage.getTimeBucketlist(0);
+    const actualTime2 = await notificationCenterPage.getTimeBucketlist(1);
+    I.dontSeeElement(notificationCenterPage.texts.time + "2");
+
+    const actualTitle1 = await notificationCenterPage.getTitleBucketlist(0);
+    I.assertEqual(actualTitle1, "Perubahan Perangkat");
+
+    const actualTitle2 = await notificationCenterPage.getTitleBucketlist(1);
+    I.assertEqual(actualTitle2, "Perubahan Perangkat");
+
+    I.dontSeeElement(notificationCenterPage.texts.title + "2");
+
+    const actualDesc1 = await notificationCenterPage.getDescBucketlist(0);
+    I.assertEqual(actualDesc1, "Ada percobaan perubahan perangkat pada akun Anda.");
+
+    const actualDesc2 = await notificationCenterPage.getDescBucketlist(1);
+    I.assertEqual(actualDesc2, "Ada percobaan perubahan perangkat pada akun Anda.");
+
+    I.dontSeeElement(notificationCenterPage.texts.description + "2");
 
 });
 
@@ -836,9 +934,9 @@ Then("I see notification PIN successfully changes", async () => {
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
-    // const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    // globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
-    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
@@ -857,9 +955,9 @@ Then("I see notification password successfully changes", async () => {
     const actualStatus = await notificationCenterPage.getInfoNotif();
     I.assertEqual(actualStatus, "Info");
 
-    // const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    // globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
-    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
@@ -879,7 +977,7 @@ Then("I see notification transfer in successfully", async () => {
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -887,11 +985,11 @@ Then("I see notification transfer in successfully", async () => {
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Masuk");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
+    const actualDesc = await notificationCenterPage.getLatestTitle();
     globalVariable.notificationCenter.descTrx = "Dari Bank Amar Indonesia - " + globalVariable.transfer.senderName;
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -903,7 +1001,7 @@ Then("I see notification transfer out successfully", async () => {
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -911,11 +1009,19 @@ Then("I see notification transfer out successfully", async () => {
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Berhasil");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
-    globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -927,7 +1033,7 @@ Then("I see notification waiting approval transaction", async () => {
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
-    globalVariable.notificationCenter.date = (await getDataDao.getFoundedDate()).foundedAt;
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -935,11 +1041,19 @@ Then("I see notification waiting approval transaction", async () => {
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Menunggu Persetujuan Direksi");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
-    globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -951,6 +1065,7 @@ Then("I see notification transaction is approved from other director", async () 
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
@@ -958,10 +1073,19 @@ Then("I see notification transaction is approved from other director", async () 
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Disetujui");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -973,17 +1097,27 @@ Then("I see notification transaction is rejected from other director", async () 
     I.assertEqual(actualStatus, "Transaksi");
 
     const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
     I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Ditolak");
 
-    const actualDesc = await notificationCenterPage.getLatestDescription();
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
     I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
 
-    const actualAmount = await notificationCenterPage.getLatestTransferAmount();
+    const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
@@ -995,8 +1129,8 @@ Then("I will direct to detail notification PIN successfully changes", async () =
     const actualStatus = await notificationCenterPage.getInfoNotifDetail();
     I.assertEqual(actualStatus, "Info");
 
-    // const actualDate = await notificationCenterPage.getDateDetail();
-    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    const actualDate = await notificationCenterPage.getDateDetail();
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeDetail();
 
@@ -1018,8 +1152,8 @@ Then("I will direct to detail password successfully changes", async () => {
     const actualStatus = await notificationCenterPage.getInfoNotifDetail();
     I.assertEqual(actualStatus, "Info");
 
-    // const actualDate = await notificationCenterPage.getDateDetail();
-    // I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+    const actualDate = await notificationCenterPage.getDateDetail();
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
     const actualTime = await notificationCenterPage.getTimeDetail();
 
@@ -1049,8 +1183,8 @@ Then("I will direct to detail transfer in successfully", async () => {
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Masuk");
 
-    const actualDesc = await notificationCenterPage.getDescription();
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    const actualTitle = await notificationCenterPage.getTitle();
+    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
 
     I.waitForText("Anda telah menerima transfer sebesar " + globalVariable.transfer.amountTransfer + " ke akun Anda. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
 
@@ -1074,8 +1208,8 @@ Then("I will direct to detail transfer out successfully", async () => {
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Berhasil");
 
-    const actualDesc = await notificationCenterPage.getDescription();
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    const actualTitle = await notificationCenterPage.getTitle();
+    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
 
     I.waitForText("Transaksi Anda sebesar " + globalVariable.transfer.amountTransfer + " sudah berhasil ditransfer. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
 
@@ -1166,10 +1300,10 @@ Then("I will direct to detail notification waiting approval transaction", async 
     const actualTime = await notificationCenterPage.getTimeDetail();
 
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
-    I.assertEqual(actualStatusTrx, "Transaksi Berhasil");
+    I.assertEqual(actualStatusTrx, "Menunggu Persetujuan Direksi");
 
-    const actualDesc = await notificationCenterPage.getDescription();
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    const actualTitle = await notificationCenterPage.getTitle();
+    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
 
     I.waitForText("Transaksi Bisnis Anda sebesar " + globalVariable.transfer.amountTransfer + " sedang menunggu persetujuan dari semua direksi. Periksa menu Persetujuan Transaksi untuk melihat detail.", 10);
 
@@ -1193,10 +1327,10 @@ Then("I will direct to detail notification transaction is approved from other di
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Disetujui");
 
-    const actualDesc = await notificationCenterPage.getDescription();
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    const actualTitle = await notificationCenterPage.getTitle();
+    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
 
-    I.waitForText("Transaksi Anda sebesar " + globalVariable.transfer.amountTransfer + " telah disetujui dan sudah berhasil transfer. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
+    I.waitForText("Transaksi Bisnis Anda sebesar " + globalVariable.transfer.amountTransfer + " telah disetujui dan sudah berhasil transfer. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
 
     I.see("Mengerti");
     I.waitForElement(notificationCenterPage.buttons.understand, 10);
@@ -1218,10 +1352,10 @@ Then("I will direct to detail notification transaction is rejected from other di
     const actualStatusTrx = await notificationCenterPage.getStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Ditolak");
 
-    const actualDesc = await notificationCenterPage.getDescription();
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    const actualTitle = await notificationCenterPage.getTitle();
+    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
 
-    I.waitForText("Transaksi Anda sebesar " + globalVariable.transfer.amountTransfer + " telah ditolak dan tidak dapat diproses. Periksa kembali detail dan saldo akun Anda, atau hubungi tim kami jika butuh bantuan.", 10);
+    I.waitForText("Transaksi Bisnis Anda sebesar " + globalVariable.transfer.amountTransfer + " telah ditolak dan tidak dapat diproses. Periksa kembali detail dan saldo akun Anda, atau hubungi tim kami jika butuh bantuan.", 10);
 
     I.see("Mengerti");
     I.waitForElement(notificationCenterPage.buttons.understand, 10);
@@ -1231,13 +1365,21 @@ Then("I will see notification is sorted by the latest to oldest", async () => {
 
     I.waitForElement(notificationCenterPage.texts.date + "0", 10);
 
-    const listDate = await I.grabTextFromAll('//android.widget.TextView[@content-desc[starts-with(., ' + notificationCenterPage.texts.date.slice(1) + ')]]');
+    const listNotification = (await getDataDao.getNotificationList()).listNotification;
 
     const newListDate = [];
 
-    for (let i = 0; listDate.length; i++) {
-        const date = listDate[i].substring(0, 1);
-        newListDate.push(date);
+    for (let i = 0; i < listNotification.length; i++) {
+        const date = await notificationCenterPage.getDateBucketlist(i);
+        let day = date.substring(0, 1);
+
+        if (
+            day.startsWith("0", 0)
+        ) {
+            day = day.slice(0);
+        }
+
+        newListDate.push(day);
     };
 
     for (let j = 0; j < newListDate.length - 1; j++) {
@@ -1251,13 +1393,13 @@ Then("I will see notification is sorted by the latest to oldest", async () => {
 
 Then("I will see notification categorize by Info", async () => {
 
-    I.wait(1);
+    I.wait(3);
 
-    const numberInfo = await I.grabNumberOfVisibleElements('//android.widget.TextView[@content-desc[starts-with(., ' + notificationCenterPage.texts.date.slice(1) + ')]]');
+    const listInfo = (await getDataDao.getNotificationList("info")).listNotification;
 
-    for (let i = 0; i < numberInfo; i++) {
+    for (let i = 0; i < listInfo.length; i++) {
         let index = i + 1;
-        const text = await I.grabTextFrom('android.view.View/android.view.View[2]/android.view.View[' + index + ']');
+        const text = await I.grabTextFrom('//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[' + index + ']/android.widget.TextView[1]');
 
         I.assertEqual(text, "Info");
     };
@@ -1265,13 +1407,13 @@ Then("I will see notification categorize by Info", async () => {
 
 Then("I will see notification categorize by Transaction", async () => {
 
-    I.wait(1);
+    I.wait(3);
 
-    const numberTrx = await I.grabNumberOfVisibleElements('//android.widget.TextView[@content-desc[starts-with(., ' + notificationCenterPage.texts.date.slice(1) + ')]]');
+    const listTrx = (await getDataDao.getNotificationList("transaction")).listNotification;
 
-    for (let i = 0; i < numberTrx; i++) {
+    for (let i = 0; i < listTrx.length; i++) {
         let index = i + 1;
-        const text = await I.grabTextFrom('android.view.View/android.view.View[2]/android.view.View[' + index + ']');
+        const text = await I.grabTextFrom('//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[' + index + ']/android.widget.TextView[1]');
 
         I.assertEqual(text, "Transaksi");
     };
@@ -1279,19 +1421,19 @@ Then("I will see notification categorize by Transaction", async () => {
 
 Then("I will see all categorize notification", async () => {
 
-    I.wait(1);
+    I.wait(3);
 
-    const numberTrx = await I.grabNumberOfVisibleElements('//android.widget.TextView[@content-desc[starts-with(., ' + notificationCenterPage.texts.date.slice(1) + ')]]');
+    const listNotification = (await getDataDao.getNotificationList("")).listNotification;
 
-    for (let i = 0; i < numberTrx; i++) {
+    for (let i = 0; i < listNotification.length; i++) {
         let index = i + 1;
-        const text = await I.grabTextFrom('android.view.View/android.view.View[2]/android.view.View[' + index + ']');
+        const text = await I.grabTextFrom('//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[' + index + ']/android.widget.TextView[1]');
 
         if (
-            text !== "Info" ||
+            text !== "Info" &&
             text !== "Transaksi"
         ) {
-            throw new Error(text + " is not recognize in bucketlist. Should be Info or Transaction");
+            throw new Error(text + " is not recognize in bucketlist. Should be Info or Transaksi");
         }
     };
 });
@@ -1351,7 +1493,7 @@ Then("I see my active amount, blocking amount and total amount is masked", async
 
     const actualActiveAmount = await amountDetailPage.getActiveAmount();
     I.assertEqual(actualActiveAmount, expectedAmount);
-    
+
     const actualBlockingAmount = await amountDetailPage.getBlockingAmount();
     I.assertEqual(actualBlockingAmount, expectedAmount);
 
@@ -1360,11 +1502,11 @@ Then("I see my active amount, blocking amount and total amount is masked", async
 
 });
 
-Then("I will see snackbar success copy account number", ()=>{
+Then("I will see snackbar success copy account number", () => {
     I.waitForText("Berhasil disalin", 10);
 });
 
-Then("snackbar success copy account number will dissapear after 3-4 seconds", ()=>{
+Then("snackbar success copy account number will dissapear after 3-4 seconds", () => {
     I.wait(4);
     I.dontSee("Berhasil disalin");
 });

@@ -400,14 +400,38 @@ module.exports = {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
 
+        let userId;
+
+        switch (globalVariable.login.userID) {
+            case 'natace13':
+                userId = "48ca7d82-67fe-4987-8580-38b9a6ef7096";
+                break;
+            case 'autocaea':
+                userId = "5ae3ea48-bb17-4d1b-94c6-b3d6bc6efdfe";
+                break;
+            case 'ruth1600':
+                userId = "8919e08e-7af9-4ec8-91a8-b2119e21c62f";
+                break;
+            case 'staga29c':
+                userId = "4935ea1a-1401-42e1-a9e5-36305ec146af";
+                break;
+            case 'ruth9ba1':
+                userId = "d56baf8a-5652-40a1-a08a-819a0634699f";
+                break;
+            case 'ruthb1dc':
+                userId = "144a2fcf-da7d-4317-b3a9-15e0a138cb9e";
+                break;
+        };
+
         const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications", {
-            userId: "",
-            category: "Info",
+            userId: userId,
+            source: "AMARBIS",
+            category: "info",
             title: "Peringatan Pemeliharaan Sistem",
             summary: "Pemeliharan sistem pada " + day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB",
-            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada "+"\n" 
-                         +day + "/" + month + "/" + year +" jam 23.00-01.00 WIB. Selama waktu ini, akses Anda "+"\n"
-                         +"pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
+            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada " +
+                day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB. Selama waktu ini, akses Anda " +
+                "pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
         });
 
         return {

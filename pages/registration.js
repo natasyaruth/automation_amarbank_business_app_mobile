@@ -16,6 +16,9 @@ module.exports = {
     confirm: "~buttonConfirm",
     continueRegist: "~btnNext",
     acceptWebView: "~acceptWebviewBtn",
+    readTnC: "~buttonReadTnc",
+    backPDP: "~buttonNext",
+    closePDP: "~buttonLogout"
   },
   messageErrorFields: {
     fullName: "~textMsgErrorFullName",
@@ -37,10 +40,9 @@ module.exports = {
     mobileNumber: "~labelPhoneNumber",
     companyName: "~labelCompanyName",
   },
-  checkButton: {
-    firstPdp: "~cbShareValidInfo",
-    secondPdp: "~cBShareToOthers",
-    thirdPdp: "~cbReceiveInfoProduct",
+  checkButton:{
+    firstPdp: "~cbReadAccept",
+    secondPdp: "~cbReceiveInfoProduct"
   },
   text: {
     firstPdpText: {
@@ -59,13 +61,17 @@ module.exports = {
   scroll: {
     scrollToButton: "~scrollContentWebview",
   },
+  statusElement:{
+    buttonLogin: {xpath: ""},
+    buttonRegist: {xpath: ""},
+  },
 
   fillInAccountInformation(accountInformation) {
     Object.keys(accountInformation).forEach((key) => {
       if (this.fields[key] === undefined) {
         return;
       }
-      I.waitForElement(this.fields[key], 5);
+      I.waitForElement(this.fields[key],5);
       I.seeElement(this.fields[key]);
 
       if (
@@ -76,7 +82,8 @@ module.exports = {
         I.clearField(this.fields[key]);
         return;
       }
-      I.fillField(this.fields[key], accountInformation[key]);
+
+      I.setText(this.fields[key], accountInformation[key]);
       I.hideDeviceKeyboard();
     });
   },
@@ -167,17 +174,15 @@ module.exports = {
     I.waitForInvisible(this.buttons.confirm, 10);
   },
 
-  clickCheckboxPDPMandatory() {
-    I.waitForElement(this.checkButton.firstPdp, 5);
+
+  clickCheckboxPDPMandatory(){
+    I.waitForElement(this.checkButton.firstPdp, 10);
     I.checkOption(this.checkButton.firstPdp);
-    I.checkOption(this.checkButton.secondPdp);
-    I.wait(5);
   },
 
-  clickCheckboxPDPOptional() {
-    I.waitForElement(this.checkButton.firstPdp, 10);
-    I.checkOption(this.checkButton.thirdPdp);
-    I.wait(5);
+  clickCheckboxPDPOptional(){
+    I.waitForElement(this.checkButton.secondPdp, 10);
+    I.checkOption(this.checkButton.secondPdp);
   },
 
   clickButtonCreateAccountPdp(buttonName) {
@@ -201,12 +206,32 @@ module.exports = {
     I.click(this.buttons.acceptWebView);
   },
 
-  continueRegistration() {
+  agreeWithPDP() {
+    I.waitForElement(this.buttons.acceptWebView);
+    I.click(this.buttons.acceptWebView);
+  },
+
+  continueRegistration(){
     I.click(this.buttons.continueRegist);
   },
 
   clickScrollToEndOfPage() {
     I.waitForElement(this.scroll.scrollToButton, 10);
     I.click(this.scroll.scrollToButton);
+  },
+
+  readTnC(){
+    I.waitForElement(this.buttons.readTnC);
+    I.click(this.buttons.readTnC);
+  },
+
+  cancelPDP(){
+    I.waitForElement(this.buttons.closePDP);
+    I.click(this.buttons.closePDP);
+  },
+
+  backToPDP(){
+    I.waitForElement(this.buttons.backPDP);
+    I.click(this.buttons.backPDP);
   },
 };

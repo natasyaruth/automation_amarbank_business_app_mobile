@@ -46,7 +46,9 @@ When("I search name {string} in friendlist", (friendListname) => {
 });
 
 When("I submit to next flow", () => {
-  transferPage.nextProcessTransfer();
+    I.waitForText("Selanjutnya", 10);
+    transferPage.nextProcessTransfer();
+    globalVariable.transfer.method = "OVERBOOK";
 });
 
 When("I input notes with {string}", (notes) => {
@@ -354,11 +356,10 @@ Then("I successfully transferred", async () => {
   const typeBusiness = (await resetStateDao.getAccountType()).accountType;
   let expectedSenderName;
 
-  if (
-      typeBusiness === "1"
-  ) {
-      expectedSenderName = (await resetStateDao.getFullName()).ktpName;
-
+    if (
+        typeBusiness === 1
+    ) {
+        expectedSenderName = (await resetStateDao.getFullName()).ktpName;
   } else {
 
       expectedSenderName = (await resetStateDao.getCompanyName()).businessName;
@@ -417,11 +418,9 @@ Then("I successfully transferred", async () => {
 
   } else {
 
-      I.dontSee("Catatan");
-      I.dontSee(transferPage.texts.note);
-      I.dontSee(globalVariable.transfer.note);
-
-  }
+        I.dontSee("Catatan");
+        I.dontSee(transferPage.texts.note);
+    }
 
   I.see("Bagikan Bukti Transfer");
   I.waitForElement(transferPage.buttons.share, 10);

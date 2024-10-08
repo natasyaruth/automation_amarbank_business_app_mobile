@@ -9,6 +9,77 @@ module.exports = {
         }
         return environment;
     },
+    getCurrentDay() {
+        const currentDate = new Date();
+        const day = currentDate.getDay();
+
+        return day;
+    },
+    getCurrentDateWithoutZero() {
+        const currentDate = new Date();
+        const date = currentDate.getDate();
+
+        return date;
+    },
+    getCurrentDateWithZero() {
+        const currentDate = new Date();
+        const date = currentDate.getDate();
+        let stringDate;
+
+        if (
+            date < 10
+        ) {
+            stringDate = "0" + date;
+            return stringDate;
+
+        } else {
+
+            return date;
+        }
+    },
+    getMonth() {
+        const currentDate = new Date();
+        const month = currentDate.getMonth();
+
+        return month;
+    },
+    getMonthString() {
+        const month = this.getMonth();
+
+        return this.constant.months[month];
+    },
+    getCurrentYear() {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+
+        return year;
+    },
+    getCurrentFullDate(format) {
+
+        const currentDate = new Date();
+        const day = currentDate.getDay();
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+
+        if (
+
+            format === "ddmmmyyyy"
+        ) {
+
+            const date = this.getCurrentDateWithZero();
+            return date + " " + this.constant.months[month] + " " + year;
+        }
+    },
+    constant: {
+        months: [
+            "Januari", "Februari", "Maret", "April",
+            "Mei", "Juni", "Juli", "Agustus",
+            "September", "Oktober", "November", "Desember"
+        ],
+        formatDate: {
+            ddmmmyyyy: "ddmmmyyyy",
+        }
+    },
     registration: {
         fullName: "",
         fullNamePartner: "",
@@ -151,8 +222,9 @@ module.exports = {
         desc: "",
         date: "",
         descTrx: "",
+        numberOfNotif: 0,
     },
-    profile:{
+    profile: {
         fullName: "",
         phoneNumber: "",
         email: "",
