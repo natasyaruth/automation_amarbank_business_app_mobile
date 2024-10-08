@@ -674,8 +674,8 @@ Feature: Account registration
   Scenario: Resend email verification
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
-      | email           | yahya_baru23@email.com |
-      | mobileNumber    | 81193629023        |
+      | email           | yahya_auto20@yopmail.com |
+      | mobileNumber    | 81293628        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     And I registering the account

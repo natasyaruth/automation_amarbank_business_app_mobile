@@ -1,10 +1,10 @@
 const {
     I,
-    createPINPage,
     headerPage,
     globalVariable,
     otpDao,
     resetStateDao,
+    createPINPage
 } = inject();
 
 const dummyPIN = "121212";
@@ -32,8 +32,7 @@ Given("has friendlist with following details:", (table) => {
 
 When("I don't have a PIN", () => { });
 
-Then("I go to page other ", () => {
-    Then("I can see change password and create transaction pin", () => { });
+Then("I can see change password and create transaction pin", () => { 
     I.waitForElement(createPINPage.buttons.changePassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
@@ -203,7 +202,6 @@ When("I input expired OTP", () => {
 
 When("I will receive email contain with OTP", async () => {
     const email = (await resetStateDao.getEmail()).email;
-
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
@@ -241,6 +239,10 @@ When("I click button back to fill password", () => {
     createPINPage.clickButtonBack();
 });
 
+When("I click back button to PIN", () => {
+    createPINPage.clickButtonBackPinConfirm();
+});
+
 When("I should see close confirmation pop up", () => {
     I.waitForText("Anda yakin ingin membatalkan proses?", 10);
     I.see("Jika ya, Anda akan mengulang proses dari awal.");
@@ -248,7 +250,7 @@ When("I should see close confirmation pop up", () => {
 });
 
 When("I click button Cancel", () => {
-    createPINPage.clickButtonClose();
+    createPINPage.clickButtonCancelNo();
 });
 
 When("I click button yes, cancel it", () => {

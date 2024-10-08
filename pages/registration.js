@@ -20,42 +20,51 @@ module.exports = {
     backPDP: "~buttonNext",
     closePDP: "~buttonLogout"
   },
-  messageErrorFields:{
+  messageErrorFields: {
     fullName: "~textMsgErrorFullName",
     email: "~textMsgErrorEmail",
     mobileNumber: "~textMsgErrorPhoneNumber",
     password: "~textMsgErrorPassword",
     confirmPassword: "~textMsgErrorConfirmPassword",
-    businessCode: "~textMsgErrorBusinessCode"
+    businessCode: "~textMsgErrorBusinessCode",
   },
-  icons:{
+  icons: {
     eyePassword: "~iconEyePassword",
     eyeConfirmPassword: "~iconEyeConfirmPassword",
   },
-  links:{
+  links: {
     login: "~linkLogin",
   },
-  label:{
+  label: {
     email: "~labelEmail",
     mobileNumber: "~labelPhoneNumber",
     companyName: "~labelCompanyName",
   },
   checkButton:{
     firstPdp: "~cbReadAccept",
-    secondPdp: "~cbReceiveInfoProduct",
+    secondPdp: "~cbReceiveInfoProduct"
   },
-  text:{
-    firstPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank. *"])]' },
-    secondPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank. *"])]' },
-    thirdPdpText: { xpath: '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank."])]' },
+  text: {
+    firstPdpText: {
+      xpath:
+        '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan data dan/atau informasi pribadi secara benar, lengkap, asli, sah dan sesuai peraturan perundang-undangan yang berlaku kepada  Bank sebagai syarat penggunaan produk atau layanan Bank. *"])]',
+    },
+    secondPdpText: {
+      xpath:
+        '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Membagikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga untuk tujuan penggunaan produk atau layanan Bank. *"])]',
+    },
+    thirdPdpText: {
+      xpath:
+        '//android.widget.TextView[contains(@text, //android.widget.TextView[@text="Menerima penawaran produk dan/atau layanan melalui sarana komunikasi pribadi nasabah sebagai syarat penggunaan produk atau layanan Bank."])]',
+    },
   },
-  scroll:{
+  scroll: {
     scrollToButton: "~scrollContentWebview",
   },
   statusElement:{
     buttonLogin: {xpath: ""},
     buttonRegist: {xpath: ""},
-  }
+  },
 
   fillInAccountInformation(accountInformation) {
     Object.keys(accountInformation).forEach((key) => {
@@ -79,51 +88,51 @@ module.exports = {
     });
   },
 
-  fillFieldRegistration(fieldName, txtValue){
-    I.waitForElement(this.fields[fieldName],5);
+  fillFieldRegistration(fieldName, txtValue) {
+    I.waitForElement(this.fields[fieldName], 5);
     I.seeElement(this.fields[fieldName]);
-    I.setText(this.fields[fieldName], txtValue);
+    I.fillField(this.fields[fieldName], txtValue);
   },
 
-  async getMessageErrorFieldRegistration (fieldName) {
-      if(Object.keys(this.messageErrorFields).indexOf(fieldName) === -1){
-        throw new Error('Field ${fieldName} is not found');
-      } 
-      I.waitForElement(this.messageErrorFields[fieldName], 15);
-      return await I.grabTextFrom(this.messageErrorFields[fieldName]);
+  async getMessageErrorFieldRegistration(fieldName) {
+    if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
+      throw new Error("Field ${fieldName} is not found");
+    }
+    I.waitForElement(this.messageErrorFields[fieldName], 15);
+    return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
-  clearFieldsRegistration(fieldName){
+  clearFieldsRegistration(fieldName) {
     I.clearField(this.fields[fieldName]);
   },
 
-  async getValueFromFieldRegistration (fieldName) {
-    if(Object.keys(this.fields).indexOf(fieldName) === -1){
-      throw new Error('Field ${fieldName} is not found');
+  async getValueFromFieldRegistration(fieldName) {
+    if (Object.keys(this.fields).indexOf(fieldName) === -1) {
+      throw new Error("Field ${fieldName} is not found");
     }
     I.seeElement(this.fields[fieldName]);
     return await I.grabTextFromField(this.fields[fieldName]);
   },
 
   async getValueInformation(labelName) {
-    if(Object.keys(this.label).indexOf(labelName) === -1){
-      throw new Error('Field ${fieldName} is not found');
+    if (Object.keys(this.label).indexOf(labelName) === -1) {
+      throw new Error("Field ${fieldName} is not found");
     }
     I.seeElement(this.label[labelName]);
     return await I.grabTextFrom(this.label[labelName]);
   },
 
-  async checkTnC(){
+  async checkTnC() {
+    I.waitForElement(this.buttons.createAccountPDP, 5);
+    let isDisabled = await I.grabAttributeFrom(
+      this.buttons.createAccountPDP,
+      "clickable"
+    );
 
-    I.waitForElement(this.buttons.createAccountPDP,5);
-    let isDisabled = await I.grabAttributeFrom(this.buttons.createAccountPDP, "clickable");
-
-    if(isDisabled === "false"){
+    if (isDisabled === "false") {
       console.log("Tombol dalam keadaan disable.");
       //return true;
-    }
-
-    else{
+    } else {
       console.log("Tombol dalam keadaan enable.");
       //return true;
     }
@@ -138,11 +147,11 @@ module.exports = {
   // }
   // },
 
-  clickIconEyePassword(){
+  clickIconEyePassword() {
     I.click(this.icons.eyePassword);
   },
 
-  clickIconEyeConfirmPassword(){
+  clickIconEyeConfirmPassword() {
     I.click(this.icons.eyeConfirmPassword);
   },
 
@@ -153,17 +162,18 @@ module.exports = {
     I.click(this.buttons.createAccount);
   },
 
-  clickButtonBackToPageRegistration(){
+  clickButtonBackToPageRegistration() {
     I.waitForElement(this.buttons.backRegist);
     I.click(this.buttons.backRegist);
     I.waitForInvisible(this.buttons.backRegist, 3);
   },
 
-  clickButtonConfirm(){
+  clickButtonConfirm() {
     I.waitForElement(this.buttons.confirm);
     I.click(this.buttons.confirm);
     I.waitForInvisible(this.buttons.confirm, 10);
   },
+
 
   clickCheckboxPDPMandatory(){
     I.waitForElement(this.checkButton.firstPdp, 10);
@@ -175,7 +185,7 @@ module.exports = {
     I.checkOption(this.checkButton.secondPdp);
   },
 
-  clickButtonCreateAccountPdp(buttonName){
+  clickButtonCreateAccountPdp(buttonName) {
     I.waitForElement(this.buttons.createAccountPDP, 5);
     I.click(this.buttons[buttonName]);
     I.wait(5);
@@ -205,7 +215,7 @@ module.exports = {
     I.click(this.buttons.continueRegist);
   },
 
-  clickScrollToEndOfPage(){
+  clickScrollToEndOfPage() {
     I.waitForElement(this.scroll.scrollToButton, 10);
     I.click(this.scroll.scrollToButton);
   },

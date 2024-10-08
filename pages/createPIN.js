@@ -12,10 +12,12 @@ module.exports = {
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
-    close: "~buttonClose",
-    cancel: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View" },
+    close: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
+    backToPin: { xpath: "(//android.view.View[@content-desc='buttonBack'])[1]"},
+    cancel: "~buttonYes",
+    cancelNo: "~buttonNo",
     btnTransfer: "~btnTransfer",
-    back: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View" },
+    back: "~buttonNo",
     backToDashboard: "~buttonBackToDashboard",
     forgotPIN: "~",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
@@ -85,6 +87,10 @@ module.exports = {
     I.waitForElement(this.buttons.back, 10);
     I.click(this.buttons.back);
   },
+  clickButtonBackPinConfirm() {
+    I.waitForElement(this.buttons.backToPin, 10);
+    I.click(this.buttons.backToPin);
+  },
 
   clickButtonBackToDashboard() {
     I.waitForElement(this.buttons.backToDashboard, 10);
@@ -99,6 +105,11 @@ module.exports = {
   clickButtonCancel() {
     I.waitForElement(this.buttons.cancel, 10);
     I.click(this.buttons.cancel);
+  },
+
+  clickButtonCancelNo() {
+    I.waitForElement(this.buttons.cancelNo, 10);
+    I.click(this.buttons.cancelNo);
   },
 
   clickButtonUnderstand() {

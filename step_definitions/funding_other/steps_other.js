@@ -5,10 +5,14 @@ const { I,
     onboardingAccOpeningPage,
     headerPage,
     resetStateDao,
+    otherPage
 } = inject();
 
 When("I choose other", () =>{
     onboardingAccOpeningPage.goToTabOthers();
+});
+Then("I go to page other", () => {
+    otherPage.viewPageOthers();
 });
 
 When("I click menu delete account", () => {
