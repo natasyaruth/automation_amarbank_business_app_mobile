@@ -37,7 +37,7 @@ module.exports = {
   },
   link: {
     forgotPassword: "~linkForgotPassword",
-    registration: "~linkRegistration",
+    registration: { xpath: '//android.widget.TextView[@text="Masuk Akun"]' },
     loginLink: "~linkLogin",
   },
   checkbox: {

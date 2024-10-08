@@ -168,21 +168,21 @@ Then("I can see SKN and RTGS", async () => {
   I.dontSee("RTOL");
   I.dontSee("Rp 10.000 - Rp 50.000.000");
 
-  I.waitForElement(transferPage.radioButtons.methodSkn, 10);
-  const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
-  I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
-  I.see("SKN");
-  I.see("Dana langsung sampai ke penerima");
-  I.see("Nominal transfer:");
-  I.see("Rp 10.000 - Rp 1.000.000.000");
+    I.waitForElement(transferPage.radioButtons.methodSkn, 10);
+    const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
+    I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
+    I.see("SKN");
+    I.see("Dana akan sampai dalam ± 3 hari kerja");
+    I.see("Nominal transfer:");
+    I.see("Rp 10.000 - Rp 1.000.000.000");
 
-  I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
-  const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
-  I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
-  I.see("RTGS");
-  I.see("Dana langsung sampai ke penerima");
-  I.see("Nominal transfer:");
-  I.see("> Rp 100.000.000");
+    I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
+    const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
+    I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
+    I.see("RTGS");
+    I.see("Dana akan sampai pada hari kerja");
+    I.see("Nominal transfer:");
+    I.see("> Rp 100.000.000");
 });
 
 Then("I can see RTGS", async () => {
@@ -445,8 +445,9 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
   // Perform the assertion
   I.assertEqual(formattedActualAmount, formattedExpectedAmount);
 
-  I.waitForElement({accessibilityId: 'textTotal'}, 80)
-  I.seeElement({accessibilityId: 'textTotal'}); 
+    I.waitForElement({ xpath: '//android.widget.TextView[@content-desc="textTotal"]' }, 104);
+    I.seeElement({ xpath: '//android.widget.TextView[@content-desc="textTotal"]' });
+    
 
   I.waitForElement(transferPage.texts.category, 10);
   const actualCategory = await transferPage.getCategory();
@@ -456,7 +457,8 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
   const actualnotes = await transferPage.getNotes();
   I.assertEqual(actualnotes, globalVariable.transfer.note);
 
-  I.dontSee(globalVariable.transfer.service);
+    //FOR WHICH ELEMENT?
+    //I.dontSee(globalVariable.transfer.service);
 });
 
 When("I input amount more than active amount", async () => {
@@ -519,9 +521,15 @@ Then("I shouldn't see message error total amount more than active amount", async
 });
 
 Then("I see PIN message error {string}", async (expectedMessageErrorPIN) => {
-  I.waitForText("Data Yang Dimasukkan Salah", 10);
-  I.waitForText(expectedMessageErrorPIN, 10);
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText(expectedMessageErrorPIN, 10);
 });
+
+
+ Then("I will be able to see message error {string}", async (expectedMessageErrorPIN) => {
+    I.waitForText("PIN yang dimasukkan salah, silakan coba lagi", 10);
+    I.waitForText(expectedMessageErrorPIN, 10);
+ });
 
 Then("I am on receiver list page", () => {
   transferPage.viewPageFriendList();

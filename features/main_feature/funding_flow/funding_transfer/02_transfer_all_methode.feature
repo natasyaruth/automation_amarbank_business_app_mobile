@@ -47,9 +47,10 @@ Feature: User transfer with all transfer method
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I will directly go to page confirmation transfer
+        And I will directly go to page confirmation transfer between Amar Bank
+        And I click transfer now
         And I input wrong PIN
-        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
+        Then I will be able to see message error "PIN yang dimasukkan salah, silakan coba lagi"
 
     # @C96931
     Scenario: User Success Transfer RTOL
@@ -82,6 +83,7 @@ Feature: User transfer with all transfer method
         Then I can see BIFAST and SKN
         And I choose transfer service BIFAST
         And I click transfer
+        And I am on page transfer confirmation
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
@@ -91,7 +93,7 @@ Feature: User transfer with all transfer method
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '200000000'
+        And I input amount '250000001'
         And I choose category 'Tagihan'
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
@@ -125,7 +127,7 @@ Feature: User transfer with all transfer method
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '1000000000'
+        And I input amount '1000000001'
         And I choose category 'Tagihan'
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service

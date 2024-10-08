@@ -420,6 +420,7 @@ Then("I will directing to page login", () => {
   I.waitForElement(headerPage.buttons.back, 10);
   I.waitForElement(headerPage.icon.callCenter, 10);
 
+  I.wait(10);
   I.see("User ID");
   I.see("Masukkan user ID");
   I.waitForElement(loginPage.fields.userID, 10);
