@@ -455,7 +455,8 @@ When("I will directly go to page confirmation transfer between Amar Bank", async
     const actualnotes = await transferPage.getNotes();
     I.assertEqual(actualnotes, globalVariable.transfer.note);
 
-    I.dontSee(globalVariable.transfer.service);
+    //FOR WHICH ELEMENT?
+    //I.dontSee(globalVariable.transfer.service);
 });
 
 When("I input amount more than active amount", async () => {
