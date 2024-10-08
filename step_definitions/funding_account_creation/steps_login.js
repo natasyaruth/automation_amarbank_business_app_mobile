@@ -359,6 +359,7 @@ When("I will see pop up option PDP login", async () => {
   I.see("Saya menyetujui PT Bank Amar Indonesia, Tbk untuk mengirimkan informasi pemasaran, termasuk produk, promosi, dan penawaran khusus.".trimEnd());
   I.waitForElement(registrationPage.checkButton.secondPdp, 10);
 
+  I.see("Masuk Akun");
   const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonLogin, 'enabled');
   I.assertEqual(isEnabled, 'false');
 });
@@ -507,6 +508,10 @@ When("I want continue to see PDP", () => {
 When("I cancel continue to see PDP", () => {
   registrationPage.cancelPDP();
 });
+
+When("I submit the PDP login", ()=>{
+  loginPage.submitPDPLogin();
+})
 
 Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
@@ -706,7 +711,7 @@ Then("I see pop up confirm to exit", () => {
   I.see("Anda harus menyetujui kebijakan pelindungan data pribadi untuk dapat terus menggunakan aplikasi ini.");
 
   I.see("Lanjutkan");
-  I.waitForElement(registrationPage.buttons.backRegist, 10);
+  I.waitForElement(registrationPage.buttons.backPDP, 10);
 
   I.see("Keluar");
   I.waitForElement(registrationPage.buttons.closePDP, 10);

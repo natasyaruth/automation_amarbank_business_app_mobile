@@ -30,8 +30,6 @@ Given("My last flow kyc step is {string}", (stateName) => {
 Given("I register initiator with partner as below", async (table) => {
     const legality = "CV";
     const prodType = "CORP";
-    const userID = globalVariable.login.userID;
-    const password = globalVariable.login.password;
     const npwpBusiness = globalVariable.registration.npwpBusinessDefault;
 
     const ktpInitiator = {
@@ -122,7 +120,7 @@ Given("I register initiator with partner as below", async (table) => {
     globalVariable.registration.emailPartner = dataInvitee["email"];
     globalVariable.registration.passwordPartner = dataInvitee["password"];
     globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
-    globalVariable.registration.fullName = dataInvitee["fullName"];
+    globalVariable.registration.fullNamePartner = dataInvitee["fullName"];
 
 });
 
