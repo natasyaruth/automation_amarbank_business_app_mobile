@@ -1,5 +1,5 @@
 # @regressionTest
-Feature: User create PIN Journey Transfer
+Feature: User cancel create PIN Journey Transfer
     In order to transfer
     As a customer
     I want to be able to create transaction pin
@@ -10,9 +10,13 @@ Feature: User create PIN Journey Transfer
         Given I am a registered customer with following details:
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
+            | userID      | elka74a9 |
+            | password    | Test1234 |
         When I filling in form login with the following details:
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
+            | userID      | elka74a9 |
+            | password    | Test1234 |
         And I click login
         And I click later in pop up biometric 
         Then I will direct to dashboard
@@ -82,7 +86,7 @@ Feature: User create PIN Journey Transfer
         And I input password
         And I submit my password
         And I input new PIN with '111111'
-        And I input confirmation new PIN '111111'
+        And I click back button to PIN
         And I click button Close
         And I should see close confirmation pop up
         And I click button Cancel
@@ -97,7 +101,7 @@ Feature: User create PIN Journey Transfer
         And I input password
         And I submit my password
         And I input new PIN with '111111'
-        And I input confirmation new PIN '111111'
+        And I confirm my new PIN
         And I will receive email contain with OTP
         And I input OTP
         Then My PIN successfully created

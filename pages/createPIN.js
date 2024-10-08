@@ -13,6 +13,7 @@ module.exports = {
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
+    backToPin: { xpath: "(//android.view.View[@content-desc='buttonBack'])[1]"},
     cancel: "~buttonYes",
     cancelNo: "~buttonNo",
     btnTransfer: "~btnTransfer",
@@ -85,6 +86,10 @@ module.exports = {
   clickButtonBack() {
     I.waitForElement(this.buttons.back, 10);
     I.click(this.buttons.back);
+  },
+  clickButtonBackPinConfirm() {
+    I.waitForElement(this.buttons.backToPin, 10);
+    I.click(this.buttons.backToPin);
   },
 
   clickButtonBackToDashboard() {
