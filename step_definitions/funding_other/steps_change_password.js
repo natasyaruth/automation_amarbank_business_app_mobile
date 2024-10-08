@@ -162,7 +162,7 @@ When("I login again with my old password", () => {
 When("I fill form login with incorrect password", () => {
     const incorrectLogin = {
         userID: globalVariable.login.userID,
-        password: "abcCV879",
+        password: globalVariable.login.dummyPassword,
     };
 
     loginPage.fillInAccountInformation(incorrectLogin);
@@ -269,7 +269,7 @@ Then("I will direct to page input OTP change password", async () => {
     I.see("Masukkan Kode OTP");
     I.see("Kode OTP telah dikirim ke nomor");
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
+    const phoneNumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
     I.see(phoneNumber);
 
     I.waitForElement(changePasswordPage.fields.otp, 10);
@@ -311,7 +311,7 @@ Then("I reset back my password", async () => {
 Then("I reset attempt otp after login", async () => {
 
     await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+        otpDao.resetLimitRequestOtpUsingToken();
 });
 
 Then("I notified that I can verify the OTP tomorrow", async () => {
@@ -343,5 +343,5 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
     I.dontSeeElement(changePasswordPage.link.resendOtp);
 
     await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+        otpDao.resetLimitRequestOtpUsingToken();
 });

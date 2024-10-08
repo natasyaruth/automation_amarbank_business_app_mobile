@@ -4,6 +4,7 @@ Feature: Account Opening - Individual
   As a customer
   I should complete process KYC and KYB
 
+  @C161000
   Scenario: Complete KYC and KYB business type Individual
     Given I am a customer that recently registered to amarbank business with data as below
         | fullName        | Staging                 |
@@ -17,6 +18,7 @@ Feature: Account Opening - Individual
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
+        And I submit my giro type
     And I choose legality business type 'individual'
     And I submit my legality type
     And I see page 'Upload eKTP'

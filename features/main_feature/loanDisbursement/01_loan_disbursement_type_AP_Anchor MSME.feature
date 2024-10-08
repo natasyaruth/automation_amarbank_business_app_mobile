@@ -8,13 +8,13 @@ Feature: Loan Disbursement for Loan Type AP
     Given I am a registered customer with following details:
       | userID   | wahy8ea8 |
       | password | Test4321 |
-      # | userID   | bots2643 |
-      # | password | Test1234 |
+    # | userID   | bots2643 |
+    # | password | Test1234 |
     When I filling in form login with the following details:
       | userID   | wahy8ea8 |
       | password | Test4321 |
-      # | userID   | bots2643 |
-      # | password | Test1234 |
+    # | userID   | bots2643 |
+    # | password | Test1234 |
     And I click login
     # And I click later
     Then I will direct to dashboard
@@ -57,10 +57,10 @@ Feature: Loan Disbursement for Loan Type AP
     Given I have been on Loan Dashboard to checking if anchor have not uploaded invoice yet
     When I click button "Gunakan Limit" in card type Loan AP
     And system check that anchor have not uploaded invoice yet
-    # Then I should be see anchor has card is empty in anchor detail page
+  # Then I should be see anchor has card is empty in anchor detail page
 
   # @C98024 - DONE
-  @debt10 
+  @debt10
   Scenario: Validate request loan disbursement for type Loan AP when Anchor Already Upload Invoice
     Given I have been on Loan Dashboard to checking if anchor already upload invoice
     When I click button "Gunakan Limit" in card type Loan AP
@@ -68,7 +68,7 @@ Feature: Loan Disbursement for Loan Type AP
     Then I should be see anchor has card in anchor detail page
 
   # @C98025 - DONE
-  @debt11 
+  @debt11
   Scenario: Validate page Loan Program Information for type AP
     Given I have been in anchor detail page to validate loan program information for type AP
     When I click button "Gunakan Limit" in card type Loan AP
@@ -99,9 +99,9 @@ Feature: Loan Disbursement for Loan Type AP
     Given I have been in detail invoice to open invoice transaction detail
     When I open invoice document card
     Then the document will appears
-    # And user select invoice number
-    # And user select invoice date
-    # And User select invoice due date
+  # And user select invoice number
+  # And user select invoice date
+  # And User select invoice due date
 
   # @C98029 - DONE
   @debt15
@@ -158,11 +158,11 @@ Feature: Loan Disbursement for Loan Type AP
 
   # @C98035
   @debt21
-  Scenario: Continue Disburse The Loan When Input False Pin
+  Scenario Outline: Continue Disburse The Loan When Input False Pin
     Given I haven been in calculation page of amount
     When I click button continue disburse loan with input false PIN
     Then I should be see <Error_Message>
-  Example: Input PIN Disbursement
+    Examples:
       | PIN  | Error_Message            |
       | 1234 | Pin salah silakan ulangi |
       |      | Pin wajib diisi          |
@@ -180,9 +180,9 @@ Feature: Loan Disbursement for Loan Type AP
   # @C98037
   @debt23
   Scenario: Validate Disbursement Details
-   Given I have been on "Limit Tersedia"
-   When user should see field "invoice percentage disbursement"
-   Then user field LTV can be various static 85%
+    Given I have been on "Limit Tersedia"
+    When user should see field "invoice percentage disbursement"
+    Then user field LTV can be various static 85%
 
   # @C98038 - DONE
   @debt24
@@ -197,28 +197,11 @@ Feature: Loan Disbursement for Loan Type AP
     And I click button "Info Selengkapnya" for type AP
     Then I should be see Program Loan Information for type AP
 
-  # @C98039
-  # @debt25
-  # Scenario: Validate Disbursement Calculations When Invoice Value 80%
-  #   Given I have been on "Perhitungan pencairan page"
-  #   When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
-  #   When user should see field "Total Bunga" in the below of field "textInterestFee"
-  #   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
-  #   Then show amount disbursement calculation page if invoice value 80%  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# @C98039
+# @debt25
+# Scenario: Validate Disbursement Calculations When Invoice Value 80%
+#   Given I have been on "Perhitungan pencairan page"
+#   When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
+#   When user should see field "Total Bunga" in the below of field "textInterestFee"
+#   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+#   Then show amount disbursement calculation page if invoice value 80%

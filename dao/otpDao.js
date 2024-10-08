@@ -22,9 +22,9 @@ module.exports = {
     };
   },
 
-  async requestOTPUsingToken(userID, password) {
+  async requestOTPUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -38,9 +38,9 @@ module.exports = {
     };
   },
 
-  async getOTPUsingToken(userID, password) {
+  async getOTPUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -84,13 +84,13 @@ module.exports = {
     };
   },
 
-  async getOTPCreatePIN(userID, password) {
+  async getOTPCreatePIN() {
 
-    const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
-    const response = await I.sendGetRequest("https://" + env + "-smb-trx.otoku.io/api/v1/authorization/otp?username=" + userID);
+    const response = await I.sendGetRequest("https://" + env + "-smb-trx.otoku.io/api/v1/authorization/otp?username=" + globalVariable.login.userID);
 
     I.seeResponseCodeIsSuccessful();
 
@@ -115,9 +115,9 @@ module.exports = {
     return response.data[lastIndex];
   },
 
-  async resetLimitRequestOtpUsingToken(userID, password) {
+  async resetLimitRequestOtpUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 

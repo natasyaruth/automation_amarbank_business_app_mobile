@@ -13,11 +13,11 @@ module.exports = {
         return Buffer.from(img).toString('base64');
     },
 
-    async uploadKTP(userID, password) {
+    async uploadKTP() {
 
         const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -35,11 +35,11 @@ module.exports = {
 
     },
 
-    async uploadSelfie(userID, password) {
+    async uploadSelfie() {
 
         const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -56,7 +56,7 @@ module.exports = {
         }
     },
 
-    async uploadOtherDoc(userID, password, fileType) {
+    async uploadOtherDoc(fileType) {
 
         let base64File;
         let fileName;
@@ -89,7 +89,7 @@ module.exports = {
 
         globalVariable.uploadDocuments.fileName = fileName;
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -110,7 +110,7 @@ module.exports = {
 
     },
 
-    async uploadDocBusiness(userID, password, enumDoc, fileType) {
+    async uploadDocBusiness(enumDoc, fileType) {
 
         let base64File;
 
@@ -131,7 +131,7 @@ module.exports = {
                 throw new Error("File type is not recognize");
         }
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -148,8 +148,8 @@ module.exports = {
         }
     },
 
-    async allowDeviceData(userID, password) {
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+    async allowDeviceData() {
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -170,11 +170,11 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount, userID, password) {
+    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -196,11 +196,11 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber, userID, password) {
+    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -221,9 +221,9 @@ module.exports = {
         }
     },
 
-    async submitProductType(type, userID, password) {
+    async submitProductType(type) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -239,9 +239,9 @@ module.exports = {
         }
     },
 
-    async submitLegalityType(type, userID, password, npwpBusiness) {
+    async submitLegalityType(type, npwpBusiness) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -274,9 +274,9 @@ module.exports = {
         }
     },
 
-    async submitBusinessProfile(businessProfile, legality, userID, password) {
+    async submitBusinessProfile(businessProfile, legality) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -302,9 +302,9 @@ module.exports = {
         }
     },
 
-    async submitOnePartner(businessPartner, userID, password) {
+    async submitOnePartner(businessPartner) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -326,9 +326,9 @@ module.exports = {
         }
     },
 
-    async submitIdentityDetails(ktpData, userID, password) {
+    async submitIdentityDetails(ktpData) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -366,13 +366,13 @@ module.exports = {
         }
     },
 
-    async checkEligibilityNPWPBusiness(userID, password, npwpBusiness) {
+    async checkEligibilityNPWPBusiness(npwpBusiness) {
 
         let npwp = "";
 
         npwp = npwpBusiness;
 
-        const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -387,5 +387,32 @@ module.exports = {
             eligible: response.data.isEligible,
         }
 
+    },
+
+    async pushNotificationMaintananceApp() {
+
+        I.haveRequestHeaders(secret({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        }));
+
+        const currentDate = new Date();
+        const day = currentDate.getDate();
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications", {
+            userId: "",
+            category: "Info",
+            title: "Peringatan Pemeliharaan Sistem",
+            summary: "Pemeliharan sistem pada " + day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB",
+            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada "+"\n" 
+                         +day + "/" + month + "/" + year +" jam 23.00-01.00 WIB. Selama waktu ini, akses Anda "+"\n"
+                         +"pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
+        });
+
+        return {
+            status: response.status,
+            data: response.data
+        }
     },
 }

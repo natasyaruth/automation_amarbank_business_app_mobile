@@ -12,10 +12,11 @@ module.exports = {
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
     tryAgain: "~buttonTryAgain",
-    close: "~buttonClose",
-    cancel: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View" },
+    close: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
+    cancel: "~buttonYes",
+    cancelNo: "~buttonNo",
     btnTransfer: "~btnTransfer",
-    back: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View" },
+    back: "~buttonNo",
     backToDashboard: "~buttonBackToDashboard",
     forgotPIN: "~",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
@@ -101,6 +102,11 @@ module.exports = {
     I.click(this.buttons.cancel);
   },
 
+  clickButtonCancelNo() {
+    I.waitForElement(this.buttons.cancelNo, 10);
+    I.click(this.buttons.cancelNo);
+  },
+
   clickButtonUnderstand() {
     I.waitForElement(this.buttons.understand);
     I.click(this.buttons.understand);
@@ -116,6 +122,7 @@ module.exports = {
   },
 
   nexttoTransferPage() {
+    I.waitForElement(this.buttons.nextpagetransfer, 10);
     I.click(this.buttons.nextpagetransfer);
   },
 
@@ -175,8 +182,8 @@ module.exports = {
   },
 
   goToChangePIN() {
-    I.click(this.buttons.changePIN);
-
+    I.waitForElement(this.buttons.createPIN, 20);
+    I.click(this.buttons.createPIN);
   },
 
   closeBottomSheet() {

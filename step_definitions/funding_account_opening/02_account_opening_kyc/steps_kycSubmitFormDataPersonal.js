@@ -45,7 +45,7 @@ When("I submit my personal data details", () => {
     if(
         globalVariable.formPersonal.isUploadNpwp === false
     ){
-        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 1000, y: 100 });
     }
 });
 
@@ -57,9 +57,7 @@ When("I submit my personal data details individual and upload my npwp as followi
         personalData["motherName"],
         personalData["referenceName"],
         personalData["referencePhoneNumber"],
-        personalData["purposeAccount"],
-        globalVariable.login.userID,
-        globalVariable.login.password
+        personalData["purposeAccount"]
     );
 
     resetStateDao.reloadPageAfterResetState();
@@ -72,9 +70,7 @@ When("I submit my personal data details business and upload my npwp as following
         personalData["lastEducation"],
         personalData["motherName"],
         personalData["referenceName"],
-        personalData["referencePhoneNumber"],
-        globalVariable.login.userID,
-        globalVariable.login.password
+        personalData["referencePhoneNumber"]
     );
 
     resetStateDao.reloadPageAfterResetState();
@@ -114,7 +110,7 @@ Then("I shouldn't see message error in the below of field {string} in form Data 
     I.dontSee(formPersonalDataPage.messageErrorFields[fieldName]);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Data Personal", async (expectedMsgError, fieldName) => {
@@ -123,7 +119,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I will see phonenumber {string} in field reference number", (phonenumber) => {
@@ -140,7 +136,7 @@ Then("I will see bottom sheet with option take NPWP using camera or upload from 
     I.seeElement(formPersonalDataPage.buttons.fromGallery);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I will not see the bottom sheet", async ()=>{
@@ -148,5 +144,5 @@ Then("I will not see the bottom sheet", async ()=>{
     I.dontSee(formPersonalDataPage.buttons.closeBottomSheet);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });

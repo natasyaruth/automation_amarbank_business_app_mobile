@@ -143,7 +143,7 @@ Then("I shouldn't see message error in the below of field {string} in form Busin
     }
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Business Profile", async (expectedMsgError, fieldName) => {
@@ -153,7 +153,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 
@@ -165,7 +165,7 @@ Then("I will directing to page business owner", async () => {
     I.waitForText("Pemilik bisnis", 10);
     I.dontSee("Anda wajib menambah direktur sesuai akta");
 
-    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+    const email = (await resetStateDao.getEmail()).email;
 
     I.see(globalVariable.formKtp.fullName);
     I.see(globalVariable.formKtp.eKTPNumber);
@@ -173,16 +173,16 @@ Then("I will directing to page business owner", async () => {
     I.dontSeeElement(formBusinessOwnerPage.buttons.addListDirector);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I will directing to page director list", async () => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
     I.see("Anda wajib menambah direktur sesuai akta");
 
-    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
-    const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
-    const eKTPNumber = await (await resetStateDao.getKTPNumber(globalVariable.login.userID, globalVariable.login.password)).ktpNumber;
+    const email = (await resetStateDao.getEmail()).email;
+    const fullName = (await resetStateDao.getFullName()).ktpName;
+    const eKTPNumber = await (await resetStateDao.getKTPNumber()).ktpNumber;
 
     I.see(fullName);
     I.see(eKTPNumber);
@@ -190,7 +190,7 @@ Then("I will directing to page director list", async () => {
     I.seeElement(formBusinessOwnerPage.buttons.addListDirector);
 
     await
-        resetStateDao.resetStateFlow(0, globalVariable.login.userID, globalVariable.login.password);
+        resetStateDao.resetStateFlow(0);
 });
 
 Then("I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN", async () => {

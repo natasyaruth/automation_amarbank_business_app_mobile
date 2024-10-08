@@ -50,7 +50,7 @@ module.exports = {
     sizeDocumentAktaBusiness: "~sizeSource1",
     sizeDocumentAkta: "~sizeSource2",
     sizeDocumentSK: "~sizeSource2",
-    sizeDocumentSKBusiness: "~sizeSource3",
+    sizeDocumentSKBusiness: "~sizeSource2",
     sizeDocumentNPWPBusiness: "~sizeSource3",
     sizeDocumentNPWP: "~sizeSource1",
     sizeDocumentLastCertificate: "~sizeSource4",
@@ -104,7 +104,7 @@ module.exports = {
       case "Akta Perubahan Terakhir":
         return enumDoc = 4;
       case "Sertifikat Perubahan Terakhir":
-        return enumDoc = 4;
+        return enumDoc = 9;
       case "Sertifikat Pendaftaran":
         return enumDoc = 7;
       case "NPWP Bisnis":
@@ -122,54 +122,40 @@ module.exports = {
     }
   },
 
-  async uploadAllDocumentCompany(userID, password) {
+  async uploadAllDocumentCompany() {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 2, 4, 5, 7, 9];
+    const enumDoc = [1, 2, 7, 5, 4, 9];
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+        uploadDao.uploadDocBusiness(enumDoc[i], fileType);
       I.wait(5);
     }
 
   },
 
-  async uploadAllDocumentCompanyRequired(userID, password) {
+  async uploadAllDocumentCompanyRequired() {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 2, 5, 7];
+    const enumDoc = [1, 2, 7, 5];
 
     for (let i = 0; i < enumDoc.length; i++) {
       await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
+        uploadDao.uploadDocBusiness(enumDoc[i], fileType);
       I.wait(5);
     }
 
   },
 
-  async uploadAllDocumentIndividualCompanyRequired(userID, password) {
+  async uploadAllDocumentIndividualCompanyRequired(legalityType) {
 
     const fileType = 'pdf';
 
-    const enumDoc = [1, 5, 7, 6];
-
-    for (let i = 0; i < enumDoc.length; i++) {
-      await
-        uploadDao.uploadDocBusiness(userID, password, enumDoc[i], fileType);
-      I.wait(5);
-    }
-
-  },
-
-  async uploadAllDocumentIndividualCompany(userID, password, legalityType) {
-    const fileType = 'pdf';
-
+    const enumDocIndividualComp = [1, 5, 7, 6];
     const enumDocUD = [1, 5];
-
-    const enumDocIndividualComp = [1, 5, 7, 6, 4, 10];
 
     if (
 
@@ -178,7 +164,7 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocUD.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocUD[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocUD[i], fileType);
         I.wait(5);
       }
     } else if (
@@ -188,18 +174,49 @@ module.exports = {
     ) {
       for (let i = 0; i < enumDocIndividualComp.length; i++) {
         await
-          uploadDao.uploadDocBusiness(userID, password, enumDocIndividualComp[i], fileType);
+          uploadDao.uploadDocBusiness(enumDocIndividualComp[i], fileType);
         I.wait(5);
       }
     }
 
   },
 
-  async uploadOneDocument(userID, password, typeDoc, fileType) {
+  async uploadAllDocumentIndividualCompany(legalityType) {
+    const fileType = 'pdf';
+
+    const enumDocUD = [1, 5];
+
+    const enumDocIndividualComp = [1, 5, 7, 6, 9, 10];
+
+    if (
+
+      legalityType === "UD"
+
+    ) {
+      for (let i = 0; i < enumDocUD.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(enumDocUD[i], fileType);
+        I.wait(5);
+      }
+    } else if (
+
+      legalityType === "PT Perorangan"
+
+    ) {
+      for (let i = 0; i < enumDocIndividualComp.length; i++) {
+        await
+          uploadDao.uploadDocBusiness(enumDocIndividualComp[i], fileType);
+        I.wait(5);
+      }
+    }
+
+  },
+
+  async uploadOneDocument(typeDoc, fileType) {
     const enumDoc = this.getEnumDoc(typeDoc);
 
     await
-      uploadDao.uploadDocBusiness(userID, password, enumDoc, fileType);
+      uploadDao.uploadDocBusiness(enumDoc, fileType);
 
     I.wait(2);
   },

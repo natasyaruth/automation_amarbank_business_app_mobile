@@ -8,13 +8,13 @@ Feature: Account Opening KYB CV - Submit Business Address
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | stag036a |
             | passwordStg | 1234Test |
         And I reset my state journey     
         And I filling in form login with the following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | stag036a |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -22,6 +22,7 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business

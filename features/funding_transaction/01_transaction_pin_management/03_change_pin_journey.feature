@@ -24,8 +24,8 @@ Feature: User change PIN from other menu
         When I choose other
         And I click create transaction pin
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I create PIN with "123456"
+        And I confirm create PIN
         And I input OTP
         Then I will go back to other page
         And I reset my PIN
@@ -43,7 +43,7 @@ Feature: User change PIN from other menu
         When I choose other
         And I click change transaction pin
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
+        And I create PIN with "123456"
         And I input incorrect confirmation new PIN
         Then I will see message error "PIN yang dimasukkan tidak sesuai"
 
@@ -53,8 +53,8 @@ Feature: User change PIN from other menu
         When I choose other
         And I click change transaction pin
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I create PIN with "123456"
+        And I confirm create PIN
         And I input expired OTP
         Then I will see message error "Kode OTP yang Anda masukkan expired"
 

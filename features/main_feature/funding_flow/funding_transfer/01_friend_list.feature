@@ -1,4 +1,4 @@
-#@friendList
+# @regressionTest
 Feature: User add friend list
     In order to transfer
     As a customer

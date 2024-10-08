@@ -30,6 +30,7 @@ module.exports = {
     cardInvited: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]" },
     giroAccountCorporate: "~bbBtnOpenGiro",
     giroAccountMsme: "~smeBtnOpenGiro",
+    submitTypeGiro: "~btnOpenGiro",
     openAllTransactionApproval: "~showAllBtn",
     cardTransaction: "~transactionDetail",
     rejectCard: { xpath: "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]" },
@@ -40,7 +41,8 @@ module.exports = {
     confirmNpwp: "~btnConfirmed",
     closeBottomSheet: "~buttonClose",
     sentFeedBack: "~yesBtn",
-    cancelFeedBack: "~cancelBtn"
+    cancelFeedBack: "~cancelBtn",
+    copyAccNumber: "~buttonCopyAccountNumber"
   },
   fields: {
     npwpBusiness: "~textFieldNpwpNumber",
@@ -88,6 +90,8 @@ module.exports = {
     transactionDate: "~transactionDate",
     transactionAmount: "~transactionAmount",
     npwpNumber: "~npwpNumberText",
+    accountHolder: "~txtCompanyName",
+    accNumber: "~textAccountNumber",
   },
   msgErrorFields: {
     npwpBusiness: "~textMsgErrorNpwpNumber",
@@ -101,6 +105,7 @@ module.exports = {
   },
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
+    eyeAmount: "~btnEyes",
   },
   statusEnabled: {
     buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
@@ -108,7 +113,7 @@ module.exports = {
   },
 
   chooseLegalityBusinessType(type) {
-    I.waitForElement(this.radioButtons[type], 10);
+    I.waitForElement(this.radioButtons[type], 20);
     I.click(this.radioButtons[type]);
   },
 
@@ -135,6 +140,11 @@ module.exports = {
   openGiroAccountCorporate() {
     I.waitForElement(this.buttons.giroAccountCorporate, 10);
     I.click(this.buttons.giroAccountCorporate);
+  },
+
+  submitTypeGiro(){
+    I.waitForElement(this.buttons.submitTypeGiro, 10);
+    I.click(this.buttons.submitTypeGiro);
   },
 
   continueToKYC() {
@@ -208,34 +218,34 @@ module.exports = {
     }
   },
 
-  async updateStep(stepName, userID, password) {
+  async updateStep(stepName) {
     switch (stepName) {
       case "Choose Legality Type" || "Login Invitee":
-        await resetStateDao.resetStateFlow(2, userID, password);
+        await resetStateDao.resetStateFlow(2);
         break;
       case "Login Invitee":
-        await resetStateDao.resetStateFlow(2, userID, password);
+        await resetStateDao.resetStateFlow(2);
         break;
       case "Upload eKTP":
-        await resetStateDao.resetStateFlow(3, userID, password);
+        await resetStateDao.resetStateFlow(3);
         break;
       case "Data KTP":
-        await resetStateDao.resetStateFlow(4, userID, password);
+        await resetStateDao.resetStateFlow(4);
         break;
       case "Upload Selfie":
-        await resetStateDao.resetStateFlow(5, userID, password);
+        await resetStateDao.resetStateFlow(5);
         break;
       case "Upload Selfie with KTP":
-        await resetStateDao.resetStateFlow(6, userID, password);
+        await resetStateDao.resetStateFlow(6);
         break;
       case "Data Personal":
-        await resetStateDao.resetStateFlow(7, userID, password);
+        await resetStateDao.resetStateFlow(7);
         break;
       case "Data Domicile Address":
-        await resetStateDao.resetStateFlow(8, userID, password);
+        await resetStateDao.resetStateFlow(8);
         break;
       case "Data Employment":
-        await resetStateDao.resetStateFlow(9, userID, password);
+        await resetStateDao.resetStateFlow(9);
         break;
       default:
         throw new Error("Page name is not recognize");
@@ -528,6 +538,26 @@ module.exports = {
       default:
         throw new Error("Option "+option+" is not recognize. Please check again");  
     }
+  },
+
+  async getAccHolderName() {
+    I.waitForElement(this.texts.accountHolder, 10);
+    return I.grabTextFrom(this.texts.accountHolder);
+  },
+
+  async getAccNumber() {
+    I.waitForElement(this.texts.accNumber, 10);
+    return I.grabTextFrom(this.texts.accNumber);
+  },
+
+  copyAccNumber() {
+    I.waitForElement(this.buttons.copyAccNumber, 10);
+    I.click(this.buttons.copyAccNumber);
+  },
+
+  clickEyeAmount() {
+    I.waitForElement(this.icons.eyeAmount, 10);
+    I.click(this.icons.eyeAmount);
   },
 
 }

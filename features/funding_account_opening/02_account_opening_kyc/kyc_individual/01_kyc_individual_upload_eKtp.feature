@@ -21,6 +21,7 @@ Feature: Account Opening KYC Individual - Upload KTP Photo
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account MSME
+        And I submit my giro type
     And I choose legality business type 'individual'
     And I submit my legality type
 

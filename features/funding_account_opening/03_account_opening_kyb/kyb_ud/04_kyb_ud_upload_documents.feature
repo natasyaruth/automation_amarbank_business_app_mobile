@@ -23,6 +23,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'ud'
         And I submit my legality type
         And I fill NPWP Business
@@ -63,7 +64,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I see files that need to be uploaded for type individual company
         And I upload all document business required for type individual company
         And I click button progress upload document
-        Then I will see all document required company has been uploaded
+        Then I will see all document business individual company has been uploaded
         And I will see button request account opening is shown
         And I click button request account opening
         And I will direct to page thank you and need verification of my data

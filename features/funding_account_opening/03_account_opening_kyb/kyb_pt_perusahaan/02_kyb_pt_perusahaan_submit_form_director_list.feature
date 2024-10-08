@@ -21,6 +21,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business

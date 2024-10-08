@@ -27,8 +27,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I see information and benefit of Giro Account
         And I choose Giro Account
-        Then I will see details info of giro account MSME
-        And I will see details info of giro account Corporate
+        Then I will see details info of giro account Corporate and MSME
 
     @C131953
     Scenario: User choose later open Giro Account
@@ -36,8 +35,7 @@ Feature: Account Opening Onboarding
         Then I will directing to main dashboard with card loan application and account opening
         And I click later
         And I can choose type account giro
-        And I will see details info of giro account MSME
-        And I will see details info of giro account Corporate
+        And I will see details info of giro account Corporate and MSME
 
     @C131954
     Scenario: User choose legality business type PT Perusahaan
@@ -45,6 +43,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I will directing to page legality business
         And I choose legality business type 'company'
         And I submit my legality type
@@ -56,6 +55,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
         And I will directing to page legality business
         And I choose legality business type 'cv'
         And I submit my legality type
@@ -67,6 +67,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I will directing to page legality business
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
@@ -78,6 +79,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I will directing to page legality business
         And I choose legality business type 'ud'
         And I submit my legality type
@@ -89,6 +91,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I will directing to page legality business
         And I choose legality business type 'individual'
         And I submit my legality type
@@ -121,6 +124,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I will directing to page legality business
         And I click back in header page
         Then I will directing to page type giro account
@@ -132,6 +136,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I will see bottom sheet NPWP Business
@@ -144,6 +149,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP Business
@@ -157,6 +163,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP business with '1268470tt3981@!'
@@ -169,6 +176,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP business with '906283213036'
@@ -182,6 +190,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP business with '90628321303600012434'
@@ -194,6 +203,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP Business
@@ -210,6 +220,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP Business with NPWP has been registered
@@ -222,6 +233,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP Business with NPWP has been registered
@@ -234,6 +246,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'individualBusiness'
         And I submit my legality type
         And I fill NPWP Business
@@ -250,6 +263,7 @@ Feature: Account Opening Onboarding
         When I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -266,6 +280,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -287,6 +302,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -307,6 +323,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -327,6 +344,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -347,6 +365,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -371,6 +390,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -399,6 +419,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
@@ -422,6 +443,7 @@ Feature: Account Opening Onboarding
         And I click later
         And I choose Giro Account from dashboard
         And I choose Giro Account MSME
+        And I submit my giro type
         And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business

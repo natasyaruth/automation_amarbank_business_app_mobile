@@ -7,8 +7,8 @@ Feature: Account Opening - Validation Auto Reject
 
     Background: Do register phase one
         Given I am a customer that recently registered to amarbank business with data as below
-            | fullName        | Revvy                   |
-            | email           | revvy@gmail.com         |
+            | fullName        | Testing                 |
+            | email           | testing_21@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And my mocking DHN currently is off    
@@ -21,6 +21,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Submit form Business Profile with NPWP business indicated as DHN
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
+        And I submit my giro type
         And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
@@ -36,6 +37,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         Then I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -46,7 +48,7 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Register user invitee with indicated as DHN
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
-            | email           | rudit.bagas@gmail.com  |
+            | email           | testing_32@gmail.com   |
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
@@ -71,13 +73,15 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         Then I will direct to dashboard with info other director data indicated as DHN
 
     @C160323
     Scenario: Give 5 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
-        And I choose legality business type 'individual'
+        And I submit my giro type
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -92,6 +96,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -108,7 +113,8 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 4 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
-        And I choose legality business type 'individual'
+        And I submit my giro type
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -123,6 +129,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -139,7 +146,8 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 3 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
-        And I choose legality business type 'individual'
+        And I submit my giro type
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -154,6 +162,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -172,7 +181,8 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 2 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
-        And I choose legality business type 'individual'
+        And I submit my giro type
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -187,6 +197,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -205,7 +216,8 @@ Feature: Account Opening - Validation Auto Reject
     Scenario: Give 1 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
-        And I choose legality business type 'individual'
+        And I submit my giro type
+        And I choose legality business type 'cv'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -220,6 +232,7 @@ Feature: Account Opening - Validation Auto Reject
             | businessField     | Restoran        |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
         And I will direct to page notifying me that I can't continue to next process KYB because my data is indicated as DHN
@@ -263,6 +276,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         And I will direct to dashboard with info other director data indicated as DHN
         And I will see rating survey is in main dashboard
         And I give '5' ratings
@@ -300,6 +314,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         And I will direct to dashboard with info other director data indicated as DHN
         And I will see rating survey is in main dashboard
         And I give '4' ratings
@@ -337,6 +352,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         And I will direct to dashboard with info other director data indicated as DHN
         And I will see rating survey is in main dashboard
         And I give '3' ratings
@@ -376,6 +392,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         And I will direct to dashboard with info other director data indicated as DHN
         And I will see rating survey is in main dashboard
         And I give '2' ratings
@@ -415,6 +432,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose other
         And I click logout
         And I login using account initiator
+        And I click later in pop up biometric
         And I will direct to dashboard with info other director data indicated as DHN
         And I will see rating survey is in main dashboard
         And I give '1' ratings
@@ -423,4 +441,45 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
-        And I will direct to dashboard with info other director data indicated as DHN       
+        And I will direct to dashboard with info other director data indicated as DHN   
+
+    @C160893
+    Scenario: Give rating both in iniator and invitee side DHN case
+        Given I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | rudit.bagas@gmail.com  |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click logout
+        And I register invitee with business code
+        And I login using user id partner
+        And I click later in pop up biometric
+        And I will direct to page continue to register KYC Invitee
+        And I continue to register my KYC data
+        And I click take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
+        And I fill all information identity details as followings:
+            | eKtpNumber    | 3170031810770033          |
+            | eKtpNumberStg | 3170026604740009          |
+        And I mock feature submit form KTP into enabled
+        And I swipe to button save data eKTP
+        And I submit my information identity details
+        And I will direct to page notifying me that I can't continue to next process KYC because my data is indicated as DHN
+        And I close page rejected account
+        And I will direct to dashboard with info my data indicated as DHN
+        And I give '5' ratings
+        And I sent feedback survey
+        And I will see snackbar my survey is sent
+        And I choose other
+        And I click logout
+        And I login using account initiator
+        And I click later in pop up biometric
+        And I will direct to dashboard with info other director data indicated as DHN
+        And I will see rating survey is in main dashboard
+        And I give '5' ratings
+        And I sent feedback survey
+        Then I will see snackbar my survey is sent
+        And I will not see rating survey is in main dashboard
+        And I will direct to dashboard with info other director data indicated as DHN           
