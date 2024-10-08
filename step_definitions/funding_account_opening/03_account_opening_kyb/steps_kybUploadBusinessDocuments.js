@@ -158,7 +158,7 @@ When("I upload document business {string} with type {string}", async (typeDoc, f
     globalVariable.uploadDocuments.fileType = fileType;
 
     await
-        uploadBusinessDocPage.uploadOneDocument(, typeDoc, fileType);
+        uploadBusinessDocPage.uploadOneDocument(typeDoc, fileType);
 });
 
 When("I upload all document business for type company", async () => {

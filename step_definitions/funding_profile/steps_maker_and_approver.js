@@ -367,6 +367,7 @@ Then("I will direct to page need approval from other director", async () => {
     }
     const actualAmount = numberString.join('');
     I.see("-Rp" + actualAmount);
+    globalVariable.transfer.amountTransfer = "Rp" + actualAmount;
 
     I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();

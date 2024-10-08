@@ -22,6 +22,7 @@ Feature: Account Opening Main Dashboard
         And I swipe to card Giro Account
         And I choose Giro Account
         And I choose Giro Account MSME
+        And I submit my giro type
 
     @C160408
     Scenario: User back again to process account opening

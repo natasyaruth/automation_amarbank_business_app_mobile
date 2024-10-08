@@ -2,9 +2,6 @@ const { I, resetStateDao, globalVariable } = inject();
 
 const env = globalVariable.returnEnvi();
 
-const userID = globalVariable.login.userID;
-const password = globalVariable.login.password;
-
 module.exports = {
 
   async requestOTP(phoneNumber) {
@@ -27,7 +24,7 @@ module.exports = {
 
   async requestOTPUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -43,7 +40,7 @@ module.exports = {
 
   async getOTPUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -89,11 +86,11 @@ module.exports = {
 
   async getOTPCreatePIN() {
 
-    const bearerToken = (await resetStateDao.getTokenLogin(userID, password)).bearerToken;
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
-    const response = await I.sendGetRequest("https://" + env + "-smb-trx.otoku.io/api/v1/authorization/otp?username=" + userID);
+    const response = await I.sendGetRequest("https://" + env + "-smb-trx.otoku.io/api/v1/authorization/otp?username=" + globalVariable.login.userID);
 
     I.seeResponseCodeIsSuccessful();
 
@@ -120,7 +117,7 @@ module.exports = {
 
   async resetLimitRequestOtpUsingToken() {
 
-    const bearerToken = await resetStateDao.getTokenLogin(userID, password);
+    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 

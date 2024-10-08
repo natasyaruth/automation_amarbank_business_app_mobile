@@ -9,7 +9,7 @@ module.exports = {
     understand: "~buttonUnderstand",
   },
   tabs: {
-    all: "~buttonNotification",
+    all: "~buttonChipAll",
     info: "~buttonChipInfo",
     transaction: "~buttonChipTransaction",
     loan: "~buttonChipLoan",
@@ -21,8 +21,8 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: ""},
-    infoNotifDetail: {xpath: ""},
+    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotifDetail: {xpath: "//android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",
@@ -64,6 +64,11 @@ module.exports = {
     return await I.grabTextFrom(this.texts.date+index);
   },
 
+  async getTitleBucketlist(index){
+    I.waitForElement(this.texts.title+index, 10);
+    return await I.grabTextFrom(this.texts.title+index);
+  },
+
   async getTimeDetail(){
     I.waitForElement(this.texts.time, 10);
     return await I.grabTextFrom(this.texts.time);
@@ -72,6 +77,21 @@ module.exports = {
   async getTimeBucketlist(index){
     I.waitForElement(this.texts.time+index, 10);
     return await I.grabTextFrom(this.texts.time+index);
+  },
+
+  async getDescBucketlist(index){
+    I.waitForElement(this.texts.description+index, 10);
+    return await I.grabTextFrom(this.texts.description+index);
+  },
+
+  async getStatusTrxBucketlist(index){
+    I.waitForElement(this.texts.statusTrx+index, 10);
+    return await I.grabTextFrom(this.texts.statusTrx+index);
+  },
+
+  async getInfoNotifBucketlist(index){
+    I.waitForElement(this.texts.infoNotif+index, 10);
+    return await I.grabTextFrom(this.texts.infoNotif+index);
   },
 
   clickUnderstand(){
@@ -94,9 +114,19 @@ module.exports = {
     return await I.grabTextFrom(this.texts.description);
   },
 
+  async getLatestDescription(){
+    I.waitForElement(this.texts.description+"0", 10);
+    return await I.grabTextFrom(this.texts.description+"0");
+  },
+
   async getTransferAmount(){
     I.waitForElement(this.texts.amount, 10);
     return await I.grabTextFrom(this.texts.amount);
+  },
+
+  async getLatestTransferAmount(){
+    I.waitForElement(this.texts.amount+"0", 10);
+    return await I.grabTextFrom(this.texts.amount+"0");
   },
 
   async getStatusTrx(){
@@ -104,9 +134,19 @@ module.exports = {
     return await I.grabTextFrom(this.texts.statusTrx);
   },
 
+  async getLatestStatusTrx(){
+    I.waitForElement(this.texts.statusTrx+"0", 10);
+    return await I.grabTextFrom(this.texts.statusTrx+"0");
+  },
+
   async getTitle(){
     I.waitForElement(this.texts.title, 10);
     return await I.grabTextFrom(this.texts.title);
+  },
+
+  async getLatestTitle(){
+    I.waitForElement(this.texts.title+"0", 10);
+    return await I.grabTextFrom(this.texts.title+"0");
   },
 
   async getInfoNotif(){

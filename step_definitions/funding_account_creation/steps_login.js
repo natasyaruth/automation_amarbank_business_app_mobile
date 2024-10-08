@@ -96,18 +96,17 @@ Given("I am a registered customer with following details:", (table) => {
 });
 
 Given(
-  "I am a registered customer invited business with following details:",
+  "has partner with following details:",
   (table) => {
-    welcomePage.clickButtonLogin();
 
     const account = table.parse().rowsHash();
 
     if (process.env.ENVIRONMENT == "staging") {
-      globalVariable.login.password = account["passwordStg"];
-      globalVariable.login.userID = account["userIDstg"];
+      globalVariable.login.passwordPartner = account["passwordStg"];
+      globalVariable.login.userIDPartner = account["userIDstg"];
     } else {
-      globalVariable.login.password = account["password"];
-      globalVariable.login.userID = account["userID"];
+      globalVariable.login.passwordPartner = account["password"];
+      globalVariable.login.userIDPartner = account["userID"];
     }
   }
 );
@@ -559,4 +558,10 @@ Then("I will back to page login", () => {
 
   loginPage.clickIconEyePassword();
   I.see(globalVariable.login.password);
+});
+
+Then("I will see information my account has been blocked", ()=>{
+  I.waitForElement(loginPage.buttons.close, 10);
+
+  I.see("Akun Anda Terblokir");
 });
