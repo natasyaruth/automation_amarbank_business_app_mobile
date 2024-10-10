@@ -17,7 +17,7 @@ Feature: Apply Combine Journey with new drop off management
     Then I successed go to main dashbord
 
 
-Scenario: User apply combine journey until drop off before submit data anchor
+Scenario: User apply combine journey until drop off before submit detail kredit
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
     And User select loan type "AP"
@@ -25,11 +25,13 @@ Scenario: User apply combine journey until drop off before submit data anchor
     And User choose nominal "Lebih dari 5 Milyar"
     And user input nominal for Corp "15000000000"
     And user click button Save
-    And user input tenor "60"
-    And user fill search anchor "PT Tirta Investama"
-    And user click button Pilih Supplier Ini
-    And user select year cooperating  "2020"
-    And user click back button    
+    And user input tenor "60"    
+    And user click button Lanjut Isi Data Supplier   
+    And user on Data Supplier Page 
+    And user click back button to Detail Kredit
+    And user back to select type Loan Page
+    And user click X button
+    Then user on Main Dashboard
 
 
 Scenario: User validate status Pengajuan Limit
@@ -43,12 +45,32 @@ Scenario: User validate status Pengajuan Limit
     And user see text card Pengajuan Lmit
 
 
-Scenario: User continue journey from status Pengajuan Limit
+Scenario: User continue journey from status Pengajuan Limit until before submit data anchor
+    Given user on Aktivitas Pinjaman
+    When user click card with status Pengajuan Limit    
+    And user on Detail Kredit Page
+    And user click button Lanjut Isi Data Supplier
+    And user fill search anchor "AP Corp Tes 3"
+    And user click button Pilih Supplier Ini
+    And user select year cooperating  "2020"
+    And user click Pilih
+    And user checklist on Term and Condition
+    And user click button Lanjut Melengkapi Data
+    And user on Process Continue KYC Page
+    And user click back button to Data Supplier Page
+    And user click back button to Detail Kredit Page
+    And user back to select Type Loan Page
+    And user back to main dashboard
+
+Scenario: User continue journey from status Pengajuan Limit until drop off KYC
     Given user on Aktivitas Pinjaman
     When user click card with status Pengajuan Limit
-    And user on Pengajuan Limit Kredit Bisnis page 
+    And user on Data Supplier Page
     And user click button Lanjut Melengkapi Data
+    And user click button Lanjut Proses KYC
+    And user choose Business Type "PT.Perusahaan"
     And user click back button
+
 
 
 Scenario: User validate Drop Off KYC In Process Loan
@@ -60,7 +82,7 @@ Scenario: User validate Drop Off KYC In Process Loan
     And user should see text button "Lanjut Lengkapi Data Personal" on field "btnTextDropOffAccOpeningOnlyKyc"
 
 
-Scenario: User continue proses from continue KYC
+Scenario: User continue proses from continue KYC until drop off Onboarding KYB
     Given user on Aktivitas Pinjaman
     Then user click button drop off
     And user on Ajukan Pinjaman Bisnis Page
@@ -89,7 +111,28 @@ Scenario: User continue proses from continue KYC
     And system direct to Success screen
     And user click button Lanjut Lengkapi Data Bisnis
     #section KYB Process
-    And user in Profil Bisnis page
+    And user on Profil Bisnis page
+    Then user click back button
+
+
+
+Scenario: User validate drop off main dashboard loan process on waiting kyb
+    Given user on main dashboard
+    When user should see text card "Kredit Bisnis untuk berbagai kebutuhan usaha" on field "textViewBodyDesc"
+    When user should see text card "Aktivitas Pinjaman" on field "textCardActivityLoan"
+    When user should see text card "1" on field "textCardValueProcess"
+    When user should see text card "Proses" on field "textCardProcess"
+    And user should see text button "Lanjut Lengkapi Data Bisnis" on field "btnTextDropOffAccOpeningOnlyKyb"
+    And user should see text card "Lanjutkan Proses Pinjaman" on field "textCardContinueProcessLoan"
+    Then user click button drop off
+    And user should see business data page
+
+
+
+Scenario: User continue from Drop Off KYB In Process Loan
+    Given user on Main Dashboard
+    When user click button drop off KYB 
+    And User on Profil Bisnis Page
     And user input profil bisnis and click button Simpan Profil Bisnis
     And user input and click Simpan Daftar Direktur
     And I fill my business address as followings:
@@ -105,6 +148,7 @@ Scenario: User continue proses from continue KYC
     And user click button Lanjut Upload Dokumen
     And user validate description prepare the following documents 'CorpAPIndividu'
     And user click X button
+
 
 Scenario: User validate Drop Off Upload Document in Loan Process + Waiting Invited Regis
     Given user on main dashboard
