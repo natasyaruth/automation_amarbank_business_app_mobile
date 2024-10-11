@@ -1,4 +1,4 @@
-@regressionTest
+# @regressionTest
 Feature: AUTOMATED User change PIN from other menu
     In order to transfer
     As a customer

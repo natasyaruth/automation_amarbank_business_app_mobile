@@ -10,6 +10,7 @@ module.exports = {
         close: "~buttonCloseCallCenter",
         closeWebView: "~",
         closePage: "~buttonClose",
+        closePageChangePass: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
     },
     cards:{
         whatsApp: "~cardWhatsApp",
@@ -45,5 +46,10 @@ module.exports = {
     closePage(){
         I.waitForElement(this.buttons.closePage, 10);
         I.click(this.buttons.closePage);
+    },
+
+    closePageChangePass(){
+        I.waitForElement(this.buttons.closePageChangePass, 10);
+        I.click(this.buttons.closePageChangePass);
     }
 }
