@@ -1,75 +1,99 @@
 # @regressionTest
-Feature: User create PIN from other menu
+Feature: AUTOMATED User create PIN from other menu Incorrect OTP
     In order to transfer
     As a customer
     I want to be able to create transcation pin from menu other
 
-    Background: User has registered and login to dashboard
+    Background: AUTOMATED User has Login App
         Given I am a registered customer with following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | kitad3fa |
-            | passwordStg | 1234Test |
+            | userIDstg   | elka74a9 |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | kitad3fa |
-            | passwordStg | 1234Test |
+            | userIDstg   | elka74a9 |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
-        Then I will see card account 'active'
-
+        Then I will direct to dashboard
 
     @C109127
-    Scenario: User want to see their password
+    Scenario: AUTOMATED User want to see their password From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
+        Then I go to page other
         And I click create transaction pin
+        And I will directly to Create New PIN page
         And I input password
         And I click icon eye
         Then I will see my password
 
     @C109128
-    Scenario: User don't want to see their password
+    Scenario: AUTOMATED User don't want to see their password From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
-        And I click create transcation pin
+        Then I go to page other
+        And I click create transaction pin
+        And I will directly to Create New PIN page
         And I input password
         And I click icon eye twice
         Then I will not see my password
 
     @C109129
-    Scenario: User input incorrect confirmation PIN
+    Scenario: AUTOMATED User input incorrect confirmation PIN From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
+        Then I go to page other
         And I click create transaction pin
+        And I will directly to Create New PIN page
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
-        And I input incorrect confirmation new PIN
-        Then I will see message error "PIN yang dimasukkan tidak sesuai"
+        And I input new PIN with "111111"
+        And I input incorrect old pin
+        Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
     @C109130
-    Scenario: User input incorrect OTP
+    Scenario: AUTOMATED User input incorrect OTP From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
+        Then I go to page other
         And I click create transaction pin
+        And I will directly to Create New PIN page
         And I input password
         And I submit my password
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I input new PIN with "111111"
+        And I confirm create PIN
+        And I will receive email contain with OTP
         And I input incorrect OTP
-        Then I will see message error "Kode OTP yang Anda masukkan salah"
+        Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code
 
-    @C109131
-    Scenario: User Successfully Create New PIN
+    Scenario: AUTOMATED User Successfully Get Email for OTP and input expired OTP From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
+        And I go to page other
         And I click create transaction pin
+        And I will directly to Create New PIN page
         And I input password
         And I submit my password
         And I input new PIN with '111111'
-        And I input confirmation new PIN '111111'
+        And I confirm create PIN
+        And I will receive email contain with OTP
+        And I input expired OTP
+        Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
+    
+    @C109131
+    Scenario: AUTOMATED User Successfully Create New PIN From Other Menu
+        Given I am a customer who wants to create PIN from menu other
+        When I choose other
+        Then I go to page other
+        And I click create transaction pin
+        And I will directly to Create New PIN page
+        And I input password
+        And I submit my password
+        And I input new PIN with '111111'
+        And I confirm create PIN
         And I will receive email contain with OTP
         And I input OTP
         Then My PIN successfully created

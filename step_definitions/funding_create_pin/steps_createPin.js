@@ -77,6 +77,27 @@ Then("I will directly to Create New Transaction PIN page", () => {
     I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
 });
 
+Then("I will directly to Create New PIN page", () => {
+    I.waitForText("Buat PIN", 10);
+    // I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+    I.waitForElement(createPINPage.icon, 10);
+    I.waitForElement(createPINPage.fields.password, 10);
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
+});
+
+Then("I will directly to Forgot PIN page", () => {
+    I.waitForText("Lupa PIN", 10);
+    I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+    I.waitForElement(createPINPage.icon, 10);
+    I.waitForElement(createPINPage.fields.password, 10);
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
+});
+
+Then("I will directly to Change PIN page", () => {
+    I.waitForText("Ubah PIN", 10);
+    I.see("Masukkan PIN Lama");
+});
+
 When("I input incorrect password", () => {
     createPINPage.inputPassword(globalVariable.login.dummyPassword);
 });
@@ -118,6 +139,24 @@ When("I submit incorrect password twice", () => {
     createPINPage.submitPassword();
 });
 
+When("I submit my old pin twice", () => {
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+});
+
+When("I submit my old pin three times", () => {
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+});
+
 
 When("I submit incorrect password three times", () => {
     createPINPage.inputPassword(globalVariable.login.dummyPassword);
@@ -136,7 +175,7 @@ When("I click icon eye", () => {
 
 When("I click icon eye twice", () => {
     createPINPage.clickEyePassword();
-    I.wait(1);
+    I.wait(5);
     createPINPage.clickEyePassword();
 });
 
@@ -265,6 +304,11 @@ Then("I should back to page fill PIN", () => {
     I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
 });
 
+Then("I should See Success Change PIN", () => {
+    I.waitForText("Selamat, PIN Berhasil Diubah!", 10);
+    createPINPage.clickBtnNext();
+});
+
 Then("I should stay on page fill PIN", () => {
     I.waitForText("Buat PIN Baru", 10);
 });
@@ -285,7 +329,6 @@ Then("I will directly go to Friend list page", () => {
 Then("I will go back to other page", () => {
     I.waitForElement(createPINPage.buttons.changePassword, 10);
     I.waitForElement(createPINPage.buttons.changePIN, 10);
-
 });
 
 Then("I will see toastbar {string}", (successPINMessage) => {
