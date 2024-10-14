@@ -4,6 +4,24 @@ const env = globalVariable.returnEnvi();
 
 module.exports = {
 
+  async getTokenLogin(userID, password) {
+
+    I.haveRequestHeaders({
+        Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+    });
+
+    const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
+        userID: userID,
+        password: password,
+    }));
+
+    I.seeResponseCodeIsSuccessful();
+
+    return {
+        bearerToken: responseLogin.data.jwt.access_token
+    }
+},
+
   async requestOTP(phoneNumber) {
 
     I.haveRequestHeaders(secret({
@@ -22,9 +40,9 @@ module.exports = {
     };
   },
 
-  async requestOTPUsingToken() {
+  async requestOTPUsingToken(userID, password) {
 
-    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+    const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -38,9 +56,9 @@ module.exports = {
     };
   },
 
-  async getOTPUsingToken() {
+  async getOTPUsingToken(userID, password) {
 
-    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+    const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -84,9 +102,9 @@ module.exports = {
     };
   },
 
-  async getOTPCreatePIN() {
+  async getOTPCreatePIN(userID, password) {
 
-    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+    const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 
@@ -112,12 +130,14 @@ module.exports = {
 
     const lastIndex = response.data.length - 1;
 
-    return response.data[lastIndex];
+    return {
+      userID: response.data[lastIndex]
+    }
   },
 
-  async resetLimitRequestOtpUsingToken() {
+  async resetLimitRequestOtpUsingToken(userID, password) {
 
-    const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+    const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
     I.amBearerAuthenticated(secret(bearerToken));
 

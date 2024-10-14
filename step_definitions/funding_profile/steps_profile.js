@@ -15,7 +15,7 @@ When("I will see card account {string}", async (typeAccount) => {
         typeAccount === "active"
     ) {
 
-        const sourceType = (await getDataDao.getSourceType()).sourceType;
+        const sourceType = (await getDataDao.getSourceType(globalVariable.login.userID, globalVariable.login.password)).sourceType;
 
         if (
             sourceType === "lending"
@@ -31,8 +31,8 @@ When("I will see card account {string}", async (typeAccount) => {
         I.waitForText("Menunggu verifikasi data selesai", 30);
         I.see("Proses pembuatan rekening giro maksimal dalam waktu 2 hari kerja");
 
-        const isPartner = (await getDataDao.isPartner()).data;
-        const isIndividual = (await resetStateDao.getAccountType()).accountType;
+        const isPartner = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
+        const isIndividual = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
 
         if (
             isPartner === true ||
@@ -135,7 +135,7 @@ Then("I see my profile company data", async () => {
     I.dontSee(globalVariable.login.userID.toUpperCase());
 
     const actualName = await profilePage.getName();
-    const expectedName = (await getDataDao.getName()).name;
+    const expectedName = (await getDataDao.getName(globalVariable.login.userID, globalVariable.login.password)).name;
     I.assertEqual(actualName, "Hi, " + expectedName);
 
     I.dontSee("Nomor Rekening Giro");
@@ -145,28 +145,28 @@ Then("I see my profile company data", async () => {
 
     I.see("E-mail");
     const actualEmail = await profilePage.getEmail();
-    const expectedEmail = (await resetStateDao.getEmail()).email;
+    const expectedEmail = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
     I.assertNotEqual(actualEmail, expectedEmail);
     globalVariable.profile.email = expectedEmail;
 
     I.see("Nomor Handphone");
     const actualPhonenumber = await profilePage.getPhonenumber();
-    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const phonenumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
     const expectedPhonenumber = "+62 " + phonenumber.substring(3);
     I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
     globalVariable.profile.phoneNumber = expectedPhonenumber;
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress()).address;
-    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
+    const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
     const expectedAddress = address + "\n" + fullAddress
     I.assertNotEqual(actualAddress, expectedAddress);
     globalVariable.profile.domicileAddress = expectedAddress;
 
     I.see("Nama Bisnis");
     const actualCompanyName = await profilePage.getCompanyName();
-    const expectedCompanyName = (await resetStateDao.getCompanyName()).businessName;
+    const expectedCompanyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
     I.assertEqual(actualCompanyName, expectedCompanyName);
     globalVariable.profile.companyName = expectedCompanyName;
 
@@ -201,7 +201,7 @@ Then("I see my profile individual company data", async () => {
     I.dontSee(globalVariable.login.userID.toUpperCase());
 
     const actualName = await profilePage.getName();
-    const expectedName = (await getDataDao.getName()).name;
+    const expectedName = (await getDataDao.getName(globalVariable.login.userID, globalVariable.login.password)).name;
     I.assertEqual(actualName, "Hi, " + expectedName);
 
     I.dontSee("Nomor Rekening Giro");
@@ -211,28 +211,28 @@ Then("I see my profile individual company data", async () => {
 
     I.see("E-mail");
     const actualEmail = await profilePage.getEmail();
-    const expectedEmail = (await resetStateDao.getEmail()).email;
+    const expectedEmail = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
     I.assertNotEqual(actualEmail, expectedEmail);
     globalVariable.profile.email = expectedEmail;
 
     I.see("Nomor Handphone");
     const actualPhonenumber = await profilePage.getPhonenumber();
-    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const phonenumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
     const expectedPhonenumber = "+62 " + phonenumber.substring(3);
     I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
     globalVariable.profile.phoneNumber = expectedPhonenumber;
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress()).address;
-    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
+    const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
     const expectedAddress = address + "\n" + fullAddress
     I.assertNotEqual(actualAddress, expectedAddress);
     globalVariable.profile.domicileAddress = expectedAddress;
 
     I.see("Nama Bisnis");
     const actualCompanyName = await profilePage.getCompanyName();
-    const expectedCompanyName = (await resetStateDao.getCompanyName()).businessName;
+    const expectedCompanyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
     I.assertEqual(actualCompanyName, expectedCompanyName);
     globalVariable.profile.companyName = expectedCompanyName;
 
@@ -257,7 +257,7 @@ Then("I will see my profile individual data", async () => {
     I.dontSee(globalVariable.login.userID.toUpperCase());
 
     const actualName = await profilePage.getName();
-    const expectedName = (await getDataDao.getName()).name;
+    const expectedName = (await getDataDao.getName(globalVariable.login.userID, globalVariable.login.password)).name;
     I.assertEqual(actualName, "Hi, " + expectedName);
 
     I.see("Nomor Rekening Giro");
@@ -266,7 +266,7 @@ Then("I will see my profile individual data", async () => {
     ) {
         I.waitForElement(profilePage.buttons.copyAccNumber, 10);
         const actualAccNumber = await profilePage.getAccNumber();
-        const expectedAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+        const expectedAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
         I.assertEqual(actualAccNumber, expectedAccNumber);
 
     } else {
@@ -279,21 +279,21 @@ Then("I will see my profile individual data", async () => {
 
     I.see("E-mail");
     const actualEmail = await profilePage.getEmail();
-    const expectedEmail = (await resetStateDao.getEmail()).email;
+    const expectedEmail = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
     I.assertNotEqual(actualEmail, expectedEmail);
     globalVariable.profile.email = expectedEmail;
 
     I.see("Nomor Handphone");
     const actualPhonenumber = await profilePage.getPhonenumber();
-    const phonenumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const phonenumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
     const expectedPhonenumber = "+62 " + phonenumber.substring(3);
     I.assertNotEqual(actualPhonenumber, expectedPhonenumber);
     globalVariable.profile.phoneNumber = expectedPhonenumber;
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress()).address;
-    const fullAddress = (await getDataDao.getFullAddress()).fullAddress;
+    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
+    const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
     const expectedAddress = address + "\n" + fullAddress
     I.assertNotEqual(actualAddress, expectedAddress);
     globalVariable.profile.domicileAddress = expectedAddress;
@@ -337,17 +337,17 @@ Then("I will direct to detail business profile", async () => {
     I.see("Nomor Rekening Giro");
     I.waitForElement(profilePage.buttons.copyAccNumber, 10);
     const actualAccNumber = await profilePage.getAccNumber();
-    const expectedAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    const expectedAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualAccNumber, expectedAccNumber);
 
     I.see("Tipe Industri");
     const actualIndustryType = await profilePage.getIndustry();
-    const expectedIndustryType = (await getDataDao.getIndustryType()).industryType;
+    const expectedIndustryType = (await getDataDao.getIndustryType(globalVariable.login.userID, globalVariable.login.password)).industryType;
     I.assertEqual(actualIndustryType, expectedIndustryType);
 
     I.see("Jenis Bisnis");
     const actualBusinessType = await profilePage.getBusinessType();
-    const expectedBusinessType = (await getDataDao.getBusinessType()).businessType;
+    const expectedBusinessType = (await getDataDao.getBusinessType(globalVariable.login.userID, globalVariable.login.password)).businessType;
     I.assertEqual(actualBusinessType, expectedBusinessType);
 
     const months = [
@@ -359,7 +359,7 @@ Then("I will direct to detail business profile", async () => {
     I.see("Tanggal Berdiri");
     let foundedDate = "";
     const actualFoundedDate = await profilePage.getFoundedDate();
-    foundedDate = (await getDataDao.getFoundedDate()).foundedAt;
+    foundedDate = (await getDataDao.getFoundedDate(globalVariable.login.userID, globalVariable.login.password)).foundedAt;
     const dates = foundedDate.replace(/-/, '');
     const date = dates.substring(0, 1);
     let month = dates.substring(2, 3);
@@ -375,7 +375,7 @@ Then("I will direct to detail business profile", async () => {
 
     I.see("Alamat Bisnis");
     const actualBusinessAddress = await profilePage.getBusinessAddress();
-    const expectedBusinessAddress = (await getDataDao.getBusinessAddress()).fullAddress;
+    const expectedBusinessAddress = (await getDataDao.getBusinessAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
     I.assertEqual(actualBusinessAddress, expectedBusinessAddress);
 });
 

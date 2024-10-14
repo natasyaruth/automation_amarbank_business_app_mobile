@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./heal");
+// require("./heal");
 
 // const getRelease = require("./latest_releas.staging.js");
 // console.log(getRelease);
@@ -93,6 +93,7 @@ exports.config = {
   },
   include: {
     I: "./steps_file.js",
+    
     registrationPage: "./pages/registration.js",
 
     otpConfirmationPage: "./pages/otpConfirmation.js",

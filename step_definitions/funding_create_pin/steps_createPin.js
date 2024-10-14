@@ -240,14 +240,14 @@ When("I input expired OTP", () => {
 });
 
 When("I will receive email contain with OTP", async () => {
-    const email = (await resetStateDao.getEmail()).email;
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
     I.wait(3);
 
-    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN()).otp;
+    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 });
 
 When("I input OTP", async () => {
@@ -256,7 +256,7 @@ When("I input OTP", async () => {
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
     
-    const otpCode = (await otpDao.getOTPCreatePIN()).otp;
+    const otpCode = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     createPINPage.fillInOtpCode(otpCode);
 });

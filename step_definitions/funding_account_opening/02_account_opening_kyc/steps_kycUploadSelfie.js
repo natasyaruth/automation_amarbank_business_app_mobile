@@ -26,7 +26,7 @@ When("I take selfie picture", () => {
 
 When("I upload my selfie photo", async () => {
     await
-        uploadDao.uploadSelfie();
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I retake picture selfie", () => {
@@ -37,7 +37,7 @@ When("I upload invited user selfie photo", async () => {
     I.wait(7);
 
     await
-        uploadDao.uploadSelfie();
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
 
     headerPage.clickButtonBack();
     onboardingAccOpeningPage.chooseLater()

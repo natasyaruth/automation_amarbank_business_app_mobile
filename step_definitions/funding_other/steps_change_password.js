@@ -267,7 +267,7 @@ Then("I will direct to page input OTP change password", async () => {
     I.see("Masukkan Kode OTP");
     I.see("Kode OTP telah dikirim ke nomor");
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
+    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
     I.see(phoneNumber);
 
     I.waitForElement(changePasswordPage.fields.otp, 10);
@@ -309,7 +309,7 @@ Then("I reset back my password", async () => {
 Then("I reset attempt otp after login", async () => {
 
     await
-        otpDao.resetLimitRequestOtpUsingToken();
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I notified that I can verify the OTP tomorrow", async () => {
@@ -341,5 +341,5 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
     I.dontSeeElement(changePasswordPage.link.resendOtp);
 
     await
-        otpDao.resetLimitRequestOtpUsingToken();
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });

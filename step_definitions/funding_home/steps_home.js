@@ -107,16 +107,16 @@ Then(/I click menu tab testing/, () => {
 // Amount detail
 
 Given("I wait until my account name displayed", async () => {
-    const accType = (await resetStateDao.getAccountType()).accountType;
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
     let accountName;
 
     if (
         accType === 1
     ) {
-        const fullName = (await resetStateDao.getFullName()).ktpName;
+        const fullName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
         accountName = fullName;
     } else {
-        const businessName = (await resetStateDao.getCompanyName()).businessName;
+        const businessName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
         accountName = businessName;
     }
 
@@ -161,19 +161,19 @@ Given("has been filled survey rating account opening", async () => {
 Given("don't have any notification", async () => {
 
     await
-        resetStateDao.deleteAllNotification();
+        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
 
 });
 
 Given("we don't have any notification", async () => {
 
     await
-        resetStateDao.deleteAllNotification();
+        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
 
     I.wait(2);
     
     await
-        resetStateDao.deleteAllNotificationPartner();
+        resetStateDao.deleteAllNotificationPartner(globalVariable.login.userIDPartner, globalVariable.login.passwordPartner);
 
 });
 
@@ -185,7 +185,7 @@ Given("I have {string} notification {string} in notification center", async (num
         case "Maintenance App":
             for (let i = 0; i < numbers; i++) {
                 await
-                    uploadDao.pushNotificationMaintananceApp();
+                    uploadDao.pushNotificationMaintananceApp(globalVariable.login.userID);
                 I.wait(2);
             }
             break;
@@ -202,13 +202,13 @@ Given("I only have {string} notification {string} in notification center", async
     const numbers = parseInt(number);
 
     await
-        resetStateDao.deleteAllNotification();
+        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
 
     switch (notifName) {
         case "Maintenance App":
             for (let i = 0; i < numbers; i++) {
                 await
-                    uploadDao.pushNotificationMaintananceApp();
+                    uploadDao.pushNotificationMaintananceApp(globalVariable.login.userID);
                 I.wait(2);
             }
             break;
@@ -219,7 +219,7 @@ Given("I only have {string} notification {string} in notification center", async
 });
 
 Given("has notification in notification center", async () => {
-    const listNotification = (await getDataDao.getNotificationList("")).listNotification;
+    const listNotification = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "")).listNotification;
 
     if(
         listNotification.length === 0
@@ -233,9 +233,29 @@ When("I click detail amount", () => {
     I.waitForText("Saldo Rekening Giro", 10);
 });
 
-When("I mask my amount", () => {
-    amountDetailPage.clickIconEye();
-    I.wait(1);
+When("I mask my amount", async () => {
+
+    const activeAmount = await amountDetailPage.getActiveAmount();
+
+    if(
+        activeAmount !== "Rp••••"
+    ){
+        amountDetailPage.clickIconEye();
+        I.wait(1);
+    }
+    
+});
+
+When("I unmask my amount", async () => {
+
+    const activeAmount = await amountDetailPage.getActiveAmount();
+
+    if(
+        activeAmount === "Rp••••"
+    ){
+        amountDetailPage.clickIconEye();
+        I.wait(1);
+    }
 });
 
 When("I will see my active, blocking and total amount", async () => {
@@ -254,7 +274,7 @@ When("I see my blocking amount is Rp 0", async () => {
 When("I see my blocking amount coming from minimum amount", async () => {
     const minimumBusiness = "1.000.000";
     const minimumIndividual = "500.000";
-    const accType = (await resetStateDao.getAccountType()).accountType;
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
 
     if (
         accType === 1
@@ -357,7 +377,7 @@ When("I click bucketlist notification info", () => {
 });
 
 When("I click bucketlist notification transaction", () => {
-    notificationCenterPage.openDetailNotifInfo(0);
+    notificationCenterPage.openDetailNotifTransaction(0);
 });
 
 When("I click notification center attempt register new device", () => {
@@ -543,7 +563,7 @@ Then("I will see detail blocking amount coming from loan fee and minimum amount"
 Then("I will not see information {string} in the below of field blocking amount", async (information) => {
     I.waitForText("Saldo Rekening Giro", 10);
 
-    const productType = (await resetStateDao.getProductType()).productType;
+    const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
     const statusPendingTask = await (await resetStateDao.isPendingTaskExist()).hasPendingTransaction;
 
     if (
@@ -1365,7 +1385,7 @@ Then("I will see notification is sorted by the latest to oldest", async () => {
 
     I.waitForElement(notificationCenterPage.texts.date + "0", 10);
 
-    const listNotification = (await getDataDao.getNotificationList()).listNotification;
+    const listNotification = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "")).listNotification;
 
     const newListDate = [];
 
@@ -1395,7 +1415,7 @@ Then("I will see notification categorize by Info", async () => {
 
     I.wait(3);
 
-    const listInfo = (await getDataDao.getNotificationList("info")).listNotification;
+    const listInfo = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "info")).listNotification;
 
     for (let i = 0; i < listInfo.length; i++) {
         let index = i + 1;
@@ -1409,7 +1429,7 @@ Then("I will see notification categorize by Transaction", async () => {
 
     I.wait(3);
 
-    const listTrx = (await getDataDao.getNotificationList("transaction")).listNotification;
+    const listTrx = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "transaction")).listNotification;
 
     for (let i = 0; i < listTrx.length; i++) {
         let index = i + 1;
@@ -1423,7 +1443,7 @@ Then("I will see all categorize notification", async () => {
 
     I.wait(3);
 
-    const listNotification = (await getDataDao.getNotificationList("")).listNotification;
+    const listNotification = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "")).listNotification;
 
     for (let i = 0; i < listNotification.length; i++) {
         let index = i + 1;
@@ -1440,13 +1460,13 @@ Then("I will see all categorize notification", async () => {
 
 Then("I will see main dashboard with widget {string}", async (status) => {
 
-    const accType = (await resetStateDao.getAccountType()).accountType;
+    const accType = (await resetStateDao.getAccountType(globalVariable.login.userID, globalVariable.login.password)).accountType;
 
     if (
         status === 'active' &&
         accType === 1
     ) {
-        const accountHolderName = (await resetStateDao.getFullName()).ktpName;
+        const accountHolderName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
         const actualName = await onboardingAccOpeningPage.getAccHolderName();
         I.assertEqual(actualName, accountHolderName);
 
@@ -1454,13 +1474,13 @@ Then("I will see main dashboard with widget {string}", async (status) => {
         status === 'active' &&
         accType === 2
     ) {
-        const accountHolderName = (await resetStateDao.getCompanyName()).businessName;
+        const accountHolderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
         const actualName = await onboardingAccOpeningPage.getAccHolderName();
         I.assertEqual(actualName, accountHolderName);
     }
 
     let accNumber = "";
-    accNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    accNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     const format1 = accNumber.substring(0, 4);
     const format2 = accNumber.substring(4, 8);
     const format3 = accNumber.substring(8, 10);

@@ -11,7 +11,7 @@ const {
 
 Given("I am a customer want to fill my information identity details", async () => {
     await
-        resetStateDao.resetStateFlow(3);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 3);
 
     resetStateDao.reloadPageAfterResetState();
 });
@@ -23,9 +23,9 @@ Given("I mock feature submit form KTP into enabled", async () => {
 
 Given("I am a customer who has uploaded my eKTP photo", async () => {
     await
-        uploadDao.allowDeviceData();
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
-        uploadDao.uploadKTP();
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
 
     resetStateDao.reloadPageAfterResetState();
 });
@@ -76,7 +76,7 @@ When("I submit my information identity details", () => {
 
 When("I skip step upload eKTP photo", async () => {
     await
-        resetStateDao.resetStateFlow(3);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 3);
 
     resetStateDao.reloadPageAfterResetState();
 });
@@ -161,7 +161,7 @@ Then("I shouldn't see message error in the below of field {string} in form KTP",
     I.dontSee(formKtpPage.messageErrorFields[fieldName]);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form KTP", async (expectedMsgError, fieldName) => {
@@ -172,7 +172,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will notify my information identity details has successfully submitted", () => {

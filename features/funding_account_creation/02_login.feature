@@ -161,6 +161,7 @@ Feature: Account login
       | password    | 1234Test |
       | userIDstg   | stag76ee |
       | passwordStg | Test1234 |
+    And I reset attempt failed login  
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | Pass1234 |
@@ -168,7 +169,6 @@ Feature: Account login
       | passwordStg | Pass1234 |
     And I click login
     Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
-    And I reset attempt failed login
 
   @C131557
   Scenario: Login with wrong password twice
@@ -182,12 +182,12 @@ Feature: Account login
       | password    | Pass1234 |
       | userIDstg   | stag76ee |
       | passwordStg | Pass1234 |
+    And I reset attempt failed login  
     And I click login
     And I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
     And I click try again to login
     And I click login
     Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
-    And I reset attempt failed login
 
   @C131558
   Scenario: Login with wrong password three times
@@ -196,6 +196,7 @@ Feature: Account login
       | password    | 1234Test |
       | userIDstg   | stag76ee |
       | passwordStg | Test1234 |
+    And I reset attempt failed login  
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | Pass1234 |
@@ -209,7 +210,6 @@ Feature: Account login
     And I click try again to login
     And I click login
     Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
-    And I reset attempt failed login
 
   @C131559
   Scenario: Click login via biometric
@@ -223,14 +223,14 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nata6bde |
+      | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nata6bde |
+      | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -245,14 +245,14 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nata6bde |
+      | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | nata6bde |
+      | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -260,21 +260,21 @@ Feature: Account login
     And I click close in header page
     And I see pop up confirm to exit 
     And I want continue to see PDP
-    Then I will directing to page PDP
+    Then I will back to page PDP
 
   @C162151
   Scenario: Login using existing user active with PDP still not submitted yet
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stag6dbb |
+      | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stag6dbb |
+      | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -283,23 +283,23 @@ Feature: Account login
     And I will see pop up option PDP login
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click login
+    And I submit the PDP login
     And I click later in pop up biometric
     Then I will see card account 'active'
 
   @C162152
   Scenario: Login using existing user on verification with PDP still not submitted yet
     Given I am a registered customer with following details:
-      | userID      | autocaea |
+      | userID      | indibec3 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stagb081 |
+      | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
-      | userID      | autocaea |
+      | userID      | indibec3 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stagb081 |
+      | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -308,23 +308,23 @@ Feature: Account login
     And I will see pop up option PDP login
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click login
+    And I submit the PDP login
     And I click later in pop up biometric
     Then I will see card account 'on verification'
 
   @C162153
   Scenario: Login using existing user on process with PDP still not submitted yet
     Given I am a registered customer with following details:
-      | userID      | autocaea |
+      | userID      | deved6a1 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stag8fac |
+      | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
-      | userID      | autocaea |
+      | userID      | deved6a1 |
       | password    | 1234Test |
-      | userIDstg   | stag76ee |
-      | passwordStg | Test1234 |
+      | userIDstg   | stag8fac |
+      | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -333,6 +333,6 @@ Feature: Account login
     And I will see pop up option PDP login
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click login
+    And I submit the PDP login
     And I click later in pop up biometric
     Then I will see card account 'on process'
