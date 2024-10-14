@@ -16,9 +16,11 @@ module.exports = {
     confirm: "~buttonConfirm",
     continueRegist: "~btnNext",
     acceptWebView: "~acceptWebviewBtn",
+    acceptPDP: "~buttonAcceptPDP",
     readTnC: "~buttonReadTnc",
     backPDP: "~buttonNext",
-    closePDP: "~buttonLogout"
+    closePDP: "~buttonLogout",
+    submitPDP: "~btnCreateAccount",
   },
   messageErrorFields: {
     fullName: "~textMsgErrorFullName",
@@ -62,8 +64,8 @@ module.exports = {
     scrollToButton: "~scrollContentWebview",
   },
   statusElement:{
-    buttonLogin: {xpath: ""},
-    buttonRegist: {xpath: ""},
+    buttonLogin: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
+    buttonRegist: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
   },
 
   fillInAccountInformation(accountInformation) {
@@ -138,16 +140,7 @@ module.exports = {
     }
   },
 
-  // async verifyButtonDisabled(){
-  //   let isDisabled = await I.grabAttributeFrom((this.buttons.createAccountPDP), 'disabled');
-  // if (isDisabled === 'true') {
-  // //console.log('The element is disabled');
-  // } else {
-  //   //console.log('The element is not disabled');
-  // }
-  // },
-
-  clickIconEyePassword() {
+  clickIconEyePassword(){
     I.click(this.icons.eyePassword);
   },
 
@@ -157,21 +150,19 @@ module.exports = {
 
   clickCreateAccountButton() {
     I.swipeUp(this.fields.confirmPassword, 500, 1000);
-    I.scrollIntoView(this.buttons.createAccount);
-    // I.waitForInvisible(this.buttons.backRegist, 3);
+    I.waitForElement(this.buttons.createAccount, 10)
     I.click(this.buttons.createAccount);
   },
 
-  clickButtonBackToPageRegistration() {
-    I.waitForElement(this.buttons.backRegist);
+  clickButtonBackToPageRegistration(){
+    I.waitForElement(this.buttons.backRegist, 10);
     I.click(this.buttons.backRegist);
     I.waitForInvisible(this.buttons.backRegist, 3);
   },
 
-  clickButtonConfirm() {
-    I.waitForElement(this.buttons.confirm);
+  clickButtonConfirm(){
+    I.waitForElement(this.buttons.confirm, 10);
     I.click(this.buttons.confirm);
-    I.waitForInvisible(this.buttons.confirm, 10);
   },
 
 
@@ -197,18 +188,18 @@ module.exports = {
   },
 
   agreeWithTermsAndCondition() {
-    I.waitForElement(this.buttons.acceptWebView);
+    I.waitForElement(this.buttons.acceptWebView, 10);
     I.click(this.buttons.acceptWebView);
   },
 
   agreeWithPrivacyAndPolicy() {
-    I.waitForElement(this.buttons.acceptWebView);
+    I.waitForElement(this.buttons.acceptWebView, 10);
     I.click(this.buttons.acceptWebView);
   },
 
   agreeWithPDP() {
-    I.waitForElement(this.buttons.acceptWebView);
-    I.click(this.buttons.acceptWebView);
+    I.waitForElement(this.buttons.acceptPDP, 10);
+    I.click(this.buttons.acceptPDP);
   },
 
   continueRegistration(){
@@ -221,17 +212,22 @@ module.exports = {
   },
 
   readTnC(){
-    I.waitForElement(this.buttons.readTnC);
+    I.waitForElement(this.buttons.readTnC, 10);
     I.click(this.buttons.readTnC);
   },
 
   cancelPDP(){
-    I.waitForElement(this.buttons.closePDP);
+    I.waitForElement(this.buttons.closePDP, 10);
     I.click(this.buttons.closePDP);
   },
 
   backToPDP(){
-    I.waitForElement(this.buttons.backPDP);
+    I.waitForElement(this.buttons.backPDP, 10);
     I.click(this.buttons.backPDP);
+  },
+
+  submitPDPRegist(){
+    I.waitForElement(this.buttons.submitPDP, 10);
+    I.click(this.buttons.submitPDP);
   },
 };

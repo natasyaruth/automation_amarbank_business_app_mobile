@@ -62,7 +62,7 @@ Given("I login using user id partner", async () => {
 
 Given("I reset my device id to new device", async () => {
   await
-    resetStateDao.resetDeviceId(globalVariable.login.newDeviceID);
+    resetStateDao.resetDeviceId(globalVariable.login.userID, globalVariable.login.password, globalVariable.login.newDeviceID);
 });
 
 Given("I delete my new device id", async () => {
@@ -122,7 +122,7 @@ Given("I have new device id {string}", async (newDeviceId) => {
 });
 
 Given("I have last step journey before", async () => {
-  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney()).step;
+  globalVariable.login.lastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
 });
 
 Given("I am an unregistered customer trying to login", () => {
@@ -215,7 +215,7 @@ Then(
   "I reset attempt failed login",
   async () => {
     await
-      resetStateDao.resetAttemptFailedLogin();
+      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
   });
 
 Then(
@@ -359,6 +359,8 @@ When("I will see pop up option PDP login", async () => {
   I.see("Saya menyetujui PT Bank Amar Indonesia, Tbk untuk mengirimkan informasi pemasaran, termasuk produk, promosi, dan penawaran khusus.".trimEnd());
   I.waitForElement(registrationPage.checkButton.secondPdp, 10);
 
+  I.see("Masuk Akun");
+  I.waitForElement(registrationPage.statusElement.buttonLogin, 10);
   const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonLogin, 'enabled');
   I.assertEqual(isEnabled, 'false');
 });
@@ -508,6 +510,10 @@ When("I cancel continue to see PDP", () => {
   registrationPage.cancelPDP();
 });
 
+When("I submit the PDP login", ()=>{
+  loginPage.submitPDPLogin();
+})
+
 Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
 
@@ -578,7 +584,7 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 
 Then("I will reset my attempt failed face match", async () => {
   await
-    resetStateDao.resetAttemptFailedFaceMatch();
+    resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
 });
 
 Then(
@@ -597,7 +603,7 @@ Then(
 );
 
 Then("my last journey step is not change", async () => {
-  const actualLastStep = (await getDataDao.getLastStepJourney()).step;
+  const actualLastStep = (await getDataDao.getLastStepJourney(globalVariable.login.userID, globalVariable.login.password)).step;
   I.assertEqual(actualLastStep, globalVariable.login.lastStep);
 });
 
@@ -661,7 +667,7 @@ Then(
   "I reset attempt failed login",
   async () => {
     await
-      resetStateDao.resetAttemptFailedLogin();
+      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
   });
 
 Then(
@@ -706,7 +712,7 @@ Then("I see pop up confirm to exit", () => {
   I.see("Anda harus menyetujui kebijakan pelindungan data pribadi untuk dapat terus menggunakan aplikasi ini.");
 
   I.see("Lanjutkan");
-  I.waitForElement(registrationPage.buttons.backRegist, 10);
+  I.waitForElement(registrationPage.buttons.backPDP, 10);
 
   I.see("Keluar");
   I.waitForElement(registrationPage.buttons.closePDP, 10);

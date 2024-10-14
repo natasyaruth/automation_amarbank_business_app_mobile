@@ -505,6 +505,6 @@ Feature: Registering New Device
         And I will see pop up option PDP login
         And I check option already and read the condition PDP
         And I check option I agree Amarbank send me new information and innovation from the bank
-        And I click login
+        And I submit the PDP login
         And I click later in pop up biometric
         Then I will see card account 'active' 

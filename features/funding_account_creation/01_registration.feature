@@ -20,7 +20,7 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Revvy                    |
-      | email           | staging_revi_01@gmail.com|
+      | email           | natasyaruth03@gmail.com  |
       | mobileNumber    | 8999677540               |
       | password        | 1234Test                 |
       | confirmPassword | 1234Test                 |
@@ -34,7 +34,7 @@ Feature: Account registration
     And I will see pop up option PDP registration
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
     Then my account should be created
@@ -197,12 +197,12 @@ Feature: Account registration
   Scenario: Create account business with business code from invitation email
     Given I am a customer lead wanting to register account business from invitation
     When I choose menu registration
-    And I filling in my account business information with the following details:
-      | fullName        | Johan Hopkins                |
-      | email           | johan.hopkins@trash-mail.com |
-      | mobileNumber    | 8776230006                   |
-      | password        | 1234Test                     |
-      | confirmPassword | 1234Test                     |
+    And I filling in my account information with the following details:
+      | fullName        | Revvy                    |
+      | email           | natasyaruth03@gmail.com  |
+      | mobileNumber    | 8999677540               |
+      | password        | 1234Test                 |
+      | confirmPassword | 1234Test                 |
     And I registering the account
     And I will directing to page terms and condition
     And I click button agree with terms and condition
@@ -212,11 +212,33 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
-    Then my account should be created
-
+    And my account should be created
+    And I click later in pop up biometric
+    And I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | rudit.bagas@gmail.com  |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |  
+    And I choose other
+    And I click logout  
+    And I filling in my account business information
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying my phone number by entering the code sent to me
+    And I verifying my email by login by user id
+    And account invitee should be created
+    
   @C131617
   Scenario: Create account business with business unregistered code
     Given I am a customer lead wanting to register account business from invitation
@@ -316,7 +338,6 @@ Feature: Account registration
     And I will directing to page privacy and policy 
     And I click button agree with privacy and policy
     And I will directing to page PDP
-    And I click button agree to PDP
     When I click button back in the header page
     And I will directing to page privacy and policy
     And I click button back in the header page
@@ -341,7 +362,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I verifying my phone number by entering the wrong code
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
@@ -362,17 +383,17 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I let the otp code expire
     And I verifying my phone number by entering the code sent to me
-    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
+    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan sudah kedaluwarsa'
 
   @C131626
   Scenario: Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 87539568672        |
+      | mobileNumber    | 87530068672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     And I registering the account
@@ -384,7 +405,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I verifying my phone number by entering the wrong code five times
     Then I should be notified that I can reverify the phone number tomorrow
 
@@ -405,7 +426,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I verifying my phone number by entering the wrong code four times
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
@@ -427,7 +448,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I choose change phonenumber
     And I change my phonenumber into '89577322178'
     And I resend the OTP
@@ -451,7 +472,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I choose change phonenumber
     And I filling new phonenumber with my old phonenumber
     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
@@ -472,7 +493,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I choose change phonenumber
     And I filling new phonenumber with '<Value>'
     Then I should see message error '<Message>' in the below of field new phonenumber
@@ -502,7 +523,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I choose change phonenumber
     And I click button back in the header page
     Then I will direct to page verification phonenumber
@@ -524,7 +545,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I get my first OTP
     And I resend the OTP
     Then I will get new OTP different with my first OTP
@@ -547,7 +568,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I've requested OTP '1' times
     When I get my first OTP
     And I resend the OTP
@@ -571,7 +592,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I've requested OTP '2' times
     When I get my first OTP
     And I resend the OTP
@@ -595,7 +616,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I've requested OTP '3' times
     When I get my first OTP
     And I resend the OTP
@@ -619,7 +640,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I've requested OTP '4' times
     When I get my first OTP
     And I resend the OTP
@@ -643,7 +664,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I've requested OTP '5' times
     When I resend the OTP
     Then I should be notified that I can reverify the phone number tomorrow
@@ -666,7 +687,7 @@ Feature: Account registration
     And I click button agree to PDP
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     When I verifying my phone number by entering the wrong code four times
     And I resend the OTP
     And I verifying my phone number by entering the wrong code four times
@@ -674,12 +695,12 @@ Feature: Account registration
 
   @C131644
   Scenario: Resend email verification
-    Given I am a customer had been registering and verify phonenumber with following details:
-      | fullName        | Ruth Natasya       |
-      | email           | fakemail@email.com |
-      | mobileNumber    | 81293697203        |
-      | password        | Test1234           |
-      | confirmPassword | Test1234           |
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya                 |
+      | email           | ruth.hutauruk@amarbank.co.id |
+      | mobileNumber    | 89561338639                  |
+      | password        | Test1234                     |
+      | confirmPassword | Test1234                     |
     And I registering the account
     And I will directing to page terms and condition
     And I click button agree with terms and condition
@@ -688,8 +709,7 @@ Feature: Account registration
     And I will directing to page PDP
     And I click button agree to PDP
     And I check option already and read the condition PDP
-    And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account  
+    And I submit the PDP registration 
     And I verifying my phone number by entering the code sent to me
     When I resend email verification
     Then I will notify that resend email is successfully

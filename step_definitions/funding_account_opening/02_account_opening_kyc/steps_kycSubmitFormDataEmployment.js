@@ -13,12 +13,12 @@ Given("I am a customer who has submitted my domicile address", () => { });
 
 Given("I am a customer who has uploaded my eKTP photo and selfie", async () => {
     await
-        uploadDao.allowDeviceData();
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
-        uploadDao.uploadKTP();
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
     I.wait(2);
     await
-        uploadDao.uploadSelfie();
+        uploadDao.uploadSelfie(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Given("I want to submit my employment data", () => { });
@@ -196,14 +196,14 @@ Then("I shouldn't see message error in the below of field company name in form D
     I.assertEqual(messageField, infoCompanyName);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I shouldn't see message error in the below of field average transaction in form Data Employment", async () => {
     I.dontSee(formEmploymentDataPage.messageErrorFields.averageTransaction);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Data Employment", async (expectedMsgError, fieldName) => {
@@ -213,7 +213,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will see checkbox Rights & Policy, T&C about loan and Privy", async () => {
@@ -240,7 +240,7 @@ Then("I will see checkbox Rights & Policy, T&C about loan and Privy", async () =
     I.waitForText("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. "), 10;
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
@@ -267,5 +267,5 @@ Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
     I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });

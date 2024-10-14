@@ -115,6 +115,7 @@ module.exports = {
         time: "",
         lastStep: "",
         newDeviceID: "",
+        tokenLogin: "",
     },
     forgotPassword: {
         userID: "",

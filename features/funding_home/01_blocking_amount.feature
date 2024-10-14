@@ -40,6 +40,7 @@ Feature: Home - Blocking amount
         And I click login
         And I click later in pop up biometric
         And I wait until my account name displayed
+        And I unmask my amount
         And I will see my active, blocking and total amount
         When I mask my amount
         Then I will not see my active, blocking and total amount
@@ -59,6 +60,7 @@ Feature: Home - Blocking amount
         And I click login
         And I click later in pop up biometric
         And I wait until my account name displayed
+        And I unmask my amount
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
         And I input name 'Surya Edwin' from the search box
@@ -72,6 +74,7 @@ Feature: Home - Blocking amount
         And I input PIN '111111'
         And I successfully transferred
         And I close page detail transfer
+        And I unmask my amount
         Then I will see my active amount decreased
         And my blocking amount still Rp. 500.000
         And my total amount decreased
@@ -95,6 +98,7 @@ Feature: Home - Blocking amount
         And I click login
         And I click later in pop up biometric
         And I wait until my account name displayed
+        And I unmask my amount
         And I will see my active, blocking and total amount
         When I choose menu Transfer from main dashboard
         And I am on receiver list page
@@ -109,6 +113,7 @@ Feature: Home - Blocking amount
         And I input PIN '111111'
         And I successfully transferred
         And I close page detail transfer
+        And I unmask my amount
         Then I will see my active amount decreased
         And my blocking amount still Rp. 1.000.000
         And my total amount decreased
@@ -170,6 +175,7 @@ Feature: Home - Blocking amount
         And I click login
         And I click later in pop up biometric
         And I wait until my account name displayed
+        And I unmask my amount
         When I see my blocking amount is Rp 0
         And I click detail amount
         Then I will see detail blocking amount coming from loan fee
@@ -190,6 +196,7 @@ Feature: Home - Blocking amount
         And I click login
         And I click later in pop up biometric
         And I wait until my account name displayed
+        And I unmask my amount
         When I see my blocking amount coming from minimum amount
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount

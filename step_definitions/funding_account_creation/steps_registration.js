@@ -13,6 +13,7 @@ const {
   changePhoneNumberPage,
   onboardingAccOpeningPage,
   globalVariable,
+  resetStateDao,
 } = inject();
 
 Given("I am a customer open app amarbank business", () => {});
@@ -56,6 +57,10 @@ Given(
     ).otp;
     account.otp = otpCode;
     globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+
+    await
+      resetStateDao.submitPDP(globalVariable.login.userID, globalVariable.login.password);
+
     globalVariable.login.userIDInitiator = globalVariable.login.userID;
 });
 
@@ -95,26 +100,6 @@ Given("I am a customer had been registering and verify phonenumber with followin
   otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
 
   verificationEmailPage.isOpen();
-});
-
-Given("I am a customer had been registering the account with the following details:", async (table) => {
-  const account = table.parse().rowsHash();
-  globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
-  globalVariable.registration.email = account["email"];
-
-  await whitelistDao.whitelistPhoneNumber(
-    "+" + globalVariable.registration.phoneNumber
-  );
-
-  await whitelistDao.whitelistEmail(
-    globalVariable.registration.email
-  );
-
-  welcomePage.clickButtonRegister();
-  registrationPage.fillInAccountInformation(account);
-  registrationPage.clickCreateAccountButton();
-  registrationPage.clickButtonConfirm();
-  I.wait(5);
 });
 
 Given("still not agree with PDP concern", async ()=>{
@@ -161,7 +146,8 @@ When(
     const account = table.parse().rowsHash();
     globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
     globalVariable.registration.email = account["email"];
-    globalVariable.registration.password = account["password"];
+    const password = account["password"];
+    globalVariable.registration.password = password;
 
     await whitelistDao.whitelistPhoneNumber(
       "+" + globalVariable.registration.phoneNumber
@@ -184,11 +170,6 @@ When(
 
 When("I registering the account", () => {
   registrationPage.clickButtonConfirm();
-});
-
-Then("my account should be created", () => {
-  I.waitForText("Apa kebutuhan Anda saat ini?", 20);
-  onboardingAccOpeningPage.chooseLater();
 });
 
 Then("my account business should be created", () => {
@@ -222,7 +203,6 @@ When("I verifying my phone number by entering the wrong code", async () => {
 });
 
 When("I verifying my email by login by user id", async () => {
-  I.wait(20);
   verificationEmailPage.isOpen();
 
   I.see("Segera Cek E-mail");
@@ -231,9 +211,11 @@ When("I verifying my email by login by user id", async () => {
   let actualEmail = await verificationEmailPage.getEmailValue();
   I.assertEqual(actualEmail, globalVariable.registration.email);
 
-  globalVariable.registration.userID = await otpDao.getUserID(globalVariable.registration.email);
+  const userID = (await otpDao.getUserID(globalVariable.registration.email)).userID;
 
-  verificationEmailPage.loginWithUserId(globalVariable.registration.userID, globalVariable.registration.password, globalVariable.registration.email);
+  verificationEmailPage.loginWithUserId(userID, globalVariable.registration.password, globalVariable.registration.email);
+
+  globalVariable.registration.userID = userID;
 });
 
 When("I resend email verification", () => {
@@ -241,10 +223,10 @@ When("I resend email verification", () => {
 });
 
 When("I will notify that resend email is successfully", () => {
-  I.waitForText("E-mail berhasil dikirim.");
+  I.waitForText("E-mail berhasil dikirim.", 10);
 });
 
-When("I check Option already and read the condition PDP", () => {
+When("I check option already and read the condition PDP", () => {
   registrationPage.clickCheckboxPDPMandatory();
 });
 
@@ -270,7 +252,7 @@ When("I am filling field {string} with {string}", (fieldName, actualValue) => {
   registrationPage.fillFieldRegistration(fieldName, actualValue);
 });
 
-When("I fill form registration except field {string}", (fieldName) => {
+When("I fill form registration except field {string}", async (fieldName) => {
   const account = {
     fullName: "John Doe",
     email: "fakemail@email.com",
@@ -284,34 +266,38 @@ When("I fill form registration except field {string}", (fieldName) => {
 });
 
 When(
-  "I filling in my account business information with the following details:",
-  async (table) => {
-    const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
-    globalVariable.registration.email = account["email"];
-    globalVariable.registration.password = account["password"];
-    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(account["email"])).businessCode;
+  "I filling in my account business information",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.emailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.registration.emailPartner)).businessCode;
 
     await whitelistDao.whitelistPhoneNumber(
-      "+" + globalVariable.registration.phoneNumber
+      "+" + globalVariable.registration.phoneNumberPartner
     );
 
     await whitelistDao.whitelistEmail(
-      globalVariable.registration.email
+      globalVariable.registration.emailPartner
     );
 
     registrationPage.fillInAccountInformation(account);
-    registrationPage.fillFieldRegistration("businessCode", globalVariable.registration.businessCode);
-    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
-    globalVariable.registration.password = account["password"];
 
     registrationPage.clickCreateAccountButton();
 
     let actualPhoneNumber = await registrationPage.getValueInformation('mobileNumber');
     let actualCompanyName = await registrationPage.getValueInformation('companyName');
+    const companyName = await (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
 
-    I.assertEqual(actualPhoneNumber, "+62 " + account['mobileNumber']);
-    I.assertEqual(actualCompanyName, globalVariable.registration.companyName);
+    I.assertEqual(actualPhoneNumber, "+62 "+globalVariable.registration.phoneNumberPartner);
+    I.assertEqual(actualCompanyName, companyName);
   }
 );
 
@@ -359,17 +345,6 @@ When("I will directing to page privacy and policy", () => {
   
   I.waitForElement(registrationPage.buttons.acceptWebView, 10);
   I.see("Setujui Kebijakan Privasi");
-});
-
-When("I will directing to page PDP", () => {
-  I.waitForText("Pelindungan Data Pribadi", 10);
-
-  I.waitForElement(registrationPage.scroll.scrollToButton, 10);
-
-  registrationPage.clickScrollToEndOfPage();
-  
-  I.waitForElement(registrationPage.buttons.acceptWebView, 10);
-  I.see("Setujui Pelindungan Data Pribadi");
 });
 
 When("I click call center", () => {
@@ -452,6 +427,10 @@ When("I filling new phonenumber with {string}", (phoneNumber) => {
 When("I get my first OTP", async () => {
   globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 });
+
+When("I submit the PDP registration", ()=>{
+  registrationPage.submitPDPRegist();
+})
 
 Then("I will see helping center via email", () => {
   I.waitForText("Hubungi Tim Kami", 10);
@@ -585,7 +564,7 @@ Then("I will see attempts left {string}", (leftAttempt) => {
 Then("I should see button Buat Akun will enable", async () => {
   I.wait(1);
 
-  I.waitForText("Masuk Akun", 10);
+  I.waitForText("Buat Akun", 10);
   const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonRegist, 'enabled');
   I.assertEqual(isEnabled, 'true');
 
@@ -594,7 +573,7 @@ Then("I should see button Buat Akun will enable", async () => {
 Then("I should see button Buat Akun will disable", async () => {
   I.wait(1);
 
-  I.waitForText("Masuk Akun", 10);
+  I.waitForText("Buat Akun", 10);
   const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonRegist, 'enabled');
   I.assertEqual(isEnabled, 'false');
   
@@ -603,6 +582,10 @@ Then("I should see button Buat Akun will disable", async () => {
 Then("my account should be created", () => {
   I.waitForText("Apa kebutuhan Anda saat ini?", 20);
   onboardingAccOpeningPage.chooseLater();
+});
+
+Then("account invitee should be created", () => {
+  I.waitForText("Lanjutkan proses registrasi", 20);
 });
 
 Then("my account business should be created", () => {
@@ -629,8 +612,6 @@ Given(
     welcomePage.clickButtonRegister();
     registrationPage.fillInAccountInformation(account);
     registrationPage.clickCreateAccountButton();
-    registrationPage.clickButtonConfirm();
-    I.wait(5);
   }
 );
 
@@ -842,39 +823,6 @@ Then("I will see helping center via email", () => {
   headerPage.closeCallCenter();
 });
 
-Then("I will directing to page login", () => {
-  I.waitForText("Masuk Akun", 20);
-  I.waitForElement(headerPage.buttons.back, 10);
-  I.waitForElement(headerPage.icon.callCenter, 10);
-
-  I.wait(10);
-  I.see("User ID");
-  I.see("Masukkan user ID");
-  I.waitForElement(loginPage.fields.userID, 10);
-
-  I.see("Password");
-  I.see("Masukkan password");
-  I.waitForElement(loginPage.fields.password, 10);
-  I.waitForElement(loginPage.icon.eyePassword, 10);
-
-  I.see("Ingat saya");
-  I.waitForElement(loginPage.checkbox.rememberMe, 10);
-
-  I.see("Lupa Password?");
-  I.waitForElement(loginPage.link.forgotPassword, 10);
-
-  I.see("Masuk Akun");
-  I.waitForElement(loginPage.buttons.login, 10);
-
-  I.see("Atau");
-  I.see("Masuk dengan Biometrik");
-  I.waitForElement(loginPage.buttons.biometric, 10);
-
-  I.see("Belum memiliki akun?");
-  I.see("Daftar");
-  I.waitForElement(loginPage.link.registration, 10);
-});
-
 Then("I will directing to web view terms and condition", () => {
   I.waitForText("Syarat dan Ketentuan");
   // rest the assertion of the text
@@ -948,58 +896,6 @@ Then("I cannot change my phonenumber", () => {
   I.dontSee("Salah input Nomor HP?");
   I.dontSeeElement(otpConfirmationPage.links.changePhoneNumber);
 });
-
-Then(
-  "I should be notified that I can reverify the phone number tomorrow",
-  async () => {
-    const currentDate = new Date();
-    const tomorrowDate = new Date(currentDate);
-    tomorrowDate.setDate(currentDate.getDate() + 1);
-
-    const day = tomorrowDate.getDate();
-    const formattedDay = (day < 10 ? "0" : "") + day;
-    const month = tomorrowDate.getMonth();
-    const year = tomorrowDate.getFullYear();
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "Mei",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Des",
-    ];
-
-    const hours = tomorrowDate.getHours();
-    const minutes = tomorrowDate.getMinutes();
-    const currentTime =
-      hours.toString().padStart(2, "0") +
-      ":" +
-      minutes.toString().padStart(2, "0");
-
-    let actualMsgError = await otpConfirmationPage.getMessageError();
-
-    I.assertEqual(
-      actualMsgError,
-      "Kode OTP dikirim kembali pada: tanggal " +
-        formattedDay +
-        " " +
-        months[month] +
-        " " +
-        year +
-        ", pukul " +
-        currentTime
-    );
-
-    I.dontSeeElement(otpConfirmationPage.links.resendOTP);
-    await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
-  }
-);
 
 When("I choose change phonenumber", () => {
   otpConfirmationPage.isOpen();
@@ -1122,10 +1018,6 @@ When("I resend email verification", () => {
   verificationEmailPage.clickResendEmailLink();
 });
 
-When("I will notify that resend email is successfully", () => {
-  I.waitForText("E-mail berhasil dikirim.");
-});
-
 When("I checked the 2 mandatory PDP checklists", () => {
   registrationPage.clickCheckboxPDPMandatory();
 });
@@ -1172,4 +1064,35 @@ Then("I see text consent PDP", () => {
 });
 Then("I will direct to Registration page", () => {
   I.waitForText("Buat Akun", 10);
+});
+
+Then("I will directing to page PDP", () => {
+  I.waitForText("Pelindungan Data Pribadi", 10);
+
+  I.waitForElement(registrationPage.scroll.scrollToButton, 10);
+
+  registrationPage.clickScrollToEndOfPage();
+  
+  I.waitForElement(registrationPage.buttons.acceptPDP, 10);
+  I.see("Setujui Pelindungan Data Pribadi");
+});
+
+Then("I will back to page PDP", () => {
+  I.waitForText("Pelindungan Data Pribadi", 10);
+});
+
+Then("I will see pop up option PDP registration", async ()=>{
+  I.waitForText("Persetujuan Penggunaan Data dan Informasi Pribadi", 10);
+  I.see("Wajib dicentang");
+
+  I.see("Saya telah membaca dan memberikan persetujuan kepada PT Bank Amar Indonesia, Tbk untuk keperluan yang telah disampaikan.".trimEnd());
+  I.waitForElement(registrationPage.checkButton.firstPdp, 10);
+
+  I.see("Saya menyetujui PT Bank Amar Indonesia, Tbk untuk mengirimkan informasi pemasaran, termasuk produk, promosi, dan penawaran khusus.".trimEnd());
+  I.waitForElement(registrationPage.checkButton.secondPdp, 10);
+
+  I.see("Buat Akun");
+  I.waitForElement(registrationPage.statusElement.buttonRegist, 10);
+  const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonRegist, 'enabled');
+  I.assertEqual(isEnabled, 'false');
 });

@@ -148,7 +148,7 @@ Then("I will directing to page upload require documents for business individual"
 
     I.see("Mohon persiapkan dokumen-dokumen berikut:");
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if(
         legalityType === "UD"
