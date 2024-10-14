@@ -64,8 +64,8 @@ module.exports = {
     scrollToButton: "~scrollContentWebview",
   },
   statusElement:{
-    buttonLogin: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View"},
-    buttonRegist: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View"},
+    buttonLogin: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
+    buttonRegist: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
   },
 
   fillInAccountInformation(accountInformation) {
@@ -140,15 +140,6 @@ module.exports = {
     }
   },
 
-  // async verifyButtonDisabled(){
-  //   let isDisabled = await I.grabAttributeFrom((this.buttons.createAccountPDP), 'disabled');
-  // if (isDisabled === 'true') {
-  // //console.log('The element is disabled');
-  // } else {
-  //   //console.log('The element is not disabled');
-  // }
-  // },
-
   clickIconEyePassword(){
     I.click(this.icons.eyePassword);
   },
@@ -159,21 +150,19 @@ module.exports = {
 
   clickCreateAccountButton() {
     I.swipeUp(this.fields.confirmPassword, 500, 1000);
-    I.scrollIntoView(this.buttons.createAccount);
-    // I.waitForInvisible(this.buttons.backRegist, 3);
+    I.waitForElement(this.buttons.createAccount, 10)
     I.click(this.buttons.createAccount);
   },
 
   clickButtonBackToPageRegistration(){
-    I.waitForElement(this.buttons.backRegist);
+    I.waitForElement(this.buttons.backRegist, 10);
     I.click(this.buttons.backRegist);
     I.waitForInvisible(this.buttons.backRegist, 3);
   },
 
   clickButtonConfirm(){
-    I.waitForElement(this.buttons.confirm);
+    I.waitForElement(this.buttons.confirm, 10);
     I.click(this.buttons.confirm);
-    I.waitForInvisible(this.buttons.confirm, 10);
   },
 
 

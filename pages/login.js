@@ -143,6 +143,7 @@ module.exports = {
   },
 
   async getValueUserID() {
+    I.waitForElement(this.fields.userID, 10);
     return await I.grabTextFromField(this.fields.userID);
   },
 
@@ -152,10 +153,8 @@ module.exports = {
   },
 
   async clickLaterBiometric() {
-    if (await I.CheckIsElementVisible(this.buttons.laterBiometric, 20)) {
-      I.waitForElement(this.buttons.laterBiometric, 20);
-      I.click(this.buttons.laterBiometric);
-    }
+    I.waitForElement(this.buttons.laterBiometric, 20);
+    I.click(this.buttons.laterBiometric);
   },
 
   clickRegisterNewDevice() {
@@ -211,6 +210,11 @@ module.exports = {
   cancelNewDevice() {
     I.waitForElement(this.buttons.cancelNewDevice, 10);
     I.click(this.buttons.cancelNewDevice);
+  },
+
+  submitPDPLogin(){
+    I.waitForElement(this.buttons.submitPDP, 10);
+    I.click(this.buttons.submitPDP);
   },
 
   submitPDPLogin(){

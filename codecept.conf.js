@@ -1,5 +1,5 @@
 require("dotenv").config();
-require("./heal");
+// require("./heal");
 
 // const getRelease = require("./latest_releas.staging.js");
 // console.log(getRelease);
@@ -76,29 +76,7 @@ if (process.env.BROWSERSTACK) {
 exports.config = {
   output: "./output",
   helpers: {
-<<<<<<< Updated upstream
     Appium: defaultAppium,
-=======
-    Appium: {
-      require: "./helpers/JetpackComposeHelper.js",
-      appiumV2: true,
-      // app: "./assets/app/app-development-debug.apk",
-      platform: "Android",
-      // device: "emulator",
-      path: "/",
-      desiredCapabilities: {
-        platformName: "Android",
-        // platformVersion: "12.0",
-        automationName: "UiAutomator2",
-        newCommandTimeout: 300,
-        // deviceName: "emulator-5554",
-        // appPackage: "id.co.amarbank.smb.staging", //staging
-        appPackage: "id.co.amarbank.smb.dev", //Dev
-        appActivity: "id.co.amarbank.smb.ui.MainActivity",
-        autoGrantPermissions: true
-      }
-    },
->>>>>>> Stashed changes
     ChaiWrapper: {
       require: "codeceptjs-chai",
     },

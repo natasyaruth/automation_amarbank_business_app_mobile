@@ -136,7 +136,7 @@ Then("I will see checkbox Rights & Policy and T&C about loan", async () => {
     I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 When(/I should see text bottom sheet \"([^\"]*)\" in field \"([^\"]*)\"/, async(expectedValue, fieldName) => {

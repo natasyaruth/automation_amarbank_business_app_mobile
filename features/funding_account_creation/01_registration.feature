@@ -386,14 +386,14 @@ Feature: Account registration
     And I submit the PDP registration
     When I let the otp code expire
     And I verifying my phone number by entering the code sent to me
-    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
+    Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan sudah kedaluwarsa'
 
   @C131626
   Scenario: Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 87539568672        |
+      | mobileNumber    | 87530068672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     And I registering the account
@@ -695,12 +695,12 @@ Feature: Account registration
 
   @C131644
   Scenario: Resend email verification
-    Given I am a customer had been registering and verify phonenumber with following details:
-      | fullName        | Ruth Natasya       |
-      | email           | fakemail@email.com |
-      | mobileNumber    | 81293697203        |
-      | password        | Test1234           |
-      | confirmPassword | Test1234           |
+    Given I am a customer had been registering the account with the following details:
+      | fullName        | Ruth Natasya                 |
+      | email           | ruth.hutauruk@amarbank.co.id |
+      | mobileNumber    | 89561338639                  |
+      | password        | Test1234                     |
+      | confirmPassword | Test1234                     |
     And I registering the account
     And I will directing to page terms and condition
     And I click button agree with terms and condition
@@ -709,8 +709,7 @@ Feature: Account registration
     And I will directing to page PDP
     And I click button agree to PDP
     And I check option already and read the condition PDP
-    And I check option I agree Amarbank send me new information and innovation from the bank
-    And I submit the PDP registration  
+    And I submit the PDP registration 
     And I verifying my phone number by entering the code sent to me
     When I resend email verification
     Then I will notify that resend email is successfully

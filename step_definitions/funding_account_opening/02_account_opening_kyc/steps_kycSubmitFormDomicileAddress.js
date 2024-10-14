@@ -23,7 +23,7 @@ Given("I see my eKTP address", async () =>{
 When("register my identity details as below",
     async (table) => {
         const ktpData = table.parse().rowsHash();
-        uploadDao.submitIdentityDetails(ktpData);
+        uploadDao.submitIdentityDetails(globalVariable.login.userID, globalVariable.login.password, ktpData);
 
         globalVariable.formKtp.address = ktpData["ktpaddress"];
         globalVariable.formKtp.province = ktpData["province"];
@@ -91,7 +91,7 @@ Then("I shouldn't see message error in the below of field {string} in form New D
     I.dontSee(formDomicileAddressPage.messageErrorFields[fieldName]);
 
     await
-    resetStateDao.resetStateFlow(0, );
+    resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0, );
 });
 
 Then("I should see message error {string} in the below of field {string} in form New Domicile Address", async (expectedMsgError, fieldName) => {
@@ -101,7 +101,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-    resetStateDao.resetStateFlow(0, );
+    resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0, );
 });
 
 Then("I will notify my domicile address has successfully submitted", () => {

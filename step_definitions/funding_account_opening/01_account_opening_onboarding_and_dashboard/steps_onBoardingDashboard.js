@@ -122,9 +122,9 @@ When("I continue to register my KYC data", () => {
 
 When("I update my last journey step to {string}", async (stepName) => {
     await
-        onboardingAccOpeningPage.updateStep(stepName,);
+        onboardingAccOpeningPage.updateStep(globalVariable.login.userID, globalVariable.login.password, stepName);
 
-    const isInvitee = (await getDataDao.isPartner()).data;
+    const isInvitee = (await getDataDao.isPartner(globalVariable.login.userID, globalVariable.login.password)).data;
 
     if (
         isInvitee === false
@@ -450,7 +450,7 @@ Then("I will see details info of giro account Corporate and MSME", async () => {
 
 Then("product type same with I choose before", async () => {
 
-    const actualProductType = (await resetStateDao.getProductType()).productType;
+    const actualProductType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
 
     I.assertEqual(actualProductType, globalVariable.onBoarding.productType);
 });
@@ -472,13 +472,13 @@ Then("I will direct to page continue to register KYC Invitee", () => {
 
 Then("I reset my state journey", async () => {
 
-    const listBusinessPartner = (await getDataDao.getListBusineePartners()).listBusinessPartners;
+    const listBusinessPartner = (await getDataDao.getListBusineePartners(globalVariable.login.userID, globalVariable.login.password)).listBusinessPartners;
 
     if (
         listBusinessPartner !== null
     ) {
 
-        const businessID = (await getDataDao.getBusinessId()).id;
+        const businessID = (await getDataDao.getBusinessId(globalVariable.login.userID, globalVariable.login.password)).id;
 
         await
             resetStateDao.deletePartner(businessID);
@@ -489,14 +489,14 @@ Then("I reset my state journey", async () => {
         globalVariable.dashboard.lastPage === ""
     ) {
         await
-            resetStateDao.resetStateFlow(0);
+            resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
     }
 });
 
 Then("I reset my state journey invitee", async () => {
 
     await
-        resetStateDao.resetStateFlow(2);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 2);
 });
 
 Then("I will see bottom sheet NPWP Business", () => {

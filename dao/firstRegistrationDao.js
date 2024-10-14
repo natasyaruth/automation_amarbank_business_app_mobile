@@ -1,6 +1,5 @@
 const { I,
-    globalVariable,
-    otpDao } = inject();
+    globalVariable} = inject();
 
 const env = globalVariable.returnEnvi();
 
