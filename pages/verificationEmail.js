@@ -20,8 +20,8 @@ module.exports = {
     // I.see("Gunakan User ID yang telah kami kirim ke e-mail:");
     I.see(email);
 
-    I.fillField(loginPage.fields.userID, userID);
-    I.fillField(loginPage.fields.password, password);
+    I.setText(loginPage.fields.userID, userID);
+    I.setText(loginPage.fields.password, password);
     I.click(loginPage.buttons.login);
   },
 
@@ -35,8 +35,8 @@ module.exports = {
     I.click(this.link.resendEmail);
   },
 
-  isOpen() {
-    I.waitForElement(this.button.login, 15);
-    I.see("Verifikasi Email");
+  isOpen(){
+    I.waitForElement(this.button.login, 40);
+    I.see("Verifikasi Email")
   },
 };

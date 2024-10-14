@@ -30,8 +30,6 @@ Given("My last flow kyc step is {string}", (stateName) => {
 Given("I register initiator with partner as below", async (table) => {
     const legality = "CV";
     const prodType = "CORP";
-    const userID = globalVariable.login.userID;
-    const password = globalVariable.login.password;
     const npwpBusiness = globalVariable.registration.npwpBusinessDefault;
 
     const ktpInitiator = {
@@ -85,35 +83,35 @@ Given("I register initiator with partner as below", async (table) => {
 
     // HIT PRODUCT TYPE
     await
-        uploadDao.submitProductType(prodType);
+        uploadDao.submitProductType(globalVariable.login.userID, globalVariable.login.password, prodType);
 
     // CHECKING NPWP
     // await 
-    //     uploadDao.checkEligibilityNPWPBusiness(npwpBusiness);
+    //     uploadDao.checkEligibilityNPWPBusiness(globalVariable.login.userID, globalVariable.login.password, npwpBusiness);
 
     // HIT LEGALITY TYPE
     await
-        uploadDao.submitLegalityType(legality, npwpBusiness);
+        uploadDao.submitLegalityType(globalVariable.login.userID, globalVariable.login.password, legality, npwpBusiness);
 
     // JUMP TO FORM KTP
     await
-        resetStateDao.resetStateFlow(3);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 3);
 
     // HIT FORM KTP
     await
-        uploadDao.submitIdentityDetails(ktpInitiator);
+        uploadDao.submitIdentityDetails(globalVariable.login.userID, globalVariable.login.password, ktpInitiator);
 
     // JUMP TO BUSINESS PROFILE
     await
-        resetStateDao.resetStateFlow(9);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 9);
 
     // HIT BUSINESS PROFILE
     await
-        uploadDao.submitBusinessProfile(businessProfile, legality);
+        uploadDao.submitBusinessProfileglobalVariable.login.userID, globalVariable.login.password, (businessProfile, legality);
 
     // ADD PARTNER
     await
-        uploadDao.submitOnePartner(dataInvitee);
+        uploadDao.submitOnePartner(globalVariable.login.userID, globalVariable.login.password, dataInvitee);
 
     // GET BUSINESS CODE
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
@@ -122,7 +120,7 @@ Given("I register initiator with partner as below", async (table) => {
     globalVariable.registration.emailPartner = dataInvitee["email"];
     globalVariable.registration.passwordPartner = dataInvitee["password"];
     globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
-    globalVariable.registration.fullName = dataInvitee["fullName"];
+    globalVariable.registration.fullNamePartner = dataInvitee["fullName"];
 
 });
 
@@ -176,9 +174,9 @@ When("I submit my eKTP photo", () => {
 When("I upload my eKTP photo", async () => {
     I.waitForText("Ambil Foto eKTP Anda", 10);
     await
-        uploadDao.allowDeviceData();
+        uploadDao.allowDeviceData(globalVariable.login.userID, globalVariable.login.password);
     await
-        uploadDao.uploadKTP();
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
 
     resetStateDao.reloadPageAfterResetState();
 });

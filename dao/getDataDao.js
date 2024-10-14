@@ -4,15 +4,15 @@ const env = globalVariable.returnEnvi();
 
 module.exports = {
 
-    async getTokenLogin() {
+    async getTokenLogin(userID, password) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userID,
+            password: password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -22,9 +22,9 @@ module.exports = {
         }
     },
 
-    async getLastStepJourney() {
+    async getLastStepJourney(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -38,15 +38,15 @@ module.exports = {
 
     },
 
-    async isPartner() {
+    async isPartner(userID, password) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userID,
+            password: password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -56,9 +56,9 @@ module.exports = {
         }
     },
 
-    async hasCreatePin() {
+    async hasCreatePin(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -71,9 +71,9 @@ module.exports = {
         };
     },
 
-    async getSourceType() {
+    async getSourceType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -86,9 +86,9 @@ module.exports = {
         };
     },
 
-    async getLegalityType() {
+    async getLegalityType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -101,9 +101,9 @@ module.exports = {
         };
     },
 
-    async getName() {
+    async getName(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -116,9 +116,9 @@ module.exports = {
         };
     },
 
-    async getFullAddress() {
+    async getFullAddress(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -157,7 +157,7 @@ module.exports = {
 
     async getBusinessId() {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -171,9 +171,9 @@ module.exports = {
         }
     },
 
-    async getListDocBusiness() {
+    async getListDocBusiness(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -188,9 +188,9 @@ module.exports = {
 
     },
 
-    async getListBusineePartners() {
+    async getListBusineePartners(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -205,9 +205,9 @@ module.exports = {
 
     },
 
-    async getIndustryType() {
+    async getIndustryType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -223,7 +223,7 @@ module.exports = {
 
     async getBusinessType() {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -239,7 +239,7 @@ module.exports = {
 
     async getFoundedDate() {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -253,9 +253,9 @@ module.exports = {
         }
     },
 
-    async getBusinessAddress() {
+    async getBusinessAddress(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -269,9 +269,9 @@ module.exports = {
         }
     },
 
-    async getActiveAmount() {
+    async getActiveAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -285,9 +285,9 @@ module.exports = {
         }
     },
 
-    async getBlockingAmount() {
+    async getBlockingAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -301,9 +301,9 @@ module.exports = {
         }
     },
 
-    async getTotalAmount() {
+    async getTotalAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -317,7 +317,7 @@ module.exports = {
         }
     },
 
-    async getNotificationList(category) {
+    async getNotificationList(userID, password, category) {
 
         if(
             category === "all"
@@ -325,7 +325,7 @@ module.exports = {
             category = "";
         }
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 

@@ -218,34 +218,34 @@ module.exports = {
     }
   },
 
-  async updateStep(stepName) {
+  async updateStep(userID, password, stepName) {
     switch (stepName) {
       case "Choose Legality Type" || "Login Invitee":
-        await resetStateDao.resetStateFlow(2);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 2);
         break;
       case "Login Invitee":
-        await resetStateDao.resetStateFlow(2);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 2);
         break;
       case "Upload eKTP":
-        await resetStateDao.resetStateFlow(3);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 3);
         break;
       case "Data KTP":
-        await resetStateDao.resetStateFlow(4);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 4);
         break;
       case "Upload Selfie":
-        await resetStateDao.resetStateFlow(5);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 5);
         break;
       case "Upload Selfie with KTP":
-        await resetStateDao.resetStateFlow(6);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 6);
         break;
       case "Data Personal":
-        await resetStateDao.resetStateFlow(7);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 7);
         break;
       case "Data Domicile Address":
-        await resetStateDao.resetStateFlow(8);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 8);
         break;
       case "Data Employment":
-        await resetStateDao.resetStateFlow(9);
+        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 9);
         break;
       default:
         throw new Error("Page name is not recognize");

@@ -53,6 +53,8 @@ When("I submit my personal data details individual and upload my npwp as followi
     const personalData = table.parse().rowsHash();
 
     await uploadDao.submitDataPersonalIndividual(
+        globalVariable.login.userID, 
+        globalVariable.login.password,
         personalData["lastEducation"],
         personalData["motherName"],
         personalData["referenceName"],
@@ -67,6 +69,8 @@ When("I submit my personal data details business and upload my npwp as following
     const personalData = table.parse().rowsHash();
 
     await uploadDao.submitDataPersonalBusiness(
+        globalVariable.login.userID, 
+        globalVariable.login.password,
         personalData["lastEducation"],
         personalData["motherName"],
         personalData["referenceName"],
@@ -110,7 +114,7 @@ Then("I shouldn't see message error in the below of field {string} in form Data 
     I.dontSee(formPersonalDataPage.messageErrorFields[fieldName]);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Data Personal", async (expectedMsgError, fieldName) => {
@@ -119,7 +123,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will see phonenumber {string} in field reference number", (phonenumber) => {
@@ -136,7 +140,7 @@ Then("I will see bottom sheet with option take NPWP using camera or upload from 
     I.seeElement(formPersonalDataPage.buttons.fromGallery);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will not see the bottom sheet", async ()=>{
@@ -144,5 +148,5 @@ Then("I will not see the bottom sheet", async ()=>{
     I.dontSee(formPersonalDataPage.buttons.closeBottomSheet);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
