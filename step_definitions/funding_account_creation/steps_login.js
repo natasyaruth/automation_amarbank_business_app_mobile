@@ -69,20 +69,6 @@ Given("I delete my new device id", async () => {
   await resetStateDao.deleteDeviceId(globalVariable.login.newDeviceID);
 });
 
-Then("I successed go to dashbord", () => {
-  ///dashboard still on development from mobile
-  ///I.see('Selamat, akun Anda berhasil dibuat')
-  I.wait(10);
-  // loginPage.fillInAccountInformation(account);
-  // loginPage.clickLoginButton();
-  // I.waitForText("Data Yang Dimasukkan Salah", 10);
-  // loginPage.tryToLogin();
-});
-
-Then("I click menu loan dashboard", () => {
-  I.click();
-});
-
 Given("I am a registered customer with following details:", (table) => {
   welcomePage.clickButtonLogin();
 
@@ -133,6 +119,10 @@ Given("I am customer that already on page login", () => {
   welcomePage.clickButtonLogin();
 });
 
+Given("I am an unregistered customer trying to login", () => {
+  welcomePage.clickButtonLogin();
+});
+
 When("I filling in form login with the following details:", (table) => {
   const account = table.parse().rowsHash();
 
@@ -169,75 +159,6 @@ When("I click login", () => {
 When("I click link registration", () => {
   loginPage.goToRegistrationPage();
 });
-
-Then("I will direct to dashboard", async () => {
-  if (await I.CheckIsElementVisible("~buttonStarFive", 5)) {
-    I.seeElement("~buttonStarFive");
-  } else {
-    I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
-  }
-});
-
-Given("I am an unregistered customer trying to login", () => {
-  welcomePage.clickButtonLogin();
-});
-
-Then("I should see pop up with text {string} displayed", (actualMessage) => {
-  I.waitForText(actualMessage, 10);
-});
-
-Then(
-  "I should see pop up with text {string} and {string} displayed",
-  (infoMessage1, infoMessage2) => {
-    I.waitForText(infoMessage1);
-    I.waitForText(infoMessage2);
-  }
-);
-
-Then(
-  "I should be notified {string} in the below of field {string}",
-  async (expectedMsgError, fieldName) => {
-    actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
-    I.assertEqual(actualMessage, expectedMsgError);
-  }
-);
-
-Then(
-  "I should see log in pop up {string} with button {string}",
-  async (expectedValue, buttonName) => {
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.waitForText(expectedValue, 10);
-    I.waitForElement(loginPage.buttons[buttonName], 10);
-  }
-);
-
-Then(
-  "I reset attempt failed login",
-  async () => {
-    await
-      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
-  });
-
-Then(
-  "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
-  () => {
-    const currentDate = new Date();
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const addMinutes = minutes + 10;
-
-    const currentTime =
-      hours.toString().padStart(2, "0") +
-      ":" +
-      addMinutes.toString().padStart(2, "0");
-
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(
-      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-      currentTime
-    );
-  }
-);
 
 When("I click icon eye password", () => {
   loginPage.clickIconEyePassword();
@@ -512,7 +433,78 @@ When("I cancel continue to see PDP", () => {
 
 When("I submit the PDP login", ()=>{
   loginPage.submitPDPLogin();
-})
+});
+
+Then("I should see pop up with text {string} displayed", (actualMessage) => {
+  I.waitForText(actualMessage, 10);
+});
+
+Then(
+  "I should see pop up with text {string} and {string} displayed",
+  (infoMessage1, infoMessage2) => {
+    I.waitForText(infoMessage1);
+    I.waitForText(infoMessage2);
+  }
+);
+
+Then(
+  "I should be notified {string} in the below of field {string}",
+  async (expectedMsgError, fieldName) => {
+    actualMessage = await loginPage.getMessageErrorFieldLogin(fieldName);
+    I.assertEqual(actualMessage, expectedMsgError);
+  }
+);
+
+Then(
+  "I should see log in pop up {string} with button {string}",
+  async (expectedValue, buttonName) => {
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.waitForText(expectedValue, 10);
+    I.waitForElement(loginPage.buttons[buttonName], 10);
+  }
+);
+
+Then(
+  "I reset attempt failed login",
+  async () => {
+    await
+      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+  });
+
+Then(
+  "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
+  () => {
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const addMinutes = minutes + 10;
+
+    const currentTime =
+      hours.toString().padStart(2, "0") +
+      ":" +
+      addMinutes.toString().padStart(2, "0");
+
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.see(
+      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
+      currentTime
+    );
+  }
+);
+
+Then("I successed go to dashbord", () => {
+  ///dashboard still on development from mobile
+  ///I.see('Selamat, akun Anda berhasil dibuat')
+  I.wait(10);
+  // loginPage.fillInAccountInformation(account);
+  // loginPage.clickLoginButton();
+  // I.waitForText("Data Yang Dimasukkan Salah", 10);
+  // loginPage.tryToLogin();
+});
+
+Then("I click menu loan dashboard", () => {
+  I.click();
+});
 
 Then("I should see bottom sheet that biometric still not activated yet", () => {
   I.waitForElement(loginPage.buttons.close, 10);
@@ -585,6 +577,14 @@ Then("I will see snackbar error upload photo {string}", (errorMsg) => {
 Then("I will reset my attempt failed face match", async () => {
   await
     resetStateDao.resetAttemptFailedFaceMatch(globalVariable.login.userID);
+});
+
+Then("I will direct to dashboard", async () => {
+  if (await I.CheckIsElementVisible("~buttonStarFive", 5)) {
+    I.seeElement("~buttonStarFive");
+  } else {
+    I.waitForElement(onboardingAccOpeningPage.tabs.business, 30);
+  }
 });
 
 Then(

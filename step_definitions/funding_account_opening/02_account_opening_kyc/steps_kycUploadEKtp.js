@@ -107,7 +107,7 @@ Given("I register initiator with partner as below", async (table) => {
 
     // HIT BUSINESS PROFILE
     await
-        uploadDao.submitBusinessProfileglobalVariable.login.userID, globalVariable.login.password, (businessProfile, legality);
+        uploadDao.submitBusinessProfile(globalVariable.login.userID, globalVariable.login.password, businessProfile, legality);
 
     // ADD PARTNER
     await
@@ -121,7 +121,7 @@ Given("I register initiator with partner as below", async (table) => {
     globalVariable.registration.passwordPartner = dataInvitee["password"];
     globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
     globalVariable.registration.fullNamePartner = dataInvitee["fullName"];
-
+    globalVariable.registration.companyName = businessProfile.businessName;
 });
 
 Given("I register invitee with business code", async () => {

@@ -36,7 +36,7 @@ Feature: Account registration
     And I check option I agree Amarbank send me new information and innovation from the bank
     And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
-    And I verifying my email by login by user id
+    And I verifying email invitee through login with user id invitee
     Then my account should be created
 
   @C131572
@@ -195,12 +195,117 @@ Feature: Account registration
 
   @C131616
   Scenario: Create account business with business code from invitation email
-    Given I am a customer lead wanting to register account business from invitation
-    When I choose menu registration
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_21@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    And I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_32@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C162772
+  Scenario: Submit registration without business code using email that still not complete registration for invitee
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_21@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    And I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_32@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
     And I filling in my account information with the following details:
-      | fullName        | Revvy                    |
-      | email           | natasyaruth03@gmail.com  |
-      | mobileNumber    | 8999677540               |
+      | fullName        | RUDI                     |
+      | email           | testing_32@gmail.com     |
+      | mobileNumber    | 8999677541               |
+      | password        | 1234Test                 |
+      | confirmPassword | 1234Test                 |
+    Then I should see message error register code business first with the email
+
+  @C162773
+  Scenario: Complete registration with business code and then continue to create another account
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_21@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    And I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_32@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    And account invitee should be created
+    And I click later
+    And I click later in pop up biometric
+    And I choose other
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account information with the following details:
+      | fullName        | RUDI                     |
+      | email           | testing_32@gmail.com     |
+      | mobileNumber    | 899960054041             |
       | password        | 1234Test                 |
       | confirmPassword | 1234Test                 |
     And I registering the account
@@ -210,34 +315,20 @@ Feature: Account registration
     And I click button agree with privacy and policy
     And I will directing to page PDP
     And I click button agree to PDP
+    And I will see pop up option PDP registration
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
     And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
-    And I verifying my email by login by user id
-    And my account should be created
-    And I click later in pop up biometric
-    And I register initiator with partner as below
-      | fullName        | RUDI                   |
-      | email           | rudit.bagas@gmail.com  |
-      | phoneNumber     | 899960054041           |
-      | password        | 1234Test               |  
-    And I choose other
-    And I click logout  
-    And I filling in my account business information
-    And I registering the account
-    And I will directing to page terms and condition
-    And I click button agree with terms and condition
-    And I will directing to page privacy and policy 
-    And I click button agree with privacy and policy
-    And I will directing to page PDP
-    And I click button agree to PDP
-    And I check option already and read the condition PDP
-    And I check option I agree Amarbank send me new information and innovation from the bank
-    And I submit the PDP registration
-    And I verifying my phone number by entering the code sent to me
-    And I verifying my email by login by user id
-    And account invitee should be created
+    And I verifying email invitee through login with user id invitee
+    Then my account should be created 
+
+  @C162774
+  Scenario: Open information of business code
+    Given I am a customer want to access menu registration
+    When I click icon info business code
+    Then I will see information of business code
+    And I close bottom sheet info business code
     
   @C131617
   Scenario: Create account business with business unregistered code
@@ -712,4 +803,4 @@ Feature: Account registration
     And I submit the PDP registration 
     And I verifying my phone number by entering the code sent to me
     When I resend email verification
-    Then I will notify that resend email is successfully
+    Then I will notify that resend email is successfully  
