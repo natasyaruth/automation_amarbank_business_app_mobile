@@ -67,7 +67,46 @@ Feature: Loan Disbursement for Loan Type AP - Direct Loan
         And I take the picture
         Then Document invoice will be showed in "Konfirmasi Invoice"
 
-    @Sprint6Lending @C136406
+
+    Scenario: Successful invoice number submission  
+        Given I am on Konfirmasi Invoice page
+        When I input nominal invoice  "Rp 1.300.000" 
+        And I input a valid invoice number "INV1234-56"
+        And the system should accept the invoice number
+        Then the disbursement process continues without errors
+
+    Scenario: Trimming spaces from invoice number 
+        Given the user inputs an invoice number with leading, trailing, or in-between spaces
+        When I input nominal invoice "Rp 1.300.000"
+        And I input invoice number with "INV / 001 / 1000"
+        And user moves to the next field
+        Then the system should automatically trim the spaces
+
+    
+    Scenario: Validation for disallowed special characters 
+        Given I am on Konfirmasi Invoice Page 
+        When I input nominal invoice  "Rp 1.300.000" 
+        And I input an invoice number with invalid characters "INV1234@56!"        
+        Then the system should display an error message "Special karakter yang dibolehkan hanya / - dan \ "
+        And I prompted to correct the input
+
+
+    Scenario: Validating allowed characters 
+        Given I am on Konfirmasi Invoice Page 
+        When I input nominal invoice  "Rp 1.300.000" 
+        And I input an invoice number characters "INV-123/456"        
+        And the system should accept the invoice number
+        Then the disbursement process continues without errors
+
+
+    Scenario: Maximal character limit
+        Given I am on Konfirmasi Invoice Page 
+        When I input nominal invoice  "Rp 1.300.000" 
+        And I input an invoice number characters more than 256 char       
+        Then the system should display an error message "Invoice number exceeds the maximum character limit"
+       
+        
+   @Sprint6Lending @C136406
     Scenario: Click button Close in Section Upload Invoice
         Given I have been on anchor detail
         When I upload invoice document
