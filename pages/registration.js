@@ -21,6 +21,7 @@ module.exports = {
     backPDP: "~buttonNext",
     closePDP: "~buttonLogout",
     submitPDP: "~btnCreateAccount",
+    closeBottomSheet: "~btnClose",
   },
   messageErrorFields: {
     fullName: "~textMsgErrorFullName",
@@ -33,6 +34,7 @@ module.exports = {
   icons: {
     eyePassword: "~iconEyePassword",
     eyeConfirmPassword: "~iconEyeConfirmPassword",
+    businessCodeInfo: "~businessCodeInfo",
   },
   links: {
     login: "~linkLogin",
@@ -120,7 +122,7 @@ module.exports = {
     if (Object.keys(this.label).indexOf(labelName) === -1) {
       throw new Error("Field ${fieldName} is not found");
     }
-    I.seeElement(this.label[labelName]);
+    I.waitForElement(this.label[labelName], 10);
     return await I.grabTextFrom(this.label[labelName]);
   },
 
@@ -229,5 +231,15 @@ module.exports = {
   submitPDPRegist(){
     I.waitForElement(this.buttons.submitPDP, 10);
     I.click(this.buttons.submitPDP);
+  },
+
+  closeBottomSheet(){
+    I.waitForElement(this.buttons.closeBottomSheet, 10);
+    I.click(this.buttons.closeBottomSheet);
+  },
+
+  openInfoBusinessCode(){
+    I.waitForElement(this.icons.businessCodeInfo, 10);
+    I.click(this.icons.businessCodeInfo);
   },
 };
