@@ -13,7 +13,7 @@ module.exports = {
     btnLogout: "~btnLogout",
   },
   textFields: {
-    textFieldOthers: { xpath: '//android.widget.TextView[contains(@text, "Lainnya")]' }
+     textFieldOthers: { xpath: '//android.widget.TextView[contains(@text, "Lainnya")]' }
   },
 
   clickChangePassword(){
