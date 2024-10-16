@@ -36,7 +36,7 @@ Feature: Account registration
     And I check option I agree Amarbank send me new information and innovation from the bank
     And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
-    And I verifying email invitee through login with user id invitee
+    And I verifying my email by login by user id
     Then my account should be created
 
   @C131572

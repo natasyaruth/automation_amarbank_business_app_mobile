@@ -221,7 +221,7 @@ module.exports = {
         }
     },
 
-    async getBusinessType() {
+    async getBusinessType(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
@@ -237,7 +237,7 @@ module.exports = {
         }
     },
 
-    async getFoundedDate() {
+    async getFoundedDate(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
