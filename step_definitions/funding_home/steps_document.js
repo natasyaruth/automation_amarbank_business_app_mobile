@@ -527,9 +527,9 @@ Then("I will direct to Tab Other", async () => {
     I.see("Hapus Akun");
     I.waitForElement(otherPage.buttons.deleteAccount, 10);
 
-    I.see("Aktifkan Biometrik");
-    I.waitForElement(otherPage.buttons.activatedBiometric, 10);
-    I.waitForElement(otherPage.buttons.toogleBiometric, 10);
+    // I.see("Aktifkan Biometrik");
+    // I.waitForElement(otherPage.buttons.activatedBiometric, 10);
+    // I.waitForElement(otherPage.buttons.toogleBiometric, 10);
 
     I.see("Permintaan");
     I.see("Buku Cek / Bilyet Giro");

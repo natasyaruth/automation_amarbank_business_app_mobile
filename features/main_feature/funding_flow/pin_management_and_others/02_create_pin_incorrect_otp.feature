@@ -51,7 +51,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I input password
         And I submit my password
         And I input new PIN with '111111'
-        And I input confirmation new PIN '123456'
+        And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
     @C109113
@@ -80,4 +80,4 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I confirm my new PIN
         And I will receive email contain with OTP
         And I input expired OTP
-        Then I will see message error "Kode verifikasi yang dimasukan sudah kedaluwarsa" in the below of field otp code
+        Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
