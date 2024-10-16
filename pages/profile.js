@@ -11,14 +11,14 @@ module.exports = {
     downloadDeed: "~buttonDownloadAkta",
     downloadSk: "~buttonDownloadSk",
     downloadNpwp: "~buttonDownloadNpwp",
-    transactionApprovalDetail: "~transactionApprovalDetail",
+    transactionApprovalDetail: "~buttonBusinessTransaction",
     showHide: "~buttonShowHide",
     businessProfile: "~buttonBusinessProfile",
     submitPassword: "",
-    close: "~btnClose"
+    close: "~buttonClose"
   },
   texts: {
-    name: "~textName",
+    name: "~txtName",
     email: "~textEmail",
     phonenumber: "~textPhoneNumber",
     address: "~textAddress",
@@ -30,7 +30,7 @@ module.exports = {
     businessAddress: "~textBusinessAddress",
   },
   statusElement:{
-    buttonSeeData: {xpath: ""},
+    buttonSeeData: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
   },
 
   clickTabProfile() {
