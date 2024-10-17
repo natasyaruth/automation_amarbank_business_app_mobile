@@ -1,5 +1,5 @@
-@change_pin
-Feature: User change PIN from other menu
+# @regressionTest
+Feature: AUTOMATED User change PIN from other menu
     In order to transfer
     As a customer
     I want to be able to change transcation pin from menu other
@@ -8,81 +8,85 @@ Feature: User change PIN from other menu
         Given I am a registered customer with following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | nata6bde |
-            | passwordStg | 1234Test |
+            | userIDstg   | annae951 |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | nata6bde |
-            | passwordStg | 1234Test |
+            | userIDstg   | annae951 |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric 
         Then I will direct to dashboard
 
-    @C109132
-    Scenario: User wants to change transcation PIN
+    
+    Scenario: AUTOMATED User Success to change pin from menu other
         Given I am a customer who wants to change PIN from menu other
         When I choose other
-        And I click create transaction pin
+        Then I go to page other
+        And I click change transaction pin
+        And I will directly to Change PIN page
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I input new PIN with "111111"
+        And I confirm create PIN
+        And I will receive email contain with OTP
         And I input OTP
-        Then I will go back to other page
-        And I reset my PIN
+        Then I should See Success Change PIN
 
-    @C109133
-    Scenario: User wants to changes pin from menu other
+    
+    Scenario: AUTOMATED User input incorrect confirmation PIN for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        Then I go to page other
         And I click change transaction pin
-        Then I will directly to Create New PIN page
-
-    @C109134
-    Scenario: User input incorrect confirmation PIN for change pin
-        Given I am a customer who wants to change PIN from menu other
-        When I choose other
-        And I click change transaction pin
+        And I will directly to Change PIN page
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input incorrect confirmation new PIN
-        Then I will see message error "PIN yang dimasukkan tidak sesuai"
+        And I input new PIN with "111111"
+        And I input incorrect old pin
+        Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
-    @C109135
-    Scenario: User input expired OTP for change pin
+    
+    Scenario: AUTOMATED User input expired OTP for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        And I go to page other
         And I click change transaction pin
+        And I will directly to Change PIN page
         And I input old PIN with "111111"
-        And I input new PIN with "123456"
-        And I input confirmation new PIN
+        And I input new PIN with "111111"
+        And I confirm create PIN
+        And I will receive email contain with OTP
         And I input expired OTP
-        Then I will see message error "Kode OTP yang Anda masukkan expired"
+        Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
 
-    @C109136
-    Scenario: User input incorrect old pin once for change pin
+    
+    Scenario: AUTOMATED User input incorrect old pin once for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        And I go to page other
         And I click change transaction pin
-        And I Input incorrect old pin
-        And I submit my old pin
+        And I will directly to Change PIN page
+        And I input incorrect old pin
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
+        And I can click try again
 
-    @C109137
-    Scenario: User input incorrect old pin twice for change pin
+    
+    Scenario: AUTOMATED User input incorrect old pin twice for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        And I go to page other
         And I click change transaction pin
-        And I Input incorrect old pin
+        And I will directly to Change PIN page
         And I submit my old pin twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    @C109138
-    Scenario: User input incorrect old pin three times for change pin
+    
+    Scenario: AUTOMATED User input incorrect old pin three times for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
+        And I go to page other
         And I click change transaction pin
-        And I Input incorrect old pin
+        Then I will directly to Change PIN page
         And I submit my old pin three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
-        And I directly go to page login
+        And I can directly go to page login

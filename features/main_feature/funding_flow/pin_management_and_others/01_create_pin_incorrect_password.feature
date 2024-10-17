@@ -36,6 +36,7 @@ Feature: User create PIN Journey Transfer
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can click try again
+        And I reset attempt failed login
 
     @C109108
     Scenario: User input incorrect password twice
@@ -46,6 +47,7 @@ Feature: User create PIN Journey Transfer
         And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can click try again
+        And I reset attempt failed login
 
     @C109109
     Scenario: User input incorrect password three times
@@ -56,3 +58,4 @@ Feature: User create PIN Journey Transfer
         And I submit incorrect password three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can directly go to page login
+        And I reset attempt failed login

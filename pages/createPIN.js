@@ -11,6 +11,7 @@ module.exports = {
     login: "~buttonLogin",
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
+    btnNext: "~buttonNext",
     tryAgain: "~buttonTryAgain",
     close: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
     backToPin: { xpath: "(//android.view.View[@content-desc='buttonBack'])[1]"},
@@ -19,7 +20,7 @@ module.exports = {
     btnTransfer: "~btnTransfer",
     back: "~buttonNo",
     backToDashboard: "~buttonBackToDashboard",
-    forgotPIN: "~",
+    forgotPIN: "~buttonForgotPin",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~buttonCreatePin",
     understand: "~buttonUnderstand",
@@ -105,6 +106,10 @@ module.exports = {
   clickButtonCancel() {
     I.waitForElement(this.buttons.cancel, 10);
     I.click(this.buttons.cancel);
+  },
+  clickBtnNext(){
+    I.waitForElement(this.buttons.btnNext, 10);
+    I.click(this.buttons.btnNext);
   },
 
   clickButtonCancelNo() {

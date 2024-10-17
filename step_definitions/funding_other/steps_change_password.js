@@ -15,7 +15,7 @@ When("I click menu change password", () => {
 });
 
 When("I close page input old password", () => {
-    headerPage.closePage();
+    headerPage.closePageChangePass();
 });
 
 When("I click button cancel change password", () => {
@@ -116,7 +116,7 @@ When("I confirm my new password", () => {
 });
 
 When("I wait for 1 minutes", () => {
-    I.wait(60);
+    I.wait(62);
 });
 
 When("I click link resend OTP change password", () => {
@@ -169,15 +169,13 @@ When("I fill form login with incorrect password", () => {
 });
 
 Then("I will direct to page input old password", () => {
-    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.buttons.closePageChangePass, 10);
     I.dontSee(headerPage.icon.callCenter);
     I.see("Ubah Password");
-
     I.see("Password Lama");
     I.see("Masukkan password lama");
     I.waitForElement(changePasswordPage.fields.oldPassword, 10);
     I.waitForElement(changePasswordPage.icons.eyeOldPassword, 10);
-
     I.see("Selanjutnya");
     I.waitForElement(changePasswordPage.buttons.next, 10);
 });
@@ -271,7 +269,7 @@ Then("I will direct to page input OTP change password", async () => {
 
     const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
     I.dontSee(phoneNumber);
-
+    
     I.waitForElement(changePasswordPage.fields.otp, 10);
 });
 

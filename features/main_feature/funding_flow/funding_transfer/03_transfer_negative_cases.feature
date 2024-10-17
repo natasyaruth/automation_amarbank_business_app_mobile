@@ -1,4 +1,4 @@
-# @regressionTest
+@2regressionTest
 Feature: User Want to Transfer with Negative Cases
     In home
     As a customer
@@ -150,7 +150,7 @@ Feature: User Want to Transfer with Negative Cases
         Then I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
         And I reset attempt failed PIN
 
-    #@C135520
+    @C135520
     Scenario: User transfer and input wrong PIN twice
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -183,7 +183,7 @@ Feature: User Want to Transfer with Negative Cases
         Then I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
         And I reset attempt failed PIN
 
-    #@C135521
+    @C135521
     Scenario: User transfer and input wrong PIN three times
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -221,7 +221,7 @@ Feature: User Want to Transfer with Negative Cases
         And I will directing to page login
         And I reset attempt failed PIN
 
-    #@C135522
+    @C135522
     Scenario: Transfer with amount more than admin fee RTOL
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -251,7 +251,7 @@ Feature: User Want to Transfer with Negative Cases
         And I choose transfer service SKN
         Then I see message error total amount shouldn't more than active amount
 
-    #@C135523
+    @C135523
     Scenario: Transfer with amount more than admin fee BIFAST
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -281,7 +281,7 @@ Feature: User Want to Transfer with Negative Cases
         And I choose transfer service SKN
         Then I see message error total amount shouldn't more than active amount
 
-    #@C135524
+    @C135524
     Scenario: Transfer with amount more than admin fee SKN
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -311,7 +311,7 @@ Feature: User Want to Transfer with Negative Cases
         And I choose transfer service SKN
         Then I see message error total amount shouldn't more than active amount
 
-    #@C135525
+    @C135525
     Scenario: Transfer with amount more than admin fee RTGS
         Given I am a registered customer with following details:
             | userID      | natace13 |

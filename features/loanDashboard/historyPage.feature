@@ -23,7 +23,8 @@ Feature: History Page
     Scenario: Access History Dashboard For "Pencairan" Bar
         Given I have been access history loan to see menu "Pencairan"
         When I access menu bar "Pencairan"
-        Then I should see history "Pencairan"
+        And I should see history "Pencairan"
+
 #@C88617 #@historyLoan
     Scenario: Access History Dashboard For "Tagihan" Bar
         Given I have been access history loan to see menu "Tagihan"
@@ -64,3 +65,7 @@ Feature: History Page
         Given I have been access history of loan disbursement to see status "Menunggu Konfirmasi"
         When I access menu bar of loan disbursement with status "Menunggu Konfirmasi"
         Then I should see history of "Menunggu Konfirmasi"
+
+
+
+    
