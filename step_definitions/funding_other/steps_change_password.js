@@ -267,9 +267,9 @@ Then("I will direct to page input OTP change password", async () => {
     I.see("Masukkan Kode OTP");
     I.see("Kode OTP telah dikirim ke nomor");
 
-    // const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
-    // I.see(phoneNumber);
-    // will adjust becasuse the phone number already be mask
+    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
+    I.dontSee(phoneNumber);
+    
     I.waitForElement(changePasswordPage.fields.otp, 10);
 });
 
@@ -313,7 +313,8 @@ Then("I reset attempt otp after login", async () => {
 });
 
 Then("I notified that I can verify the OTP tomorrow", async () => {
-    I.waitForElement(changePasswordPage.msgErrorFields.otp, 10);
+
+    const actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
 
     const currentDate = new Date();
     const tomorrowDate = new Date(currentDate);
@@ -329,17 +330,12 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
         "September", "Oktober", "November", "Desember"
     ];
 
-    const hours = tomorrowDate.getHours();
-    const minutes = tomorrowDate.getMinutes();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
     const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
-
-    let actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
 
     I.assertEqual(actualMsgError, "Kode OTP dapat dikirim kembali pada: tanggal " + formattedDay +
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(changePasswordPage.link.resendOtp);
-
-    await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });

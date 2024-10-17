@@ -640,6 +640,9 @@ Then("I will see message error {string} in the below of field otp for approver",
 });
 
 Then("I should be notified that I can verify the OTP tomorrow", async () => {
+
+    const actualMsgError = await approvalTransactionPage.getMessageErrorOtp();
+
     const currentDate = new Date();
     const tomorrowDate = new Date(currentDate);
     tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -654,19 +657,15 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         "Sep", "Okt", "Nov", "Des"
     ];
 
-    const hours = tomorrowDate.getHours();
-    const minutes = tomorrowDate.getMinutes();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
     const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
-
-    let actualMsgError = await approvalTransactionPage.getMessageErrorOtp();
 
     I.assertEqual(actualMsgError, "Kode OTP dikirim kembali pada: tanggal " + formattedDay +
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
 
-    await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I will get new OTP different with my first OTP to approve transaction", async () => {
