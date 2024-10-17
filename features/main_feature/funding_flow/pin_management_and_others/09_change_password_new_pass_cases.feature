@@ -228,23 +228,7 @@ Feature: AUTOMATED Account Change Password
     #     Then I will notify by message error 'Kode OTP yang dimasukkan sudah kadaluarsa' in field 'otp'
 
 
-    Scenario: AUTOMATED Input wrong OTP then correct OTP
-        Given I choose other
-        When I go to page other
-        And I click menu change password
-        Then I will direct to page input old password
-        And I input my old password
-        And I click next to input new password
-        And I input field 'newPassword' with value 'Test1234'
-        And I input field 'confirmPassword' with value 'Test1234'
-        And I confirm my new password
-        And I will see snackbar OTP successfully sent
-        And I input wrong OTP code
-        And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        And I input OTP change password
-        Then I will direct to page success change password
-
-    # Scenario: AUTOMATED Check attempt request OTP
+    # Scenario: AUTOMATED Input wrong OTP then correct OTP
     #     Given I choose other
     #     When I go to page other
     #     And I click menu change password
@@ -254,25 +238,41 @@ Feature: AUTOMATED Account Change Password
     #     And I input field 'newPassword' with value 'Test1234'
     #     And I input field 'confirmPassword' with value 'Test1234'
     #     And I confirm my new password
-    #     And I will direct to page input OTP change password
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
     #     And I will see snackbar OTP successfully sent
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
-    #     And I will see snackbar OTP successfully sent
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
-    #     And I will see snackbar OTP successfully sent
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
-    #     And I will see snackbar OTP successfully sent
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
-    #     And I will see snackbar OTP successfully sent
-    #     And I wait for 1 minutes
-    #     And I click link resend OTP change password
-    #     Then I notified that I can verify the OTP tomorrow
+    #     And I input wrong OTP code
+    #     And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+    #     And I input OTP change password
+    #     Then I will direct to page success change password
+
+    Scenario: AUTOMATED Check attempt request OTP
+        Given I choose other
+        When I go to page other
+        And I click menu change password
+        Then I will direct to page input old password
+        And I input my old password
+        And I click next to input new password
+        And I input field 'newPassword' with value 'Test1234'
+        And I input field 'confirmPassword' with value 'Test1234'
+        And I confirm my new password
+        And I will direct to page input OTP change password
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change password
+        Then I notified that I can verify the OTP tomorrow
 
     # Scenario: AUTOMATED Input wrong OTP five times
     #     Given I choose other
