@@ -1,4 +1,4 @@
-@regisAcc2
+@2regisAcc2
 Feature: Account registration
   In order to open an SMB account
   As a customer lead
@@ -19,14 +19,6 @@ Feature: Account registration
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field 'fullName'
-
-# | testRailTag  | Field           | Field Name          |
-#       | @C131573     | fullName        | Nama lengkap        |
-#       | @C131574     | email           | E-mail              |
-#       | @C131575     | mobileNumber    | Nomor handphone     |
-#       | @C131576     | password        | Password            |
-#       | @C131577   
-
 
   @scenario_filled_and_then_empty_field
   Scenario Outline: Verifying fields has been filled and then empty the fields
