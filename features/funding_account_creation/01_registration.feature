@@ -353,6 +353,7 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
+  @C163363
   Scenario: Register invitee after resend business code
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
@@ -401,6 +402,7 @@ Feature: Account registration
     And I verifying email invitee through login with user id invitee
     Then account invitee should be created
 
+  @C163364
   Scenario: Register invitee after change with different email
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
@@ -453,6 +455,7 @@ Feature: Account registration
     And I verifying email invitee through login with user id invitee
     Then account invitee should be created
 
+  @C163365
   Scenario: Register invitee after change with same email
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
@@ -504,6 +507,7 @@ Feature: Account registration
     And I verifying email invitee through login with user id invitee
     Then account invitee should be created
 
+  @C163366
   Scenario: Register invitee after resend business code and change with same email
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
@@ -560,6 +564,7 @@ Feature: Account registration
     And I verifying email invitee through login with user id invitee
     Then account invitee should be created
 
+  @C163367
   Scenario: Register invitee after resend business code and change with different email
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
@@ -616,6 +621,7 @@ Feature: Account registration
     And I verifying email invitee through login with user id invitee
     Then account invitee should be created
 
+  @C163368
   Scenario: Register invitee with old email after change email invitee
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
