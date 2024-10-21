@@ -88,6 +88,7 @@ module.exports = {
         otpCode: "",
         email: "",
         emailPartner: "",
+        newEmailPartner: "",
         password: "",
         passwordPartner: "",
         companyName: "",

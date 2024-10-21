@@ -82,7 +82,7 @@ Feature: Menu Profile
     @C161244
     Scenario: Validate menu profile with user PT Perusahaan status on verification
         Given I am a registered customer with following details:
-            | userID      | ptpe7f28 |
+            | userID      | ptpe7f28 | 
             | password    | 1234Test |
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |

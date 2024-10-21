@@ -2,9 +2,10 @@
 Feature: Account Opening Main Dashboard
     In order to opening my Giro account in SMB
     As a customer
-    I can see my latest information in main dashboard
+    I can see my latest information in main dashboard        
 
-    Background: User has registered and login to dashboard
+    @C160408
+    Scenario: User back again to process account opening
         Given I am a registered customer with following details:
             | userID      | devece34 |
             | password    | 1234Test |
@@ -23,10 +24,7 @@ Feature: Account Opening Main Dashboard
         And I choose Giro Account
         And I choose Giro Account MSME
         And I submit my giro type
-
-    @C160408
-    Scenario: User back again to process account opening
-        Given I choose legality business type 'company'
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -39,7 +37,25 @@ Feature: Account Opening Main Dashboard
 
     @C131962 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload eKTP
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -53,7 +69,25 @@ Feature: Account Opening Main Dashboard
 
     @C131963 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -72,7 +106,25 @@ Feature: Account Opening Main Dashboard
 
     @C131964 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -88,7 +140,25 @@ Feature: Account Opening Main Dashboard
 
     @C141154 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Upload Selfie with KTP
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -104,7 +174,25 @@ Feature: Account Opening Main Dashboard
 
     @C131965 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -120,7 +208,25 @@ Feature: Account Opening Main Dashboard
 
     @C131966 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Domicile Address
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -137,7 +243,25 @@ Feature: Account Opening Main Dashboard
 
     @C131967 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Employment
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -155,7 +279,25 @@ Feature: Account Opening Main Dashboard
 
     @C131968 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -171,7 +313,25 @@ Feature: Account Opening Main Dashboard
 
     @C131969 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
-        Given I choose legality business type 'ud'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'ud'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -199,7 +359,25 @@ Feature: Account Opening Main Dashboard
 
     @C131970
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Director List
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -227,7 +405,25 @@ Feature: Account Opening Main Dashboard
 
     @C131971 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -257,7 +453,25 @@ Feature: Account Opening Main Dashboard
 
     @C131972 @FunctTestFundingSprint4
     Scenario: User can see cards continue to complete upload document after complete flow KYC and KYB
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -295,7 +509,25 @@ Feature: Account Opening Main Dashboard
 
     @C131973
     Scenario: User can see cards continue to complete upload document and register director list
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -341,7 +573,25 @@ Feature: Account Opening Main Dashboard
 
     @C159198 @FunctTestFundingSprint4
     Scenario: Check last step after back to previous page and submit data again
-        Given I choose legality business type 'company'
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey 
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
         And I submit my legality type
         And I fill NPWP Business
         And I click continue to data personal
@@ -359,3 +609,292 @@ Feature: Account Opening Main Dashboard
             | referencePhoneNumber | 812343455677  |
             | purposeAccount       | Rekening Gaji |
         And I can continue to page 'Data Domicile Address'
+
+    Scenario: User can see detail card list director with status on progress KYC
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_41@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_51@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click back in header page
+        And I choose other
+        And I click logout
+        And I register invitee until 'Upload eKTP'
+        And I login using account initiator
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director with status still on process KYC with last step 'Upload eKTP'
+
+    Scenario: User can see detail card list director with status complete
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_42@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner more than 1
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I see list detail partner
+        And I click back in header page
+        And I choose other
+        And I click logout
+        And I complete register one invitee
+        And I login using account initiator
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director with status complete KYC
+
+    Scenario: Cancel resend business code
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_43@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_53@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button resend business code
+        And I will see pop up confirm resend business code contain with email invitee
+        And I click back to list directors
+        Then I back to list director
+
+    Scenario: Resend business code
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_44@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_54@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button resend business code
+        And I will see pop up confirm resend business code contain with email invitee
+        And I confirm resend business code
+        Then I will see snackbar success resend business code
+        And I will not see button resend business code
+        And I get same business code with the first one    
+
+    Scenario: Close bottom sheet change email invitee
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_45@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_55@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I will see bottom sheet change email invitee with default email
+        And I close bottom sheet change email invitee
+        Then I back to list director
+
+    Scenario: Clear email invitee by keyboard
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_46@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_56@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I will see bottom sheet change email invitee with default email
+        And I clear email via keyboard
+        Then I will see button save and resend business code is disabled
+
+    Scenario: Clear email invitee by icon clear
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_47@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_58@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I will see bottom sheet change email invitee with default email
+        And I clear email via icon clear
+        Then I will see button save and resend business code is disabled
+
+    Scenario: Input incorrect email invitee format
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_48@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_58@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I input incorrect format email
+        Then I will see message error email not in true format
+
+    Scenario: Back to bottom sheet change email
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_49@gmail.com    |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_59@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I will see bottom sheet change email invitee with default email
+        And I save and resend business code
+        And I click back to bottom sheet change email invitee
+        Then I will see bottom sheet change email invitee with default email
+
+    Scenario: Change email invitee with same email as before
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_401@gmail.com   |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_301@gmail.com  |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I will see bottom sheet change email invitee with default email
+        And I save and resend business code
+        And I will see pop up contain with old email and new email invitee
+        And I change the email invitee
+        Then I will see snackbar success change new email invitee and resend business code
+        And I will not see button resend business code and change email invitee
+        And I will see email invitee is not change
+
+    Scenario: Change email invitee with different email with the first one
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                 |
+            | email           | testing_402@gmail.com   |
+            | phoneNumber     | 899967754041            |
+            | password        | 1234Test                |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I click later
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_302@gmail.com  |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
+        And I choose other
+        And I click tab Home
+        And I will see card continue to complete upload document business and registration director list
+        And I can continue to page 'Registration Director'
+        And I can see details registration director
+        And I click button change email partner
+        And I input new email invitee
+        And I save and resend business code
+        And I will see pop up contain with old email and new email invitee
+        And I change the email invitee
+        Then I will see snackbar success change new email invitee and resend business code
+        And I will not see button resend business code and change email invitee
+        And I will see email invitee is update with new email

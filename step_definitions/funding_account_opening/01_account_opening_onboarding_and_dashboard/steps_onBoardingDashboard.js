@@ -234,6 +234,57 @@ When("I clear field feedback exit survey", () => {
     onboardingAccOpeningPage.clearFieldFeedback();
 });
 
+When("I click button resend business code", () => {
+    onboardingAccOpeningPage.clickResendBusinessCode();
+});
+
+When("I click button change email partner", () => {
+    onboardingAccOpeningPage.clickChangeEmailInvitee();
+});
+
+When("I click back to list directors", () => {
+    onboardingAccOpeningPage.backToListDirectors();
+});
+
+When("I click back to bottom sheet change email invitee", () => {
+    onboardingAccOpeningPage.backToBottomSheet();
+});
+
+When("I confirm resend business code", () => {
+    onboardingAccOpeningPage.sendBusinessCode();
+});
+
+When("I close bottom sheet change email invitee", () => {
+    onboardingAccOpeningPage.closeBottomSheet();
+});
+
+When("I clear email via keyboard", () => {
+    onboardingAccOpeningPage.clearEmailViaKeyboard();
+});
+
+When("I clear email via icon clear", () => {
+    onboardingAccOpeningPage.clickIconClear();
+});
+
+When("I input incorrect format email", () => {
+    const emailInvitee = globalVariable.registration.emailPartner.replace(/@/g, '');
+
+    onboardingAccOpeningPage.fillEmailInvitee(emailInvitee);
+});
+
+When("I save and resend business code", () => {
+    onboardingAccOpeningPage.saveEmailAndSendBusinessCode();
+});
+
+When("I change the email invitee", () => {
+    onboardingAccOpeningPage.confirmEmailAndSendBusinessCode();
+});
+
+When("I input new email invitee with {string}", (emailInvitee) => {
+    onboardingAccOpeningPage.fillEmailInvitee(emailInvitee);
+    globalVariable.registration.newEmailPartner = emailInvitee;
+});
+
 Then("I will directing to page legality business", () => {
     I.waitForText("Pilih salah satu tipe bisnis Anda", 10);
     I.waitForElement(headerPage.buttons.back, 10);
@@ -358,8 +409,16 @@ Then("I will see card continue to complete upload document business and registra
 Then("I can see details registration director", async () => {
     I.waitForText("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.", 10);
     I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
-    I.see(globalVariable.formDirector.fullName);
-    I.see(globalVariable.formDirector.email);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.see(globalVariable.registration.fullNamePartner);
+    I.see(globalVariable.registration.emailPartner);
+
+    I.see("Kirim Ulang");
+    I.waitForElement(onboardingAccOpeningPage.buttons.resendCode, 10);
+
+    I.see("Ubah E-mail");
+    I.waitForElement(onboardingAccOpeningPage.buttons.changeEmail, 10);
 
     onboardingAccOpeningPage.openDetailRegistrationDirector();
 
@@ -373,6 +432,84 @@ Then("I can see details registration director", async () => {
     I.see("Belum melakukan proses sebagai berikut:");
     I.assertEqual(actualStatus, "Belum registrasi");
     I.assertEqual(actualProgress, "0/4");
+    I.assertEqual(actualTextKtp, "Foto eKTP");
+    I.assertEqual(actualTextVerif, "Verifikasi Data eKTP");
+    I.assertEqual(actualTextSelfie, "Selfie");
+    I.assertEqual(actualTextSelfieWithKtp, "Selfie dengan KTP");
+});
+
+Then("I can see details registration director with status still on process KYC with last step {string}", async (state) => {
+    I.waitForText("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.see(globalVariable.registration.fullNamePartner);
+    I.see(globalVariable.registration.emailPartner);
+
+    I.dontSee("Kirim Ulang");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.resendCode);
+
+    I.dontSee("Ubah E-mail");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.changeEmail);
+
+    onboardingAccOpeningPage.openDetailRegistrationDirector();
+
+    const actualStatus = await onboardingAccOpeningPage.getStatus();
+    const actualProgress = (await onboardingAccOpeningPage.getProgress()).replace(/\s+/g, '');
+    const actualTextKtp = await onboardingAccOpeningPage.getTextDetail("ktp");
+    const actualTextVerif = await onboardingAccOpeningPage.getTextDetail("verification");
+    const actualTextSelfie = await onboardingAccOpeningPage.getTextDetail("selfie");
+    const actualTextSelfieWithKtp = await onboardingAccOpeningPage.getTextDetail("selfieKtp");
+
+    I.see("Belum melakukan proses sebagai berikut:");
+    I.assertEqual(actualStatus, "Belum selesai registrasi");
+    
+    switch (pageName) {
+        case "Upload eKTP":
+          I.assertEqual(actualProgress, "1/4");
+          break;
+        case "Data KTP":
+            I.assertEqual(actualProgress, "2/4");
+          break;
+        case "Upload Selfie":
+            I.assertEqual(actualProgress, "3/4");
+          break;
+        default:
+          throw new Error("Page name is not recognize");
+      }
+    
+    I.assertEqual(actualTextKtp, "Foto eKTP");
+    I.assertEqual(actualTextVerif, "Verifikasi Data eKTP");
+    I.assertEqual(actualTextSelfie, "Selfie");
+    I.assertEqual(actualTextSelfieWithKtp, "Selfie dengan KTP");
+});
+
+Then("I can see details registration director with status complete KYC", async () => {
+    I.waitForText("Proses pengajuan pinjaman atau pembentukan rekening akan dilanjutkan setelah seluruh direktur teregistrasi.", 10);
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.see(globalVariable.registration.fullNamePartner);
+    I.see(globalVariable.registration.emailPartner);
+
+    I.dontSee("Kirim Ulang");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.resendCode);
+
+    I.dontSee("Ubah E-mail");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.changeEmail);
+
+    onboardingAccOpeningPage.openDetailRegistrationDirector();
+
+    const actualStatus = await onboardingAccOpeningPage.getStatus();
+    const actualProgress = (await onboardingAccOpeningPage.getProgress()).replace(/\s+/g, '');
+    const actualTextKtp = await onboardingAccOpeningPage.getTextDetail("ktp");
+    const actualTextVerif = await onboardingAccOpeningPage.getTextDetail("verification");
+    const actualTextSelfie = await onboardingAccOpeningPage.getTextDetail("selfie");
+    const actualTextSelfieWithKtp = await onboardingAccOpeningPage.getTextDetail("selfieKtp");
+
+    I.see("Belum melakukan proses sebagai berikut:");
+    I.assertEqual(actualStatus, "Selesai registrasi");
+    I.assertEqual(actualProgress, "4/4");
     I.assertEqual(actualTextKtp, "Foto eKTP");
     I.assertEqual(actualTextVerif, "Verifikasi Data eKTP");
     I.assertEqual(actualTextSelfie, "Selfie");
@@ -785,4 +922,153 @@ Then("after 3-4 seconds, snackbar thank you and reason feedback is disappear", (
 Then("I will not see the feedback anymore", () => {
     I.wait(1);
     I.dontSee(globalVariable.survey.feedBack);
+});
+
+Then("I will see pop up confirm resend business code contain with email invitee", async () => {
+    I.waitForText("Kirim Ulang Undangan", 10);
+    I.see("Pastikan email tujuan sudah sesuai. Anda hanya dapat mengirim ulang undangan 1x dalam 1 hari (24 jam).");
+
+    I.see("E-mail tujuan:");
+    const destinationEmail = await onboardingAccOpeningPage.getEmailReceiver();
+    I.assertEqual(destinationEmail, globalVariable.registration.emailPartner);
+
+    I.see("Kembali");
+    I.waitForElement(onboardingAccOpeningPage.buttons.backToListDirector, 10);
+
+    I.see("Kirim");
+    I.waitForElement(onboardingAccOpeningPage.buttons.confirmResendCode, 10);
+});
+
+Then("I will see snackbar success resend business code", () => {
+    I.waitForText("Undangan berhasil dikirim ulang", 20);
+});
+
+Then("I will see snackbar success change new email invitee and resend business code", () => {
+    I.waitForText("Email berhasil diubah dan undangan berhasil dikirim ke email baru", 20);
+});
+
+Then("I will not see button resend business code", ()=>{
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.resendCode);
+});
+
+Then("I back to list director", () => {
+    I.waitForText(globalVariable.registration.fullNamePartner, 10);
+});
+
+Then("I will see bottom sheet change email invitee with default email", async () => {
+    I.waitForElement(onboardingAccOpeningPage.buttons.closeBottomSheet, 10);
+    I.see("Ubah Email Undangan");
+
+    I.see("Email");
+    I.see(globalVariable.registration.emailPartner);
+    I.waitForElement(onboardingAccOpeningPage.fields.emailInvitee, 10);
+    I.waitForElement(onboardingAccOpeningPage.icons.clearEmail, 10);
+
+    I.see("Simpan dan Kirim Ulang Undangan");
+    I.waitForElement(onboardingAccOpeningPage.buttons.saveAndResend, 10);
+
+    const isEnabled = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSaveAndResend, 'enabled');
+    I.assertEqual(isEnabled, true);
+
+});
+
+Then("I will see button save and resend business code is disabled", async () => {
+    
+    I.waitForElement(onboardingAccOpeningPage.statusEnabled.buttonSaveAndResend, 10);
+
+    const isEnabled = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonSaveAndResend, 'enabled');
+    I.assertEqual(isEnabled, false);
+
+});
+
+Then("I will see message error email not in true format", async () => {
+
+    const actualMsgError = await onboardingAccOpeningPage.getMessageErrorEmail();
+    I.assertEqual(actualMsgError, "E-mail tidak sesuai format");
+
+});
+
+Then("I will see pop up contain with old email and new email invitee", async () => {
+    I.waitForText("Ubah Email Undangan", 10);
+
+    I.see("E-mail sebelumnya:");
+    const actualOldEmail = await onboardingAccOpeningPage.getOldEmail();
+    I.assertEqual(actualOldEmail, globalVariable.registration.emailPartner);
+
+    I.see("E-mail baru:");
+    const actualNewEmail = await onboardingAccOpeningPage.getNewEmail();
+    if(
+        globalVariable.registration.emailPartner === ""
+    ){
+        I.assertEqual(actualNewEmail, globalVariable.registration.emailPartner);
+
+    } else{
+
+        I.assertEqual(actualNewEmail, globalVariable.registration.newEmailPartner);
+    }
+    
+    I.see("Kirim");
+    I.waitForElement(onboardingAccOpeningPage.buttons.saveAndResend, 10);
+
+    I.see("Kembali");
+    I.waitForElement(onboardingAccOpeningPage.buttons.backToBottomSheetEmail, 10);
+
+});
+
+Then("I will see email invitee is update with new email", () => {
+
+    I.waitForText(globalVariable.registration.newEmailPartner, 10);
+
+});
+
+Then("I will see email invitee is not change", () => {
+
+    I.waitForText(globalVariable.registration.emailPartner, 10);
+
+});
+
+Then("I will not see button resend business code and change email invitee", async () => {
+    
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.dontSee("Kirim Ulang");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.resendCode);
+
+    I.dontSee("Ubah E-mail");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.changeEmail);
+
+});
+
+Then("I see button change email invitee", async () => {
+    
+    I.waitForElement(onboardingAccOpeningPage.buttons.refresh, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.dontSee("Kirim Ulang");
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.resendCode);
+
+    I.see("Ubah E-mail");
+    I.waitForElement(onboardingAccOpeningPage.buttons.changeEmail, 10);
+
+});
+
+Then("I get same business code with the first one", async () => {
+
+    let emailInvitee;
+
+    if(
+        globalVariable.registration.newEmailPartner === ""
+    ){
+        emailInvitee = globalVariable.registration.emailPartner;
+
+    } else {
+
+        emailInvitee = globalVariable.registration.newEmailPartner;
+    }
+
+    const currentBusinessCode = (await getDataDao.getBusinessCode(emailInvitee)).businessCode;
+    I.assertEqual(currentBusinessCode, globalVariable.registration.businessCode);
+
 });

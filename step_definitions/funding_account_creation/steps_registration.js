@@ -119,6 +119,8 @@ Given(
 
     await whitelistDao.whitelistEmail(globalVariable.registration.email);
 
+    await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
+
     welcomePage.clickButtonRegister();
     registrationPage.fillInAccountInformation(account);
     registrationPage.clickCreateAccountButton();
@@ -367,6 +369,40 @@ When(
     }
 
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.registration.emailPartner)).businessCode;
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVariable.registration.emailPartner
+    );
+
+    registrationPage.fillInAccountInformation(account);
+
+    registrationPage.clickCreateAccountButton();
+
+    let actualPhoneNumber = await registrationPage.getValueInformation('mobileNumber');
+    let actualCompanyName = await registrationPage.getValueInformation('companyName');
+    const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+
+    I.assertEqual(actualPhoneNumber, "+62 "+globalVariable.registration.phoneNumberPartner);
+    I.assertEqual(actualCompanyName, companyName);
+  }
+);
+
+When(
+  "I filling in my account business information with new email",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.newEmailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
 
     await whitelistDao.whitelistPhoneNumber(
       "+" + globalVariable.registration.phoneNumberPartner

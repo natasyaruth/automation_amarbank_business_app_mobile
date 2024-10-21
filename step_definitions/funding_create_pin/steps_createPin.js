@@ -196,7 +196,7 @@ When("I input incorrect OTP", async () => {
 });
 
 When("I input expired OTP", () => {
-    I.wait(60);
+    I.wait(65);
     createPINPage.fillInOtpCode(globalVariable.createPin.otp);
 });
 
