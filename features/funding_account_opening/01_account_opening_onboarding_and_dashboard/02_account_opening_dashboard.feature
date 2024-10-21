@@ -610,6 +610,7 @@ Feature: Account Opening Main Dashboard
             | purposeAccount       | Rekening Gaji |
         And I can continue to page 'Data Domicile Address'
 
+    @C163375
     Scenario: User can see detail card list director with status on progress KYC
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -639,6 +640,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Registration Director'
         And I can see details registration director with status still on process KYC with last step 'Upload eKTP'
 
+    @C163376
     Scenario: User can see detail card list director with status complete
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -664,6 +666,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Registration Director'
         And I can see details registration director with status complete KYC
 
+    @C163377
     Scenario: Cancel resend business code
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -689,6 +692,7 @@ Feature: Account Opening Main Dashboard
         And I click back to list directors
         Then I back to list director
 
+    @C163378
     Scenario: Resend business code
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -716,6 +720,7 @@ Feature: Account Opening Main Dashboard
         And I will not see button resend business code
         And I get same business code with the first one    
 
+    @C163379
     Scenario: Close bottom sheet change email invitee
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -741,6 +746,7 @@ Feature: Account Opening Main Dashboard
         And I close bottom sheet change email invitee
         Then I back to list director
 
+    @C163380
     Scenario: Clear email invitee by keyboard
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -766,6 +772,7 @@ Feature: Account Opening Main Dashboard
         And I clear email via keyboard
         Then I will see button save and resend business code is disabled
 
+    @C163381
     Scenario: Clear email invitee by icon clear
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -791,6 +798,7 @@ Feature: Account Opening Main Dashboard
         And I clear email via icon clear
         Then I will see button save and resend business code is disabled
 
+    @C163382
     Scenario: Input incorrect email invitee format
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -815,6 +823,7 @@ Feature: Account Opening Main Dashboard
         And I input incorrect format email
         Then I will see message error email not in true format
 
+    @C163383
     Scenario: Back to bottom sheet change email
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -841,6 +850,7 @@ Feature: Account Opening Main Dashboard
         And I click back to bottom sheet change email invitee
         Then I will see bottom sheet change email invitee with default email
 
+    @C163384
     Scenario: Change email invitee with same email as before
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
@@ -870,6 +880,7 @@ Feature: Account Opening Main Dashboard
         And I will not see button resend business code and change email invitee
         And I will see email invitee is not change
 
+    @C163385
     Scenario: Change email invitee with different email with the first one
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
