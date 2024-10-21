@@ -528,6 +528,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -550,6 +551,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -564,7 +566,7 @@ Feature: Maker and Approver Transaction
         And I submit my password for approver
         And I let the otp code for approve transaction expire
         And I input OTP to approve transaction
-        Then I will see message error 'Kode OTP yang dimasukan sudah kedaluwarsa' in the below of field otp for approver
+        Then I will see message error 'Kode OTP yang dimasukkan sudah kedaluwarsa' in the below of field otp for approver
 
     @C131484
     Scenario: Verifying wrong OTP code five times
@@ -573,6 +575,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -595,6 +598,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -618,6 +622,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -640,6 +645,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |

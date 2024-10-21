@@ -353,6 +353,312 @@ Feature: Account registration
     And I am clearing the field 'businessCode'
     Then I shouldn't see message error in the below of field 'businessCode'
 
+  @C163363
+  Scenario: Register invitee after resend business code
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_24@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_35@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button resend business code
+    And I confirm resend business code
+    And I will see snackbar success resend business code
+    And I will not see button resend business code
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C163364
+  Scenario: Register invitee after change with different email
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_25@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_36@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button change email partner
+    And I input new email invitee with 'testing_70@gmail.com'
+    And I save and resend business code
+    And I will see pop up contain with old email and new email invitee
+    And I change the email invitee
+    And I will see snackbar success change new email invitee and resend business code
+    And I will not see button resend business code and change email invitee
+    And I will see email invitee is update with new email
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page    
+    And I choose menu registration
+    And I filling in my account business information with new email
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C163365
+  Scenario: Register invitee after change with same email
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_26@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_37@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button change email partner
+    And I save and resend business code
+    And I will see pop up contain with old email and new email invitee
+    And I change the email invitee
+    And I will see snackbar success change new email invitee and resend business code
+    And I will not see button resend business code and change email invitee
+    And I will see email invitee is not change
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C163366
+  Scenario: Register invitee after resend business code and change with same email
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_27@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_38@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button resend business code
+    And I confirm resend business code
+    And I will see snackbar success resend business code
+    And I will not see button resend business code
+    And I see button change email invitee
+    And I click button change email partner
+    And I save and resend business code
+    And I will see pop up contain with old email and new email invitee
+    And I change the email invitee
+    And I will see snackbar success change new email invitee and resend business code
+    And I will not see button resend business code and change email invitee
+    And I will see email invitee is not change
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C163367
+  Scenario: Register invitee after resend business code and change with different email
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_28@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_39@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button resend business code
+    And I confirm resend business code
+    And I will see snackbar success resend business code
+    And I will not see button resend business code
+    And I see button change email invitee
+    And I input new email invitee with 'testing_71@gmail.com'
+    And I save and resend business code
+    And I will see pop up contain with old email and new email invitee
+    And I change the email invitee
+    And I will see snackbar success change new email invitee and resend business code
+    And I will not see button resend business code and change email invitee
+    And I will see email invitee is update with new email
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page    
+    And I choose menu registration
+    And I filling in my account business information with new email
+    And I submit form registration
+    And I will see pop up confirmation registration with company name
+    And I registering the account
+    And I will directing to page terms and condition
+    And I click button agree with terms and condition
+    And I will directing to page privacy and policy 
+    And I click button agree with privacy and policy
+    And I will directing to page PDP
+    And I click button agree to PDP
+    And I will see pop up option PDP registration
+    And I check option already and read the condition PDP
+    And I check option I agree Amarbank send me new information and innovation from the bank
+    And I submit the PDP registration
+    And I verifying phone number invitee by entering the code
+    And I verifying email invitee through login with user id invitee
+    Then account invitee should be created
+
+  @C163368
+  Scenario: Register invitee with old email after change email invitee
+    Given I am a customer that recently registered to amarbank business with data as below
+      | fullName        | Testing                 |
+      | email           | testing_30@gmail.com    |
+      | phoneNumber     | 899967754041            |
+      | password        | 1234Test                |
+    And I login using my user id that I recently receive through email
+    And I click later in pop up biometric
+    And I will directing to Hook 1 Onboarding Account Opening
+    And I click later
+    When I register initiator with partner as below
+      | fullName        | RUDI                   |
+      | email           | testing_40@gmail.com   |
+      | phoneNumber     | 899960054041           |
+      | password        | 1234Test               |
+    And I choose other
+    And I click tab Home
+    And I will see card continue to complete upload document business and registration director list
+    And I can continue to page 'Registration Director'
+    And I can see details registration director
+    And I click button change email partner
+    And I save and resend business code
+    And I will see pop up contain with old email and new email invitee
+    And I change the email invitee
+    And I will see snackbar success change new email invitee and resend business code
+    And I will not see button resend business code and change email invitee
+    And I will see email invitee is update with new email
+    And I click back in header page
+    And I choose other
+    And I click tab Home
+    And I click logout
+    And I click back in header page    
+    And I choose menu registration
+    And I filling in my account business information
+    And I submit form registration 
+    Then I should see message error register code business first with the email
+
   @C131620
   Scenario: Verifying the button "Buat Akun" with checked mandatory PDP checklist
     Given I am a customer want to access menu registration
@@ -484,7 +790,7 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 87530068672        |
+      | mobileNumber    | 87830990672        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     And I registering the account
@@ -743,7 +1049,7 @@ Feature: Account registration
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
-      | mobileNumber    | 89561339239        |
+      | mobileNumber    | 81261339239        |
       | password        | Test1234           |
       | confirmPassword | Test1234           |
     And I registering the account

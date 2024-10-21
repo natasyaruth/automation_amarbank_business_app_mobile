@@ -42,11 +42,19 @@ module.exports = {
     closeBottomSheet: "~buttonClose",
     sentFeedBack: "~yesBtn",
     cancelFeedBack: "~cancelBtn",
-    copyAccNumber: "~buttonCopyAccountNumber"
+    copyAccNumber: "~buttonCopyAccountNumber",
+    resendCode: "~btnRetrySentEmail",
+    changeEmail: "~btnChangeEmail",
+    backToListDirector: "~btnBack",
+    confirmResendCode: "~btnSent",
+    backToBottomSheetEmail: "~btnBack",
+    confirmChangeEmailInvitee: "~btnSend",
+    saveAndResend: "~",
   },
   fields: {
     npwpBusiness: "~textFieldNpwpNumber",
     fieldFeedback: "~otherField",
+    emailInvitee: "~fieldEmail",
   },
   radioButtons: {
     company: "~optionPTPerusahaan",
@@ -92,9 +100,13 @@ module.exports = {
     npwpNumber: "~npwpNumberText",
     accountHolder: "~txtCompanyName",
     accNumber: "~textAccountNumber",
+    destinationEmail: "~txtEmail",
+    oldEmailInvitee: "~txtOldEmail",
+    newEmailInvitee: "~txtNewEmail",
   },
   msgErrorFields: {
     npwpBusiness: "~textMsgErrorNpwpNumber",
+    emailInvitee: "~fieldEmailError",
   },
   tabs: {
     home: "~tabHome",
@@ -106,10 +118,12 @@ module.exports = {
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
     eyeAmount: "~btnEyes",
+    clearEmail: "~",
   },
   statusEnabled: {
     buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
     buttonCancelProcess: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[7]"},
+    buttonSaveAndResend: {xpath: ""},
   },
 
   chooseLegalityBusinessType(type) {
@@ -558,6 +572,77 @@ module.exports = {
   clickEyeAmount() {
     I.waitForElement(this.icons.eyeAmount, 10);
     I.click(this.icons.eyeAmount);
+  },
+
+  clickResendBusinessCode(){
+    I.waitForElement(this.buttons.resendCode, 10);
+    I.click(this.buttons.resendCode);
+  },
+
+  clickChangeEmailInvitee(){
+    I.waitForElement(this.buttons.changeEmail, 10);
+    I.click(this.buttons.changeEmail);
+  },
+
+  async getEmailReceiver(){
+    I.waitForElement(this.texts.destinationEmail, 10);
+    return await I.grabTextFrom(this.texts.destinationEmail);
+  },
+
+  async getOldEmail(){
+    I.waitForElement(this.texts.oldEmailInvitee, 10);
+    return await I.grabTextFrom(this.texts.oldEmailInvitee);
+  },
+
+  async getNewEmail(){
+    I.waitForElement(this.texts.newEmailInvitee, 10);
+    return await I.grabTextFrom(this.texts.newEmailInvitee);
+  },
+
+  backToListDirectors(){
+    I.waitForElement(this.buttons.backToListDirector, 10);
+    I.click(this.buttons.backToListDirector);
+  },
+
+  backToBottomSheet(){
+    I.waitForElement(this.buttons.backToBottomSheetEmail, 10);
+    I.click(this.buttons.backToBottomSheetEmail);
+  },
+
+  sendBusinessCode(){
+    I.waitForElement(this.buttons.confirmResendCode, 10);
+    I.click(this.buttons.confirmResendCode);
+  },
+
+  clearEmailViaKeyboard(){
+    I.waitForElement(this.fields.emailInvitee, 10);
+    I.clearField(this.fields.emailInvitee);
+  },
+
+  clickIconClear(){
+    I.waitForElement(this.icons.clearEmail, 10);
+    I.click(this.icons.clearEmail);
+  },
+
+  saveEmailAndSendBusinessCode(){
+    I.waitForElement(this.buttons.saveAndResend, 10);
+    I.click(this.buttons.saveAndResend);
+  },
+
+  fillEmailInvitee(emailInvitee){
+    I.waitForElement(this.fields.emailInvitee, 10);
+    I.clearField(this.fields.emailInvitee);
+    I.setText(this.fields.emailInvitee, emailInvitee);
+  },
+
+  async getMessageErrorEmail(){
+    I.waitForElement(this.msgErrorFields.emailInvitee, 10);
+    return await I.grabTextFrom(this.msgErrorFields.emailInvitee);
+  },
+
+  confirmEmailAndSendBusinessCode(){
+    I.waitForElement(this.buttons.confirmChangeEmailInvitee, 10);
+    I.click(this.buttons.confirmChangeEmailInvitee);
   },
 
 }
