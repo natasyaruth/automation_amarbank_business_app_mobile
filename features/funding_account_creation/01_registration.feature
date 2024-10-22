@@ -636,7 +636,7 @@ Feature: Account registration
     And I verifying new email invitee through login with user id invitee
     Then account invitee should be created
 
-  
+  @C163601
   Scenario: Register invitee with old email after change email invitee
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
