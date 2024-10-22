@@ -1,7 +1,7 @@
 require("dotenv").config();
-// require("./heal");
+require("./heal");
 
-// const getRelease = require("./latest_releas.staging.js");
+// const getRelease = require("./latest_release.staging.js");
 // console.log(getRelease);
 
 const env = {

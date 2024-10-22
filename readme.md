@@ -51,6 +51,11 @@ ENVIRONMENT=staging npx codeceptjs run
 ENVIRONMENT=staging BROWSERSTACK=true npx codeceptjs run --debug --step --verbose
 ```
 
+Run Specific tests using tag Anotation for staging environment
+```
+ENVIRONMENT=staging BROWSERSTACK=true npx codeceptjs run --grep "@regressionTest" --verbose
+```
+
 
 ## Commander
 

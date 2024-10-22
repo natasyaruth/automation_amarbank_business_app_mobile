@@ -20,26 +20,26 @@ Feature: AUTOMATED Account Change Password
         Then I will see card account 'active'
 
 
-    # Scenario: AUTOMATED Input new password < 8 digit
-    #     Given I choose other
-    #     When I go to page other
-    #     And I click menu change password
-    #     Then I will direct to page input old password
-    #     And I input my old password
-    #     And I click next to input new password
-    #     And I input field 'newPassword' with value '123Tes'
-    #     Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
+    Scenario: AUTOMATED Input new password < 8 digit
+        Given I choose other
+        When I go to page other
+        And I click menu change password
+        Then I will direct to page input old password
+        And I input my old password
+        And I click next to input new password
+        And I input field 'newPassword' with value '123Tes'
+        Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
 
-    # Scenario: AUTOMATED Input new password only lowercase
-    #     Given I choose other
-    #     When I go to page other
-    #     And I click menu change password
-    #     Then I will direct to page input old password
-    #     And I input my old password
-    #     And I click next to input new password
-    #     And I input field 'newPassword' with value 'testingku'
-    #     Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
+    Scenario: AUTOMATED Input new password only lowercase
+        Given I choose other
+        When I go to page other
+        And I click menu change password
+        Then I will direct to page input old password
+        And I input my old password
+        And I click next to input new password
+        And I input field 'newPassword' with value 'testingku'
+        Then I will notify by message error 'Min. 8 karakter dari huruf besar, kecil & angka' in field 'newPassword'
 
 
     # Scenario: AUTOMATED Input new password only uppercase
@@ -274,24 +274,24 @@ Feature: AUTOMATED Account Change Password
     #     And I click link resend OTP change password
     #     Then I notified that I can verify the OTP tomorrow
 
-    Scenario: AUTOMATED Input wrong OTP five times
-        Given I choose other
-        When I go to page other
-        And I click menu change password
-        Then I will direct to page input old password
-        And I input my old password
-        And I click next to input new password
-        And I input field 'newPassword' with value 'Test1234'
-        And I input field 'confirmPassword' with value 'Test1234'
-        And I confirm my new password
-        And I will see snackbar OTP successfully sent
-        And I input wrong OTP code
-        And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        And I input wrong OTP code
-        And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        And I input wrong OTP code
-        And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        And I input wrong OTP code
-        # And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
-        # And I input wrong OTP code
-        Then I notified that I can verify the OTP tomorrow
+    # Scenario: AUTOMATED Input wrong OTP five times
+    #     Given I choose other
+    #     When I go to page other
+    #     And I click menu change password
+    #     Then I will direct to page input old password
+    #     And I input my old password
+    #     And I click next to input new password
+    #     And I input field 'newPassword' with value 'Test1234'
+    #     And I input field 'confirmPassword' with value 'Test1234'
+    #     And I confirm my new password
+    #     And I will see snackbar OTP successfully sent
+    #     And I input wrong OTP code
+    #     And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+    #     And I input wrong OTP code
+    #     And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+    #     And I input wrong OTP code
+    #     And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+    #     And I input wrong OTP code
+    #     # And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
+    #     # And I input wrong OTP code
+    #     Then I notified that I can verify the OTP tomorrow
