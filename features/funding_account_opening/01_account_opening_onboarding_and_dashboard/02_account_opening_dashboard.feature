@@ -627,16 +627,18 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click back in header page
         And I choose other
         And I click logout
+        And I register invitee with business code
         And I register invitee until 'Upload eKTP'
         And I login using account initiator
-        And I will see card continue to complete upload document business and registration director list
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director with status still on process KYC with last step 'Upload eKTP'
 
@@ -651,20 +653,24 @@ Feature: Account Opening Main Dashboard
         And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         And I click later
-        When I register initiator with partner more than 1
+        When I register initiator with partner as below
+            | fullName        | RUDI                   |
+            | email           | testing_51@gmail.com   |
+            | phoneNumber     | 899960054041           |
+            | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
-        And I see list detail partner
+        And I can see details registration director
         And I click back in header page
         And I choose other
         And I click logout
-        And I complete register one invitee
+        And I register invitee with business code
+        And I register invitee until 'Upload Selfie with KTP'
         And I login using account initiator
-        And I will see card continue to complete upload document business and registration director list
-        And I can continue to page 'Registration Director'
-        And I can see details registration director with status complete KYC
+        And I will not see card continue to complete registration director list
 
     @C163377
     Scenario: Cancel resend business code
@@ -683,8 +689,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button resend business code
@@ -709,8 +716,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button resend business code
@@ -737,8 +745,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -763,8 +772,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -789,8 +799,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -815,8 +826,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -840,8 +852,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -867,8 +880,9 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
@@ -897,12 +911,13 @@ Feature: Account Opening Main Dashboard
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
-        And I click tab Home
-        And I will see card continue to complete upload document business and registration director list
+        And I click logout
+        And I login using my user id that I recently receive through email
+        And I will see card continue to complete registration director list
         And I can continue to page 'Registration Director'
         And I can see details registration director
         And I click button change email partner
-        And I input new email invitee
+        And I input new email invitee with 'testing_77@gmail.com'
         And I save and resend business code
         And I will see pop up contain with old email and new email invitee
         And I change the email invitee
