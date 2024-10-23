@@ -7,13 +7,32 @@ version: 2.1
 orbs:
   node: circleci/node@x.y
 
-jobs:
-  install-node-specific-version:
+executors:
+  node-executor:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/node:14.17-browsers  # Node image with browsers for running tests
+    working_directory: ~/ambis-auto-mobile-app
+
+jobs:
+  test:
+    executor: node-executor
+    environment:
+      BROWSERSTACK_USERNAME: qatestingtechnol1  # BrowserStack credentials
+      BROWSERSTACK_ACCESS_KEY: ubKJg1fyqyprtJMiJedy
     steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-          node-version: "20.10.0"
-      - run: node --version && yarn install
+      - checkout  # Checkout your Bitbucket repo
+
+      - run:
+          name: Install dependencies
+          command: |
+            npm install  # Install project dependencies
+
+      - run:
+          name: Run execute-on-ci.sh
+          command: ./execute-on-ci.sh  # Execute the script in the repository
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test

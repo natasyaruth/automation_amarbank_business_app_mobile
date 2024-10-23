@@ -97,14 +97,14 @@ Feature: AUTOMATED Edge Cases Account registration
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
     Then I should see message error '<Message>' in the below of field 'password'
-    Examples:                                                                 ❸
+    Examples:                                                                 
     | testRailTag  | Value           | Message                                                       |
-    | @C159537  | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-    | @C159538  | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-    | @C159539  | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-    | @C159540  | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
-    | @C159541  | Test1           | Password minimal 8 karakter                                   |
-    | @C159542  |                 | Password wajib diisi                                          |
+    | @C159537     | TESTINGPASSWORD | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159538     | testingpassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159539     | TestingPassword | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159540     | 1234567890      | Password harus kombinasi huruf kapital, huruf kecil dan angka |
+    | @C159541     | Test1           | Password minimal 8 karakter                                   |
+    | @C159542     |                 | Password wajib diisi                                          |
 
   
   Scenario: AUTOMATED Verifying field password contain with alphabeth, number and special character
