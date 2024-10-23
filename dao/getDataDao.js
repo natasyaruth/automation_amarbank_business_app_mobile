@@ -4,15 +4,15 @@ const env = globalVariable.returnEnvi();
 
 module.exports = {
 
-    async getTokenLogin() {
+    async getTokenLogin(userID, password) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userID,
+            password: password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -22,9 +22,9 @@ module.exports = {
         }
     },
 
-    async getLastStepJourney() {
+    async getLastStepJourney(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -38,15 +38,15 @@ module.exports = {
 
     },
 
-    async isPartner() {
+    async isPartner(userID, password) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userID,
+            password: password,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -56,9 +56,9 @@ module.exports = {
         }
     },
 
-    async hasCreatePin() {
+    async hasCreatePin(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -71,9 +71,9 @@ module.exports = {
         };
     },
 
-    async getSourceType() {
+    async getSourceType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -86,9 +86,9 @@ module.exports = {
         };
     },
 
-    async getLegalityType() {
+    async getLegalityType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -101,9 +101,9 @@ module.exports = {
         };
     },
 
-    async getName() {
+    async getName(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -116,24 +116,18 @@ module.exports = {
         };
     },
 
-    async getFullAddress() {
+    async getFullAddress(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
         const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
-        const province = responseProfile.data.profileKtp.province;
-        const city = responseProfile.data.profileKtp.city;
-        const district = responseProfile.data.profileKtp.district;
-        const village = responseProfile.data.profileKtp.village;
-
         return {
             status: responseProfile.status,
-            address: responseProfile.data.profileKtp.ktpAddress,
-            fullAddress: village + ", " + district + ", " + city + ", " + province
+            fullAddress: responseProfile.data.profileAddress.completeAddress
         };
     },
 
@@ -157,7 +151,7 @@ module.exports = {
 
     async getBusinessId() {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -171,9 +165,9 @@ module.exports = {
         }
     },
 
-    async getListDocBusiness() {
+    async getListDocBusiness(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -188,9 +182,9 @@ module.exports = {
 
     },
 
-    async getListBusineePartners() {
+    async getListBusineePartners(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -205,9 +199,9 @@ module.exports = {
 
     },
 
-    async getIndustryType() {
+    async getIndustryType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -221,9 +215,9 @@ module.exports = {
         }
     },
 
-    async getBusinessType() {
+    async getBusinessType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -237,9 +231,9 @@ module.exports = {
         }
     },
 
-    async getFoundedDate() {
+    async getFoundedDate(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -253,9 +247,9 @@ module.exports = {
         }
     },
 
-    async getBusinessAddress() {
+    async getBusinessAddress(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -269,9 +263,9 @@ module.exports = {
         }
     },
 
-    async getActiveAmount() {
+    async getActiveAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -285,9 +279,9 @@ module.exports = {
         }
     },
 
-    async getBlockingAmount() {
+    async getBlockingAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -301,9 +295,9 @@ module.exports = {
         }
     },
 
-    async getTotalAmount() {
+    async getTotalAmount(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -314,6 +308,28 @@ module.exports = {
         return {
             status: response.status,
             totalBalance: response.data.totalBalance
+        }
+    },
+
+    async getNotificationList(userID, password, category) {
+
+        if(
+            category === "all"
+        ){
+            category = "";
+        }
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications/?category="+category);
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            listNotification: response.data
         }
     },
 }

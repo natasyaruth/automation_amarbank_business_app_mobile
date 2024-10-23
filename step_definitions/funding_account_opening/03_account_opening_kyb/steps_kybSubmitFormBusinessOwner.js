@@ -12,7 +12,7 @@ Given("I am a customer who has submitted my business profile", () => { });
 Given("I am the only one business owner", async () => {
     I.waitForText("Pemilik bisnis", 10);
 
-    const email = (await resetStateDao.getEmail()).email;
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
 
     I.see(globalVariable.formKtp.fullName);
     I.see(email);
@@ -24,7 +24,7 @@ Given("I am the only one business director", async() => {
     I.waitForText("Daftar Direktur sesuai akta", 10);
     // I.see("Silahkan menambah Daftar Direktur sesuai akta");
 
-    const email = (await resetStateDao.getEmail()).email;
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
 
     I.see(globalVariable.formKtp.fullName);
     I.see(email);
@@ -99,7 +99,7 @@ Then("I shouldn't see message error in the below of field {string} in form Add D
     }
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I should see message error {string} in the below of field {string} in form Add Director", async (expectedMsgError, fieldName) => {
@@ -110,7 +110,7 @@ Then("I should see message error {string} in the below of field {string} in form
     I.assertEqual(actualMsgError, expectedMsgError);
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 When("I save data director", () => {
@@ -206,7 +206,7 @@ Then("I will directing to page business address", async () => {
     I.dontSee("Saya menyetujui menggunakan tanda tangan digital melalui Privy.id beserta Syarat dan Ketentuan yang telah dibuat. ");
 
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will not be able to see the deleted data director", async () => {
@@ -215,7 +215,7 @@ Then("I will not be able to see the deleted data director", async () => {
     I.dontSee(globalVariable.formDirector.email);
     I.dontSee(globalVariable.formDirector.nik);
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });
 
 Then("I will see the updated director", async () => {
@@ -224,5 +224,5 @@ Then("I will see the updated director", async () => {
     I.see(globalVariable.formDirector.email);
     I.see(globalVariable.formDirector.nik);
     await
-        resetStateDao.resetStateFlow(0);
+        resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, 0);
 });

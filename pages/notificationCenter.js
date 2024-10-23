@@ -21,7 +21,7 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
     infoNotifDetail: {xpath: "//android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",
@@ -64,6 +64,11 @@ module.exports = {
     return await I.grabTextFrom(this.texts.date+index);
   },
 
+  async getTitleBucketlist(index){
+    I.waitForElement(this.texts.title+index, 10);
+    return await I.grabTextFrom(this.texts.title+index);
+  },
+
   async getTimeDetail(){
     I.waitForElement(this.texts.time, 10);
     return await I.grabTextFrom(this.texts.time);
@@ -72,6 +77,21 @@ module.exports = {
   async getTimeBucketlist(index){
     I.waitForElement(this.texts.time+index, 10);
     return await I.grabTextFrom(this.texts.time+index);
+  },
+
+  async getDescBucketlist(index){
+    I.waitForElement(this.texts.description+index, 10);
+    return await I.grabTextFrom(this.texts.description+index);
+  },
+
+  async getStatusTrxBucketlist(index){
+    I.waitForElement(this.texts.statusTrx+index, 10);
+    return await I.grabTextFrom(this.texts.statusTrx+index);
+  },
+
+  async getInfoNotifBucketlist(index){
+    I.waitForElement(this.texts.infoNotif+index, 10);
+    return await I.grabTextFrom(this.texts.infoNotif+index);
   },
 
   clickUnderstand(){

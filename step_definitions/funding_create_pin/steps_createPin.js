@@ -1,10 +1,10 @@
 const {
     I,
-    createPINPage,
     headerPage,
     globalVariable,
     otpDao,
     resetStateDao,
+    createPINPage
 } = inject();
 
 const dummyPIN = "121212";
@@ -32,8 +32,7 @@ Given("has friendlist with following details:", (table) => {
 
 When("I don't have a PIN", () => { });
 
-Then("I go to page other ", () => {
-    Then("I can see change password and create transaction pin", () => { });
+Then("I can see change password and create transaction pin", () => { 
     I.waitForElement(createPINPage.buttons.changePassword, 5);
     I.waitForElement(createPINPage.buttons.createPIN, 5);
 });
@@ -78,6 +77,27 @@ Then("I will directly to Create New Transaction PIN page", () => {
     I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
 });
 
+Then("I will directly to Create New PIN page", () => {
+    I.waitForText("Buat PIN", 10);
+    // I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+    I.waitForElement(createPINPage.icon, 10);
+    I.waitForElement(createPINPage.fields.password, 10);
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
+});
+
+Then("I will directly to Forgot PIN page", () => {
+    I.waitForText("Lupa PIN", 10);
+    I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+    I.waitForElement(createPINPage.icon, 10);
+    I.waitForElement(createPINPage.fields.password, 10);
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
+});
+
+Then("I will directly to Change PIN page", () => {
+    I.waitForText("Ubah PIN", 10);
+    I.see("Masukkan PIN Lama");
+});
+
 When("I input incorrect password", () => {
     createPINPage.inputPassword(globalVariable.login.dummyPassword);
 });
@@ -119,6 +139,24 @@ When("I submit incorrect password twice", () => {
     createPINPage.submitPassword();
 });
 
+When("I submit my old pin twice", () => {
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+});
+
+When("I submit my old pin three times", () => {
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+    createPINPage.tryAgain();
+    I.wait(5);
+    createPINPage.inputPIN(dummyPIN);
+});
+
 
 When("I submit incorrect password three times", () => {
     createPINPage.inputPassword(globalVariable.login.dummyPassword);
@@ -137,7 +175,7 @@ When("I click icon eye", () => {
 
 When("I click icon eye twice", () => {
     createPINPage.clickEyePassword();
-    I.wait(1);
+    I.wait(5);
     createPINPage.clickEyePassword();
 });
 
@@ -197,20 +235,19 @@ When("I input incorrect OTP", async () => {
 });
 
 When("I input expired OTP", () => {
-    I.wait(60);
+    I.wait(65);
     createPINPage.fillInOtpCode(globalVariable.createPin.otp);
 });
 
 When("I will receive email contain with OTP", async () => {
-    const email = (await resetStateDao.getEmail()).email;
-
+    const email = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
     I.waitForText("Verifikasi E-mail", 10);
     I.see(email);
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
     I.wait(3);
 
-    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN()).otp;
+    globalVariable.createPin.otp = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 });
 
 When("I input OTP", async () => {
@@ -219,7 +256,7 @@ When("I input OTP", async () => {
     I.see("Masukkan Kode Verifikasi");
     I.see("Kode verifikasi telah dikirim ke e-mail");
     
-    const otpCode = (await otpDao.getOTPCreatePIN()).otp;
+    const otpCode = (await otpDao.getOTPCreatePIN(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     createPINPage.fillInOtpCode(otpCode);
 });
@@ -241,6 +278,10 @@ When("I click button back to fill password", () => {
     createPINPage.clickButtonBack();
 });
 
+When("I click back button to PIN", () => {
+    createPINPage.clickButtonBackPinConfirm();
+});
+
 When("I should see close confirmation pop up", () => {
     I.waitForText("Anda yakin ingin membatalkan proses?", 10);
     I.see("Jika ya, Anda akan mengulang proses dari awal.");
@@ -248,7 +289,7 @@ When("I should see close confirmation pop up", () => {
 });
 
 When("I click button Cancel", () => {
-    createPINPage.clickButtonClose();
+    createPINPage.clickButtonCancelNo();
 });
 
 When("I click button yes, cancel it", () => {
@@ -261,6 +302,11 @@ When("I click button back", () => {
 
 Then("I should back to page fill PIN", () => {
     I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
+});
+
+Then("I should See Success Change PIN", () => {
+    I.waitForText("Selamat, PIN Berhasil Diubah!", 10);
+    createPINPage.clickBtnNext();
 });
 
 Then("I should stay on page fill PIN", () => {
@@ -283,7 +329,6 @@ Then("I will directly go to Friend list page", () => {
 Then("I will go back to other page", () => {
     I.waitForElement(createPINPage.buttons.changePassword, 10);
     I.waitForElement(createPINPage.buttons.changePIN, 10);
-
 });
 
 Then("I will see toastbar {string}", (successPINMessage) => {

@@ -1,6 +1,5 @@
 const { I,
-    globalVariable,
-    otpDao } = inject();
+    globalVariable} = inject();
 
 const env = globalVariable.returnEnvi();
 
@@ -43,6 +42,7 @@ module.exports = {
             password: dataRegistration["password"],
             confirmPassword: dataRegistration["password"],
             otp: dataRegistration["otp"],
+            pdpConsent: true,
             receivedInfoProduct: false,
             businessCode: dataRegistration["businessCode"],
         });

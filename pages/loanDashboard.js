@@ -15,7 +15,7 @@ module.exports = {
     buttonApprove: "~buttonApprove",
     buttonPayBill: "~buttonPayBill",
     buttonNext: "~buttonNext",
-    buttonNavigation: '#iconNavigation',
+    buttonNavigation: "#iconNavigation",
     buttonLater: "~buttonLater",
     buttonSign: "~buttonSign",
   },
@@ -32,8 +32,8 @@ module.exports = {
 
   tabs: {
     tabLimit: "~tabLimit",
-    tabDisbursement: '~tabDisbursement',
-    tabBill: '~tabBill',
+    tabDisbursement: "~tabDisbursement",
+    tabBill: "~tabBill",
   },
 
   filters: {
@@ -72,7 +72,7 @@ module.exports = {
     I.wait(3);
     I.see(this.text.textDashboardScreen);
     I.click(this.text.textLoanDashboard);
-    I.see('Pinjaman Bisnis');
+    I.see("Pinjaman Bisnis");
   },
 
   //Loan Dashboard
@@ -108,7 +108,7 @@ module.exports = {
   },
 
   validateSchemaLoanPage() {
-    I.see('Bagaimana gambaran masalah pendanaan Anda?');
+    I.see("Bagaimana gambaran masalah pendanaan Anda?");
     I.seeElement(this.radioButtons.radioButtonAP);
     I.seeElement(this.radioButtons.radioButtonAR);
     I.seeElement(this.radioButtons.radioButtonPO);
@@ -122,12 +122,12 @@ module.exports = {
   async validateLimitCardOffering() {
     try {
       await I.seeElement(this.cards.cardOffer);
-      console.log('Element exists');
-      I.see('Segera Setujui Penawaran Pinjaman');
-      I.see('Setujui Pinjaman Sebelum:');
-      I.see('Pinjaman yang ditawarkan:');
+      console.log("Element exists");
+      I.see("Segera Setujui Penawaran Pinjaman");
+      I.see("Setujui Pinjaman Sebelum:");
+      I.see("Pinjaman yang ditawarkan:");
     } catch (error) {
-      console.log('Element does not exist');
+      console.log("Element does not exist");
     }
   },
 
@@ -137,30 +137,40 @@ module.exports = {
   },
 
   validateApprovalLimitOfferStillRunningMSME() {
-    I.see('Pengajuan limit telah disetujui sebesar');
-    I.see('Detail Biaya Pinjaman');
-    I.see('Tenor 180 hari')
-    I.see('Bunga per Tahun 1.3%');
-    I.see('Biaya Administrasi 3%', 'Dikurangkan saat pencairan limit pinjaman');
-    I.see('Denda Jika Terlambat Bayar 0.1%', 'Dihitung berdasarkan jumlah hari keterlambatan');
-    I.see('Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank.')
+    I.see("Pengajuan limit telah disetujui sebesar");
+    I.see("Detail Biaya Pinjaman");
+    I.see("Tenor 180 hari");
+    I.see("Bunga per Tahun 1.3%");
+    I.see("Biaya Administrasi 3%", "Dikurangkan saat pencairan limit pinjaman");
+    I.see(
+      "Denda Jika Terlambat Bayar 0.1%",
+      "Dihitung berdasarkan jumlah hari keterlambatan"
+    );
+    I.see(
+      "Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank."
+    );
     I.seeElement(this.buttons.buttonApprove);
   },
 
   validateApprovalLimitOfferStillRunningCORP() {
-    I.see('Pengajuan limit telah disetujui sebesar');
-    I.see('Detail Biaya Pinjaman');
-    I.see('Tenor 180 hari')
-    I.see('Bunga per Tahun 1.3%');
-    I.see('Biaya Administrasi 3%', 'Dikurangkan saat pencairan limit pinjaman');
-    I.see('Biaya Provisi');
-    I.see('Denda Jika Terlambat Bayar 0.1%', 'Dihitung berdasarkan jumlah hari keterlambatan');
-    I.see('Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank.')
+    I.see("Pengajuan limit telah disetujui sebesar");
+    I.see("Detail Biaya Pinjaman");
+    I.see("Tenor 180 hari");
+    I.see("Bunga per Tahun 1.3%");
+    I.see("Biaya Administrasi 3%", "Dikurangkan saat pencairan limit pinjaman");
+    I.see("Biaya Provisi");
+    I.see(
+      "Denda Jika Terlambat Bayar 0.1%",
+      "Dihitung berdasarkan jumlah hari keterlambatan"
+    );
+    I.see(
+      "Setiap pembayaran tagihan akan terpotong otomatis melalui autodebet rekening Amar Bank."
+    );
     I.seeElement(this.buttons.buttonApprove);
   },
 
   validateApprovalLimitOfferHasExpired() {
-    I.see('Penawaran limit berakhir dalam');
+    I.see("Penawaran limit berakhir dalam");
     I.seeElement(this.buttons.buttonApprove);
   },
 
@@ -184,9 +194,9 @@ module.exports = {
 
   //Signature Card
   validateSignatureCard() {
-    I.see('Segera Setujui Penawaran Pinjaman');
-    I.see('Tanda Tangan Sebelum');
-    I.see('Pinjaman yang ditawarkan:');
+    I.see("Segera Setujui Penawaran Pinjaman");
+    I.see("Tanda Tangan Sebelum");
+    I.see("Pinjaman yang ditawarkan:");
   },
 
   goToSignaturedPage() {
@@ -197,7 +207,7 @@ module.exports = {
 
   validateSignaturePage() {
     I.wait(2);
-    I.see('Tanda Tangan');
+    I.see("Tanda Tangan");
   },
 
   backToSignatureCardPage() {
@@ -206,22 +216,21 @@ module.exports = {
   },
 
   validateSignatureCardisExpired() {
-    I.see('Tanda Tangan Sebelum');
-    I.see('0 hari : 0 jam : 0 menit');
-
+    I.see("Tanda Tangan Sebelum");
+    I.see("0 hari : 0 jam : 0 menit");
   },
 
   validateOfferCardDisable() {
     I.wait(2);
     I.seeElement(this.cards.cardOffer);
-    I.hasAttribute('disable');
+    I.hasAttribute("disable");
   },
 
   //multiple entry card
   async multipleEntryPointSliderCard() {
     let locator1 = 'this.cards.cardOffer[@text = "Tanda Tangan Sebelum:"]';
     let locator2 = 'this.cards.cardOffer[@text = "Setujui Pinjaman Sebelum:"]';
-    I.swipeTo(locator1, locator2, 'right', 30, 200, 800);
+    I.swipeTo(locator1, locator2, "right", 30, 200, 800);
   },
 
   //History Page
@@ -287,12 +296,12 @@ module.exports = {
 
   validateStatusInProcessLimitHistory() {
     I.seeElement(this.filters.filterByOnProcess);
-  }, catch(error) {
-    console.error('Data tidak ditemukan');
+  },
+  catch(error) {
+    console.error("Data tidak ditemukan");
   },
 
   goToStatusActiveLimitHistory() {
-
     I.seeElement(this.filters.filterByOnActive);
     I.click(this.filters.filterByOnActive);
     I.click("Aktif");
@@ -359,49 +368,49 @@ module.exports = {
     I.wait(5);
     try {
       await I.seeElement(this.cards.cardLimitAP);
-      console.log('Element exists');
+      console.log("Element exists");
       I.seeElement(this.cards.cardLimitAP);
-      I.see('Invoice Menunggu Dibayar');
+      I.see("Invoice Menunggu Dibayar");
       I.seeElement(this.buttons.buttonUseLimit);
     } catch (error) {
-      console.log('Element does not exist');
+      console.log("Element does not exist");
     }
   },
 
   async validateLoanTypeofLoanAPDirectLoan() {
     try {
       await I.seeElement(this.cards.cardLimitAPDirectLoan);
-      console.log('Element exists');
+      console.log("Element exists");
       I.seeElement(this.cards.cardLimitAPDirectLoan);
-      I.see('Upload Invoice Untuk Dibayar');
-      I.see('Bayar Invoice');
+      I.see("Upload Invoice Untuk Dibayar");
+      I.see("Bayar Invoice");
     } catch (error) {
-      console.log('Element does not exist');
+      console.log("Element does not exist");
     }
   },
 
   async validateLoanTypeofLoanPO() {
     try {
       await I.seeElement(this.cards.cardLimitPO);
-      console.log('Element exists');
+      console.log("Element exists");
       I.seeElement(this.cards.cardLimitPO);
       // I.see('Upload Invoice Untuk Dibayar');
       // I.see('Bayar Invoice');
     } catch (error) {
-      console.log('Element does not exist');
+      console.log("Element does not exist");
     }
   },
 
   async validateLoanTypeofLoanARDirectLoan() {
     try {
       await I.seeElement(this.cards.cardLimitAR);
-      console.log('Element exists');
+      console.log("Element exists");
       I.seeElement(this.cards.cardLimitAR);
-      I.see('Upload Invoice Untuk Cairkan');
-      I.see('Gunakan Limit');
+      I.see("Upload Invoice Untuk Cairkan");
+      I.see("Gunakan Limit");
       I.seeElement(this.buttons.buttonUseLimit);
     } catch (error) {
-      console.log('Element does not exist');
+      console.log("Element does not exist");
     }
   },
-}
+};

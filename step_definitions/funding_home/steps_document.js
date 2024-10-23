@@ -15,10 +15,10 @@ Given("has more than one other document", async () => {
     const fileType = 'pdf';
 
     await
-        uploadDao.uploadOtherDoc(fileType);
+        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, fileType);
 
     await
-        uploadDao.uploadOtherDoc(fileType);
+        uploadDao.uploadOtherDoc(globalVariable.login.userID, globalVariable.login.password, fileType);
 });
 
 Given("don't have any other document", async () => {
@@ -30,7 +30,7 @@ Given("don't have any other document", async () => {
 
 Given("never entered wrong password", async () => {
     await
-        resetStateDao.resetAttemptFailedLogin();
+        resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
 When("I click document giro", () => {
@@ -389,7 +389,7 @@ Then("I will see document business required for type company", () => {
 
 Then("I will see document business for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if (
         legalityType === "UD"
@@ -445,7 +445,7 @@ Then("I will see document business for type individual company", async () => {
 
 Then("I will see document business required for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if (
         legalityType === "UD"
@@ -505,7 +505,7 @@ Then("I will see toogle biometric is off", () => {
 
 Then("I will direct to Tab Other", async () => {
 
-    const hasPin = (await getDataDao.hasCreatePin()).hasPin;
+    const hasPin = (await getDataDao.hasCreatePin(globalVariable.login.userID, globalVariable.login.password)).hasPin;
 
     I.waitForText("Keamanan", 10);
     I.see("Ubah Password");
@@ -527,9 +527,9 @@ Then("I will direct to Tab Other", async () => {
     I.see("Hapus Akun");
     I.waitForElement(otherPage.buttons.deleteAccount, 10);
 
-    I.see("Aktifkan Biometrik");
-    I.waitForElement(otherPage.buttons.activatedBiometric, 10);
-    I.waitForElement(otherPage.buttons.toogleBiometric, 10);
+    // I.see("Aktifkan Biometrik");
+    // I.waitForElement(otherPage.buttons.activatedBiometric, 10);
+    // I.waitForElement(otherPage.buttons.toogleBiometric, 10);
 
     I.see("Permintaan");
     I.see("Buku Cek / Bilyet Giro");

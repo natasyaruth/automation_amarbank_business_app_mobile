@@ -11,7 +11,9 @@ module.exports = {
     reactivation: "~buttonReactivation",
     close: "~buttonClose",
     callCenter: "~buttonCallCenter",
-    onboardingPage: { xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]' },
+    onboardingPage: {
+      xpath: '//android.widget.TextView[contains(@text, "Onboarding page")]',
+    },
     tabOthers: "~tabOthers",
     logout: "~btnLogout",
     biometric: "~buttonLoginBiometric",
@@ -25,6 +27,7 @@ module.exports = {
     reTakeSelfie: "~buttonTry",
     uploadSelfie: "~buttonUpload",
     continueToMainDashboard: "~buttonGoToDashboard",
+    submitPDP: "~btnLogin",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -35,8 +38,8 @@ module.exports = {
   },
   link: {
     forgotPassword: "~linkForgotPassword",
-    registration: "~linkRegistration",
-    loginLink: "~linkLogin"
+    registration: { xpath: '//android.widget.TextView[@text="Masuk Akun"]' },
+    loginLink: "~linkLogin",
   },
   checkbox: {
     rememberMe: "~checkBoxRememberMe",
@@ -68,7 +71,7 @@ module.exports = {
 
   async getMessageErrorFieldLogin(fieldName) {
     if (Object.keys(this.messageErrorFields).indexOf(fieldName) === -1) {
-      throw new Error('Field ${fieldName} is not found');
+      throw new Error("Field ${fieldName} is not found");
     }
     I.waitForElement(this.messageErrorFields[fieldName], 10);
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
@@ -126,21 +129,21 @@ module.exports = {
   },
 
   checkRememberMe() {
-    let stateCheckBox = I.grabAttributeFrom(this.checkbox.rememberMe, 'checked')
-    if (
-      stateCheckBox === "true") {
+    let stateCheckBox = I.grabAttributeFrom(
+      this.checkbox.rememberMe,
+      "checked"
+    );
+    if (stateCheckBox === "true") {
       I.click(this.checkbox.rememberMe);
     }
     I.click(this.checkbox.rememberMe);
-    I.seeAttributesOnElements(
-      this.checkbox.rememberMe,
-      {
-        checked: "true"
-      }
-    );
+    I.seeAttributesOnElements(this.checkbox.rememberMe, {
+      checked: "true",
+    });
   },
 
   async getValueUserID() {
+    I.waitForElement(this.fields.userID, 10);
     return await I.grabTextFromField(this.fields.userID);
   },
 
@@ -149,7 +152,7 @@ module.exports = {
     I.click(this.buttons.biometric);
   },
 
-  clickLaterBiometric() {
+  async clickLaterBiometric() {
     I.waitForElement(this.buttons.laterBiometric, 20);
     I.click(this.buttons.laterBiometric);
   },
@@ -204,9 +207,18 @@ module.exports = {
     I.click(this.buttons.understand);
   },
 
-  cancelNewDevice(){
+  cancelNewDevice() {
     I.waitForElement(this.buttons.cancelNewDevice, 10);
     I.click(this.buttons.cancelNewDevice);
-  }
+  },
 
+  submitPDPLogin(){
+    I.waitForElement(this.buttons.submitPDP, 10);
+    I.click(this.buttons.submitPDP);
+  },
+
+  submitPDPLogin(){
+    I.waitForElement(this.buttons.submitPDP, 10);
+    I.click(this.buttons.submitPDP);
+  },
 }

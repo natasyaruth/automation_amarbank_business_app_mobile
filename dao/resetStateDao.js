@@ -1,12 +1,11 @@
 const { I, headerPage, onboardingAccOpeningPage, globalVariable, getDataDao } = inject();
-
 const env = globalVariable.returnEnvi();
 
 module.exports = {
 
-    async resetStateFlow(stateNumber) {
+    async resetStateFlow(userID, password, stateNumber) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -42,9 +41,9 @@ module.exports = {
 
     },
 
-    async getIdOtherDoc() {
+    async getIdOtherDoc(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -59,10 +58,10 @@ module.exports = {
 
     },
 
-    async deleteOtherDoc() {
+    async deleteOtherDoc(userID, password) {
         const idDoc = (await this.getIdOtherDoc()).idDocs;
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -75,11 +74,11 @@ module.exports = {
 
     },
 
-    async deleteAllOtherDoc() {
+    async deleteAllOtherDoc(userID, password) {
 
         const idDoc = (await this.getIdOtherDoc()).idDocs;
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -98,9 +97,9 @@ module.exports = {
         }
     },
 
-    async deleteAllDocuments() {
+    async deleteAllDocuments(userID, password) {
 
-        const listIdDocs = (await getDataDao.getListDocBusiness()).listDocBusiness;
+        const listIdDocs = (await getDataDao.getListDocBusiness(userID, password)).listDocBusiness;
 
         let response;
 
@@ -207,15 +206,13 @@ module.exports = {
         };
     },
 
-    async getTokenLogin() {
-
+    async getTokenLogin(userID, password) {
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
-
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userID,
+            password: password
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -225,15 +222,33 @@ module.exports = {
         }
     },
 
-    async resetDeviceId(deviceID) {
+    async getTokenLoginPartner(userIDPartner, passwordPartner) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
-            userID: globalVariable.login.userID,
-            password: globalVariable.login.password,
+            userID: userIDPartner,
+            password: passwordPartner,
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            bearerToken: responseLogin.data.jwt.access_token
+        }
+    },
+
+    async resetDeviceId(userID, password, deviceID) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
+            userID: userID,
+            password: password,
             deviceID: deviceID
         }));
 
@@ -244,14 +259,14 @@ module.exports = {
         }
     },
 
-    async resetAttemptFailedLogin() {
+    async resetAttemptFailedLogin(userID) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
 
         const responseReset = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login/reset-attempts", secret({
-            userID: globalVariable.login.userID,
+            userID: userID,
         }));
 
         I.seeResponseCodeIsSuccessful();
@@ -261,7 +276,7 @@ module.exports = {
         }
     },
 
-    async resetAttemptFailedFaceMatch() {
+    async resetAttemptFailedFaceMatch(userID) {
 
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -297,9 +312,9 @@ module.exports = {
         I.click("Selanjutnya");
     },
 
-    async getProductType() {
+    async getProductType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -313,9 +328,9 @@ module.exports = {
 
     },
 
-    async getAccountType() {
+    async getAccountType(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -329,9 +344,9 @@ module.exports = {
 
     },
 
-    async getFullName() {
+    async getFullName(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -345,9 +360,9 @@ module.exports = {
 
     },
 
-    async getKTPNumber() {
+    async getKTPNumber(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -361,9 +376,9 @@ module.exports = {
 
     },
 
-    async getPhoneNumber() {
+    async getPhoneNumber(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -377,10 +392,8 @@ module.exports = {
 
     },
 
-    async getEmail() {
-
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
-
+    async getEmail(userID, password) {
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
         I.amBearerAuthenticated(secret(bearerToken));
 
         const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
@@ -393,9 +406,9 @@ module.exports = {
 
     },
 
-    async getAccountNumber() {
+    async getAccountNumber(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -409,9 +422,9 @@ module.exports = {
 
     },
 
-    async getCompanyName() {
+    async getCompanyName(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -425,9 +438,9 @@ module.exports = {
 
     },
 
-    async getBusinessPartnerUserID() {
+    async getBusinessPartnerUserID(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -441,9 +454,9 @@ module.exports = {
 
     },
 
-    async isPendingTaskExist() {
+    async isPendingTaskExist(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -457,13 +470,46 @@ module.exports = {
 
     },
 
-    async deleteAllNotification() {
+    async deleteAllNotification(userID, password) {
 
-        const bearerToken = (await this.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
         const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
+    async deleteAllNotificationPartner(userIDPartner, passwordPartner) {
+
+        const bearerToken = (await this.getTokenLoginPartner(userIDPartner, passwordPartner)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
+    async submitPDP(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/pdp", {
+            pdpConsent: true,
+            receivedInfoProduct: true
+        });
 
         return {
             status: response.status,

@@ -15,7 +15,7 @@ When("I click menu change password", () => {
 });
 
 When("I close page input old password", () => {
-    headerPage.closePage();
+    headerPage.closePageChangePass();
 });
 
 When("I click button cancel change password", () => {
@@ -116,7 +116,7 @@ When("I confirm my new password", () => {
 });
 
 When("I wait for 1 minutes", () => {
-    I.wait(60);
+    I.wait(62);
 });
 
 When("I click link resend OTP change password", () => {
@@ -169,15 +169,13 @@ When("I fill form login with incorrect password", () => {
 });
 
 Then("I will direct to page input old password", () => {
-    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.buttons.closePageChangePass, 10);
     I.dontSee(headerPage.icon.callCenter);
     I.see("Ubah Password");
-
     I.see("Password Lama");
     I.see("Masukkan password lama");
     I.waitForElement(changePasswordPage.fields.oldPassword, 10);
     I.waitForElement(changePasswordPage.icons.eyeOldPassword, 10);
-
     I.see("Selanjutnya");
     I.waitForElement(changePasswordPage.buttons.next, 10);
 });
@@ -269,9 +267,9 @@ Then("I will direct to page input OTP change password", async () => {
     I.see("Masukkan Kode OTP");
     I.see("Kode OTP telah dikirim ke nomor");
 
-    const phoneNumber = (await resetStateDao.getPhoneNumber()).phoneNumber;
-    I.see(phoneNumber);
-
+    const phoneNumber = (await resetStateDao.getPhoneNumber(globalVariable.login.userID, globalVariable.login.password)).phoneNumber;
+    I.dontSee(phoneNumber);
+    
     I.waitForElement(changePasswordPage.fields.otp, 10);
 });
 
@@ -311,11 +309,12 @@ Then("I reset back my password", async () => {
 Then("I reset attempt otp after login", async () => {
 
     await
-        otpDao.resetLimitRequestOtpUsingToken();
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Then("I notified that I can verify the OTP tomorrow", async () => {
-    I.waitForElement(changePasswordPage.msgErrorFields.otp, 10);
+
+    const actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
 
     const currentDate = new Date();
     const tomorrowDate = new Date(currentDate);
@@ -331,17 +330,12 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
         "September", "Oktober", "November", "Desember"
     ];
 
-    const hours = tomorrowDate.getHours();
-    const minutes = tomorrowDate.getMinutes();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
     const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
-
-    let actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
 
     I.assertEqual(actualMsgError, "Kode OTP dapat dikirim kembali pada: tanggal " + formattedDay +
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(changePasswordPage.link.resendOtp);
-
-    await
-        otpDao.resetLimitRequestOtpUsingToken();
 });
