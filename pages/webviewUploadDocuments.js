@@ -29,6 +29,14 @@ module.exports = {
       buttonAction7: '//*[@id="buttonAction7"]',
       buttonAction8: '//*[@id="buttonAction8"]',
       buttonUpdateProgress: '//*[@id="buttonRefresh"]',
+      buttoncancelupload: "~",
+      buttoncardinvoiceupload: "~upload-card-invoice",
+      bTnSaveInvoice: "~btn-save-invoice",
+      bTnaddnewsupplier: "~btn-add-supplier",
+      buttoncheckaccount: "~btn-check-bank-account",
+      buttonnextdataperwakilan: "~btn-next-representation",
+      buttonsavedatasupplier: "~btn-save-representation",
+     
     },
     textFieldName: {
       fieldNIB: 'NIB',
@@ -43,6 +51,15 @@ module.exports = {
       fieldRekeningKoranatauMutasiRekening6Bulan: 'Rekening Koran/Mutasi Rekening operasional 6 bulan terakhir',
       fieldLaporanKeuangan1tahunterakhir: 'Laporan Keuangan dalam 1 tahun terakhir',
       fieldLaporanKeuangan2tahunterakhir: 'Laporan Keuangan 2 tahun terakhir dan tahun berjalan',
+    },
+    fields: {
+      inputnominalinvoice: "~txt-nominal-invoice",
+      inputinvoicenumber: "~txt-invoice-no",
+      searchbankname: "~txt-search-bank-name",
+    },
+    dropdown: {
+      listsupplier: "~card-supplier",
+      firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View" },
     },
   },
 
@@ -77,9 +94,8 @@ module.exports = {
 
   clickButtonCancelUploading() {
     I.wait(2);
-    I.seeElement(this.
-
-  }
+    I.seeElement(this.sectionUploadDocuments.buttoncancelupload);
+  },
 
   async uploadDocumentAPCorp(docTypeLoan) {
     I.wait(2);
@@ -387,5 +403,35 @@ module.exports = {
         break;
     }
   },
+  chooselistSupplier() {
+    I.waitForElement(this.dropdown.listsupplier, 10);
+    I.click(this.dropdown.listsupplier);
+  },
+
+  choosesuppliername(){
+    I.waitForElement(this.dropdown.firstItem, 10);
+    I.click(this.dropdown.firstItem);
+  },
+
+  inputinvoiceamount(){
+    I.waitForElement(this.field.inputnominalinvoice, 10);
+    I.setText(this.fields.inputnominalinvoice);
+  },
+
+  inputinvoicenumber(){
+    I.waitForElement(this.field.inputinvoicenumeber, 10);
+    I.setText(this.field.inputinvoicenumber);
+  },
+
+  clickSaveInvoice(){
+    I.waitForElement(this.button.bTnSaveInvoice, 10);
+    I.click(this.button.bTnSaveInvoice);
+  },
+
+  AddnewSupplier() {
+    I.waitForElement(this.button.bTnaddnewsupplier, 10);
+    I.click(this.button.bTnaddnewsupplier);
+  },
+  
 
 }
