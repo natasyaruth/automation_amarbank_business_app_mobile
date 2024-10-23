@@ -11,8 +11,8 @@ const {
   formBusinessProfilePage,
   formBusinessOwnerPage,
   uploadBusinessDocPage,
+  uploadDao,
   resetStateDao,
-
 } = inject();
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
     invitedDirectors: "~btnOpenInvited",
     completeDoc: "~btnOpenDoc",
     refresh: "~btnRefresh",
-    cardInvited: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]" },
+    cardInvited: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]" },
     giroAccountCorporate: "~bbBtnOpenGiro",
     giroAccountMsme: "~smeBtnOpenGiro",
     submitTypeGiro: "~btnOpenGiro",
@@ -43,13 +43,13 @@ module.exports = {
     sentFeedBack: "~yesBtn",
     cancelFeedBack: "~cancelBtn",
     copyAccNumber: "~buttonCopyAccountNumber",
-    resendCode: "~btnRetrySentEmail",
+    resendCode: "~btnRetrySendEmail",
     changeEmail: "~btnChangeEmail",
     backToListDirector: "~btnBack",
-    confirmResendCode: "~btnSent",
+    confirmResendCode: "~btnSend",
     backToBottomSheetEmail: "~btnBack",
     confirmChangeEmailInvitee: "~btnSend",
-    saveAndResend: "~",
+    saveAndResend: "~btnChangeSendEmail",
   },
   fields: {
     npwpBusiness: "~textFieldNpwpNumber",
@@ -74,12 +74,12 @@ module.exports = {
     descCardAccOpening: "~txtDescCard",
     invitedName: "~txtInvitedName",
     email: "~txtEmailName",
-    progress: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[3]" },
-    status: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[4]" },
-    ktp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[6]" },
-    verification: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[7]" },
-    selfie: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[8]" },
-    selfieKtp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[9]" },
+    progress: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[3]" },
+    status: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[4]" },
+    ktp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[6]" },
+    verification: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[7]" },
+    selfie: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[8]" },
+    selfieKtp: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[9]" },
     adminFeeSme: "~smeAdminFee",
     adminFeeCorporate: "~bbAdminFee",
     minBalanceSme: "~smeMinBalance",
@@ -118,12 +118,12 @@ module.exports = {
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
     eyeAmount: "~btnEyes",
-    clearEmail: "~",
+    clearEmail: "~btnEmailClear",
   },
   statusEnabled: {
     buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
     buttonCancelProcess: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[7]"},
-    buttonSaveAndResend: {xpath: ""},
+    buttonSaveAndResend: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
   },
 
   chooseLegalityBusinessType(type) {
@@ -232,34 +232,53 @@ module.exports = {
     }
   },
 
+  async completeStepKYCInvitee(userIDPartner, passwordPartner, stepName) {
+    switch (stepName) {
+      case "Upload eKTP":
+        await uploadDao.uploadKTP(userIDPartner, passwordPartner);
+        break;
+      case "Data KTP":
+        await uploadDao.submitIdentityDetails(userIDPartner, passwordPartner);
+        break;
+      case "Upload Selfie":
+        await resetStateDao.resetStateFlow(userIDPartner, passwordPartner, 5);
+        break;
+      case "Upload Selfie with KTP":
+        await resetStateDao.resetStateFlow(userIDPartner, passwordPartner, 6);
+        break;
+      default:
+        throw new Error("Page name is not recognize");
+    }
+  },
+
   async updateStep(userID, password, stepName) {
     switch (stepName) {
       case "Choose Legality Type" || "Login Invitee":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 2);
+        await resetStateDao.resetStateFlow(userID, password, 2);
         break;
       case "Login Invitee":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 2);
+        await resetStateDao.resetStateFlow(userID, password, 2);
         break;
       case "Upload eKTP":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 3);
+        await resetStateDao.resetStateFlow(userID, password, 3);
         break;
       case "Data KTP":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 4);
+        await resetStateDao.resetStateFlow(userID, password, 4);
         break;
       case "Upload Selfie":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 5);
+        await resetStateDao.resetStateFlow(userID, password, 5);
         break;
       case "Upload Selfie with KTP":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 6);
+        await resetStateDao.resetStateFlow(userID, password, 6);
         break;
       case "Data Personal":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 7);
+        await resetStateDao.resetStateFlow(userID, password, 7);
         break;
       case "Data Domicile Address":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 8);
+        await resetStateDao.resetStateFlow(userID, password, 8);
         break;
       case "Data Employment":
-        await resetStateDao.resetStateFlow(globalVariable.login.userID, globalVariable.login.password, userID, password, 9);
+        await resetStateDao.resetStateFlow(userID, password, 9);
         break;
       default:
         throw new Error("Page name is not recognize");

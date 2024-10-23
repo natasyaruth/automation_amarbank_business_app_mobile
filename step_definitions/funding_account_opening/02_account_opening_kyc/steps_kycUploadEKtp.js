@@ -116,6 +116,7 @@ Given("I register initiator with partner as below", async (table) => {
         uploadDao.submitOnePartner(globalVariable.login.userID, globalVariable.login.password, dataInvitee);
 
     // GET BUSINESS CODE
+    I.wait(2);
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
 
     // STORE INVITEE DATA
@@ -138,15 +139,24 @@ Given("I register invitee with business code", async () => {
     const inviteeRegister = {
         email: globalVariable.registration.emailPartner,
         phoneNumber: globalVariable.registration.phoneNumberPartner,
-        fullName: globalVariable.registration.fullName,
+        fullName: globalVariable.registration.fullNamePartner,
         password: globalVariable.registration.passwordPartner,
         confirmPassword: globalVariable.registration.passwordPartner,
         otp: otp,
+        pdpConsent: true,
         receivedInfoProduct: false,
+
         businessCode: globalVariable.registration.businessCode,
     };
 
     globalVariable.login.userIDPartner = (await firstRegistrationDao.firstRegistrationPartner(inviteeRegister)).userID;
+});
+
+When("I register invitee until {string}", async (stepName) => {
+
+    await 
+        onboardingAccOpeningPage.completeStepKYCInvitee(globalVariable.login.userIDPartner, globalVariable.registration.passwordPartner, stepName);
+    
 });
 
 When("I swipe to button save data eKTP", async () => {

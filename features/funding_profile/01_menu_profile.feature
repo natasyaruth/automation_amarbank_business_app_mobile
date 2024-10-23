@@ -513,15 +513,15 @@ Feature: Menu Profile
     @C161264
     Scenario: Unhide information email, phonenumber and domicile address in account business
         Given I am a registered customer with following details:
-            | userID      | deve2c69 |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagcfb7 |
+            | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | deve2c69 |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagcfb7 |
+            | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

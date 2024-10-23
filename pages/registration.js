@@ -93,9 +93,9 @@ module.exports = {
   },
 
   fillFieldRegistration(fieldName, txtValue) {
-    I.waitForElement(this.fields[fieldName], 5);
-    I.seeElement(this.fields[fieldName]);
-    I.fillField(this.fields[fieldName], txtValue);
+    I.waitForElement(this.fields[fieldName], 10);
+    I.clearField(this.fields[fieldName]);
+    I.setText(this.fields[fieldName], txtValue);
   },
 
   async getMessageErrorFieldRegistration(fieldName) {
