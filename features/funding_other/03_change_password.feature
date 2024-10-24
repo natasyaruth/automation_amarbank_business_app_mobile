@@ -721,6 +721,7 @@ Feature: Account Change Password
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
             | passwordStg | 1234Test | 
+        And I reset attempt otp after login    
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |

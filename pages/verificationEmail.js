@@ -39,4 +39,9 @@ module.exports = {
     I.waitForElement(this.button.login, 40);
     I.see("Verifikasi Email")
   },
+
+  clickButtonFirstLogin(){
+    I.waitForElement(this.button.login, 40);
+    I.click(this.button.login);
+  },
 };
