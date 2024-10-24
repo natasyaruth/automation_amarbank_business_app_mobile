@@ -1,4 +1,4 @@
-@transfer_all_method
+# @regressionTest
 Feature: User transfer with all transfer method
     In order to transfer
     As a customer
@@ -21,7 +21,7 @@ Feature: User transfer with all transfer method
         And I choose menu Transfer from main dashboard
         And I am on receiver list page
 
-    # @C133894
+    @C133894
     Scenario: User confirmation transfer with RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -36,7 +36,7 @@ Feature: User transfer with all transfer method
         And I click transfer
         And I am on page transfer confirmation 
 
-    # @C96930
+    @C96930
     Scenario: User transfer with RTOL and input wrong PIN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -47,11 +47,13 @@ Feature: User transfer with all transfer method
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I will directly go to page confirmation transfer
+        And I will directly go to page confirmation transfer between Amar Bank
+        And I click transfer now
         And I input wrong PIN
-        Then I will be able to see message error "Input yang dimasukkan salah, silahkan coba lagi"
+        Then I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
+        And I reset attempt failed PIN
 
-    # @C96931
+    @C96931
     Scenario: User Success Transfer RTOL
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -69,7 +71,7 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    # @C96932
+    @C96932
     Scenario: User Success Transfer BiFast
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -82,16 +84,17 @@ Feature: User transfer with all transfer method
         Then I can see BIFAST and SKN
         And I choose transfer service BIFAST
         And I click transfer
+        And I am on page transfer confirmation
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
 
-    # @C135519
+    @C135519
     Scenario: User confirmation transfer SKN with choice between SKN and RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '200000000'
+        And I input amount '250000001'
         And I choose category 'Tagihan'
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
@@ -103,7 +106,7 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred    
 
-    # @C133898
+    @C133898
     Scenario: User Success Transfer SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -120,12 +123,12 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    # @C96934
+    @C96934
     Scenario: User Success Transfer RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '1000000000'
+        And I input amount '1000000001'
         And I choose category 'Tagihan'
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service

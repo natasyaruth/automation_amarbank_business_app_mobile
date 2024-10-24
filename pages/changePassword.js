@@ -115,7 +115,7 @@ module.exports = {
   },  
 
   clickResendOTP(){
-    I.waitForElement(this.link.resendOtp, 10);
+    I.waitForElement(this.link.resendOtp, 60);
     I.click(this.link.resendOtp);
   },
 

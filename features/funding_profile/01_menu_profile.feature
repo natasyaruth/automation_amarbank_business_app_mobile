@@ -43,12 +43,12 @@ Feature: Menu Profile
     @C161242
     Scenario: Validate menu profile with user Individual status on process
         Given I am a registered customer with following details:
-            | userID      | indibec3 |
+            | userID      | deved6a1 |
             | password    | 1234Test |
             | userIDstg   | stag5b6b |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | indibec3 |
+            | userID      | deved6a1 |
             | password    | 1234Test |
             | userIDstg   | stag5b6b |
             | passwordStg | 1234Test |
@@ -82,7 +82,7 @@ Feature: Menu Profile
     @C161244
     Scenario: Validate menu profile with user PT Perusahaan status on verification
         Given I am a registered customer with following details:
-            | userID      | ptpe7f28 |
+            | userID      | ptpe7f28 | 
             | password    | 1234Test |
             | userIDstg   | stag9a38 |
             | passwordStg | 1234Test |
@@ -312,9 +312,9 @@ Feature: Menu Profile
         And I will see card account 'active'
         When I click tab profile
         And I click detail business profile
-        And I will direct to detail business profile
+        And I will direct to page Business profile
         And I click back in header page
-        Then I see my profile company data
+        Then I will direct to page Profile
 
     @C161256
     Scenario: Close bottomsheet password to unhide email and other data
@@ -358,7 +358,7 @@ Feature: Menu Profile
         When I click tab profile
         And I click unhide the information
         And I input my password
-        And I don’t want to see my password
+        And I don't want to see my password
         Then I will not see my password
 
     @C161258
@@ -490,13 +490,13 @@ Feature: Menu Profile
     @C161263
     Scenario: Unhide information email, phonenumber and domicile address in account individual
         Given I am a registered customer with following details:
-            | userID      | ruth9ba1 |
+            | userID      | ruthc2d9 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | ruth9ba1 |
+            | userID      | ruthc2d9 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
@@ -513,15 +513,15 @@ Feature: Menu Profile
     @C161264
     Scenario: Unhide information email, phonenumber and domicile address in account business
         Given I am a registered customer with following details:
-            | userID      | autofb2c |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagcfb7 |
+            | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | autofb2c |
+            | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stagcfb7 |
+            | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -555,20 +555,21 @@ Feature: Menu Profile
         And I input my password
         And I click to see my profile data
         And I will see email, phonenumber and domicile address is unmasked
-        And I click back in header page
+        And I click tab Home
         And I will see card account 'active'
+        And I click tab profile
         Then I will see email, phonenumber and domicile address is unmasked
 
     @C161266
     Scenario: Hide information email, phonenumber and domicile address in account individual
         Given I am a registered customer with following details:
-            | userID      | ruth9ba1 |
+            | userID      | ruthc2d9 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | ruth9ba1 |
+            | userID      | ruthc2d9 |
             | password    | 1234Test |
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
@@ -582,8 +583,6 @@ Feature: Menu Profile
         And I click to see my profile data
         And I will see email, phonenumber and domicile address is unmasked
         And I click hide the information
-        And I input my password
-        And I click to see my profile data
         Then I will see email, phonenumber and domicile address is masked
 
     @C161267
@@ -609,8 +608,6 @@ Feature: Menu Profile
         And I click to see my profile data
         And I will see email, phonenumber and domicile address is unmasked
         And I click hide the information
-        And I input my password
-        And I click to see my profile data
         Then I will see email, phonenumber and domicile address is masked
 
     @C161268
@@ -636,9 +633,8 @@ Feature: Menu Profile
         And I click to see my profile data
         And I will see email, phonenumber and domicile address is unmasked
         And I click hide the information
-        And I input my password
-        And I click to see my profile data
         And I will see email, phonenumber and domicile address is masked
-        And I click back in header page
+        And I click tab Home
         And I will see card account 'active'
+        And I click tab profile
         Then I will see email, phonenumber and domicile address is masked

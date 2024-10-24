@@ -13,11 +13,28 @@ module.exports = {
         return Buffer.from(img).toString('base64');
     },
 
-    async uploadKTP() {
+    async getTokenLogin(userID, password) {
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+        
+        const responseLogin = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/login", secret({
+            userID: userID,
+            password: password
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            bearerToken: responseLogin.data.jwt.access_token
+        }
+    },
+
+    async uploadKTP(userID, password) {
 
         const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -35,11 +52,11 @@ module.exports = {
 
     },
 
-    async uploadSelfie() {
+    async uploadSelfie(userID, password) {
 
         const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -56,7 +73,7 @@ module.exports = {
         }
     },
 
-    async uploadOtherDoc(fileType) {
+    async uploadOtherDoc(userID, password, fileType) {
 
         let base64File;
         let fileName;
@@ -89,7 +106,7 @@ module.exports = {
 
         globalVariable.uploadDocuments.fileName = fileName;
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -110,7 +127,7 @@ module.exports = {
 
     },
 
-    async uploadDocBusiness(enumDoc, fileType) {
+    async uploadDocBusiness(userID, password, enumDoc, fileType) {
 
         let base64File;
 
@@ -131,7 +148,7 @@ module.exports = {
                 throw new Error("File type is not recognize");
         }
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken))
 
@@ -148,8 +165,8 @@ module.exports = {
         }
     },
 
-    async allowDeviceData() {
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+    async allowDeviceData(userID, password) {
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -170,11 +187,11 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalIndividual(lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount) {
+    async submitDataPersonalIndividual(userID, password, lastEducation, motherName, referenceName, referencePhoneNumber, purposeAccount) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -196,11 +213,11 @@ module.exports = {
         }
     },
 
-    async submitDataPersonalBusiness(lastEducation, motherName, referenceName, referencePhoneNumber) {
+    async submitDataPersonalBusiness(userID, password, lastEducation, motherName, referenceName, referencePhoneNumber) {
 
         const base64File = this.loadImageAsBase64('./data/npwp.png');
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -221,9 +238,9 @@ module.exports = {
         }
     },
 
-    async submitProductType(type) {
+    async submitProductType(userID, password, type) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -239,9 +256,9 @@ module.exports = {
         }
     },
 
-    async submitLegalityType(type, npwpBusiness) {
+    async submitLegalityType(userID, password, type, npwpBusiness) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -274,9 +291,9 @@ module.exports = {
         }
     },
 
-    async submitBusinessProfile(businessProfile, legality) {
+    async submitBusinessProfile(userID, password, businessProfile, legality) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -302,9 +319,9 @@ module.exports = {
         }
     },
 
-    async submitOnePartner(businessPartner) {
+    async submitOnePartner(userID, password, businessPartner) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -326,9 +343,9 @@ module.exports = {
         }
     },
 
-    async submitIdentityDetails(ktpData) {
+    async submitIdentityDetails(userID, password, ktpData) {
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -366,13 +383,13 @@ module.exports = {
         }
     },
 
-    async checkEligibilityNPWPBusiness(npwpBusiness) {
+    async checkEligibilityNPWPBusiness(userID, password, npwpBusiness) {
 
         let npwp = "";
 
         npwp = npwpBusiness;
 
-        const bearerToken = (await resetStateDao.getTokenLogin()).bearerToken;
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
@@ -389,7 +406,7 @@ module.exports = {
 
     },
 
-    async pushNotificationMaintananceApp() {
+    async pushNotificationMaintananceApp(userID) {
 
         I.haveRequestHeaders(secret({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
@@ -400,14 +417,38 @@ module.exports = {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
 
+        let userId;
+
+        switch (userID) {
+            case 'natace13':
+                userId = "48ca7d82-67fe-4987-8580-38b9a6ef7096";
+                break;
+            case 'autocaea':
+                userId = "5ae3ea48-bb17-4d1b-94c6-b3d6bc6efdfe";
+                break;
+            case 'ruth1600':
+                userId = "8919e08e-7af9-4ec8-91a8-b2119e21c62f";
+                break;
+            case 'staga29c':
+                userId = "4935ea1a-1401-42e1-a9e5-36305ec146af";
+                break;
+            case 'ruth9ba1':
+                userId = "d56baf8a-5652-40a1-a08a-819a0634699f";
+                break;
+            case 'ruthb1dc':
+                userId = "144a2fcf-da7d-4317-b3a9-15e0a138cb9e";
+                break;
+        };
+
         const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications", {
-            userId: "",
-            category: "Info",
+            userId: userId,
+            source: "AMARBIS",
+            category: "info",
             title: "Peringatan Pemeliharaan Sistem",
             summary: "Pemeliharan sistem pada " + day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB",
-            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada "+"\n" 
-                         +day + "/" + month + "/" + year +" jam 23.00-01.00 WIB. Selama waktu ini, akses Anda "+"\n"
-                         +"pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
+            information: "Untuk meningkatkan layanan kami, kami akan melakukan pemeliharan sistem pada " +
+                day + "/" + month + "/" + year + ", jam 23.00-01.00 WIB. Selama waktu ini, akses Anda " +
+                "pada aplikasi Amar Bank Bisnis mungkin terganggu. Mohon maaf atas ketidaknyamanannya. Terima kasih."
         });
 
         return {

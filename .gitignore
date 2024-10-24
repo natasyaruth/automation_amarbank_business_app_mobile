@@ -11,7 +11,7 @@ dist/
 output/
 build/
 target/
-
+storage/
 # Environment files
 .env
 .env.local

@@ -10,13 +10,14 @@ Feature: User create PIN Journey Transfer
         Given I am a registered customer with following details:
             | userID      | ruthf292 |
             | password    | 1234Test |
-            | userIDstg   | staga686 |
-            | passwordStg | 1234Test |
+            | userIDstg   | nuru099d |
+            | passwordStg | Test1234 |
+        And I reset attempt otp after login    
         When I filling in form login with the following details:
             | userID      | ruthf292 |
             | password    | 1234Test |
-            | userIDstg   | staga686 |
-            | passwordStg | 1234Test |
+            | userIDstg   | nuru099d |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric 
         Then I will direct to dashboard
@@ -119,7 +120,7 @@ Feature: User create PIN Journey Transfer
         And I confirm create PIN
         And I will receive email contain with OTP
         And I input expired OTP
-        Then I will see message error "Kode verifikasi yang dimasukan sudah kedaluwarsa" in the below of field otp code
+        Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
 
     @C109115
     Scenario: Back to main dashbord in pop up create PIN Transaction

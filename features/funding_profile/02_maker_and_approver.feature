@@ -129,6 +129,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -140,6 +141,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         Then I will direct to page need approval from other director
         And I close page detail transfer
+        And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see card maker transaction in main dashboard
         And I click card maker transaction
@@ -526,6 +528,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -548,6 +551,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -562,7 +566,7 @@ Feature: Maker and Approver Transaction
         And I submit my password for approver
         And I let the otp code for approve transaction expire
         And I input OTP to approve transaction
-        Then I will see message error 'Kode OTP yang dimasukan sudah kedaluwarsa' in the below of field otp for approver
+        Then I will see message error 'Kode OTP yang dimasukkan sudah kedaluwarsa' in the below of field otp for approver
 
     @C131484
     Scenario: Verifying wrong OTP code five times
@@ -571,6 +575,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -593,6 +598,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -616,6 +622,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -638,6 +645,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
+        And I reset attempt otp after login
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -771,6 +779,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -782,6 +791,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see card maker transaction in main dashboard
         And I choose other
@@ -806,6 +816,7 @@ Feature: Maker and Approver Transaction
         And I will see detail card maker that has been approved
         And I close page detail card completed
         And I click button back in the header page
+        And I unmask my amount
         Then I will see my active balance and total amount are decreased but my blocking amount back like in beginning
 
     @C131493
@@ -822,6 +833,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -834,6 +846,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see card maker transaction in main dashboard
         And I choose other
@@ -858,6 +871,7 @@ Feature: Maker and Approver Transaction
         And I will see detail card maker that has been approved
         And I close page detail card completed
         And I click button back in the header page
+        And I unmask my amount
         Then I will see my active balance and total amount are decreased but my blocking amount back like in beginning
 
     @C131494
@@ -874,6 +888,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -885,6 +900,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see card maker transaction in main dashboard
         And I choose other
@@ -909,6 +925,7 @@ Feature: Maker and Approver Transaction
         And I will see detail card maker that has been rejected
         And I close page detail card completed
         And I click button back in the header page
+        And I unmask my amount
         Then I will see my active balance, blocking amount and total amount back like in the beginning
 
     @C131495
@@ -1059,6 +1076,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -1070,6 +1088,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see card maker transaction in main dashboard
         And I click card maker transaction
@@ -1080,6 +1099,7 @@ Feature: Maker and Approver Transaction
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will not see card maker that has been canceled
+        And I unmask my amount
         And I will see my active balance, blocking amount and total amount back like in the beginning
         And I click tab profile
         And I click menu transaction approval

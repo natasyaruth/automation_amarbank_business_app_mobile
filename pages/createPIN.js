@@ -11,13 +11,16 @@ module.exports = {
     login: "~buttonLogin",
     submitpassword: "~buttonNext",
     nextpagetransfer: "~buttonNext",
+    btnNext: "~buttonNext",
     tryAgain: "~buttonTryAgain",
-    close: "~buttonClose",
-    cancel: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View" },
+    close: { xpath: "(//android.view.View[@content-desc='buttonClose'])[1]"},
+    backToPin: { xpath: "(//android.view.View[@content-desc='buttonBack'])[1]"},
+    cancel: "~buttonYes",
+    cancelNo: "~buttonNo",
     btnTransfer: "~btnTransfer",
-    back: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.view.View" },
+    back: "~buttonNo",
     backToDashboard: "~buttonBackToDashboard",
-    forgotPIN: "~",
+    forgotPIN: "~buttonForgotPin",
     btnFilterHistoryTrx: { xpath: "(//android.view.View[@content-desc='buttonFilter'])[1]" },
     creatPINPopUp: "~buttonCreatePin",
     understand: "~buttonUnderstand",
@@ -85,6 +88,10 @@ module.exports = {
     I.waitForElement(this.buttons.back, 10);
     I.click(this.buttons.back);
   },
+  clickButtonBackPinConfirm() {
+    I.waitForElement(this.buttons.backToPin, 10);
+    I.click(this.buttons.backToPin);
+  },
 
   clickButtonBackToDashboard() {
     I.waitForElement(this.buttons.backToDashboard, 10);
@@ -99,6 +106,15 @@ module.exports = {
   clickButtonCancel() {
     I.waitForElement(this.buttons.cancel, 10);
     I.click(this.buttons.cancel);
+  },
+  clickBtnNext(){
+    I.waitForElement(this.buttons.btnNext, 10);
+    I.click(this.buttons.btnNext);
+  },
+
+  clickButtonCancelNo() {
+    I.waitForElement(this.buttons.cancelNo, 10);
+    I.click(this.buttons.cancelNo);
   },
 
   clickButtonUnderstand() {
@@ -158,8 +174,8 @@ module.exports = {
   },
 
   fillInOtpCode(otpCode) {
+    I.waitForElement(this.fields.otpcode, 10);
     I.setText(this.fields.otpcode, otpCode);
-    I.hideDeviceKeyboard();
   },
 
   goToOtherMenu() {

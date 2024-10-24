@@ -112,7 +112,7 @@ When("I see files that need to be uploaded for type individual company", async (
     I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
         "Maximal ukuran per file: 15MB");
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if (
 
@@ -158,33 +158,33 @@ When("I upload document business {string} with type {string}", async (typeDoc, f
     globalVariable.uploadDocuments.fileType = fileType;
 
     await
-        uploadBusinessDocPage.uploadOneDocument(typeDoc, fileType);
+        uploadBusinessDocPage.uploadOneDocument(globalVariable.login.userID, globalVariable.login.password, typeDoc, fileType);
 });
 
 When("I upload all document business for type company", async () => {
     await
-        uploadBusinessDocPage.uploadAllDocumentCompany();
+        uploadBusinessDocPage.uploadAllDocumentCompany(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I upload all document business for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     await
-        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(legalityType);
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompany(globalVariable.login.userID, globalVariable.login.password, legalityType);
 });
 
 When("I upload all document business required for type company", async () => {
     await
-        uploadBusinessDocPage.uploadAllDocumentCompanyRequired();
+        uploadBusinessDocPage.uploadAllDocumentCompanyRequired(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I upload all document business required for type individual company", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     await
-        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(legalityType);
+        uploadBusinessDocPage.uploadAllDocumentIndividualCompanyRequired(globalVariable.login.userID, globalVariable.login.password, legalityType);
 });
 
 When("I delete document {string}", async (typeDoc) => {
@@ -215,7 +215,7 @@ When("I delete document {string}", async (typeDoc) => {
 
         case "NPWP Bisnis":
 
-            const legalityType = (await getDataDao.getLegalityType()).legalityType;
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
             if (
 
@@ -504,7 +504,7 @@ Then("I will see document {string} is uploaded", async (typeDoc) => {
 
         case "NPWP Bisnis":
 
-            const legalityType = (await getDataDao.getLegalityType()).legalityType;
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
             if (
 
@@ -614,7 +614,7 @@ Then("I will see all document required company has been uploaded", () => {
 
 Then("I will see all document business individual company has been uploaded", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if (
 
@@ -665,7 +665,7 @@ Then("I will see all document business individual company has been uploaded", as
 
 Then("I will see all document required business individual company has been uploaded", async () => {
 
-    const legalityType = (await getDataDao.getLegalityType()).legalityType;
+    const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
     if (
 
@@ -782,7 +782,7 @@ Then("I will see {string} is empty", async (typeDoc) => {
 
         case "NPWP Bisnis":
 
-            const legalityType = (await getDataDao.getLegalityType()).legalityType;
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
             if (
 
@@ -870,7 +870,7 @@ Then("I will see {string} still exists", async (typeDoc) => {
 
         case "NPWP Bisnis":
 
-            const legalityType = (await getDataDao.getLegalityType()).legalityType;
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
 
             if (
 
@@ -932,5 +932,5 @@ Then("I will see {string} still exists", async (typeDoc) => {
 
 Then("I reset state upload document", async () => {
     await
-        resetStateDao.deleteAllDocuments();
+        resetStateDao.deleteAllDocuments(globalVariable.login.userID, globalVariable.login.password);
 });

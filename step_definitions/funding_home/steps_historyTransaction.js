@@ -281,14 +281,14 @@ Then("I will see detail transaction transfer out {string} with approval", async 
     I.waitForText("Rincian Transaksi", 10);
 
     const actualSenderName = await transactionHistoryPage.getSenderNameDetail();
-    const expectedSenderName = (await resetStateDao.getCompanyName()).businessName;
+    const expectedSenderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
     I.assertEqual(actualSenderName, expectedSenderName);
 
     const actualSenderBankName = await transactionHistoryPage.getSenderBankNameDetail();
     I.assertEqual(actualSenderBankName, "Bank Amar Indonesia")
 
     const actualSenderAccNumber = (await transactionHistoryPage.getSenderAccNumberDetail()).replace(/\s+/g, '').replace(/-/g, '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
     const actualRecipientName = await transactionHistoryPage.getRecipientNameDetail();
@@ -312,7 +312,7 @@ Then("I will see detail transaction transfer out {string} with approval", async 
 
     I.see("Disetujui oleh");
     const actualApprovedBy = await transactionHistoryPage.getApprovedByName();
-    const expectedApprovedBy = (await resetStateDao.getFullName()).ktpName;
+    const expectedApprovedBy = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
     I.assertEqual(actualApprovedBy, expectedApprovedBy);
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
@@ -364,14 +364,14 @@ Then("I will see detail transaction transfer out {string} without approval", asy
     I.waitForText("Rincian Transaksi", 10);
 
     const actualSenderName = await transactionHistoryPage.getSenderNameDetail();
-    const expectedSenderName = (await resetStateDao.getCompanyName()).businessName;
+    const expectedSenderName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
     I.assertEqual(actualSenderName, expectedSenderName);
 
     const actualSenderBankName = await transactionHistoryPage.getSenderBankNameDetail();
     I.assertEqual(actualSenderBankName, "Bank Amar Indonesia")
 
     const actualSenderAccNumber = (await transactionHistoryPage.getSenderAccNumberDetail()).replace(/\s+/g, '').replace(/-/g, '');
-    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber()).accountNumber;
+    const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
     I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
 
     const actualRecipientName = await transactionHistoryPage.getRecipientNameDetail();
@@ -454,14 +454,14 @@ Then("I will see detail transaction transfer in {string}", async (method) => {
         I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
 
         const actualRecipientName = await transactionHistoryPage.getRecipientNameDetail();
-        const expectedRecipientName = (await resetStateDao.getCompanyName()).businessName;
+        const expectedRecipientName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
         I.assertEqual(actualRecipientName, expectedRecipientName);
 
         const actualRecipientBankName = await transactionHistoryPage.getRecipientBankNameDetail();
         I.assertEqual(actualRecipientBankName, "Bank Amar Indonesia");
 
         const actualRecipientAccNumber = (await transactionHistoryPage.getRecipientAccNumberDetail()).replace(/\s+/g, '').replace(/-/g, '');
-        const expectedRecipientAccNumber = await (await resetStateDao.getAccountNumber()).accountNumber;
+        const expectedRecipientAccNumber = await (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
         I.assertEqual(actualRecipientAccNumber, expectedRecipientAccNumber);
 
     } else if (

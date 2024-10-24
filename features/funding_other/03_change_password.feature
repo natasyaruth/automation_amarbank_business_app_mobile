@@ -721,6 +721,7 @@ Feature: Account Change Password
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
             | passwordStg | 1234Test | 
+        And I reset attempt otp after login    
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -816,7 +817,7 @@ Feature: Account Change Password
         And I input wrong OTP code
         And I will notify by message error 'Kode OTP yang dimasukkan salah' in field 'otp'
         And I input wrong OTP code
-        Then I should be notified that I can verify the OTP tomorrow
+        Then I notified that I can verify the OTP tomorrow
 
     @C141201
     Scenario: Input expired OTP
@@ -825,6 +826,7 @@ Feature: Account Change Password
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
             | passwordStg | 1234Test | 
+        And I reset attempt otp after login    
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |

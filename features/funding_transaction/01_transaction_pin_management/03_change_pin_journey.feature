@@ -40,6 +40,7 @@ Feature: User change PIN from other menu
     @C109134
     Scenario: User input incorrect confirmation PIN for change pin
         Given I am a customer who wants to change PIN from menu other
+        And I reset attempt otp after login
         When I choose other
         And I click change transaction pin
         And I input old PIN with "111111"
@@ -50,6 +51,7 @@ Feature: User change PIN from other menu
     @C109135
     Scenario: User input expired OTP for change pin
         Given I am a customer who wants to change PIN from menu other
+        And I reset attempt otp after login
         When I choose other
         And I click change transaction pin
         And I input old PIN with "111111"
