@@ -28,6 +28,10 @@ jobs:
             npm install  # Install project dependencies
 
       - run:
+          name: Make execute-on-ci.sh executable
+          command: chmod +x ./execute-on-ci.sh  # Ensure script is executable
+
+      - run:
           name: Run execute-on-ci.sh
           command: ./execute-on-ci.sh  # Execute the script in the repository
 
