@@ -1,7 +1,7 @@
 require("dotenv").config();
-require("./heal");
+// require("./heal");
 
-// const getRelease = require("./latest_release.staging.js");
+// const getRelease = require("./latest_releas.staging.js");
 // console.log(getRelease);
 
 const env = {
@@ -59,11 +59,11 @@ if (process.env.BROWSERSTACK) {
     key: process.env.BROWSERSTACK_API_KEY,
     platformName: "android",
     platformVersion: 13.0,
-    deviceName: "Google Pixel 8", // if needed to adding others deviceName, replace this value, the value for the device are reference to browserstack device list.
-    device: "Google Pixel 8",
+    deviceName: "Google Pixel 7 Pro", // if needed to adding others deviceName, replace this value, the value for the device are reference to browserstack device list.
+    device: "Google Pixel 7 Pro",
     desiredCapabilities: {
       platformName: "android",
-      platformVersion: "14.0",
+      platformVersion: "13.0",
       newCommandTimeout: 300000,
       androidDeviceReadyTimeout: 300000,
       androidInstallTimeout: 90000,

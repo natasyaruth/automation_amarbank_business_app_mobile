@@ -174,8 +174,8 @@ module.exports = {
   },
 
   fillInOtpCode(otpCode) {
+    I.waitForElement(this.fields.otpcode, 10);
     I.setText(this.fields.otpcode, otpCode);
-    I.hideDeviceKeyboard();
   },
 
   goToOtherMenu() {

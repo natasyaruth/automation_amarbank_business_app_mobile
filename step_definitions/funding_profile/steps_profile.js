@@ -158,11 +158,9 @@ Then("I see my profile company data", async () => {
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
     const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
-    const expectedAddress = address + ", " + fullAddress
-    I.assertNotEqual(actualAddress, expectedAddress);
-    globalVariable.profile.domicileAddress = expectedAddress;
+    I.assertNotEqual(actualAddress, fullAddress);
+    globalVariable.profile.domicileAddress = fullAddress;
 
     I.see("Nama Bisnis");
     const actualCompanyName = await profilePage.getCompanyName();
@@ -215,11 +213,9 @@ Then("I see my profile individual company data", async () => {
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
     const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
-    const expectedAddress = address + ", " + fullAddress
-    I.assertNotEqual(actualAddress, expectedAddress);
-    globalVariable.profile.domicileAddress = expectedAddress;
+    I.assertNotEqual(actualAddress, fullAddress);
+    globalVariable.profile.domicileAddress = fullAddress;
 
     I.see("Nama Bisnis");
     const actualCompanyName = await profilePage.getCompanyName();
@@ -285,11 +281,9 @@ Then("I will see my profile individual data", async () => {
 
     I.see("Alamat Tempat Tinggal");
     const actualAddress = await profilePage.getDomicileAddress();
-    const address = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).address;
     const fullAddress = (await getDataDao.getFullAddress(globalVariable.login.userID, globalVariable.login.password)).fullAddress;
-    const expectedAddress = address + ", " + fullAddress;
-    I.assertNotEqual(actualAddress, expectedAddress);
-    globalVariable.profile.domicileAddress = expectedAddress;
+    I.assertNotEqual(actualAddress, fullAddress);
+    globalVariable.profile.domicileAddress = fullAddress;
 
     I.dontSee("Nama Bisnis");
     I.dontSeeElement(profilePage.texts.businessName);
@@ -372,7 +366,7 @@ Then("I will direct to detail business profile", async () => {
     if (
         month.substring(0, 1) === "0"
     ) {
-        month = month.substring(0, 1);
+        month = month.substring(0, 2);
     }
 
     I.assertEqual(actualFoundedDate, date + " " + months[month-1] + " " + year);

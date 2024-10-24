@@ -125,15 +125,9 @@ module.exports = {
         const responseProfile = await I.sendGetRequest(secret("https://" + env + "-smb-user.otoku.io/api/v1/user/profile"));
         I.seeResponseCodeIsSuccessful();
 
-        const province = responseProfile.data.profileKtp.province;
-        const city = responseProfile.data.profileKtp.city;
-        const district = responseProfile.data.profileKtp.district;
-        const village = responseProfile.data.profileKtp.village;
-
         return {
             status: responseProfile.status,
-            address: responseProfile.data.profileKtp.ktpAddress,
-            fullAddress: village + ", " + district + ", " + city + ", " + province
+            fullAddress: responseProfile.data.profileAddress.completeAddress
         };
     },
 

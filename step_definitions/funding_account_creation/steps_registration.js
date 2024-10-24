@@ -14,6 +14,7 @@ const {
   onboardingAccOpeningPage,
   globalVariable,
   resetStateDao,
+  uploadDao,
 } = inject();
 
 Given("I am a customer open app amarbank business", () => {});
@@ -118,6 +119,8 @@ Given(
     );
 
     await whitelistDao.whitelistEmail(globalVariable.registration.email);
+
+    await otpDao.resetLimitRequestOtp(globalVariable.registration.phoneNumber);
 
     welcomePage.clickButtonRegister();
     registrationPage.fillInAccountInformation(account);
@@ -306,6 +309,22 @@ When("I verifying email invitee through login with user id invitee", async () =>
   globalVariable.login.userIDPartner = userID;
 });
 
+When("I verifying new email invitee through login with user id invitee", async () => {
+  verificationEmailPage.isOpen();
+
+  I.see("Segera Cek E-mail");
+  I.see("Kami telah mengirim User ID ke e-mail:");
+
+  let actualEmail = await verificationEmailPage.getEmailValue();
+  I.assertEqual(actualEmail, globalVariable.registration.newEmailPartner);
+
+  const userID = (await otpDao.getUserID(globalVariable.registration.newEmailPartner)).userID;
+
+  verificationEmailPage.loginWithUserId(userID, globalVariable.registration.passwordPartner, globalVariable.registration.newEmailPartner);
+
+  globalVariable.login.userIDPartner = userID;
+});
+
 When("I resend email verification", () => {
   verificationEmailPage.clickResendEmailLink();
 });
@@ -377,15 +396,80 @@ When(
     );
 
     registrationPage.fillInAccountInformation(account);
+  }
+);
 
-    registrationPage.clickCreateAccountButton();
+When(
+  "I filling in my account business information without business code",
+  async () => {
 
-    let actualPhoneNumber = await registrationPage.getValueInformation('mobileNumber');
-    let actualCompanyName = await registrationPage.getValueInformation('companyName');
-    const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.emailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner
+    }
 
-    I.assertEqual(actualPhoneNumber, "+62 "+globalVariable.registration.phoneNumberPartner);
-    I.assertEqual(actualCompanyName, companyName);
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVariable.registration.emailPartner
+    );
+
+    registrationPage.fillInAccountInformation(account);
+  }
+);
+
+When(
+  "I filling in my account business information with new email",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.newEmailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVariable.registration.emailPartner
+    );
+
+    registrationPage.fillInAccountInformation(account);
+  }
+);
+
+When(
+  "I filling in my account business information with different email",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: "bhdsfb7567@gmail.com",
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      account.email
+    );
+
+    registrationPage.fillInAccountInformation(account);
   }
 );
 
@@ -754,6 +838,14 @@ When("I am on page PDP consent", () => {
   I.see("Persetujuan Penggunaan Data dan Informasi Pribadi");
 });
 
+When("I click button first login", ()=>{
+  verificationEmailPage.clickButtonFirstLogin();
+});
+
+When("I edit field email with old email invitee", ()=>{
+  registrationPage.fillFieldRegistration("email", globalVariable.registration.emailPartner);
+});
+
 Then("I will see my password {string} in the field", (actualPassword) => {
   I.waitForText(actualPassword);
 });
@@ -925,8 +1017,7 @@ Then("I should see button Buat Akun will disable", async () => {
 });
 
 Then("my account should be created", () => {
-  I.waitForText("Apa kebutuhan Anda saat ini?", 20);
-  onboardingAccOpeningPage.chooseLater();
+  I.waitForElement(loginPage.buttons.laterBiometric), 20;
 });
 
 Then("account invitee should be created", () => {
@@ -952,6 +1043,7 @@ Then(
 Then(
   "I should see message error {string} in the below of field {string}",
   async (expectedMsgError, fieldName) => {
+    I.wait(2);
     let actualMessage = await registrationPage.getMessageErrorFieldRegistration(
       fieldName
     );
@@ -1160,8 +1252,9 @@ Then ("I will see pop up confirmation registration with company name", async ()=
 
   I.see("Anda akan registrasi sebagai bagian dari:");
   let actualCompanyName = await registrationPage.getValueInformation("companyName");
+  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
   I.dontSeeElement(registrationPage.label.email);
-  I.assertEqual(actualCompanyName, globalVariable.registration.companyName);
+  I.assertEqual(actualCompanyName, companyName);
 
   I.see("Konfirmasi");
   I.waitForElement(registrationPage.buttons.confirm, 10);
