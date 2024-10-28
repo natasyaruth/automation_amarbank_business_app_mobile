@@ -315,7 +315,7 @@ Feature: Home - Survey and Rating
         And I will direct to dashboard with widget account is rejected
 
     @C160312
-    Scenario: Fill feedback with length character more than 259 char
+    Scenario: Fill feedback with length character more than 256 char
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Revvy                   |
             | email           | testing_11@gmail.com    |
@@ -348,7 +348,7 @@ Feature: Home - Survey and Rating
         And I give '3' ratings
         And I will see field text feedback survey
         And I fill feedback survey 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, semt'
-        And I will see field is filled with character only 259 char
+        And I will see field is filled with character only 256 char
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will direct to dashboard with widget account is rejected

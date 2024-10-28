@@ -12,6 +12,7 @@ Feature: User create PIN Journey Transfer
             | password    | 1234Test |
             | userIDstg   | nuru099d |
             | passwordStg | Test1234 |
+        And never entered wrong password
         And I reset attempt otp after login    
         When I filling in form login with the following details:
             | userID      | ruthf292 |
@@ -91,7 +92,7 @@ Feature: User create PIN Journey Transfer
         And I input password
         And I submit my password
         And I create PIN with '111111'
-        And I confirm create PIN
+        And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
     @C109113
@@ -187,7 +188,7 @@ Feature: User create PIN Journey Transfer
         And I input password
         And I submit my password
         And I create PIN with '111111'
-        And I confirm create PIN
+        And I click back button to PIN
         And I click button Close
         And I should see close confirmation pop up
         And I click button Cancel

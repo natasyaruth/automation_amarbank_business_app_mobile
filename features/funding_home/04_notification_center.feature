@@ -645,13 +645,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | ruth9ba1 |
             | password    | 1234Test |
-            | userIDstg   | ruthb1dc |
+            | userIDstg   | ruth0547 |
             | passwordStg | 1234Test |    
         And has notification in notification center
         And I filling in form login with the following details:
             | userID      | ruth9ba1 |
             | password    | 1234Test |
-            | userIDstg   | ruthb1dc |
+            | userIDstg   | ruth0547 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

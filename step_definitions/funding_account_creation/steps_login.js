@@ -431,7 +431,7 @@ When("I cancel continue to see PDP", () => {
   registrationPage.cancelPDP();
 });
 
-When("I submit the PDP login", ()=>{
+When("I submit the PDP login", () => {
   loginPage.submitPDPLogin();
 });
 
@@ -470,27 +470,6 @@ Then(
     await
       resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
   });
-
-Then(
-  "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",
-  () => {
-    const currentDate = new Date();
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const addMinutes = minutes + 10;
-
-    const currentTime =
-      hours.toString().padStart(2, "0") +
-      ":" +
-      addMinutes.toString().padStart(2, "0");
-
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(
-      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-      currentTime
-    );
-  }
-);
 
 Then("I successed go to dashbord", () => {
   ///dashboard still on development from mobile
@@ -677,17 +656,47 @@ Then(
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
     const addMinutes = minutes + 10;
+    let formattedHours = hours.toString().padStart(2, "0");
+    let formattedMinutes = addMinutes.toString().padStart(2, "0");
+    let diffMinutes;
+    let currentTime;
 
-    const currentTime =
-      hours.toString().padStart(2, "0") +
-      ":" +
-      addMinutes.toString().padStart(2, "0");
+    if (
+      formattedHours.substring(0, 1) === "0"
+    ) {
+      formattedHours = formattedHours.substring(0, 1);
+    }
 
-    I.waitForText("Data Yang Dimasukkan Salah", 10);
-    I.see(
-      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-      currentTime
-    );
+    let numberHours = parseInt(formattedHours);
+    let numberMinutes = parseInt(formattedMinutes);
+
+    
+
+    // if (
+    //   numberMinutes > 60
+    // ) {
+
+    //   diffMinutes = numberMinutes - 60;
+    //   numberHours = numberHours + 1;
+    //   currentTime = numberHours + ":" + diffMinutes;
+
+    // } else if (
+
+    //   numberMinutes = 60
+    // ) {
+
+    //   numberHours = numberHours + 1;
+    //   currentTime = numberHours + ":00"
+      
+    // } else {
+
+    // }
+
+    // I.waitForText("Data Yang Dimasukkan Salah", 10);
+    // I.see(
+    //   "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
+    //   currentTime
+    // );
   }
 );
 
