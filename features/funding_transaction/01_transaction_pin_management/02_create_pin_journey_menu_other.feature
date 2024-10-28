@@ -8,13 +8,15 @@ Feature: User create PIN from other menu
         Given I am a registered customer with following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | kitad3fa |
-            | passwordStg | 1234Test |
+            | userIDstg   | nuru099d |
+            | passwordStg | Test1234 |
+        And never entered wrong password
+        And I reset attempt otp after login
         When I filling in form login with the following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
-            | userIDstg   | kitad3fa |
-            | passwordStg | 1234Test |
+            | userIDstg   | nuru099d |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         Then I will see card account 'active'
@@ -39,7 +41,7 @@ Feature: User create PIN from other menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
         And I click create transaction pin
-        And I Input incorrect password
+        And I input incorrect password
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
@@ -48,8 +50,7 @@ Feature: User create PIN from other menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
         And I click create transaction pin
-        And I Input incorrect password
-        And I submit my password twice
+        And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
     @C109126
@@ -57,7 +58,6 @@ Feature: User create PIN from other menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
         And I click create transaction pin
-        And I Input incorrect password
         And I submit my password three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I directly go to page login

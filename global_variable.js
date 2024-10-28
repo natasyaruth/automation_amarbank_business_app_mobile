@@ -164,6 +164,7 @@ module.exports = {
     },
     createPin: {
         newPin: "",
+        oldPin: "",
         otp: "",
     },
     friendList: {

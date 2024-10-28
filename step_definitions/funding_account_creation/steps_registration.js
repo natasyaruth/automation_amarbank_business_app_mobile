@@ -400,6 +400,33 @@ When(
 );
 
 When(
+  "I filling in my account business information with old email and business code from new email",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.emailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.registration.newEmailPartner)).businessCode;
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVariable.registration.emailPartner
+    );
+
+    registrationPage.fillInAccountInformation(account);
+  }
+);
+
+When(
   "I filling in my account business information without business code",
   async () => {
 
@@ -1176,15 +1203,6 @@ Then("I will get new OTP different with my first OTP", async () => {
 
 Then("I will see attempts left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
-});
-
-Then("I should see button Buat Akun will enable", () => {
-  I.seeElement(registrationPage.buttons.createAccountPDP);
-});
-
-Then("I should see button Buat Akun will disable", async () => {
-  //I.seeElement(registrationPage.buttons.createAccountPDP);
-  await registrationPage.checkTnC();
 });
 
 Then("I should go to Verifikasi No. HP page", () => {

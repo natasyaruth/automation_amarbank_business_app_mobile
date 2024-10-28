@@ -389,6 +389,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And never entered wrong password 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -411,6 +412,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
+        And never entered wrong password 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
             | password    | 1234Test |
@@ -676,6 +678,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -697,6 +700,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -721,6 +725,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |
@@ -749,6 +754,7 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | nata8119 |
             | passwordStg | 1234Test |
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mich875d |
             | password    | 1234Test |

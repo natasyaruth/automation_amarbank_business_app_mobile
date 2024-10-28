@@ -274,6 +274,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -490,7 +491,7 @@ Feature: Document Management
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I click close in header page\
+        And I click close in header page
         And I click option exit survey 'Proses akan dilanjutkan nanti'
         And I submit my exit survey
         And I will see card account 'on process'

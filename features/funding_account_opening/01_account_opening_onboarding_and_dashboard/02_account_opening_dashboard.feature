@@ -40,13 +40,13 @@ Feature: Account Opening Main Dashboard
         Given I am a registered customer with following details:
             | userID      | devece34 |
             | password    | 1234Test |
-            | userIDstg   | stagda20 |
+            | userIDstg   | revv2096 |
             | passwordStg | 1234Test |
         And I reset my state journey 
         When I filling in form login with the following details:
             | userID      | devece34 |
             | password    | 1234Test |
-            | userIDstg   | stagda20 |
+            | userIDstg   | revv2096 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -646,7 +646,7 @@ Feature: Account Opening Main Dashboard
     Scenario: User can see detail card list director with status complete
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
-            | email           | testing_42@gmail.com    |
+            | email           | testing_62@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And I login using my user id that I recently receive through email
@@ -655,7 +655,7 @@ Feature: Account Opening Main Dashboard
         And I click later
         When I register initiator with partner as below
             | fullName        | RUDI                   |
-            | email           | testing_51@gmail.com   |
+            | email           | testing_81@gmail.com   |
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
@@ -759,7 +759,7 @@ Feature: Account Opening Main Dashboard
     Scenario: Clear email invitee by keyboard
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
-            | email           | testing_46@gmail.com    |
+            | email           | testing_76@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And I login using my user id that I recently receive through email
@@ -768,7 +768,7 @@ Feature: Account Opening Main Dashboard
         And I click later
         When I register initiator with partner as below
             | fullName        | RUDI                   |
-            | email           | testing_56@gmail.com   |
+            | email           | testing_66@gmail.com   |
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
@@ -786,7 +786,7 @@ Feature: Account Opening Main Dashboard
     Scenario: Clear email invitee by icon clear
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
-            | email           | testing_47@gmail.com    |
+            | email           | testing_77@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And I login using my user id that I recently receive through email
@@ -795,7 +795,7 @@ Feature: Account Opening Main Dashboard
         And I click later
         When I register initiator with partner as below
             | fullName        | RUDI                   |
-            | email           | testing_58@gmail.com   |
+            | email           | testing_68@gmail.com   |
             | phoneNumber     | 899960054041           |
             | password        | 1234Test               |
         And I choose other
