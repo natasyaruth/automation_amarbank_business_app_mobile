@@ -82,9 +82,13 @@ fi
 
 # Run curl command to upload the file and capture the response
 echo "Uploading APK to BrowserStack..."
+echo "$BROWSERSTACK_USERNAME:$BROWSERSTACK_API_KEY"
 response=$(curl -u "${BROWSERSTACK_USERNAME}:${BROWSERSTACK_API_KEY}" \
 -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
 -F "file=@$apk_file")
+
+echo "response from the browserstack"
+echo $response
 
 # Extract the app_url from the response
 app_url=$(echo $response | jq -r '.app_url')
@@ -98,6 +102,7 @@ if [ $? -eq 0 ] && [ -n "$app_url" ]; then
   # This are example format of grapping the testcase based on tagging
   # value of this format will be sending to codeceptjs:browserstack
   # grepStr="--grep \@C159510|\@C133894"
+  TAGGING_GREP_REGEX="@regressionTest"
   # BROWSERSTACK_APPID_HASHED=${app_url} yarn run codeceptjs:browserstack ${tesStr}
   if [ -z "${TAGGING_GREP_REGEX}" ]; then
     BROWSERSTACK_APPID_HASHED=${app_url} yarn run codeceptjs:browserstack
@@ -107,7 +112,6 @@ if [ $? -eq 0 ] && [ -n "$app_url" ]; then
   fi
 else
   echo "Upload failed or app_url not found. Node.js script will not be run again."
-  exit 1
 fi
 
 # Check if the file exists

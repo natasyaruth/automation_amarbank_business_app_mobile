@@ -1,11 +1,11 @@
 @hooklogin_regress
-Feature: Account login
+Feature: AUTOMATED Account login
   In order to go to SMB dashboard after registration
   As a customer lead
   I want to login with registered account
 
   @C159649
-  Scenario: Login with registered account
+  Scenario: AUTOMATED Login with registered account
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
@@ -21,7 +21,7 @@ Feature: Account login
     Then I will direct to dashboard
 
   @C159650
-  Scenario: Login with unregistered account
+  Scenario: AUTOMATED Login with unregistered account
     Given I am an unregistered customer trying to login
     When I filling in form login with the following details:
       | userID      | autocaea |
@@ -32,7 +32,7 @@ Feature: Account login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
   @C159652
-  Scenario: Input UserID without value
+  Scenario: AUTOMATED Input UserID without value
     Given I am a registered customer with following details:
       | userIDstg   | JOHN12j3 |
       | passwordStg | Pass1234 |
@@ -43,7 +43,7 @@ Feature: Account login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
 
   @C159653
-  Scenario: Input Password without value
+  Scenario: AUTOMATED Input Password without value
     Given I am a registered customer with following details:
       | userIDstg   | JOHN12j3 |
       | passwordStg | Pass1234 |
@@ -54,7 +54,7 @@ Feature: Account login
     Then I should be notified 'Password wajib diisi' in the below of field 'password'
 
   @C159654
-  Scenario: Login with User ID and Password is empty
+  Scenario: AUTOMATED Login with User ID and Password is empty
     Given I am a registered customer with following details:
       | userIDstg   | JOHN12j3 |
       | passwordStg | Pass1234 |
@@ -66,7 +66,7 @@ Feature: Account login
     And I should be notified 'Password wajib diisi' in the below of field 'password'
 
    @C159655
-   Scenario: Login with wrong password once
+   Scenario: AUTOMATED Login with wrong password once
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -78,7 +78,7 @@ Feature: Account login
     And I reset attempt failed login
 
   @C159656
-   Scenario: Login with wrong password twice
+   Scenario: AUTOMATED Login with wrong password twice
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -93,7 +93,7 @@ Feature: Account login
     And I reset attempt failed login 
 
   @C159658
-  Scenario: Login with wrong password three times
+  Scenario: AUTOMATED Login with wrong password three times
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -111,7 +111,7 @@ Feature: Account login
     And I reset attempt failed login 
 
   @C159659	
-  Scenario: User want to see their password
+  Scenario: AUTOMATED User want to see their password
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -122,7 +122,7 @@ Feature: Account login
     Then I should see my password
 
   @C159660
-  Scenario: User don't want to see their password
+  Scenario: AUTOMATED User don't want to see their password
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -133,13 +133,13 @@ Feature: Account login
     Then I should not see my password
 
    @C159661
-   Scenario: Access call center on page login
+   Scenario: AUTOMATED Access call center on page login
     Given I am customer that already on page login
     When I click call center
     Then I should see bottom sheet call center with email
 
   @C159662
-  Scenario: Access link Lupa Password
+  Scenario: AUTOMATED Access link Lupa Password
     Given I am customer that already on page login
     When I click forgot password
     Then I should see new page with text 'Masukkan User ID dan E-mail Anda untuk mendapatkan email mereset password.' displayed
@@ -147,14 +147,14 @@ Feature: Account login
     And I should see field 'email' on page Forgot Password
 
   @C159664
-  Scenario: Access link Daftar
+  Scenario: AUTOMATED Access link Daftar
     Given I am customer that already on page login
     When I click registration
     Then I should see new page with text 'Buat Akun' displayed
     And I should see field 'fullName' on page Registration
 
   @C159665
-  Scenario: User want to remember their User ID
+  Scenario: AUTOMATED User want to remember their User ID
     Given I am a registered customer with following details:
       | userIDstg   | yahyb7cb |
       | passwordStg | Akuntes2 |
@@ -170,7 +170,7 @@ Feature: Account login
     And I should see field user ID is filled with the last user ID
 
   @C159666
-  Scenario: Back to page Onboarding from page Login
+  Scenario: AUTOMATED Back to page Onboarding from page Login
     Given I am customer that already on page login
     When I click button back in the header page
     Then I will direct to page onboarding
