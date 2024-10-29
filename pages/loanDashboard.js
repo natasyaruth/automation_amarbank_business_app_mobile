@@ -18,6 +18,7 @@ module.exports = {
     buttonNavigation: "#iconNavigation",
     buttonLater: "~buttonLater",
     buttonSign: "~buttonSign",
+    btnLoanDetail: "~buttonLoanDetail",
   },
 
   cards: {
@@ -39,7 +40,7 @@ module.exports = {
   filters: {
     filterByOnProcess: "~filterByOnProcess",
     filterByOnActive: "~filterByOnActive",
-    filterbyOnDone: "~filterbyOnDone",
+    filterbyOnDone: "~filterByOnDone",
     filterByAll: "~filterByAll",
     filterBySendPDC: "~filterBySendPDC",
     filterByWaitingConfirmation: "~filterByWaitingConfirmation",
@@ -73,6 +74,12 @@ module.exports = {
     I.see(this.text.textDashboardScreen);
     I.click(this.text.textLoanDashboard);
     I.see("Pinjaman Bisnis");
+  },
+
+  // lihat detail pinjaman
+  goToLoanDetail () {
+    I.wait(10);
+    I.click(this.buttons.btnLoanDetail);
   },
 
   //Loan Dashboard
@@ -252,12 +259,31 @@ module.exports = {
     I.wait(30);
   },
 
+  validateStatusOnProces() {
+    I.wait(5);
+    I.seeElement(this.filters.filterByOnProcess);
+  },
+
+  validateStatusActive() {
+    I.wait(5);
+    I.seeElement(this.filters.filterByOnActive);
+  },
+
+  validateStatusDone() {
+    I.wait(5);
+    I.seeElement(this.filters.filterbyOnDone);
+  },
   goToTabLimit() {
     I.seeElement(this.tabs.tabLimit);
     I.click(this.tabs.tabLimit);
   },
 
+  goToStatusOnProces() {
+    I.click(this.filters.filterByOnProcess);
+  },
+
   validateTabLimit() {
+    I.wait(10);
     I.seeElement(this.filters.filterByOnProcess);
     I.seeElement(this.filters.filterByOnActive);
     I.seeElement(this.filters.filterbyOnDone);
