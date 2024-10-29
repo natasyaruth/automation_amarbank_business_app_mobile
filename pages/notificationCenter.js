@@ -27,6 +27,7 @@ module.exports = {
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",
     amount: "~textAmount",
+    pendingTrxStatus: "~textPendingTransactionStatus",
   },
 
   openNotificationCenter(){
@@ -159,4 +160,8 @@ module.exports = {
     return await I.grabTextFrom(this.texts.infoNotifDetail);
   },
 
+  async getPendingTrxStatus(index){
+    I.waitForElement(this.texts.pendingTrxStatus+index, 10);
+    return I.grabTextFrom(this.texts.pendingTrxStatus+index);
+  },
 }

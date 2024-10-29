@@ -236,14 +236,17 @@ Feature: Home - Blocking amount
         And I click detail amount
         Then I will see information 'Transaksi yang belum disetujui' in the below of field blocking amount
         And I click button back in the header page
-        And I swipe to section transaction approval
-        And I click card maker transaction
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
         And I canceled my transaction
         And I input password for approver
         And I submit my password for approver
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        And I will not see card maker that has been canceled
+        And I will direct to page notification center
+        And I click close in header page
         And I click detail amount
         And I will not see information 'Transaksi yang belum disetujui' in the below of field blocking amount
 
@@ -281,14 +284,17 @@ Feature: Home - Blocking amount
         And I click detail amount
         Then I will see information 'Saldo Minimum + Transaksi yang belum disetujui' in the below of field blocking amount
         And I click button back in the header page
-        And I swipe to section transaction approval
-        And I click card maker transaction
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
         And I canceled my transaction
         And I input password for approver
         And I submit my password for approver
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        And I will not see card maker that has been canceled
+        And I will direct to page notification center
+        And I click close in header page
         And I click detail amount
         And I will see information 'Saldo Minimum' in the below of field blocking amount
 
@@ -326,14 +332,17 @@ Feature: Home - Blocking amount
         And I click detail amount
         And I will see information 'Total Biaya Bunga Pinjaman + Transaksi yang belum disetujui' in the below of field blocking amount
         And I click button back in the header page
-        And I swipe to section transaction approval
-        And I click card maker transaction
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
         And I canceled my transaction
         And I input password for approver
         And I submit my password for approver
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        And I will not see card maker that has been canceled
+        And I will direct to page notification center
+        And I click close in header page
         And I click detail amount
         And I will see information 'Total Biaya Bunga Pinjaman' in the below of field blocking amount
 
@@ -371,13 +380,16 @@ Feature: Home - Blocking amount
         And I click detail amount
         And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman + Transaksi yang belum disetujui' in the below of field blocking amount
         And I click button back in the header page
-        And I swipe to section transaction approval
-        And I click card maker transaction
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
         And I canceled my transaction
         And I input password for approver
         And I submit my password for approver
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        And I will not see card maker that has been canceled
+        And I will direct to page notification center
+        And I click close in header page
         And I click detail amount
         And I will see information 'Saldo Minimum + Total Biaya Bunga Pinjaman' in the below of field blocking amount

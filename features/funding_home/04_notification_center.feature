@@ -433,63 +433,6 @@ Feature: Home - Notification Center
         And I click understand the notification
         And I will direct to page notification center
 
-    @C162007
-    Scenario: Checking Detail notification waiting approval
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And has partner with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And we don't have any notification
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I choose menu Transfer from main dashboard
-        When I input name 'RUTH BISNIS A' from the search box
-        And I choose the friendlist
-        And I input amount '10000'
-        And I choose category 'Pembayaran'
-        And I submit to next flow
-        And I click transfer now
-        And I input PIN '111111'
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I see red dot notification center
-        And I click notification center
-        And I click tab Transaction notification
-        Then I see notification waiting approval transaction
-        And I click bucketlist notification transaction
-        And I will direct to detail notification waiting approval transaction
-        And I click understand the notification
-        And I will direct to page notification center
-        And I close page notification center
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I see red dot notification center  
-        And I click notification center
-        And I click tab Transaction notification
-        And I see notification waiting approval transaction
-        And I click bucketlist notification transaction
-        And I will direct to detail notification waiting approval transaction
-        And I click understand the notification
-        And I will direct to page notification center
-
     @C162008
     Scenario: Checking Detail notification transaction approved
         Given I am a registered customer with following details:
@@ -521,7 +464,8 @@ Feature: Home - Notification Center
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I see red dot notification center
-        And I will see card maker transaction in main dashboard
+        And I will see indicator red in tab profile
+        And I don't see any card transaction in main dashboard
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -531,22 +475,24 @@ Feature: Home - Notification Center
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I will see card approver transaction in main dashboard
-        And I click card approver transaction
+        And I see red dot notification center
+        And I will see indicator red in tab profile
+        And I don't see any card transaction in main dashboard
+        And I click notification center
+        And I will see list approver transaction in notification center
+        And I click notification approver transaction
         And I approve the transaction
         And I input PIN '111111' approver
-        And I will direct to page transaction approval
         And I will see snackbar with wording 'Anda telah menyetujui transaksi'
-        And I click button back in the header page
-        And I see red dot notification center  
-        And I click notification center
-        And I click tab Transaction notification
-        Then I see notification transaction is approved from other director
+        And I will direct to page notification center
+        And I will not see list approver transaction in notification center
+        And I see notification transaction is approved from other director
         And I click bucketlist notification transaction
         And I will direct to detail notification transaction is approved from other director
         And I click understand the notification
         And I will direct to page notification center
         And I close page notification center
+        And I don't see red dot notification center
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -559,7 +505,8 @@ Feature: Home - Notification Center
         And I see red dot notification center
         And I click notification center
         And I click tab Transaction notification
-        Then I see notification transaction is approved from other director
+        Then I will not see list maker transaction in notification center
+        And I see notification transaction is approved from other director
         And I click bucketlist notification transaction
         And I will direct to detail notification transaction is approved from other director
         And I click understand the notification
@@ -595,8 +542,9 @@ Feature: Home - Notification Center
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
-        And I will see card maker transaction in main dashboard
         And I see red dot notification center
+        And I will see indicator red in tab profile
+        And I don't see any card transaction in main dashboard
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -606,22 +554,25 @@ Feature: Home - Notification Center
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I will see card approver transaction in main dashboard
-        And I click card approver transaction
+        And I see red dot notification center
+        And I will see indicator red in tab profile
+        And I don't see any card transaction in main dashboard
+        And I click notification center
+        And I will see list approver transaction in notification center
+        And I click notification approver transaction
         And I reject the transaction
         And I input PIN '111111' approver
         And I will direct to page transaction approval
         And I will see snackbar with wording 'Anda telah menolak transaksi'
-        And I click button back in the header page
-        And I see red dot notification center  
-        And I click notification center
-        And I click tab Transaction notification
+        And I will direct to page notification center
+        And I will not see list approver transaction in notification center
         And I see notification transaction is rejected from other director
         And I click bucketlist notification transaction
         And I will direct to detail notification transaction is rejected from other director
         And I click understand the notification
         And I will direct to page notification center
         And I close page notification center
+        And I don't see red dot notification center
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -634,7 +585,8 @@ Feature: Home - Notification Center
         And I see red dot notification center
         And I click notification center
         And I click tab Transaction notification
-        Then I see notification transaction is rejected from other director
+        Then I will not see list maker transaction in notification center
+        And I see notification transaction is rejected from other director
         And I click bucketlist notification transaction
         And I will direct to detail notification transaction is rejected from other director
         And I click understand the notification

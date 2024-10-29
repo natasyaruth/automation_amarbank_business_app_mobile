@@ -25,6 +25,16 @@ Given("I see card maker transaction", async () => {
     globalVariable.dashboard.amountTransaction = (await onboardingAccOpeningPage.getAmountTransaction()).replace(/[Rp.]/g, '');
 });
 
+Given("don't have list pending task", async ()=>{
+    // API to delete list pending task
+});
+
+Given("we don't have list pending task", async () => {
+
+    // API to delete list pending task me and partner
+
+});
+
 When("I swipe to section transaction approval", async () => {
     I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
 
@@ -212,6 +222,16 @@ When("I reject the transaction", () => {
 
 When("I canceled my transaction", () => {
     approvalTransactionPage.cancelTransaction();
+});
+
+When("I click notification maker transaction", () => {
+    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus, 10);
+    notificationCenterPage.openDetailNotifTransaction(0);
+});
+
+When("I click notification approver transaction", () => {
+    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus, 10);
+    notificationCenterPage.openDetailNotifTransaction(0);
 });
 
 Then("I will not see menu transaction approval", () => {
@@ -463,68 +483,111 @@ Then("I will direct to page waiting for approval from other director", async () 
 
 });
 
-Then("I will see card maker transaction in main dashboard", async () => {
-    I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
+Then("I will see list maker transaction in notification center", async () => {
+    I.waitForElement(notificationCenterPage.tabs.all, 20);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
-    I.see("Sebelum disetujui, nominal transaksi masuk ke saldo tertahan.");
-    I.see("Persetujuan Transaksi");
-    I.see("Lihat Semua");
-    I.waitForElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval, 10);
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Transaksi");
 
-    I.waitForElement(onboardingAccOpeningPage.buttons.cardTransaction, 10);
-    I.see("Menunggu Persetujuan");
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
-    const actualCompanyReceiver = await onboardingAccOpeningPage.getRecipientName();
-    I.assertEqual(actualCompanyReceiver, globalVariable.friendList.friendListName);
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualRecipientBankName = await onboardingAccOpeningPage.getRecipientBankName();
-    I.assertEqual(actualRecipientBankName, globalVariable.friendList.bankName)
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusTrx, "Persetujuan Transaksi");
 
-    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
-    I.assertEqual(actualDate, globalVariable.transfer.date);
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Menunggu Persetujuan Direksi");
 
-    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
-    const numberString = globalVariable.transfer.amount.toString().split('');
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
-    for (let i = numberString.length - 3; i > 0; i -= 3) {
-        numberString.splice(i, 0, '.');
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
     }
-    const expectedAmount = numberString.join('');
-    I.assertEqual(actualAmount, "Rp" + expectedAmount);
+
+    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+
+    const actualAmount = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
-Then("I will see card approver transaction in main dashboard", async () => {
-    I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+Then("I will see list approver transaction in notification center", async () => {
+    I.waitForElement(notificationCenterPage.tabs.all, 20);
 
-    I.see("Sebelum disetujui, nominal transaksi masuk ke saldo tertahan.");
-    I.see("Persetujuan Transaksi");
-    I.see("Lihat Semua");
-    I.waitForElement(onboardingAccOpeningPage.buttons.openAllTransactionApproval, 10);
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
 
-    I.waitForElement(onboardingAccOpeningPage.buttons.cardTransaction, 10);
-    I.see("Butuh Persetujuan");
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Transaksi");
 
-    const actualCompanyReceiver = await onboardingAccOpeningPage.getRecipientName();
-    I.assertEqual(actualCompanyReceiver, globalVariable.friendList.friendListName);
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
 
-    const actualReceiverBankName = await onboardingAccOpeningPage.getRecipientBankName();
-    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName);
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
 
-    const actualDate = await onboardingAccOpeningPage.getTransactionDate();
-    I.assertEqual(actualDate, globalVariable.transfer.date);
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusTrx, "Persetujuan Transaksi");
 
-    const actualAmount = await onboardingAccOpeningPage.getAmountTransaction();
-    const numberString = globalVariable.transfer.amount.toString().split('');
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Butuh Persetujuan Anda");
 
-    for (let i = numberString.length - 3; i > 0; i -= 3) {
-        numberString.splice(i, 0, '.');
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
     }
 
-    const expectedAmount = numberString.join('');
-    I.assertEqual(actualAmount, "Rp" + expectedAmount);
+    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+
+    const actualAmount = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
+});
+
+Then("I will see notification approval change to waiting from other director", async () => {
+    I.waitForElement(notificationCenterPage.tabs.all, 20);
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Transaksi");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusTrx, "Persetujuan Transaksi");
+
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Menunggu Persetujuan Direksi");
+
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
+    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+
+    const actualAmount = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
 });
 
 Then("I will see card maker transaction", () => {
@@ -995,4 +1058,97 @@ Then("I will see detail card maker that has been canceled", async () => {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
     }
+});
+
+Then("I don't see list pending task", ()=>{
+    I.waitForText("Notifikasi", 20);
+
+    I.dontSeeElement(notificationCenterPage.texts.pendingTrxStatus+"0");
+});
+
+Then("I don't see indicator red in tab profile", ()=>{
+    I.waitForElement(transferPage.buttons.transfer, 20);
+
+    I.dontSeeElement(profilePage.indicators.redDotProfile);
+});
+
+Then("I don't see counter pending task", ()=>{
+    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 20);
+
+    I.dontSeeElement(profilePage.texts.countPendingTrx);
+});
+
+Then("I will see indicator red in tab profile", ()=>{
+    I.waitForElement(profilePage.indicators.redDotProfile, 20);
+});
+
+Then("I see counter pending task", ()=>{
+    I.waitForElement(profilePage.texts.countPendingTrx, 20);
+});
+
+Then("I will not see list approver transaction in notification center", async () => {
+    I.waitForElement(notificationCenterPage.tabs.all, 20);
+
+    I.dontSee("Persetujuan Transaksi");
+    I.dontSee("Butuh Persetujuan Anda");
+});
+
+Then("I will not see list maker transaction in notification center", async () => {
+    I.waitForElement(notificationCenterPage.tabs.all, 20);
+
+    I.dontSee("Persetujuan Transaksi");
+    I.dontSee("Menunggu Persetujuan Direksi");
+});
+
+Then("I will direct to page waiting approval from other director", async () => {
+    I.waitForText("Menunggu Persetujuan Transaksi", 10);
+
+    const actualSenderName = await approvalTransactionPage.getSenderName();
+    I.assertEqual(actualSenderName, globalVariable.registration.companyName);
+
+    const actualSenderBankName = await approvalTransactionPage.getSenderBankName();
+    I.assertEqual(actualSenderBankName, globalVariable.transfer.senderBankName);
+
+    const actualSenderAccNumber = (await approvalTransactionPage.getSenderAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actualReceiverName = await approvalTransactionPage.getRecipientName();
+    I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
+
+    const actualReceiverBankName = await approvalTransactionPage.getRecipientBankName();
+    I.assertEqual(actualReceiverBankName, globalVariable.friendList.bankName);
+
+    const actualReceiverAccNumber = (await approvalTransactionPage.getRecipientAccountNumber()).replace(/\s+/g, '');
+    I.assertEqual(actualReceiverAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    I.see("-" + globalVariable.transfer.amountTransfer);
+
+    I.see("Dibuat oleh");
+    const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
+    I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
+    I.waitForElement(approvalTransactionPage.buttons.copy, 10);
+
+    I.see("Tanggal");
+    const actualDate = await approvalTransactionPage.getDateTransaction();
+    I.assertEqual(actualDate, globalVariable.transfer.date);
+
+    I.see("Waktu");
+    I.waitForElement(approvalTransactionPage.texts.time, 10);
+
+    I.see("Kategori")
+    const actualCategory = await approvalTransactionPage.getCategoryName();
+    I.assertEqual(actualCategory, globalVariable.transfer.category);
+
+    I.see("Catatan");
+    if (globalVariable.transfer.note !== "") {
+        const actualNotes = await approvalTransactionPage.getNotes();
+        I.assertEqual(globalVariable.transfer.note, actualNotes);
+    }
+
+    I.dontSee("Batalkan");
+    I.dontSeeElement(approvalTransactionPage.buttons.cancel);
 });

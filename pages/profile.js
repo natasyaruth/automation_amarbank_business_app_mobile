@@ -28,9 +28,13 @@ module.exports = {
     businessType: "~textBusinessType",
     foundedDate: "~textFoundedAt",
     businessAddress: "~textBusinessAddress",
+    countPendingTrx: "~textPendingTaskCount"
   },
   statusElement:{
     buttonSeeData: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},
+  },
+  indicators: {
+    redDotProfile: "~pendingTaskIndicatorRedDot"
   },
 
   clickTabProfile() {
@@ -120,6 +124,11 @@ module.exports = {
   async getBusinessAddress(){
     I.waitForElement(this.texts.businessAddress, 10);
     return await I.grabTextFrom(this.texts.businessAddress);
+  },
+
+  async getCountPendingTask(){
+    I.waitForElement(this.texts.countPendingTrx, 10);
+    return await I.grabTextFrom(this.texts.countPendingTrx);
   },
 
 }
