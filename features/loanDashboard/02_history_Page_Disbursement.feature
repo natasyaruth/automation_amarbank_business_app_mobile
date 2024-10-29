@@ -14,13 +14,13 @@ Feature: History Page Disbursement
         Then I will direct to dashboard
 
     #Feature Description
-    @C001 
+
     Scenario: Access History Dashboard For "Pencairan" Bar
         Given I have acces history loan to see menu "Pencairan"
         When I acces menu bar "Pencairan"
         Then I should see history "Pencairan"
 
-    @C002
+
     Scenario: Access History Page Disbursement For More Than 1 Facility  
         Given I have been acces history disbursement to see "Pilih Fasilitas"
         When I click menu bar "Pilih Fasilitas" 
@@ -28,7 +28,7 @@ Feature: History Page Disbursement
         And I click bottom sheet "Semua"
         Then I should see history "Pencairan" for more than 1 facility
 
-    @C003
+
     Scenario: Access Histoy Page Disbursement For Only 1 Facility
         Given I have been acces history disbursement to see "Pilih Fasilitas"
         When I click menu bar "Pilih Fasilitas"
@@ -36,7 +36,7 @@ Feature: History Page Disbursement
         And I click bottom sheet "1 Facility"
         Then I should see history "Pencairan" for more than 1 facility
 
-    @C004
+
     Scenario: Access History Page Disbursement For Semua Status
         Given I have been acces history disbursement to see "Pilih Status"
         When I click menu bar "Pilih Status"
@@ -44,7 +44,6 @@ Feature: History Page Disbursement
         And I click bottom sheet "Semua"
         Then I should see history "Pencairan" for semua status
 
-    @C005
     Scenario: Acces History Page Disbursement For Dalam Proses
         Given I have been acces history disbursement to see "Pilih Status"
         When I click menu bar "Pilih Status"
@@ -52,15 +51,14 @@ Feature: History Page Disbursement
         And I click bottom sheet "Dalam Proses"
         Then I should see history "Pencairan" for dalam proses
 
-    @C006 
+
     Scenario: Acces History Page Disbursement For Pencairan Berhasil
         Given I have been acces history disbursement to see "Pilih Status"
         When I click menu bar "Pilih Status"
         And I should see bottom sheet "Filter Status"
         And I click bottom sheet "Pencairan Berhasil"
         Then I should see history "Pencairan" for pencairan berhasil 
-    
-    @C007 
+
     Scenario: Acces History Page Disbursement For Tidak Disetujui
         Given I have been acces history disbursement to see "Pilih Status"
         When I click menu bar "Pilih Status"
@@ -68,7 +66,6 @@ Feature: History Page Disbursement
         And I click bottom sheet "Tidak Disetujui"
         Then I should see history "Pencairan" for tidak disetujui
 
-    @C008
     Scenario: Verify bottom sheet "Pilih Fasilitas"
         Given I am on Main Dashboard
         When I click icon history
@@ -77,7 +74,6 @@ Feature: History Page Disbursement
         Then I should see bottom sheet page of "Pilih Fasilitas"
         And I click back button to back to history "Pencairan"
 
-    @C009 
     Scenario: Verify bottom sheet "Pilih Status"
         Given I am on Main Dashboard
         When I click icon history
