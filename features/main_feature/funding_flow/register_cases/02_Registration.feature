@@ -1,15 +1,16 @@
-
+@automated_account_regist
 Feature: AUTOMATED Account registration
   In order to open an SMB account
   As a customer lead
   I want to register for an account
-  
+
+  @C163442
   Scenario: AUTOMATED Create a new account
-    Given I am a customer lead wanting to open a new account
+  Given I am a customer lead wanting to open a new account
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Revvy                    |
-      | email           | staging_revi_01@gmail.com|
+      | email           | yahya_auto20@gmail.com  |
       | mobileNumber    | 8999677540               |
       | password        | 1234Test                 |
       | confirmPassword | 1234Test                 |
@@ -23,12 +24,12 @@ Feature: AUTOMATED Account registration
     And I will see pop up option PDP registration
     And I check option already and read the condition PDP
     And I check option I agree Amarbank send me new information and innovation from the bank
-    And I click button create account
+    And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
     And I verifying my email by login by user id
     Then my account should be created
 
-   
+  @C163443
   Scenario: AUTOMATED Verifying the button "Buat Akun" with checked mandatory PDP checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -47,7 +48,7 @@ Feature: AUTOMATED Account registration
     And I check option already and read the condition PDP 
     Then I should see button Buat Akun will enable
   
-  
+  @C163444
   Scenario: AUTOMATED Verifying the button "Buat Akun" with check PDP checklist and uncheck optional checklist
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -68,7 +69,7 @@ Feature: AUTOMATED Account registration
     And I uncheck option I agree Amarbank send me new information and innovation from the bank
     Then I should see button Buat Akun will enable
 
-  
+  @C163445
   Scenario: AUTOMATED Verifying the button "Buat Akun" with unchecked option PDP required
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -89,7 +90,7 @@ Feature: AUTOMATED Account registration
     And I uncheck option already and read the condition PDP
     Then I should see button Buat Akun will disable
 
-  
+  @C163446
   Scenario: AUTOMATED Back to page registration 1 from page PDP
     Given I am a customer want to access menu registration
     When I filling in my account information with the following details:
@@ -112,7 +113,7 @@ Feature: AUTOMATED Account registration
     And I click button back in the header page
     Then I will direct to Registration page
 
-  
+  @C163447
   Scenario: AUTOMATED Verifying phone number with wrong OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -133,7 +134,7 @@ Feature: AUTOMATED Account registration
     When I verifying my phone number by entering the wrong code
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
-  
+  @C163448
   Scenario: AUTOMATED Verifying phone number with expired OTP code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -155,7 +156,7 @@ Feature: AUTOMATED Account registration
     And I verifying my phone number by entering the code sent to me
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukan sudah kadaluarsa'
 
-  
+  @C163449
   Scenario: AUTOMATED Verifying phone number with wrong OTP code five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -176,7 +177,7 @@ Feature: AUTOMATED Account registration
     When I verifying my phone number by entering the wrong code five times
     Then I should be notified that I can reverify the phone number tomorrow
 
-  
+  @C163450
   Scenario: AUTOMATED Create account with wrong code otp four times then input valid code
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya        |
@@ -198,7 +199,7 @@ Feature: AUTOMATED Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  
+  @C163451
   Scenario: AUTOMATED Create account with phone number has been updated on the verification page
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -222,7 +223,7 @@ Feature: AUTOMATED Account registration
     And I verifying my phone number by entering the code sent to me
     Then I will directing to page verification email
 
-  
+  @C163452
   Scenario: AUTOMATED Change phonenumber with old phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -244,7 +245,7 @@ Feature: AUTOMATED Account registration
     And I filling new phonenumber with my old phonenumber
     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
 
-  
+  @verifying_new_phone_number_with_invalid_value 
   Scenario Outline: Verifying new phone number with invalid value
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -267,14 +268,14 @@ Feature: AUTOMATED Account registration
     Then I should see message error '<Message>' in the below of field new phonenumber
     Examples:                                                                 ❸
       | testRailTag    | Value         | Message                                                       | Phone Number |
-      | 	             | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
-      |                | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
-      |                | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
-      |                | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
-      |                | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
-      | 	             |               | Nomor handphone wajib diisi                                   | 81234567892  |
+      |@C163453        | 89561r12367   | Nomor handphone wajib diisi                                   | 89834567892  |
+      |@C163454        | 8895611236738 | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81734567892  |
+      |@C163455        | 8956          | Panjang nomor handphone minimal 8 digit dan maksimal 15 digit | 81534567892  |
+      |@C163456	       | 9678995676    | Nomor handphone tidak sesuai format                           | 81434567892  |
+      |@C163457        | 8678 995676   | Nomor handphone wajib diisi                                   | 81334567892  |
+      |@C163458        |               | Nomor handphone wajib diisi                                   | 81234567892  |
 
-  
+  @C163459
   Scenario: AUTOMATED Back to page Verification phonenumber from page change phonenumber
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
@@ -296,7 +297,7 @@ Feature: AUTOMATED Account registration
     And I click button back in the header page
     Then I will direct to page verification phonenumber
 
-  
+  @C163460
   Scenario: AUTOMATED First attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -319,7 +320,7 @@ Feature: AUTOMATED Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '1/5'
 
-  
+  @C163461
   Scenario: AUTOMATED Second attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -343,7 +344,7 @@ Feature: AUTOMATED Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '2/5'
 
-  
+  @C163462
   Scenario: AUTOMATED Third attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -367,7 +368,7 @@ Feature: AUTOMATED Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '3/5'
 
-  
+  @C163463
   Scenario: AUTOMATED Fourth attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -391,7 +392,7 @@ Feature: AUTOMATED Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '4/5'
 
-  
+  @C163464
   Scenario: AUTOMATED Fifth attempt resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -415,7 +416,7 @@ Feature: AUTOMATED Account registration
     Then I will get new OTP different with my first OTP
     And I will see attempts left '5/5'
 
-  
+  @C163465
   Scenario: AUTOMATED Resend OTP more than five times
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -438,7 +439,7 @@ Feature: AUTOMATED Account registration
     Then I should be notified that I can reverify the phone number tomorrow
     And I cannot change my phonenumber
 
-  
+  @C163466
   Scenario: AUTOMATED Verify state count attempt error when try to resend OTP
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
@@ -461,7 +462,7 @@ Feature: AUTOMATED Account registration
     And I verifying my phone number by entering the wrong code four times
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
-  
+  @C163467
   Scenario: AUTOMATED Resend email verification
     Given I am a customer had been registering the account with the following details:
       | fullName        | Yahya H       |
