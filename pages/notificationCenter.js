@@ -21,8 +21,8 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
-    infoNotifDetail: {xpath: "//android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
+    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotifDetail: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",

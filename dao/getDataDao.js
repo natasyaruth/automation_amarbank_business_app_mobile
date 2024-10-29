@@ -149,7 +149,7 @@ module.exports = {
         }
     },
 
-    async getBusinessId() {
+    async getBusinessId(userID, password) {
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 

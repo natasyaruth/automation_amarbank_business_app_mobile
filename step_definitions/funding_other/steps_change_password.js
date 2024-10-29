@@ -130,7 +130,7 @@ When("I input wrong OTP code", () => {
 
 When("I input OTP change password", async () => {
     const phoneNumber = (await changePasswordPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
-    const otp = (await otpDao.getOTPWithoutToken()).otp;
+    const otp = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     changePasswordPage.inputOTP(otp);
 });
@@ -314,8 +314,6 @@ Then("I reset attempt otp after login", async () => {
 
 Then("I notified that I can verify the OTP tomorrow", async () => {
 
-    const actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
-
     const currentDate = new Date();
     const tomorrowDate = new Date(currentDate);
     tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -333,6 +331,8 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes();
     const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
+
+    const actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
 
     I.assertEqual(actualMsgError, "Kode OTP dapat dikirim kembali pada: tanggal " + formattedDay +
         " " + months[month] + " " + year + ", pukul " + currentTime);

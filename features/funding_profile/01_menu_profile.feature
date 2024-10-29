@@ -27,12 +27,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | stag5b6b |
+            | userIDstg   | revv22d2 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | indibec3 |
             | password    | 1234Test |
-            | userIDstg   | stag5b6b |
+            | userIDstg   | revv22d2 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -45,12 +45,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stag5b6b |
+            | userIDstg   | revv22e7 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | stag5b6b |
+            | userIDstg   | revv22e7 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -84,12 +84,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | ptpe7f28 | 
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | revv54d3 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | ptpe7f28 |
             | password    | 1234Test |
-            | userIDstg   | stag9a38 |
+            | userIDstg   | revv54d3 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -104,12 +104,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | revv5ce0 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve82e5 |
             | password    | 1234Test |
-            | userIDstg   | stag48e9 |
+            | userIDstg   | revv5ce0 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -143,12 +143,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | revv42a4 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | revv42a4 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

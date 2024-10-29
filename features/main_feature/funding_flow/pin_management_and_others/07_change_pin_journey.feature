@@ -77,7 +77,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I go to page other
         And I click change transaction pin
         And I will directly to Change PIN page
-        And I submit my old pin twice
+        And I submit incorrect old pin twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
     
@@ -87,6 +87,6 @@ Feature: AUTOMATED User change PIN from other menu
         And I go to page other
         And I click change transaction pin
         Then I will directly to Change PIN page
-        And I submit my old pin three times
+        And I submit incorrect old pin three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can directly go to page login

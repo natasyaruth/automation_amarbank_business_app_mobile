@@ -107,18 +107,22 @@ module.exports = {
     },
   
     async getMessageErrorAccoutNotFound() {
+      I.waitForElement(this.messageError.accountNumber, 10);
       return await I.grabValueFrom(this.messageError.accountNumber);
     },
   
     async getBankName(){
+      I.waitForElement(this.text.bankName, 10);
       return await I.grabTextFrom(this.text.bankName);
     },
   
     async getValueAccNumber(){
+      I.waitForElement(this.fields.accountNumber, 10);
       return I.grabTextFromField(this.fields.accountNumber);
     },
   
     async getReceiverName(){
+      I.waitForElement(this.text.receiverName, 10);
       return await I.grabTextFrom(this.text.receiverName);
     },
 

@@ -143,6 +143,7 @@ Feature: Account login
     And I click checkbox remember me
     And I click login
     And I click later in pop up biometric
+    And I will see card account 'active'
     And I choose other
     And I click logout
     Then I should see checkbox remember me is checked
@@ -245,13 +246,13 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | nata6bde |
+      | userIDstg   | revv1341 |
       | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | nata6bde |
+      | userIDstg   | revv1341 |
       | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
@@ -267,14 +268,14 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag6dbb |
-      | passwordStg | 1234Test |
+      | userIDstg   | cokr7f68 |
+      | passwordStg | Test1234 |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | autocaea |
       | password    | 1234Test |
-      | userIDstg   | stag6dbb |
-      | passwordStg | 1234Test |
+      | userIDstg   | cokr7f68 |
+      | passwordStg | Test1234 |
     And I click login
     And I see pop up Terms Updates
     And I click to see terms and conditions
@@ -292,13 +293,13 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | indibec3 |
       | password    | 1234Test |
-      | userIDstg   | stagb081 |
+      | userIDstg   | testdf76 |
       | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | indibec3 |
       | password    | 1234Test |
-      | userIDstg   | stagb081 |
+      | userIDstg   | testdf76 |
       | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
@@ -317,13 +318,13 @@ Feature: Account login
     Given I am a registered customer with following details:
       | userID      | deved6a1 |
       | password    | 1234Test |
-      | userIDstg   | stag8fac |
+      | userIDstg   | revv1a78 |
       | passwordStg | 1234Test |
     And still not agree with PDP concern
     When I filling in form login with the following details:
       | userID      | deved6a1 |
       | password    | 1234Test |
-      | userIDstg   | stag8fac |
+      | userIDstg   | revv1a78 |
       | passwordStg | 1234Test |
     And I click login
     And I see pop up Terms Updates
