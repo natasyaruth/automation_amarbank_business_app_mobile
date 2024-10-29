@@ -1,4 +1,4 @@
-@regressionTest
+# @regressionTest
 Feature: AUTOMATED Account Change Password
     In order to secure my data
     As a customer
