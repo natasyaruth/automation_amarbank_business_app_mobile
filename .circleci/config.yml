@@ -5,27 +5,31 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@x.y
+  node: circleci/node@21.3.0
 
 executors:
   node-executor:
     docker:
       - image: circleci/node:14.17-browsers  # Node image with browsers for running tests
     working_directory: ~/ambis-auto-mobile-app
+  compute-engine:
+    machine: true
+    resource_class: amarbank/compute_sre
 
 jobs:
-  test:
+  ambis-mobile-app-auto:
     executor: node-executor
     environment:
       BROWSERSTACK_USERNAME: qatestingtechnol1  # BrowserStack credentials
       BROWSERSTACK_ACCESS_KEY: ubKJg1fyqyprtJMiJedy
+      
     steps:
       - checkout  # Checkout your Bitbucket repo
 
       - run:
           name: Install dependencies
           command: |
-            npm install  # Install project dependencies
+            npm install codeceptjs webdriverio@8.6.3 --save
 
       - run:
           name: Make execute-on-ci.sh executable
@@ -35,8 +39,24 @@ jobs:
           name: Run execute-on-ci.sh
           command: ./execute-on-ci.sh  # Execute the script in the repository
 
+commands:
+  create-env:
+      steps:
+        - run:
+            name: Create .env as file for environment variable
+            command: |
+              touch .env
+              echo "BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME" > .env
+              echo "BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY" > .env
+
 workflows:
-  version: 2
+  version: 2.1
   test:
     jobs:
-      - test
+      - ambis-mobile-app-auto:
+         context:
+           - regressionTest
+         filters:
+            branches:
+              only:
+                - master
