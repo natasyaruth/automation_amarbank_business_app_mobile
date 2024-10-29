@@ -136,7 +136,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I save data director
         And I validate my second director
         And I submit business director list
-        And I validate all the data in the confirmation list
+        And I validate all the data in the confirmation page
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
@@ -175,7 +175,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I delete the director
         And I confirm to delete the director
         And I submit business director list
-        And I validate deleted data should be not in the confirmation list
+        And I validate deleted data should be not in the confirmation page
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
