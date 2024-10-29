@@ -110,7 +110,8 @@ module.exports = {
       return await I.grabValueFrom(this.messageError.accountNumber);
     },
   
-    async getBankName(){
+    async getBankName() {
+      await I.waitForElement(this.text.bankName, 10);
       return await I.grabTextFrom(this.text.bankName);
     },
   
