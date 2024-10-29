@@ -152,7 +152,7 @@ When("I validate my first director", () => {
 
 When("I validate all the data in the confirmation page", () => {
     I.waitForText("Konfirmasi Daftar Direktur Sesuai Akta", 10);
-    const expectedText = `Jumlah direktur ${globalVariable.formDirector.numberOfDirectors} orang`;
+    const expectedText = "Jumlah direktur "+globalVariable.formDirector.numberOfDirectors+" orang";
     I.see(expectedText);
     I.waitForElement(formBusinessOwnerPage.buttons.confirmation, 10);
     I.waitForElement(formBusinessOwnerPage.buttons.backconfirmation, 10);
@@ -160,7 +160,7 @@ When("I validate all the data in the confirmation page", () => {
 
 When("I validate deleted data should be not in the confirmation page", () => {
     I.waitForText("Konfirmasi Daftar Direktur Sesuai Akta", 10);
-    const expectedText = `Jumlah direktur ${globalVariable.formDirector.numberOfDirectors} orang`;
+    const expectedText = "Jumlah direktur "+globalVariable.formDirector.numberOfDirectors+" orang";
     I.see(expectedText);
     I.waitForElement(formBusinessOwnerPage.buttons.confirmation, 10);
     I.waitForElement(formBusinessOwnerPage.buttons.backconfirmation, 10);

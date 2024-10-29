@@ -103,7 +103,7 @@ module.exports = {
   },
 
   confirmListDirectors() {
-    I.waitForElement(this.buttons.backconfirmation, 10);
+    I.waitForElement(this.buttons.confirmation, 10);
     I.click(this.buttons.confirmation);
   },
 
