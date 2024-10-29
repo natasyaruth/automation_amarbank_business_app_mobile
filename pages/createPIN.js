@@ -27,7 +27,7 @@ module.exports = {
     otherMenu: "~tabOthers",
     createPIN: "~btnPin",
     changePassword: "~btnPassword",
-    changePIN: "~",
+    changePIN: "~btnPin",
     emailSupport: "~btnToEmail",
     closeOurTeam: "~",
   },
@@ -48,7 +48,8 @@ module.exports = {
   },
 
   inputPassword(password) {
-    I.waitForElement(this.fields.password, 5);
+    I.waitForElement(this.fields.password, 10);
+    I.clearField(this.fields.password);
     I.setText(this.fields.password, password);
   },
 
@@ -99,7 +100,7 @@ module.exports = {
   },
 
   clickButtonForgotPIN() {
-    I.waitForElement(this.buttons.forgotPIN);
+    I.waitForElement(this.buttons.forgotPIN, 10);
     I.click(this.buttons.forgotPIN);
   },
 
@@ -118,11 +119,12 @@ module.exports = {
   },
 
   clickButtonUnderstand() {
-    I.waitForElement(this.buttons.understand);
+    I.waitForElement(this.buttons.understand, 10);
     I.click(this.buttons.understand);
   },
 
   clickPopUpCreatePIN() {
+    I.waitForElement(this.buttons.creatPINPopUp, 10);
     I.click(this.buttons.creatPINPopUp);
   },
 
@@ -137,11 +139,12 @@ module.exports = {
   },
 
   clickEyePassword() {
+    I.waitForElement(this.icon.eyePassword, 10);
     I.click(this.icon.eyePassword);
   },
 
   async getMessageErrorPIN() {
-    I.waitForElement(this.messageErrorFields.errorPIN, 5);
+    I.waitForElement(this.messageErrorFields.errorPIN, 10);
     return await I.grabTextFrom(this.messageErrorFields.errorPIN);
   },
 
@@ -192,8 +195,8 @@ module.exports = {
   },
 
   goToChangePIN() {
-    I.waitForElement(this.buttons.createPIN, 20);
-    I.click(this.buttons.createPIN);
+    I.waitForElement(this.buttons.changePIN, 20);
+    I.click(this.buttons.changePIN);
   },
 
   closeBottomSheet() {

@@ -9,13 +9,13 @@ Feature: Account Opening Onboarding
         Given I am a registered customer with following details:
             | userID      | ruth07f9 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | rudid743 |
             | passwordStg | 1234Test |
         And I reset my state journey    
         And I filling in form login with the following details:
             | userID      | ruth07f9 |
             | password    | 1234Test |
-            | userIDstg   | stagb081 |
+            | userIDstg   | rudid743 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

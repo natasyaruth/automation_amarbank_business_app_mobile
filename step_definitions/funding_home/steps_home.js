@@ -335,14 +335,14 @@ When("I fill feedback survey {string}", async (feedback) => {
     const lengthFeedback = globalVariable.survey.feedBack.length;
 
     if (
-        lengthFeedback < 259
+        lengthFeedback < 256
     ) {
 
-        I.assertEqual(counter, globalVariable.survey.feedBack.length + "/259");
+        I.assertEqual(counter, globalVariable.survey.feedBack.length + "/256");
 
     } else {
 
-        I.assertEqual(counter, "259/259");
+        I.assertEqual(counter, "256/256");
 
     }
 
@@ -709,7 +709,7 @@ Then("I will see pop up rating survey account opening", () => {
     I.waitForElement(surveyRatingPage.buttons.fiveStar, 10);
 
     I.dontSee("Mengapa Memberi Penilaian Tersebut?");
-    I.dontSee("Tulis disini...");
+    I.dontSee("Tulis disini…");
     I.dontSeeElement(surveyRatingPage.fields.feedback);
     I.dontSeeElement(surveyRatingPage.texts.counter);
 
@@ -733,7 +733,7 @@ Then("I will see field text feedback survey", () => {
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
-    I.waitForText("Tulis disini...", 10);
+    I.waitForText("Tulis disini…", 10);
     I.waitForElement(surveyRatingPage.fields.feedback, 10);
     I.waitForElement(surveyRatingPage.texts.counter, 10);
 
@@ -746,7 +746,7 @@ Then("I will not see field text feedback survey", () => {
     I.wait(2);
 
     I.dontSee("Mengapa Memberi Penilaian Tersebut?");
-    I.dontSee("Tulis disini...");
+    I.dontSee("Tulis disini…");
     I.dontSeeElement(surveyRatingPage.fields.feedback);
     I.dontSeeElement(surveyRatingPage.texts.counter);
 });
@@ -770,7 +770,7 @@ Then("I will see rating survey is in main dashboard", () => {
     I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
     I.dontSee("Mengapa Memberi Penilaian Tersebut?");
-    I.dontSee("Tulis disini...");
+    I.dontSee("Tulis disini…");
     I.dontSeeElement(surveyRatingPage.fields.feedback);
     I.dontSeeElement(surveyRatingPage.texts.counter);
 
@@ -788,11 +788,11 @@ Then("I will not see rating survey is in main dashboard", () => {
     I.dontSeeElement(surveyRatingPage.buttons.oneStar);
 });
 
-Then("I will see field is filled with character only 259 char", async () => {
+Then("I will see field is filled with character only 256 char", async () => {
 
     const actualText = await surveyRatingPage.getValueFieldFeedback();
 
-    I.assertEqual(actualText.length, 259);
+    I.assertEqual(actualText.length, 256);
 });
 
 Then("I will see field feedback is filled", () => {

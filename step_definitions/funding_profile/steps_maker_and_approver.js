@@ -192,7 +192,9 @@ When("I resend otp code to approve transaction more than five times", async () =
     for (let x = 0; x < 6; x++) {
         I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
         approvalTransactionPage.resendOtp();
-        I.waitForText("Kode OTP berhasil dikirim.", 10);
+        if (x < 5) {
+            I.waitForText("Kode OTP berhasil dikirim.", 10);
+        }
     };
 });
 

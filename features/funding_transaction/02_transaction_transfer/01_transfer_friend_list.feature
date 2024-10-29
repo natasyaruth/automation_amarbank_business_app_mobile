@@ -10,15 +10,16 @@ Feature: User add friend list
         Given I am a registered customer with following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | niza9813 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
         And I click login
-        Then I will direct to dashboard
+        And I click later in pop up biometric
+        And I will direct to dashboard
 
     @C96935
     Scenario: User click back button
@@ -83,14 +84,18 @@ Feature: User add friend list
         When I choose menu Transfer from main dashboard
         And I click Transfer to Receiver Name
         And I can choose Bank name
-        And I search 'BCA' in search box bank name
+        And I search 'Bank Amar Indonesia' in search box bank name
         And I tap on bank name
-        And I input account number '00520000002300'
+        And I input account number '1602000360'
         And I click on check
+        And I will see detail inquiry
         And I uncheck on the checkbox save as friend list
         And I process to transfer detail
-        Then I can't see toastbar "Data berhasil disimpan ke daftar penerima"
-        And name of receiver should not be added in friendlist
+        And I can't see toastbar "Data berhasil disimpan ke daftar penerima"
+        And I click back in header page
+        And I click back in header page
+        And I input receiver name that I added before
+        Then name of receiver should not be added in friendlist
 
     @C96942
     Scenario: User add friend list and validate account number and name
@@ -98,7 +103,7 @@ Feature: User add friend list
         When I choose menu Transfer from main dashboard
         And I click Transfer to Receiver Name
         And I can choose Bank name
-        And I search 'Bank Amar (Senyumku)' in search box bank name
+        And I search 'Bank Amar Indonesia' in search box bank name
         And I tap on bank name
         And I input account number '1602000018'
         And I click on check
