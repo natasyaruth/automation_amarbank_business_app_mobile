@@ -21,21 +21,25 @@ When("I click menu delete account", () => {
 
 When("I see page information account deletion", () => {
     I.waitForText("Permintaan Hapus Akun", 10);
-    I.see("Bagaimana cara menghapus akun saya?");
+    I.see("Penting!");
+    I.see("1. Dengan menghapus akun Anda, maka Amar Bank akan:");
+    I.see("a. Menghapus akun Amar Bank Bisnis dan tidak dapat diakses kembali.");
+    I.see("b. Menyimpan data pribadi dalam jangka waktu retensi yang diatur dalam peraturan dan perundang-undangan yang berlaku.");
+    I.see("c. Menghentikan penggunaan data dan/atau informasi pribadi oleh/kepada pihak ketiga.");
+    I.see("d. Menghentikan aktivitas penawaran produk-produk dan/atau layanan melalui sarana komunikasi pribadi.");
+    I.see("2. Permintaan hapus akun Anda akan diproses oleh Customer Service kami.");
+    I.see("3. Nasabah mengembalikan bilyet/cek jika memang dia ambil cheque book saat pembukaan rekening (jika ada).");
+
+    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+    I.see("Bagaimana cara menghapus akun saya?", 5);
     I.see("Sebelum menghapus akun, pastikan Anda melakukan hal-hal berikut ini:");
     I.see("1. Pahami secara menyeluruh bagaimana data Anda diatur pada Kebijakan Privasi Amar Bank.");
     I.see("2. Nasabah menyatakan tidak ada bilyet/cek yang masih beredar jika memang ada Buku Cek");
     I.see("3. Mengisi Aplikasi Penutupan (Form) yang akan dikirimkan via email ketika request penutupan akun sudah di submit via aplikasi");
-    I.see("4. Pastikan email yang terdaftar aktif untuk menerima email dari customer service kami.");
+    I.see("4. Pastikan email yang terdaftar aktif untuk menerima email dari Customer service kami.");
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-
-    I.waitForText("Penting!", 10);
-    I.see("1. Hapus akun berarti akan menghapus akun Amar Bank Bisnis dan tidak dapat diakses kembali.");
-    I.see("2. Permintaan hapus akun Anda akan diproses oleh Customer Service kami.");
-    I.see("3. Nasabah mengembalikan bilyet/cek jika memang dia ambil cheque book saat pembukaan rekening (jika ada).");
-
-    I.seeElement(accountDeletionPage.buttons.continue);
+    // I.seeElement(accountDeletionPage.buttons.continue);
     I.see("Lanjut Hapus Akun");
 });
 
