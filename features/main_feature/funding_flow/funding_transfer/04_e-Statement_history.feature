@@ -1,4 +1,4 @@
-@satueStatementTransaction
+@user_open_e-statement_history
 Feature: User open e-Statement History
     In order to e-Statement History
     As a customer

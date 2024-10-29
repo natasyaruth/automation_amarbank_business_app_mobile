@@ -1,4 +1,4 @@
-@2regressionTest
+@user_want_to_transfer_with_negative_cases
 Feature: User Want to Transfer with Negative Cases
     In home
     As a customer

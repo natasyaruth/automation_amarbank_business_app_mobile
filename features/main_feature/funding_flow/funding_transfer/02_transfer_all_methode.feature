@@ -1,4 +1,4 @@
-#@2regressionTest
+@user_transfer_with_all_transfer_method
 Feature: User transfer with all transfer method
     In order to transfer
     As a customer
