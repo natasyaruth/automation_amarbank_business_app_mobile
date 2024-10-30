@@ -8,7 +8,7 @@ Scenario: Validate Push Notif Apply Success direct to relevant page
     Given I receive push notif Apply Success on mobile
     When I see the the title "Pengajuan pinjaman Anda berhasil Dikirim. Cek disini"
     And I click the notif
-    Then I direct to page apply progres
+    Then I direct to page apply progres loan 
 
 Scenario: Validate Email notification Apply success on email direct to relevant page
     Given I recieve email notification
@@ -17,7 +17,7 @@ Scenario: Validate Email notification Apply success on email direct to relevant 
     And I see "Skema"
     And I see "Nama Supplier"
     And I click button Cek Proses Disini
-    Then I direct to page apply progres
+    Then I direct to page apply progres loan
 
 
 
@@ -43,19 +43,18 @@ Scenario: Validate Push Notif Approve VP direct to relevant page
     Given I receive push notif Approve VP on mobile and email
     When I see the the title "Selamat, Pinjaman Anda Telah Disetujui. Cek disini"
     And I click the notif  
-    Then I direct to page loan process
+    Then I direct to page loan process with status Selamat, Limit Pinjaman Telah Aktif
 
 
 Scenario: Validate email Notification Approve VP direct to relevant page
     Given I receive push notif Approve VP on mobile and email
-    When I see the the title "Pemberitahuan: Limit Pinjaman Telah Aktif"
+    When I see the the title "Pinjaman Anda Telah Disetujui."
     And I click the email
-    And I see "Limit Tersedia"
+    And I see "Limit yang disetujui"
+    And I see "Tenor yang disetujui"
     And I see "Bunga per tahun"
     And I see "Supplier"
-    And I see tenor
-    And I see Informasi Tambahan
-
+    And I see button Buka Aplikasi and direct to page loan process with status Selamat, Limit Pinjaman Telah Aktif
 
 
 Scenario: Validate Push Notif reminder offering expired direct to relevant page
@@ -77,11 +76,13 @@ Scenario: Validate Push notif reminder loan signing direct to relevant page
     And I click the notif
     Then I direct to page privy signing
 
+
 Scenario: Validate Push notif Loan Signing Expired direct to relevant page
     Given I receive push notif Loan Signing Expired and email
     When I see the the title "Penawaran Limit Pinjaman telah berakhir"
     And I click the notif
     Then I direct to page 
+
 
 
 Scenario: Validate Push Notif Facility activated direct to relavant page
@@ -90,11 +91,22 @@ Scenario: Validate Push Notif Facility activated direct to relavant page
     And I click the notif
     Then I direct to page Active Loan
 
+
 Scenario: Validate Push Notif Disburse confirm invoice direct to relevant page
     Given I receive push notif Disburse confirm invoice and email 
-    When I see the the title ""
+    When I see the the title "Invoice Pembelian telah terverifikasi. Cek disini"
     And I click the notif
-    Then I direct to page 
+    Then I direct to page Pencairan Dalam Proses 
+
+
+Scenario: Validate email Notification Disburse confirm invoice
+    Given I receive push notif disburse confirm invoice  to email
+    When I see the the title "Pemberitahuan: Invoice Pembelian Telah Diverifikasi"
+    And I click the email
+    And I see "Nominal Pencairan"
+    And I see "Tanggal Verifikasi"    
+    And I see "Supplier"
+    And I see button Cek Proses Disini
 
 
 Scenario: Validate Push Notif Disburse reject invoice direct to relevant page
@@ -104,38 +116,57 @@ Scenario: Validate Push Notif Disburse reject invoice direct to relevant page
     Then I direct to page Invoice Tidak Disetujui
 
 
+Scenario: Validate email Notification Disburse reject invoice
+    Given I receive push notif disburse confirm invoice  to email
+    When I see the the title "Pemberitahuan: Invoice Pembelian Tidak Disetujui"
+    And I click the email
+    And I see "Nominal Invoice"
+    And I see "Invoice Date"    
+    And I see "Supplier"
+    And I see button Lihat Status Invoice
+
+
 Scenario: Validate Push notif Disbursement success direct to relevant page
     Given I receive push notif Disburse success and email
     When I see the the title "Pinjaman Anda berhasil dicairkan. Cek disini"
     And I click the notif 
     Then I direct to page Active card disburse
 
+Scenario: Validate email Notification Disburse success
+    Given I receive push notif disburse confirm invoice  to email
+    When I see the the title "Pemberitahuan: Pinjaman Berhasil Dicairkan."
+    And I click the email
+    And I see "Nominal Pencairan"
+    And I see "Tanggal Pencairan"    
+    And I see "Supplier"
+    And I see button Cek Tagihan Pinjaman
+
 
 Scenario: Validate Push Notif BILL TEMPO WITHIN 3 DAYS
     Given I receive push notif BILL TEMPO_WITHIN 3 DAYS
-    When I see the the title ""
+    When I see the the title "Tagihan Akan Di Autodebet Dalam"
     And I click the notif 
-    Then I direct to page 
+    Then I direct to page detail tagihan with countdown 3 hari
 
 
 Scenario: Validate Push Notif BILL AUTODEBIT TODAY
     Given I receive push notif BILL_AUTODEBIT_TODAY
-    When I see the the title ""
+    When I see the the title "Tagihan Akan Di Autodebet Dalam"
     And I click the notif 
-    Then I direct to page 
+    Then I direct to page detail tagihan with countdown 0 hari
 
 
 Scenario: Validate Push Notif AUTODEBET SUCCESS
     Given I receive push notif AUTODEBET_SUCCESS
-    When I see the the title ""
+    When I see the the title "Tagihan Berhasil Dibayar"
     And I click the notif 
-    Then I direct to page 
+    Then I direct to page detail tagihan with status Tagihan berhasil dibayar
 
 
 
 Scenario: Validate Push Notif AUTODEBET FAILED
     Given I receive push notif AUTODEBET FAILED
-    When I see the the title ""
+    When I see the the title "Autodebet Gagal"
     And I click the notif 
-    Then I direct to page 
+    Then I direct to page detail tagihan with status Autodebet gagal, Pastikan saldo mencukupi.
 
