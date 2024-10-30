@@ -1,4 +1,4 @@
-@hooklogin_regress
+@automated_account_login
 Feature: AUTOMATED Account login
   In order to go to SMB dashboard after registration
   As a customer lead

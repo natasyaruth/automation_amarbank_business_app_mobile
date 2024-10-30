@@ -14,7 +14,7 @@ Feature: History Page
         And I click login
         Then I will direct to dashboard
 
-#@C88614 #@historyLoan
+#@C88600 #@historyLoan
     Scenario: Access History Dashboard For Limit Bar
         Given I have been access history loan to see menu Limit
         When I access menu bar "Limit"

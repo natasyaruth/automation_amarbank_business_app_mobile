@@ -132,6 +132,7 @@ When("I confirm to delete the director", () => {
     I.see(globalVariable.formDirector.email);
     I.see(globalVariable.formDirector.nik);
     formBusinessOwnerPage.confirmDeleteDirector();
+    globalVariable.formDirector.numberOfDirectors -= 1;
 });
 
 When("I confirm to update data director", () => {
@@ -149,20 +150,20 @@ When("I validate my first director", () => {
     I.see(globalVariable.formDirector.nik);
 });
 
-When("I validate all the data in the confirmation list", () => {
-    I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-
-    I.see(globalVariable.formDirector.fullName);
-    I.see(globalVariable.formDirector.email);
-    I.see(globalVariable.formDirector.nik);
+When("I validate all the data in the confirmation page", () => {
+    I.waitForText("Konfirmasi Daftar Direktur Sesuai Akta", 10);
+    const expectedText = "Jumlah direktur "+globalVariable.formDirector.numberOfDirectors+" orang";
+    I.see(expectedText);
+    I.waitForElement(formBusinessOwnerPage.buttons.confirmation, 10);
+    I.waitForElement(formBusinessOwnerPage.buttons.backconfirmation, 10);
 });
 
-When("I validate deleted data should be not in the confirmation list", () => {
-    I.waitForText("Konfirmasi daftar Direktur sesuai akta", 10);
-
-    I.dontSee(globalVariable.formDirector.fullName);
-    I.dontSee(globalVariable.formDirector.email);
-    I.dontSee(globalVariable.formDirector.nik);
+When("I validate deleted data should be not in the confirmation page", () => {
+    I.waitForText("Konfirmasi Daftar Direktur Sesuai Akta", 10);
+    const expectedText = "Jumlah direktur "+globalVariable.formDirector.numberOfDirectors+" orang";
+    I.see(expectedText);
+    I.waitForElement(formBusinessOwnerPage.buttons.confirmation, 10);
+    I.waitForElement(formBusinessOwnerPage.buttons.backconfirmation, 10);
 });
 
 When("I validate my second director", () => {
