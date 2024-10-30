@@ -730,6 +730,8 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(approvalTransactionPage.links.resendOtp);
+    await
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 
 });
 

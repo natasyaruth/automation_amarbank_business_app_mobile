@@ -354,6 +354,9 @@ exports.config = {
       "./step_definitions/loanFlagging/steps_monitoring.js",
       "./step_definitions/loanFlagging/steps_selectAnchor.js",
       "./step_definitions/loanFlagging/steps_submitLoan.js",
+      "./step_definitions/loanDashboard/steps_Filter_History_Page_Limit.js",
+      "./step_definitions/loanDashboard/steps_Filter_History_Page_Disbursement.js",
+      "./step_definitions/loanDashboard/steps_Filter_History_Page_Repayment.js",
     ],
   },
   plugins: {
