@@ -45,6 +45,46 @@ When("I search name {string} in friendlist", (friendListname) => {
   transferPage.fillSearchFriendlist(friendListname);
 });
 
+When("I validate page transfer", () => {
+  I.see("Pemilik Rekening");
+  I.see("Nominal Transfer");
+  I.see("Saldo aktif");
+  I.see("Sisa limit transaksi harian");
+  I.see("Pilih kategori untuk memudahkan Anda mencari riwayat transaksi yang Anda butuhkan");
+  transferPage.validatePageTransfer();
+});
+
+When("I am making sure that limit transaction is {string}", async (nilai) => {
+  globalVariable.transfer.dailyLimit = nilai;
+  const targetValue = parseInt(nilai.replace(/\D/g, ""), 10);
+  const actualValueText = await transferPage.getValueDailyLimitTransaction();
+  const actualValue = parseInt(actualValueText.replace(/\D/g, ""), 10);
+  if (actualValue === targetValue) {
+    console.log("Nilai limit sesuai.");
+} else {
+    console.log("Nilai limit tidak sesuai. Nilai saat ini:", actualValue);
+}
+});
+
+When("I see limit transaction is {string}", (nilaiLimit) => {
+  const actualValue = globalVariable.transfer.dailyLimit;
+  const expectedTargetValue = parseInt(nilaiLimit.replace(/\D/g, ""), 10);
+  if (actualValue === expectedTargetValue) {
+    console.log("Nilai limit transaksi sesuai dengan yang diharapkan.");
+  } else {
+    console.log("Nilai limit transaksi tidak sesuai.");
+  }
+});
+
+When("I see error message daily transaction {string}",async (messageValue) => {
+  const actualErrorMessage = await transferPage.getMessageErrorAmount();
+  if (messageValue === actualErrorMessage) {
+    console.log("Nilai limit transaksi sesuai dengan yang diharapkan.");
+  } else {
+    console.log("Nilai limit transaksi tidak sesuai.");
+  }
+});
+
 When("I submit to next flow", () => {
     I.waitForText("Selanjutnya", 10);
     transferPage.nextProcessTransfer();
@@ -424,6 +464,9 @@ Then("I successfully transferred", async () => {
 
   I.see("Bagikan Bukti Transfer");
   I.waitForElement(transferPage.buttons.share, 10);
+
+  const transferAmount = globalVariable.transfer.amount; 
+  globalVariable.transfer.dailyLimit -= transferAmount; 
 
 });
 

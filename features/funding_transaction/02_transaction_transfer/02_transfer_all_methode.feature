@@ -56,6 +56,8 @@ Feature: User transfer with all transfer method
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
+        And I validate page transfer
+        And I am making sure that limit transaction is "200000000"
         And I input amount '15000'
         And I choose category 'Pembayaran'
         And I input notes with 'Test RTOL'
@@ -68,6 +70,15 @@ Feature: User transfer with all transfer method
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
+        When I close page detail transfer
+        And I choose menu Transfer from main dashboard
+        And I am on receiver list page
+        And I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        Then I see limit transaction is "199985000"
+        When I input amount '200000000'
+        Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian"
 
     @C96932
     Scenario: User Success Transfer BiFast
