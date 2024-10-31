@@ -78,7 +78,7 @@ module.exports = {
 
   // lihat detail pinjaman
   goToLoanDetail () {
-    I.wait(10);
+    I.waitForElement(this.buttons.btnLoanDetail, 10);
     I.click(this.buttons.btnLoanDetail);
   },
 
@@ -290,6 +290,7 @@ module.exports = {
   },
 
   goToTabDisbursement() {
+    I.wait(5);
     I.seeElement(this.tabs.tabDisbursement);
     I.click(this.tabs.tabDisbursement);
   },
@@ -300,6 +301,9 @@ module.exports = {
     I.seeElement(this.filters.filterByWaitingConfirmation);
   },
 
+  validateTabPencairan() {
+    I.seeElement(this.tabs.tabDisbursement);
+  },
   goToTabBills() {
     I.seeElement(this.tabs.tabBill);
     I.click(this.tabs.tabBill);
