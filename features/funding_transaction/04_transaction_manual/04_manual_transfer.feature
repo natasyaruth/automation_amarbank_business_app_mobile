@@ -57,7 +57,7 @@ Scenario: Checking not exist account number for Individual
 
 
 
-Scenario: User Success Transfer RTOL
+Scenario: User Success Transfer and check daily limit transaction next day
         Given I am a customer who wants to Transfer and has friend list and transfer on 10.00 PM
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist

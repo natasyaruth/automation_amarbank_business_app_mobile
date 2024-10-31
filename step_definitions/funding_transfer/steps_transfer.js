@@ -46,43 +46,41 @@ When("I search name {string} in friendlist", (friendListname) => {
 });
 
 When("I validate page transfer", () => {
+  I.see("Transfer ke Penerima");
   I.see("Pemilik Rekening");
   I.see("Nominal Transfer");
+  I.see("Tulis Nominal Transfer");
   I.see("Saldo aktif");
+  I.see("Kategori");
+  I.see("Pilih Kategori");
+  I.see("Catatan (Opsional)");
+  I.see("Tulis catatan ke penerima");
+  I.see("Max. 50 karakter");
   I.see("Sisa limit transaksi harian");
+  I.see("Pilih Layanan Transfer");
   I.see("Pilih kategori untuk memudahkan Anda mencari riwayat transaksi yang Anda butuhkan");
+  I.see(globalVariable.friendList.friendListName);
+  I.see(globalVariable.friendList.bankName);
   transferPage.validatePageTransfer();
 });
 
-When("I am making sure that limit transaction is {string}", async (nilai) => {
-  globalVariable.transfer.dailyLimit = nilai;
-  const targetValue = parseInt(nilai.replace(/\D/g, ""), 10);
-  const actualValueText = await transferPage.getValueDailyLimitTransaction();
-  const actualValue = parseInt(actualValueText.replace(/\D/g, ""), 10);
-  if (actualValue === targetValue) {
-    console.log("Nilai limit sesuai.");
-} else {
-    console.log("Nilai limit tidak sesuai. Nilai saat ini:", actualValue);
-}
+When("I am making sure value of limit transaction",async () => {
+  const actualValue = globalVariable.transfer.dailyLimit;
+  const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
+  const expectedTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
+  I.assertEqual(actualValue, "Rp" + expectedTotalAmount);
 });
 
-When("I see limit transaction is {string}", (nilaiLimit) => {
+When("I see limit transaction is updated",async () => {
   const actualValue = globalVariable.transfer.dailyLimit;
-  const expectedTargetValue = parseInt(nilaiLimit.replace(/\D/g, ""), 10);
-  if (actualValue === expectedTargetValue) {
-    console.log("Nilai limit transaksi sesuai dengan yang diharapkan.");
-  } else {
-    console.log("Nilai limit transaksi tidak sesuai.");
-  }
+  const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
+  const expectedTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
+  I.assertEqual(actualValue, "Rp" + expectedTotalAmount);
 });
 
 When("I see error message daily transaction {string}",async (messageValue) => {
   const actualErrorMessage = await transferPage.getMessageErrorAmount();
-  if (messageValue === actualErrorMessage) {
-    console.log("Nilai limit transaksi sesuai dengan yang diharapkan.");
-  } else {
-    console.log("Nilai limit transaksi tidak sesuai.");
-  }
+  I.assertEqual(messageValue, actualErrorMessage);
 });
 
 When("I submit to next flow", () => {

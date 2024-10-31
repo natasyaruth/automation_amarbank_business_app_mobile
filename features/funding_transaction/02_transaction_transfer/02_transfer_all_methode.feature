@@ -57,7 +57,7 @@ Feature: User transfer with all transfer method
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
         And I validate page transfer
-        And I am making sure that limit transaction is "200000000"
+        And I am making sure value of limit transaction 
         And I input amount '15000'
         And I choose category 'Pembayaran'
         And I input notes with 'Test RTOL'
@@ -76,7 +76,7 @@ Feature: User transfer with all transfer method
         And I input name 'Surya Edwin' from the search box
         And I choose the friendlist
         And I validate page transfer
-        Then I see limit transaction is "199985000"
+        Then I see limit transaction is updated
         When I input amount '200000000'
         Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian"
 
