@@ -68,8 +68,8 @@ When("I see limit transaction is updated",async () => {
   const actualValue = globalVariable.transfer.dailyLimit;
   const expectedTotalDailyLimit = transferPage.formattedToThreeDigit(actualValue);
   const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
-  const expectedTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
-  I.assertEqual(expectedTotalAmount, "Rp" + expectedTotalDailyLimit);
+  const actualTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
+  I.assertEqual(actualTotalAmount, "Rp" + expectedTotalDailyLimit);
 });
 
 When("I see error message daily transaction {string}",async (messageValue) => {
