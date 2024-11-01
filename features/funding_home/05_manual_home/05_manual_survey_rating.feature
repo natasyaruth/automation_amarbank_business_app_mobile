@@ -49,8 +49,10 @@ Feature: Dashboard Manual - Survey and Rating
         And I will see pop up rating survey account opening
         And I give '5' ratings
         And I sent feedback survey
-        Then I will see snackbar my survey is sent
-        And I will see card account 'active'
+        Then I will see pop up rating in play store
+        When I click button "Beri rating" di playstore
+        Then I redirect to playstore
+        And I give rating on playstore
 
     @C160298
     Scenario: Give 4 rating account active
