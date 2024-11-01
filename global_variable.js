@@ -176,6 +176,7 @@ module.exports = {
     transfer: {
         amount: 0,
         amountTransfer: "",
+        dailyLimit: 200000000,
         service: "",
         note: "",
         category: "",
