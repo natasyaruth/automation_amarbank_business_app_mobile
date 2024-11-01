@@ -641,7 +641,7 @@ Feature: Account registration
     Then I should be notified in the below of field OTP that 'Kode OTP yang dimasukkan salah'
 
   Scenario: Resend email verification
-    Given I am a customer had been registering and verify phonenumber with following details:
+    Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
       | email           | fakemail@email.com |
       | mobileNumber    | 81293697203        |

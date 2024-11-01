@@ -6,12 +6,13 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     Background: User choose legality business type CV
         Given I am a registered customer with following details:
-            | userID      | ruth0c1c |
+            | userID      | deve196a |
             | password    | 1234Test |
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
+        And I reset my state journey
         And I filling in form login with the following details:
-            | userID      | ruth0c1c |
+            | userID      | deve196a |
             | password    | 1234Test |
             | userIDstg   | ruth7cb8 |
             | passwordStg | 1234Test |
