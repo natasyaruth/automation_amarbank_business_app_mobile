@@ -64,18 +64,12 @@ When("I validate page transfer", () => {
   transferPage.validatePageTransfer();
 });
 
-When("I am making sure value of limit transaction",async () => {
-  const actualValue = globalVariable.transfer.dailyLimit;
-  const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
-  const expectedTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
-  I.assertEqual(actualValue, "Rp" + expectedTotalAmount);
-});
-
 When("I see limit transaction is updated",async () => {
   const actualValue = globalVariable.transfer.dailyLimit;
+  const expectedTotalDailyLimit = transferPage.formattedToThreeDigit(actualValue);
   const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
   const expectedTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
-  I.assertEqual(actualValue, "Rp" + expectedTotalAmount);
+  I.assertEqual(expectedTotalAmount, "Rp" + expectedTotalDailyLimit);
 });
 
 When("I see error message daily transaction {string}",async (messageValue) => {
