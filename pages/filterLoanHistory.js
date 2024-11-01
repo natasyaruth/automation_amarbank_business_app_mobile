@@ -14,6 +14,10 @@ module.exports = {
         radioButtonDalamProses: "~radioButtonDalam Proses",
         radioButtonPencairanBerhasil: "~radioButtonPencairan Berhasil",
         radioButtonTidakDisetujui: "~radioButtonTidak Disetujui",
+
+        // repayment
+        radioButtonSedangBerjalan: "~radioButtonSedang Berjalan",
+        radioButtonSelesai: "~radioButtonSelesai"
     },
 
     texts:{
@@ -91,11 +95,7 @@ module.exports = {
             I.sae("Halaman ini Masih Kosong");
             I.see("Saat ini, belum ada aktivitas pinjaman yang tersedia untuk ditampilkan.");
         }
-    },
-    
-    
-    
-      
+    },  
 
     validateCardListRepayment() {
         I.wait(3);
@@ -123,5 +123,4 @@ module.exports = {
         I.wait(3);
         I.click(this.radioButtons.radioButtonTidakDisetujui);
     },
-
 };

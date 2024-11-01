@@ -295,6 +295,11 @@ module.exports = {
     I.click(this.tabs.tabDisbursement);
   },
 
+  goToTabRepayment(){
+    I.wait(3);
+    I.click(this.tabs.tabBill);
+  },
+
   validateTabDisbursement() {
     I.seeElement(this.filters.filterByAll);
     I.seeElement(this.filters.filterBySendPDC);
