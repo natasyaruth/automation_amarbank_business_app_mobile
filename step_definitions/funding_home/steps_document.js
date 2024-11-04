@@ -9,6 +9,7 @@ const { I,
     documentSafePage,
     headerPage,
     onboardingAccOpeningPage,
+    mainActivePage,
 } = inject();
 
 Given("has more than one other document", async () => {
@@ -68,6 +69,7 @@ When("I click delete other document in section upload", () => {
 When("I upload other document with type {string}", async (typeDoc) => {
 
     let fileName;
+    globalVariable.uploadDocuments.fileType = typeDoc;
 
     switch (typeDoc) {
         case "pdf":
@@ -226,6 +228,110 @@ When("I delete all other document", async () => {
     };
 });
 
+When("I click create new folder", () => {
+    documentPage.clickAddFolder();
+});
+
+When("I fill field new folder with {string}", (folderName) => {
+    documentPage.fillFieldFolderName(folderName);
+    globalVariable.uploadDocuments.folderName.unshift(folderName);
+});
+
+When("I save new folder", () => {
+    documentPage.saveName();
+});
+
+When("I click icon clear name", () => {
+    documentPage.clickIconClear();
+});
+
+When("I clear new folder name using keyboard", () => {
+    documentPage.clearViaKeyboardNewFolderName();
+});
+
+When("I fill field new folder with char more than 100 character", () => {
+
+    const folderName = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
+    documentPage.fillFieldFolderNameViaKeyboard(folderName);
+
+    const trimWords = folderName.substring(0,100);
+    globalVariable.uploadDocuments.folderName.unshift(trimWords);
+});
+
+When("I fill new folder name same as before", () => {
+    documentPage.fillFieldFolderName(globalVariable.uploadDocuments.folderName[0]);
+});
+
+When("I click icon three dot folder", () => {
+    documentPage.clickInfoFolderBucketlist(0);
+});
+
+When("I click icon three dot file", () => {
+    documentPage.clickInfoFolderBucketlist(0);
+});
+
+When("I click edit folder name", () => {
+    documentPage.clickChangeName();
+});
+
+When("I click edit file name", () => {
+    documentPage.clickChangeName();
+});
+
+When("I edit folder name with {string}", (editName) => {
+    documentPage.fillNewFolderName(editName);
+    globalVariable.uploadDocuments.updateFolderName = editName;
+});
+
+When("I edit file name with {string}", (editName) => {
+    documentPage.fillNewFileName(editName);
+    globalVariable.uploadDocuments.updateFileName = editName;
+});
+
+When("I edit file name contain with extension file", () => {
+    const editName = "Dokumen Berubah"+globalVariable.uploadDocuments.fileType;
+    documentPage.fillNewFileName(editName);
+    globalVariable.uploadDocuments.updateFileName = editName;
+});
+
+When("I click change name", () => {
+    documentPage.saveName();
+});
+
+When("I change folder name with char more than 100 character", () => {
+
+    const folderName = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
+    documentPage.fillNewFolderName(folderName);
+
+    const trimWords = folderName.substring(0,100);
+    globalVariable.uploadDocuments.updateFolderName = trimWords;
+});
+
+When("I update file name with char more than 100 character", () => {
+
+    const fileName = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
+    documentPage.fillNewFolderName(fileName);
+
+    const trimWords = fileName.substring(0,100);
+    globalVariable.uploadDocuments.updateFileName = trimWords;
+});
+
+When("I edit folder name same with other folder", () => {
+    documentPage.fillNewFolderName(globalVariable.uploadDocuments.folderName[0]);
+});
+
+When("I clear change folder name using keyboard", () => {
+    documentPage.clearViaKeyboardChangeFolderName();
+});
+
+When("I open other folder", () => {
+    documentPage.clickItemOtherDoc();
+});
+
+When("I open detail other folder", () => {
+    documentPage.clickItemOtherDocDetail();
+});
+
 Then("I will see pop up delete other document", () => {
     I.waitForText("Hapus Dokumen", 10);
     I.waitForText("Apakah Anda yakin akan menghapus dokumen ini?", 10);
@@ -277,16 +383,17 @@ Then("I will see button see document is disabled", async () => {
 
 Then("I will not see menu document giro", () => {
     I.wait(1);
-    I.dontSee("Dokumen Giro");
+    I.dontSee("Giro");
     I.dontSeeElement(documentPage.buttons.documentGiro);
 });
 
 Then("I will not see menu document loan and giro", () => {
     I.wait(1);
-    I.dontSee("Dokumen Giro");
+    I.dontSee("Dokumen Utama");
+    I.dontSee("Giro");
     I.dontSeeElement(documentPage.buttons.documentGiro);
 
-    I.dontSee("Dokumen Pinjaman");
+    I.dontSee("Pinjaman");
     I.dontSeeElement(documentPage.buttons.documentLoan);
 });
 
@@ -295,8 +402,8 @@ Then("I will see menu other document", () => {
     I.dontSeeElement(headerPage.buttons.back);
     I.dontSeeElement(headerPage.buttons.closePage);
 
-    I.see("Dokumen Lainnya");
-    I.waitForElement(documentPage.buttons.documentOther, 10);
+    I.see("Lainnya");
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
 Then("I will see menu other document and loan", () => {
@@ -304,11 +411,12 @@ Then("I will see menu other document and loan", () => {
     I.dontSeeElement(headerPage.buttons.back);
     I.dontSeeElement(headerPage.buttons.closePage);
 
-    I.see("Dokumen Pinjaman");
+    I.see("Pinjaman");
+    I.see("Dokumen Utama");
     I.waitForElement(documentPage.buttons.documentLoan, 10);
 
-    I.see("Dokumen Lainnya");
-    I.waitForElement(documentPage.buttons.documentOther, 10);
+    I.see("Lainnya");
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
 Then("I will see list of my loan", () => {
@@ -638,18 +746,19 @@ Then("I will see menu document giro, loan and other", () => {
     I.dontSeeElement(headerPage.buttons.back);
     I.dontSeeElement(headerPage.buttons.closePage);
 
-    I.see("Dokumen Giro");
+    I.see("Dokumen Utama");
+    I.see("Giro");
     I.waitForElement(documentPage.buttons.documentGiro, 10);
 
-    I.see("Dokumen Pinjaman");
+    I.see("Pinjaman");
     I.waitForElement(documentPage.buttons.documentLoan, 10);
 
-    I.see("Dokumen Lainnya");
-    I.waitForElement(documentPage.buttons.documentOther, 10);
+    I.see("Lainnya");
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
 Then("I will see button upload other document", () => {
-    I.waitForText("Upload Dokumen Lainnya", 10);
+    I.dontSee("Upload Dokumen Lainnya");
     I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
@@ -665,35 +774,19 @@ Then("I will direct to detail menu other document", () => {
 });
 
 Then("I will see empty detail menu other document", () => {
-    I.waitForText("Dokumen Lainnya", 30);
-    I.waitForElement(headerPage.buttons.back, 10);
 
-    I.see("Halaman Ini Masih Kosong");
+    I.waitForText("Halaman Ini Masih Kosong", 10);
     I.see("Saat ini, belum ada dokumen yang tersedia untuk ditampilkan.");
-
-    I.dontSeeElement(documentPage.buttons.deleteDetail);
-    I.dontSeeElement(documentPage.buttons.downloadOtherDoc);
-
-    I.see("Upload Dokumen Lainnya");
-    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
-Then("I will see bottom sheet upload other document", () => {
+Then("I will see bottom sheet upload other document and create folder", () => {
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
-    I.see("Upload Dokumen");
-
-    I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
-        "Maximal ukuran per file: 15MB");
-
-    I.see("Dokumen Lainnya");
 
     I.see("Upload Dokumen");
-    I.waitForElement(documentPage.buttons.upload, 10);
+    I.waitForElement(documentPage.buttons.addDoc, 10);
 
-    I.dontSeeElement(documentPage.buttons.deleteDoc);
-    I.dontSeeElement(documentPage.buttons.saveDocument);
-    I.dontSeeElement(documentPage.texts.fileName);
-    I.dontSeeElement(documentPage.texts.fileSize);
+    I.see("Buat Folder Baru");
+    I.waitForElement(documentPage.buttons.addFolder, 10);
 });
 
 Then("I will see pop up confirm cancel upload other document", () => {
@@ -710,7 +803,7 @@ Then("I will see pop up confirm cancel upload other document", () => {
 Then("I will see other document has been uploaded", async () => {
 
     I.waitForText("Upload Dokumen", 30);
-    I.dontSeeElement(documentPage.buttons.closeBottomSheet);
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
 
     I.see("Format file: PDF / JPG / JPEG / PNG" + "\n" +
         "Maximal ukuran per file: 15MB");
@@ -718,11 +811,10 @@ Then("I will see other document has been uploaded", async () => {
     I.see("Dokumen Lainnya");
 
     I.see("Upload Dokumen");
+    I.waitForElement(documentPage.texts.fileSize, 30);
     I.dontSeeElement(documentPage.buttons.upload);
-    I.waitForElement(documentPage.buttons.deleteDoc, 30);
+    I.dontSeeElement(documentPage.buttons.deleteDoc);
     I.waitForElement(documentPage.icons.completeUpload, 20);
-    I.waitForElement(documentPage.texts.fileSize, 20);
-    I.dontSeeElement(documentPage.buttons.upload);
 
     I.see("Simpan Dokumen")
     I.waitForElement(documentPage.buttons.saveDocument, 10);
@@ -757,16 +849,12 @@ Then("I will see snackbar success upload success", () => {
 });
 
 Then("I will direct to page other document with document that has been uploaded is in there", async () => {
-    I.waitForText("Dokumen Lainnya", 30);
-    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForText("Brankas Dokumen", 30);
 
-    const actualFileName = await documentPage.getFileNameInListOtherDoc(0);
-    I.assertEqual(actualFileName, globalVariable.uploadDocuments.fileName[0]);
+    const fileName = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(fileName, globalVariable.uploadDocuments.fileName[0] + "." + globalVariable.uploadDocuments.fileType);
 
-    I.waitForElement(documentPage.buttons.deleteDetail + "0", 10);
-    I.waitForElement(documentPage.buttons.downloadOtherDoc + "0", 10);
-
-    I.see("Upload Dokumen Lainnya");
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
     I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });
 
@@ -775,8 +863,10 @@ Then("I see list document is ordering by the latest to oldest", async () => {
     const listFileName = globalVariable.uploadDocuments.fileName;
 
     for (let i = 0; i < listFileName.length; i++) {
-        const titleLatest = await documentPage.getFileNameInListOtherDoc(i);
+        const x = 1 + i;
+        const titleLatest = await documentPage.getFileNameInListOtherDoc(x);
         I.assertEqual(titleLatest, listFileName[i]);
+        I.waitForElement(documentPage.buttons.infoDoc + x, 10);
     }
 });
 
@@ -784,4 +874,206 @@ Then("I will see other document more than one", async () => {
 
     I.waitForElement(documentPage.texts.fileName + "0", 10);
     I.waitForElement(documentPage.texts.fileName + "1", 10);
+});
+
+Then("I will see bottom sheet new folder", async () => {
+    I.waitForText("Folder Baru", 10);
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+
+    I.see("Nama Folder");
+    const placeholderNewFolder = await I.grabTextFrom(documentPage.fields.folderName);
+    I.assertEqual(placeholderNewFolder, "Folder Baru");
+
+    I.waitForElement(documentPage.icons.resetName, 10);
+
+    I.see("Buat Folder Baru");
+    I.waitForElement(documentPage.buttons.saveName, 10);
+});
+
+Then("I see snackbar success create new folder", () => {
+    I.waitForText("Folder baru berhasil dibuat", 10);
+});
+
+Then("I will direct to page document brankas with folder that has been created in section other document", async () => {
+    I.waitForText("Brankas Dokumen", 30);
+
+    const folderName = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(folderName, globalVariable.uploadDocuments.folderName[0]);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I see list folder is ordering by the latest to oldest", async () => {
+
+    const listFolderName = globalVariable.uploadDocuments.folderName;
+
+    for (let i = 0; i < listFolderName.length; i++) {
+        const number = 1 + i;
+        const titleLatest = await documentPage.getFileNameInListOtherDoc(number);
+        I.assertEqual(titleLatest, listFolderName[i]);
+        I.waitForElement(documentPage.buttons.infoDoc + number, 10);
+    }
+});
+
+Then("I see list other document is ordering by the latest folder and then followed with latest file", async () => {
+
+    const listFolderName = globalVariable.uploadDocuments.folderName;
+    const listFileName = globalVariable.uploadDocuments.fileName;
+    const combineLength = listFolderName.length + listFileName.length;
+    let flag = false;
+
+    for (let i = 0; i < combineLength; i++) {
+
+        const number = 1 + i;
+
+        if(
+            flag === false
+        ){
+            for (let j = 0; j < listFolderName.length; j++) {
+                const titleFolder = await documentPage.getFileNameInListOtherDoc(number);
+                I.assertEqual(titleFolder, listFolderName[i]);
+                I.waitForElement(documentPage.buttons.infoDoc + number, 10);
+            }
+
+            flag = true;
+        } else{
+
+            for (let k = 0; k < listFileName.length; k++) {
+                const titleFile = await documentPage.getFileNameInListOtherDoc(number);
+                I.assertEqual(titleFile, listFileName[i]);
+                I.waitForElement(documentPage.buttons.infoDoc + number, 10);
+            }
+        }
+    }
+});
+
+Then("I will see button create new folder is disabled", async()=>{
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSaveOtherDoc, 'enabled');
+    I.assertEqual(isEnabled, "false");
+});
+
+Then("I will see button create new folder is enabled", async()=>{
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSaveOtherDoc, 'enabled');
+    I.assertEqual(isEnabled, "true");
+});
+
+Then("I see field new folder is filled with only 100 character, the rest is auto trimmed", ()=>{
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+});
+
+Then("I will direct to page document brankas with new folder using name Folder Baru", async () => {
+    I.waitForText("Brankas Dokumen", 30);
+
+    const folderName = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(folderName, "Folder Baru");
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I will see field new folder is filled with Folder Baru 1", () => {
+    I.waitForText("Folder Baru (1)", 10);
+});
+
+Then("I see message error folder name is exist", ()=>{
+    I.waitForText("Nama folder sudah ada & tidak boleh sama. Silakan ganti dengan nama lain.", 10);
+});
+
+Then("I see message error file name is exist", ()=>{
+    I.waitForText("Nama dokumen sudah ada & tidak boleh sama. Silakan ganti dengan nama lain.", 10);
+});
+
+Then("I will see bottom sheet edit folder", ()=>{
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+
+    I.see("Ubah Nama");
+    I.waitForElement(documentPage.buttons.changeName, 10);
+});
+
+Then("I will see bottom sheet change file name", ()=>{
+    I.waitForText("Ubah Nama Dokumen", 10);
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+
+    I.see("Ubah Nama");
+    I.waitForElement(documentPage.buttons.changeName, 10);
+});
+
+Then("I will see snackbar success change folder name", ()=>{
+    I.waitForText("Nama folder berhasil diubah", 10);
+});
+
+Then("I will see snackbar success change file name", ()=>{
+    I.waitForText("Nama dokumen berhasil diubah", 10);
+});
+
+Then("I will direct to page document brankas with folder name has been change", async () => {
+    I.waitForText("Brankas Dokumen", 30);
+
+    const fileName = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(fileName, globalVariable.uploadDocuments.updateFolderName);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I will direct to page document brankas with file name has been change", async () => {
+    I.waitForText("Brankas Dokumen", 30);
+
+    const fileName = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(fileName, globalVariable.uploadDocuments.updateFileName + "." + globalVariable.uploadDocuments.fileType);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I see update folder name is filled with only 100 character, the rest is auto trimmed", ()=>{
+    I.waitForText(globalVariable.uploadDocuments.updateFolderName, 10);
+});
+
+Then("I see field file name is filled with only 100 character, the rest is auto trimmed", ()=>{
+    I.waitForText(globalVariable.uploadDocuments.updateFileName, 10);
+});
+
+Then("I see button change name is enabled", async () => {
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSaveOtherDoc, 'enabled');
+
+    I.assertEqual(isEnabled, 'true');
+});
+
+Then("I see button change name is disabled", async () => {
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSaveOtherDoc, 'enabled');
+
+    I.assertEqual(isEnabled, 'false');
+});
+
+Then("I will see folder contents still empty", async () => {
+    I.waitForText("Halaman Ini Masih Kosong", 10);
+    I.see("Saat ini, belum ada dokumen yang tersedia untuk ditampilkan.");
+
+    I.waitForElement(documentPage.buttons.infoDocDetail, 10);
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.business);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.home);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.document);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.others);
+});
+
+Then("I see the new folder is created", async () => {
+
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I will see file name has been change", async () => {
+
+    I.waitForText(globalVariable.uploadDocuments.updateFileName, 10);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
 });

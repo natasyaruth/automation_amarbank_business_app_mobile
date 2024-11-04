@@ -161,6 +161,9 @@ module.exports = {
         npwp: false,
         fileType: "",
         fileName: [],
+        folderName: [],
+        updateFolderName: "",
+        updateFileName: "",
     },
     createPin: {
         newPin: "",
