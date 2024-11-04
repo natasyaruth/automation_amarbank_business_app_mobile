@@ -17,7 +17,7 @@ Feature: User create PIN Journey Transfer
         And I click later in pop up biometric 
         Then I will direct to dashboard
 
-    @C109106
+    @C163985
     Scenario: User wants to Transfer but doesn't have PIN
         Given I am a customer who wants to create PIN
         And I don't have a PIN
@@ -26,7 +26,7 @@ Feature: User create PIN Journey Transfer
         When I click button Create PIN
         Then I will directly to Create New Transaction PIN page
 
-    @C109107
+    @C163986
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -38,7 +38,7 @@ Feature: User create PIN Journey Transfer
         And I can click try again
         And I reset attempt failed login
 
-    @C109108
+    @C163987
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -49,7 +49,7 @@ Feature: User create PIN Journey Transfer
         And I can click try again
         And I reset attempt failed login
 
-    @C109109
+    @C163988
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
