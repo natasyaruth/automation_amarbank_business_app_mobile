@@ -17,13 +17,57 @@ Given ('I have been access history repayment to see "Pilih Fasilitas"', () => {
     filterLoanHistory.validateFilterByFacility();
 });
 Then('I should see history "Tagihan" for more than 1 facility', () => {
-    filterLoanHistory.validateCardListDisbursement();
+    filterLoanHistory.validateCardListRepayment();
 });
 
-// Scenario: Access Histoy Page Repayment For Only 1 Facility
 Then('I click bottom sheet "1 Facility"', () =>{
-    filterLoanHistory.selectIndexRadioButtonByFacility();
+    filterLoanHistory.clickRadioButtonByTitle();
 });
-Then('I should see history "Tagihan" for more than 1 facility', () => {
-    filterLoanHistory.validateCardListDisbursement();
+
+When('I click bottom sheet more than 1 facility repayment', () =>{
+    filterLoanHistory.clickMoreThan1FacilityRepayment();
+});
+
+When('I click bottom sheet more than 1 facility repaymen', () =>{
+    filterLoanHistory.click1Facili();
+});
+
+When('I click bottom sheet only 1 Facility repayment', () => {
+    filterLoanHistory.clickMoreThan1FacilityRepayment();
+});
+When('I click bottom sheet "1 Facility" repaymen', () => {
+    filterLoanHistory.click1Facility();
+});
+
+// Scenario: Access History Page Repayment For Semua Status
+Given('I have been access history repayment to see "Pilih Status"', () => {
+    filterLoanHistory.validateFilterByStatus();
+});
+
+Then('I should see history "Tagihan" for semua status', () => {
+    filterLoanHistory.validateCardListRepayment();
+});
+
+// Scenario: Access History Page Repayment For Sedang Berjalan
+When('I click bottom sheet "Sedang Berjalan"', () => {
+    filterLoanHistory.clickFilterByStatusSedangBerjalan();
+});
+Then('I should see history "Tagihan" for semua sedang berjalan', () => {
+    filterLoanHistory.validateCardListRepayment();
+});
+
+//Scenario: Access History Page Repayment For Selesai
+When('I click bottom sheet "Selesai"', () => {
+    filterLoanHistory.clickFilterByStatusSelesai();
+});
+Then('I should see history "Tagihan" for semua selesai', () => {
+    filterLoanHistory.validateCardListRepayment();
+});
+
+//Scenario: Access History Page Repayment For only 1 facility and For Semua Status
+Then('I should see history "Tagihan" for only 1 facility and For Semua Status', () => {
+    filterLoanHistory.validateCardListRepayment();
+});
+
+When('I should see history', () => {
 });

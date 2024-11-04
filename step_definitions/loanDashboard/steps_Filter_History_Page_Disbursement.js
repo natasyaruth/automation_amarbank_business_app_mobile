@@ -44,6 +44,13 @@ Then ('I should see history "Pencairan" for more than 1 facility', () => {
     filterLoanHistory.validateCardListDisbursement();
 });
 
+When('I click bottom sheet for than more 1 facility disbursement', () => {
+    filterLoanHistory.clickMoreThan1FacilityDisbursement();
+}),
+When('I click bottom sheet only 1 Facility disbursement', () => {
+    filterLoanHistory.clickOnly1FacilityDisbursement();
+}),
+
 //Scenario: Access Histoy Page Disbursement For Only 1 Facility
 When('I click bottom sheet 1 Facility', () => {
     filterLoanHistory.selectIndexRadioButtonByFacility();
