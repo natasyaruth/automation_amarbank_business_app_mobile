@@ -11,6 +11,7 @@ module.exports = {
   },
   texts: {
     balance: "~textBalance",
+    dailyLimit: "~textDailyLimit",
     amount: "~textNominal",
     service: "~textService",
     total: "~textTotal",
@@ -232,6 +233,15 @@ module.exports = {
     I.click(this.buttons.tryAgain);
   },
 
+  validatePageTransfer() {
+    I.waitForElement(this.fields.amount, 10);
+    I.waitForElement(this.fields.notes, 10);
+    I.waitForElement(this.dropdownLists.category, 10);
+    I.waitForElement(this.texts.dailyLimit, 10);
+    I.waitForElement(this.texts.balance, 10);
+
+  },
+
   viewPageFriendList() {
     I.waitForElement(this.fields.receiverListPage, 10);
   },
@@ -401,6 +411,11 @@ module.exports = {
   async getConfirmAdminFee() {
     I.waitForElement(this.texts.confirmAdminFee, 10);
     return I.grabTextFrom(this.texts.confirmAdminFee);
+  },
+
+  async getValueDailyLimitTransaction() {
+    I.waitForElement(this.texts.dailyLimit, 10);
+    return I.grabTextFrom(this.texts.dailyLimit);
   },
 
   getAmount() {

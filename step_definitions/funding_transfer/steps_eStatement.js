@@ -23,6 +23,10 @@ Then('I will see the button e-Statement', () => {
     transactionHistoryPage.viewButtonDownloadEStatement();
 });
 
+Then('I will see the button filter', () => {
+    transactionHistoryPage.viewButtonFilterTransactionHistory();
+});
+
 
 // Scenario: Download e-Statement by the latest month
 Given('I am a customer who want to download e-Statement based on the latest month', () => {

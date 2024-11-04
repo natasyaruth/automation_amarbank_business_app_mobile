@@ -4,8 +4,8 @@ module.exports = {
 
   buttons: {
     tabDocument: "~tabDocument",
-    documentGiro: "~buttonGiroDoc",
-    documentLoan: "~buttonLoanDoc",
+    documentGiro: "~primaryFolderGiro",
+    documentLoan: "~primaryFolderLoan",
     documentOther: "~buttonOtherDoc",
     itemLoan: "~buttonSelectLoan",
     itemDocumentLoan: {xpath: '//android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[1]'},
@@ -21,7 +21,9 @@ module.exports = {
     activatedNow: "~buttonActiveNow",
     seeDocument: "~buttonSeeDocument",
     eyePassword: "~iconShowHidePassword",
-    uploadOtherDoc: "~buttonUploadOtherDoc",
+    uploadOtherDoc: "~addFolderDoc",
+    addDoc: "~addDoc",
+    addFolder: "~addFolder",
     upload: "~buttonUpload",
     closeBottomSheet: "~buttonClose",
     deleteDoc: "~buttonDelete",
@@ -32,22 +34,37 @@ module.exports = {
     saveDocument: "~buttonSaveDoc",
     deleteDetail: "~buttonDeleteDoc",
     downloadOtherDoc: "~buttonDownload",
+    createFolder: "~buttonNext",
+    saveName: "~buttonNext",
+    infoDoc: "~buttonInfo_",
+    infoDocDetail: "~buttonInfo",
+    changeName: "~buttonChangeName",
+    itemOtherDoc: {xpath: ""},
+    itemOtherDocDetail: {xpath: ""},
   },
   links:{
     usePassword: "~buttonUsePassword",
   },
   fields:{
     password: "~textFieldPassword",
+    folderName: "~fieldFolderName",
+    changeFolderName: "~fieldChangeFolder",
+    changeFileName: "~fieldChangeName",
   },
   msgErrorFields:{
     password: "~textErrorPassword",
+    folderName: "~fieldFolderNameError",
+    changeFolderName: "~fieldChangeFolderError",
+    changeFileName: "~fieldChangeNameError"
   },
   texts: {
-    fileName: "~textDocName",
+    fileName: {xpath: ""},
+    fileNameDetail: {xpath: ""},
     fileSize: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.widget.TextView[4]"},
   },
   icons:{
     completeUpload: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[1]"},
+    resetName: "~buttonReset"
   },
   googleElement: {
     titleDrive: {xpath: "(//android.widget.TextView[@text=\"Drive\"])[1]"},
@@ -56,6 +73,9 @@ module.exports = {
     firstOption: {xpath: "//androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView/android.widget.RelativeLayout/android.widget.FrameLayout[1]"},
     firstCardView: {xpath: '//android.widget.GridView/androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView[1]'},
     titleFirstOption: {xpath: "//android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]"},
+  },
+  statusElement: {
+    buttonSaveOtherDoc: {xpath: ""},
   },
 
   clickTabDocument(){
@@ -146,8 +166,13 @@ module.exports = {
   },
 
   clickUploadDoc(){
-    I.waitForElement(this.buttons.upload, 10);
-    I.click(this.buttons.upload);
+    I.waitForElement(this.buttons.addDoc, 10);
+    I.click(this.buttons.addDoc);
+  },
+
+  clickAddFolder(){
+    I.waitForElement(this.buttons.addFolder, 10);
+    I.click(this.buttons.addFolder);
   },
 
   clickDeleteDoc(){
@@ -176,8 +201,8 @@ module.exports = {
   },
 
   async getFileName(){
-    I.waitForElement(this.texts.fileName, 10);
-    return await I.grabTextFrom(this.texts.fileName);
+    I.waitForElement(this.texts.fileNameDetail, 10);
+    return await I.grabTextFrom(this.texts.fileNameDetail);
   },
 
   async getFileNameInListOtherDoc(index){
@@ -202,7 +227,106 @@ module.exports = {
 
   clickFirstOptionSearch(){
     I.waitForElement(this.googleElement.firstOption, 20);
-
     I.click(this.googleElement.firstOption);
-  }
+  },
+
+  fillFieldFolderName(folderName){
+    I.waitForElement(this.fields.folderName, 20);
+    I.setText(this.fields.folderName, folderName);
+    I.hideDeviceKeyboard();
+  },
+
+  fillFieldFolderNameViaKeyboard(folderName){
+    I.waitForElement(this.fields.folderName, 20);
+    I.click(this.fields.folderName);
+    I.type(folderName, 300);
+    I.hideDeviceKeyboard();
+  },
+
+  fillNewFolderName(folderName){
+    I.waitForElement(this.fields.changeFolderName, 20);
+    I.setText(this.fields.changeFolderName, folderName);
+    I.hideDeviceKeyboard();
+  },
+
+  fillNewFileName(fileName){
+    I.waitForElement(this.fields.changeFileName, 20);
+    I.setText(this.fields.changeFileName, fileName);
+    I.hideDeviceKeyboard();
+  },
+
+  clickIconClear(){
+    I.waitForElement(this.icons.resetName, 20);
+    I.click(this.icons.resetName);
+  },
+
+  clearViaKeyboardChangeFolderName(){
+    I.waitForElement(this.fields.changeFolderName, 20);
+    I.clearField(this.fields.changeFolderName);
+  },
+
+  clearViaKeyboardChangeFileName(){
+    I.waitForElement(this.fields.changeFileName, 20);
+    I.clearField(this.fields.changeFileName);
+  },
+
+  clearViaKeyboardNewFolderName(){
+    I.waitForElement(this.fields.folderName, 20);
+    I.clearField(this.fields.folderName);
+  },
+
+  createNewFolder(){
+    I.waitForElement(this.buttons.createFolder, 20);
+    I.click(this.buttons.createFolder);
+  },
+
+  saveName(){
+    I.waitForElement(this.buttons.saveName, 20);
+    I.click(this.buttons.saveName);
+  },
+
+  clickInfoDocBucketlist(index){
+    I.waitForElement(this.buttons.infoDoc+index, 20);
+    I.click(this.buttons.infoDoc+index);
+  },
+
+  clickInfoFolderBucketlist(index){
+    I.waitForElement(this.buttons.infoDoc+index, 20);
+    I.click(this.buttons.infoDoc+index);
+  },
+
+  clickInfOFolderDetail(){
+    I.waitForElement(this.buttons.infoDocDetail, 20);
+    I.click(this.buttons.infoDocDetail);
+  },
+
+  clickChangeName(){
+    I.waitForElement(this.buttons.changeName, 20);
+    I.click(this.buttons.changeName);
+  },
+
+  clickItemOtherDoc(){
+    I.waitForElement(this.buttons.itemOtherDoc, 20);
+    I.click(this.buttons.itemOtherDoc);
+  },
+
+  clickItemOtherDocDetail(){
+    I.waitForElement(this.buttons.itemOtherDocDetail, 20);
+    I.click(this.buttons.itemOtherDocDetail);
+  },
+
+  async getMessageErrorFieldNewFolder(){
+    I.waitForElement(this.msgErrorFields.folderName, 10);
+    return await I.grabTextFrom(this.msgErrorFields.folderName);
+  },
+
+  async getMessageErrorFieldChangeFolder(){
+    I.waitForElement(this.msgErrorFields.changeFolderName, 10);
+    return await I.grabTextFrom(this.msgErrorFields.changeFolderName);
+  },
+
+  async getMessageErrorFieldChangeFile(){
+    I.waitForElement(this.msgErrorFields.changeFileName, 10);
+    return await I.grabTextFrom(this.msgErrorFields.changeFileName);
+  },
 }
