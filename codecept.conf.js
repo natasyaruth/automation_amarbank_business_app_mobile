@@ -43,6 +43,7 @@ let defaultAppium = {
     appPackage: appPackage,
     appActivity: "id.co.amarbank.smb.ui.MainActivity",
     autoGrantPermissions: true,
+    clearSystemFiles: true
   },
 };
 

@@ -16,7 +16,7 @@ Feature: User create PIN from other menu Incorrect Password
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric
+        # And I click later in pop up biometric
         Then I will direct to dashboard
 
     @C164115
@@ -66,3 +66,4 @@ Feature: User create PIN from other menu Incorrect Password
         And I submit incorrect password three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can directly go to page login
+        And I reset attempt failed login

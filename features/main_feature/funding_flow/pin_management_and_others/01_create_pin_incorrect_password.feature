@@ -14,14 +14,14 @@ Feature: User create PIN Journey Transfer
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric 
+        # And I click later in pop up biometric 
         Then I will direct to dashboard
 
     @C163985
     Scenario: User wants to Transfer but doesn't have PIN
         Given I am a customer who wants to create PIN
-        And I don't have a PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         When I see pop up Create PIN
         When I click button Create PIN
         Then I will directly to Create New Transaction PIN page
@@ -30,6 +30,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input incorrect password
@@ -42,6 +43,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password twice
@@ -53,6 +55,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password three times

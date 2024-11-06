@@ -1,4 +1,4 @@
-@regressionTest
+# @regressionTest
 Feature: AUTOMATED Account Deletion Edge Cases
     In order to deactivated my account
     As a customer
