@@ -167,3 +167,37 @@ Scenario: Validate Loan Program Information for Type Loan AR LTV  < 100%
    And user select invoice date
    And User select invoice due date
 
+
+Scenario: Validate Display Provision Fee Information method is every disbursement  
+        Given I have successfully disburse for loan AP
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I see Biaya Provisi
+        And I see provision fee percentage
+        And I see provision fee amount
+
+ Scenario: Validate Do Not Display Provision Fee When Percentage is Zero
+        Given I have successfully disburse for loan AR with provisi is zero
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AR
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
+
+
+   Scenario: Validate Display Provision Fee Information method is facility created
+        Given I have successfully disburse for loan AR with program facilty created
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AR
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
