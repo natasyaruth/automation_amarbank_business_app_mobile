@@ -20,6 +20,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         Then I will direct to dashboard
 
 
+    @C164128
     Scenario: AUTOMATED User wants to create pin from forgot PIN
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -35,6 +36,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I input OTP
         And I should See Success Change PIN
 
+    @C164129
     Scenario: AUTOMATED User input incorrect password once from forgot PIN
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -48,6 +50,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I reset attempt failed login
 
 
+    @C164130
     Scenario: AUTOMATED User input incorrect password twice
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -60,6 +63,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I reset attempt failed login
 
 
+    @C164131
     Scenario: AUTOMATED User input incorrect password three times
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -73,6 +77,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I reset attempt failed login
 
 
+    @C164132
     Scenario: AUTOMATED User want to see their password
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -85,6 +90,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         Then I will see my password
 
 
+   @C164133
     Scenario: AUTOMATED User don't want to see their password
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -97,6 +103,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         Then I will not see my password
 
 
+    @C164134
     Scenario: AUTOMATED User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -111,6 +118,7 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
 
+    @C164135
     Scenario: AUTOMATED User input incorrect OTP
         Given I am a customer who wants to create PIN from menu other
         When I choose other

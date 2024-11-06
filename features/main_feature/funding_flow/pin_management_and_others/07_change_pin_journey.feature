@@ -19,7 +19,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I click later in pop up biometric 
         Then I will direct to dashboard
 
-    
+    @C164136
     Scenario: AUTOMATED User Success to change pin from menu other
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -33,7 +33,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I input OTP
         Then I should See Success Change PIN
 
-    
+    @C164137
     Scenario: AUTOMATED User input incorrect confirmation PIN for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -45,7 +45,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
-    
+    @C164138
     Scenario: AUTOMATED User input expired OTP for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -59,7 +59,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I input expired OTP
         Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
 
-    
+    @C164139
     Scenario: AUTOMATED User input incorrect old pin once for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -70,7 +70,7 @@ Feature: AUTOMATED User change PIN from other menu
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I can click try again
 
-    
+    @C164140
     Scenario: AUTOMATED User input incorrect old pin twice for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other
@@ -80,7 +80,7 @@ Feature: AUTOMATED User change PIN from other menu
         And I submit incorrect old pin twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    
+    @C164141
     Scenario: AUTOMATED User input incorrect old pin three times for change pin
         Given I am a customer who wants to change PIN from menu other
         When I choose other

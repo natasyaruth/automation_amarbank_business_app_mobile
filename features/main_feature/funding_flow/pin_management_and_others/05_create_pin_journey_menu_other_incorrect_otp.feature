@@ -19,7 +19,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I click later in pop up biometric
         Then I will direct to dashboard
 
-    @C109127
+    @C164120
     Scenario: AUTOMATED User want to see their password From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -30,7 +30,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I click icon eye
         Then I will see my password
 
-    @C109128
+    @C164121
     Scenario: AUTOMATED User don't want to see their password From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -41,7 +41,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I click icon eye twice
         Then I will not see my password
 
-    @C109129
+    @C164122
     Scenario: AUTOMATED User input incorrect confirmation PIN From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -54,7 +54,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
-    @C109130
+    @C164123
     Scenario: AUTOMATED User input incorrect OTP From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -69,6 +69,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I input incorrect OTP
         Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code
 
+    @C164124
     Scenario: AUTOMATED User Successfully Get Email for OTP and input expired OTP From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -83,7 +84,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I input expired OTP
         Then I will see message error "Kode verifikasi yang dimasukkan sudah kedaluwarsa" in the below of field otp code
     
-    @C109131
+    @C164125
     Scenario: AUTOMATED User Successfully Create New PIN From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other

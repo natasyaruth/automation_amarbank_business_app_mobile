@@ -1,5 +1,5 @@
 # @regressionTest
-Feature: AUTOMATED Account Change Password
+Feature: AUTOMATED Account Change Password For Old Password Field
     In order to secure my data
     As a customer
     I want to change my password
@@ -19,6 +19,7 @@ Feature: AUTOMATED Account Change Password
         And I click later in pop up biometric
         Then I will see card account 'active'
 
+    @C164167
     Scenario: AUTOMATED Close Page in form input old password
         Given I choose other
         When I go to page other
@@ -29,6 +30,7 @@ Feature: AUTOMATED Account Change Password
         And I click button cancel change password
         Then I will direct to Tab Other
 
+    @C164168
     Scenario: AUTOMATED Close page in form input new password
         Given I choose other
         When I go to page other
@@ -42,6 +44,7 @@ Feature: AUTOMATED Account Change Password
         And I click button cancel change password
         Then I will direct to Tab Other
 
+    @C164169
     Scenario: AUTOMATED Cancel close page in form input old password
         Given I choose other
         When I go to page other
@@ -52,6 +55,7 @@ Feature: AUTOMATED Account Change Password
         And I click button back to change password
         Then I will direct to page input old password
 
+    @C164170
     Scenario: AUTOMATED Cancel close page in form input new password
         Given I choose other
         When I go to page other
@@ -65,6 +69,7 @@ Feature: AUTOMATED Account Change Password
         And I click button back to change password
         Then I will direct to page form input new password
 
+    @C164171
     Scenario: AUTOMATED Mask Old Password
         Given I choose other
         When I go to page other
@@ -75,6 +80,7 @@ Feature: AUTOMATED Account Change Password
         And I mask my old password
         Then I will not see my password
 
+    @C164172
     Scenario: AUTOMATED Unmask Old Password
         Given I choose other
         When I go to page other
@@ -84,6 +90,7 @@ Feature: AUTOMATED Account Change Password
         And I unmask my old password
         Then I will see my password
  
+    @C164173
     Scenario: AUTOMATED Input old password and then delete
         Given I choose other
         When I go to page other
@@ -93,6 +100,7 @@ Feature: AUTOMATED Account Change Password
         And I clear my old password
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
 
+    @C164174
     Scenario: AUTOMATED Input old password with only whitespace
         Given I choose other
         When I go to page other
@@ -101,6 +109,7 @@ Feature: AUTOMATED Account Change Password
         And I input my old password with whitespace
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'    
 
+    @C164175
     Scenario: AUTOMATED Input old password with space in the front
         Given I choose other
         When I go to page other
@@ -110,6 +119,7 @@ Feature: AUTOMATED Account Change Password
         And I unmask my old password
         Then I will see my password
 
+    @C164176
     Scenario: AUTOMATED Input old password with whitespace in the middle
         Given I choose other
         When I go to page other
@@ -120,6 +130,7 @@ Feature: AUTOMATED Account Change Password
         Then I will not see my password
         And I will not see message error 'Password wajib diisi' in field 'oldPassword'
 
+    @C164177
     Scenario: AUTOMATED Input old password with whitespace in the back
         Given I choose other
         When I go to page other
@@ -130,6 +141,7 @@ Feature: AUTOMATED Account Change Password
         Then I will not see my password
         And I will not see message error 'Password wajib diisi' in field 'oldPassword'       
 
+    @C164178
     Scenario: AUTOMATED Submit password with field still empty
         Given I choose other
         When I go to page other
@@ -138,6 +150,7 @@ Feature: AUTOMATED Account Change Password
         And I click next to input new password
         Then I will notify by message error 'Password wajib diisi' in field 'oldPassword'
 
+    @C164179
     Scenario: AUTOMATED Input wrong old password once
         Given I choose other
         When I go to page other
@@ -149,6 +162,7 @@ Feature: AUTOMATED Account Change Password
         And I can click try again to input password
         And I reset attempt failed login
 
+    @C164180
     Scenario: AUTOMATED Input wrong old password twice
         Given I choose other
         When I go to page other
@@ -163,6 +177,7 @@ Feature: AUTOMATED Account Change Password
         And I can click try again to input password
         And I reset attempt failed login
 
+    @C164181
     Scenario: AUTOMATED Input wrong old password three times
         Given I choose other
         When I go to page other
@@ -182,6 +197,7 @@ Feature: AUTOMATED Account Change Password
         And I reset attempt failed login
 
     
+    @C164182
     Scenario: AUTOMATED Input wrong old password first and then correct password
         Given I choose other
         When I go to page other

@@ -19,7 +19,7 @@ Feature: User create PIN from other menu Incorrect Password
         And I click later in pop up biometric
         Then I will direct to dashboard
 
-    @C109122
+    @C164115
     Scenario: User wants to see create pin in menu other
         Given I am a customer who wants to create PIN from menu other
         And I don't have a PIN
@@ -27,7 +27,7 @@ Feature: User create PIN from other menu Incorrect Password
         Then I go to page other
         And I can see change password and create transaction pin
 
-    @C109123
+    @C164116
     Scenario: User wants to create pin from menu other
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -35,7 +35,7 @@ Feature: User create PIN from other menu Incorrect Password
         And I click create transaction pin
         Then I will directly to Create New PIN page
 
-    @C109124
+    @C164117
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -46,7 +46,7 @@ Feature: User create PIN from other menu Incorrect Password
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    @C109125
+    @C164118
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN from menu other
         When I choose other
@@ -56,7 +56,7 @@ Feature: User create PIN from other menu Incorrect Password
         And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
-    @C109126
+    @C164119
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN from menu other
         When I choose other

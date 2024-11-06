@@ -21,7 +21,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click later in pop up biometric
         Then I will direct to dashboard
 
-    @C109115
+    @C164107
     Scenario: Back to main dashbord in pop up create PIN Transaction
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -29,7 +29,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button Back ke Dashboard
         Then I should direct to Dashboard
 
-    @C109116
+    @C164108
     Scenario: Close page Pin Transaction in page fill password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -40,7 +40,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button cancel create PIN
         Then I see pop up Create PIN
 
-    @C109117
+    @C164109
     Scenario: Cancel close page Pin Transaction in page fill password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -51,7 +51,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button back to fill password
         Then I should stay on page fill password
 
-    @C109118
+    @C164110
     Scenario: Close page Pin Transaction in page fill PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -64,7 +64,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button cancel create PIN
         Then I see pop up Create PIN
 
-    @C109119
+    @C164111
     Scenario: Cancel close page Pin Transaction in page fill PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -77,7 +77,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button Cancel
         Then I should stay on page fill PIN
 
-    @C109120
+    @C164112
     Scenario: Back to page input PIN from confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -92,7 +92,7 @@ Feature: User cancel create PIN Journey Transfer
         And I click button Cancel
         Then I should stay on page fill PIN
         
-    @C109121
+    @C164113
     Scenario: User Successfully Get Email for OTP and create PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard

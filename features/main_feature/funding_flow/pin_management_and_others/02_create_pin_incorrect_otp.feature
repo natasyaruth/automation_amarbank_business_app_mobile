@@ -21,8 +21,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I click later in pop up biometric 
         Then I will direct to dashboard
 
-
-    @C109110
+    @C164102
     Scenario: User want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -32,7 +31,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I click icon eye
         Then I will see my password
 
-    @C109111
+    @C164103
     Scenario: User don't want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -42,7 +41,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I click icon eye twice
         Then I will not see my password
 
-    @C109112
+    @C164104
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -54,7 +53,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
-    @C109113
+    @C164105
     Scenario: User Successfully Get Email for OTP and input incorrect OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
@@ -68,7 +67,7 @@ Feature: User create PIN Journey Transfer Incorrect OTP
         And I input incorrect OTP
         Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code
 
-    @C109114
+    @C164106
     Scenario: User Successfully Get Email for OTP and input expired OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
