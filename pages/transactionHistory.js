@@ -32,7 +32,7 @@ module.exports = {
         btnCopied: "~buttonCopy",
         btnShare: "~buttonShare",
         btnTransfer: "~btnTransfer",
-        btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])[1]" },
+        btneStatementDownload: { xpath: "(//android.view.View[@content-desc='buttonEStatement'])" },
         btneStatementLatest: { xpath: "(//android.view.View[@content-desc='buttonRequest0'])" },
         btnCloseeStatement: "~buttonClose",
         detailHistory: {xpath: '(//android.view.View[@content-desc="buttonDetail"])[1]'},
@@ -176,7 +176,12 @@ module.exports = {
 
     viewButtonDownloadEStatement() {
         I.waitForElement(this.buttons.btneStatementDownload,10);
-        I.seeElement(this.buttons.btneStatementDownload);
+        I.see("Unduh E-Statement");
+    },
+
+    viewButtonFilterTransactionHistory() {
+        I.waitForElement(this.buttons.btneStatementDownload,10);
+        I.see("Filter");
     },
 
     clickBtnDownloadeStatement() {
@@ -225,7 +230,7 @@ module.exports = {
         }
 
         else {
-            console.log("e-Statement sudah di download");
+            console.log("e-Statement akan dikirimkan ke email");
             //return true;
         }
     },

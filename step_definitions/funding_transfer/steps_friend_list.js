@@ -44,6 +44,10 @@ When("I input name {string} from the search box", (friendListName)=>{
     friendListPage.fillSearchFriendlist(friendListName);
 });
 
+When("I input receiver name that I added before", ()=>{
+    friendListPage.fillSearchFriendlist(globalVariable.friendList.receiverName);
+});
+
 Then("I find name {string} from the list", (friendListName)=>{
     I.see(friendListName);
 });
@@ -61,12 +65,11 @@ When("I input account number {string}", (accountNumber)=>{
 });
 
 When("I click on check", ()=>{
-    I.wait(5);
     friendListPage.checkingAccountNumber();
 });
 
 Then("I will see error message {string}", async(expectedMessage) => {
-    I.waitForText(expectedMessage, 10);
+    I.waitForText(expectedMessage, 20);
 
 });
 
@@ -109,10 +112,9 @@ When("I process to transfer detail", async ()=>{
     friendListPage.processToTransfer();
 });
 
-Then("I can't see toastbar {string}", (expectedMessageError)=>{
-    I.wait(5);
-    I.waitForText("Saldo aktif", 10);
-    I.dontSee(expectedMessageError);
+Then("I can't see toastbar {string}", (toastBarMessage)=>{
+    I.waitForText("Saldo aktif", 20);
+    I.dontSee(toastBarMessage);
 });
 
 Then("I can see toastbar {string}", (messageInfo)=>{   
@@ -128,9 +130,8 @@ Then ("I can see list of friends", async ()=>{
 });
 
 Then("name of receiver should not be added in friendlist", ()=>{
-    headerPage.clickButtonBack();
-    headerPage.clickButtonBack();
-    I.waitForElement(friendListPage.buttons.newFriendlist, 10);
+    I.wait(1);
+    I.dontSeeElement(friendListPage.text.friendListName);
 });
 
 Then("name of receiver should be added in friendlist", ()=>{
@@ -143,4 +144,17 @@ Then("name of receiver should be added in friendlist", ()=>{
 
 When("I will go to Friend list page", ()=>{
     I.waitForText("Daftar Penerima", 10)
+});
+
+Then("I will see detail inquiry", async()=>{
+    I.waitForText("Pemilik Rekening", 20);
+    
+    globalVariable.friendList.receiverName = await friendListPage.getReceiverName();
+
+    I.see("Pastikan pemilik rekening benar");
+    I.see("Simpan data di Daftar Penerima");
+    I.waitForElement(friendListPage.checkBox.saveFriendList, 10);
+
+    I.see("Selanjutnya");
+    I.waitForElement(friendListPage.buttons.next, 10)
 });

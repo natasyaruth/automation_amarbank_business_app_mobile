@@ -19,7 +19,9 @@ module.exports = {
     closeDialog: "~buttonCloseDialog",
     deleteDialog: "~buttonDeleteDialog",
     closeConfirm: "~buttonCloseConfirm",
-    confirmation: "~buttonConfirm"
+    confirmation: "~buttonConfirm",
+    backconfirmation: "~buttonBack"
+    
   },
   messageErrorFields: {
     fullName: "~textErrorFullName",
@@ -86,7 +88,6 @@ module.exports = {
   },
 
   saveListDirectors() {
-    this.swipeToButtonSaveListDirectors();
     I.waitForElement(this.buttons.saveListDirectors, 10);
     I.click(this.buttons.saveListDirectors);
   },
@@ -101,7 +102,7 @@ module.exports = {
   },
 
   confirmListDirectors() {
-    I.waitForElement(this.buttons.closeConfirm, 10);
+    I.waitForElement(this.buttons.confirmation, 10);
     I.click(this.buttons.confirmation);
   },
 

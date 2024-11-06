@@ -45,6 +45,38 @@ When("I search name {string} in friendlist", (friendListname) => {
   transferPage.fillSearchFriendlist(friendListname);
 });
 
+When("I validate page transfer", () => {
+  I.see("Transfer ke Penerima");
+  I.see("Pemilik Rekening");
+  I.see("Nominal Transfer");
+  I.see("Tulis Nominal Transfer");
+  I.see("Saldo aktif");
+  I.see("Kategori");
+  I.see("Pilih Kategori");
+  I.see("Catatan (Opsional)");
+  I.see("Tulis catatan ke penerima");
+  I.see("Max. 50 karakter");
+  I.see("Sisa limit transaksi harian");
+  I.see("Pilih Layanan Transfer");
+  I.see("Pilih kategori untuk memudahkan Anda mencari riwayat transaksi yang Anda butuhkan");
+  I.see(globalVariable.friendList.friendListName);
+  I.see(globalVariable.friendList.bankName);
+  transferPage.validatePageTransfer();
+});
+
+When("I see limit transaction is updated",async () => {
+  const actualValue = globalVariable.transfer.dailyLimit;
+  const expectedTotalDailyLimit = transferPage.formattedToThreeDigit(actualValue);
+  const expectedTargetValue = await transferPage.getValueDailyLimitTransaction();
+  const actualTotalAmount = transferPage.formattedToThreeDigit(expectedTargetValue);
+  I.assertEqual(actualTotalAmount, "Rp" + expectedTotalDailyLimit);
+});
+
+When("I see error message daily transaction {string}",async (messageValue) => {
+  const actualErrorMessage = await transferPage.getMessageErrorAmount();
+  I.assertEqual(messageValue, actualErrorMessage);
+});
+
 When("I submit to next flow", () => {
     I.waitForText("Selanjutnya", 10);
     transferPage.nextProcessTransfer();
@@ -424,6 +456,9 @@ Then("I successfully transferred", async () => {
 
   I.see("Bagikan Bukti Transfer");
   I.waitForElement(transferPage.buttons.share, 10);
+
+  const transferAmount = globalVariable.transfer.amount; 
+  globalVariable.transfer.dailyLimit -= transferAmount; 
 
 });
 

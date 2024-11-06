@@ -10,13 +10,16 @@ Feature: User forgot PIN and want to create new
             | password    | Test1234 |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test |
+        And never entered wrong password
+        And I reset attempt otp after login
         When I filling in form login with the following details:
             | userID      | ruth17a5 |
             | password    | Test1234 |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test |
         And I click login
-        Then I will direct to Main Dashboard
+        And I click later in pop up biometric
+        Then I will see card account 'active'
 
     @C109139
     Scenario: User wants to create pin from forgot PIN
@@ -37,7 +40,7 @@ Feature: User forgot PIN and want to create new
         When I choose other
         And I click create transaction pin
         And I click link forgot pin
-        And I Input incorrect password
+        And I input incorrect password
         And I submit my password
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
@@ -47,8 +50,7 @@ Feature: User forgot PIN and want to create new
         When I choose other
         And I click create transaction pin
         And I click link forgot pin
-        And I Input incorrect password
-        And I submit my password twice
+        And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
 
     @C109142
@@ -57,10 +59,9 @@ Feature: User forgot PIN and want to create new
         When I choose other
         And I click create transaction pin
         And I click link forgot pin
-        And I Input incorrect password
-        And I submit my password three times
+        And I submit incorrect password three times
         Then I should see pop up message "Anda akan langsung diarahkan ke halaman Masuk Akun"
-        And I directly go to page login
+        And I can directly go to page login
 
     @C109143
     Scenario: User want to see their password
@@ -76,7 +77,7 @@ Feature: User forgot PIN and want to create new
     Scenario: User don't want to see their password
         Given I am a customer who wants to create PIN from menu forgot PIN
         When I choose other
-        And I click create transcation pin
+        And I click create transaction pin
         And I click link forgot pin
         And I input password
         And I click icon eye twice
@@ -92,7 +93,7 @@ Feature: User forgot PIN and want to create new
         And I submit my password
         And I create PIN with "123456"
         And I input incorrect confirmation new PIN
-        Then I will see message error "PIN yang dimasukkan tidak sesuai"
+        Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
     @C109146
     Scenario: User input incorrect OTP
@@ -105,4 +106,4 @@ Feature: User forgot PIN and want to create new
         And I create PIN with "123456"
         And I confirm create PIN
         And I input incorrect OTP
-        Then I will see message error "Kode OTP yang Anda masukkan salah"
+        Then I will see message error "Kode verifikasi yang Anda masukkan salah" in the below of field otp code

@@ -47,6 +47,9 @@ Given(
       account["email"]
     );
 
+    await
+      resetStateDao.resetEmailFromRegisterInvitee(account["email"]);
+
     globalVariable.registration.phoneNumber = "62" + account["phoneNumber"];
     globalVariable.registration.email = account["email"];
     globalVariable.login.password = account["password"];
@@ -72,35 +75,6 @@ Given("I've requested OTP {string} times", (timesAttempt) => {
     otpConfirmationPage.resendOTP();
     I.waitForInvisible(otpConfirmationPage.links.resendOTP, 5);
   }
-});
-
-Given("I am a customer had been registering and verify phonenumber with following details:", async (table) => {
-  const account = table.parse().rowsHash();
-  globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
-  globalVariable.registration.email = account["email"];
-
-  await whitelistDao.whitelistPhoneNumber(
-    "+" + globalVariable.registration.phoneNumber
-  );
-
-  await whitelistDao.whitelistEmail(
-    globalVariable.registration.email
-  );
-
-  welcomePage.clickButtonRegister();
-  registrationPage.fillInAccountInformation(account);
-  registrationPage.clickCreateAccountButton();
-  registrationPage.clickButtonConfirm();
-
-  registrationPage.clickCheckboxPDPMandatory();
-  registrationPage.clickCheckboxPDPOptional();
-
-  registrationPage.clickCreateAccountButton();
-
-  I.waitForText("Verifikasi Nomor HP", 10);
-  otpConfirmationPage.fillInOtpCode((await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp);
-
-  verificationEmailPage.isOpen();
 });
 
 Given("still not agree with PDP concern", async ()=>{
@@ -136,36 +110,6 @@ Given("I've requested OTP {string} times", (timesAttempt) => {
     I.waitForInvisible(otpConfirmationPage.links.resendOTP, 5);
   }
 });
-
-Given(
-  "I am a customer had been registering and verify phonenumber with following details:",
-  async (table) => {
-    const account = table.parse().rowsHash();
-    globalVariable.registration.phoneNumber = "62" + account["mobileNumber"];
-    globalVariable.registration.email = account["email"];
-
-    await whitelistDao.whitelistPhoneNumber(
-      "+" + globalVariable.registration.phoneNumber
-    );
-
-    await whitelistDao.whitelistEmail(globalVariable.registration.email);
-
-    welcomePage.clickButtonRegister();
-    registrationPage.fillInAccountInformation(account);
-    registrationPage.clickCreateAccountButton();
-    registrationPage.clickButtonConfirm();
-
-    registrationPage.clickCheckboxPDPMandatory();
-    registrationPage.clickButtonCreateAccountPdp("createAccountPDP");
-
-    I.waitForText("Verifikasi Nomor HP", 10);
-    otpConfirmationPage.fillInOtpCode(
-      (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
-    );
-
-    verificationEmailPage.isOpen();
-  }
-);
 
 When("I choose menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -215,6 +159,9 @@ When(
     );
 
     await whitelistDao.whitelistEmail(globalVariable.registration.email);
+
+    await
+      resetStateDao.resetEmailFromRegisterInvitee(globalVariable.registration.email);
 
     registrationPage.fillInAccountInformation(account);
     registrationPage.clickCreateAccountButton();
@@ -386,6 +333,33 @@ When(
     }
 
     globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.registration.emailPartner)).businessCode;
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      globalVariable.registration.emailPartner
+    );
+
+    registrationPage.fillInAccountInformation(account);
+  }
+);
+
+When(
+  "I filling in my account business information with old email and business code from new email",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.registration.fullNamePartner,
+      email: globalVariable.registration.emailPartner,
+      mobileNumber: globalVariable.registration.phoneNumberPartner,
+      password: globalVariable.registration.passwordPartner,
+      confirmPassword: globalVariable.registration.passwordPartner,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.registration.newEmailPartner)).businessCode;
 
     await whitelistDao.whitelistPhoneNumber(
       "+" + globalVariable.registration.phoneNumberPartner
@@ -1176,15 +1150,6 @@ Then("I will get new OTP different with my first OTP", async () => {
 
 Then("I will see attempts left {string}", (leftAttempt) => {
   I.waitForText(leftAttempt, 10);
-});
-
-Then("I should see button Buat Akun will enable", () => {
-  I.seeElement(registrationPage.buttons.createAccountPDP);
-});
-
-Then("I should see button Buat Akun will disable", async () => {
-  //I.seeElement(registrationPage.buttons.createAccountPDP);
-  await registrationPage.checkTnC();
 });
 
 Then("I should go to Verifikasi No. HP page", () => {

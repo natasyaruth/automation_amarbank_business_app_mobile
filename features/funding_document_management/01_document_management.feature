@@ -274,6 +274,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -490,7 +491,7 @@ Feature: Document Management
         And notification red dot document safe is on
         And I continue to complete my data
         And I see page 'Data Personal'
-        And I click close in header page\
+        And I click close in header page
         And I click option exit survey 'Proses akan dilanjutkan nanti'
         And I submit my exit survey
         And I will see card account 'on process'
@@ -716,11 +717,10 @@ Feature: Document Management
         And I click see my document
         And I will see menu document giro, loan and other
         And I will see button upload other document
-        And I click menu other document
         Then I will see empty detail menu other document
 
     @C157518 @FunctTestFundingSprint4
-    Scenario: Cancel upload other document
+    Scenario: Close bottom sheet Add new file and new folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -740,67 +740,9 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I close bottom sheet upload
-        And I will see pop up confirm cancel upload other document
-        And I click confirm cancel upload other document
-        Then I will see menu document giro, loan and other
-        And I will see button upload other document
-
-    @C157519
-    Scenario: Back to menu brankas document from detail other document
-        Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I will see menu document giro, loan and other
-        And I will see button upload other document
-        And I click menu other document
-        And I will see empty detail menu other document
-        And I back to page document business
-        Then I will see menu document giro, loan and other
-        And I will see button upload other document
-
-    @C157520
-    Scenario: Back again to upload other document
-        Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I close bottom sheet upload
-        And I will see pop up confirm cancel upload other document
-        And I click back to upload other document
-        Then I will see bottom sheet upload other document
+        Then I will direct to page document brankas
 
     @C157521
     Scenario: Upload other document with type JPG
@@ -824,7 +766,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -853,7 +795,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I upload other document with type 'jpeg'
         And I will see other document has been uploaded
         And I click save document
@@ -882,7 +824,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I upload other document with type 'png'
         And I will see other document has been uploaded
         And I click save document
@@ -911,170 +853,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I will see other document has been uploaded
-        And I click save document
-        Then I will see snackbar success upload success
-        And I will direct to page other document with document that has been uploaded is in there
-
-    @C157525
-    Scenario: Cancel delete other document in section upload
-        Given I am a registered customer with following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And don't have any other document
-        And I filling in form login with the following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I will see other document has been uploaded
-        And I click delete other document in section upload
-        And I will see pop up delete other document
-        And I cancel delete other document
-        Then I will see other document has been uploaded
-
-    @C157526 @FunctTestFundingSprint4
-    Scenario: Delete other document in section upload
-        Given I am a registered customer with following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And don't have any other document
-        And I filling in form login with the following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I will see other document has been uploaded
-        And I click delete other document in section upload
-        And I will see pop up delete other document
-        And I confirm delete other document
-        Then I will see other document is deleted
-        And I close bottom sheet upload
-        And I click confirm cancel upload other document
-        And I click menu other document
-        And I will see empty detail menu other document
-
-    @C157527
-    Scenario: Cancel delete other document in section detail menu Other Document
-        Given I am a registered customer with following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And don't have any other document
-        And I filling in form login with the following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click menu other document
-        And I will see empty detail menu other document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I will see other document has been uploaded
-        And I click save document
-        And I will direct to page other document with document that has been uploaded is in there
-        And I delete other document number '1'
-        And I will see pop up delete other document
-        And I cancel delete other document
-        Then I will direct to page other document with document that has been uploaded is in there
-
-    @C157528 @FunctTestFundingSprint4
-    Scenario: Delete other document in section detail menu Other Document
-        Given I am a registered customer with following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And don't have any other document
-        And I filling in form login with the following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click menu other document
-        And I will see empty detail menu other document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'pdf'
-        And I will see other document has been uploaded
-        And I click save document
-        And I will direct to page other document with document that has been uploaded is in there
-        And I delete other document number '1'
-        And I will see pop up delete other document
-        And I confirm delete other document
-        Then I will see empty detail menu other document
-
-    @C157529 @FunctTestFundingSprint4
-    Scenario: Upload other document entry point detail menu Other Document
-        Given I am a registered customer with following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And complete onboarding document safe and survey
-        And don't have any other document
-        And I filling in form login with the following details:
-            | userID      | devef721 |
-            | password    | 1234Test |
-            | userIDstg   | staga8a9 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        When I click tab brankas
-        And I click direct to input password document
-        And I input password document
-        And I click see my document
-        And I click menu other document
-        And I will see empty detail menu other document
-        And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
@@ -1103,13 +882,12 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I click button upload other document
-        And I will see bottom sheet upload other document
+        And I will see bottom sheet upload other document and create folder
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
-        And I back to page document business
         And I click button upload other document
         And I upload other document with type 'jpg'
         Then I will see other document has been uploaded
@@ -1117,8 +895,96 @@ Feature: Document Management
         And I will see snackbar success upload success
         And I see list document is ordering by the latest to oldest
 
-    @C157531
-    Scenario: Upload more than one other document entry point detail menu Other Document
+    Scenario: Close bottom sheet add new folder other document
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I will see bottom sheet new folder
+        And I close bottom sheet upload
+        Then I will direct to page document brankas
+
+    Scenario: Add single new folder other document
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        Then I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+
+    Scenario: Add more than one new folder other document
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Tidak Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I will direct to page document brankas with folder that has been created in section other document
+        And I see list folder is ordering by the latest to oldest
+
+    Scenario: Add new folder and file
         Given I am a registered customer with following details:
             | userID      | devef721 |
             | password    | 1234Test |
@@ -1138,36 +1004,43 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click menu other document
-        And I will see empty detail menu other document
         And I click button upload other document
-        And I will see bottom sheet upload other document
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
         And I click button upload other document
-        And I will see bottom sheet upload other document
-        And I upload other document with type 'png'
+        And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
-        Then I will see snackbar success upload success
-        And I see list document is ordering by the latest to oldest
+        And I will see snackbar success upload success
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I will direct to page document brankas with folder that has been created in section other document
+        And I see list other document is ordering by the latest folder and then followed with latest file
 
-    @C157532
-    Scenario: Delete all other document
+    Scenario: Let folder naming is blank
         Given I am a registered customer with following details:
-            | userID      | deveb931 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | staga8a9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
-        And has more than one other document
+        And don't have any other document
         And I filling in form login with the following details:
-            | userID      | deveb931 |
+            | userID      | deveceea |
             | password    | 1234Test |
-            | userIDstg   | staga8a9 |
+            | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1176,7 +1049,996 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click menu other document
-        And I will see other document more than one
-        And I delete all other document
-        Then I will see empty detail menu other document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I click icon clear name
+        Then I will see button create new folder is disabled
+
+    Scenario: Clear naming folder and then fill again
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I click icon clear name
+        And I will see button create new folder is disabled
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        Then I will see button create new folder is enabled
+
+    Scenario: Clear naming folder using keyboard
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I clear new folder name using keyboard
+        Then I will see button create new folder is disabled
+
+    Scenario: Fill folder name using special char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting & R4has!@.,'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I will direct to page document brankas with folder that has been created in section other document
+
+    Scenario: Fill folder name using alphanumeric
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting 1'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I will direct to page document brankas with folder that has been created in section other document
+
+    Scenario: Fill folder name with length char more than 100 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with char more than 100 character
+        Then I see field new folder is filled with only 100 character, the rest is auto trimmed
+        And I will see button create new folder is enabled
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+
+    Scenario: Fill folder name with length char less than 2 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'A'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I will direct to page document brankas with folder that has been created in section other document 
+
+    Scenario: Create new folder when the previous folder was not renamed
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with new folder using name Folder Baru
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        Then I will see field new folder is filled with Folder Baru 1
+
+    Scenario: Create another folder with name same as before
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'A'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I click button upload other document
+        And I click create new folder
+        And I fill new folder name same as before
+        And I save new folder
+        Then I see message error folder name is exist
+        And I will see button create new folder is enabled
+
+    Scenario: Close bottom sheet edit folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I will see bottom sheet edit folder
+        And I close bottom sheet upload
+        Then I will direct to page document brankas with folder that has been created in section other document
+
+    Scenario: Edit naming folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I will see bottom sheet change folder name
+        And I edit folder name with 'Folder Tidak Penting'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will direct to page document brankas with folder name has been change
+
+    Scenario: Edit naming folder using special char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I edit folder name with 'Folder T!d@k.,&'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will direct to page document brankas with folder name has been change
+
+    Scenario: Edit naming folder using alpha numeric
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I edit folder name with 'Folder 1234'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will direct to page document brankas with folder name has been change
+
+    Scenario: Edit folder name with length char more than 100 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I change folder name with char more than 100 character
+        Then I see update folder name is filled with only 100 character, the rest is auto trimmed
+        And I see button change name is enabled
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will direct to page document brankas with folder name has been change
+
+    Scenario: Edit folder name with length char less than 2 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I edit folder name with 'A'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will direct to page document brankas with folder name has been change
+
+    Scenario: Let folder naming is blank when editing
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I click icon clear name
+        Then I see button change name is disabled 
+
+    Scenario: Clear naming folder using keyboard when editing
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I clear change folder name using keyboard
+        Then I see button change name is disabled
+
+    Scenario: Edit naming folder same with existing folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click create new folder
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click edit folder name
+        And I edit folder name same with other folder
+        And I click change name
+        Then I see message error folder name is exist
+        And I see button change name is enabled
+
+    Scenario: Edit naming file
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I will see bottom sheet download and change file name
+        And I click edit file name
+        And I will see bottom sheet change file name
+        And I edit file name with 'Dokumen Penting Banget'
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change
+
+    Scenario: Edit naming file contain with extension file
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name contain with extension file
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change 
+
+    Scenario: Edit naming file using special char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name with 'Dokumen !@#$%.,'
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change
+
+    Scenario: Edit naming file using alpha numeric
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name with 'Dokumen 1'
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change
+
+    Scenario: Edit file name with length char more than 100 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I update file name with char more than 100 character
+        Then I see field file name is filled with only 100 character, the rest is auto trimmed
+        And I see button change name is enabled
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change
+
+    Scenario: Edit file name with length char less than 2 char
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name with 'A'
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will direct to page document brankas with file name has been change
+
+    Scenario: Edit naming file same with other file
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name same with file name as before
+        And I click change name
+        Then I see message error file name is exist
+        And I see button change name is enabled
+
+    Scenario: Let file naming is blank when editing
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I click icon clear name
+        Then I see button change name is disabled
+
+    Scenario: Clear naming file using keyboard when editing
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click edit file name
+        And I clear change file name using keyboard
+        Then I see button change name is disabled
+
+    Scenario: Add new folder with more than one branches
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 2'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I see the new folder is created
+        And I open detail other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 3'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I see the new folder is created
+        And I open detail other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 4'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I see the new folder is created
+        And I open detail other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 5'
+        And I save new folder
+        And I see snackbar success create new folder
+        Then I see the new folder is created
+
+    Scenario: Add new file in folder branches
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        Then I will see snackbar success upload success
+        And I see the new file is created
+      
+    Scenario: Edit file in folder branches
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I see the new file is created
+        And I click icon three dot file
+        And I click edit file name
+        And I edit file name with 'Dokumen Aku'
+        And I click change name
+        Then I will see snackbar success change file name
+        And I will see file name has been change
+
+    Scenario: Edit folder naming in detail folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 2'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I see the new folder is created
+        And I click icon three dot folder
+        And I edit folder name with 'Folder Tidak Penting sih'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will see folder name has been change

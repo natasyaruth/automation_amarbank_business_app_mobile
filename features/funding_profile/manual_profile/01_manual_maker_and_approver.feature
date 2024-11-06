@@ -3,71 +3,56 @@ Feature: Maker and Approver Transaction Manual Cases
     As a director
     I want to approve or reject transaction from other director
 
-    @C132505
-    Scenario: Validate number card approval transaction in main dashboard (Only maker)
-        Given Maker create transaction transfer out more than 5 times
-        When User login as maker
-        And User directly to main dashboard
-        Then User will see card maker in main dashboard with maximum 5 cards
-        And User can swipe the card
-
-    @C132506
-    Scenario: Validate number card approval transaction in main dashboard (Only approver)
-        Given Maker create transaction transfer out more than 5 times
-        When User login as approver
-        And User directly to main dashboard
-        Then User will see card approver in main dashboard with maximum 5 cards
-        And User can swipe the card
-
-    @C132507
-    Scenario: Validate number card approval transaction in main dashboard (Maker+Approver)
-        Given Maker and approver create transaction transfer out more than 5 times
-        When User login as approver or maker
-        And User directly to main dashboard
-        Then User will see card approver in main dashboard with maximum 5 cards contain with need approval and waiting approval cards
-        And User can swipe the card
-
     @C132508
     Scenario: Validate card maker and approval after make transfer out
         Given I am a registered customer with following details:
-            | userID   | autocaea |
-            | password | 1234Test |
-        And I filling in form login with the following details:
-            | userID   | autocaea |
-            | password | 1234Test |
-        And I click login
-        And I click later
-        When I choose menu Transfer from main dashboard
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount '1000000'
-        And I choose category 'Pembayaran'
-        And I submit to next flow
-        And I click transfer now
-        And I input PIN '111111'
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will see card maker transaction in main dashboard
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID   | autocaea |
-            | password | 1234Test |
-        And I click login
-        And I click later
-        And I choose menu Transfer from main dashboard
-        And I input name 'Nadya Larosa' from the search box
-        And I choose the friendlist
-        And I input amount '1000000'
-        And I choose category 'Pembayaran'
-        And I submit to next flow
-        And I click transfer now
-        And I input PIN '111111'
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        Then I will see card maker transaction in main dashboard
-        And I swipe card transaction
-        And I will see card approver transaction in main dashboard
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And has partner with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | nata30bc |
+            | passwordStg | 1234Test |
+        And we both eligible to be maker and approver
+        When I login as initiator
+        And I transfer out transaction
+        And I will see notification red dot in notification center
+        And I will see notification red dot in menu profile
+        And I will not see any card pending task in main dashboard
+        And I click menu notification center
+        And I will see notification waiting for approval
+        And I back to dashboard
+        And I click menu profile
+        And I will see count pending task is 1
+        And I back to dashboard
+        And I go to menu other
+        And I logout
+        And I login as partner
+        And I will see notification red dot in notification center
+        And I will see notification red dot in menu profile
+        And I will not see any card pending task in main dashboard
+        And I click menu notification center
+        And I will see notification need for approval
+        And I back to dashboard
+        And I will see notification red dot in notification center
+        And I will see notification red dot in menu profile
+        And I transfer out transaction
+        And I click menu notification center
+        Then I will see notification waiting for approval in the bottom of notification need approval
+        And I back to dashboard
+        And I click menu profile
+        And I will see count pending task is 2
+        And I back to dashboard
+        And I go to menu other
+        And I logout
+        And I login as initiator
+        And I click menu notification center
+        And I will see notification waiting for approval in the bottom of notification need approval
+        And I back to dashboard
+        And I click menu profile
+        And I will see count pending task is 2
 
     @C132509
     Scenario: Receive notification need approval transaction from maker
@@ -81,10 +66,8 @@ Feature: Maker and Approver Transaction Manual Cases
     @C132510
     Scenario: Receive OTP SMS
         Given Maker create transaction transfer out
-        And service to approve/reject transaction is error
-        When User login as last approver
-        And User click card approver
-        And User reject the transaction
+        When User open notification waiting approval in notification center
+        And User cancel the transaction
         And User input password
         And User submit password
         Then User will receive SMS along with otp code
@@ -92,10 +75,8 @@ Feature: Maker and Approver Transaction Manual Cases
     @C132511
     Scenario: Checking time and attempt resend OTP
         Given Maker create transaction transfer out
-        And service to approve/reject transaction is error
-        When User login as last approver
-        And User click card approver
-        And User reject the transaction
+        When User open notification waiting approval in notification center
+        And User cancel the transaction
         And User input password
         And User submit password
         And User will see count down time 1 minutes with attempt '0/5'
@@ -113,10 +94,8 @@ Feature: Maker and Approver Transaction Manual Cases
     @C132512
     Scenario: Drop off in page input OTP
         Given Maker create transaction transfer out
-        And service to approve/reject transaction is error
-        When User login as last approver
-        And User click card approver
-        And User reject the transaction
+        When User open notification waiting approval in notification center
+        And User cancel the transaction
         And User input password
         And User submit password
         And User drop off or kill app in page OTP
@@ -129,26 +108,24 @@ Feature: Maker and Approver Transaction Manual Cases
 
     @C132513
     Scenario: Approve transaction more than one
-        Given Maker create transaction transfer out more than 2 times
+        Given Maker create transaction transfer out more than 2 times (the first one is A and then is B)
         When User login as approver
-        And User click card approver A
+        And User open notification center
+        And User see 2 notification approval in the top of other notification
+        And the ordering is A and then followed by B
+        And User open approver A
         And User approve the transaction A
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User click link see detail transaction A
-        And User will direct to section done
-        Then Card transaction A will move to section done with status 'Transaksi Disetujui'
-        And User back to main dashboard
-        And User will see card approver A is no longer in main dashboard
-        And User click card approver B
+        And User input PIN A
+        And User will direct to menu notification center with snackbar success approved
+        And the notification is not there anymore
+        And transaction A will move to section done with status 'Transaksi Disetujui'
+        And User back to menu notification center
+        And User open approver B
         And User approve the transaction B
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User click link see detail transaction B
-        And User will direct to section done
-        And Card transaction B will move to section done with status 'Transaksi Disetujui'
+        And User input PIN B
+        And User will direct to menu notification center with snackbar success approved
+        And the notification is not there anymore
+        And card transaction B will move to section done with status 'Transaksi Disetujui'
         And User back to main dashboard
         And User will see card approver B is no longer in main dashboard
 
@@ -156,73 +133,77 @@ Feature: Maker and Approver Transaction Manual Cases
     Scenario: Approve transaction with approval more than 1 director
         Given Maker create transaction transfer out
         And approver more than one
-        When User login as approver
-        And User click card approver
+        When User login as first approver
+        And User open notification center
+        And User open the notification transaction need approval
         And User approve the transaction
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User click link see detail transaction
-        And User will direct to tab in process at section waiting for approval
-        And card transaction will move to tab in process at section waiting for approval
+        And User input PIN
+        And User will direct to menu notification center with snackbar success approved
+        And notification transaction is change into waiting approval from other director
+        And card transaction will move to tab in process at section waiting for approval in menu transaction pending task
+        And User login as last approval
+        And User open notification center
+        And User open the notification transaction need approval
+        And User approve the transaction
+        And User input PIN
+        And User will direct to menu notification center with snackbar success approved
+        Then the notification is change into transaction is approved
+        And all director will get this notification
 
     @C132515
     Scenario: Reject transaction when other director approve the transaction
         Given Maker create transaction transfer out
         And approver more than one
-        And other approver already approve the transaction
-        When User login as last approver
-        And User click card approver
+        When User login as first approver
+        And User open notification center
+        And User open the notification transaction need approval
+        And User approve the transaction
+        And User input PIN
+        And User will direct to menu notification center with snackbar success approved
+        And notification transaction is change into waiting approval from other director
+        And card transaction will move to tab in process at section waiting for approval in menu transaction pending task
+        And User login as last approval
+        And User open notification center
+        And User open the notification transaction need approval
         And User reject the transaction
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User click link see detail transaction
-        And User will direct to section done
-        Then Card transaction A will move to section done with status 'Transaksi Ditolak'
-        And User back to main dashboard
-        And User will see card approver is no longer in main dashboard
+        And User input PIN
+        And User will direct to menu notification center with snackbar success rejected
+        Then the notification is change into transaction is rejected
+        And all director will get this notification
 
     @C132516
     Scenario: Approve/reject transaction when server is error
         Given Maker create transaction transfer out
         And service to approve/reject transaction is error
         When User login as last approver
-        And User click card approver
-        And User reject the transaction
-        And User input password
-        And User submit password
-        And User input OTP code
-        Then User User will direct to section in progress
+        And User open notification center
+        And User open the notification transaction need approval
+        And User approve the transaction
+        And User input PIN
+        Then User will direct to notification center
         And User will see snackbar 'Sedang terjadi kesalahan sistem.'
 
     @C132517
     Scenario: Receive notification approved from approver
         Given Maker create transaction transfer out using device A
         When User login as approver using device B
-        And User click card approver
+        And User open notification center
+        And User open the notification transaction need approval
         And User approve the transaction
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User will direct to section done
-        And Card transaction B will move to section done with status 'Transaksi Disetujui'
-        Then Maker in device A will receive notification with wording 'Transaksi Anda telah disetujui oleh Direksi lainnya.'
-        And receive email approved from amarbank business
+        And User input PIN
+        And User will direct to notification center
+        Then Maker receive email approved from amarbank business
 
     @C132518
     Scenario: Receive notification rejected from approver
         Given Maker create transaction transfer out using device A
         When User login as approver using device B
-        And User click card approver
+        And User open notification center
+        And User open the notification transaction need approval
         And User reject the transaction
-        And User input password
-        And User submit password
-        And User input OTP code
-        And User will direct to section done
-        And Card transaction B will move to section done with status 'Transaksi Ditolak'
-        Then Maker in device A will receive notification with wording 'Transaksi Anda telah ditolak oleh Direksi lainnya.'
-        And receive email rejected from amarbank business
+        And User input PIN
+        And User will direct to notification center
+        Then Maker will receive email rejected from amarbank business
 
     @C132519
     Scenario: Check card maker in main dashboard and detail approval transaction after transaction was cancelled
@@ -233,7 +214,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker input OTP code
         And Maker will direct to main dashboard
         And Maker will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        Then Maker will not see card maker that already been cancelled
+        Then Maker will not see notification maker that already been cancelled in notification center
         And Maker click tab profile
         And Maker click menu transaction approval
         And Maker click waiting approval section
@@ -422,9 +403,10 @@ Feature: Maker and Approver Transaction Manual Cases
     @C132530
     Scenario: Approve transaction with user still not create PIN yet
         Given Login to app using account as a approver
-        And has card transaction that need to approved
+        And has notification transaction that need to approved
         And didn't set the PIN yet
-        When I click card Approver
+        When I click notification Approver in notification center
+        And I open the notification transaction need approval
         And I approve the transaction
         And I click button create PIN
         And I input password
@@ -435,16 +417,17 @@ Feature: Maker and Approver Transaction Manual Cases
         Then I will direct to page detail transaction that need to approve
         And I approve the transaction
         And I input PIN transaction
-        And I will direct to page transaction approval
+        And I will direct to page notification center
         And I will see snackbar success
-        And I will see my card is in section complete with status approved
+        And I will see notification need approve is change into transaction is approved
 
     @C132531
     Scenario: Reject transaction with user still not create PIN yet
         Given Login to app using account as a approver
-        And has card transaction that need to approved
+        And has notification transaction that need to approved
         And didn't set the PIN yet
-        When I click card Approver
+        When I click notification Approver in notification center
+        And I open the notification transaction need approval
         And I reject the transaction
         And I click button create PIN
         And I input password
@@ -455,6 +438,25 @@ Feature: Maker and Approver Transaction Manual Cases
         Then I will direct to page detail transaction that need to approve
         And I reject the transaction
         And I input PIN transaction
-        And I will direct to page transaction approval
+        And I will direct to page notification center
         And I will see snackbar success
-        And I will see my card is in section complete with status approved
+        And I will see notification need approve is change into transaction is rejected
+
+    Scenario: Checking ordering list pending task in notification center
+        Given I am an initiator
+        And has two other partner
+        And we have eligibilty as maker or approver
+        And we can call the partner as Director A and Director B
+        When I login as initiator
+        And I create pending transaction X
+        And I will see transaction X in notification center with position is always in the top before the general notification
+        And I create again pending transaction Y
+        And I will see pending task X in in the top and then followed with transaction Y
+        And I login as Director A
+        And I will see transaction X and Y need approval in notification center
+        And I as Director A create another pending transaction A
+        And I will see list pending transaction with order list are Approval transaction X, Approval transaction Y and Pending transaction A
+        And I login as Director B
+        And I will see list need approval transaction with order list are Approval transaction X, Approval transaction Y and Approval transaction A
+        And I as Director B create another pending transaction B
+        Then I will see list pending transaction with order list are Approval transaction X, Approval transaction Y, Approval transaction A and Pending transaction B

@@ -21,12 +21,13 @@ module.exports = {
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
-    infoNotifDetail: {xpath: "//android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
+    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotifDetail: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",
     statusTrx: "~textTransactionStatus",
     amount: "~textAmount",
+    pendingTrxStatus: "~textPendingTransactionStatus",
   },
 
   openNotificationCenter(){
@@ -159,4 +160,8 @@ module.exports = {
     return await I.grabTextFrom(this.texts.infoNotifDetail);
   },
 
+  async getPendingTrxStatus(index){
+    I.waitForElement(this.texts.pendingTrxStatus+index, 10);
+    return I.grabTextFrom(this.texts.pendingTrxStatus+index);
+  },
 }

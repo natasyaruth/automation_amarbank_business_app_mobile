@@ -126,6 +126,7 @@ Feature: User Want to Transfer with Negative Cases
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
+        And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -144,10 +145,9 @@ Feature: User Want to Transfer with Negative Cases
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I am on page transfer confirmation
+        And I click transfer now
         And I input wrong PIN
         Then I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
-        And I reset attempt failed PIN
 
     @C135520
     Scenario: User transfer and input wrong PIN twice
@@ -156,6 +156,7 @@ Feature: User Want to Transfer with Negative Cases
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
+        And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -174,7 +175,7 @@ Feature: User Want to Transfer with Negative Cases
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I am on page transfer confirmation
+        And I click transfer now
         And I input wrong PIN
         And I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
         And I try again to input PIN
@@ -189,6 +190,7 @@ Feature: User Want to Transfer with Negative Cases
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
+        And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | 1234Test |
@@ -207,7 +209,7 @@ Feature: User Want to Transfer with Negative Cases
         And I click choose bank transfer service
         And I choose transfer service RTOL
         And I click transfer
-        And I am on page transfer confirmation
+        And I click transfer now
         And I input wrong PIN
         And I see PIN message error 'Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun'
         And I try again to input PIN
@@ -220,7 +222,8 @@ Feature: User Want to Transfer with Negative Cases
         And I will directing to page login
         And I reset attempt failed PIN
 
-    @C135522
+    @C135522 
+    ## NEED TO TEST MANUAL, Because this scenario need account with total balance is 50.000.000
     Scenario: Transfer with amount more than admin fee RTOL
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -239,7 +242,7 @@ Feature: User Want to Transfer with Negative Cases
         And I am on receiver list page
         And I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount more than active amount
+        And I input amount same with amount active
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
         And I can see BIFAST, RTOL and SKN
@@ -251,6 +254,7 @@ Feature: User Want to Transfer with Negative Cases
         Then I see message error total amount shouldn't more than active amount
 
     @C135523
+    ## NEED TO TEST MANUAL, Because this scenario need account with total balance is 50.000.000
     Scenario: Transfer with amount more than admin fee BIFAST
         Given I am a registered customer with following details:
             | userID      | natace13 |

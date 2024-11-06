@@ -1,3 +1,4 @@
+@change_password
 Feature: Account Change Password
     In order to secure my data
     As a customer
@@ -274,7 +275,8 @@ Feature: Account Change Password
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -296,7 +298,8 @@ Feature: Account Change Password
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -321,7 +324,8 @@ Feature: Account Change Password
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -350,7 +354,8 @@ Feature: Account Change Password
             | userID      | auto3a2f |
             | password    | 1234Test |
             | userIDstg   | stagcfb7 |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | auto3a2f |
             | password    | 1234Test |
@@ -1103,6 +1108,7 @@ Feature: Account Change Password
             | password    | 1234Test |
             | userIDstg   | ruthfdcb |
             | passwordStg | 1234Test | 
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | autod015 |
             | password    | 1234Test |
@@ -1127,7 +1133,6 @@ Feature: Account Change Password
         And I fill form login with incorrect password
         And I click login
         Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
-        And I reset attempt failed login
 
     @C141211
     Scenario: Checking attempt failed input old password after attempt failed login twice
@@ -1135,7 +1140,8 @@ Feature: Account Change Password
             | userID      | autod015 |
             | password    | 1234Test |
             | userIDstg   | ruthfdcb |
-            | passwordStg | 1234Test | 
+            | passwordStg | 1234Test |
+        And never entered wrong password
         When I filling in form login with the following details:
             | userID      | autod015 |
             | password    | Test1234 |
