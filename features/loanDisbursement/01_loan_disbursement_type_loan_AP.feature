@@ -175,3 +175,38 @@ Feature: Loan Disbursement for Loan Type AP
         When user should see field "Total Bunga" in the below of field "textInterestFee"
         When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
         Then show amount disbursement calculation page if invoice value 80%
+
+    
+    Scenario: Validate Display Provision Fee Information method is every disbursement  
+        Given I have successfully disburse for loan AP
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I see Biaya Provisi
+        And I see provision fee percentage
+        And I see provision fee amount
+
+    Scenario: Validate Do Not Display Provision Fee When Percentage is Zero
+        Given I have successfully disburse for loan AP with provisi is zero
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
+
+
+    Scenario: Validate Display Provision Fee Information method is facility created
+        Given I have successfully disburse for loan AP with program facilty created
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
