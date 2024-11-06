@@ -125,45 +125,44 @@ Scenario: Validate Push notif Disbursement success direct to relevant page
 
 Scenario: Validate Push Notif BILL TEMPO WITHIN 3 DAYS
     Given I receive push notif BILL TEMPO_WITHIN 3 DAYS
-    When I see the the title ""
+    When I see the the title "Tagihan Akan Di Autodebet Dalam"
     And I click the notif 
     And I will direct to page login
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+    Then I direct to page detail tagihan with countdown 3 hari
 
 
 Scenario: Validate Push Notif BILL AUTODEBIT TODAY
     Given I receive push notif BILL_AUTODEBIT_TODAY
-    When I see the the title ""
+     When I see the the title "Tagihan Berhasil Dibayar"
     And I click the notif 
     And I will direct to page login
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+   Then I direct to page detail tagihan with countdown 0 hari
 
 
 Scenario: Validate Push Notif AUTODEBET SUCCESS
     Given I receive push notif AUTODEBET_SUCCESS
-    When I see the the title ""
+    When I see the the title "Tagihan Berhasil Dibayar"
     And I click the notif 
     And I will direct to page login
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+   Then I direct to page detail tagihan with status Tagihan berhasil dibayar
 
 
 
 Scenario: Validate Push Notif AUTODEBET FAILED
     Given I receive push notif AUTODEBET FAILED
-    When I see the the title ""
+     When I see the the title "Autodebet Gagal"
     And I click the notif 
     And I will direct to page login
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
-
+   Then I direct to page detail tagihan with status Autodebet gagal, Pastikan saldo mencukupi.

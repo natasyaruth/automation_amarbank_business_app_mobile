@@ -152,7 +152,7 @@ module.exports = {
         fullName: "",
         email: "",
         nik: "",
-        numberOfDirectors: 0
+        numberOfDirectors: 1
     },
     uploadDocuments: {
         nib: false,
@@ -164,6 +164,7 @@ module.exports = {
     },
     createPin: {
         newPin: "",
+        oldPin: "",
         otp: "",
     },
     friendList: {

@@ -20,7 +20,7 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Revvy                    |
-      | email           | natasyaruth03@gmail.com  |
+      | email           | ruth.hutauruk@amarbank.co.id  |
       | mobileNumber    | 8999677540               |
       | password        | 1234Test                 |
       | confirmPassword | 1234Test                 |
@@ -45,6 +45,7 @@ Feature: Account registration
     When I am filling field 'fullName' with 'John Doe S.Kom, M\'Kom-'
     Then I shouldn't see message error in the below of field 'fullName'
 
+  @validation_fill_field_and_clear_field
   Scenario Outline: Verifying fields has been filled and then empty the fields
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Testing'
@@ -58,6 +59,7 @@ Feature: Account registration
       | @C131576     | password        | Password            |
       | @C131577     | confirmPassword | Konfirmasi password |
 
+  @validation_one_empty_fields
   Scenario Outline: Verifying one fields hasn't been filled by user
     Given I am a customer want to access menu registration
     When I fill form registration except field '<Field>'
@@ -71,6 +73,7 @@ Feature: Account registration
       | @C131581     | password        | Password            |
       | @C131582     | confirmPassword | Konfirmasi password |
 
+  @validation_format_fullname
   Scenario Outline: Verifying full name with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'fullName' with '<Value>'
@@ -83,6 +86,7 @@ Feature: Account registration
       | @C131586     | Ru                                                   | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
       | @C131587     |                                                      | Nama lengkap wajib diisi                                                       |
 
+  @validation_format_email
   Scenario Outline: Verifying email with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'email' with '<Value>'
@@ -93,6 +97,7 @@ Feature: Account registration
       | @C131589     | ruth natasya@gmail.com | E-mail tidak sesuai format |
       | @C131590     |                        | E-mail wajib diisi         |
 
+  @validation_format_phonenumber
   Scenario Outline: Verifying phone number with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'mobileNumber' with '<Value>'
@@ -112,6 +117,7 @@ Feature: Account registration
     When I am filling field 'mobileNumber' with '0895611221700'
     Then I will see '895611221700' in field 'mobileNumber'
 
+  @validation_format_password
   Scenario Outline: Verifying password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'password' with '<Value>'
@@ -131,6 +137,7 @@ Feature: Account registration
     When I am filling field 'password' with 'Test1234!@'
     Then I shouldn't see message error in the below of field 'password'
 
+  @validation_format_confirm_password
   Scenario Outline: Verifying confirm password with invalid value
     Given I am a customer want to access menu registration
     When I am filling field 'confirmPassword' with '<Value>'
@@ -146,6 +153,7 @@ Feature: Account registration
     When I am filling field 'fullName' with ' Ruth Natasya '
     Then I will see 'Ruth Natasya ' in field 'fullName'
 
+  @mask_password
   Scenario Outline: Unmask and mask the password and confirm password
     Given I am a customer want to access menu registration
     When I am filling field '<Field>' with 'Test1234'
@@ -671,7 +679,7 @@ Feature: Account registration
     And I click logout
     And I click back in header page    
     And I choose menu registration
-    And I filling in my account business information
+    And I filling in my account business information with old email and business code from new email
     And I submit form registration 
     Then I should see message error 'E-mail tidak sesuai dengan kode bisnis' in the below of field 'businessCode'
 
@@ -933,6 +941,7 @@ Feature: Account registration
     And I filling new phonenumber with my old phonenumber
     Then I should see message error 'Nomor HP tidak boleh sama dengan nomor HP lama' in the below of field new phonenumber
 
+  @validation_format_new_phonenumber
   Scenario Outline: Verifying new phone number with invalid value
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya       |
