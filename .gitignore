@@ -12,6 +12,7 @@ output/
 build/
 target/
 storage/
+mochawesome-report/
 # Environment files
 .env
 .env.local

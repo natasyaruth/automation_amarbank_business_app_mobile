@@ -11,6 +11,7 @@ When('I click menu lihat detail pinjaman', () =>{
     loanDashboardPage.goToLoanDetail();
 });
 When('I click menu history', () => {
+    I.wait(2);
     loanDashboardPage.goToHistory();
 }); 
 // Scenario: Access History Dashboard For Limit Bar
