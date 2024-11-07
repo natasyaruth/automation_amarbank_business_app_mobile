@@ -518,4 +518,34 @@ module.exports = {
 
     },
 
+    async deleteListPendingTask(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/pending-task");
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
+    async resetEmailFromRegisterInvitee(email) {
+
+        I.haveRequestHeaders({
+            Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+        });
+
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/reset/email/partner/"+email);
+
+        return {
+            status: response.status,
+            data: response.data
+        }
+
+    },
+
 }

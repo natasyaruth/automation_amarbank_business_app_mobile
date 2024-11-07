@@ -161,6 +161,9 @@ module.exports = {
         npwp: false,
         fileType: "",
         fileName: [],
+        folderName: [],
+        updateFolderName: "",
+        updateFileName: "",
     },
     createPin: {
         newPin: "",
@@ -176,6 +179,7 @@ module.exports = {
     transfer: {
         amount: 0,
         amountTransfer: "",
+        dailyLimit: 200000000,
         service: "",
         note: "",
         category: "",

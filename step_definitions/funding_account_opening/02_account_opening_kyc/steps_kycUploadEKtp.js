@@ -81,8 +81,6 @@ Given("I register initiator with partner as below", async (table) => {
     await
         whitelistDao.whitelistPhoneNumber("+62" + dataInvitee["phoneNumber"]);
 
-    // add API to reset email from business code    
-
     // HIT PRODUCT TYPE
     await
         uploadDao.submitProductType(globalVariable.login.userID, globalVariable.login.password, prodType);
