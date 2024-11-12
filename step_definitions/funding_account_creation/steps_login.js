@@ -99,6 +99,41 @@ Given(
   }
 );
 
+Given(
+  "has partner more than one, with partner one details as following:",
+  (table) => {
+
+    const account = table.parse().rowsHash();
+
+    globalVariable.login.listUserID.unshift(globalVariable.login.userID);
+    globalVariable.login.listPassword.unshift(globalVariable.login.password);
+
+    if (process.env.ENVIRONMENT == "staging") {
+      globalVariable.login.listUserID.unshift(account["userIDstg"]);
+      globalVariable.login.listPassword.unshift(account["passwordStg"]);
+    } else {
+      globalVariable.login.listUserID.unshift(account["userID"]);
+      globalVariable.login.listPassword.unshift(account["password"]);
+    }
+  }
+);
+
+Given(
+  "other partner is:",
+  (table) => {
+
+    const account = table.parse().rowsHash();
+
+    if (process.env.ENVIRONMENT == "staging") {
+      globalVariable.login.listUserID.unshift(account["userIDstg"]);
+      globalVariable.login.listPassword.unshift(account["passwordStg"]);
+    } else {
+      globalVariable.login.listUserID.unshift(account["userID"]);
+      globalVariable.login.listPassword.unshift(account["password"]);
+    }
+  }
+);
+
 Given("I delete device id {string}", async (deviceId) => {
   await resetStateDao.deleteDeviceId(deviceId);
 });
@@ -670,7 +705,7 @@ Then(
     let numberHours = parseInt(formattedHours);
     let numberMinutes = parseInt(formattedMinutes);
 
-    
+
 
     // if (
     //   numberMinutes > 60
@@ -687,7 +722,7 @@ Then(
 
     //   numberHours = numberHours + 1;
     //   currentTime = numberHours + ":00"
-      
+
     // } else {
 
     // }

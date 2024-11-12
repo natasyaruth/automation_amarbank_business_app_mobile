@@ -507,3 +507,8 @@ Then("I will see detail transaction transfer in {string}", async (method) => {
     I.see("Bagikan Bukti Transaksi");
     I.waitForElement(transactionHistoryPage.buttons.btnShare, 10);
 });
+
+Then("I will not see button download e-statement", ()=>{
+    I.dontSee("Unduh E-Statement");
+    I.dontSeeElement(transactionHistoryPage.buttons.btneStatementDownload);
+})

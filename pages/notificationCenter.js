@@ -16,12 +16,12 @@ module.exports = {
   },
   indicators: {
     notifRedDot: "~notificationIndicatorRedDot",
-    notifRedDotBucketlist: "~notificationIndicatorRed"
+    notifRedDotBucketlist: "~notificationIndicatorRedDot"
   },
   texts:{
     date: "~textDate",
     time: "~textTime",
-    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView[1]"},
+    infoNotif: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.widget.TextView[1]"},
     infoNotifDetail: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.TextView[1]"},
     title: "~textTitle",
     description: "~textDesc",

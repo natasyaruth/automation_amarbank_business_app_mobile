@@ -24,7 +24,7 @@ Feature: Maker and Approver Transaction
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
         And I will not see menu document management
-        And I click back in header page
+        And I click tab Home
         And I click notification center
         And I don't see list pending task
 
@@ -48,7 +48,7 @@ Feature: Maker and Approver Transaction
         Then I will not see menu transaction approval
         And I will not see menu download power of attorney
         And I will not see menu document management
-        And I click back in header page
+        And I click tab Home
         And I click notification center
         And I don't see list pending task
 
@@ -107,7 +107,7 @@ Feature: Maker and Approver Transaction
         And I don't see list pending task
         And I click close in header page 
         And I click tab profile
-        And I don't see counter pending task
+        And I will not see counter pending task
         And I click menu transaction approval
         Then I will see page transaction approval is empty
         And I click waiting approval section
@@ -131,6 +131,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
@@ -143,6 +144,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         Then I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see indicator red in tab profile
@@ -169,6 +171,7 @@ Feature: Maker and Approver Transaction
         And I click later in pop up biometric
         When I click notification center
         And I click notification maker transaction
+        And I will direct to page detail approval transaction
         And I close page detail transfer
         Then I will direct to page notification center
 
@@ -226,6 +229,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
@@ -243,6 +247,7 @@ Feature: Maker and Approver Transaction
         And I click later in pop up biometric
         And I will see indicator red in tab profile
         And I see red dot notification center
+        And I click notification center
         And I will see list approver transaction in notification center
         And I click notification approver transaction
         Then I will direct to page waiting for approval from other director
@@ -316,7 +321,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -340,7 +344,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -373,7 +376,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -396,7 +398,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -420,7 +421,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -442,7 +442,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And never entered wrong password
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -467,7 +466,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -491,7 +489,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -516,7 +513,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -540,7 +536,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -565,7 +560,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -589,7 +583,6 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
-        And don't have any notification
         And I reset attempt otp after login 
         And I filling in form login with the following details:
             | userID      | mike2cf3 |
@@ -705,7 +698,7 @@ Feature: Maker and Approver Transaction
         And I will see pop up data is incorrect
         And I try again to input PIN
         And I input PIN '111111' approver
-        Then I will direct to page transaction approval
+        Then I will direct to page notification center
 
     @C131492
     Scenario: Approve transaction from detail card maker in notification center
@@ -728,6 +721,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
@@ -740,12 +734,16 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
         And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
         And I click close in header page
         And I will see card account 'active'
         And I choose other
@@ -768,6 +766,10 @@ Feature: Maker and Approver Transaction
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
         And I see notification transaction is approved from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -779,6 +781,23 @@ Feature: Maker and Approver Transaction
         And I click button back in the header page
         And I unmask my amount
         And I will see my active balance and total amount are decreased but my blocking amount back like in beginning
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction is approved from other director
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
 
     @C131493
     Scenario: Approve transaction with transfer using notes
@@ -801,6 +820,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
@@ -814,12 +834,16 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
         And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
         And I click close in header page
         And I will see card account 'active'
         And I choose other
@@ -842,6 +866,10 @@ Feature: Maker and Approver Transaction
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
         And I see notification transaction is approved from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -853,6 +881,23 @@ Feature: Maker and Approver Transaction
         And I click button back in the header page
         And I unmask my amount
         And I will see my active balance and total amount are decreased but my blocking amount back like in beginning
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction is approved from other director
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
 
     @C131494
     Scenario: Reject transaction from detail card maker in notification center
@@ -875,6 +920,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
@@ -887,12 +933,18 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
         And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I will see card account 'active'
         And I choose other
@@ -903,6 +955,7 @@ Feature: Maker and Approver Transaction
             | userIDstg   | nata30bc |
             | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
@@ -914,6 +967,10 @@ Feature: Maker and Approver Transaction
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
         And I see notification transaction is rejected from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been rejected
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -925,6 +982,23 @@ Feature: Maker and Approver Transaction
         And I click button back in the header page
         And I unmask my amount
         And I will see my active balance, blocking amount and total amount back like in the beginning
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction is rejected from other director
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been rejected
+        And I close page detail transfer
 
     @C131495
     Scenario: Approve transaction to other bank
@@ -947,6 +1021,9 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
+        And I unmask my amount
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -959,12 +1036,19 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
         And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I will see card account 'active'
+        And I unmask my amount
+        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -985,6 +1069,10 @@ Feature: Maker and Approver Transaction
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
         And I see notification transaction is approved from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -996,6 +1084,23 @@ Feature: Maker and Approver Transaction
         And I click button back in the header page
         And I unmask my amount
         And I will see my active balance and total amount are decreased but my blocking amount back like in beginning
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction is approved from other director
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
 
     @C131496
     Scenario: Reject transaction to other bank
@@ -1018,6 +1123,9 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
+        And I unmask my amount
+        And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -1030,12 +1138,19 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
         And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I will see card account 'active'
+        And I unmask my amount
+        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -1056,6 +1171,10 @@ Feature: Maker and Approver Transaction
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
         And I see notification transaction is rejected from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been rejected
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -1067,6 +1186,23 @@ Feature: Maker and Approver Transaction
         And I click button back in the header page
         And I unmask my amount
         And I will see my active balance, blocking amount and total amount back like in the beginning
+        And I choose other
+        And I click logout
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction is rejected from other director
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been rejected
+        And I close page detail transfer
 
     @C131497
     Scenario: Make transfer out and then cancel directly
@@ -1075,8 +1211,8 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
-        And I don't have any notification
-        And I don't have list pending task
+        And don't have any notification
+        And don't have list pending task
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -1098,15 +1234,10 @@ Feature: Maker and Approver Transaction
         And I submit my password for approver
         And I input OTP to approve transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        And I will direct to page notification center
-        And I will not see list maker transaction in notification center
-        And I click close in header page
-        And I click tab profile
-        And I click menu transaction approval
-        And I click waiting approval section
-        And I will not see card maker that has been canceled
-        And I click tab approval has been done
         And I will see card with status has been canceled
+        And I can click detail card completed
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
 
     @C131498
     Scenario: Cancel Transaction from Menu Notification center
@@ -1115,8 +1246,8 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
-        And I don't have any notification
-        And I don't have list pending task
+        And don't have any notification
+        And don't have list pending task
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -1124,6 +1255,7 @@ Feature: Maker and Approver Transaction
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my active, blocking and total amount
         And I choose menu Transfer from main dashboard
@@ -1135,7 +1267,9 @@ Feature: Maker and Approver Transaction
         And I click transfer now
         And I input PIN '111111'
         And I will direct to page need approval from other director
-        And I close page detail transfer 
+        And I close page detail transfer
+        And I click back in header page
+        And I will see card account 'active'
         And I unmask my amount
         And I will see my blocking amount increase but active balance decrease from amount transfer
         And I will see indicator red in tab profile
@@ -1151,6 +1285,11 @@ Feature: Maker and Approver Transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will direct to page notification center
         And I will not see list maker transaction in notification center
+        And I see notification transaction has been cancelled
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
+        And I will direct to page notification center
         And I click close in header page
         And I unmask my amount
         And I will see my active balance, blocking amount and total amount back like in the beginning
@@ -1160,6 +1299,9 @@ Feature: Maker and Approver Transaction
         And I will not see card maker that has been canceled
         And I click tab approval has been done
         And I will see card with status has been canceled
+        And I can click detail card completed
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
 
     @C131499
     Scenario: Cancel Transaction from Detail Approval Transaction
@@ -1168,8 +1310,8 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | stagfc98 |
             | passwordStg | 1234Test |
-        And I don't have any notification
-        And I don't have list pending task
+        And don't have any notification
+        And don't have list pending task
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
@@ -1187,6 +1329,9 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
+        And I will see indicator red in tab profile
+        And I see red dot notification center
         And I click tab profile
         And I click menu transaction approval
         And I click waiting approval section
@@ -1199,6 +1344,15 @@ Feature: Maker and Approver Transaction
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will see card with status has been canceled
         And I can click detail card completed
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
+        And I click back in header page
+        And I don't see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I see notification transaction has been cancelled
+        And I will not see list maker transaction in notification center
+        And I click bucketlist notification transaction
         And I will see detail card maker that has been canceled
         And I close page detail card completed
 
@@ -1233,6 +1387,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see indicator red in tab profile
         And I see red dot notification center
         And I click notification center
@@ -1246,6 +1401,11 @@ Feature: Maker and Approver Transaction
         And I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will direct to page notification center
         And I will not see list maker transaction in notification center
+        And I see notification transaction has been cancelled
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been canceled
+        And I close page detail card completed
+        And I will direct to page notification center
         And I click close in header page
         And I choose menu Transfer from main dashboard
         And I input name 'RUTH BISNIS A' from the search box
@@ -1257,6 +1417,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see card account 'active'
         And I choose other
         And I click logout
@@ -1277,6 +1438,11 @@ Feature: Maker and Approver Transaction
         Then I will see snackbar with wording 'Anda telah menyetujui transaksi'
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
+        And I see notification transaction is approved from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
         And I click tab profile
         And I click menu transaction approval
@@ -1293,7 +1459,18 @@ Feature: Maker and Approver Transaction
             | password    | 1234Test |
             | userIDstg   | nata66a0 |
             | passwordStg | 1234Test |
-        And I don't have any notification
+        And has partner more than one, with partner one details as following:
+            | userID      | nata2082 |
+            | password    | 1234Test |
+            | userIDstg   | nataab7d |
+            | passwordStg | 1234Test |
+        And other partner is:
+            | userID      | devef63e |
+            | password    | 1234Test |
+            | userIDstg   | stagd02c |
+            | passwordStg | 1234Test |
+        And we all don't have any notification
+        And we all don't have any pending task
         And I filling in form login with the following details:
             | userID      | nata511a |
             | password    | 1234Test |
@@ -1311,8 +1488,16 @@ Feature: Maker and Approver Transaction
         And I input PIN '333333'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I will see indicator red in tab profile
         And I see red dot notification center
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I will direct to page notification center
+        And I click close in header page
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -1335,9 +1520,10 @@ Feature: Maker and Approver Transaction
         And I click notification maker transaction
         And I will direct to page waiting approval from other director
         And I click close in header page
-        And I click button back in the header page
-        And I will see indicator red in tab profile
-        And I see red dot notification center
+        And I will direct to page notification center
+        And I click close in header page
+        And I don't see indicator red in tab profile
+        And I don't see red dot notification center
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -1357,13 +1543,16 @@ Feature: Maker and Approver Transaction
         Then I will see snackbar with wording 'Anda telah menyetujui transaksi'
         And I will direct to page notification center
         And I will not see list approver transaction in notification center
-        And I will not see notification approval change to waiting from other director
         And I see notification transaction is approved from other director
+        And I click bucketlist notification transaction
+        And I will see detail card maker that has been approved
+        And I close page detail transfer
+        And I will direct to page notification center
         And I click close in header page
-        And I will not see indicator red in tab profile
+        And I don't see indicator red in tab profile
         And I don't see red dot notification center
         And I click tab profile
-        And I don't see counter pending task
+        And I will not see counter pending task
         And I click menu transaction approval
         And I click tab approval has been done
         And I will see card maker that has been approved

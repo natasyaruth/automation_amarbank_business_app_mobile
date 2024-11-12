@@ -20,7 +20,7 @@ Feature: Account registration
     When I choose menu registration
     And I filling in my account information with the following details:
       | fullName        | Revvy                    |
-      | email           | ruth.hutauruk@amarbank.co.id  |
+      | email           | test_stg_1@gmail.com     |
       | mobileNumber    | 8999677540               |
       | password        | 1234Test                 |
       | confirmPassword | 1234Test                 |
@@ -205,18 +205,16 @@ Feature: Account registration
   Scenario: Create account business with business code from invitation email
     Given I am a customer that recently registered to amarbank business with data as below
       | fullName        | Testing                 |
-      | email           | testing_21@gmail.com    |
+      | email           | test_stg_2@gmail.com    |
       | phoneNumber     | 899967754041            |
       | password        | 1234Test                |
     And I login using my user id that I recently receive through email
     And I click later in pop up biometric
     And I will directing to Hook 1 Onboarding Account Opening
     And I click later
-    # since API to reset email that has business code still not develop yet,
-    # please change this email if you stuck with validation in registration related to business code
     And I register initiator with partner as below 
       | fullName        | RUDI                   |
-      | email           | testing_32@gmail.com   |
+      | email           | partner_stg_1@gmail.com|
       | phoneNumber     | 899960054041           |
       | password        | 1234Test               |
     And I choose other

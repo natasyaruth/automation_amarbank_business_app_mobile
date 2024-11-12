@@ -20,6 +20,7 @@ When("I choose the friendlist", async () => {
     globalVariable.friendList.bankName = await friendListPage.getFriendListBankName();
     globalVariable.friendList.friendListAccNumber = await friendListPage.getFriendListAccNumber();
     friendListPage.clickTopFriendList();
+    I.wait(5);
 });
 
 When("I can choose Bank name", ()=>{

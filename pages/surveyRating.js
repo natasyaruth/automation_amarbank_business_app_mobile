@@ -9,6 +9,7 @@ module.exports = {
     fourStar: "~buttonStarFour",
     fiveStar: "~buttonStarFive",
     send: "~buttonSend",
+    playStore: "~buttonOpenPlayStore"
   },
   fields: {
     feedback: "~textFieldRate"

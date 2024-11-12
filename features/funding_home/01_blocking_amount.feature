@@ -50,12 +50,12 @@ Feature: Home - Blocking amount
         Given I am a registered customer with following details:
             | userID      | auto20bf |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto20bf |
             | password    | 1234Test |
-            | userIDstg   | stag302d |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -68,7 +68,7 @@ Feature: Home - Blocking amount
         And I input amount '50000'
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
-        And I choose transfer service RTOL
+        And I choose transfer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
@@ -209,6 +209,7 @@ Feature: Home - Blocking amount
             | password    | 1234Test |
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
+        And don't have list pending task
         And I filling in form login with the following details:
             | userID      | mike1eb6 |
             | password    | 1234Test |
@@ -255,32 +256,32 @@ Feature: Home - Blocking amount
         Given I am a registered customer with following details:
             | userID      | deve2c69 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And don't have list pending task
+        And don't have any notification
         And I filling in form login with the following details:
             | userID      | deve2c69 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
-        And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee and minimum amount
         And I will see information 'Saldo Minimum' in the below of field blocking amount
         And I click button back in the header page
         When I choose menu Transfer from main dashboard
-        When I input name 'Surya Edwin' from the search box
+        When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
-        And I input amount '1000000'
+        And I input amount '10000'
         And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I choose transfer service BIFAST
-        And I click transfer
+        And I submit to next flow
         And I click transfer now
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I close page detail transfer
+        And I click back in header page
         And I click detail amount
         Then I will see information 'Saldo Minimum + Transaksi yang belum disetujui' in the below of field blocking amount
         And I click button back in the header page

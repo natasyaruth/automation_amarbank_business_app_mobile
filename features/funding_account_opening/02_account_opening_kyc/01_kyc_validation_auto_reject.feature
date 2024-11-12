@@ -105,6 +105,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160316
@@ -130,6 +131,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160317
@@ -157,6 +159,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160318
@@ -184,6 +187,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160319
@@ -211,6 +215,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160320
@@ -240,6 +245,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         And I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
 
     @C160321
     Scenario: Give rating more than 4 and then less than 4 in account rejected  DHN
@@ -268,3 +274,4 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         And I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
