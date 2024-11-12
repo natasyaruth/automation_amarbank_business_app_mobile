@@ -177,6 +177,18 @@ Given("we don't have any notification", async () => {
 
 });
 
+Given("we all don't have any notification", async () => {
+    const listPartnerUserID = globalVariable.login.listUserID;
+    const listPartnerPassword = globalVariable.login.listPassword;
+
+    for(let i=0;i<listPartnerUserID.length;i++){
+        await
+            resetStateDao.deleteAllNotification(listPartnerUserID[i], listPartnerPassword[i]);
+        I.wait(2);
+    }
+
+});
+
 Given("I have {string} notification {string} in notification center", async (number, notifName) => {
 
     const numbers = parseInt(number);
@@ -318,7 +330,7 @@ When("I click use document safe", () => {
 });
 
 When("I sent feedback survey", () => {
-    documentSafePage.sentFeedback();
+    surveyRatingPage.sentFeedBack();
 });
 
 When("I give {string} ratings", (ratings) => {
@@ -564,7 +576,7 @@ Then("I will not see information {string} in the below of field blocking amount"
     I.waitForText("Saldo Rekening Giro", 10);
 
     const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
-    const statusPendingTask = await (await resetStateDao.isPendingTaskExist()).hasPendingTransaction;
+    const statusPendingTask = (await resetStateDao.isPendingTaskExist(globalVariable.login.userID, globalVariable.login.password)).hasPendingTransaction;
 
     if (
         productType === "MSME" &&
@@ -786,6 +798,14 @@ Then("I will not see rating survey is in main dashboard", () => {
     I.dontSee("(1 Sangat Tidak Puas, 5 Sangat Puas)");
 
     I.dontSeeElement(surveyRatingPage.buttons.oneStar);
+});
+
+Then("I will not see information to give feedback to playstore", () => {
+
+    I.dontSee("Suka dengan aplikasi Amar Bank Bisnis? Bantu kami beri bintang 5 di Play Store");
+    I.dontSee("Beri Rating di Playstore");
+
+    I.dontSeeElement(surveyRatingPage.buttons.playStore);
 });
 
 Then("I will see field is filled with character only 256 char", async () => {
@@ -1124,6 +1144,38 @@ Then("I see notification transaction is rejected from other director", async () 
 
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Ditolak");
+
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === "OVERBOOK"
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
+    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+
+    const actualAmount = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
+});
+
+Then("I see notification transaction has been cancelled", async () => {
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Transaksi");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusTrx, "Transaksi Dibatalkan");
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (

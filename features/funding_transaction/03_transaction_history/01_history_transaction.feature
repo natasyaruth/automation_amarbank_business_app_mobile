@@ -17,6 +17,7 @@ Feature: Home - History Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -37,6 +38,7 @@ Feature: Home - History Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -53,19 +55,21 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | deve8f59 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga29c |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve8f59 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga29c |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         When I want to click button history transaction
         Then I will redirect to history transaction page
         And I will see no transaction history
         And I will not see all tab to filter type transaction
+        And I will not see button download e-statement
 
     @C124824
     Scenario: Validate item bucketlist transfer in
@@ -80,6 +84,7 @@ Feature: Home - History Transaction
             | userIDstg   | stag76ee |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -94,14 +99,15 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page

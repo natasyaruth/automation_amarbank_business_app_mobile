@@ -8,12 +8,12 @@ Feature: User Should See Main Dashboard Active Card On Account Opening Bisnis
         Given I am a registered customer with following details:
             | userID      | pang6f17 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         When I filling in form login with the following details:
             | userID      | pang6f17 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

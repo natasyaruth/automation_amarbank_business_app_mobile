@@ -895,6 +895,7 @@ Feature: Document Management
         And I will see snackbar success upload success
         And I see list document is ordering by the latest to oldest
 
+    @C164031
     Scenario: Close bottom sheet add new folder other document
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -922,6 +923,7 @@ Feature: Document Management
         And I close bottom sheet upload
         Then I will direct to page document brankas
 
+    @C164032
     Scenario: Add single new folder other document
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -950,6 +952,7 @@ Feature: Document Management
         Then I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
 
+    @C164033
     Scenario: Add more than one new folder other document
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -984,6 +987,7 @@ Feature: Document Management
         Then I will direct to page document brankas with folder that has been created in section other document
         And I see list folder is ordering by the latest to oldest
 
+    @C164034
     Scenario: Add new folder and file
         Given I am a registered customer with following details:
             | userID      | devef721 |
@@ -1029,6 +1033,7 @@ Feature: Document Management
         Then I will direct to page document brankas with folder that has been created in section other document
         And I see list other document is ordering by the latest folder and then followed with latest file
 
+    @C164035
     Scenario: Let folder naming is blank
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1055,6 +1060,7 @@ Feature: Document Management
         And I click icon clear name
         Then I will see button create new folder is disabled
 
+    @C164036
     Scenario: Clear naming folder and then fill again
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1083,6 +1089,7 @@ Feature: Document Management
         And I fill field new folder with 'Folder Penting dan Rahasia'
         Then I will see button create new folder is enabled
 
+    @C164037
     Scenario: Clear naming folder using keyboard
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1109,6 +1116,7 @@ Feature: Document Management
         And I clear new folder name using keyboard
         Then I will see button create new folder is disabled
 
+    @C164038
     Scenario: Fill folder name using special char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1137,6 +1145,7 @@ Feature: Document Management
         And I see snackbar success create new folder
         Then I will direct to page document brankas with folder that has been created in section other document
 
+    @C164039
     Scenario: Fill folder name using alphanumeric
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1165,6 +1174,7 @@ Feature: Document Management
         And I see snackbar success create new folder
         Then I will direct to page document brankas with folder that has been created in section other document
 
+    @C164040
     Scenario: Fill folder name with length char more than 100 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1195,6 +1205,7 @@ Feature: Document Management
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
 
+    @C164041
     Scenario: Fill folder name with length char less than 2 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1223,6 +1234,7 @@ Feature: Document Management
         And I see snackbar success create new folder
         Then I will direct to page document brankas with folder that has been created in section other document 
 
+    @C164042
     Scenario: Create new folder when the previous folder was not renamed
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1253,6 +1265,7 @@ Feature: Document Management
         And I click create new folder
         Then I will see field new folder is filled with Folder Baru 1
 
+    @C164043
     Scenario: Create another folder with name same as before
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1286,6 +1299,7 @@ Feature: Document Management
         Then I see message error folder name is exist
         And I will see button create new folder is enabled
 
+    @C164044
     Scenario: Close bottom sheet edit folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1317,6 +1331,7 @@ Feature: Document Management
         And I close bottom sheet upload
         Then I will direct to page document brankas with folder that has been created in section other document
 
+    @C164045
     Scenario: Edit naming folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1351,6 +1366,7 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
+    @C164046
     Scenario: Edit naming folder using special char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1383,6 +1399,7 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
+    @C164047
     Scenario: Edit naming folder using alpha numeric
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1415,6 +1432,7 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
+    @C164048
     Scenario: Edit folder name with length char more than 100 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1449,6 +1467,7 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
+    @C164049
     Scenario: Edit folder name with length char less than 2 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1481,6 +1500,7 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
+    @C164050
     Scenario: Let folder naming is blank when editing
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1511,6 +1531,7 @@ Feature: Document Management
         And I click icon clear name
         Then I see button change name is disabled 
 
+    @C164051
     Scenario: Clear naming folder using keyboard when editing
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1540,6 +1561,7 @@ Feature: Document Management
         And I clear change folder name using keyboard
         Then I see button change name is disabled
 
+    @C164052
     Scenario: Edit naming folder same with existing folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1575,6 +1597,7 @@ Feature: Document Management
         Then I see message error folder name is exist
         And I see button change name is enabled
 
+    @C164053
     Scenario: Edit naming file
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1609,6 +1632,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change
 
+    @C164054
     Scenario: Edit naming file contain with extension file
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1641,6 +1665,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change 
 
+    @C164055
     Scenario: Edit naming file using special char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1673,6 +1698,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change
 
+    @C164056
     Scenario: Edit naming file using alpha numeric
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1705,6 +1731,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change
 
+    @C164057
     Scenario: Edit file name with length char more than 100 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1739,6 +1766,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change
 
+    @C164058
     Scenario: Edit file name with length char less than 2 char
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1771,6 +1799,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will direct to page document brankas with file name has been change
 
+    @C164059
     Scenario: Edit naming file same with other file
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1808,6 +1837,7 @@ Feature: Document Management
         Then I see message error file name is exist
         And I see button change name is enabled
 
+    @C164060
     Scenario: Let file naming is blank when editing
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1838,6 +1868,7 @@ Feature: Document Management
         And I click icon clear name
         Then I see button change name is disabled
 
+    @C164061
     Scenario: Clear naming file using keyboard when editing
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1868,6 +1899,7 @@ Feature: Document Management
         And I clear change file name using keyboard
         Then I see button change name is disabled
 
+    @C164062
     Scenario: Add new folder with more than one branches
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1927,6 +1959,7 @@ Feature: Document Management
         And I see snackbar success create new folder
         Then I see the new folder is created
 
+    @C164063
     Scenario: Add new file in folder branches
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -1962,6 +1995,7 @@ Feature: Document Management
         Then I will see snackbar success upload success
         And I see the new file is created
       
+    @C164064
     Scenario: Edit file in folder branches
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -2003,6 +2037,7 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will see file name has been change
 
+    @C164065
     Scenario: Edit folder naming in detail folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
