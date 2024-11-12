@@ -332,4 +332,20 @@ module.exports = {
             listNotification: response.data
         }
     },
+
+    async getAccountHolderName(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/business/details");
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            accountHolderName: response.data.accountHolderName
+        }
+    },
 }

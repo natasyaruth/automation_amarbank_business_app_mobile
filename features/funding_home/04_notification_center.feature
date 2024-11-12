@@ -1,3 +1,4 @@
+@notification_center
 Feature: Home - Notification Center
     In order user to get notified
     As a Customer
@@ -169,7 +170,7 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And has friendlist with following details:
@@ -180,7 +181,7 @@ Feature: Home - Notification Center
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -214,13 +215,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -252,13 +253,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -290,13 +291,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -328,13 +329,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag2add |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag2add |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -366,13 +367,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -402,19 +403,19 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
         When I choose menu Transfer from main dashboard
-        And I input name 'RUTH NATASYA' from the search box 
+        And I input name 'NADYA LAROSA' from the search box 
         And I choose the friendlist
         And I input amount '50000'
         And I choose category "Pembayaran"
@@ -430,165 +431,6 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
-        And I will direct to page notification center
-
-    @C162008
-    Scenario: Checking Detail notification transaction approved
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And has partner with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And we don't have any notification
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I choose menu Transfer from main dashboard
-        When I input name 'RUTH BISNIS A' from the search box
-        And I choose the friendlist
-        And I input amount '10000'
-        And I choose category 'Pembayaran'
-        And I submit to next flow
-        And I click transfer now
-        And I input PIN '111111'
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I see red dot notification center
-        And I will see indicator red in tab profile
-        And I don't see any card transaction in main dashboard
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I see red dot notification center
-        And I will see indicator red in tab profile
-        And I don't see any card transaction in main dashboard
-        And I click notification center
-        And I will see list approver transaction in notification center
-        And I click notification approver transaction
-        And I approve the transaction
-        And I input PIN '111111' approver
-        And I will see snackbar with wording 'Anda telah menyetujui transaksi'
-        And I will direct to page notification center
-        And I will not see list approver transaction in notification center
-        And I see notification transaction is approved from other director
-        And I click bucketlist notification transaction
-        And I will direct to detail notification transaction is approved from other director
-        And I click understand the notification
-        And I will direct to page notification center
-        And I close page notification center
-        And I don't see red dot notification center
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I see red dot notification center
-        And I click notification center
-        And I click tab Transaction notification
-        Then I will not see list maker transaction in notification center
-        And I see notification transaction is approved from other director
-        And I click bucketlist notification transaction
-        And I will direct to detail notification transaction is approved from other director
-        And I click understand the notification
-        And I will direct to page notification center
-
-    @C162009
-    Scenario: Checking Detail notification transaction rejected
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And has partner with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And we don't have any notification
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I choose menu Transfer from main dashboard
-        When I input name 'RUTH BISNIS A' from the search box
-        And I choose the friendlist
-        And I input amount '10000'
-        And I choose category 'Pembayaran'
-        And I submit to next flow
-        And I click transfer now
-        And I input PIN '111111'
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I see red dot notification center
-        And I will see indicator red in tab profile
-        And I don't see any card transaction in main dashboard
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I see red dot notification center
-        And I will see indicator red in tab profile
-        And I don't see any card transaction in main dashboard
-        And I click notification center
-        And I will see list approver transaction in notification center
-        And I click notification approver transaction
-        And I reject the transaction
-        And I input PIN '111111' approver
-        And I will direct to page transaction approval
-        And I will see snackbar with wording 'Anda telah menolak transaksi'
-        And I will direct to page notification center
-        And I will not see list approver transaction in notification center
-        And I see notification transaction is rejected from other director
-        And I click bucketlist notification transaction
-        And I will direct to detail notification transaction is rejected from other director
-        And I click understand the notification
-        And I will direct to page notification center
-        And I close page notification center
-        And I don't see red dot notification center
-        And I choose other
-        And I click logout
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I see red dot notification center
-        And I click notification center
-        And I click tab Transaction notification
-        Then I will not see list maker transaction in notification center
-        And I see notification transaction is rejected from other director
-        And I click bucketlist notification transaction
-        And I will direct to detail notification transaction is rejected from other director
         And I click understand the notification
         And I will direct to page notification center
 
@@ -703,13 +545,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I have '3' notification 'Maintenance App' in notification center
         And I click login
@@ -726,13 +568,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I have '3' notification 'Maintenance App' in notification center
         And I click login

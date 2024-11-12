@@ -515,13 +515,13 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | ruth2d88 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | deved6a1 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | ruth2d88 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

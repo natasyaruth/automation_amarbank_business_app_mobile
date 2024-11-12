@@ -147,7 +147,10 @@ Given("I register invitee with business code", async () => {
         businessCode: globalVariable.registration.businessCode,
     };
 
-    globalVariable.login.userIDPartner = (await firstRegistrationDao.firstRegistrationPartner(inviteeRegister)).userID;
+    await 
+      firstRegistrationDao.firstRegistrationPartner(inviteeRegister);
+
+    globalVariable.login.userIDPartner = (await otpDao.getUserID(globalVariable.registration.emailPartner)).userID;
 });
 
 When("I register invitee until {string}", async (stepName) => {

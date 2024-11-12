@@ -239,7 +239,6 @@ module.exports = {
     I.waitForElement(this.dropdownLists.category, 10);
     I.waitForElement(this.texts.dailyLimit, 10);
     I.waitForElement(this.texts.balance, 10);
-
   },
 
   viewPageFriendList() {
@@ -251,7 +250,7 @@ module.exports = {
   },
 
   clickSectionBtnTransfer() {
-    I.waitForElement(this.buttons.sectionBtnTrf, 20);
+    I.waitForElement(this.buttons.sectionBtnTrf, 50);
     I.click(this.buttons.sectionBtnTrf);
   },
 

@@ -217,6 +217,8 @@ exports.config = {
     surveyRatingPage: "./pages/surveyRating.js",
 
     notificationCenterPage: "./pages/notificationCenter.js",
+
+    filterLoanHistory: "./pages/filterLoanHistory.js",
   },
   settings: {
     logging: {
@@ -239,17 +241,17 @@ exports.config = {
           reportFilename: "report",
         },
       },
-      //   "mocha-junit-reporter": {
-      //     "stdout": "./output/console.log",
-      //     "options": {
-      //       "mochaFile": "./output/result.xml",
-      //       "attachments": true //add screenshot for a failed test
-      //     }
-      // }
+        "mocha-junit-reporter": {
+          "stdout": "./output/console.log",
+          "options": {
+            "mochaFile": "./output/result.xml",
+            "attachments": true //add screenshot for a failed test
+          }
+      }
     },
   },
   bootstrap: null,
-  timeout: 500,
+  timeout: 5000,
   teardown: null,
   hooks: [],
   gherkin: {

@@ -6,11 +6,11 @@ Feature: Home - Survey and Rating
     @C160302
     Scenario: Give 5 rating account rejected
         Given I am a customer that recently registered to amarbank business with data as below
-            | fullName        | Revvy                   |
-            | email           | testing_11@gmail.com    |
-            | phoneNumber     | 813968854041            |
-            | password        | 1234Test                |
-            | confirmPassword | 1234Test                |
+            | fullName        | Revvy                      |
+            | email           | test_reject_1@gmail.com    |
+            | phoneNumber     | 813968854041               |
+            | password        | 1234Test                   |
+            | confirmPassword | 1234Test                   |
         And I login using my user id that I recently receive through email
         And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
@@ -38,6 +38,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160303
@@ -75,6 +76,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160304
@@ -114,6 +116,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
         
     @C160305   
@@ -153,6 +156,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160306
@@ -192,6 +196,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160309
@@ -233,6 +238,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160310
@@ -274,6 +280,7 @@ Feature: Home - Survey and Rating
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160311
@@ -312,6 +319,7 @@ Feature: Home - Survey and Rating
         And I fill feedback survey ''
         And I sent feedback survey
         Then I will see snackbar my survey is sent
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160312
@@ -351,6 +359,7 @@ Feature: Home - Survey and Rating
         And I will see field is filled with character only 256 char
         And I sent feedback survey
         Then I will see snackbar my survey is sent
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected
 
     @C160313
@@ -390,4 +399,5 @@ Feature: Home - Survey and Rating
         And I will see field feedback is filled
         And I sent feedback survey
         Then I will see snackbar my survey is sent
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with widget account is rejected

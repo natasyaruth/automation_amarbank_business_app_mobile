@@ -60,3 +60,4 @@ Feature: Account Opening - Individual
     And I will see checkbox Rights and Obligations is checked
     And I submit my employment data individual
     Then I will notify that my personal data details needs to be verified first
+    And I will see card account 'on verification'
