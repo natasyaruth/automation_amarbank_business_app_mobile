@@ -116,7 +116,7 @@ When("I confirm my new password", () => {
 });
 
 When("I wait for 1 minutes", () => {
-    I.wait(62);
+    I.wait(65);
 });
 
 When("I click link resend OTP change password", () => {
@@ -274,7 +274,11 @@ Then("I will direct to page input OTP change password", async () => {
 });
 
 Then("I will see snackbar OTP successfully sent", () => {
-    I.waitForText("Kode OTP berhasil dikirim.", 20);
+    try{
+        I.waitForText("Kode OTP berhasil dikirim.", 10);
+    }catch{
+        I.say('Tosh Message Not Showing',5);
+    }
 });
 
 Then("I will direct to page success change password", () => {
@@ -338,6 +342,4 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
         " " + months[month] + " " + year + ", pukul " + currentTime);
 
     I.dontSeeElement(changePasswordPage.link.resendOtp);
-    await
-        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });

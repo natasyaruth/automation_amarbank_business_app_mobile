@@ -16,7 +16,6 @@ Feature: AUTOMATED Account Change Password For Old Password Field
             | userIDstg   | gakp7d0e |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric
         Then I will see card account 'active'
 
     @C164167

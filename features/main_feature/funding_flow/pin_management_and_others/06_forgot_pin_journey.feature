@@ -16,9 +16,8 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
             | userIDstg   | bugc133f |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric
+        # And I click later in pop up biometric
         Then I will direct to dashboard
-
 
     @C164128
     Scenario: AUTOMATED User wants to create pin from forgot PIN
@@ -49,7 +48,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I reset attempt failed login
 
-
     @C164130
     Scenario: AUTOMATED User input incorrect password twice
         Given I am a customer who wants to create PIN from menu other
@@ -61,7 +59,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I submit incorrect password twice
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
         And I reset attempt failed login
-
 
     @C164131
     Scenario: AUTOMATED User input incorrect password three times
@@ -76,7 +73,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I can directly go to page login
         And I reset attempt failed login
 
-
     @C164132
     Scenario: AUTOMATED User want to see their password
         Given I am a customer who wants to create PIN from menu other
@@ -89,7 +85,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I click icon eye
         Then I will see my password
 
-
    @C164133
     Scenario: AUTOMATED User don't want to see their password
         Given I am a customer who wants to create PIN from menu other
@@ -101,7 +96,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I input password
         And I click icon eye twice
         Then I will not see my password
-
 
     @C164134
     Scenario: AUTOMATED User input incorrect confirmation PIN
@@ -116,7 +110,6 @@ Feature: AUTOMATED User forgot PIN and want to create new PIN
         And I input new PIN with "111111"
         And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
-
 
     @C164135
     Scenario: AUTOMATED User input incorrect OTP

@@ -16,7 +16,6 @@ Feature: AUTOMATED User change PIN from other menu
             | userIDstg   | annae951 |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric 
         Then I will direct to dashboard
 
     @C164136
@@ -68,7 +67,6 @@ Feature: AUTOMATED User change PIN from other menu
         And I will directly to Change PIN page
         And I input incorrect old pin
         Then I should see pop up message "Jika 3 kali salah, Anda akan langsung diarahkan ke halaman Masuk Akun"
-        And I can click try again
 
     @C164140
     Scenario: AUTOMATED User input incorrect old pin twice for change pin

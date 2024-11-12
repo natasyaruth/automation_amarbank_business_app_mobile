@@ -11,7 +11,9 @@ const dummyPIN = "121212";
 
 Given("I am a customer who wants to create PIN", () => { });
 
-Given("I am a customer who wants to create PIN from menu other", () => { });
+Given("I am a customer who wants to create PIN from menu other", () => {
+    I.wait(10);
+ });
 
 Given("I am a customer who wants to change PIN from menu other", () => { });
 

@@ -38,12 +38,12 @@ let defaultAppium = {
     platformName: "Android",
     // platformVersion: "12.0",
     automationName: "UiAutomator2",
-    newCommandTimeout: 300,
+    newCommandTimeout: 600,
     deviceName: "emulator-5554",
     appPackage: appPackage,
     appActivity: "id.co.amarbank.smb.ui.MainActivity",
     autoGrantPermissions: true,
-    clearSystemFiles: true
+    clearSystemFiles: true,
   },
 };
 
@@ -382,7 +382,7 @@ exports.config = {
     pauseOnFail: {},
     testrail: env.testrail,
   },
-  stepTimeout: 0,
+  stepTimeout: 10,
   stepTimeoutOverride: [
     {
       pattern: "wait.*",
