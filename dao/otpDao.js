@@ -128,10 +128,8 @@ module.exports = {
 
     I.seeResponseCodeIsSuccessful();
 
-    const lastIndex = response.data.length - 1;
-
     return {
-      userID: response.data[lastIndex]
+      userID: response.data[0]
     }
   },
 

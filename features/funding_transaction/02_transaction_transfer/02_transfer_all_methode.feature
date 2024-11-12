@@ -6,14 +6,14 @@ Feature: User transfer with all transfer method
 
     Background: User has registered and login to dashboard
         Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userID      | ruth8ca4 |
+            | password    | 1234Test |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         When I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
+            | userID      | ruth8ca4 |
+            | password    | 1234Test |
+            | userIDstg   | stag3338 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -57,31 +57,21 @@ Feature: User transfer with all transfer method
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
         And I validate page transfer
-        And I see limit transaction is updated
         And I input amount '15000'
         And I choose category 'Pembayaran'
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BIFAST, RTOL and SKN
+        And I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
         And I am on page transfer confirmation
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
-        When I close page detail transfer
-        And I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I validate page transfer
-        Then I see limit transaction is updated
-        When I input amount '200000000'
-        Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian"
 
     @C96932
-    Scenario: User Success Transfer BiFast
+    Scenario: User Success Transfer BiFast and check daily limit
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -90,12 +80,21 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test BiFast'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BIFAST and SKN
+        And I can see BIFAST and SKN
         And I choose transfer service BIFAST
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
-        Then I successfully transferred
+        And I successfully transferred
+        And I close page detail transfer
+        And I choose menu Transfer from main dashboard
+        And I am on receiver list page
+        And I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I see limit transaction is updated
+        And I input amount '200000000'
+        Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian"
 
     @C135519
     Scenario: User confirmation transfer SKN with choice between SKN and RTGS
@@ -107,7 +106,7 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see SKN and RTGS
+        And I can see SKN and RTGS
         And I choose transfer service SKN
         And I click transfer
         And I click transfer now
@@ -124,7 +123,7 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see BIFAST, SKN and RTGS
+        And I can see BIFAST, SKN and RTGS
         And I choose transfer service SKN
         And I click transfer
         And I click transfer now
@@ -141,7 +140,7 @@ Feature: User transfer with all transfer method
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service
         And I am on Transfer methode list page
-        Then I can see RTGS
+        And I can see RTGS
         And I choose transfer service RTGS
         And I click transfer
         And I click transfer now

@@ -60,7 +60,11 @@ Given(
       await otpDao.getOTP(globalVariable.registration.phoneNumber)
     ).otp;
     account.otp = otpCode;
-    globalVariable.login.userID = (await firstRegistrationDao.firstRegistration(account)).userID;
+
+    await 
+      firstRegistrationDao.firstRegistration(account);
+
+    globalVariable.login.userID = (await otpDao.getUserID(account["email"])).userID;
 
     await
       resetStateDao.submitPDP(globalVariable.login.userID, globalVariable.login.password);

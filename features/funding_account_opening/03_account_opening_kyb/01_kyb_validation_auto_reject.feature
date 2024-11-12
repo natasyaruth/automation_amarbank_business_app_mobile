@@ -8,7 +8,7 @@ Feature: Account Opening - Validation Auto Reject
     Background: Do register phase one
         Given I am a customer that recently registered to amarbank business with data as below
             | fullName        | Testing                 |
-            | email           | testing_21@gmail.com    |
+            | email           | test_DHN_1@gmail.com    |
             | phoneNumber     | 899967754041            |
             | password        | 1234Test                |
         And my mocking DHN currently is off    
@@ -107,6 +107,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160324
@@ -140,6 +141,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160325
@@ -175,6 +177,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160326
@@ -210,6 +213,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160327
@@ -245,15 +249,16 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
     @C160328
     Scenario: Give 5 rating account rejected DHN invitee
         Given I register initiator with partner as below
-            | fullName        | RUDI                   |
-            | email           | rudit.bagas@gmail.com  |
-            | phoneNumber     | 899960054041           |
-            | password        | 1234Test               |
+            | fullName        | RUDI                          |
+            | email           | test_DHN_partner_1@gmail.com  |
+            | phoneNumber     | 899960054041                  |
+            | password        | 1234Test                      |
         And I choose other
         And I click logout
         And I register invitee with business code
@@ -283,6 +288,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
     @C160329
@@ -321,6 +327,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
     @C160330
@@ -361,6 +368,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
     @C160331
@@ -401,6 +409,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
     @C160332
@@ -441,6 +450,7 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN   
 
     @C160893
@@ -482,4 +492,5 @@ Feature: Account Opening - Validation Auto Reject
         And I sent feedback survey
         Then I will see snackbar my survey is sent
         And I will not see rating survey is in main dashboard
+        And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN           

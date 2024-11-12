@@ -13,7 +13,7 @@ Feature: User create PIN Journey Transfer
             | userIDstg   | nuru099d |
             | passwordStg | Test1234 |
         And never entered wrong password
-        And I reset attempt otp after login    
+        And I reset attempt otp after login
         When I filling in form login with the following details:
             | userID      | ruthf292 |
             | password    | 1234Test |
@@ -28,6 +28,7 @@ Feature: User create PIN Journey Transfer
         Given I am a customer who wants to create PIN
         And I don't have a PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         When I see pop up Create PIN
         When I click button Create PIN
         Then I will directly to Create New Transaction PIN page
@@ -36,6 +37,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input incorrect password
@@ -47,6 +49,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password twice
@@ -57,6 +60,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password three times
@@ -67,6 +71,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -77,6 +82,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User don't want to see their password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -87,6 +93,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User input incorrect confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -99,6 +106,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User Successfully Get Email for OTP and input incorrect OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -113,6 +121,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User Successfully Get Email for OTP and input expired OTP
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -127,6 +136,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Back to main dashbord in pop up create PIN Transaction
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Back ke Dashboard
         Then I should direct to Dashboard
@@ -135,6 +145,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Close page Pin Transaction in page fill password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I click button Close
@@ -146,6 +157,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Cancel close page Pin Transaction in page fill password
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I click button Close
@@ -157,6 +169,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Close page Pin Transaction in page fill PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -170,6 +183,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Cancel close page Pin Transaction in page fill PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -183,6 +197,7 @@ Feature: User create PIN Journey Transfer
     Scenario: Back to page input PIN from confirmation PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
@@ -198,6 +213,7 @@ Feature: User create PIN Journey Transfer
     Scenario: User Successfully Get Email for OTP and create PIN
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input password
