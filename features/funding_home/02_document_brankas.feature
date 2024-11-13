@@ -194,6 +194,7 @@ Feature: Home - Document Brankas
         And I input password document
         And I click see my document
         Then I will direct to page document brankas
+        And I will see menu document giro, loan and other
 
     @C156932
     Scenario: Access widget brankas on main dashboard for user invitee active
