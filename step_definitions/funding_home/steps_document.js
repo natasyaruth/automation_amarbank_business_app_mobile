@@ -34,6 +34,16 @@ Given("never entered wrong password", async () => {
         resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
+Given("I have more than one other folders", async () => {
+    // API to delete other folder, if exists
+    // API to add more than one other folder
+});
+
+Given("I have more than one other file", async () => {
+    // API to delete other file, if exists
+    // API to add more than one other file
+});
+
 When("I click document giro", () => {
     documentPage.clickDocumentGiro();
 });
@@ -62,7 +72,11 @@ When("I click back to upload other document", () => {
     documentPage.backToUpload();
 });
 
-When("I click delete other document in section upload", () => {
+When("I click delete folder", () => {
+    documentPage.clickDeleteDoc();
+});
+
+When("I click delete file", () => {
     documentPage.clickDeleteDoc();
 });
 
@@ -105,11 +119,19 @@ When("I delete other document number {string}", async (numberDoc) => {
 
 });
 
-When("I confirm delete other document", () => {
+When("I confirm delete folder", () => {
+    documentPage.confirmDeleteFolder();
+});
+
+When("I cancel delete folder", () => {
+    documentPage.cancelDeleteFolder();
+});
+
+When("I confirm delete file", () => {
     documentPage.confirmDeleteDoc();
 });
 
-When("I cancel delete other document", () => {
+When("I cancel delete file", () => {
     documentPage.cancelDeleteDoc();
 });
 
@@ -332,14 +354,25 @@ When("I open detail other folder", () => {
     documentPage.clickItemOtherDocDetail();
 });
 
-Then("I will see pop up delete other document", () => {
-    I.waitForText("Hapus Dokumen", 10);
-    I.waitForText("Apakah Anda yakin akan menghapus dokumen ini?", 10);
+Then("I will see pop up confirm delete folder", () => {
+    I.waitForText("Hapus Folder ini?", 10);
+    I.waitForText("Apakah Anda yakin ingin menghapus folder "+globalVariable.uploadDocuments.folderName+"?", 10);
 
-    I.see("Kembali");
+    I.see("Batalkan");
     I.waitForElement(documentPage.buttons.cancelDelete, 10);
 
-    I.see("Hapus");
+    I.see("Ya, Hapus");
+    I.waitForElement(documentPage.buttons.confirmDelete, 10);
+});
+
+Then("I will see pop up confirm delete folder", () => {
+    I.waitForText("Hapus Dokumen ini?", 10);
+    I.waitForText("Apakah Anda yakin ingin menghapus dokumen "+globalVariable.uploadDocuments.fileName+"."+globalVariable.uploadDocuments.fileType+"?", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelDelete, 10);
+
+    I.see("Ya, Hapus");
     I.waitForElement(documentPage.buttons.confirmDelete, 10);
 });
 
@@ -894,6 +927,14 @@ Then("I see snackbar success create new folder", () => {
     I.waitForText("Folder baru berhasil dibuat", 10);
 });
 
+Then("I will see snackbar folder deleted successfully", () => {
+    I.waitForText("Folder berhasil dihapus", 10);
+});
+
+Then("I will see snackbar file deleted successfully", () => {
+    I.waitForText("Dokumen berhasil dihapus", 10);
+});
+
 Then("I will direct to page document brankas with folder that has been created in section other document", async () => {
     I.waitForText("Brankas Dokumen", 30);
 
@@ -984,20 +1025,30 @@ Then("I see message error file name is exist", ()=>{
     I.waitForText("Nama dokumen sudah ada & tidak boleh sama. Silakan ganti dengan nama lain.", 10);
 });
 
-Then("I will see bottom sheet edit folder", ()=>{
+Then("I will see bottom sheet detail info folder", ()=>{
     I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
 
     I.see("Ubah Nama");
     I.waitForElement(documentPage.buttons.changeName, 10);
+
+    I.see("Hapus");
+    I.waitForElement(documentPage.buttons.deleteDoc, 10);
 });
 
-Then("I will see bottom sheet change file name", ()=>{
+Then("I will see bottom sheet detail info file", ()=>{
+    I.waitForText(globalVariable.uploadDocuments.fileName[0]+"."+globalVariable.uploadDocuments.fileType, 10);
     I.waitForText("Ubah Nama Dokumen", 10);
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
 
+    I.see("Download");
+    I.waitForElement(documentPage.buttons.downloadOtherDoc, 10);
+
     I.see("Ubah Nama");
     I.waitForElement(documentPage.buttons.changeName, 10);
+
+    I.see("Hapus");
+    I.waitForElement(documentPage.buttons.deleteDoc, 10);
 });
 
 Then("I will see snackbar success change folder name", ()=>{
@@ -1076,4 +1127,14 @@ Then("I will see file name has been change", async () => {
 
     I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
     I.waitForElement(documentPage.buttons.uploadOtherDoc, 10);
+});
+
+Then("I will not see the deleted folder", async () => {
+
+    I.dontSee(globalVariable.uploadDocuments.folderName);
+});
+
+Then("I will not see the deleted file", async () => {
+
+    I.dontSee(globalVariable.uploadDocuments.fileName+"."+globalVariable.uploadDocuments.fileType);
 });

@@ -1327,7 +1327,7 @@ Feature: Document Management
         And I save new folder
         And I see snackbar success create new folder
         And I click icon three dot folder
-        And I will see bottom sheet edit folder
+        And I will see bottom sheet detail info folder
         And I close bottom sheet upload
         Then I will direct to page document brankas with folder that has been created in section other document
 
@@ -1626,7 +1626,7 @@ Feature: Document Management
         And I click icon three dot file
         And I will see bottom sheet download and change file name
         And I click edit file name
-        And I will see bottom sheet change file name
+        And I will see bottom sheet detail info file
         And I edit file name with 'Dokumen Penting Banget'
         And I click change name
         Then I will see snackbar success change file name
@@ -2077,3 +2077,274 @@ Feature: Document Management
         And I click change name
         Then I will see snackbar success change folder name
         And I will see folder name has been change
+
+    @C165174
+    Scenario: Cancel Delete Folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I click icon three dot folder
+        And I click delete folder
+        And I will see pop up confirm delete folder
+        And I cancel delete folder
+        Then I will direct to page document brankas
+        
+    @C165175
+    Scenario: Cancel Delete File
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click delete file
+        And I will see pop up confirm delete file
+        And I cancel delete file
+        Then I will direct to page document brankas
+
+    @C165176
+    Scenario: Delete single folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I click icon three dot folder
+        And I click delete folder
+        And I will see pop up confirm delete folder
+        And I confirm delete folder
+        Then I will see snackbar folder deleted successfully
+        And I will not see the deleted folder
+
+    @C165177
+    Scenario: Delete more than one folders
+         Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And I have more than one other folders
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click icon three dot folder
+        And I click delete folder
+        And I confirm delete folder
+        And I will see snackbar folder deleted successfully
+        And I click icon three dot folder
+        And I click delete folder
+        And I confirm delete folder
+        Then I will see snackbar folder deleted successfully
+        And I will see empty detail menu other document
+
+    @C165178
+    Scenario: Delete folder within folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia 2'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I click icon three dot folder
+        And I click delete folder
+        And I confirm delete folder
+        Then I will see snackbar folder deleted successfully
+        And I will not see the deleted folder
+        And I will see empty detail menu other document
+
+    @C165179
+    Scenario: Delete single file
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click delete file
+        And I will see pop up confirm delete file
+        And I confirm delete file
+        Then I will see snackbar file deleted successfully
+        And I will not see the deleted file
+
+    @C165180
+    Scenario: Delete more than one files
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And I have more than one other file
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click icon three dot file
+        And I click delete file
+        And I confirm delete file
+        And I will see snackbar file deleted successfully
+        And I click icon three dot file
+        And I click delete file
+        And I confirm delete file
+        Then I will see snackbar file deleted successfully
+        And I will see empty detail menu other document
+
+    @C165181
+    Scenario: Delete file within folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I open other folder
+        And I will see folder contents still empty
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click icon three dot file
+        And I click delete file
+        And I will see pop up confirm delete file
+        And I confirm delete file
+        Then I will see snackbar file deleted successfully
+        And I will not see the deleted file

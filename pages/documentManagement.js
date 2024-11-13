@@ -29,8 +29,8 @@ module.exports = {
     deleteDoc: "~buttonDelete",
     confirmCancel: "~buttonNoCancel",
     backToUpload: "~buttonYesCancel",
-    cancelDelete: "~buttonNoDelete",
-    confirmDelete: "~buttonYesDelete",
+    cancelDelete: "~buttonCancel",
+    confirmDelete: "~buttonConfirmed",
     saveDocument: "~buttonSaveDoc",
     deleteDetail: "~buttonDeleteDoc",
     downloadOtherDoc: "~buttonDownload",
@@ -196,6 +196,16 @@ module.exports = {
   },
 
   confirmDeleteDoc(){
+    I.waitForElement(this.buttons.confirmDelete, 10);
+    I.click(this.buttons.confirmDelete);
+  },
+
+  cancelDeleteFolder(){
+    I.waitForElement(this.buttons.cancelDelete, 10);
+    I.click(this.buttons.cancelDelete);
+  },
+
+  confirmDeleteFolder(){
     I.waitForElement(this.buttons.confirmDelete, 10);
     I.click(this.buttons.confirmDelete);
   },

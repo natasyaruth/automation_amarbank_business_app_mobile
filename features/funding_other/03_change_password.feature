@@ -760,7 +760,7 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I wait for 1 minutes
         And I click link resend OTP change password
-        Then I notified that I can verify the OTP tomorrow
+        Then I will see message error OTP with information can be tried tomorrow
 
     @C141200 
     Scenario: Input wrong OTP
