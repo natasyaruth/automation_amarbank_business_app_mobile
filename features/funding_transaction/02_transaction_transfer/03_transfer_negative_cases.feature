@@ -8,12 +8,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User transfer input notes with emoji
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -32,12 +32,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User transfer input notes with symbol
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -56,12 +56,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User Transfer with under minimum transfer amount
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -78,12 +78,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User Transfer with saldo aktif tidak mencukupi
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -100,12 +100,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User Transfer with category not selected
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -123,13 +123,13 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User transfer and input wrong PIN
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -153,13 +153,13 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User transfer and input wrong PIN twice
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -187,13 +187,13 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: User transfer and input wrong PIN three times
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -227,12 +227,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: Transfer with amount more than admin fee RTOL
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -258,12 +258,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: Transfer with amount more than admin fee BIFAST
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -288,12 +288,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: Transfer with amount more than admin fee SKN
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -318,12 +318,12 @@ Feature: User Want to Transfer with Negative Cases
     Scenario: Transfer with amount more than admin fee RTGS
         Given I am a registered customer with following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
-            | password    | 1234Test |
+            | password    | Test1234 |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login

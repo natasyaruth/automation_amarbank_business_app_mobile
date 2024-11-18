@@ -78,6 +78,13 @@ module.exports = {
         ],
         formatDate: {
             ddmmmyyyy: "ddmmmyyyy",
+        },
+        methodTf: {
+            overbooking: "OVERBOOK",
+            bifast: "BIFAST",
+            rtol: "RTOL",
+            skn: "SKN",
+            rtgs: "RTGS"
         }
     },
     registration: {

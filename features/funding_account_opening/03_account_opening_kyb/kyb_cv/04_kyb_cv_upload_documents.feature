@@ -6,7 +6,7 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         Background: User choose legality business type PT Perusahaan
             Given I am a registered customer with following details:
-                  | userID      | deve875b |
+                  | userID      | deve0721 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |   
@@ -14,7 +14,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I reset my state journey
               And complete onboarding document safe and survey
               And I filling in form login with the following details:
-                  | userID      | deve875b |
+                  | userID      | deve0721 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
@@ -24,7 +24,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I swipe to card Giro Account
               And I choose Giro Account
               And I choose Giro Account Corporate
-        And I submit my giro type
+              And I submit my giro type
               And I choose legality business type 'cv'
               And I submit my legality type
               And I fill NPWP Business
@@ -72,6 +72,9 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see 'SK Kemenkumham Pendirian' is empty
               And I will see 'NPWP Bisnis' is empty
               And I will not see button request account opening
+              And I close page progress upload document
+              And I will see card continue to complete upload document business
+              And I can continue to page 'Upload Document Business'
 
         @C131926
         Scenario: Upload document and user drop off via direct app
@@ -130,6 +133,9 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click confirm delete document
              Then I will see 'NIB' is empty
               And I will not see button request account opening
+              And I close page progress upload document
+              And I will see card continue to complete upload document business
+              And I can continue to page 'Upload Document Business'
 
         @C136867
         Scenario: Delete some document
@@ -153,6 +159,9 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see 'NPWP Bisnis' still exists
               And I will see 'Akta Perubahan Terakhir' still exists
               And I will see 'SK Kemenkumham Perubahan Terakhir' still exists
+              And I close page progress upload document
+              And I will see card continue to complete upload document business
+              And I can continue to page 'Upload Document Business'
 
         @C136868
         Scenario: Delete all document
@@ -168,6 +177,9 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I delete all document company
              Then I will not see all document company
               And I will not see button request account opening
+              And I close page progress upload document
+              And I will see card continue to complete upload document business
+              And I can continue to page 'Upload Document Business'
 
         @C136869
         Scenario: Cancel Delete Document
@@ -358,6 +370,9 @@ Feature: Account Opening KYB CV - Upload Document Business
               Then I will see document 'Akta Perubahan Terakhir' is uploaded
               And I will see document 'SK Kemenkumham Perubahan Terakhir' is uploaded
               And I will not see button request account opening
+              And I close page progress upload document
+              And I will see card continue to complete upload document business
+              And I can continue to page 'Upload Document Business'
 
         @C160189
         Scenario: Upload only document required business type CV   

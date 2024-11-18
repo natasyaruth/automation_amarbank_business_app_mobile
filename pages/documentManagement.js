@@ -8,15 +8,8 @@ module.exports = {
     documentLoan: "~primaryFolderLoan",
     documentOther: "~buttonOtherDoc",
     itemLoan: "~buttonSelectLoan",
-    itemDocumentLoan: {xpath: '//android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[1]'},
-    downloadNib: "~buttonDownloadNib",
-    downloadDeed: "~buttonDownloadAkta",
-    downloadSk: "~buttonDownloadSk",
-    downloadLetter: "~buttonSuratPernyataanPendirianPt",
-    downloadNpwp: "~buttonDownloadNpwp",
-    downloadLastCertificate: "~buttonAktaPerubahanTerakhir",
-    downloadLastSk: "~buttonSkKemenkumhamPerubahan",
-    downloadLastLetter: "~buttonSuratPernyataanPerubahanTerakhir",
+    itemDocumentLoan: { xpath: '//android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[1]' },
+    downloadDoc: "~buttonInfo_",
     closePopUp: "~buttonClose",
     activatedNow: "~buttonActiveNow",
     seeDocument: "~buttonSeeDocument",
@@ -39,188 +32,227 @@ module.exports = {
     infoDoc: "~buttonInfo_",
     infoDocDetail: "~buttonInfo",
     changeName: "~buttonChangeName",
-    itemOtherDoc: {xpath: ""},
-    itemOtherDocDetail: {xpath: ""},
+    itemOtherDoc: "~content_",
+    itemOtherDocDetail: "~content_",
   },
-  links:{
+  links: {
     usePassword: "~buttonUsePassword",
   },
-  fields:{
+  fields: {
     password: "~textFieldPassword",
     folderName: "~fieldFolderName",
     changeFolderName: "~fieldChangeFolder",
     changeFileName: "~fieldChangeName",
   },
-  msgErrorFields:{
+  msgErrorFields: {
     password: "~textErrorPassword",
     folderName: "~fieldFolderNameError",
     changeFolderName: "~fieldChangeFolderError",
     changeFileName: "~fieldChangeNameError"
   },
   texts: {
-    fileName: {xpath: ""},
-    fileNameDetail: {xpath: ""},
-    fileSize: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.widget.TextView[4]"},
+    fileSize: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.TextView[3]" },
+    fileNameUploaded: "~textDocName",
+    titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"
   },
-  icons:{
-    completeUpload: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView[1]"},
+  icons: {
+    completeUpload: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ImageView" },
     resetName: "~buttonReset"
   },
   googleElement: {
-    titleDrive: {xpath: "(//android.widget.TextView[@text=\"Drive\"])[1]"},
-    search: {xpath: "//android.widget.Button[@content-desc=\"Search\"]"},
-    fieldSearch: {class: 'android.widget.AutoCompleteTextView'},
-    firstOption: {xpath: "//androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView/android.widget.RelativeLayout/android.widget.FrameLayout[1]"},
-    firstCardView: {xpath: '//android.widget.GridView/androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView[1]'},
-    titleFirstOption: {xpath: "//android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]"},
+    titleDrive: { xpath: "(//android.widget.TextView[@text=\"Drive\"])[1]" },
+    search: { xpath: "//android.widget.TextView[@content-desc=\"Search\"]" },
+    fieldSearch: { class: 'android.widget.AutoCompleteTextView' },
+    firstOption: { xpath: "//androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView/android.widget.RelativeLayout/android.widget.FrameLayout[1]" },
+    firstCardView: { xpath: '//android.widget.GridView/androidx.cardview.widget.CardView[1]/androidx.cardview.widget.CardView[1]' },
+    titleFirstOption: { xpath: "//android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView[1]" },
   },
   statusElement: {
-    buttonSaveOtherDoc: {xpath: ""},
+    buttonSaveOtherDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
+    fieldNameDoc: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText"}
   },
 
-  clickTabDocument(){
+  clickTabDocument() {
     I.waitForElement(this.buttons.tabDocument, 10);
     I.click(this.buttons.tabDocument);
   },
-  clickDocumentGiro(){
+  clickDocumentGiro() {
     I.waitForElement(this.buttons.documentGiro, 10);
     I.click(this.buttons.documentGiro);
   },
-  clickDocumentLoan(){
+  clickDocumentLoan() {
     I.waitForElement(this.buttons.documentLoan, 10);
     I.click(this.buttons.documentLoan);
   },
-  clickItemLoan(){
+  clickItemLoan() {
     I.waitForElement(this.buttons.itemLoan, 10);
     I.click(this.buttons.itemLoan);
   },
 
-  closePopUpBiometricInactive(){
+  closePopUpBiometricInactive() {
     I.waitForElement(this.buttons.closePopUp, 10);
     I.click(this.buttons.closePopUp);
   },
 
-  closeBottomSheetPassword(){
+  closeBottomSheetPassword() {
     I.waitForElement(this.buttons.closePopUp, 10);
     I.click(this.buttons.closePopUp);
   },
 
-  clickActivatedBiometric(){
+  clickActivatedBiometric() {
     I.waitForElement(this.buttons.activatedNow, 10);
     I.click(this.buttons.activatedNow);
   },
 
-  clickLinkUsePassword(){
+  clickLinkUsePassword() {
     I.waitForElement(this.links.usePassword, 10);
     I.click(this.links.usePassword);
   },
 
-  inputPassword(password){
+  inputPassword(password) {
     I.waitForElement(this.fields.password, 10);
     I.setText(this.fields.password, password);
   },
 
-  clickIconEyePassword(){
+  clickIconEyePassword() {
     I.waitForElement(this.buttons.eyePassword, 10);
     I.click(this.buttons.eyePassword);
   },
 
-  clearPassword(){
+  clearPassword() {
     I.waitForElement(this.fields.password, 10);
     I.clearField(this.fields.password);
   },
 
-  clickSeeDocument(){
+  clickSeeDocument() {
     I.waitForElement(this.buttons.seeDocument, 10);
     I.click(this.buttons.seeDocument);
   },
 
-  async getMessageErrorPassword(){
+  async getMessageErrorPassword() {
     I.waitForElement(this.msgErrorFields.password, 10);
     return await I.grabTextFrom(this.msgErrorFields.password);
   },
 
-  clickMenuOtherDocument(){
+  clickMenuOtherDocument() {
     I.waitForElement(this.buttons.documentOther, 10);
     I.click(this.buttons.documentOther);
   },
 
-  clickUploadOtherDocument(){
+  clickUploadOtherDocument() {
     I.waitForElement(this.buttons.uploadOtherDoc, 10);
     I.click(this.buttons.uploadOtherDoc);
   },
 
-  closeBottomSheet(){
+  closeBottomSheet() {
     I.waitForElement(this.buttons.closeBottomSheet, 10);
     I.click(this.buttons.closeBottomSheet);
   },
 
-  cancelUpload(){
+  cancelUpload() {
     I.waitForElement(this.buttons.confirmCancel, 10);
     I.click(this.buttons.confirmCancel);
   },
 
-  backToUpload(){
+  backToUpload() {
     I.waitForElement(this.buttons.backToUpload, 10);
     I.click(this.buttons.backToUpload);
   },
 
-  clickUploadDoc(){
+  clickUploadDoc() {
     I.waitForElement(this.buttons.addDoc, 10);
     I.click(this.buttons.addDoc);
   },
 
-  clickAddFolder(){
+  uploadFile() {
+    I.waitForElement(this.buttons.upload, 10);
+    I.click(this.buttons.upload);
+  },
+
+  clickAddFolder() {
     I.waitForElement(this.buttons.addFolder, 10);
     I.click(this.buttons.addFolder);
   },
 
-  clickDeleteDoc(){
+  clickDeleteDoc() {
     I.waitForElement(this.buttons.deleteDoc, 10);
     I.click(this.buttons.deleteDoc);
   },
 
-  deleteOtherDoc(index){
-    I.waitForElement(this.buttons.deleteDetail+index, 10);
-    I.click(this.buttons.deleteDetail+index);
+  deleteOtherDoc(index) {
+    I.waitForElement(this.buttons.deleteDetail + index, 10);
+    I.click(this.buttons.deleteDetail + index);
   },
 
-  saveDocument(){
+  saveDocument() {
     I.waitForElement(this.buttons.saveDocument, 10);
     I.click(this.buttons.saveDocument);
   },
 
-  cancelDeleteDoc(){
+  cancelDeleteDoc() {
     I.waitForElement(this.buttons.cancelDelete, 10);
     I.click(this.buttons.cancelDelete);
   },
 
-  confirmDeleteDoc(){
+  confirmDeleteDoc() {
     I.waitForElement(this.buttons.confirmDelete, 10);
     I.click(this.buttons.confirmDelete);
   },
 
-  cancelDeleteFolder(){
+  cancelDeleteFolder() {
     I.waitForElement(this.buttons.cancelDelete, 10);
     I.click(this.buttons.cancelDelete);
   },
 
-  confirmDeleteFolder(){
+  confirmDeleteFolder() {
     I.waitForElement(this.buttons.confirmDelete, 10);
     I.click(this.buttons.confirmDelete);
   },
 
-  async getFileName(){
-    I.waitForElement(this.texts.fileNameDetail, 10);
-    return await I.grabTextFrom(this.texts.fileNameDetail);
+  async getFileName() {
+    I.waitForElement(this.texts.fileNameUploaded, 10);
+    return await I.grabTextFrom(this.texts.fileNameUploaded);
   },
 
-  async getFileNameInListOtherDoc(index){
-    I.waitForElement(this.texts.fileName+index, 10);
-    return await I.grabTextFrom(this.texts.fileName+index);
+  async getFileNameInListOtherDoc(index) {
+    const finalIndex = index + 2;
+    const firstPattern = "//android.widget.ScrollView/android.widget.TextView"
+    const finalPattern = firstPattern + "[" + finalIndex + "]";
+
+    I.waitForElement(finalPattern, 20);
+    return await I.grabTextFrom(finalPattern);
   },
 
-  async searchGoogleDrive(fileName){
+  async getFileNameInListDetailOtherDoc(index) {
+    const firstPattern = "//android.widget.ScrollView/android.widget.TextView"
+    const finalPattern = firstPattern + "[" + index + "]";
+
+    I.waitForElement(finalPattern, 20);
+    return await I.grabTextFrom(finalPattern);
+  },
+
+  async getFolderNameInListOtherDoc(index) {
+    const finalIndex = index+1;
+    const firstPattern = "//android.widget.ScrollView/android.view.View";
+    const lastPattern = "/android.widget.TextView";
+
+    const finalPattern = firstPattern + "[" + finalIndex + "]" + lastPattern
+
+    I.waitForElement(finalPattern, 20);
+    return await I.grabTextFrom(finalPattern);
+  },
+
+  async getFolderNameInListDetailOtherDoc(index) {
+    const firstPattern = "//android.widget.ScrollView/android.view.View";
+    const lastPattern = "/android.widget.TextView";
+
+    const finalPattern = firstPattern + "[" + index + "]" + lastPattern
+
+    I.waitForElement(finalPattern, 20);
+    return await I.grabTextFrom(finalPattern);
+  },
+
+  async searchGoogleDrive(fileName) {
 
     I.waitForElement(this.googleElement.search, 20);
     I.click(this.googleElement.search);
@@ -228,115 +260,138 @@ module.exports = {
     I.click(this.googleElement.fieldSearch);
     I.wait(2);
     I.type(fileName, 100);
-    I.wait(2);
+    I.wait(4);
 
     I.waitForElement(this.googleElement.firstOption, 20);
 
     return await I.grabTextFrom(this.googleElement.titleFirstOption);
   },
 
-  clickFirstOptionSearch(){
+  clickFirstOptionSearch() {
     I.waitForElement(this.googleElement.firstOption, 20);
     I.click(this.googleElement.firstOption);
   },
 
-  fillFieldFolderName(folderName){
+  fillFieldFolderName(folderName) {
     I.waitForElement(this.fields.folderName, 20);
+    I.clearField(this.fields.folderName);
     I.setText(this.fields.folderName, folderName);
     I.hideDeviceKeyboard();
   },
 
-  fillFieldFolderNameViaKeyboard(folderName){
+  fillFieldFolderNameViaKeyboard(folderName) {
     I.waitForElement(this.fields.folderName, 20);
+    I.clearField(this.fields.folderName);
     I.click(this.fields.folderName);
     I.type(folderName, 300);
     I.hideDeviceKeyboard();
   },
 
-  fillNewFolderName(folderName){
+  fillNewFolderName(folderName) {
     I.waitForElement(this.fields.changeFolderName, 20);
     I.setText(this.fields.changeFolderName, folderName);
     I.hideDeviceKeyboard();
   },
 
-  fillNewFileName(fileName){
+  fillNewFolderNameViaKeyboard(folderName) {
+    I.waitForElement(this.fields.changeFolderName, 20);
+    I.clearField(this.fields.changeFolderName);
+    I.click(this.fields.changeFolderName);
+    I.type(folderName, 300);
+    I.hideDeviceKeyboard();
+  },
+
+  fillNewFileName(fileName) {
     I.waitForElement(this.fields.changeFileName, 20);
     I.setText(this.fields.changeFileName, fileName);
     I.hideDeviceKeyboard();
   },
 
-  clickIconClear(){
+  fillNewFileNameViaKeyboard(fileName) {
+    I.waitForElement(this.fields.changeFileName, 20);
+    I.clearField(this.fields.changeFileName);
+    I.click(this.fields.changeFileName);
+    I.type(fileName, 300);
+    I.hideDeviceKeyboard();
+  },
+
+  clickIconClear() {
     I.waitForElement(this.icons.resetName, 20);
     I.click(this.icons.resetName);
   },
 
-  clearViaKeyboardChangeFolderName(){
+  clearViaKeyboardChangeFolderName() {
     I.waitForElement(this.fields.changeFolderName, 20);
     I.clearField(this.fields.changeFolderName);
   },
 
-  clearViaKeyboardChangeFileName(){
+  clearViaKeyboardChangeFileName() {
     I.waitForElement(this.fields.changeFileName, 20);
     I.clearField(this.fields.changeFileName);
   },
 
-  clearViaKeyboardNewFolderName(){
+  clearViaKeyboardNewFolderName() {
     I.waitForElement(this.fields.folderName, 20);
     I.clearField(this.fields.folderName);
   },
 
-  createNewFolder(){
+  createNewFolder() {
     I.waitForElement(this.buttons.createFolder, 20);
     I.click(this.buttons.createFolder);
   },
 
-  saveName(){
+  saveName() {
     I.waitForElement(this.buttons.saveName, 20);
     I.click(this.buttons.saveName);
   },
 
-  clickInfoDocBucketlist(index){
-    I.waitForElement(this.buttons.infoDoc+index, 20);
-    I.click(this.buttons.infoDoc+index);
+  clickInfoDocBucketlist(index) {
+    I.waitForElement(this.buttons.infoDoc + index, 20);
+    I.click(this.buttons.infoDoc + index);
   },
 
-  clickInfoFolderBucketlist(index){
-    I.waitForElement(this.buttons.infoDoc+index, 20);
-    I.click(this.buttons.infoDoc+index);
+  clickInfoFolderBucketlist(index) {
+    I.waitForElement(this.buttons.infoDoc + index, 20);
+    I.click(this.buttons.infoDoc + index);
   },
 
-  clickInfOFolderDetail(){
-    I.waitForElement(this.buttons.infoDocDetail, 20);
-    I.click(this.buttons.infoDocDetail);
+  clickInfoFolderDetail(index) {
+    I.waitForElement(this.buttons.infoDocDetail+index, 20);
+    I.click(this.buttons.infoDocDetail+index);
   },
 
-  clickChangeName(){
+  clickChangeName() {
     I.waitForElement(this.buttons.changeName, 20);
     I.click(this.buttons.changeName);
   },
 
-  clickItemOtherDoc(){
-    I.waitForElement(this.buttons.itemOtherDoc, 20);
-    I.click(this.buttons.itemOtherDoc);
+  clickItemOtherDoc() {
+    I.waitForElement(this.buttons.itemOtherDoc+"0", 20);
+    I.click(this.buttons.itemOtherDoc+"0");
   },
 
-  clickItemOtherDocDetail(){
-    I.waitForElement(this.buttons.itemOtherDocDetail, 20);
-    I.click(this.buttons.itemOtherDocDetail);
+  clickFolderInDetail(index) {
+    I.waitForElement(this.buttons.itemOtherDocDetail+index, 20);
+    I.click(this.buttons.itemOtherDocDetail+index);
   },
 
-  async getMessageErrorFieldNewFolder(){
+  async getMessageErrorFieldNewFolder() {
     I.waitForElement(this.msgErrorFields.folderName, 10);
     return await I.grabTextFrom(this.msgErrorFields.folderName);
   },
 
-  async getMessageErrorFieldChangeFolder(){
+  async getMessageErrorFieldChangeFolder() {
     I.waitForElement(this.msgErrorFields.changeFolderName, 10);
     return await I.grabTextFrom(this.msgErrorFields.changeFolderName);
   },
 
-  async getMessageErrorFieldChangeFile(){
+  async getMessageErrorFieldChangeFile() {
     I.waitForElement(this.msgErrorFields.changeFileName, 10);
     return await I.grabTextFrom(this.msgErrorFields.changeFileName);
+  },
+
+  async getTitleFolderDetail() {
+    I.waitForElement(this.texts.titleDetailFolder, 10);
+    return await I.grabTextFrom(this.texts.titleDetailFolder);
   },
 }

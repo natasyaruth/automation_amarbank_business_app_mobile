@@ -41,60 +41,19 @@ module.exports = {
 
     },
 
-    async getIdOtherDoc(userID, password) {
-
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-
-        I.amBearerAuthenticated(secret(bearerToken));
-
-        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/other");
-
-        I.seeResponseCodeIsSuccessful();
-
-        return {
-            status: response.status,
-            idDocs: response.data,
-        }
-
-    },
-
     async deleteOtherDoc(userID, password) {
-        const idDoc = (await this.getIdOtherDoc()).idDocs;
 
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc);
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io//api/v1/drive/media/delete/all");
 
         return {
             status: response.status,
             data: response.data
         }
 
-    },
-
-    async deleteAllOtherDoc(userID, password) {
-
-        const idDoc = (await this.getIdOtherDoc()).idDocs;
-
-        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
-
-        I.amBearerAuthenticated(secret(bearerToken));
-
-        let response;
-
-        if (idDoc.length !== 0) {
-            for (let i = 0; i < idDoc.length; i++) {
-                response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/document/" + idDoc[i].id);
-                I.wait(3);
-            }
-
-            return {
-                status: response.status,
-                data: response.data
-            }
-        }
     },
 
     async deleteAllDocuments(userID, password) {
