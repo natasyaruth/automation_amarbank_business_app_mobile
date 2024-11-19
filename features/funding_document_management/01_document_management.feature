@@ -321,7 +321,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see menu other document
+        Then I will see button upload other document
+        And I will see empty detail menu other document
         And I will not see menu document loan and giro
 
     @C131646
@@ -346,7 +347,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see menu other document and loan
+        Then I will see button upload other document
+        And I will see menu other document and loan
         And I will not see menu document giro
 
     @C131649
@@ -370,7 +372,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I will direct to page document brankas
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
         And I click document giro
         And I will see document business for type company
 
@@ -395,7 +397,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I will direct to page document brankas
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
         And I click document giro
         And I will see document business for type company
 
@@ -420,7 +422,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I will direct to page document brankas
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
         And I click document giro
         And I will see document business for type individual company
 
@@ -445,7 +447,7 @@ Feature: Document Management
         And I input password document
         And I click see my document
         And I will direct to page document brankas
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
         And I click document giro
         And I will see document business for type individual company
 
@@ -594,13 +596,13 @@ Feature: Document Management
     @C157175
     Scenario: Open Tab Brankas for user initiator active
         Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
+            | userID      | rota3159 |
             | password    | 1234Test |
             | userIDstg   | stag98c5 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | mike2cf3 |
+            | userID      | rota3159 |
             | password    | 1234Test |
             | userIDstg   | stag98c5 |
             | passwordStg | 1234Test |
@@ -616,18 +618,18 @@ Feature: Document Management
         And I will see bottom sheet input password document
         And I input password document
         And I click see my document
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
 
     @C157176
     Scenario: Open Tab Brankas for user invitee active
         Given I am a registered customer with following details:
-            | userID      | nataf76e |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | nataf76e |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
@@ -641,7 +643,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see menu document giro, loan and other
+        Then I will see menu document giro and other
 
     @C157177
     Scenario: Open Tab Brankas for user individual active
@@ -666,8 +668,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see menu other document
-        And I will direct to page document brankas
+        Then I will see empty detail menu other document
+        And I will not see menu document loan and giro
 
     @C157178
     Scenario: Open Tab Brankas for user combine journey active
@@ -703,6 +705,7 @@ Feature: Document Management
             | userIDstg   | staga8a9 |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I filling in form login with the following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -715,7 +718,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I will see menu document giro, loan and other
+        And I will see menu document giro and other
         And I will see button upload other document
         Then I will see empty detail menu other document
 
@@ -893,7 +896,7 @@ Feature: Document Management
         Then I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
-        And I see list document is ordering by the latest to oldest
+        And I see list document is ordered alphabetical
 
     @C164031
     Scenario: Close bottom sheet add new folder other document
@@ -975,17 +978,15 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
-        And I save new folder
-        And I see snackbar success create new folder
-        And I will direct to page document brankas with folder that has been created in section other document
-        And I click button upload other document
-        And I click create new folder
         And I fill field new folder with 'Folder Tidak Penting'
         And I save new folder
         And I see snackbar success create new folder
-        Then I will direct to page document brankas with folder that has been created in section other document
-        And I see list folder is ordering by the latest to oldest
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I see list folder is ordered alphabetical
 
     @C164034
     Scenario: Add new folder and file
@@ -1021,17 +1022,16 @@ Feature: Document Management
         And I will see snackbar success upload success
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Folder Penting'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting'
+        And I fill field new folder with 'Folder Rahasia'
         And I save new folder
         And I see snackbar success create new folder
-        Then I will direct to page document brankas with folder that has been created in section other document
-        And I see list other document is ordering by the latest folder and then followed with latest file
+        Then I see list other document is ordering by folder and follow with file with alphabetical order
 
     @C164035
     Scenario: Let folder naming is blank
@@ -1328,6 +1328,8 @@ Feature: Document Management
         And I see snackbar success create new folder
         And I click icon three dot folder
         And I will see bottom sheet detail info folder
+        And I click edit folder name
+        And I will see bottom sheet change folder name
         And I close bottom sheet upload
         Then I will direct to page document brankas with folder that has been created in section other document
 
@@ -1365,6 +1367,43 @@ Feature: Document Management
         And I click change name
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
+
+    Scenario: Edit naming folder in detail folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I will see bottom sheet upload other document and create folder
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I open other folder
+        And I will see empty detail menu other document
+        And I click icon three dot folder detail
+        And I click edit folder name
+        And I will see bottom sheet change folder name
+        And I edit folder name with 'Folder Tidak Penting'
+        And I click change name
+        Then I will see snackbar success change folder name
+        And I will see title folder name is change
+        And I will see empty detail menu other document
 
     @C164046
     Scenario: Edit naming folder using special char
@@ -1558,6 +1597,7 @@ Feature: Document Management
         And I save new folder
         And I see snackbar success create new folder
         And I click icon three dot folder
+        And I click edit folder name
         And I clear change folder name using keyboard
         Then I see button change name is disabled
 
@@ -1587,6 +1627,7 @@ Feature: Document Management
         And I fill field new folder with 'Folder Penting'
         And I save new folder
         And I see snackbar success create new folder
+        And I click button upload other document
         And I click create new folder
         And I save new folder
         And I see snackbar success create new folder
@@ -1624,9 +1665,9 @@ Feature: Document Management
         And I click save document
         And I will see snackbar success upload success
         And I click icon three dot file
-        And I will see bottom sheet download and change file name
-        And I click edit file name
         And I will see bottom sheet detail info file
+        And I click edit file name
+        And I will see bottom sheet change file name
         And I edit file name with 'Dokumen Penting Banget'
         And I click change name
         Then I will see snackbar success change file name
@@ -1826,7 +1867,7 @@ Feature: Document Management
         And I click save document
         And I will see snackbar success upload success
         And I click button upload other document
-        And I upload other document with type 'jpg'
+        And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
@@ -1982,12 +2023,11 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Bisnis MSME'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
         And I open other folder
-        And I will see folder contents still empty
         And I click button upload other document
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
@@ -2018,7 +2058,7 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Perusahaan Aku'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
@@ -2032,6 +2072,7 @@ Feature: Document Management
         And I see the new file is created
         And I click icon three dot file
         And I click edit file name
+        And I will see bottom sheet change file name
         And I edit file name with 'Dokumen Aku'
         And I click change name
         Then I will see snackbar success change file name
@@ -2060,7 +2101,7 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Harus dijaga'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
@@ -2073,6 +2114,8 @@ Feature: Document Management
         And I see snackbar success create new folder
         And I see the new folder is created
         And I click icon three dot folder
+        And I click edit folder name
+        And I will see bottom sheet change folder name
         And I edit folder name with 'Folder Tidak Penting sih'
         And I click change name
         Then I will see snackbar success change folder name
@@ -2177,6 +2220,44 @@ Feature: Document Management
         Then I will see snackbar folder deleted successfully
         And I will not see the deleted folder
 
+    Scenario: Delete single folder via detail folder
+        Given I am a registered customer with following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And complete onboarding document safe and survey
+        And don't have any other document
+        And I filling in form login with the following details:
+            | userID      | deveceea |
+            | password    | 1234Test |
+            | userIDstg   | stag990b |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
+        And I click button upload other document
+        And I click create new folder
+        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I save new folder
+        And I see snackbar success create new folder
+        And I will direct to page document brankas with folder that has been created in section other document
+        And I open other folder
+        And I will see empty detail menu other document
+        And I click icon three dot folder detail
+        And I click delete folder
+        And I will see pop up confirm delete folder
+        And I confirm delete folder
+        Then I will see snackbar folder deleted successfully
+        And I will direct to page document brankas
+        And I will see menu document giro and other
+        And I will not see the deleted folder
+        And I will see empty detail menu other document
+
     @C165177
     Scenario: Delete more than one folders
          Given I am a registered customer with following details:
@@ -2185,6 +2266,7 @@ Feature: Document Management
             | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And don't have any other document
         And I have more than one other folders
         And I filling in form login with the following details:
             | userID      | deveceea |
@@ -2195,6 +2277,9 @@ Feature: Document Management
         And I click later in pop up biometric
         And I will see card account 'active'
         When I click tab brankas
+        And I click direct to input password document
+        And I input password document
+        And I click see my document
         And I click icon three dot folder
         And I click delete folder
         And I confirm delete folder
@@ -2228,14 +2313,14 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Segera Dihapus'
         And I save new folder
         And I see snackbar success create new folder
         And I open other folder
         And I will see folder contents still empty
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia 2'
+        And I fill field new folder with 'Segera Dihapus 2'
         And I save new folder
         And I see snackbar success create new folder
         And I click icon three dot folder
@@ -2286,7 +2371,7 @@ Feature: Document Management
             | userIDstg   | stag990b |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
-        And I have more than one other file
+        And don't have any other document
         And I filling in form login with the following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -2299,6 +2384,16 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
+        And I click button upload other document
+        And I upload other document with type 'jpg'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
+        And I click button upload other document
+        And I upload other document with type 'png'
+        And I will see other document has been uploaded
+        And I click save document
+        And I will see snackbar success upload success
         And I click icon three dot file
         And I click delete file
         And I confirm delete file
@@ -2332,7 +2427,7 @@ Feature: Document Management
         And I click see my document
         And I click button upload other document
         And I click create new folder
-        And I fill field new folder with 'Folder Penting dan Rahasia'
+        And I fill field new folder with 'Rahasia Negara'
         And I save new folder
         And I see snackbar success create new folder
         And I open other folder
@@ -2348,3 +2443,4 @@ Feature: Document Management
         And I confirm delete file
         Then I will see snackbar file deleted successfully
         And I will not see the deleted file
+        And I will see empty detail menu other document

@@ -523,7 +523,7 @@ Then("I will see list maker transaction in notification center", async () => {
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -559,7 +559,7 @@ Then("I will see list approver transaction in notification center", async () => 
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -594,7 +594,7 @@ Then("I will see notification approval change to waiting from other director", a
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 

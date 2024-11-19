@@ -459,6 +459,7 @@ Feature: Account Opening Main Dashboard
             | userIDstg   | stagda20 |
             | passwordStg | 1234Test |
         And I reset my state journey 
+        And I reset state upload document
         When I filling in form login with the following details:
             | userID      | devece34 |
             | password    | 1234Test |
@@ -503,6 +504,132 @@ Feature: Account Opening Main Dashboard
         And I will see checkbox Rights and Obligations is checked
         And I submit my business address
         And I see page 'Method Upload Document'
+        And I close page upload document
+        Then I will see card continue to complete upload document business
+        And I can continue to page 'Upload Document Business'
+
+    @C165703
+    Scenario: User can see cards continue to complete upload document after upload some document
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I reset state upload document
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName      | PT. ABCD        |
+            | industry          | Jasa            |
+            | businessField     | Restoran        |
+            | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
+            | businessDateStart | 10/10/2010      |
+        And I submit my business profile
+        And I submit business director
+        And I fill my business address as followings:
+            | address  | Jl. Gambir Belok kanan No. 23 |
+            | rt       | 010                           |
+            | rw       | 027                           |
+            | province | DKI JAKARTA                   |
+            | city     | JAKARTA SELATAN               |
+            | district | PANCORAN                      |
+            | village  | PANCORAN                      |
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
+        And I submit my business address
+        And I see page 'Method Upload Document'
+        And I choose method upload document
+        And I choose direct upload via app
+        And I upload document business 'NIB' with type 'pdf'
+        And I upload document business 'Akta Pendirian' with type 'pdf'
+        And I click button progress upload document
+        And I will see document 'NIB' is uploaded
+        And I will see document 'Akta Pendirian' is uploaded
+        And I close page upload document
+        Then I will see card continue to complete upload document business
+        And I can continue to page 'Upload Document Business'
+
+    @C165704
+    Scenario: User can see cards continue to complete upload document after upload all document without click request account opening
+        Given I am a registered customer with following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I reset state upload document
+        When I filling in form login with the following details:
+            | userID      | devece34 |
+            | password    | 1234Test |
+            | userIDstg   | stagda20 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account MSME
+        And I submit my giro type
+        And I choose legality business type 'company'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName      | PT. ABCD        |
+            | industry          | Jasa            |
+            | businessField     | Restoran        |
+            | monthlyIncome     | 30 - 50 juta    |
+            | averageTransaction| 2000000         |
+            | nib               | 9129106701234   |
+            | businessDateStart | 10/10/2010      |
+        And I submit my business profile
+        And I submit business director
+        And I fill my business address as followings:
+            | address  | Jl. Gambir Belok kanan No. 23 |
+            | rt       | 010                           |
+            | rw       | 027                           |
+            | province | DKI JAKARTA                   |
+            | city     | JAKARTA SELATAN               |
+            | district | PANCORAN                      |
+            | village  | PANCORAN                      |
+        And I agree to carry out the Rights and Obligations
+        And I will directing to page Rights and Obligations
+        And I click button agree with Rights and Obligations
+        And I will see checkbox Rights and Obligations is checked
+        And I submit my business address
+        And I see page 'Method Upload Document'
+        And I choose method upload document
+        And I choose direct upload via app     
+        And I upload all document business for type company
+        And I click button progress upload document
+        And I will see button request account opening is shown
         And I close page upload document
         Then I will see card continue to complete upload document business
         And I can continue to page 'Upload Document Business'

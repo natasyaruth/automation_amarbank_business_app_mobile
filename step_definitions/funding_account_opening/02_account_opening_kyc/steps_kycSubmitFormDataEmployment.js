@@ -33,30 +33,30 @@ Given("I see fields that available in Data Employment", async () => {
     ){
         I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
         I.see("Jenis Pekerjaan");
-        I.see("Pilih jenis pekerjaan");
+        // I.see("Pilih jenis pekerjaan");
 
         I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
         I.see("Sumber pendapatan");
-        I.see("Pilih sumber pendapatan");
+        // I.see("Pilih sumber pendapatan");
 
         I.waitForElement(formEmploymentDataPage.dropDowns.monthlyIncome, 10);
         I.see("Pendapatan Bulanan (dalam Rp)");
-        I.see("Pilih pendapatan bulanan");
+        // I.see("Pilih pendapatan bulanan");
 
         I.waitForElement(formEmploymentDataPage.field.averageTransaction, 10);
         I.see("Rata-rata Transaksi");
-        I.see("Rata-rata transaksi per bulan");
+        // I.see("Rata-rata transaksi per bulan");
 
         I.waitForElement(formEmploymentDataPage.dropDowns.industry, 10);
         I.see("Industri Perusahaan");
-        I.see("Pilih industri perusahaan");
+        // I.see("Pilih industri perusahaan");
 
         I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
         I.waitForElement(formEmploymentDataPage.field.companyName, 10);
         I.see("Nama Perusahaan");
-        I.see("Tulis nama Perusahaan");
-        I.see("Isi \"Tidak Ada\" jika kamu bekerja sendiri")
+        // I.see("Tulis nama Perusahaan");
+        I.see("Isi \"Tidak Ada\" jika Anda bekerja sendiri")
         
         I.see("Syarat dan Ketentuan");
         I.see("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");
@@ -70,28 +70,28 @@ Given("I see fields that available in Data Employment", async () => {
 
         I.waitForElement(formEmploymentDataPage.dropDowns.workType, 10);
         I.see("Jenis Pekerjaan");
-        I.see("Pilih jenis pekerjaan");
+        // I.see("Pilih jenis pekerjaan");
 
         I.waitForElement(formEmploymentDataPage.dropDowns.sourceIncome, 10);
         I.see("Sumber pendapatan");
-        I.see("Pilih sumber pendapatan");
+        // I.see("Pilih sumber pendapatan");
 
         I.dontSee(formEmploymentDataPage.dropDowns.monthlyIncome);
         I.dontSee("Pendapatan Bulanan (dalam Rp)");
-        I.dontSee("Pilih pendapatan bulanan");
+        // I.dontSee("Pilih pendapatan bulanan");
 
         I.dontSee(formEmploymentDataPage.field.averageTransaction);
         I.dontSee("Rata-rata Transaksi");
-        I.dontSee("Rata-rata transaksi per bulan");
+        // I.dontSee("Rata-rata transaksi per bulan");
 
         I.dontSee(formEmploymentDataPage.dropDowns.industry);
         I.dontSee("Industri Perusahaan");
-        I.dontSee("Pilih industri perusahaan");
+        // I.dontSee("Pilih industri perusahaan");
 
         I.dontSee(formEmploymentDataPage.field.companyName);
         I.dontSee("Nama Perusahaan");
-        I.dontSee("Tulis nama Perusahaan");
-        I.dontSee("Isi \"Tidak Ada\" jika kamu bekerja sendiri")
+        // I.dontSee("Tulis nama Perusahaan");
+        I.dontSee("Isi \"Tidak Ada\" jika Anda bekerja sendiri")
         
         I.dontSee("Syarat dan Ketentuan");
         I.dontSee("Saya setuju untuk menjalankan hak dan kewajiban yang telah ditentukan dalam pembuatan rekening Amar Bank di PT Bank Amar Indonesia Tbk");

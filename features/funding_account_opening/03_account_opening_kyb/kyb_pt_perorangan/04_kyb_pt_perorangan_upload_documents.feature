@@ -67,7 +67,10 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I click button progress upload document
         Then I will see document 'Sertifikat Perubahan Terakhir' is uploaded
         And I will see document 'Surat Pernyataan Perubahan Terakhir' is uploaded
-        And I will not see button request account opening    
+        And I will not see button request account opening
+        And I close page progress upload document
+        And I will see card continue to complete upload document business
+        And I can continue to page 'Upload Document Business'
 
     @C160205
     Scenario: Upload only document required business type PT Perorangan   
@@ -77,7 +80,7 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I see files that need to be uploaded for type individual company
         And I upload all document business required for type individual company
         And I click button progress upload document
-        Then I will see all document required company has been uploaded
+        Then I will see all document business individual company has been uploaded
         And I will see button request account opening is shown
         And I click button request account opening
         And I will direct to page thank you and need verification of my data
