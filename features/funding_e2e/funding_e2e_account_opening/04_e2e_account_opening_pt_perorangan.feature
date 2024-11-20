@@ -18,7 +18,7 @@ Feature: Account Opening - PT Perorangan
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
-        And I submit my giro type
+    And I submit my giro type
     And I choose legality business type 'individualBusiness'
     And I submit my legality type
     And I fill NPWP Business
@@ -77,7 +77,7 @@ Feature: Account Opening - PT Perorangan
     And I click button agree with Rights and Obligations
     And I will see checkbox Rights and Obligations is checked
     And I submit my business address
-    And I will directing to page upload require documents for business
+    And I will directing to page upload require documents for business individual
     And I choose method upload document
     And I choose direct upload via app
     And I see files that need to be uploaded for type individual company

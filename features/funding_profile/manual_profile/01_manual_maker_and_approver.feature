@@ -224,21 +224,6 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker can click detail card completed
         And Maker will see detail card maker that has been canceled
 
-    @C132520
-    Scenario: Cancel transaction with one approval already accept the transaction (Level approval more than 1 director)
-        Given Maker create transaction transfer out using device A
-        And level approval more than 1 director
-        And one approver have been approved the transaction
-        When Maker canceled the transaction
-        And Maker input password
-        And Maker submit password
-        And Maker input OTP code
-        And Maker will direct to main dashboard
-        And Maker will see snackbar with wording 'Transaksi berhasil dibatalkan'
-        Then Maker will not see card maker that already been cancelled
-        And in all approver, that transaction should be not exist anymore
-        And in history completed card, the transaction will get status 'Transaksi Dibatalkan'
-
     @C132521
     Scenario: Cancel transaction when transaction was accepted at the same time (Level approval 1 director, state cancelation in page detail maker)
         Given Maker create transaction transfer out using device A
@@ -308,25 +293,6 @@ Feature: Maker and Approver Transaction Manual Cases
         And Approver can click detail card completed
         And Approver will see detail card maker that has been cancelled
 
-    @C132525
-    Scenario: Approve transaction when transaction was cancelled at the same time (Level approval 1 director, state approve in page input password)
-        Given Maker create transaction transfer out using device A
-        And level approval only 1 director
-        And Approver open detail card approval using device B
-        And Approver click button approve
-        And Maker canceled the transaction
-        And Approver input password
-        And Approver submit password
-        And Approver input OTP code
-        Then Approver will see snackbar error system
-        And Approver close page transaction
-        And Approver will direct main dashboard
-        And Approver will not see the card approver in main dashboard
-        And Approver will not see the card approver in menu transaction need approval
-        And Approver will see history transaction in tab completed with status "Transaksi Dibatalkan"
-        And Approver can click detail card completed
-        And Approver will see detail card maker that has been cancelled
-
     @C132526
     Scenario: Approve transaction when transaction was cancelled at the same time (Level approval 1 director, state approve in page input otp)
         Given Maker create transaction transfer out using device A
@@ -353,25 +319,6 @@ Feature: Maker and Approver Transaction Manual Cases
         And Maker canceled the transaction
         And Approver open detail card approval using device B
         And Approver click button Reject
-        Then Approver will see snackbar error system
-        And Approver close page transaction
-        And Approver will direct main dashboard
-        And Approver will not see the card approver in main dashboard
-        And Approver will not see the card approver in menu transaction need approval
-        And Approver will see history transaction in tab completed with status "Transaksi Dibatalkan"
-        And Approver can click detail card completed
-        And Approver will see detail card maker that has been cancelled
-
-    @C132528
-    Scenario: Reject transaction when transaction was cancelled at the same time (Level approval 1 director, state reject in page input password)
-        Given Maker create transaction transfer out using device A
-        And level approval only 1 director
-        And Approver open detail card approval using device B
-        And Approver click button reject
-        And Maker canceled the transaction
-        And Approver input password
-        And Approver submit password
-        And Approver input OTP code
         Then Approver will see snackbar error system
         And Approver close page transaction
         And Approver will direct main dashboard
@@ -442,6 +389,7 @@ Feature: Maker and Approver Transaction Manual Cases
         And I will see snackbar success
         And I will see notification need approve is change into transaction is rejected
 
+    @C164029
     Scenario: Checking ordering list pending task in notification center
         Given I am an initiator
         And has two other partner

@@ -10,7 +10,8 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Address
             | password    | 1234Test |
             | userIDstg   | rutheeab |
             | passwordStg | 1234Test |
-        And I reset my state journey    
+        And I reset state upload document
+        And I reset my state journey 
         And I filling in form login with the following details:
             | userID      | ptpe2eef |
             | password    | 1234Test |

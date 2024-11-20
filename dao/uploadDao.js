@@ -73,6 +73,26 @@ module.exports = {
         }
     },
 
+    async uploadOtherFolder(userID, password, folderName) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken))
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media/folder/create", secret({
+            folderName: folderName,
+            source: ""
+        }));
+
+        I.seeResponseCodeIsSuccessful();
+
+        return {
+            status: response.status,
+            data: response.data,
+        }
+
+    },
+
     async uploadOtherDoc(userID, password, fileType) {
 
         let base64File;

@@ -78,6 +78,13 @@ module.exports = {
         ],
         formatDate: {
             ddmmmyyyy: "ddmmmyyyy",
+        },
+        methodTf: {
+            overbooking: "OVERBOOK",
+            bifast: "BIFAST",
+            rtol: "RTOL",
+            skn: "SKN",
+            rtgs: "RTGS"
         }
     },
     registration: {
@@ -94,7 +101,7 @@ module.exports = {
         companyName: "",
         businessCode: "",
         userID: "",
-        npwpBusinessDefault: "449645570040911",
+        npwpBusinessDefault: "449645570040922",
         npwpBusiness: "",
     },
     onBoarding: {
@@ -106,11 +113,13 @@ module.exports = {
         password: "",
         passwordPartner: "",
         passwordFriendlist: "",
+        listPassword: [],
         dummyPassword: "Ruth!@#$$",
         userID: "",
         userIDPartner: "",
         userIDInitiator: "",
         userIDFriendlist: "",
+        listUserID: [],
         countValue: "",
         date: "",
         time: "",
@@ -179,7 +188,7 @@ module.exports = {
     transfer: {
         amount: 0,
         amountTransfer: "",
-        dailyLimit: 200000000,
+        dailyLimit: 0,
         service: "",
         note: "",
         category: "",

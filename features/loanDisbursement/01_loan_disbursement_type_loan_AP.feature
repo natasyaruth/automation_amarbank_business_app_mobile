@@ -150,6 +150,7 @@ Feature: Loan Disbursement for Loan Type AP
     #     When I click button "lanjut perhitungan pencairan"
     #     Then show disbursement calculation page if amount more than 2 billion
 
+
     # @Sprint6Lending @C136393
     # Scenario: Continue Disburse The Loan When The PIN Has Not Been Created
     #     Given I haven been in calculation page of amount
@@ -197,3 +198,47 @@ Feature: Loan Disbursement for Loan Type AP
     #     Then show amount disbursement calculation page if invoice value 80%
 
     
+
+    @Sprint6Lending @C136399
+    Scenario: Validate Disbursement Calculations When Invoice Value 80%
+        Given I have been on "Perhitungan pencairan page"
+        When user should see field "Nominal Pinjaman" in the below of field "textFundingAmount"
+        When user should see field "Total Bunga" in the below of field "textInterestFee"
+        When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
+        Then show amount disbursement calculation page if invoice value 80%
+
+    
+    Scenario: Validate Display Provision Fee Information method is every disbursement  
+        Given I have successfully disburse for loan AP
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I see Biaya Provisi
+        And I see provision fee percentage
+        And I see provision fee amount
+
+    Scenario: Validate Do Not Display Provision Fee When Percentage is Zero
+        Given I have successfully disburse for loan AP with provisi is zero
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
+
+
+    Scenario: Validate Display Provision Fee Information method is facility created
+        Given I have successfully disburse for loan AP with program facilty created
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card AP
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
+

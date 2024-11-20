@@ -341,3 +341,35 @@ Then("I notified that I can verify the OTP tomorrow", async () => {
     await
         otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
+
+Then("I will see message error OTP with information can be tried tomorrow", async () => {
+
+    I.waitForText("Kode OTP", 10);
+
+    const currentDate = new Date();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes();
+    const currentTime = hours.toString().padStart(2, '0') + ":" + minutes.toString().padStart(2, '0');
+    
+    const tomorrowDate = new Date(currentDate);
+    tomorrowDate.setDate(currentDate.getDate() + 1);
+
+    const day = tomorrowDate.getDate();
+    const formattedDay = (day < 10 ? '0' : '') + day;
+    const month = tomorrowDate.getMonth();
+    const year = tomorrowDate.getFullYear();
+    const months = [
+        "Januari", "Februari", "Maret", "April",
+        "Mei", "Juni", "Juli", "Agustus",
+        "September", "Oktober", "November", "Desember"
+    ];
+
+    const actualMsgError = await changePasswordPage.getMessageErrorFields("otp");
+
+    I.assertEqual(actualMsgError, "Kode OTP dapat dikirim kembali pada: tanggal " + formattedDay +
+        " " + months[month] + " " + year + ", pukul " + currentTime);
+
+    I.dontSeeElement(changePasswordPage.link.resendOtp);
+    await
+        otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
+});

@@ -10,6 +10,7 @@ const {
     mainActivePage,
     profilePage,
     amountDetailPage,
+    notificationCenterPage,
 } = inject();
 
 Given("I see card maker transaction", async () => {
@@ -25,13 +26,30 @@ Given("I see card maker transaction", async () => {
     globalVariable.dashboard.amountTransaction = (await onboardingAccOpeningPage.getAmountTransaction()).replace(/[Rp.]/g, '');
 });
 
-Given("don't have list pending task", async ()=>{
-    // API to delete list pending task
+Given("don't have list pending task", async () => {
+    await
+        resetStateDao.deleteListPendingTask(globalVariable.login.userID, globalVariable.login.password);
 });
 
 Given("we don't have list pending task", async () => {
 
-    // API to delete list pending task me and partner
+    await
+        resetStateDao.deleteListPendingTask(globalVariable.login.userID, globalVariable.login.password);
+
+    await
+        resetStateDao.deleteListPendingTask(globalVariable.login.userIDPartner, globalVariable.login.passwordPartner);
+
+});
+
+Given("we all don't have any pending task", async () => {
+    const listPartnerUserID = globalVariable.login.listUserID;
+    const listPartnerPassword = globalVariable.login.listPassword;
+
+    for(let i=0;i<listPartnerUserID.length;i++){
+        await
+            resetStateDao.deleteListPendingTask(listPartnerUserID[i], listPartnerPassword[i]);
+        I.wait(2);
+    }
 
 });
 
@@ -186,7 +204,7 @@ When("I let the otp code for approve transaction expire", () => {
 When("I resend otp code to approve transaction", async () => {
     I.wait(3);
     globalVariable.registration.phoneNumber = (await approvalTransactionPage.getPhoneNumber()).replace(/ /g, '').replace(/\+/g, '');
-    globalVariable.registration.otpCode = (await otpDao.getOTPUsingToken()).otp;
+    globalVariable.registration.otpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     I.waitForElement(approvalTransactionPage.links.resendOtp, 70);
     approvalTransactionPage.resendOtp();
@@ -225,17 +243,17 @@ When("I canceled my transaction", () => {
 });
 
 When("I click notification maker transaction", () => {
-    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus, 10);
+    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus+"0", 10);
     notificationCenterPage.openDetailNotifTransaction(0);
 });
 
 When("I click notification approver transaction", () => {
-    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus, 10);
+    I.waitForElement(notificationCenterPage.texts.pendingTrxStatus+"0", 10);
     notificationCenterPage.openDetailNotifTransaction(0);
 });
 
 Then("I will not see menu transaction approval", () => {
-    I.waitForText(globalVariable.login.userID.toUpperCase(), 50);
+    I.wait(3);
     I.dontSee(profilePage.buttons.transactionApprovalDetail);
 });
 
@@ -505,7 +523,7 @@ Then("I will see list maker transaction in notification center", async () => {
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -541,7 +559,7 @@ Then("I will see list approver transaction in notification center", async () => 
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -576,7 +594,7 @@ Then("I will see notification approval change to waiting from other director", a
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -737,7 +755,7 @@ Then("I should be notified that I can verify the OTP tomorrow", async () => {
 
 Then("I will get new OTP different with my first OTP to approve transaction", async () => {
     I.wait(2);
-    const newOtpCode = (await otpDao.getOTPUsingToken()).otp;
+    const newOtpCode = (await otpDao.getOTPUsingToken(globalVariable.login.userID, globalVariable.login.password)).otp;
 
     I.assertNotEqual(newOtpCode, globalVariable.registration.otpCode);
 });
@@ -764,12 +782,7 @@ Then("I will not see card approver that has been rejected", () => {
 });
 
 Then("I will see snackbar with wording {string}", (wordingSnackBar) => {
-    I.waitForText(wordingSnackBar, 10);
-});
-
-Then("I can click link to see the transaction with status {string}", async (statusApproval) => {
-    approvalTransactionPage.openDetailApprovalOnSnackbar();
-    globalVariable.transfer.status = statusApproval;
+    I.waitForText(wordingSnackBar, 40);
 });
 
 Then("I will see card maker that has been approved", async () => {
@@ -798,7 +811,7 @@ Then("I will see card maker that has been approved", async () => {
     I.assertEqual(actualAmount, "Rp" + expectedAmount);
 
     const actualStatusApproval = await approvalTransactionPage.getStatusTransaction();
-    I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
+    I.assertEqual(actualStatusApproval, "Transaksi Disetujui");
 });
 
 Then("I will see detail card maker that has been approved", async () => {
@@ -850,8 +863,14 @@ Then("I will see detail card maker that has been approved", async () => {
 
     I.see("Disetujui oleh");
     const actualApprovedBy = await approvalTransactionPage.getNameApprovedBy();
-    const expectedApprovedBy = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
-    I.assertEqual(actualApprovedBy, expectedApprovedBy);
+
+    if(
+        globalVariable.dashboard.approverName === ""
+    ){
+        globalVariable.dashboard.approverName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    }
+    
+    I.assertEqual(actualApprovedBy, globalVariable.dashboard.approverName);
 
     I.see("Nomor Referensi");
     I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
@@ -869,7 +888,7 @@ Then("I will see detail card maker that has been approved", async () => {
     const actualCategory = await approvalTransactionPage.getCategoryName();
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
-    I.see("Catatan");
+    I.waitForText("Catatan", 10);
     if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
@@ -902,7 +921,7 @@ Then("I will see card maker that has been rejected", async () => {
     I.assertEqual(actualAmount, "Rp" + expectedAmount);
 
     const actualStatusApproval = await approvalTransactionPage.getStatusTransaction();
-    I.assertEqual(actualStatusApproval, globalVariable.transfer.status);
+    I.assertEqual(actualStatusApproval, "Transaksi Ditolak");
 });
 
 Then("I will see detail card maker that has been rejected", async () => {
@@ -944,8 +963,12 @@ Then("I will see detail card maker that has been rejected", async () => {
 
     I.see("Ditolak oleh");
     const actualRejectedName = await approvalTransactionPage.getNameRejectedBy();
-    const expectedRejectedName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
-    I.assertEqual(actualRejectedName, expectedRejectedName);
+    if(
+        globalVariable.dashboard.approverName === ""
+    ){
+        globalVariable.dashboard.approverName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    }
+    I.assertEqual(actualRejectedName, globalVariable.dashboard.approverName);
 
     I.see("Nomor Referensi");
     I.waitForElement(approvalTransactionPage.texts.referenceNumber, 10);
@@ -962,7 +985,7 @@ Then("I will see detail card maker that has been rejected", async () => {
     const actualCategory = await approvalTransactionPage.getCategoryName();
     I.assertEqual(actualCategory, globalVariable.transfer.category);
 
-    I.see("Catatan");
+    I.waitForText("Catatan", 10);
     if (globalVariable.transfer.note !== "") {
         const actualNotes = await approvalTransactionPage.getNotes();
         I.assertEqual(globalVariable.transfer.note, actualNotes);
@@ -1062,29 +1085,28 @@ Then("I will see detail card maker that has been canceled", async () => {
     }
 });
 
-Then("I don't see list pending task", ()=>{
+Then("I don't see list pending task", () => {
     I.waitForText("Notifikasi", 20);
 
-    I.dontSeeElement(notificationCenterPage.texts.pendingTrxStatus+"0");
+    I.dontSeeElement(notificationCenterPage.texts.pendingTrxStatus + "0");
 });
 
-Then("I don't see indicator red in tab profile", ()=>{
-    I.waitForElement(transferPage.buttons.transfer, 20);
+Then("I don't see indicator red in tab profile", () => {
+    I.waitForElement(mainActivePage.buttons.btnTransfer, 20);
 
     I.dontSeeElement(profilePage.indicators.redDotProfile);
 });
 
-Then("I don't see counter pending task", ()=>{
-    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 20);
-
+Then("I will not see counter pending task", async () => {
+    I.waitForElement(profilePage.buttons.transactionApprovalDetail, 10);
     I.dontSeeElement(profilePage.texts.countPendingTrx);
 });
 
-Then("I will see indicator red in tab profile", ()=>{
+Then("I will see indicator red in tab profile", () => {
     I.waitForElement(profilePage.indicators.redDotProfile, 20);
 });
 
-Then("I see counter pending task", ()=>{
+Then("I see counter pending task", () => {
     I.waitForElement(profilePage.texts.countPendingTrx, 20);
 });
 

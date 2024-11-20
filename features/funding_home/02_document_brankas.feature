@@ -171,13 +171,13 @@ Feature: Home - Document Brankas
     @C156931 
     Scenario: Access widget brankas on main dashboard for user initiator active
         Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
+            | userID      | rota3159 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | mike2cf3 |
+            | userID      | rota3159 |
             | password    | 1234Test |
             | userIDstg   | staga810 |
             | passwordStg | 1234Test |
@@ -194,17 +194,18 @@ Feature: Home - Document Brankas
         And I input password document
         And I click see my document
         Then I will direct to page document brankas
+        And I will see menu document giro and other
 
     @C156932
     Scenario: Access widget brankas on main dashboard for user invitee active
         Given I am a registered customer with following details:
-            | userID      | nataf76e |
+            | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
-            | userID      | nataf76e |
+            | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
@@ -219,7 +220,7 @@ Feature: Home - Document Brankas
         And I input password document
         And I click see my document
         Then I will direct to page document brankas
-        And I will see menu document giro, loan and other
+        And I will see menu document giro and other
 
     @C156933
     Scenario: Access widget brankas on main dashboard for user individual active
@@ -244,7 +245,7 @@ Feature: Home - Document Brankas
         And I click direct to input password document
         And I input password document
         And I click see my document
-        Then I will see menu other document
+        Then I will see empty detail menu other document
         And I will not see menu document loan and giro
 
     @C156934

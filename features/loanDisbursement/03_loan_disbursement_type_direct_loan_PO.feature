@@ -229,3 +229,39 @@ Feature: Loan Disbursement for Loan Type PO
         And user select invoice number
         And user select invoice date
         And User select invoice due date
+
+    
+    Scenario: Validate Display Provision Fee Information method is every disbursement  
+        Given I have successfully disburse for loan PO
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card PO
+        Then I click Detail disbursement
+        And I see Biaya Provisi
+        And I see provision fee percentage
+        And I see provision fee amount
+
+
+     Scenario: Validate Do Not Display Provision Fee When Percentage is Zero
+        Given I have successfully disburse for loan PO with provisi is zero
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card PO
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount
+
+
+    Scenario: Validate Display Provision Fee Information method is facility created
+        Given I have successfully disburse for loan PO with program facilty created
+        When I go to to page History
+        And I click tab Pencairan 
+        And I click menu Berhasil dicairkan
+        And I click card PO
+        Then I click Detail disbursement
+        And I dont see Biaya Provisi
+        And I dont see provision fee percentage
+        And I dont see provision fee amount

@@ -171,9 +171,21 @@ Given("we don't have any notification", async () => {
         resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
 
     I.wait(2);
-    
+
     await
         resetStateDao.deleteAllNotificationPartner(globalVariable.login.userIDPartner, globalVariable.login.passwordPartner);
+
+});
+
+Given("we all don't have any notification", async () => {
+    const listPartnerUserID = globalVariable.login.listUserID;
+    const listPartnerPassword = globalVariable.login.listPassword;
+
+    for (let i = 0; i < listPartnerUserID.length; i++) {
+        await
+            resetStateDao.deleteAllNotification(listPartnerUserID[i], listPartnerPassword[i]);
+        I.wait(2);
+    }
 
 });
 
@@ -221,10 +233,10 @@ Given("I only have {string} notification {string} in notification center", async
 Given("has notification in notification center", async () => {
     const listNotification = (await getDataDao.getNotificationList(globalVariable.login.userID, globalVariable.login.password, "")).listNotification;
 
-    if(
+    if (
         listNotification.length === 0
-    ){
-        throw new Error("Notification list is empty for user id: "+globalVariable.login.userID+", please provide the list first");
+    ) {
+        throw new Error("Notification list is empty for user id: " + globalVariable.login.userID + ", please provide the list first");
     }
 });
 
@@ -237,22 +249,22 @@ When("I mask my amount", async () => {
 
     const activeAmount = await amountDetailPage.getActiveAmount();
 
-    if(
+    if (
         activeAmount !== "Rp••••"
-    ){
+    ) {
         amountDetailPage.clickIconEye();
         I.wait(1);
     }
-    
+
 });
 
 When("I unmask my amount", async () => {
 
     const activeAmount = await amountDetailPage.getActiveAmount();
 
-    if(
+    if (
         activeAmount === "Rp••••"
-    ){
+    ) {
         amountDetailPage.clickIconEye();
         I.wait(1);
     }
@@ -318,7 +330,7 @@ When("I click use document safe", () => {
 });
 
 When("I sent feedback survey", () => {
-    documentSafePage.sentFeedback();
+    surveyRatingPage.sentFeedBack();
 });
 
 When("I give {string} ratings", (ratings) => {
@@ -564,7 +576,7 @@ Then("I will not see information {string} in the below of field blocking amount"
     I.waitForText("Saldo Rekening Giro", 10);
 
     const productType = (await resetStateDao.getProductType(globalVariable.login.userID, globalVariable.login.password)).productType;
-    const statusPendingTask = await (await resetStateDao.isPendingTaskExist()).hasPendingTransaction;
+    const statusPendingTask = (await resetStateDao.isPendingTaskExist(globalVariable.login.userID, globalVariable.login.password)).hasPendingTransaction;
 
     if (
         productType === "MSME" &&
@@ -786,6 +798,14 @@ Then("I will not see rating survey is in main dashboard", () => {
     I.dontSee("(1 Sangat Tidak Puas, 5 Sangat Puas)");
 
     I.dontSeeElement(surveyRatingPage.buttons.oneStar);
+});
+
+Then("I will not see information to give feedback to playstore", () => {
+
+    I.dontSee("Suka dengan aplikasi Amar Bank Bisnis? Bantu kami beri bintang 5 di Play Store");
+    I.dontSee("Beri Rating di Playstore");
+
+    I.dontSeeElement(surveyRatingPage.buttons.playStore);
 });
 
 Then("I will see field is filled with character only 256 char", async () => {
@@ -1031,7 +1051,7 @@ Then("I see notification transfer out successfully", async () => {
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -1063,7 +1083,7 @@ Then("I see notification waiting approval transaction", async () => {
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -1095,7 +1115,7 @@ Then("I see notification transaction is approved from other director", async () 
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -1127,7 +1147,39 @@ Then("I see notification transaction is rejected from other director", async () 
 
     const actualDesc = await notificationCenterPage.getLatestTitle();
     if (
-        globalVariable.transfer.method === "OVERBOOK"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
+    ) {
+        globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
+
+    } else {
+        globalVariable.notificationCenter.descTrx = "Ke Bank " + globalVariable.friendList.bankName + " - " + globalVariable.friendList.friendListName;
+    }
+
+    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+
+    const actualAmount = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
+});
+
+Then("I see notification transaction has been cancelled", async () => {
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Transaksi");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusTrx, "Transaksi Dibatalkan");
+
+    const actualDesc = await notificationCenterPage.getLatestTitle();
+    if (
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         globalVariable.notificationCenter.descTrx = "Ke Bank Amar Indonesia - " + globalVariable.friendList.friendListName;
 
@@ -1182,56 +1234,6 @@ Then("I will direct to detail password successfully changes", async () => {
 
     const actualDesc = await notificationCenterPage.getDescription();
     I.assertEqual(actualDesc, "Password Anda telah berhasil diperbarui. Gunakan password baru Anda untuk masuk ke akun Anda.");
-
-    I.see("Mengerti");
-    I.waitForElement(notificationCenterPage.buttons.understand, 10);
-});
-
-Then("I will direct to detail transfer in successfully", async () => {
-
-    I.waitForText("Detail Notifikasi", 10);
-    I.waitForElement(headerPage.buttons.back, 10);
-
-    const actualStatus = await notificationCenterPage.getInfoNotifDetail();
-    I.assertEqual(actualStatus, "Transaksi");
-
-    const actualDate = await notificationCenterPage.getDateDetail();
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
-
-    const actualTime = await notificationCenterPage.getTimeDetail();
-
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
-    I.assertEqual(actualStatusTrx, "Transaksi Masuk");
-
-    const actualTitle = await notificationCenterPage.getTitle();
-    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
-
-    I.waitForText("Anda telah menerima transfer sebesar " + globalVariable.transfer.amountTransfer + " ke akun Anda. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
-
-    I.see("Mengerti");
-    I.waitForElement(notificationCenterPage.buttons.understand, 10);
-});
-
-Then("I will direct to detail transfer out successfully", async () => {
-
-    I.waitForText("Detail Notifikasi", 10);
-    I.waitForElement(headerPage.buttons.back, 10);
-
-    const actualStatus = await notificationCenterPage.getInfoNotifDetail();
-    I.assertEqual(actualStatus, "Transaksi");
-
-    const actualDate = await notificationCenterPage.getDateDetail();
-    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
-
-    const actualTime = await notificationCenterPage.getTimeDetail();
-
-    const actualStatusTrx = await notificationCenterPage.getStatusTrx();
-    I.assertEqual(actualStatusTrx, "Transaksi Berhasil");
-
-    const actualTitle = await notificationCenterPage.getTitle();
-    I.assertEqual(actualTitle, globalVariable.notificationCenter.descTrx);
-
-    I.waitForText("Transaksi Anda sebesar " + globalVariable.transfer.amountTransfer + " sudah berhasil ditransfer. Periksa riwayat transaksi untuk detail lebih lanjut.", 10);
 
     I.see("Mengerti");
     I.waitForElement(notificationCenterPage.buttons.understand, 10);
