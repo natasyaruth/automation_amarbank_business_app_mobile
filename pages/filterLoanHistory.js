@@ -14,9 +14,9 @@ module.exports = {
         radioButtonDalamProses: "~radioButtonDalam Proses",
         radioButtonPencairanBerhasil: "~radioButtonPencairan Berhasil",
         radioButtonTidakDisetujui: "~radioButtonTidak Disetujui",
-        radioButtonMoreThan1FacilityRepayment: "~radioButtonAP RETEST BUG PG",
-        radioButtonMoreThan1FacilityDisbursement: "~radioButtonAP ANCHOR DEV NURUL",
-        radioButtonOnly1FacilityDisbursement: "~radioButtonAP ANCHOR DEV NURUL",
+        radioButtonMoreThan1FacilityRepayment: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View[2]/android.widget.TextView"},
+        radioButtonMoreThan1FacilityDisbursement: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View[2]/android.widget.TextView"},
+        radioButtonOnly1FacilityDisbursement: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View[2]/android.widget.TextView"},
 
         // repayment
         radioButtonSedangBerjalan: "~radioButtonSedang Berjalan",

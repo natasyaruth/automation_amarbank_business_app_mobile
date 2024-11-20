@@ -1,3 +1,5 @@
+const firstFilterLeads = require("./pages/firstFilterLeads");
+
 require("dotenv").config();
 // require("./heal");
 
@@ -218,6 +220,8 @@ exports.config = {
     notificationCenterPage: "./pages/notificationCenter.js",
 
     filterLoanHistory: "./pages/filterLoanHistory.js",
+
+    firstFilterLeads: "./pages/firstFilterLeads.js",
   },
   settings: {
     logging: {
@@ -298,6 +302,7 @@ exports.config = {
       "./features/main_feature/funding_flow/funding_transfer/*.feature",
       "./features/main_feature/funding_flow/pin_management_and_others/*.feature",
       "./features/funding_e2e/funding_e2e_account_opening/*.feature",
+      "./features/firstFilterLeads/01_ajukan_pinjaman.feature",
     ],
     steps: [
       "./step_definitions/funding_account_creation/steps_registration.js",
@@ -359,6 +364,7 @@ exports.config = {
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Limit.js",
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Disbursement.js",
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Repayment.js",
+      "./step_definitions/firstFilterLeads/steps_first_filter_leads.js",
     ],
   },
   plugins: {

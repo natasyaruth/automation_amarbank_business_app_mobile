@@ -16,6 +16,55 @@ When('I click button "Gunakan Limit" in card type Loan AP', () => {
  loanDisbursementPage.usingLimitLoanDisbursementTypeAP();
 });
 
+Given('I have been on loan Dashboard to checking caption estimation due date and title on calculation disbursement page', () => {
+    I.wait(3);
+});
+When('I click button Gunakan Limit', () => {
+    loanDisbursementPage.clickButtonUseLimit();
+} );
+
+When('I click button list Gunakan Limit', () => {
+    loanDisbursementPage.clickButtonUseLimit1();
+});
+
+When('I upload invoice', () => {
+    loanDisbursementPage.clickButtonUploadInvoice();
+});
+
+When('I take picture or document to file invoice via camera', () => {
+    loanDisbursementPage.clickButtonTakeFromCamera();
+});
+
+When('I take photo', () => {
+    loanDisbursementPage.clickTakePicture();
+});
+
+When('I fill nominal invoice', () => {
+    loanDisbursementPage.fillNominalInvoice();
+});
+
+When('I fill nomor invoice', () => {
+    loanDisbursementPage.fillNumberInvoice();
+});
+
+When('I click button data supplier', () => {
+    loanDisbursementPage.clickButtonDataSupplier();
+});
+
+When('I choose supplier', () => {
+    loanDisbursementPage.clickItemSupplier();
+});
+When('I click button lanjut pembayaran', () => {
+    loanDisbursementPage.clickButtonLanjutPembayaran();
+});
+
+Then('I should see calculation disbursement page', () => {
+    I.wait(3);
+    I.see("Tenor");
+    I.see("Tanggal jatuh tempo dihitung");
+});
+
+
     
 When('I am on Anchor Detail Page', () => { 
     I.wait(3)

@@ -4,22 +4,18 @@ Feature: History Page Disbursement
     I want to filter my history disbursement records
     So that I can easily find specific transactions.
 
-    # Background: Login with registered account
-        
-
-    #Feature Description
-    
+    @C164242
     Scenario: Access History Page Disbursement For More Than 1 Facility
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -29,18 +25,18 @@ Feature: History Page Disbursement
         When I click bottom sheet for than more 1 facility disbursement
         Then I should see history "Pencairan" for more than 1 facility
 
-    
-    Scenario: Access Histoy Page Disbursement For Only 1 Facility
+    @C164243
+    Scenario: Access Histoy Page Disbursement For Only 1 Facility disbursement
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -50,18 +46,18 @@ Feature: History Page Disbursement
         When I click bottom sheet only 1 Facility disbursement
         Then I should see history Disbursement for only 1 facility
 
-    
+    @C164244
     Scenario: Access History Page Disbursement For Semua Status
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -71,18 +67,18 @@ Feature: History Page Disbursement
         When I click bottom sheet "Semua"
         Then I should see history "Pencairan" for semua status
 
-    
+    @C164245
     Scenario: Acces History Page Disbursement For Dalam Proses
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -92,17 +88,18 @@ Feature: History Page Disbursement
         And I click bottom sheet "Dalam Proses"
         Then I should see history "Pencairan" for dalam proses
 
+    @C164246
     Scenario: Acces History Page Disbursement For Pencairan Berhasil
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -111,18 +108,19 @@ Feature: History Page Disbursement
         And I should see bottom sheet "Filter Status"
         And I click bottom sheet "Pencairan Berhasil"
         Then I should see history "Pencairan" for pencairan berhasil
-    
+
+    @C164247
     Scenario: Acces History Page Disbursement For Tidak Disetujui
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -132,18 +130,18 @@ Feature: History Page Disbursement
         And I click bottom sheet "Tidak Disetujui"
         Then I should see history "Pencairan" for tidak disetujui
 
-    
+    @C164248
     Scenario: Access History Page Disbursement For More Than 1 Facility and Status Dalam Proses
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -157,18 +155,18 @@ Feature: History Page Disbursement
         And I click bottom sheet "Dalam Proses"
         Then I should see history "Pencairan" for dalam proses
 
-    
+    @C164248
     Scenario: Access History Page Disbursement For More Than 1 Facility and Status Pencairan Berhasil
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -182,18 +180,18 @@ Feature: History Page Disbursement
         And I click bottom sheet "Pencairan Berhasil"
         Then I should see history "Pencairan" for pencairan berhasil
 
-    
+    @C164249
     Scenario: Access History Page Disbursement For More Than 1 Facility and Status tidak disetujui
         Given I am a registered customer with following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         When I filling in form login with the following details:
             | userID      | ecap2158 |
             | password    | Eca12345 |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         When I click menu lihat detail pinjaman
         When I click menu history
@@ -207,5 +205,5 @@ Feature: History Page Disbursement
         And I click bottom sheet "Tidak Disetujui"
         Then I should see history "Pencairan" for tidak disetujui
 
-        # 
+
 
