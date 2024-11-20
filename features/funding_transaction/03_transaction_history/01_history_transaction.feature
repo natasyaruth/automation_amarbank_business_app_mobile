@@ -366,8 +366,8 @@ Feature: Home - History Transaction
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "in"
-        And I click detail card transaction transfer in "BI-FAST"
-        Then I will see detail transaction transfer in "BI-FAST"
+        And I click detail card transaction transfer in "BIFAST"
+        Then I will see detail transaction transfer in "BIFAST"
         And I close page detail history transaction
 
     @C124840

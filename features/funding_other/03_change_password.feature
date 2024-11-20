@@ -760,7 +760,7 @@ Feature: Account Change Password
         And I will see snackbar OTP successfully sent
         And I wait for 1 minutes
         And I click link resend OTP change password
-        Then I notified that I can verify the OTP tomorrow
+        Then I will see message error OTP with information can be tried tomorrow
 
     @C141200 
     Scenario: Input wrong OTP
@@ -913,12 +913,12 @@ Feature: Account Change Password
     @C141204
     Scenario: Change password till success login with account active invitee
         Given I am a registered customer with following details:
-            | userID      | nataf76e |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test | 
         When I filling in form login with the following details:
-            | userID      | nataf76e |
+            | userID      | mich875d |
             | password    | 1234Test |
             | userIDstg   | nata6bde |
             | passwordStg | 1234Test |

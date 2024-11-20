@@ -238,3 +238,53 @@ Feature: Manual Document Management
         And I confirm delete
         Then I will see snackbar error red "Terjadi kendala server, coba beberapa saat lagi."
         And will dissapear after 1-2 seconds
+
+    @C165182
+    Scenario: Upload multiple other file from device gallery
+        Given I am a customer active
+        And has been complete onboarding document brankas
+        And currently in detail Tab brankas
+        When I click upload other document
+        And I choose upload file
+        And I click choose file
+        And I choose upload via device gallery
+        And I choose more than one file/image
+        And I will direct to bottom sheet upload with all files on process upload
+        And I see information number of files upload
+        And after all files success upload, I will see button save document
+        And I click button save document
+        Then I will see snackbar success upload files
+        And all files created in section other document with extension
+
+    @C165183
+    Scenario: Upload multiple other file from google drive
+        Given I am a customer active
+        And has been complete onboarding document brankas
+        And currently in detail Tab brankas
+        When I click upload other document
+        And I choose upload file
+        And I click choose file
+        And I choose upload via goggle drive
+        And I choose more than one file/image
+        And I will direct to bottom sheet upload with all files on process upload
+        And I see information number of files upload
+        And after all files success upload, I will see button save document
+        And I click button save document
+        Then I will see snackbar success upload files
+        And all files created in section other document with extension
+
+    @C165184
+    Scenario: Upload multiple other file and cancel one of them
+        Given I am a customer active
+        And has been complete onboarding document brankas
+        And currently in detail Tab brankas
+        When I click upload other document
+        And I choose upload file
+        And I click choose file
+        And I choose upload via device gallery
+        And I choose more than one file/image
+        And I will direct to bottom sheet upload with all files on process upload
+        And I see information number of files upload
+        And I cancel one file
+        Then I will not see the file anymore
+        And I see information number is decrease

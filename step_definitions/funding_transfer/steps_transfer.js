@@ -85,7 +85,7 @@ When("I see error message daily transaction {string}", async (messageValue) => {
 When("I submit to next flow", () => {
   I.waitForText("Selanjutnya", 10);
   transferPage.nextProcessTransfer();
-  globalVariable.transfer.method = "OVERBOOK";
+  globalVariable.transfer.method = globalVariable.constant.methodTf.overbooking;
 });
 
 When("I input notes with {string}", (notes) => {
@@ -119,21 +119,21 @@ Then("I can see BIFAST and SKN", async () => {
 
   I.dontSee(transferPage.radioButtons.methodRtol);
   I.dontSee(transferPage.texts.adminFeeRTOL);
-  I.dontSee("RTOL");
+  I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee("Rp 10.000 - Rp 50.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
   I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
-  I.see("SKN");
+  I.see(globalVariable.constant.methodTf.skn);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
   I.see("Rp 10.000 - Rp 1.000.000.000");
 
   I.dontSee(transferPage.radioButtons.methodRtgs);
   I.dontSee(transferPage.texts.adminFeeRTGS);
-  I.dontSee("RTGS");
+  I.dontSee(globalVariable.constant.methodTf.rtgs);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTGS);
   I.dontSee("> Rp 100.000.000");
 });
@@ -163,13 +163,13 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
   I.dontSee(transferPage.radioButtons.methodRtol);
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.dontSee("RTOL");
+  I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp 10.000 - Rp 50.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
   I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
-  I.see("SKN");
+  I.see(globalVariable.constant.methodTf.skn);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
   I.see("Rp 10.000 - Rp 1.000.000.000");
@@ -177,7 +177,7 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
   I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
   const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
   I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
-  I.see("RTGS");
+  I.see(globalVariable.constant.methodTf.rtgs);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
   I.see("> Rp 100.000.000");
@@ -204,13 +204,13 @@ Then("I can see SKN and RTGS", async () => {
   I.dontSee(transferPage.radioButtons.methodRtol);
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.dontSee("RTOL");
+  I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp 10.000 - Rp 50.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
   I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
-  I.see("SKN");
+  I.see(globalVariable.constant.methodTf.skn);
   I.see("Dana akan sampai dalam ± 3 hari kerja");
   I.see("Nominal transfer:");
   I.see("Rp 10.000 - Rp 1.000.000.000");
@@ -218,7 +218,7 @@ Then("I can see SKN and RTGS", async () => {
   I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
   const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
   I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
-  I.see("RTGS");
+  I.see(globalVariable.constant.methodTf.rtgs);
   I.see("Dana akan sampai pada hari kerja");
   I.see("Nominal transfer:");
   I.see("> Rp 100.000.000");
@@ -244,19 +244,19 @@ Then("I can see RTGS", async () => {
   I.dontSee(transferPage.radioButtons.methodRtol);
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.dontSee("RTOL");
+  I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp 10.000 - Rp 50.000.000");
 
   I.dontSee(transferPage.radioButtons.methodSkn);
   I.dontSee(transferPage.texts.adminFeeSKN);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeSKN);
-  I.dontSee("SKN");
+  I.dontSee(globalVariable.constant.methodTf.skn);
   I.dontSee("Rp 10.000 - Rp 1.000.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
   const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
   I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
-  I.see("RTGS");
+  I.see(globalVariable.constant.methodTf.rtgs);
   I.dontSee("Dana langsung sampai ke penerima");
   I.see("Dana akan sampai pada hari kerja");
   I.see("Nominal transfer:");
@@ -289,7 +289,7 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
   I.waitForElement(transferPage.radioButtons.methodRtol, 10);
   const actualAdminFeeRTOL = await transferPage.getAdminFeeRTOL();
   I.assertEqual(actualAdminFeeRTOL, "Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.see("RTOL");
+  I.see(globalVariable.constant.methodTf.rtol);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
   I.see("Rp 10.000 - Rp 50.000.000");
@@ -297,14 +297,14 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
   I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
-  I.see("SKN");
+  I.see(globalVariable.constant.methodTf.skn);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
   I.see("Rp 10.000 - Rp 1.000.000.000");
 
   I.dontSee(transferPage.radioButtons.methodRtgs);
   I.dontSee(transferPage.texts.adminFeeRTGS);
-  I.dontSee("RTGS");
+  I.dontSee(globalVariable.constant.methodTf.rtgs);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTGS);
   I.dontSee("> Rp 100.000.000");
 });
@@ -312,7 +312,7 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
 Then("I choose transfer service RTGS", async () => {
   transferPage.chooseRtgs();
   globalVariable.transfer.adminFee = 30000;
-  globalVariable.transfer.method = "RTGS";
+  globalVariable.transfer.method = globalVariable.constant.methodTf.rtgs;
 
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeRTGS);
@@ -327,7 +327,7 @@ Then("I choose transfer service RTGS", async () => {
 Then("I choose transfer service RTOL", async () => {
   transferPage.chooseRtol();
   globalVariable.transfer.adminFee = 6500;
-  globalVariable.transfer.method = "RTOL";
+  globalVariable.transfer.method = globalVariable.constant.methodTf.rtol;
 
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeRTOL);
@@ -343,7 +343,7 @@ Then("I choose transfer service RTOL", async () => {
 Then("I choose transfer service BIFAST", async () => {
   transferPage.chooseBifast();
   globalVariable.transfer.adminFee = 2500;
-  globalVariable.transfer.method = "BIFAST";
+  globalVariable.transfer.method = globalVariable.constant.methodTf.bifast;
 
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeBIFAST);
@@ -358,7 +358,7 @@ Then("I choose transfer service BIFAST", async () => {
 Then("I choose transfer service SKN", async () => {
   transferPage.chooseSkn();
   globalVariable.transfer.adminFee = 2900;
-  globalVariable.transfer.method = "SKN";
+  globalVariable.transfer.method = globalVariable.constant.methodTf.skn;
 
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeSKN);
