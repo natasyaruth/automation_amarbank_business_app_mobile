@@ -221,7 +221,7 @@ exports.config = {
 
     filterLoanHistory: "./pages/filterLoanHistory.js",
 
-    firstFilterLeads: "./pages/firstFilterLeads.js",
+    firstFilterLeadsPage: "./pages/firstFilterLeads.js",
   },
   settings: {
     logging: {

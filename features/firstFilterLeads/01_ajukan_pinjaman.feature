@@ -1,22 +1,23 @@
-@TestAjukanPinjaman
+
 Feature: First Filter from source Ajukan Pinjaman
     As a customer,
     I want to filter from source Ajukan Pinjaman
     So that I can improve data quality and application relevance
 
+    @TestAjukanPinjaman
     Scenario: with monthly income 5 juta sampai 50 juta and click Install Aplikasi Tunaiku
         Given I am a registered customer with following details:
-            | userID      | ecap2158 |
-            | password    | Eca12345 |
+            | userID      | arij6841 |
+            | password    | Ari12345 |
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
-        When I filling in from login with the following details:
-            | userID      | ecap2158 |
-            | password    | Eca12345 |
+        When I filling in form login with the following details:
+            | userID      | arij6841 |
+            | password    | Ari12345 |
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click Ajukan Pinjaman
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya

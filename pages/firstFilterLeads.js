@@ -1,7 +1,7 @@
-
+const { I } = inject();
 
 module.exports = {
-    
+
     buttons: {
         buttonAjukanPinjaman: "~buttonStartLoan",
         buttonNantiSaja: "~buttonBackLoan",
@@ -13,8 +13,7 @@ module.exports = {
         buttonHubungiCallCenter: "~buttonCallCenter",
         buttonClose: "~buttonClose",
         buttonLanjutkanPengajuan: "~buttonContinue",
-        buttonMengerti: "~buttonOk",
-
+        buttonMengerti: "~buttonOk"
     },
     radioButtons: {
         radioButton1: "~radioButton1",
@@ -29,23 +28,25 @@ module.exports = {
     },
 
     // page onboarding
-    clickButtonAjukanPinjaman(){
+    clickAjukanPinjaman() {
+        I.wait(10);
         I.waitForElement(this.buttons.buttonAjukanPinjaman, 10);
         I.click(this.buttons.buttonAjukanPinjaman);
     },
-    clickButtonNantiSaja(){
+
+    clickButtonNantiSaja() {
         I.waitForElement(this.buttons.buttonNantiSaja, 10);
         I.click(this.buttons.buttonNantiSaja);
     },
 
     // page main dashboard (after user click button nanti saja)
-    clickButtonAjukanLimitKredit(){
+    clickButtonAjukanLimitKredit() {
         I.wait(3);
         I.click(this.buttons.buttonAjukanLimitKredit);
     },
 
     // page start
-    clickButtonAyoMulaiSekarang(){
+    clickButtonAyoMulaiSekarang() {
         I.wait(3);
         I.click(this.buttons.buttonAyoMulaiSekarang);
     },
@@ -77,7 +78,7 @@ module.exports = {
         I.wait(3);
         I.click(this.buttons.buttonClose);
     },
-    validateTextAfterCallCenter(){
+    validateTextAfterCallCenter() {
         I.wait(3);
         I.see("Hubungi Tim Kami");
     },
@@ -95,9 +96,9 @@ module.exports = {
     },
 
     // page lainnya
-    
-    fillTextFieldLainnya(){
+
+    fillTextFieldLainnya() {
         I.wait(3);
         I.fillField(this.textFieldLainnya, 'Buat renovasi');
-    },  
-};
+    }
+}

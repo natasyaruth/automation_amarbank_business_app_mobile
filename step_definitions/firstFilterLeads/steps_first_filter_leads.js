@@ -1,28 +1,26 @@
-const firstFilterLeads = require("../../pages/firstFilterLeads");
+const { I, firstFilterLeadsPage} = inject();
 
-const { I, loginPage, loanDashboardPage } = inject();
-
-When('I click Ajukan Pinjaman', () => {
-    firstFilterLeads.clickButtonAjukanPinjaman();
+When('I click button Ajukan Pinjaman Limit', () => {
+    firstFilterLeadsPage.clickAjukanPinjaman();
 });
 
 When('I click Ayo Mulai Sekarang', () => {
-    firstFilterLeads.clickButtonAyoMulaiSekarang();
+    firstFilterLeadsPage.clickButtonAyoMulaiSekarang();
 });
 
 // And('I choose Untuk Kebutuhan bisnis atau usaha', () => {
-//     firstFilterLeads.clickRadioButton();
+//     firsFilterLeadsPage.clickRadioButton();
 // });
 When('I choose Untuk Kebutuhan bisnis atau usaha {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 When('I click Selanjutnya', () => {
-    firstFilterLeads.clickButtonSelanjutnya();
+    firstFilterLeadsPage.clickButtonSelanjutnya();
 });
 
 When('I choose 5 juta sampai 50 juta {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 Then('I should see message Install aplikasi Tunaiku', () => {
@@ -31,11 +29,11 @@ Then('I should see message Install aplikasi Tunaiku', () => {
 });
 
 When('I click Install aplikasi tunaiku', () => {
-    firstFilterLeads.clickButtonInstallAplikasiTunaiku();
+    firstFilterLeadsPage.clickButtonInstallAplikasiTunaiku();
 });
 
 When('I click Hubungi Call Center', () => {
-    firstFilterLeads.clickButtonkHubungiCallCenter();
+    firstFilterLeadsPage.clickButtonkHubungiCallCenter();
 });
 
 When('I should see bottom sheet Hubungi Tim Kami', () => {
@@ -44,7 +42,7 @@ When('I should see bottom sheet Hubungi Tim Kami', () => {
 });
 
 When('I choose Pemabayaran Invoice {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 Then('I should see Pengajuan Limit Kredit Bisnis', () => {
@@ -53,7 +51,7 @@ Then('I should see Pengajuan Limit Kredit Bisnis', () => {
 });
 
 When('I choose Pembelian Persediaan {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 Then('I should see message Invoice Dibutuhkan Sebagai Syarat Pencairan Pinjaman', () => {
@@ -62,11 +60,11 @@ Then('I should see message Invoice Dibutuhkan Sebagai Syarat Pencairan Pinjaman'
 }); 
 
 When('I click Mengerti & Lanjutkan Pengajuan', () => {
-    firstFilterLeads.clickButtonMengertiDanLanjutkanPengajuan();
+    firstFilterLeadsPage.clickButtonMengertiDanLanjutkanPengajuan();
 });
 
 When('I choose Investasi Bisnis, Pengembangan & Perluasan Usaha {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 Then('I should see message Terima Kasih Telah Menjawab Pertanyaan Kami', () => {
@@ -75,23 +73,23 @@ Then('I should see message Terima Kasih Telah Menjawab Pertanyaan Kami', () => {
 });
 
 When('I click Mengerti', () =>{
-    firstFilterLeads.clickButtonMengerti();
+    firsFilterLeadsPage.clickButtonMengerti();
 });
 
 When('I choose Pembayaran Sewa Tempat Usaha {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firsFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 When('I choose Lainnya {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firsFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 When('I filling field lainnya', () => {
-    firstFilterLeads.fillTextFieldLainnya();
+    firsFilterLeadsPage.fillTextFieldLainnya();
 });
 
 When('I choose Untuk Kebutuhan Pribadi {string}', (radioNumber) => {
-    firstFilterLeads.clickRadioButton(radioNumber);
+    firsFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 
