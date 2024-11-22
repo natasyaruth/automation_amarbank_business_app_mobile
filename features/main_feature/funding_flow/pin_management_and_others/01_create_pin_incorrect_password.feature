@@ -14,7 +14,6 @@ Feature: User create PIN Journey Transfer
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
         And I click login
-        # And I click later in pop up biometric 
         Then I will direct to dashboard
 
     @C163985

@@ -32,19 +32,19 @@ When("I click detail card transaction transfer out {string} without approval", a
         const actualAdminFee = await transactionHistoryPage.getAllAdminFeeAmount();
 
         if (
-            method === "BI-FAST"
+            method === globalVariable.constant.methodTf.bifast
         ) {
             I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeBIFAST);
         } else if (
-            method === "RTOL"
+            method === globalVariable.constant.methodTf.rtol
         ) {
             I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeRTOL);
         } else if (
-            method === "SKN"
+            method === globalVariable.constant.methodTf.skn
         ) {
             I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeSKN);
         } else if (
-            method === "RTGS"
+            method === globalVariable.constant.methodTf.rtgs
         ) {
             I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeRTGS);
         }
@@ -149,19 +149,19 @@ When("I click detail card transaction transfer out {string} with approval", asyn
 
         const actualAdminFee = await transactionHistoryPage.getAllAdminFeeAmount();
         if (
-            method === "BI-FAST"
+            method === globalVariable.constant.methodTf.bifast
         ) {
             I.assertEqual(actualAdminFee[0], "Rp" + globalVariable.transfer.adminFeeBIFAST);
         } else if (
-            method === "RTOL"
+            method === globalVariable.constant.methodTf.rtol
         ) {
             I.assertEqual(actualAdminFee[0], "Rp" + globalVariable.transfer.adminFeeRTOL);
         } else if (
-            method === "SKN"
+            method === globalVariable.constant.methodTf.skn
         ) {
             I.assertEqual(actualAdminFee[0], "Rp" + globalVariable.transfer.adminFeeSKN);
         } else if (
-            method === "RTGS"
+            method === globalVariable.constant.methodTf.rtgs
         ) {
             I.assertEqual(actualAdminFee[0], "Rp" + globalVariable.transfer.adminFeeRTGS);
         }
@@ -196,8 +196,8 @@ When("I click detail card transaction transfer in {string}", async (method) => {
     globalVariable.dashboard.date = lastComma !== -1 ? actualDate.substring(lastComma + 1).trim() : '';
 
     if (
-        method === "BI-FAST" ||
-        method === "RTOL"
+        method === globalVariable.constant.methodTf.bifast ||
+        method === globalVariable.constant.methodTf.rtol
     ) {
 
         const senderName = await transactionHistoryPage.getListTransactionNameBucketList();
@@ -410,11 +410,11 @@ Then("I will see detail transaction transfer out {string} without approval", asy
     I.assertEqual(actualCategory, "Pembayaran");
 
     if (
-        method !== "Overbooking"
+        globalVariable.transfer.method !== globalVariable.constant.methodTf.overbooking
     ) {
         I.see("Layanan Transaksi");
         const actualMethod = await transactionHistoryPage.getMethodTransaction();
-        I.assertEqual(actualMethod, method);
+        I.assertEqual(actualMethod, globalVariable.transfer.method);
     } else {
         I.dontSee("Layanan Transaksi");
         I.dontSeeElement(transactionHistoryPage.textFields.methodTransaction);
@@ -441,8 +441,8 @@ Then("I will see detail transaction transfer in {string}", async (method) => {
     I.waitForText("Rincian Transaksi", 10);
 
     if (
-        method === "BI-FAST" ||
-        method === "RTOL"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.bifast ||
+        globalVariable.transfer.method === globalVariable.constant.methodTf.rtol
     ) {
         const actualSenderName = await transactionHistoryPage.getSenderNameDetail();
         I.assertEqual(actualSenderName, globalVariable.transfer.senderName);
@@ -465,7 +465,7 @@ Then("I will see detail transaction transfer in {string}", async (method) => {
         I.assertEqual(actualRecipientAccNumber, expectedRecipientAccNumber);
 
     } else if (
-        method === "Overbooking"
+        globalVariable.transfer.method === globalVariable.constant.methodTf.overbooking
     ) {
         // I.dontSee(transactionHistoryPage.textFields.senderName);
         // I.dontSee(transactionHistoryPage.textFields.senderBankName);
@@ -512,3 +512,102 @@ Then("I will not see button download e-statement", ()=>{
     I.dontSee("Unduh E-Statement");
     I.dontSeeElement(transactionHistoryPage.buttons.btneStatementDownload);
 })
+
+Then("I will direct to detail transfer in successfully", async () => {
+
+    I.waitForElement(headerPage.icon.callCenter, 10);
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForText("Transaksi Masuk", 10);
+
+    I.see("Transaksi Masuk", 10);
+    I.see(globalVariable.transfer.amountTransfer);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(transactionHistoryPage.buttons.btnCopied, 10);
+
+    I.see("Tanggal");
+    I.see(globalVariable.notificationCenter.date);
+
+    I.see("Waktu");
+
+    if (
+        globalVariable.transfer.note !== ""
+    ) {
+        I.see("Catatan");
+        const actualNotes = await transferPage.getNotes();
+        I.assertEqual(actualNotes, globalVariable.transfer.note);
+
+    } else {
+
+        I.dontSee("Catatan");
+        I.dontSee(transferPage.texts.note);
+    }
+
+    I.dontSee("Bagikan Bukti Transfer");
+    I.dontSeeElement(transferPage.buttons.share);
+});
+
+Then("I will direct to detail transfer out successfully", async () => {
+
+    I.waitForText("Rincian Transaksi", 10);
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    const actSenderName = await transactionHistoryPage.getSenderNameDetail();
+    I.assertEqual(actSenderName, globalVariable.transfer.senderName);
+
+    const actSenderBankName = await transactionHistoryPage.getSenderBankNameDetail();
+    I.assertEqual(actSenderBankName, "Bank Amar Indonesia");
+    
+    const actSenderAccNumber = await transactionHistoryPage.getSenderAccNumberDetail();
+    I.assertEqual(actSenderAccNumber, globalVariable.transfer.senderAccountNumber);
+
+    const actRecipientName = await transactionHistoryPage.getRecipientNameDetail();
+    I.assertEqual(actRecipientName, globalVariable.friendList.receiverName);
+
+    const actRecipientBankName = await transactionHistoryPage.getRecipientBankNameDetail();
+    I.assertEqual(actRecipientBankName, globalVariable.friendList.bankName);
+    
+    const actRecipientAccNumber = await transactionHistoryPage.getRecipientAccNumberDetail();
+    I.assertEqual(actRecipientAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
+
+    I.see("Transaksi Keluar");
+    const actualAmount = await transactionHistoryPage.getAmountDetail();
+    I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);
+
+    I.see("Nomor Referensi");
+    I.waitForElement(transactionHistoryPage.buttons.btnCopied, 10);
+
+    I.see("Tanggal");
+    I.see(globalVariable.notificationCenter.date);
+
+    I.see("Waktu");
+
+    I.see("Kategori");
+    const actCategory = await transactionHistoryPage.getCategory();
+    I.assertEqual(actCategory, globalVariable.transfer.category);
+
+    if (
+        globalVariable.transfer.method !== globalVariable.constant.methodTf.overbooking
+    ) {
+        I.see("Layanan Transaksi");
+        const actualMethod = await transactionHistoryPage.getMethodTransaction();
+        I.assertEqual(actualMethod, globalVariable.transfer.method);
+    } else {
+        I.dontSee("Layanan Transaksi");
+        I.dontSeeElement(transactionHistoryPage.textFields.methodTransaction);
+    }
+
+    if (
+        globalVariable.transfer.note === ""
+    ) {
+        I.dontSee("Catatan");
+        I.dontSeeElement(transactionHistoryPage.textFields.textNote);
+
+    } else {
+
+        I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+        I.waitForText("Catatan", 10);
+        I.see(globalVariable.transfer.note);
+    }
+});

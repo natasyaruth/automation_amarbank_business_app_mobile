@@ -18,7 +18,6 @@ Feature: User cancel create PIN Journey Transfer
             | userID      | elka74a9 |
             | password    | Test1234 |
         And I click login
-        # And I click later in pop up biometric
         Then I will direct to dashboard
 
     @C164107

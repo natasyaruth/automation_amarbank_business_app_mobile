@@ -65,7 +65,7 @@ module.exports = {
     checkMethod: "~buttonChangeMethod",
     backToDashboard: "~buttonBackToDashboard",
     callCenter: "~buttonCallCenter",
-    tryAgain: "~",
+    tryAgain: "~buttonUnderstand",
   },
   cards: {
     category: "~itemCategory",

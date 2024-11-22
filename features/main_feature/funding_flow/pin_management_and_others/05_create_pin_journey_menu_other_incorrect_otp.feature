@@ -54,7 +54,7 @@ Feature: AUTOMATED User create PIN from other menu Incorrect OTP
         And I input incorrect old pin
         Then I will see message error "PIN yang dimasukkan tidak sesuai" in the below of field confirmation pin
 
-    # @C164123
+    @C164123
     Scenario: AUTOMATED User input incorrect OTP From Other Menu
         Given I am a customer who wants to create PIN from menu other
         When I choose other
