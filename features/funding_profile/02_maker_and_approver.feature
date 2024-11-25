@@ -314,292 +314,6 @@ Feature: Maker and Approver Transaction
         And I close page detail transfer
         Then I will direct to page notification center
 
-    @C131476
-    Scenario: Input wrong password once when user want to cancel transaction
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input incorrect password for approver
-        And I submit my password for approver
-        Then I will see pop up data is incorrect
-        And I can click try again to input password
-
-    @C131477
-    Scenario: Input wrong password more than 3 times when user want to cancel transaction
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input incorrect password for approver
-        And I submit my password for approver
-        And I will see pop up data is incorrect
-        And I try again to input password
-        And I input incorrect password for approver
-        And I submit my password for approver
-        And I will see pop up data is incorrect
-        And I try again to input password
-        And I input incorrect password for approver
-        And I submit my password for approver
-        Then I will notify I will direct lo login page
-        And I click button direct to login
-        And I will directing to page login
-
-    @C131478
-    Scenario: Unmask password
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I Unmask the password
-        Then I will see my password
-
-    @C131479
-    Scenario: Mask password
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I Unmask the password
-        And I Mask the password
-        Then I will not see my password
-
-    @C131480
-    Scenario: Close page input password entry point detail card from menu notification center
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I close page password for transaction approval
-        Then I will direct to page detail approval transaction
-
-    @C131481
-    Scenario: Close page input password entry point detail card from page transaction approval
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And never entered wrong password
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click tab profile
-        And I click menu transaction approval
-        And I click waiting approval section
-        And I click card maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I close page password for transaction approval
-        Then I will direct to page detail approval transaction
-
-    @C131482
-    Scenario: Verifying wrong OTP code
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input incorrect OTP for approve transaction
-        Then I will see message error 'Kode OTP yang dimasukkan salah' in the below of field otp for approver
-
-    @C131483
-    Scenario: Verifying expired OTP code
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I let the otp code for approve transaction expire
-        And I input OTP to approve transaction
-        Then I will see message error 'Kode OTP yang dimasukkan sudah kedaluwarsa' in the below of field otp for approver
-
-    @C131484
-    Scenario: Verifying wrong OTP code five times
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input incorrect OTP '5' times
-        Then I should be notified that I can verify the OTP tomorrow
-
-    @C131485
-    Scenario: Resend OTP code
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I resend otp code to approve transaction
-        Then I will get new OTP different with my first OTP to approve transaction
-        And I will see attempt left '1/5'
-
-    @C131486
-    Scenario: Resend OTP code more than five times
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I resend otp code to approve transaction more than five times
-        Then I should be notified that I can verify the OTP tomorrow
-
-    @C131487
-    Scenario: Verifying wrong OTP code four times then input valid code
-        Given I am a registered customer with following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I reset attempt otp after login 
-        And I filling in form login with the following details:
-            | userID      | mike2cf3 |
-            | password    | 1234Test |
-            | userIDstg   | staga810 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        When I click notification center
-        And I click notification maker transaction
-        And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input incorrect OTP '4' times
-        And I input OTP to approve transaction
-        Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
-
     @C131488
     Scenario: Input incorrect PIN approver once
         Given I am a registered customer with following details:
@@ -699,6 +413,119 @@ Feature: Maker and Approver Transaction
         And I try again to input PIN
         And I input PIN '111111' approver
         Then I will direct to page notification center
+
+    Scenario: Input incorrect PIN cancel pending task once
+        Given I am a registered customer with following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And never entered wrong password
+        And I filling in form login with the following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I click notification center
+        And I click notification maker transaction
+        And I canceled my transaction
+        And I input wrong PIN
+        Then I will see pop up data is incorrect
+        And I can click try again to input PIN
+
+    Scenario: Input incorrect PIN cancel pending task twice
+        Given I am a registered customer with following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And never entered wrong password
+        And I filling in form login with the following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I click notification center
+        And I click notification maker transaction
+        And I canceled my transaction
+        And I input wrong PIN
+        And I will see pop up data is incorrect
+        And I try again to input PIN
+        And I input wrong PIN
+        Then I will see pop up data is incorrect
+        And I can click try again to input PIN
+
+    Scenario: Input incorrect PIN cancel pending task three times
+        Given I am a registered customer with following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And never entered wrong password
+        And I filling in form login with the following details:
+            | userID      | mike2cf3 |
+            | password    | 1234Test |
+            | userIDstg   | staga810 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I click notification center
+        And I click notification maker transaction
+        And I canceled my transaction
+        And I input wrong PIN
+        And I will see pop up data is incorrect
+        And I try again to input PIN
+        And I input wrong PIN
+        And I will see pop up data is incorrect
+        And I try again to input PIN
+        And I input wrong PIN
+        Then I will notify I will direct lo login page
+        And I click button direct to login
+        And I will directing to page login
+
+    Scenario: Input incorrect PIN cancel pending task once and input correct PIN
+        Given I am a registered customer with following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And never entered wrong password
+        And don't have list pending task
+        And don't have any notification
+        And I filling in form login with the following details:
+            | userID      | rota3159 |
+            | password    | 1234Test |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I choose menu Transfer from main dashboard
+        When I input name 'RUTH BISNIS A' from the search box
+        And I choose the friendlist
+        And I input amount '10000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        And I will direct to page need approval from other director
+        And I close page detail transfer
+        And I click back in header page
+        And I will see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And I canceled my transaction
+        And I input wrong PIN
+        And I will see pop up data is incorrect
+        And I try again to input PIN
+        And I input PIN '111111' approver
+        Then I will direct to page notification center    
 
     @C131492
     Scenario: Approve transaction from detail card maker in notification center
@@ -1230,9 +1057,7 @@ Feature: Maker and Approver Transaction
         And I input PIN '111111'
         And I will direct to page need approval from other director
         And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input OTP to approve transaction
+        And I input PIN '111111' maker
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will see card with status has been canceled
         And I can click detail card completed
@@ -1279,9 +1104,7 @@ Feature: Maker and Approver Transaction
         And I click notification maker transaction
         And I will direct to page need approval from other director
         And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input OTP to approve transaction
+        And I input PIN '111111' maker
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will direct to page notification center
         And I will not see list maker transaction in notification center
@@ -1338,9 +1161,7 @@ Feature: Maker and Approver Transaction
         And I click card maker transaction
         And I will direct to page need approval from other director
         And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input OTP to approve transaction
+        And I input PIN '111111' maker
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will see card with status has been canceled
         And I can click detail card completed
@@ -1395,9 +1216,7 @@ Feature: Maker and Approver Transaction
         And I click notification maker transaction
         And I will direct to page need approval from other director
         And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input OTP to approve transaction
+        And I input PIN '111111' maker
         And I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will direct to page notification center
         And I will not see list maker transaction in notification center

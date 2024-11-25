@@ -61,7 +61,7 @@ When("I will see card account {string}", async (typeAccount) => {
         typeAccount === "account opening"
     ) {
         I.waitForText("Perbankan Bisnis Premium", 30);
-        I.waitForText("Pilih Rekening Giro", 10);
+        I.waitForText("Buka Rekening Giro", 10);
     }
 
     globalVariable.onBoarding.status = typeAccount;

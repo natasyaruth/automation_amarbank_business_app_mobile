@@ -375,7 +375,7 @@ When("I click transfer", () => {
 });
 
 When("I input PIN {string}", (Pin) => {
-  I.waitForText("Masukkan PIN Transaksi", 10);
+  I.waitForText("Masukkan PIN", 10);
   transferPage.inputPin(Pin);
 }),
 

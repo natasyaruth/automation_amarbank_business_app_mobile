@@ -3,7 +3,7 @@ Feature: Manual Account Forgot Password
     As a customer
     I want to reset password
 
-    @C133816
+    @C166007
     Scenario: Reset password from link forgot password in page login - Individual
         Given I am a customer want to reset password
         When I direct to page login
@@ -18,7 +18,7 @@ Feature: Manual Account Forgot Password
         And I will direct to page reset password successful changes
         And I can click button direct to login
 
-    @C141153
+    @C166008
     Scenario: Reset password from link forgot password in page login - Business
         Given I am a customer want to reset password
         When I direct to page login
@@ -35,19 +35,19 @@ Feature: Manual Account Forgot Password
         And I will direct to page reset password successful changes
         And I can click button direct to login    
 
-    @C133818
+    @C166009
     Scenario: Check content email reset password
         Given I am a customer that was have sent email to reset password
         When I check email
         Then I will see content email same as figma design
 
-    @C133819
+    @C166010
     Scenario: Check content email reset password successful
         Given I am a customer that was successfully change my password
         When I check email
         Then I will see content email same as figma design
 
-    @C133820
+    @C166011
     Scenario: Login after success reset password
         Given I am a customer that was successfully change my password
         When I go to page login
