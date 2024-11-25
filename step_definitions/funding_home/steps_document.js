@@ -415,16 +415,16 @@ Then("I will see bottom sheet input password document", () => {
 });
 
 Then("I will see button see document is enabled", async () => {
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSeeDoc, 'enabled');
 
-    I.assertEqual(isEnabled, 'false');
+    I.assertEqual(isEnabled, "true");
 });
 
 Then("I will see button see document is disabled", async () => {
 
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSeeDoc, 'enabled');
 
-    I.assertEqual(isEnabled, 'true');
+    I.assertEqual(isEnabled, "false");
 
 });
 

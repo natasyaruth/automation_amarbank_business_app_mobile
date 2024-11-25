@@ -51,12 +51,12 @@ module.exports = {
     changeFileName: "~fieldChangeNameError"
   },
   texts: {
-    fileSize: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.TextView[3]" },
+    fileSize: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.TextView[3]" },
     fileNameUploaded: "~textDocName",
     titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"
   },
   icons: {
-    completeUpload: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ImageView" },
+    completeUpload: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.ImageView" },
     resetName: "~buttonReset"
   },
   googleElement: {
@@ -69,7 +69,8 @@ module.exports = {
   },
   statusElement: {
     buttonSaveOtherDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
-    fieldNameDoc: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText"}
+    fieldNameDoc: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText"},
+    buttonSeeDoc: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"}
   },
 
   clickTabDocument() {
@@ -355,9 +356,9 @@ module.exports = {
     I.click(this.buttons.infoDoc + index);
   },
 
-  clickInfoFolderDetail(index) {
-    I.waitForElement(this.buttons.infoDocDetail+index, 20);
-    I.click(this.buttons.infoDocDetail+index);
+  clickInfoFolderDetail() {
+    I.waitForElement(this.buttons.infoDocDetail, 20);
+    I.click(this.buttons.infoDocDetail);
   },
 
   clickChangeName() {

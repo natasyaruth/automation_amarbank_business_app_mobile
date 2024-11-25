@@ -256,14 +256,14 @@ Feature: Home - Blocking amount
         Given I am a registered customer with following details:
             | userID      | deve2c69 |
             | password    | 1234Test |
-            | userIDstg   | staga810 |
+            | userIDstg   | stag98c5 |
             | passwordStg | 1234Test |
         And don't have list pending task
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | deve2c69 |
             | password    | 1234Test |
-            | userIDstg   | staga810 |
+            | userIDstg   | stag98c5 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

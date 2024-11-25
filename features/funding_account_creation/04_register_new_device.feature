@@ -12,7 +12,7 @@ Feature: Registering New Device
         And I have new device id 'Test32'
         And I will mock liveness to success
 
-    @C133917
+    @C165964
     Scenario: Recapture selfie picture
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -36,7 +36,7 @@ Feature: Registering New Device
         And I retake my picture selfie
         Then I will direct to page take selfie
 
-    @C133918
+    @C165965
     Scenario: Submit photo selfie with picture is blur
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -57,7 +57,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'
 
-    @C133919
+    @C165966
     Scenario: Submit photo selfie with picture is dark
         Given I am a registered customer with following details:
             | userID      | mich875d |
@@ -78,7 +78,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'
 
-    @C133920
+    @C165967
     Scenario: Submit photo selfie is blank or not selfie picture
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
@@ -99,7 +99,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'
 
-    @C133921
+    @C165968
     Scenario: Submit photo selfie with server is error
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
@@ -119,7 +119,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'
         
-    @C133922
+    @C165969
     Scenario: Submit failed photo till account is blocked
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
@@ -156,7 +156,7 @@ Feature: Registering New Device
         And I understand about the information
         And I will back to page login
 
-    @C133923
+    @C165970
     Scenario: Submit failed photo three times got server error
         Given I am a registered customer with following details:
             | userID      | rota3159 |
@@ -180,7 +180,7 @@ Feature: Registering New Device
         And I submit my selfie photo
         Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'
 
-    @C133924
+    @C165971
     Scenario: Back to page login from bottom sheet register new device
         Given I am a registered customer with following details:
             | userID      | rota3159 |
@@ -198,7 +198,7 @@ Feature: Registering New Device
         And I click cancel register new device
         Then I will back to page login
 
-    @C133925
+    @C165972
     Scenario: Close page bottom sheet register new device
         Given I am a registered customer with following details:
             | userID      | rota3159 |
@@ -216,7 +216,7 @@ Feature: Registering New Device
         And I click close bottom sheet register new device
         Then I will back to page login
 
-    @C133926
+    @C165973
     Scenario: Close page verification register new device
         Given I am a registered customer with following details:
             | userID      | rota3159 |
@@ -236,7 +236,7 @@ Feature: Registering New Device
         And I close page verification new device
         Then I will directing to page login
 
-    @C133927
+    @C165974
     Scenario: Login to app using different user id - account active
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -272,7 +272,7 @@ Feature: Registering New Device
         And I click bucketlist notification info
         And I will direct to detail register new device successfully changes
 
-    @C162010
+    @C165975
     Scenario: Checking notification after failed attempt register new device
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -312,7 +312,7 @@ Feature: Registering New Device
         And I click notification center attempt register new device
         And I will direct to detail attempt register new device
 
-    @C162041
+    @C165976
     Scenario: Checking notification after attempt failed till blocked
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
@@ -356,7 +356,7 @@ Feature: Registering New Device
         And I click bucketlist notification info
         And I will direct to detail attempt register new device
     
-    @C135615
+    @C165977
     Scenario: Login to app using different user id - device id of other user id has been registered
         Given I am a registered customer with following details:
             | userID      | ptpe5040 |
@@ -420,7 +420,7 @@ Feature: Registering New Device
         And I click later in pop up biometric
         And I will see card account 'active'
 
-    @C133928
+    @C165978
     Scenario: Login to app using different user id - account on process
         Given I am a registered customer with following details:
             | userID      | deved6a1 |
@@ -437,7 +437,7 @@ Feature: Registering New Device
         And I click later in pop up biometric
         Then I will see card account 'on process'
 
-    @C133929
+    @C165979
     Scenario: Login to app using different user id - account on verification Individual
         Given I am a registered customer with following details:
             | userID      | indibec3 |
@@ -454,7 +454,7 @@ Feature: Registering New Device
         And I click later in pop up biometric
         Then I will see card account 'on verification'
 
-    @C137266
+    @C165980
     Scenario: Login to app using different user id - account on verification Invitee
         Given I am a registered customer with following details:
             | userID      | ruth4dcf |
@@ -471,7 +471,7 @@ Feature: Registering New Device
         And I click later in pop up biometric
         Then I will see card account 'on verification'
 
-    @C162154
+    @C165981
     Scenario: Register new device with PDP still not submitted yet
         Given I am a registered customer with following details:
             | userID      | rota3159 |

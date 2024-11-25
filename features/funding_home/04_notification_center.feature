@@ -172,12 +172,12 @@ Feature: Home - Notification Center
             | password    | Test1234 |
             | userIDstg   | stag3338 |
             | passwordStg | 1234Test |    
-        And don't have any notification
         And has friendlist with following details:
             | userID      | ruth6a44 |
             | password    | 1234Test |
             | userIDstg   | stag4cce |
             | passwordStg | 1234Test |
+        And we don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
@@ -215,14 +215,14 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
-            | passwordStg | 1234Test |    
+            | userIDstg   | stag4cce |
+            | passwordStg | Test1234 |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
-            | passwordStg | 1234Test |
+            | userIDstg   | stag4cce |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -253,14 +253,14 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
-            | passwordStg | 1234Test |    
+            | userIDstg   | stag4cce |
+            | passwordStg | Test1234 |
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
-            | passwordStg | 1234Test |
+            | userIDstg   | stag4cce |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -545,15 +545,14 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
-            | passwordStg | 1234Test |    
-        And don't have any notification
+            | userIDstg   | staga29c |
+            | passwordStg | 1234Test | 
+        And I have '3' notification 'Maintenance App' in notification center
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
+            | userIDstg   | staga29c |
             | passwordStg | 1234Test |
-        And I have '3' notification 'Maintenance App' in notification center
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -568,13 +567,13 @@ Feature: Home - Notification Center
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
+            | userIDstg   | staga29c |
             | passwordStg | 1234Test |    
         And don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag3338 |
+            | userIDstg   | staga29c |
             | passwordStg | 1234Test |
         And I have '3' notification 'Maintenance App' in notification center
         And I click login
