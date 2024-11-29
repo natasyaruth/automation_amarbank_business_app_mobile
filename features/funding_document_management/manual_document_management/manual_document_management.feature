@@ -288,3 +288,17 @@ Feature: Manual Document Management
         And I cancel one file
         Then I will not see the file anymore
         And I see information number is decrease
+
+    @C167436
+    Scenario: Checking brankas trash after 30 days
+        Given I am a customer active
+        And has been complete onboarding document brankas
+        And currently in detail Tab brankas
+        And has folder and file in other document
+        When I delete folder and file
+        And I success delete both of that
+        And I click menu action menu brankas
+        And I click menu trash
+        And I will see file and folder that recently deleted is in trash
+        And I wait after 30 days
+        Then file and that folder should be deleted permanent

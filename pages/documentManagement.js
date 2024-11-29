@@ -31,9 +31,19 @@ module.exports = {
     saveName: "~buttonNext",
     infoDoc: "~buttonInfo_",
     infoDocDetail: "~buttonInfo",
+    infoDocTrash: "~buttonInfo_",
+    infoDocTrashDetail: "~buttonInfo",
     changeName: "~buttonChangeName",
     itemOtherDoc: "~content_",
     itemOtherDocDetail: "~content_",
+    trash: "~buttonTrash",
+    openFolderTrash: "~buttonFolder_",
+    openFileTrash: "~buttonFiles_",
+    permanentDeleteDoc: "~buttonPermanentDeleted",
+    permanentDeleteAll: "~buttonPermanentDeletedAll",
+    confirmPermanentDelete: "~buttonYesCancel",
+    cancelPermanentDelete: "~buttonNoCancel",
+    restoreDoc: "~buttonRefund",
   },
   links: {
     usePassword: "~buttonUsePassword",
@@ -53,7 +63,9 @@ module.exports = {
   texts: {
     fileSize: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.TextView[3]" },
     fileNameUploaded: "~textDocName",
-    titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"
+    titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView",
+    nameDocTrashRoot: {xpath: ""},
+    nameDocTrashDetail: {xpath: ""},
   },
   icons: {
     completeUpload: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.ImageView" },
@@ -395,4 +407,75 @@ module.exports = {
     I.waitForElement(this.texts.titleDetailFolder, 10);
     return await I.grabTextFrom(this.texts.titleDetailFolder);
   },
+
+  clickMenuTrash(){
+    I.waitForElement(this.buttons.trash, 20);
+    I.click(this.buttons.trash);
+  },
+
+  clickMenuTitleTrash(){
+    I.waitForElement(this.buttons.infoDocTrashDetail, 20);
+    I.click(this.buttons.infoDocTrashDetail);
+  },
+
+  clickInfoDetailFolderInTrash(index){
+    I.waitForElement(this.buttons.infoDocTrash+index, 20);
+    I.click(this.buttons.infoDocTrash+index);
+  },
+
+  clickInfoDetailFileInTrash(index){
+    I.waitForElement(this.buttons.infoDocTrash+index, 20);
+    I.click(this.buttons.infoDocTrash+index);
+  },
+
+  clickDeleteAllPermanent(){
+    I.waitForElement(this.buttons.permanentDeleteAll, 20);
+    I.click(this.buttons.permanentDeleteAll);
+  },
+
+  confirmDeleteAll(){
+    I.waitForElement(this.buttons.confirmPermanentDelete, 20);
+    I.click(this.buttons.confirmPermanentDelete);
+  },
+
+  cancelDeleteAll(){
+    I.waitForElement(this.buttons.cancelPermanentDelete, 20);
+    I.click(this.buttons.cancelPermanentDelete);
+  },
+
+  clickRestore(){
+    I.waitForElement(this.buttons.restoreDoc, 20);
+    I.click(this.buttons.restoreDoc);
+  },
+
+  clickDeletePermanent(){
+    I.waitForElement(this.buttons.permanentDeleteDoc, 20);
+    I.click(this.buttons.permanentDeleteDoc);
+  },
+
+  confirmDelete(){
+    I.waitForElement(this.buttons.confirmDelete, 20);
+    I.click(this.buttons.confirmDelete);
+  },
+
+  cancelDelete(){
+    I.waitForElement(this.buttons.cancelDelete, 20);
+    I.click(this.buttons.cancelDelete);
+  },
+
+  openFolderTrash(index){
+    I.waitForElement(this.buttons.openFolderTrash+index, 20);
+    I.click(this.buttons.openFolderTrash+index);
+  },
+
+  async getDocNameTrashRoot(index) {
+    I.waitForElement(this.texts.nameDocTrashRoot+index, 10);
+    return await I.grabTextFrom(this.texts.nameDocTrashRoot+index);
+  },
+
+  async getDocNameTrashDetail(index) {
+    I.waitForElement(this.texts.nameDocTrashDetail+index, 10);
+    return await I.grabTextFrom(this.texts.nameDocTrashDetail+index);
+  },
+
 }
