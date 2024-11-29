@@ -193,6 +193,9 @@ Given("I have {string} notification {string} in notification center", async (num
 
     const numbers = parseInt(number);
 
+    await
+        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
+
     switch (notifName) {
         case "Maintenance App":
             for (let i = 0; i < numbers; i++) {
