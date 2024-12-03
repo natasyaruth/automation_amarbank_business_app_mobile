@@ -176,7 +176,7 @@ Feature: Home - Notification Center
             | userID      | ruth6a44 |
             | password    | 1234Test |
             | userIDstg   | stag4cce |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And we don't have any notification
         And I filling in form login with the following details:
             | userID      | natace13 |
@@ -207,8 +207,9 @@ Feature: Home - Notification Center
         Then I see notification transfer in successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer in successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160823
     Scenario: Checking Detail notification Transfer Out BIFAST
@@ -245,8 +246,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160824
     Scenario: Checking Detail notification Transfer Out RTOL
@@ -283,8 +285,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160825
     Scenario: Checking Detail notification Transfer Out SKN
@@ -321,8 +324,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160826
     Scenario: Checking Detail notification Transfer Out RTGS
@@ -359,8 +363,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160827
     Scenario: Checking Detail notification Transfer Out Overbook
@@ -395,8 +400,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160828
     Scenario: Checking Detail notification Transfer Out to account Individual
@@ -431,8 +437,9 @@ Feature: Home - Notification Center
         Then I see notification transfer out successfully
         And I click bucketlist notification transaction
         And I will direct to detail transfer out successfully
-        And I click understand the notification
+        And I close page detail transfer
         And I will direct to page notification center
+        And I don't see red dot notification in bucketlist
 
     @C160829
     Scenario: Checking ordering list notification center

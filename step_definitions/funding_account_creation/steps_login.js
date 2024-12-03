@@ -173,8 +173,8 @@ When("I filling in form login with the following details:", (table) => {
 });
 
 When("I login with account friendlist", () => {
-  loginPage.fillFieldLogin("userID", globalVariable.login.userIDFriendlist);
-  loginPage.fillFieldLogin("password", globalVariable.login.passwordFriendlist);
+  loginPage.fillFieldLogin("userID", globalVariable.login.userIDPartner);
+  loginPage.fillFieldLogin("password", globalVariable.login.passwordPartner);
 
   loginPage.clickLoginButton();
 });

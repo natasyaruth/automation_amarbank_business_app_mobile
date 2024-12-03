@@ -173,6 +173,7 @@ module.exports = {
         folderName: [],
         updateFolderName: "",
         updateFileName: "",
+        levelBackFolder: 0
     },
     createPin: {
         newPin: "",
