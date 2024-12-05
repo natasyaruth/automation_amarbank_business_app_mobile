@@ -2,8 +2,10 @@ const {
     I,
     transactionHistoryPage,
     amountDetailPage,
+    transferPage,
     resetStateDao,
     globalVariable,
+    headerPage,
     welcomePage,
 } = inject();
 
@@ -466,7 +468,15 @@ Then("I will direct to detail transfer in successfully", async () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForText("Transaksi Masuk", 10);
 
-    I.see("Transaksi Masuk", 10);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderName);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderBankName);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderAccNumber);
+
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientName);
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientBankName);
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientAccNumber);
+
+    I.see("Transaksi Masuk");
     I.see(globalVariable.transfer.amountTransfer);
 
     I.see("Nomor Referensi");
@@ -477,18 +487,9 @@ Then("I will direct to detail transfer in successfully", async () => {
 
     I.see("Waktu");
 
-    if (
-        globalVariable.transfer.note !== ""
-    ) {
-        I.see("Catatan");
-        const actualNotes = await transferPage.getNotes();
-        I.assertEqual(actualNotes, globalVariable.transfer.note);
-
-    } else {
-
-        I.dontSee("Catatan");
-        I.dontSee(transferPage.texts.note);
-    }
+    I.see("Catatan");
+    const actualNotes = await transferPage.getNotes();
+    I.assertEqual(actualNotes, "TRANSAKSI KREDIT");
 
     I.dontSee("Bagikan Bukti Transfer");
     I.dontSeeElement(transferPage.buttons.share);
@@ -506,16 +507,16 @@ Then("I will direct to detail transfer out successfully", async () => {
     const actSenderBankName = await transactionHistoryPage.getSenderBankNameDetail();
     I.assertEqual(actSenderBankName, "Bank Amar Indonesia");
     
-    const actSenderAccNumber = await transactionHistoryPage.getSenderAccNumberDetail();
+    const actSenderAccNumber = (await transactionHistoryPage.getSenderAccNumberDetail()).replace(/\s+/g, '');
     I.assertEqual(actSenderAccNumber, globalVariable.transfer.senderAccountNumber);
 
     const actRecipientName = await transactionHistoryPage.getRecipientNameDetail();
-    I.assertEqual(actRecipientName, globalVariable.friendList.receiverName);
+    I.assertEqual(actRecipientName, globalVariable.friendList.friendListName);
 
     const actRecipientBankName = await transactionHistoryPage.getRecipientBankNameDetail();
     I.assertEqual(actRecipientBankName, globalVariable.friendList.bankName);
     
-    const actRecipientAccNumber = await transactionHistoryPage.getRecipientAccNumberDetail();
+    const actRecipientAccNumber = (await transactionHistoryPage.getRecipientAccNumberDetail()).replace(/\s+/g, '');
     I.assertEqual(actRecipientAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
 
     I.see("Transaksi Keluar");

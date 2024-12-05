@@ -400,6 +400,7 @@ Then("I successfully transferred", async () => {
   const actualSenderAccNumber = (await transferPage.getSenderAccNnumber()).replace(/\s+/g, '');
   const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
   I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
+  globalVariable.transfer.senderAccountNumber = expectedSenderAccNumber;
 
   const actualReceiverName = await transferPage.getReceiverName();
   I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);

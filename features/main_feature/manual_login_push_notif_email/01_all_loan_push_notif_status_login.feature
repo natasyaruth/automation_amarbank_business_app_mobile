@@ -28,6 +28,7 @@ Feature: Notification Redirection for all loan push apps notification and email
         And I click the notif
         Then I direct to page detail rejected limit
 
+
     @C163677
     Scenario: Validate email Notification Reject VP direct to relevant page
         Given I receive push notif Reject VP on mobile and email
@@ -44,7 +45,8 @@ Feature: Notification Redirection for all loan push apps notification and email
         Given I receive push notif Approve VP on mobile and email
         When I see the the title "Selamat, Pinjaman Anda Telah Disetujui. Cek disini"
         And I click the notif
-        Then I direct to page loan process with status Selamat, Limit Pinjaman Telah Aktif
+        Then I direct to page loan progress with status "Setujui Pinjaman Sebelum"
+
 
     @C163679
     Scenario: Validate email Notification Approve VP direct to relevant page
@@ -55,24 +57,26 @@ Feature: Notification Redirection for all loan push apps notification and email
         And I see "Tenor yang disetujui"
         And I see "Bunga per tahun"
         And I see "Supplier"
-        And I see button Buka Aplikasi and direct to page loan process with status Selamat, Limit Pinjaman Telah Aktif
+        And I click button Buka Aplikasi 
+        And I will direct to page loan process with status Pengajuan Limit 
+
 
     @C163680
-    Scenario: Validate Push Notif reminder offering expired direct to relevant page
+    Scenario: Validate Push Notif offering reminder   direct to relevant page
         Given I receive push notif reminder offering expired and email
-        When I see the the title "Segera setujui pinjaman sebelum batas waktu berakhir"
-        And I click the notif
-        Then I direct to page
+        When I see the the title "Segera setujui pinjaman sebelum batas waktu berakhir."
+        And I click the notification
+        Then I direct to page loan offering page
 
     @C163681
     Scenario: Validate Push Notif Offering expired direct to relevant page
         Given I receive push notif Offering expired and email
         When I see the the title "Penawaran Limit Pinjaman telah berakhir"
-        And I click the notif
-        Then I direct to page
+        And I click the notification
+        Then I direct to page with status "Penawaran limit sudah berakhir" 
 
     @C163682
-    Scenario: Validate Push notif reminder loan signing direct to relevant page
+    Scenario: Validate Push notif loan signing reminder direct to relevant page
         Given I receive push notif reminder loan signing and email
         When I see the the title "Segera tanda tangani pinjaman sebelum batas waktu berakhir"
         And I click the notif
@@ -82,9 +86,22 @@ Feature: Notification Redirection for all loan push apps notification and email
     @C163683
     Scenario: Validate Push notif Loan Signing Expired direct to relevant page
         Given I receive push notif Loan Signing Expired and email
-        When I see the the title "Penawaran Limit Pinjaman telah berakhir"
-        And I click the notif
-        Then I direct to page
+        When I see the the title "Pemberitahuan: Masa Waktu Penawaran Limit Telah Berakhir"
+        And I click the email
+        Then I direct to page status "Penawaran limit sudah berakhir"
+
+
+    Scenario: Validate email notification offering expired direct to relevant page
+        Given I receive push notif and email offering expired
+        When I see the title "Pencairan Disetujui"
+        And I click the email
+        And I see Limit yang disetujui
+        And I see Tenor yang disetujui
+        And I see Bunga per bulan
+        And I see Skema
+        And I see Supplier
+        And I click button Beri Alasan
+        Then I will direct to page Penawaran limit sudah berakhir
 
 
     @C163684
@@ -93,6 +110,21 @@ Feature: Notification Redirection for all loan push apps notification and email
         When I see the the title "Limit injaman Anda telah aktif. Cek disini"
         And I click the notif
         Then I direct to page Active Loan
+
+    
+    Scenario: Validate Push notif disburse after the back office approves the disbursement
+        Given I receive push notif and email Disbursement Approved
+        When I see the title "Pencairan Disetujui. Cek kembali perhitungan pencairan sebelum melanjutkan proses."
+        And I click the notification
+        Then I direct to page Perhitungan Pencairan
+
+    Scenario: Validate email notification disbursement approved
+        Given I receive push notif and email Disbursement Approved
+        When I see the title "Pencairan Disetujui"
+        And I click the email
+        And I click button Cek Disini
+        Then I will direct to page Perhitungan Pencairan
+        
 
     @C163685
     Scenario: Validate Push Notif Disburse confirm invoice direct to relevant page

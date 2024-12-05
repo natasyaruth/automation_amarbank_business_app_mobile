@@ -25,12 +25,14 @@ module.exports = {
 
     Fields: {
         textFieldLainnya: "~textFieldOther",
+        messageTooltip: "~messageTooltip",
     },
+
 
     // page onboarding
     clickAjukanPinjaman() {
-        I.wait(10);
-        I.waitForElement(this.buttons.buttonAjukanPinjaman, 10);
+        I.wait(3);
+        I.waitForElement(this.buttons.buttonAjukanPinjaman, 15);
         I.click(this.buttons.buttonAjukanPinjaman);
     },
 
@@ -58,7 +60,10 @@ module.exports = {
     // page menentukan tujuan mengajukan pinjaman
     // radioButton
     clickRadioButton(radioNumber) {
+        I.wait(3);
+        I.say(`Radio button ${radioNumber} was clicked`);
         I.click(this.radioButtons[`radioButton${radioNumber}`]);
+        
     },
     clickButtonSelanjutnya() {
         I.wait(3);
