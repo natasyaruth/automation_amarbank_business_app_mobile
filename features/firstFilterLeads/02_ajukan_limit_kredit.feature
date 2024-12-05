@@ -17,7 +17,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -39,7 +40,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -62,7 +64,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -85,7 +88,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -110,7 +114,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -133,7 +138,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -156,7 +162,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
         And I choose 50 juta sampai 100 juta "3"
@@ -179,7 +186,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan Pribadi "2"
         And I click Selanjutnya
@@ -198,7 +206,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button Ajukan Pinjaman Limit
+        When I click button nanti saja
+        When I click button Ajukan Limit Kredit 
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan Pribadi "2"
         And I click Selanjutnya
