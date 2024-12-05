@@ -1,3 +1,4 @@
+// const firsFilterLeadsPage = require("../../pages/firstFilterLeads");
 const { I, firstFilterLeadsPage} = inject();
 
 When('I click button Ajukan Pinjaman Limit', () => {
@@ -15,6 +16,10 @@ When('I choose Untuk Kebutuhan bisnis atau usaha {string}', (radioNumber) => {
     firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
+When('I choose 50 juta sampai 100 juta {string}', (radioNumber) => {
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
+});
+
 When('I click Selanjutnya', () => {
     firstFilterLeadsPage.clickButtonSelanjutnya();
 });
@@ -25,7 +30,7 @@ When('I choose 5 juta sampai 50 juta {string}', (radioNumber) => {
 
 Then('I should see message Install aplikasi Tunaiku', () => {
     I.wait(3);
-    I.see("Install aplikasi Tunaiku");
+    I.see("Untuk Pinjaman Pribadi, Kami Akan Mengarahkan Anda ke Tunaiku");
 });
 
 When('I click Install aplikasi tunaiku', () => {
@@ -47,7 +52,7 @@ When('I choose Pemabayaran Invoice {string}', (radioNumber) => {
 
 Then('I should see Pengajuan Limit Kredit Bisnis', () => {
     I.wait(3);
-    I.see("Pengajuan Limit Kredit Bisnis");
+    I.see("Bisnis Anda membutuhkan pembayaran rutin kepada supplier bahan baku agar produksi tidak berhenti.");
 });
 
 When('I choose Pembelian Persediaan {string}', (radioNumber) => {
@@ -56,7 +61,7 @@ When('I choose Pembelian Persediaan {string}', (radioNumber) => {
 
 Then('I should see message Invoice Dibutuhkan Sebagai Syarat Pencairan Pinjaman', () => {
     I.wait(3);
-    I.see("Invoice Dibutuhkan Sebagai Syarat Pencairan Pinjaman");
+    I.see("Invoice Dibutuhkan sebagai Syarat Pencairan Pinjaman");
 }); 
 
 When('I click Mengerti & Lanjutkan Pengajuan', () => {
@@ -69,27 +74,27 @@ When('I choose Investasi Bisnis, Pengembangan & Perluasan Usaha {string}', (radi
 
 Then('I should see message Terima Kasih Telah Menjawab Pertanyaan Kami', () => {
     I.wait(3);
-    I.see("Terima Kasih Telah Menjawab Pertanyaan Kami");
+    I.see("Terima Kasih Telah Menjawab Pertanyaan Kami.");
 });
 
 When('I click Mengerti', () =>{
-    firsFilterLeadsPage.clickButtonMengerti();
+    firstFilterLeadsPage.clickButtonMengerti();
 });
 
 When('I choose Pembayaran Sewa Tempat Usaha {string}', (radioNumber) => {
-    firsFilterLeadsPage.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 When('I choose Lainnya {string}', (radioNumber) => {
-    firsFilterLeadsPage.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 When('I filling field lainnya', () => {
-    firsFilterLeadsPage.fillTextFieldLainnya();
+    firstFilterLeadsPage.fillTextFieldLainnya();
 });
 
 When('I choose Untuk Kebutuhan Pribadi {string}', (radioNumber) => {
-    firsFilterLeadsPage.clickRadioButton(radioNumber);
+    firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
 
