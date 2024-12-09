@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 // require("./heal");
 
@@ -38,12 +39,11 @@ let defaultAppium = {
     platformName: "Android",
     // platformVersion: "12.0",
     automationName: "UiAutomator2",
-    newCommandTimeout: 600,
+    newCommandTimeout: 300,
     deviceName: "emulator-5554",
     appPackage: appPackage,
     appActivity: "id.co.amarbank.smb.ui.MainActivity",
     autoGrantPermissions: true,
-    clearSystemFiles: true,
   },
 };
 
@@ -219,6 +219,8 @@ exports.config = {
     notificationCenterPage: "./pages/notificationCenter.js",
 
     filterLoanHistory: "./pages/filterLoanHistory.js",
+
+    firstFilterLeadsPage: "./pages/firstFilterLeads.js",
   },
   settings: {
     logging: {
@@ -299,6 +301,7 @@ exports.config = {
       "./features/main_feature/funding_flow/funding_transfer/*.feature",
       "./features/main_feature/funding_flow/pin_management_and_others/*.feature",
       "./features/funding_e2e/funding_e2e_account_opening/*.feature",
+      "./features/firstFilterLeads/01_ajukan_pinjaman.feature",
     ],
     steps: [
       "./step_definitions/funding_account_creation/steps_registration.js",
@@ -360,6 +363,7 @@ exports.config = {
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Limit.js",
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Disbursement.js",
       "./step_definitions/loanDashboard/steps_Filter_History_Page_Repayment.js",
+      "./step_definitions/firstFilterLeads/steps_first_filter_leads.js",
     ],
   },
   plugins: {
@@ -384,7 +388,7 @@ exports.config = {
     pauseOnFail: {},
     testrail: env.testrail,
   },
-  stepTimeout: 10,
+  stepTimeout: 0,
   stepTimeoutOverride: [
     {
       pattern: "wait.*",
