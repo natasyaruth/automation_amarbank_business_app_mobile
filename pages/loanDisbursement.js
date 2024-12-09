@@ -42,6 +42,13 @@ module.exports = {
     buttonUseLimitAR: { xpath: '(//android.view.View[@content-desc="buttonUseLimit"])[2])' },
     buttonTakeFromGalery: { xpath: '(/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]' },
     imgInvoiceImage: { xpath: '(//android.widget.LinearLayout[@content-desc="Invoice_Trasaksi-2.pdf.png, 78.12 kB, Nov 21"]/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.ImageView[1]' },
+    buttonUseLimit1: { xpath: '(//android.view.View[@content-desc="buttonUseLimit"])[1]' },
+    buttonUploadInvoice: { xpath: '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]'},
+    buttonTakeFromCamera: "~buttonCamera",
+    buttonTakePhoto: "~buttonTakePhoto",
+    buttonDisburse: "~buttonDisburse",
+    buttonDataSupplier: { xpath: '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[1]/android.view.View[2]'},
+    buttonitemSupplier: "~itemSupplier",
 
   },
 
@@ -69,6 +76,10 @@ module.exports = {
     textFieldPicName: "~textFieldPicName",
     textFieldPicNumber: "~textFieldPicNumber",
     textcountdown: "~textcountdownlimit",
+    textFieldInvoiceAmount: "~textFieldInvoiceAmount",
+    textFieldInvoiceNo: "~textFieldInvoiceNo",
+    
+
   },
 
   toastBars: {
@@ -92,6 +103,60 @@ module.exports = {
     I.wait(5);
     I.seeElement(this.cards.cardLimitAP);
     I.click(this.buttons.buttonUseLimit);
+  },
+
+  clickButtonUseLimit() {
+    I.wait(3);
+    I.click(this.buttons.buttonUseLimit);
+  },
+
+  clickButtonUseLimit1() {
+    I.wait(15); // Tunggu hingga elemen dimuat
+    I.say('Checking if buttonUseLimit is visible...');
+    I.seeElement(this.buttons.buttonUseLimit1); // Periksa apakah elemen ada
+    I.click(this.buttons.buttonUseLimit1); // Klik tombol jika ada
+},
+
+  clickButtonUploadInvoice() {
+    I.wait(3);
+    I.click(this.buttons.buttonUploadInvoice);
+  },
+
+  clickButtonTakeFromCamera() {
+    I.wait(3);
+    I.click(this.buttons.buttonTakeFromCamera);
+  },
+
+  clickTakePicture() {
+    I.wait(10); // Tunggu jika ada delay pada tampilan elemen
+    I.say('Checking if buttonTakePhoto is present...');
+    I.seeElement(this.buttons.buttonTakePhoto); // Pastikan elemen ada
+    I.click(this.buttons.buttonTakePhoto); // Klik tombol
+  },
+
+  fillNominalInvoice(){
+    I.wait(10);
+    I.fillField(this.textFields.textFieldInvoiceAmount, '133000');
+  },
+
+  fillNumberInvoice(){
+    I.wait(3);
+    I.fillField(this.textFields.textFieldInvoiceNo, '100000');
+  },
+
+  clickButtonDataSupplier() {
+    I.wait(3);
+    I.click(this.buttons.buttonDataSupplier);
+  },
+
+  clickItemSupplier(){
+    I.wait(3);
+    I.click(this.buttons.buttonitemSupplier);
+  },
+
+  clickButtonLanjutPembayaran(){
+    I.wait(3);
+    I.click(this.buttons.buttonDisburse);
   },
 
   async validateSectionHavePastDueDate() {

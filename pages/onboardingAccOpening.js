@@ -121,6 +121,7 @@ module.exports = {
     clearEmail: "~btnEmailClear",
   },
   statusEnabled: {
+    buttonChooseTypeGiro: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]"},
     buttonSendFeedback: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[6]"},
     buttonCancelProcess: {xpath: "//android.widget.ScrollView/android.view.View/android.view.View[7]"},
     buttonSaveAndResend: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"},

@@ -24,11 +24,11 @@ Given("has friendlist with following details:", (table) => {
     const account = table.parse().rowsHash();
 
     if (process.env.ENVIRONMENT == "staging") {
-        globalVariable.login.passwordFriendlist = account["passwordStg"];
-        globalVariable.login.userIDFriendlist = account["userIDstg"];
+        globalVariable.login.passwordPartner = account["passwordStg"];
+        globalVariable.login.userIDPartner = account["userIDstg"];
     } else {
-        globalVariable.login.passwordFriendlist = account["password"];
-        globalVariable.login.userIDFriendlist = account["userID"];
+        globalVariable.login.passwordPartner = account["password"];
+        globalVariable.login.userIDPartner = account["userID"];
     }
 
     // add API automation delete all notif

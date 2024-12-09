@@ -88,15 +88,28 @@ When("I click later", () => {
     onboardingAccOpeningPage.chooseLater();
 });
 
-When("I choose Giro Account Corporate", () => {
+When("I choose Giro Account Corporate", async () => {
     I.wait(2);
     onboardingAccOpeningPage.openGiroAccountCorporate();
+
+    const isEnabled = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonChooseTypeGiro, 'enabled');
+    I.assertEqual(isEnabled, "true");
+
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccountMsme, 10);
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.giroAccountCorporate);
     globalVariable.onBoarding.productType = "CORP";
 });
 
-When("I choose Giro Account MSME", () => {
+When("I choose Giro Account MSME", async () => {
     I.wait(2);
     onboardingAccOpeningPage.openGiroAccountMsme();
+
+    const isEnabled = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonChooseTypeGiro, 'enabled');
+    I.assertEqual(isEnabled, "true");
+
+    I.waitForElement(onboardingAccOpeningPage.buttons.giroAccountCorporate, 10);
+    I.dontSeeElement(onboardingAccOpeningPage.buttons.giroAccountMsme);
+
     globalVariable.onBoarding.productType = "MSME";
 });
 
@@ -727,8 +740,11 @@ Then("I will see details info of giro account Corporate and MSME", async () => {
     I.see("*Perorangan Rp500rb, Non-Perorangan Rp1jt " + "\n"
         + "**Biaya dapat berubah sewaktu-waktu sesuai ketentuan Bank");
 
-    I.see("Buka Giro");
+    I.see("Lanjut Proses Pembukaan Giro");  
     I.waitForElement(onboardingAccOpeningPage.buttons.submitTypeGiro, 10);
+
+    const isEnabled = await I.grabAttributeFrom(onboardingAccOpeningPage.statusEnabled.buttonChooseTypeGiro, 'enabled');
+    I.assertEqual(isEnabled, "false");
 });
 
 Then("product type same with I choose before", async () => {

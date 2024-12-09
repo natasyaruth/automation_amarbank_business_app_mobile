@@ -4,7 +4,7 @@ Feature: Account login
   As a customer lead
   I want to login with registered account
 
-  @C131544
+  @C165931
   Scenario: Login with registered account
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -20,7 +20,7 @@ Feature: Account login
     And I click later in pop up biometric
     Then I will direct to dashboard
 
-  @C131545
+  @C165932
   Scenario: Login with unregistered account
     Given I am an unregistered customer trying to login
     When I filling in form login with the following details:
@@ -31,7 +31,7 @@ Feature: Account login
     And I click login
     Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
 
-  @C131546
+  @C165933
   Scenario: Input UserID without value
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -46,7 +46,7 @@ Feature: Account login
     And I click login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
 
-  @C131547
+  @C165934
   Scenario: Input Password without value
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -61,7 +61,7 @@ Feature: Account login
     And I click login
     Then I should be notified 'Password wajib diisi' in the below of field 'password'
 
-  @C131548
+  @C165935
   Scenario: Login with User ID and Password is empty
     Given I am a registered customer with following details:
       | userID      | JOHN12j3 |
@@ -77,7 +77,7 @@ Feature: Account login
     Then I should be notified 'User ID wajib diisi' in the below of field 'userID'
     And I should be notified 'Password wajib diisi' in the below of field 'password'
 
-  @C131549
+  @C165936
   Scenario: User want to see their password
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -92,7 +92,7 @@ Feature: Account login
     And I click icon eye password
     Then I should see my password
 
-  @C131550
+  @C165937
   Scenario: User don't want to see their password
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -107,13 +107,13 @@ Feature: Account login
     And I click icon eye password twice
     Then I should not see my password
 
-  @C131551
+  @C165938
   Scenario: Access call center on page login
     Given I am customer that already on page login
     When I click call center
     Then I should see bottom sheet call center with email
 
-  @C131552
+  @C165939
   Scenario: Access link Lupa Password
     Given I am customer that already on page login
     When I click forgot password
@@ -121,14 +121,14 @@ Feature: Account login
     And I should see field 'userID' on page Forgot Password
     And I should see field 'email' on page Forgot Password
 
-  @C131553
+  @C165940
   Scenario: Access link Daftar
     Given I am customer that already on page login
     When I click registration
     Then I should see new page with text 'Buat Akun' displayed
     And I should see field 'fullName' on page Registration
 
-  @C131554
+  @C165941
   Scenario: User want to remember their User ID
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -149,13 +149,13 @@ Feature: Account login
     Then I should see checkbox remember me is checked
     And I should see field user ID is filled with the last user ID
 
-  @C131555
+  @C165942
   Scenario: Back to page Onboarding from page Login
     Given I am customer that already on page login
     When I click button back in the header page
     Then I will direct to page onboarding
 
-  @C131556
+  @C165943
   Scenario: Login with wrong password once
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -171,7 +171,7 @@ Feature: Account login
     And I click login
     Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
-  @C131557
+  @C165944
   Scenario: Login with wrong password twice
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -190,7 +190,7 @@ Feature: Account login
     And I click login
     Then I should see log in pop up 'Jika 3 kali salah, Anda harus menunggu untuk mencoba kembali Masuk Akun' with button 'tryAgain'
 
-  @C131558
+  @C165945
   Scenario: Login with wrong password three times
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -212,14 +212,14 @@ Feature: Account login
     And I click login
     Then I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes
 
-  @C131559
+  @C165946
   Scenario: Click login via biometric
     Given I am customer that already on page login
     When I click button login via biometric
     Then I should see bottom sheet that biometric still not activated yet
     And I close bottom sheet biometric
 
-  @C162149
+  @C165947
   Scenario: Exit process PDP
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -241,7 +241,7 @@ Feature: Account login
     And I cancel continue to see PDP
     Then I will directing to page login
 
-  @C162150
+  @C165948
   Scenario: Back to process PDP  
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -263,7 +263,7 @@ Feature: Account login
     And I want continue to see PDP
     Then I will back to page PDP
 
-  @C162151
+  @C165949
   Scenario: Login using existing user active with PDP still not submitted yet
     Given I am a registered customer with following details:
       | userID      | autocaea |
@@ -288,7 +288,7 @@ Feature: Account login
     And I click later in pop up biometric
     Then I will see card account 'active'
 
-  @C162152
+  @C165950
   Scenario: Login using existing user on verification with PDP still not submitted yet
     Given I am a registered customer with following details:
       | userID      | indibec3 |
@@ -313,7 +313,7 @@ Feature: Account login
     And I click later in pop up biometric
     Then I will see card account 'on verification'
 
-  @C162153
+  @C165951
   Scenario: Login using existing user on process with PDP still not submitted yet
     Given I am a registered customer with following details:
       | userID      | deved6a1 |

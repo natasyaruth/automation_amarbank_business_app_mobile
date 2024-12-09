@@ -2,8 +2,10 @@ const {
     I,
     transactionHistoryPage,
     amountDetailPage,
+    transferPage,
     resetStateDao,
     globalVariable,
+    headerPage,
     welcomePage,
 } = inject();
 
@@ -15,59 +17,6 @@ When("I will direct to list transfer in", async () => {
 When("I will direct to list transfer out", async () => {
     I.wait(1);
     I.dontSee("+")
-});
-
-When("I click detail card transaction transfer out {string} without approval", async (method) => {
-    I.waitForElement(transactionHistoryPage.buttons.detailHistorySecond, 10);
-    if (
-        method === "Overbooking"
-    ) {
-        I.dontSee("Biaya Transaksi");
-        I.dontSeeElement(transactionHistoryPage.textFields.adminFeeTitle);
-        I.dontSeeElement(transactionHistoryPage.textFields.adminFeeAmount);
-    } else {
-        I.waitForElement(transactionHistoryPage.textFields.adminFeeTitle, 10);
-        I.see("Biaya Transaksi");
-
-        const actualAdminFee = await transactionHistoryPage.getAllAdminFeeAmount();
-
-        if (
-            method === globalVariable.constant.methodTf.bifast
-        ) {
-            I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeBIFAST);
-        } else if (
-            method === globalVariable.constant.methodTf.rtol
-        ) {
-            I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeRTOL);
-        } else if (
-            method === globalVariable.constant.methodTf.skn
-        ) {
-            I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeSKN);
-        } else if (
-            method === globalVariable.constant.methodTf.rtgs
-        ) {
-            I.assertEqual(actualAdminFee[1], "Rp" + globalVariable.transfer.adminFeeRTGS);
-        }
-    }
-
-    const actualDate = await transactionHistoryPage.getTransactionDateBucketList();
-
-    const lastComma = actualDate.lastIndexOf(',');
-    globalVariable.dashboard.date = lastComma !== -1 ? actualDate.substring(lastComma + 1).trim() : '';
-
-    const recipientName = await transactionHistoryPage.getListTransactionNameBucketList();
-    globalVariable.dashboard.recipientName = recipientName[1];
-
-    const recipientBankName = await transactionHistoryPage.getListTransactionBankNameBucketList();
-    globalVariable.dashboard.recipientBankName = recipientBankName[1];
-
-    const recipientAccNumber = await transactionHistoryPage.getListTransactionAccNumberBucketList();
-    globalVariable.dashboard.recipientAccNumber = (recipientAccNumber[1]).replace(/\s+/g, '').replace(/-/g, '');
-
-    const amountTransaction = await transactionHistoryPage.getListTransactionAmountBucketList();
-    globalVariable.dashboard.amountTransaction = amountTransaction[1];
-
-    transactionHistoryPage.openSecondDetailHistory();
 });
 
 When("I click detail latest card history transaction", () => {
@@ -277,7 +226,7 @@ Then("I will see notes in detail history transaction", async () => {
     I.assertEqual(actualNotes, globalVariable.transfer.note);
 });
 
-Then("I will see detail transaction transfer out {string} with approval", async (method) => {
+Then("I will see detail transaction transfer out with approval", async () => {
     I.waitForText("Rincian Transaksi", 10);
 
     const actualSenderName = await transactionHistoryPage.getSenderNameDetail();
@@ -333,11 +282,11 @@ Then("I will see detail transaction transfer out {string} with approval", async 
     I.assertEqual(actualCategory, "Pembayaran");
 
     if (
-        method !== "Overbooking"
+        globalVariable.transfer.method !== globalVariable.constant.methodTf.overbooking
     ) {
         I.see("Layanan Transaksi");
         const actualMethod = await transactionHistoryPage.getMethodTransaction();
-        I.assertEqual(actualMethod, method);
+        I.assertEqual(actualMethod, globalVariable.transfer.method);
     } else {
         I.dontSee("Layanan Transaksi");
         I.dontSeeElement(transactionHistoryPage.textFields.methodTransaction);
@@ -360,7 +309,7 @@ Then("I will see detail transaction transfer out {string} with approval", async 
     I.waitForElement(transactionHistoryPage.buttons.btnShare, 10);
 });
 
-Then("I will see detail transaction transfer out {string} without approval", async (method) => {
+Then("I will see detail transaction transfer out without approval", async () => {
     I.waitForText("Rincian Transaksi", 10);
 
     const actualSenderName = await transactionHistoryPage.getSenderNameDetail();
@@ -519,7 +468,15 @@ Then("I will direct to detail transfer in successfully", async () => {
     I.waitForElement(headerPage.buttons.closePage, 10);
     I.waitForText("Transaksi Masuk", 10);
 
-    I.see("Transaksi Masuk", 10);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderName);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderBankName);
+    I.dontSeeElement(transactionHistoryPage.textFields.senderAccNumber);
+
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientName);
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientBankName);
+    I.dontSeeElement(transactionHistoryPage.textFields.recipientAccNumber);
+
+    I.see("Transaksi Masuk");
     I.see(globalVariable.transfer.amountTransfer);
 
     I.see("Nomor Referensi");
@@ -530,18 +487,9 @@ Then("I will direct to detail transfer in successfully", async () => {
 
     I.see("Waktu");
 
-    if (
-        globalVariable.transfer.note !== ""
-    ) {
-        I.see("Catatan");
-        const actualNotes = await transferPage.getNotes();
-        I.assertEqual(actualNotes, globalVariable.transfer.note);
-
-    } else {
-
-        I.dontSee("Catatan");
-        I.dontSee(transferPage.texts.note);
-    }
+    I.see("Catatan");
+    const actualNotes = await transferPage.getNotes();
+    I.assertEqual(actualNotes, "TRANSAKSI KREDIT");
 
     I.dontSee("Bagikan Bukti Transfer");
     I.dontSeeElement(transferPage.buttons.share);
@@ -559,16 +507,16 @@ Then("I will direct to detail transfer out successfully", async () => {
     const actSenderBankName = await transactionHistoryPage.getSenderBankNameDetail();
     I.assertEqual(actSenderBankName, "Bank Amar Indonesia");
     
-    const actSenderAccNumber = await transactionHistoryPage.getSenderAccNumberDetail();
+    const actSenderAccNumber = (await transactionHistoryPage.getSenderAccNumberDetail()).replace(/\s+/g, '');
     I.assertEqual(actSenderAccNumber, globalVariable.transfer.senderAccountNumber);
 
     const actRecipientName = await transactionHistoryPage.getRecipientNameDetail();
-    I.assertEqual(actRecipientName, globalVariable.friendList.receiverName);
+    I.assertEqual(actRecipientName, globalVariable.friendList.friendListName);
 
     const actRecipientBankName = await transactionHistoryPage.getRecipientBankNameDetail();
     I.assertEqual(actRecipientBankName, globalVariable.friendList.bankName);
     
-    const actRecipientAccNumber = await transactionHistoryPage.getRecipientAccNumberDetail();
+    const actRecipientAccNumber = (await transactionHistoryPage.getRecipientAccNumberDetail()).replace(/\s+/g, '');
     I.assertEqual(actRecipientAccNumber, globalVariable.friendList.friendListAccNumber.replace(/\s+/g, '').replace(/-/g, ''));
 
     I.see("Transaksi Keluar");

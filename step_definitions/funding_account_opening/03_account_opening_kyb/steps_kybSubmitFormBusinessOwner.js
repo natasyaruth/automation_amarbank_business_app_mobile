@@ -50,8 +50,8 @@ When("I click add business director", () => {
 
 When("I fill business director data as followings:", async (table) => {
     const informationDirector = table.parse().rowsHash();
-    globalVariable.formDirector.fullName = informationDirector["fullName"];
-    globalVariable.formDirector.email = informationDirector["email"];
+    globalVariable.registration.fullNamePartner = informationDirector["fullName"];
+    globalVariable.registration.emailPartner = informationDirector["email"];
     globalVariable.formDirector.nik = informationDirector["nik"];
 
     await whitelistDao.whitelistEmail(
@@ -190,6 +190,10 @@ When("I validate my second director", () => {
 
 When("I confirm my director lists", () => {
     formBusinessOwnerPage.confirmListDirectors();
+});
+
+When("I swipe to button submit list directors", ()=>{
+    formBusinessOwnerPage.swipeToButtonSaveListDirectors();
 });
 
 Then("I will notify business owner list has successfully submitted", () => {

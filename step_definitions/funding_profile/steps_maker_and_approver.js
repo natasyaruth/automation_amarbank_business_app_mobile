@@ -32,7 +32,6 @@ Given("don't have list pending task", async () => {
 });
 
 Given("we don't have list pending task", async () => {
-
     await
         resetStateDao.deleteListPendingTask(globalVariable.login.userID, globalVariable.login.password);
 
@@ -98,16 +97,26 @@ When("I click help center", () => {
 
 When("I input PIN {string} approver", (Pin) => {
     I.waitForText("Masukkan PIN", 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.dontSeeElement(headerPage.icon.callCenter);
     I.see("PIN")
     transferPage.inputPin(Pin);
 }),
 
-    When("I input incorrect password for approver", () => {
-        I.waitForText("Password", 10);
-        I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+When("I input PIN {string} maker", (Pin) => {
+    I.waitForText("Masukkan PIN", 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.dontSeeElement(headerPage.icon.callCenter);
+    I.see("PIN")
+    transferPage.inputPin(Pin);
+}),
 
-        approvalTransactionPage.fillPassword(globalVariable.login.dummyPassword);
-    });
+When("I input incorrect password for approver", () => {
+    I.waitForText("Password", 10);
+    I.see("Silahkan masukkan password Amar Bank Bisnis Anda");
+
+    approvalTransactionPage.fillPassword(globalVariable.login.dummyPassword);
+});
 
 When("I input password for approver", () => {
     I.waitForText("Password", 10);
@@ -855,8 +864,6 @@ Then("I will see detail card maker that has been approved", async () => {
     const expectedAmount = numberString.join('');
     I.see("-Rp" + expectedAmount);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-
     I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
     I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
@@ -978,7 +985,7 @@ Then("I will see detail card maker that has been rejected", async () => {
     const actualDate = await approvalTransactionPage.getDateTransaction();
     I.assertEqual(actualDate, globalVariable.transfer.date);
 
-    I.see("Waktu");
+    I.waitForText("Waktu", 10);
     I.waitForElement(approvalTransactionPage.texts.time, 10);
 
     I.see("Kategori");
