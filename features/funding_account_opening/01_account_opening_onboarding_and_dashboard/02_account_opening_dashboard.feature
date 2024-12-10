@@ -67,7 +67,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload eKTP'
 
-    @C131963 @FunctTestFundingSprint4
+    @C131963
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data KTP
         Given I am a registered customer with following details:
             | userID      | devece34 |
@@ -311,7 +311,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Business Profile'
 
-    @C131969 @FunctTestFundingSprint4
+    @C131969
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Owner
         Given I am a registered customer with following details:
             | userID      | devece34 |
@@ -746,7 +746,7 @@ Feature: Account Opening Main Dashboard
         And I can continue to page 'Registration Director'
         And I can see details registration director
 
-    @C159198 @FunctTestFundingSprint4
+    @C159198
     Scenario: Check last step after back to previous page and submit data again
         Given I am a registered customer with following details:
             | userID      | devece34 |

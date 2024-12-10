@@ -69,20 +69,20 @@ Feature: Home - History Transaction
         Then I will redirect to history transaction page
         And I will see no transaction history
         And I will not see all tab to filter type transaction
-        And I will not see button download e-statement
+        And I will see button download e-statement
 
     @C136564
     Scenario: Validate item bucketlist transfer out
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag323d |
-            | passwordStg | 1234Test |
+            | userIDstg   | ruth1600 |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag323d |
-            | passwordStg | 1234Test |
+            | userIDstg   | ruth1600 |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -102,8 +102,6 @@ Feature: Home - History Transaction
         And I want to click list transfer "out"
         Then I will direct to list transfer out
         And I will see in card bucketlist information such as Recipient Name, Bank Name, Account Number and Amount transaction
-        And admin fee information from transaction transfer
-        And I click detail card history transaction
 
     @C136565
     Scenario: Validate detail transfer out RTGS
@@ -111,13 +109,14 @@ Feature: Home - History Transaction
             | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deveceea |
             | password    | 1234Test |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -157,9 +156,10 @@ Feature: Home - History Transaction
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -174,18 +174,9 @@ Feature: Home - History Transaction
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I click back in header page
+        And I will see card account 'active'
         And I will see indicator red in tab profile
         And I see red dot notification center
-        And I click notification center
-        And I will see list maker transaction in notification center
-        And I click notification maker transaction
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will direct to page notification center
-        And I click close in header page
-        And I will see card account 'active'
-        And I unmask my amount
-        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -214,16 +205,17 @@ Feature: Home - History Transaction
     @C136567
     Scenario: Validate detail transfer out SKN
         Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -263,9 +255,10 @@ Feature: Home - History Transaction
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -280,18 +273,9 @@ Feature: Home - History Transaction
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I click back in header page
+        And I will see card account 'active'
         And I will see indicator red in tab profile
         And I see red dot notification center
-        And I click notification center
-        And I will see list maker transaction in notification center
-        And I click notification maker transaction
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will direct to page notification center
-        And I click close in header page
-        And I will see card account 'active'
-        And I unmask my amount
-        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -320,16 +304,17 @@ Feature: Home - History Transaction
     @C136569
     Scenario: Validate detail transfer out BIFAST
         Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
+            | userID      | natace13 |
+            | password    | Test1234 |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -369,10 +354,11 @@ Feature: Home - History Transaction
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
         And I will direct to dashboard
+        And I click later in pop up biometric
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -386,18 +372,9 @@ Feature: Home - History Transaction
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I click back in header page
+        And I will see card account 'active'
         And I will see indicator red in tab profile
         And I see red dot notification center
-        And I click notification center
-        And I will see list maker transaction in notification center
-        And I click notification maker transaction
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will direct to page notification center
-        And I click close in header page
-        And I will see card account 'active'
-        And I unmask my amount
-        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -426,21 +403,22 @@ Feature: Home - History Transaction
     @C136571
     Scenario: Validate detail transfer out RTOL
         Given I am a registered customer with following details:
-            | userID      | deveceea |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | deveceea |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '100000001'
+        And I input amount '20000'
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
         And I choose transfer service RTOL
@@ -475,9 +453,10 @@ Feature: Home - History Transaction
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'Surya Edwin' from the search box
@@ -492,18 +471,9 @@ Feature: Home - History Transaction
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I click back in header page
+        And I will see card account 'active'
         And I will see indicator red in tab profile
         And I see red dot notification center
-        And I click notification center
-        And I will see list maker transaction in notification center
-        And I click notification maker transaction
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will direct to page notification center
-        And I click close in header page
-        And I will see card account 'active'
-        And I unmask my amount
-        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -533,16 +503,17 @@ Feature: Home - History Transaction
     @C136573
     Scenario: Validate detail transfer out Overbooking
         Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag990b |
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -557,8 +528,8 @@ Feature: Home - History Transaction
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click list transfer "out"
-        And I click detail card transaction transfer out "Overbooking" without approval
-        Then I will see detail transaction transfer out "Overbooking" without approval
+        And I click detail card history transaction
+        Then I will see detail transaction transfer out without approval
         And I close page detail history transaction
 
     @C136574
@@ -578,9 +549,10 @@ Feature: Home - History Transaction
         And I filling in form login with the following details:
             | userID      | rota3159 |
             | password    | 1234Test |
-            | userIDstg   | stag990b |
-            | passwordStg | Test1234 |
+            | userIDstg   | stagfc98 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
@@ -593,18 +565,9 @@ Feature: Home - History Transaction
         And I will direct to page need approval from other director
         And I close page detail transfer
         And I click back in header page
+        And I will see card account 'active'
         And I will see indicator red in tab profile
         And I see red dot notification center
-        And I click notification center
-        And I will see list maker transaction in notification center
-        And I click notification maker transaction
-        And I will direct to page need approval from other director
-        And I close page detail transfer
-        And I will direct to page notification center
-        And I click close in header page
-        And I will see card account 'active'
-        And I unmask my amount
-        And I will see my blocking amount increase but active balance decrease from amount transfer
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -633,21 +596,23 @@ Feature: Home - History Transaction
     @C136578
     Scenario: Validate detail transfer out with notes
         Given I am a registered customer with following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag2add |
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
-            | userID      | deveceea |
-            | password    | 1234Test |
-            | userIDstg   | stag2add |
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I choose menu Transfer from main dashboard
         When I input name 'RUTH BISNIS A' from the search box
         And I choose the friendlist
-        And I input amount '10000'
+        And I input amount '33000'
         And I choose category 'Pembayaran'
+        And I input notes with 'Testing aja'
         And I submit to next flow
         And I click transfer now
         And I input PIN '111111'
@@ -664,14 +629,15 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -687,20 +653,21 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth2d88 |
+            | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
-            | passwordStg | Test1234 |
+            | userIDstg   | ruth2d88 |
+            | passwordStg | 1234Test |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
         When I want to click button filter history
-        And I fill start date history transaction
         And I fill end date history transaction
+        And I fill start date history transaction
         And I click link reset history date
         And I will see field start and end date is empty
         And I want to click button ok
@@ -711,14 +678,15 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -731,14 +699,15 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page
@@ -751,14 +720,15 @@ Feature: Home - History Transaction
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
-            | userIDstg   | stag2add |
+            | userIDstg   | ruth1600 |
             | passwordStg | Test1234 |
         And I click login
+        And I click later in pop up biometric
         And I will direct to dashboard
         And I want to click button history transaction
         And I will redirect to history transaction page

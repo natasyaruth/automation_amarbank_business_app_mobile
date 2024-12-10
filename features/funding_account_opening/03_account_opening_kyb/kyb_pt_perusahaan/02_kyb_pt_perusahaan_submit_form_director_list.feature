@@ -39,7 +39,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    @C131932
+    @C171468
     Scenario: Submit one business director successfully business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         And I am the only one business director
@@ -47,7 +47,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131933
+    @C171469
     Scenario: Submit more than one business director successfully business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -70,7 +70,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131934
+    @C171470
     Scenario: Delete director for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -84,7 +84,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify director successfully deleted
         And I will not be able to see the deleted data director
 
-    @C131935
+    @C171471
     Scenario: Delete director and then submit for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -109,7 +109,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131936
+    @C171472
     Scenario: Update director for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -128,7 +128,7 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify director successfully updated
         And I will see the updated director
 
-    @C131937
+    @C171473
     Scenario: Update director and then submit for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director

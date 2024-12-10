@@ -30,7 +30,7 @@ Feature: Account Opening KYC Individual - Upload Selfie Photo
     And I see page 'Upload eKTP'
     And I update my last journey step to 'Data KTP'
 
-  @C131725
+  @C170911
   Scenario: Upload selfie image successfully business type Individual
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri pemilik bisnis'

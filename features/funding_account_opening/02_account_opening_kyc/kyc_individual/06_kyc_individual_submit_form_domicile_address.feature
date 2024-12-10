@@ -38,9 +38,9 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form New Domicile Address
         Examples:
             | testRailTag | Field   | Field Name     |
-            | @C131752    | address | Alamat lengkap |
-            | @C131753    | rt      | RT             |
-            | @C131754    | rw      | RW             |
+            | @C171043    | address | Alamat lengkap |
+            | @C171044    | rt      | RT             |
+            | @C171045    | rw      | RW             |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form New Domicile address
         Given I am a customer who has submitted my personal data details
@@ -50,13 +50,13 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form New Domicile Address
         Examples:
             | testRailTag | Field    | Field Name     |
-            | @C131755    | address  | Alamat lengkap |
-            | @C131756    | rt       | RT             |
-            | @C131757    | rw       | RW             |
-            | @C131758    | province | Provinsi       |
-            | @C131759    | city     | Kota/Kabupaten |
-            | @C131760    | district | Kecamatan      |
-            | @C131761    | village  | Kelurahan/Desa |
+            | @C171046    | address  | Alamat lengkap |
+            | @C171047    | rt       | RT             |
+            | @C171048    | rw       | RW             |
+            | @C171049    | province | Provinsi       |
+            | @C171050    | city     | Kota/Kabupaten |
+            | @C171051    | district | Kecamatan      |
+            | @C171052    | village  | Kelurahan/Desa |
 
     Scenario Outline: Verifying length address in form New Domicile address
         Given I am a customer who has submitted my personal data details
@@ -65,45 +65,45 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Message>' in the below of field 'address' in form New Domicile Address
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                  |
-            | @C131762    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
-            | @C131763    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
+            | @C171053    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
+            | @C171054    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
 
-    @C131764
+    @C171055
     Scenario: Verifying field address contain with special char and number
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'address' with 'John Doe S.Kom, M\'Kom- 11233' in form New Domicile Address
         Then I shouldn't see message error in the below of field 'address' in form New Domicile Address
 
-    @C131765
+    @C171056
     Scenario: Verifying length RT in form New Domicile address
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rt' with '3124' in form New Domicile Address
         Then I should see message error 'RT maksimal 3' in the below of field 'rt' in form New Domicile Address
 
-    @C131766
+    @C171057
     Scenario: Verifying field rt contain with -
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rt' with '-' in form New Domicile Address
         Then I shouldn't see message error in the below of field 'rt' in form New Domicile Address
 
-    @C131767
+    @C171058
     Scenario: Verifying length RW in form New Domicile address
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rw' with '3124' in form New Domicile Address
         Then I should see message error 'RW maksimal 3' in the below of field 'rw' in form New Domicile Address
 
-    @C131768
+    @C171059
     Scenario: Verifying field rw contain with -
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
         And I fill field 'rt' with '-' in form New Domicile Address
         Then I shouldn't see message error in the below of field 'rw' in form New Domicile Address
 
-    @C131769
+    @C171060
     Scenario: Submit form Domicile address same with KTP successfully business type Individual
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -111,7 +111,7 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment Individual
 
-    @C131770
+    @C171061
     Scenario: Submit form Domicile address with new address successfully business type Individual
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

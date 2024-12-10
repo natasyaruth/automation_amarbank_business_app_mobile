@@ -56,7 +56,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I will see checkbox Rights and Obligations is checked
         And I submit my business address
 
-    @C160207
+    @C171486
     Scenario: Upload only document required business type UD   
         Given I am a customer who has submitted business address
         And I choose method upload document
@@ -80,7 +80,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I click document giro
         And I will see document business required for type individual company
 
-    @C131947
+    @C171487
     Scenario: Upload All document business type UD
         Given I am a customer who has uploaded my eKTP photo and selfie
         When I choose method upload document

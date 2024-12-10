@@ -30,7 +30,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Personal'
 
-    @C131845
+    @C171088
     Scenario: Submit form Domicile address same with KTP successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -38,7 +38,7 @@ Feature: Account Opening KYC UD - Submit Domicile Address
         Then I will notify my domicile address has successfully submitted
         And I will direct to page Data Employment
 
-    @C131846
+    @C171089
     Scenario: Submit form Domicile address with new address successfully business type UD
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address
