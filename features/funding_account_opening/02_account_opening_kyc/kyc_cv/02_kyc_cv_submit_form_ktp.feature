@@ -30,7 +30,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I see page 'Upload eKTP'
     And I upload my eKTP photo
 
-  @C136005
+  @C170737
   Scenario: Submit form KTP successfully business type CV with NIK user Individual that already registered
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
@@ -54,7 +54,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And I will direct to page capture selfie
     And I reset my state journey
 
-  @C136006
+  @C170738
   Scenario: Submit form KTP successfully business type CV with NIK user Business that already registered
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:
@@ -79,7 +79,7 @@ Feature: Account Opening KYC CV - Submit Form KTP
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur' 
     And I reset my state journey
 
-  @C131820
+  @C170739
   Scenario: Submit form KTP successfully business type CV
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

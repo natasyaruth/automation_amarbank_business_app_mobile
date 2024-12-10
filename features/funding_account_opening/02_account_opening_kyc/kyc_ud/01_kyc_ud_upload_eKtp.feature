@@ -29,7 +29,7 @@ Feature: Account Opening KYC UD - Upload KTP Photo
     And I click confirm NPWP Business
     And I see page 'Upload eKTP'
 
-  @C131841
+  @C171083
   Scenario: Upload eKTP photo successfully business type UD
     Given I am a customer who has selected the business type UD
     When I click take photo eKTP

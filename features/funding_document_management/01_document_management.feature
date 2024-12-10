@@ -723,7 +723,7 @@ Feature: Brankas - Document Management
         And I will see button upload other document
         Then I will see empty detail menu other document
 
-    @C157518 @FunctTestFundingSprint4
+    @C157518
     Scenario: Close bottom sheet Add new file and new folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -835,7 +835,7 @@ Feature: Brankas - Document Management
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
-    @C157524 @FunctTestFundingSprint4
+    @C157524
     Scenario: Upload other document with type PDF
         Given I am a registered customer with following details:
             | userID      | devef721 |

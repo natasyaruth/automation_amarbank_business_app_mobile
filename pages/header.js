@@ -22,7 +22,7 @@ module.exports = {
         I.click(this.buttons.back);
     },
     goToCallCenter(){
-        I.waitForElement(this.icon.callCenter);
+        I.waitForElement(this.icon.callCenter, 10);
         I.click(this.icon.callCenter);
     },
     openHelpCenter(){

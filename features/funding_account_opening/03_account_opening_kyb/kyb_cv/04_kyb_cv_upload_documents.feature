@@ -57,7 +57,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see checkbox Rights and Obligations is checked
              When I submit my business address
 
-        @C131925
+        @C171443
         Scenario: Upload some document business via direct app
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -76,7 +76,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
-        @C131926
+        @C171444
         Scenario: Upload document and user drop off via direct app
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -89,7 +89,7 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
-        @C136863
+        @C171445
         Scenario: Upload document with method copy link
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -99,7 +99,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see snackbar success link is copied
               And will dissapear after 3-5 seconds
 
-        @C136864
+        @C171446
         Scenario: Go to page progress upload document company from page upload via link
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -108,7 +108,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button direct to page progress upload document
              Then I see files that need to be uploaded for type company
 
-        @C136865
+        @C171447
         Scenario: Click link direct upload from other device
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -118,7 +118,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click link direct upload from other device
              Then I will direct to page upload document via link
 
-        @C136866
+        @C171448
         Scenario: Delete one document
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -137,7 +137,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
-        @C136867
+        @C171449
         Scenario: Delete some document
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -163,7 +163,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
-        @C136868
+        @C171450
         Scenario: Delete all document
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -181,7 +181,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
-        @C136869
+        @C171451
         Scenario: Cancel Delete Document
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -194,7 +194,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I cancel delete document
              Then I will see all document company has been uploaded
 
-        @C136871
+        @C171452
         Scenario: Go to main dashboard from page thank you and need verification
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -211,7 +211,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
 
-        @C136872
+        @C171453
         Scenario: Close bottom sheet choosing method upload document
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -219,7 +219,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I close bottom sheet option upload document
              Then I will directing to page upload require documents for business
 
-        @C136873
+        @C171454
         Scenario: Close page Progress upload Document (condition: no uploaded yet)
             Given I am a customer who has submitted business address
              And complete onboarding document safe and survey
@@ -232,7 +232,7 @@ Feature: Account Opening KYB CV - Upload Document Business
              Then I see files that need to be uploaded for type company
               And I will not see button request account opening
 
-        @C136874
+        @C171455
         Scenario: Close page Progress upload Document (condition: some uploaded)
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -255,7 +255,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see 'Akta Perubahan Terakhir' is empty
               And I will see 'SK Kemenkumham Perubahan Terakhir' is empty
 
-        @C136875
+        @C171456
         Scenario: Close in page information progress verification
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -274,7 +274,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
 
-        @C136876
+        @C171457
         Scenario: Close in page upload document via link - Entry journey from page upload progress
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -285,7 +285,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I close page upload document via link
              Then I see files that need to be uploaded for type company
         
-        @C140435
+        @C171458
         Scenario: Close in page upload document via link - Entry journey from bottom sheet method upload
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -294,7 +294,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I close page upload document via link
              Then I will directing to page upload require documents for business      
 
-        @C136877
+        @C171459
         Scenario: Access call center in page Request Account Opening
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -309,7 +309,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click call center
              Then I should see bottom sheet call center with email
 
-        @C136878
+        @C171460
         Scenario: Access call center in page information progress verification
             Given I am a customer who has submitted business address
              When I choose method upload document
@@ -325,7 +325,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click call center in page detail progress account opening
              Then I should see bottom sheet call center with email
 
-        @C156887 @FunctTestFunding
+        @C171461
         Scenario: Upload document with type JPG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -336,7 +336,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
-        @C156888 @FunctTestFunding
+        @C171462
         Scenario: Upload document with type PNG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -347,7 +347,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
-        @C156889 @FunctTestFunding
+        @C171463
         Scenario: Upload document with type JPEG
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -358,7 +358,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
-        @C160188
+        @C171464
         Scenario: Checking button account opening if user CV only upload un-required document business
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -374,7 +374,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
-        @C160189
+        @C171465
         Scenario: Upload only document required business type CV   
             Given I am a customer who has submitted business address
               And I choose method upload document
@@ -398,7 +398,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click document giro
               And I will see document business required for type company
 
-        @C131930
+        @C171466
         Scenario: Upload All document business type CV
             Given I am a customer who has submitted business address
               And I choose method upload document

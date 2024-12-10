@@ -21,7 +21,7 @@ Feature: Account Opening Onboarding
         And I click later in pop up biometric
         And I will directing to Hook 1 Onboarding Account Opening
         
-    @C131952
+    @C170707
     Scenario: User choose Giro Account
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -29,7 +29,7 @@ Feature: Account Opening Onboarding
         And I choose Giro Account
         Then I will see details info of giro account Corporate and MSME
 
-    @C131953
+    @C170708
     Scenario: User choose later open Giro Account
         Given I am a customer want to open Giro Account later
         Then I will directing to main dashboard with card loan application and account opening
@@ -37,7 +37,7 @@ Feature: Account Opening Onboarding
         And I can choose type account giro
         And I will see details info of giro account Corporate and MSME
 
-    @C131954
+    @C170709
     Scenario: User choose legality business type PT Perusahaan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -49,7 +49,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131955
+    @C170710
     Scenario: User choose legality business type CV
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -61,7 +61,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131956
+    @C170711
     Scenario: User choose legality business type PT Perorangan
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -73,7 +73,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131957
+    @C170712
     Scenario: User choose legality business type UD
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -85,7 +85,7 @@ Feature: Account Opening Onboarding
         And I submit my legality type
         Then I will see bottom sheet NPWP Business
 
-    @C131958 @FunctTestFunding
+    @C170713
     Scenario: User choose legality business type Individu
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -98,7 +98,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And I reset my state journey
 
-    @C131959
+    @C170714
     Scenario: Close page choose product entry point hook onboarding
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -108,7 +108,7 @@ Feature: Account Opening Onboarding
         And I submit my exit survey
         Then I will directing to Hook 1 Onboarding Account Opening
 
-    @C159197
+    @C170715
     Scenario: Close page choose product entry point main dashboard
         Given I am a customer want to open Giro Account
         When I click later
@@ -118,7 +118,7 @@ Feature: Account Opening Onboarding
         And I submit my exit survey
         Then I will see card account 'account opening' 
 
-    @C131960
+    @C170716
     Scenario: Back to page choose product from page choose legality type
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -130,7 +130,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page type giro account
         And product type same with I choose before
 
-    @C156862
+    @C170717
     Scenario: Close bottom sheet checking NPWP Business
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -143,7 +143,7 @@ Feature: Account Opening Onboarding
         And I close bottom sheet NPWP Business
         Then I will directing to page legality business
 
-    @C156863
+    @C170718
     Scenario: Fill field NPWP business and then delete
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -157,7 +157,7 @@ Feature: Account Opening Onboarding
         And I clear NPWP Business
         Then I see button submit NPWP is disabled
 
-    @C156864
+    @C170719
     Scenario: Fill field NPWP business other than number
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -170,7 +170,7 @@ Feature: Account Opening Onboarding
         And I see NPWP business only number and formatted
         And I see button submit NPWP is disabled
 
-    @C156865
+    @C170720
     Scenario: Fill field NPWP business with length less than 15 digit
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -184,7 +184,7 @@ Feature: Account Opening Onboarding
         Then I see button submit NPWP is disabled
         And I see message error NPWP should 15 digits
 
-    @C156866
+    @C170721
     Scenario: Fill field NPWP business with length more than 15 digit
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -197,7 +197,7 @@ Feature: Account Opening Onboarding
         Then I see field NPWP business is empty
         And I see button submit NPWP is enabled
 
-    @C156867
+    @C170722
     Scenario: Click back from pop up confirm NPWP Business
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -214,7 +214,7 @@ Feature: Account Opening Onboarding
         Then I will see bottom sheet NPWP Business with NPWP still there
         And I see button submit NPWP is enabled
 
-    @C156868 @FunctTestFunding
+    @C170723
     Scenario: Check NPWP business that has been registered with type MSME
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -227,7 +227,7 @@ Feature: Account Opening Onboarding
         And I click continue to data personal
         Then I will see error NPWP business has been registered
 
-    @C156869 @FunctTestFunding
+    @C170724
     Scenario: Check NPWP business that has been registered with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -240,7 +240,7 @@ Feature: Account Opening Onboarding
         And I click continue to data personal
         Then I will see error NPWP business has been registered
 
-    @C156870
+    @C170725
     Scenario: Check NPWP Business Success with type MSME
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -257,7 +257,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP pemilik bisnis'
         And product type same with I choose before
 
-    @C156871 @FunctTestFunding
+    @C170726
     Scenario: Check NPWP Business Success with type CORP
         Given I am a customer want to open Giro Account
         When I swipe to card Giro Account
@@ -274,7 +274,7 @@ Feature: Account Opening Onboarding
         Then I will directing to page capture eKTP with information 'Pembentukan rekening memerlukan foto eKTP salah satu direktur'
         And product type same with I choose before
 
-    @C160378
+    @C170727
     Scenario: Exit Survey with option will continue later
         Given I am a customer want to open Giro Account
         And I click later
@@ -296,7 +296,7 @@ Feature: Account Opening Onboarding
         And after 3-4 seconds, snackbar thank you and reason feedback is disappear
         And I will see card account 'on process' 
 
-    @C160379
+    @C170728
     Scenario: Exit Survey with option need time to compare with other apps
         Given I am a customer want to open Giro Account
         And I click later
@@ -317,7 +317,7 @@ Feature: Account Opening Onboarding
         And after 3-4 seconds, snackbar thank you and reason feedback is disappear
         And I will see card account 'on process'
 
-    @C160380
+    @C170729
     Scenario: Exit Survey with option not sure with the benefit
         Given I am a customer want to open Giro Account
         And I click later
@@ -338,7 +338,7 @@ Feature: Account Opening Onboarding
         And after 3-4 seconds, snackbar thank you and reason feedback is disappear
         And I will see card account 'on process'
 
-    @C160381
+    @C170730
     Scenario: Exit Survey with option already have app with benefit same with Amarbank Business
         Given I am a customer want to open Giro Account
         And I click later
@@ -359,7 +359,7 @@ Feature: Account Opening Onboarding
         And after 3-4 seconds, snackbar thank you and reason feedback is disappear
         And I will see card account 'on process'
 
-    @C160382
+    @C170731
     Scenario: Exit Survey with fill feedback
         Given I am a customer want to open Giro Account
         And I click later
@@ -384,7 +384,7 @@ Feature: Account Opening Onboarding
         And after 3-4 seconds, snackbar thank you and reason feedback is disappear
         And I will see card account 'on process'
 
-    @C160383
+    @C170732
     Scenario: Fill feedback exit survey and then choose other option
         Given I am a customer want to open Giro Account
         And I click later
@@ -413,7 +413,7 @@ Feature: Account Opening Onboarding
         And I will see field feedback exit survey
         And I will not see the feedback anymore
 
-    @C160406
+    @C170733
     Scenario: Fill feedback exit survey and then delete
         Given I am a customer want to open Giro Account
         And I click later
@@ -437,7 +437,7 @@ Feature: Account Opening Onboarding
         And I will see button sent feedback is disabled
         And I will see button back is enabled
 
-    @C160407
+    @C170734
     Scenario: Fill feedback exit survey with length char more than 60
         Given I am a customer want to open Giro Account
         And I click later

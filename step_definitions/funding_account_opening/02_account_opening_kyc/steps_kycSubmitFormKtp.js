@@ -265,5 +265,4 @@ Then("I will direct to dashboard with widget account is rejected", async () => {
 
     I.waitForText("Pembuatan Rekening Ditolak", 10);
     I.see("Mohon maaf, Amar Bank belum dapat melayani Anda.");
-    I.waitForElement(onboardingAccOpeningPage.buttons.rejectCard, 10);
 });

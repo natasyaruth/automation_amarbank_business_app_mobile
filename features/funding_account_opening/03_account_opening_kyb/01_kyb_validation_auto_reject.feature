@@ -17,7 +17,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will directing to Hook 1 Onboarding Account Opening
         And I click later
 
-    @C131782
+    @C171488
     Scenario: Submit form Business Profile with NPWP business indicated as DHN
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -44,7 +44,7 @@ Feature: Account Opening - Validation Auto Reject
         And I close page rejected account
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160322
+    @C171489
     Scenario: Register user invitee with indicated as DHN
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
@@ -76,7 +76,7 @@ Feature: Account Opening - Validation Auto Reject
         And I click later in pop up biometric
         Then I will direct to dashboard with info other director data indicated as DHN
 
-    @C160323
+    @C171490
     Scenario: Give 5 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -110,7 +110,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160324
+    @C171491
     Scenario: Give 4 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -144,7 +144,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160325
+    @C171492
     Scenario: Give 3 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -180,7 +180,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160326
+    @C171493
     Scenario: Give 2 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -216,7 +216,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160327
+    @C171494
     Scenario: Give 1 rating account rejected DHN from KYB
         Given I choose Giro Account from dashboard
         And I choose Giro Account Corporate
@@ -252,7 +252,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160328
+    @C171495
     Scenario: Give 5 rating account rejected DHN invitee
         Given I register initiator with partner as below
             | fullName        | RUDI                          |
@@ -291,7 +291,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
-    @C160329
+    @C171496
     Scenario: Give 4 rating account rejected DHN invitee
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
@@ -330,7 +330,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
-    @C160330
+    @C171497
     Scenario: Give 3 rating account rejected DHN invitee
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
@@ -371,7 +371,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
-    @C160331
+    @C171498
     Scenario: Give 2 rating account rejected DHN invitee
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
@@ -412,7 +412,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN
 
-    @C160332
+    @C171499
     Scenario: Give 1 rating account rejected DHN invitee
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
@@ -453,7 +453,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info other director data indicated as DHN   
 
-    @C160893
+    @C171500
     Scenario: Give rating both in iniator and invitee side DHN case
         Given I register initiator with partner as below
             | fullName        | RUDI                   |
