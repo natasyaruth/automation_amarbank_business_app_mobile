@@ -40,10 +40,10 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | @C171063    | sourceIncome       | Sumber Pendapatan     |
             | @C171064    | monthlyIncome      | Pendapatan bulanan    |
             | @C171065    | averageTransaction | Rata - rata transaksi |
-            | @C171066    | industry           | Industri perusahaan   |
-            | @C171067    | companyName        | Nama perusahaan       |
+            | @C171066    | industry           | Industri usaha        |
+            | @C171067    | companyName        | Nama usaha            |
 
-    Scenario Outline: Verifying company name with invalid value in form Data Employment
+    Scenario Outline: Verifying business name with invalid value in form Data Employment
         Given I am a customer who has submitted my domicile address
         When I fill my company name with '<Value>'
         Then I should see message error '<Message>' in the below of field 'companyName' in form Data Employment
@@ -53,7 +53,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
             | @C171069    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Nama perusahaan minimal 3 & maksimal 150 karakter |
 
     @C171070
-    Scenario: Verifying company name has been filled and then empty the fields
+    Scenario: Verifying business name has been filled and then empty the fields
         Given I am a customer who has submitted my domicile address
         When I fill my company name with 'AMARBANK'
         And I clear field company name
@@ -67,7 +67,7 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Then I should see message error 'Rata - rata transaksi wajib diisi' in the below of field 'averageTransaction' in form Data Employment
 
     @C171072
-    Scenario: Verifying company name contain with special char and number
+    Scenario: Verifying business name contain with special char and number
         Given I am a customer who has submitted my domicile address
         When I fill my company name with 'John Doe S.Kom, M\'Kom- 11233'
         Then I shouldn't see message error in the below of field company name in form Data Employment

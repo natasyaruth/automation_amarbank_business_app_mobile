@@ -186,6 +186,9 @@ module.exports = {
         updateFileName: "",
         levelBackFolder: 0,
         fileNameGiro: "",
+        openedFolder: [],
+        moveFolderFile: "",
+        copiedFiles: [],
     },
     createPin: {
         newPin: "",
