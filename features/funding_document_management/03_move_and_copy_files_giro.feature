@@ -1,7 +1,6 @@
-Feature: Brankas - Move and Copy Files
+Feature: Brankas - Move and Copy Files Giro
     As a customer
     I want to move and copy files in dokumen basic in brankas
-    And I can duplicate other document
 
     Scenario: Close bottom sheet menu info document giro
         Given I am a registered customer with following details:
@@ -110,7 +109,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'NIB'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -172,7 +171,7 @@ Feature: Brankas - Move and Copy Files
         And I save new folder
         And I see snackbar success create new folder
         And I will see folder contents still empty
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move inside the folder
         And I back from detail folder to root folder
@@ -205,7 +204,7 @@ Feature: Brankas - Move and Copy Files
         And I click copy and move files
         And I open other folder
         And I will see folder contents still empty
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move inside the folder
         And I back from detail folder to root folder
@@ -240,7 +239,7 @@ Feature: Brankas - Move and Copy Files
         And I will see folder contents still empty
         And I open other folder
         And I will see folder contents still empty
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move inside the folder
         And I back from detail folder to root folder
@@ -337,13 +336,13 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'NIB'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         And I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
         And I click document giro
         And I click menu detail info document 'NIB'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -372,7 +371,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Akta Pendirian'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -401,7 +400,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Akta Perubahan Terakhir'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -430,7 +429,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Sertifikat Perubahan Terakhir'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -459,7 +458,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Sertifikat Pendaftaran'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -488,7 +487,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'NPWP Bisnis'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -517,7 +516,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Surat Pernyataan Pendirian'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -546,7 +545,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'SK Kemenkumham Pendirian'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -575,7 +574,7 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'SK Kemenkumham Pendirian'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
 
@@ -604,6 +603,6 @@ Feature: Brankas - Move and Copy Files
         And I click document giro
         And I click menu detail info document 'Surat Pernyataan Perubahan Terakhir'
         And I click copy and move files
-        And I click move here
+        And I click move and copy here
         Then I will see snackbar success copy and move files
         And I will see file is copied and move to section other document
