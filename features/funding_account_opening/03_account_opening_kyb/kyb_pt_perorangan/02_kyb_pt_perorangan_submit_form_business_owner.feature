@@ -39,7 +39,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    @C131941
+    @C171478
     Scenario: Submit form Business owner successfully business type PT Perorangan
         Given I am a customer who has submitted my business profile
         And I am the only one business owner

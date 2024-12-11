@@ -1,4 +1,4 @@
-const { I } = inject();
+const { I, getDataDao, resetStateDao } = inject();
 
 module.exports = {
 
@@ -22,18 +22,33 @@ module.exports = {
     deleteDoc: "~buttonDelete",
     confirmCancel: "~buttonNoCancel",
     backToUpload: "~buttonYesCancel",
-    cancelDelete: "~buttonCancel",
-    confirmDelete: "~buttonConfirmed",
+    cancelDelete: "~buttonConfirmed",
+    confirmDelete: "~buttonCancel",
     saveDocument: "~buttonSaveDoc",
     deleteDetail: "~buttonDeleteDoc",
     downloadOtherDoc: "~buttonDownload",
+    downloadGiroDoc: "~buttonDownload",
     createFolder: "~buttonNext",
     saveName: "~buttonNext",
     infoDoc: "~buttonInfo_",
     infoDocDetail: "~buttonInfo",
+    infoDocTrash: "~buttonInfo_",
+    infoDocTrashDetail: "~buttonInfo",
     changeName: "~buttonChangeName",
     itemOtherDoc: "~content_",
     itemOtherDocDetail: "~content_",
+    trash: "~buttonTrash",
+    openFolderTrash: "~buttonFolder_",
+    openFileTrash: "~buttonFiles_",
+    permanentDeleteDoc: "~buttonPermanentDeleted",
+    permanentDeleteAll: "~buttonPermanentDeletedAll",
+    confirmPermanentDelete: "~buttonCancel",
+    cancelPermanentDelete: "~buttonConfirmed",
+    restoreDoc: "~buttonRefund",
+    copyMove: "~buttonCopyMove",
+    addFolderFromMoveCopy: "~buttonAddFolder",
+    cancelMoveCopy: "~buttonCancel",
+    moveAndCopy: "~buttonMove",
   },
   links: {
     usePassword: "~buttonUsePassword",
@@ -53,7 +68,29 @@ module.exports = {
   texts: {
     fileSize: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.TextView[3]" },
     fileNameUploaded: "~textDocName",
-    titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"
+    titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView",
+    fileNameNIB: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[2]"},
+    fileNameAktaPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]"},
+    fileNameSKKemPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]"},
+    fileNameNPWPBisnisCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]"},
+    fileNameNPWPBisnisIndividualCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]"},
+    fileNameSerPendaftaran: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]"},
+    fileNameSerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]"},
+    fileNameAktaPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]"},
+    fileNameSuratPerPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]"},
+    fileNameSuratPerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]"},
+    fileNameSKKemPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]"},
+    extTypeNIB: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[3]"},
+    extTypeAktaPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]"},
+    extTypeSKKemPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]"},
+    extTypeNPWPBisnisCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]"},
+    extTypeNPWPBisnisIndividualCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]"},
+    extTypeSerPendaftaran: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]"},
+    extTypeSerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]"},
+    extTypeAktaPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]"},
+    extTypeSuratPerPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]"},
+    extTypeSuratPerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]"},
+    extTypeSKKemPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]"},
   },
   icons: {
     completeUpload: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.ImageView" },
@@ -69,8 +106,8 @@ module.exports = {
   },
   statusElement: {
     buttonSaveOtherDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
-    fieldNameDoc: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText"},
-    buttonSeeDoc: {xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View"}
+    fieldNameDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText" },
+    buttonSeeDoc: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View" }
   },
 
   clickTabDocument() {
@@ -216,24 +253,24 @@ module.exports = {
   },
 
   async getFileNameInListOtherDoc(index) {
-    const finalIndex = index + 2;
-    const firstPattern = "//android.widget.ScrollView/android.widget.TextView"
-    const finalPattern = firstPattern + "[" + finalIndex + "]";
+    const finalIndex = index + 1;
+    const firstPattern = "//android.widget.ScrollView/android.view.View"
+    const finalPattern = firstPattern + "[" + finalIndex + "]/android.widget.TextView";
 
     I.waitForElement(finalPattern, 20);
     return await I.grabTextFrom(finalPattern);
   },
 
   async getFileNameInListDetailOtherDoc(index) {
-    const firstPattern = "//android.widget.ScrollView/android.widget.TextView"
-    const finalPattern = firstPattern + "[" + index + "]";
+    const firstPattern = "//android.widget.ScrollView/android.view.View"
+    const finalPattern = firstPattern + "[" + index + "]/android.widget.TextView";
 
     I.waitForElement(finalPattern, 20);
     return await I.grabTextFrom(finalPattern);
   },
 
   async getFolderNameInListOtherDoc(index) {
-    const finalIndex = index+1;
+    const finalIndex = index + 1;
     const firstPattern = "//android.widget.ScrollView/android.view.View";
     const lastPattern = "/android.widget.TextView";
 
@@ -304,6 +341,7 @@ module.exports = {
 
   fillNewFileName(fileName) {
     I.waitForElement(this.fields.changeFileName, 20);
+    I.clearField(this.fields.changeFileName);
     I.setText(this.fields.changeFileName, fileName);
     I.hideDeviceKeyboard();
   },
@@ -367,13 +405,13 @@ module.exports = {
   },
 
   clickItemOtherDoc() {
-    I.waitForElement(this.buttons.itemOtherDoc+"0", 20);
-    I.click(this.buttons.itemOtherDoc+"0");
+    I.waitForElement(this.buttons.itemOtherDoc + "0", 20);
+    I.click(this.buttons.itemOtherDoc + "0");
   },
 
   clickFolderInDetail(index) {
-    I.waitForElement(this.buttons.itemOtherDocDetail+index, 20);
-    I.click(this.buttons.itemOtherDocDetail+index);
+    I.waitForElement(this.buttons.itemOtherDocDetail + index, 20);
+    I.click(this.buttons.itemOtherDocDetail + index);
   },
 
   async getMessageErrorFieldNewFolder() {
@@ -395,4 +433,274 @@ module.exports = {
     I.waitForElement(this.texts.titleDetailFolder, 10);
     return await I.grabTextFrom(this.texts.titleDetailFolder);
   },
+
+  clickMenuTrash() {
+    I.waitForElement(this.buttons.trash, 20);
+    I.click(this.buttons.trash);
+  },
+
+  clickMenuTitleTrash() {
+    I.waitForElement(this.buttons.infoDocTrashDetail, 20);
+    I.click(this.buttons.infoDocTrashDetail);
+  },
+
+  clickInfoDetailFolderInTrash(index) {
+    I.waitForElement(this.buttons.infoDocTrash + index, 20);
+    I.click(this.buttons.infoDocTrash + index);
+  },
+
+  clickInfoDetailFileInTrash(index) {
+    I.waitForElement(this.buttons.infoDocTrash + index, 20);
+    I.click(this.buttons.infoDocTrash + index);
+  },
+
+  clickDeleteAllPermanent() {
+    I.waitForElement(this.buttons.permanentDeleteAll, 20);
+    I.click(this.buttons.permanentDeleteAll);
+  },
+
+  confirmDeleteAll() {
+    I.waitForElement(this.buttons.confirmPermanentDelete, 20);
+    I.click(this.buttons.confirmPermanentDelete);
+  },
+
+  cancelDeleteAll() {
+    I.waitForElement(this.buttons.cancelPermanentDelete, 20);
+    I.click(this.buttons.cancelPermanentDelete);
+  },
+
+  clickRestore() {
+    I.waitForElement(this.buttons.restoreDoc, 20);
+    I.click(this.buttons.restoreDoc);
+  },
+
+  clickDeletePermanent() {
+    I.waitForElement(this.buttons.permanentDeleteDoc, 20);
+    I.click(this.buttons.permanentDeleteDoc);
+  },
+
+  confirmDelete() {
+    I.waitForElement(this.buttons.confirmDelete, 20);
+    I.click(this.buttons.confirmDelete);
+  },
+
+  cancelDelete() {
+    I.waitForElement(this.buttons.cancelDelete, 20);
+    I.click(this.buttons.cancelDelete);
+  },
+
+  openFolderTrash(index) {
+    I.waitForElement(this.buttons.openFolderTrash + index, 20);
+    I.click(this.buttons.openFolderTrash + index);
+  },
+
+  async getFolderNameTrashRoot(index) {
+    const textView = "/android.widget.TextView";
+    const rootView = "//android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.view.View";
+    const finalElement = rootView + "[" + index + "]" + textView;
+
+    I.waitForElement(finalElement, 10);
+    return await I.grabTextFrom(finalElement);
+  },
+
+  async getDocNameTrashRoot(index) {
+    const idElement = this.buttons.openFileTrash.replace(/~/, '');
+    const textView = "//android.view.View[@content-desc=\"" + idElement + index + "\"]/android.widget.TextView";
+
+    I.waitForElement(textView, 10);
+    return await I.grabTextFrom(textView);
+  },
+
+  async getDocNameTrashDetail(index) {
+    I.waitForElement(this.texts.nameDocTrashDetail + index, 10);
+    return await I.grabTextFrom(this.texts.nameDocTrashDetail + index);
+  },
+
+  async clickThreeDotFileGiro(userID, password, giroDoc) {
+    switch (giroDoc) {
+      case "NIB":
+        I.waitForElement(this.buttons.downloadDoc + "0", 10);
+        I.click(this.buttons.downloadDoc + "0");
+        break;
+      case "Akta Pendirian":
+        I.waitForElement(this.buttons.downloadDoc + "1", 10);
+        I.click(this.buttons.downloadDoc + "1");
+        break;
+      case "SK Kemenkumham Pendirian":
+        I.waitForElement(this.buttons.downloadDoc + "2", 10);
+        I.click(this.buttons.downloadDoc + "2");
+        break;
+      case "NPWP Bisnis":
+        const legalityType = (await getDataDao.getLegalityType(userID, password)).legalityType;
+        if (
+          legalityType === "PT Perorangan" &&
+          legalityType === "UD"
+        ) {
+          I.waitForElement(this.buttons.downloadDoc + "1", 10);
+          I.click(this.buttons.downloadDoc + "1");
+
+        } else {
+          I.waitForElement(this.buttons.downloadDoc + "3", 10);
+          I.click(this.buttons.downloadDoc + "3");
+        }
+        break;
+      case "Akta Perubahan Terakhir":
+        I.waitForElement(this.buttons.downloadDoc + "4", 10);
+        I.click(this.buttons.downloadDoc + "4");
+        break;
+      case "SK Kemenkumham Perubahan Terakhir":
+        I.waitForElement(this.buttons.downloadDoc + "5", 10);
+        I.click(this.buttons.downloadDoc + "5");
+        break;
+      case "Sertifikat Pendaftaran":
+        I.waitForElement(this.buttons.downloadDoc + "2", 10);
+        I.click(this.buttons.downloadDoc + "2");
+        break;
+      case "Surat Pernyataan Pendirian":
+        I.waitForElement(this.buttons.downloadDoc + "3", 10);
+        I.click(this.buttons.downloadDoc + "3");
+        break;
+      case "Sertifikat Perubahan Terakhir":
+        I.waitForElement(this.buttons.downloadDoc + "4", 10);
+        I.click(this.buttons.downloadDoc + "4");
+        break;
+      case "Surat Pernyataan Perubahan Terakhir":
+        I.waitForElement(this.buttons.downloadDoc + "5", 10);
+        I.click(this.buttons.downloadDoc + "5");
+        break;
+      default:
+        throw new Error("Not recognize the giro document name");
+    }
+  },
+
+  clickMoveAndCopy(){
+    I.waitForElement(this.buttons.copyMove, 20);
+    I.click(this.buttons.copyMove);
+  },
+
+  cancelMoveAndCopy(){
+    I.waitForElement(this.buttons.cancelMoveCopy, 20);
+    I.click(this.buttons.cancelMoveCopy);
+  },
+
+  moveAndCopy(){
+    I.waitForElement(this.buttons.moveAndCopy, 20);
+    I.click(this.buttons.moveAndCopy);
+  },
+
+  clickCreateNewFolderInMoveAndCopy(){
+    I.waitForElement(this.buttons.addFolderFromMoveCopy, 20);
+    I.click(this.buttons.addFolderFromMoveCopy);
+  },
+
+  async getFileNameGiroNIB(){
+    I.waitForElement(this.texts.fileNameNIB, 10);
+    return I.grabTextFrom(this.texts.fileNameNIB);
+  },
+
+  async getFileNameGiroAktaPendirian(){
+    I.waitForElement(this.texts.fileNameAktaPendirian, 10);
+    return I.grabTextFrom(this.texts.fileNameAktaPendirian);
+  },
+
+  async getFileNameGiroSKKemPendirian(){
+    I.waitForElement(this.texts.fileNameSKKemPendirian, 10);
+    return I.grabTextFrom(this.texts.fileNameSKKemPendirian);
+  },
+
+  async getFileNameGiroNPWPBusinessCompany(){
+    I.waitForElement(this.texts.fileNameNPWPBisnisCompany, 10);
+    return I.grabTextFrom(this.texts.fileNameNPWPBisnisCompany);
+  },
+
+  async getFileNameGiroAktaPerTerakhir(){
+    I.waitForElement(this.texts.fileNameAktaPerTerakhir, 10);
+    return I.grabTextFrom(this.texts.fileNameAktaPerTerakhir);
+  },
+
+  async getFileNameSKKemPerTerakhir(){
+    I.waitForElement(this.texts.fileNameSKKemPerTerakhir, 10);
+    return I.grabTextFrom(this.texts.fileNameSKKemPerTerakhir);
+  },
+
+  async getFileNameNPWPBusinessIndividualCompany(){
+    I.waitForElement(this.texts.fileNameNPWPBisnisIndividualCompany, 10);
+    return I.grabTextFrom(this.texts.fileNameNPWPBisnisIndividualCompany);
+  },
+
+  async getFileNameSerPendaftaran(){
+    I.waitForElement(this.texts.fileNameSerPendaftaran, 10);
+    return I.grabTextFrom(this.texts.fileNameSerPendaftaran);
+  },
+
+  async getFileNameSuratPerPendirian(){
+    I.waitForElement(this.texts.fileNameSuratPerPendirian, 10);
+    return I.grabTextFrom(this.texts.fileNameSuratPerPendirian);
+  },
+
+  async getFileNameSertifikatPerTerakhir(){
+    I.waitForElement(this.texts.fileNameSerPerubahanTerakhir, 10);
+    return I.grabTextFrom(this.texts.fileNameSerPerubahanTerakhir);
+  },
+
+  async getFileNameSuratPerPerubahanTerakhir(){
+    I.waitForElement(this.texts.fileNameSuratPerPerubahanTerakhir, 10);
+    return I.grabTextFrom(this.texts.fileNameSuratPerPerubahanTerakhir);
+  },
+
+  async getExtTypeGiroNIB(){
+    I.waitForElement(this.texts.extTypeNIB, 10);
+    return I.grabTextFrom(this.texts.extTypeNIB);
+  },
+
+  async getExtTypeGiroAktaPendirian(){
+    I.waitForElement(this.texts.extTypeAktaPendirian, 10);
+    return I.grabTextFrom(this.texts.extTypeAktaPendirian);
+  },
+
+  async getExtTypeGiroSKKemPendirian(){
+    I.waitForElement(this.texts.extTypeSKKemPendirian, 10);
+    return I.grabTextFrom(this.texts.extTypeSKKemPendirian);
+  },
+
+  async getExtTypeGiroNPWPBusinessCompany(){
+    I.waitForElement(this.texts.extTypeNPWPBisnisCompany, 10);
+    return I.grabTextFrom(this.texts.extTypeNPWPBisnisCompany);
+  },
+
+  async getExtTypeGiroAktaPerTerakhir(){
+    I.waitForElement(this.texts.extTypeAktaPerTerakhir, 10);
+    return I.grabTextFrom(this.texts.extTypeAktaPerTerakhir);
+  },
+
+  async getExtTypeSKKemPerTerakhir(){
+    I.waitForElement(this.texts.extTypeSKKemPerTerakhir, 10);
+    return I.grabTextFrom(this.texts.extTypeSKKemPerTerakhir);
+  },
+
+  async getExtTypeNPWPBusinessIndividualCompany(){
+    I.waitForElement(this.texts.extTypeNPWPBisnisIndividualCompany, 10);
+    return I.grabTextFrom(this.texts.extTypeNPWPBisnisIndividualCompany);
+  },
+
+  async getExtTypeSerPendaftaran(){
+    I.waitForElement(this.texts.extTypeSerPendaftaran, 10);
+    return I.grabTextFrom(this.texts.extTypeSerPendaftaran);
+  },
+
+  async getExtTypeSuratPerPendirian(){
+    I.waitForElement(this.texts.extTypeSuratPerPendirian, 10);
+    return I.grabTextFrom(this.texts.extTypeSuratPerPendirian);
+  },
+
+  async getExtTypeSertifikatPerTerakhir(){
+    I.waitForElement(this.texts.extTypeSerPerubahanTerakhir, 10);
+    return I.grabTextFrom(this.texts.extTypeSerPerubahanTerakhir);
+  },
+
+  async getExtTypeSuratPerPerubahanTerakhir(){
+    I.waitForElement(this.texts.extTypeSuratPerPerubahanTerakhir, 10);
+    return I.grabTextFrom(this.texts.extTypeSuratPerPerubahanTerakhir);
+  },
+
 }

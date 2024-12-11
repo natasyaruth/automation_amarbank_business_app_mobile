@@ -56,7 +56,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I will see checkbox Rights and Obligations is checked
         When I submit my business address
 
-    @C160206
+    @C171475
     Scenario: Upload only document required business type PT Perusahaan   
         Given I am a customer who has submitted business address
         And I choose method upload document
@@ -80,7 +80,7 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I click document giro
         And I will see document business required for type company   
 
-    @C131939
+    @C171476
     Scenario: Upload All document business type PT Perusahaan
         Given I am a customer who has uploaded my eKTP photo and selfie
         When I choose method upload document

@@ -310,6 +310,7 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
 });
 
 Then("I choose transfer service RTGS", async () => {
+  I.wait(2);
   transferPage.chooseRtgs();
   globalVariable.transfer.adminFee = 30000;
   globalVariable.transfer.method = globalVariable.constant.methodTf.rtgs;
@@ -325,6 +326,7 @@ Then("I choose transfer service RTGS", async () => {
 });
 
 Then("I choose transfer service RTOL", async () => {
+  I.wait(2);
   transferPage.chooseRtol();
   globalVariable.transfer.adminFee = 6500;
   globalVariable.transfer.method = globalVariable.constant.methodTf.rtol;
@@ -341,6 +343,7 @@ Then("I choose transfer service RTOL", async () => {
 });
 
 Then("I choose transfer service BIFAST", async () => {
+  I.wait(2);
   transferPage.chooseBifast();
   globalVariable.transfer.adminFee = 2500;
   globalVariable.transfer.method = globalVariable.constant.methodTf.bifast;
@@ -356,6 +359,7 @@ Then("I choose transfer service BIFAST", async () => {
 });
 
 Then("I choose transfer service SKN", async () => {
+  I.wait(2);
   transferPage.chooseSkn();
   globalVariable.transfer.adminFee = 2900;
   globalVariable.transfer.method = globalVariable.constant.methodTf.skn;
@@ -400,6 +404,7 @@ Then("I successfully transferred", async () => {
   const actualSenderAccNumber = (await transferPage.getSenderAccNnumber()).replace(/\s+/g, '');
   const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
   I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
+  globalVariable.transfer.senderAccountNumber = expectedSenderAccNumber;
 
   const actualReceiverName = await transferPage.getReceiverName();
   I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
@@ -429,7 +434,13 @@ Then("I successfully transferred", async () => {
   I.waitForElement(transferPage.texts.referenceNumber, 10);
 
   I.see("Tanggal");
-  I.waitForElement(transferPage.texts.dateTransfer, 10);
+  const actDate = await transferPage.getDateTransfer();
+  const date = globalVariable.getCurrentDateWithZero();
+  const month = globalVariable.getMonthString();
+  const year = globalVariable.getCurrentYear();
+  const expDate = date +" "+ month +" "+ year;
+  I.assertEqual(actDate, expDate);
+  globalVariable.transfer.date = actDate;
 
   I.see("Waktu");
   I.waitForElement(transferPage.texts.timeTransfer, 10);

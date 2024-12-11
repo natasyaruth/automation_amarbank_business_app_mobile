@@ -21,7 +21,7 @@ Feature: Account Opening - Validation Auto Reject
         And I choose Giro Account MSME
         And I submit my giro type
 
-    @C131781
+    @C171315
     Scenario: Submit form KTP with NIK indicated as DHN business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -40,7 +40,7 @@ Feature: Account Opening - Validation Auto Reject
         And I close page rejected account
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C135997
+    @C171316
     Scenario: Submit form KTP with NIK indicated as DHN business type Business
         Given I choose legality business type 'cv'
         And I submit my legality type
@@ -62,7 +62,7 @@ Feature: Account Opening - Validation Auto Reject
         And I close page rejected account
         And I will direct to dashboard with info my data indicated as DHN    
 
-    @C135998
+    @C171317
     Scenario: Submit form KTP with NIK already registered business type Individual
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -82,7 +82,7 @@ Feature: Account Opening - Validation Auto Reject
         And I can click widget account rejected
         And I will see information that I can try to register after 7 days
 
-    @C160315
+    @C171318
     Scenario: Give 5 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -108,7 +108,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160316
+    @C171319
     Scenario: Give 4 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -134,7 +134,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160317
+    @C171320
     Scenario: Give 3 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -162,7 +162,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160318
+    @C171321
     Scenario: Give 2 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -190,7 +190,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160319
+    @C171322
     Scenario: Give 1 rating account rejected DHN from KYC
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -218,7 +218,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see information to give feedback to playstore
         And I will direct to dashboard with info my data indicated as DHN
 
-    @C160320
+    @C171323
     Scenario: Give rating less than 4 and then more than 4 in account rejected  DHN
         Given I choose legality business type 'individual'
         And I submit my legality type
@@ -247,7 +247,7 @@ Feature: Account Opening - Validation Auto Reject
         And I will not see rating survey is in main dashboard
         And I will not see information to give feedback to playstore
 
-    @C160321
+    @C171324
     Scenario: Give rating more than 4 and then less than 4 in account rejected  DHN
         Given I choose legality business type 'individual'
         And I submit my legality type

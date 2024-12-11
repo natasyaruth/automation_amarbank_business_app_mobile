@@ -43,7 +43,7 @@ Feature: Account Opening KYB UD - Submit Business Address
         And I submit my business profile
         And I submit business owner list
 
-    @C131946
+    @C171485
     Scenario: Submit form Business Address successfully business type UD
         Given I am a customer who has submitted business owner list
         When I fill my business address as followings:

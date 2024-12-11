@@ -834,6 +834,11 @@ Then("I don't see red dot notification center", () => {
     I.dontSeeElement(notificationCenterPage.indicators.notifRedDot);
 });
 
+Then("I don't see red dot notification in bucketlist", () => {
+    I.wait(2);
+    I.dontSeeElement(notificationCenterPage.indicators.notifRedDotBucketlist+"0");
+});
+
 Then("I will direct to page notification center", () => {
     I.waitForText("Notifikasi", 10);
     I.waitForElement(headerPage.buttons.closePage, 10);
@@ -1028,9 +1033,7 @@ Then("I see notification transfer in successfully", async () => {
     const actualStatusTrx = await notificationCenterPage.getLatestStatusTrx();
     I.assertEqual(actualStatusTrx, "Transaksi Masuk");
 
-    const actualDesc = await notificationCenterPage.getLatestTitle();
-    globalVariable.notificationCenter.descTrx = "Dari Bank Amar Indonesia - " + globalVariable.transfer.senderName;
-    I.assertEqual(actualDesc, globalVariable.notificationCenter.descTrx);
+    I.dontSeeElement(notificationCenterPage.texts.title);
 
     const actualAmount = await notificationCenterPage.getLatestDescription();
     I.assertEqual(actualAmount, globalVariable.transfer.amountTransfer);

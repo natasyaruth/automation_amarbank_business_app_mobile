@@ -307,6 +307,7 @@ Then("I will see my blocking amount increase but active balance decrease from am
     const numberActiveBalance = parseInt(previousActiveBalance);
 
     const totalBlockingAmount = number + globalVariable.transfer.amount;
+
     const numberString = totalBlockingAmount.toString().split('');
 
     for (let i = numberString.length - 3; i > 0; i -= 3) {
@@ -318,7 +319,7 @@ Then("I will see my blocking amount increase but active balance decrease from am
 
     I.assertEqual(actualTotalAmount, globalVariable.dashboard.totalAmount);
 
-    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount;
     const numberStringActiveBalance = activeBalance.toString().split('');
 
     for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
@@ -339,7 +340,7 @@ Then("I will see my active balance and total amount are decreased but my blockin
     const numberActiveBalance = parseInt(previousActiveBalance);
     const numberTotalBalance = parseInt(previousTotalBalance);
 
-    const activeBalance = numberActiveBalance - globalVariable.transfer.amount
+    const activeBalance = numberActiveBalance - globalVariable.transfer.amount - globalVariable.transfer.adminFee;
     const numberStringActiveBalance = activeBalance.toString().split('');
 
     for (let i = numberStringActiveBalance.length - 3; i > 0; i -= 3) {
@@ -351,7 +352,7 @@ Then("I will see my active balance and total amount are decreased but my blockin
 
     I.assertEqual(actualBlockingAmount, globalVariable.dashboard.blockingAmount);
 
-    const totalBalance = numberTotalBalance - globalVariable.transfer.amount
+    const totalBalance = numberTotalBalance - globalVariable.transfer.amount - globalVariable.transfer.adminFee;
     const numberStringTotalBalance = totalBalance.toString().split('');
 
     for (let i = numberStringTotalBalance.length - 3; i > 0; i -= 3) {
@@ -790,8 +791,11 @@ Then("I will not see card approver that has been rejected", () => {
     I.dontSee(globalVariable.friendList.friendListName);
 });
 
-Then("I will see snackbar with wording {string}", (wordingSnackBar) => {
+Then("I will see snackbar with wording {string}", async (wordingSnackBar) => {
     I.waitForText(wordingSnackBar, 40);
+
+    const nameApproval = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    globalVariable.transfer.listApproval
 });
 
 Then("I will see card maker that has been approved", async () => {

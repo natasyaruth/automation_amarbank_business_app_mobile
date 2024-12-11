@@ -30,7 +30,7 @@ Feature: Account Opening KYC CV - Upload Selfie Photo
     And I see page 'Upload eKTP'
     And I update my last journey step to 'Data KTP'
 
-  @C141157
+  @C170740
   Scenario: Re-upload selfie image successfully
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'
@@ -43,7 +43,7 @@ Feature: Account Opening KYC CV - Upload Selfie Photo
     Then I will direct to page take selfie picture KYC
     And I reset my state journey
 
-  @C131821
+  @C170741
   Scenario: Upload selfie image successfully business type CV
     Given I am a customer who has submitted my information identity details
     And my information about my account opening is 'Pembentukan rekening memerlukan foto diri salah satu direktur'

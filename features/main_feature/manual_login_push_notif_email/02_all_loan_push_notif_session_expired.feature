@@ -39,15 +39,15 @@ Scenario: Validate Push Notif Approve VP direct to relevant page when session is
     Then I direct to page loan process
 
 @C163695
-Scenario: Validate Push Notif reminder offering expired direct to relevant page when session is expired
-    Given I receive push notif reminder offering expired and email
+Scenario: Validate Push Notif offering reminder  reminder direct to relevant page when session is expired
+    Given I receive push notif reminder offering reminder and email
     When I see the the title "Segera setujui pinjaman sebelum batas waktu berakhir"
     And I click the notif
     And I will direct to page login
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+    Then I direct to page loan offering page
 
 @C163696
 Scenario: Validate Push Notif Offering expired direct to relevant page when session is expired
@@ -58,10 +58,10 @@ Scenario: Validate Push Notif Offering expired direct to relevant page when sess
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+    Then I direct to page with status "Penawaran limit sudah berakhir" 
 
 @C163697
-Scenario: Validate Push notif reminder loan signing direct to relevant page when seesion is expired
+Scenario: Validate Push notif loan signing reminder  direct to relevant page when seesion is expired
     Given I receive push notif reminder loan signing and email
     When I see the the title "Segera tanda tangani pinjaman sebelum batas waktu berakhir"
     And I click the notif
@@ -70,6 +70,26 @@ Scenario: Validate Push notif reminder loan signing direct to relevant page when
     And I input password
     And I click login
     Then I direct to page privy signing
+
+
+Scenario: Validate email notification offering expired direct to relevant page when session is expired
+    Given I receive push notif and email offering expired
+    When I see the title "Pencairan Disetujui"
+    And I click the email
+    And I see Limit yang disetujui
+    And I see Tenor yang disetujui
+    And I see Bunga per bulan
+    And I see Skema
+    And I see Supplier
+    And I click button Beri Alasan
+    And I will direct to page login
+    And I input username
+    And I input password
+    And I click login
+    Then I will direct to page Penawaran limit sudah berakhir
+
+
+
 
 @C163698
 Scenario: Validate Push notif Loan Signing Expired direct to relevant page when session is expired
@@ -80,7 +100,7 @@ Scenario: Validate Push notif Loan Signing Expired direct to relevant page when 
     And I input username
     And I input password
     And I click login
-    Then I direct to page 
+    Then I direct to page status "Penawaran limit sudah berakhir"
 
 @C163699
 Scenario: Validate Push Notif Facility activated direct to relavant page when session is expired
@@ -92,6 +112,29 @@ Scenario: Validate Push Notif Facility activated direct to relavant page when se
     And I input password
     And I click login
     Then I direct to page Active Loan
+
+
+Scenario: Validate Push notif disburse after the back office approves the disbursement when session is expired
+    Given I receive push notif and email Disbursement Approved
+    When I see the title "Pencairan Disetujui. Cek kembali perhitungan pencairan sebelum melanjutkan proses."
+    And I click the notification
+    And I will direct to page login
+    And I input username
+    And I input password
+    And I click login
+    Then I direct to page Perhitungan Pencairan
+
+Scenario: Validate email notification disbursement approved
+    Given I receive push notif and email Disbursement Approved
+    When I see the title "Pencairan Disetujui"
+    And I click the email
+    And I see button Cek Disini
+    And I will direct to page login
+    And I input username
+    And I input password
+    And I click login
+    Then I will direct to page Perhitungan Pencairan
+
 
 @C163700
 Scenario: Validate Push Notif Disburse confirm invoice direct to relevant page when session is expired

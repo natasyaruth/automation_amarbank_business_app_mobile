@@ -25,7 +25,7 @@ Feature: Account Opening KYC Individual - Upload KTP Photo
     And I choose legality business type 'individual'
     And I submit my legality type
 
-  @C131678
+  @C170863
   Scenario: Upload eKTP photo successfully business type Individual
     Given I am a customer who has selected the business type Individual
     When I click take photo eKTP
