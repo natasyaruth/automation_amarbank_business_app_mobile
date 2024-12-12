@@ -49,6 +49,9 @@ module.exports = {
     addFolderFromMoveCopy: "~buttonAddFolder",
     cancelMoveCopy: "~buttonCancel",
     moveAndCopy: "~buttonMove",
+    confirmMove: "~buttonMove",
+    move: "~MoveButton",
+    copy: "~btnDuplicate",
   },
   links: {
     usePassword: "~buttonUsePassword",
@@ -66,6 +69,8 @@ module.exports = {
     changeFileName: "~fieldChangeNameError"
   },
   texts: {
+    titleDocBrankas: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"},
+    titleBottomSheet: {xpath:"/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView"},
     fileSize: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.TextView[3]" },
     fileNameUploaded: "~textDocName",
     titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView",
@@ -107,7 +112,8 @@ module.exports = {
   statusElement: {
     buttonSaveOtherDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
     fieldNameDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText" },
-    buttonSeeDoc: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View" }
+    buttonSeeDoc: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View" },
+    buttonMove: {xpath: ""},
   },
 
   clickTabDocument() {
@@ -250,6 +256,11 @@ module.exports = {
   async getFileName() {
     I.waitForElement(this.texts.fileNameUploaded, 10);
     return await I.grabTextFrom(this.texts.fileNameUploaded);
+  },
+
+  async getTitleFolderBrankas() {
+    I.waitForElement(this.texts.titleDocBrankas, 10);
+    return await I.grabTextFrom(this.texts.titleDocBrankas);
   },
 
   async getFileNameInListOtherDoc(index) {
@@ -432,6 +443,11 @@ module.exports = {
   async getTitleFolderDetail() {
     I.waitForElement(this.texts.titleDetailFolder, 10);
     return await I.grabTextFrom(this.texts.titleDetailFolder);
+  },
+
+  async getTitleBottomSheet() {
+    I.waitForElement(this.texts.titleBottomSheet, 10);
+    return await I.grabTextFrom(this.texts.titleBottomSheet);
   },
 
   clickMenuTrash() {
@@ -701,6 +717,21 @@ module.exports = {
   async getExtTypeSuratPerPerubahanTerakhir(){
     I.waitForElement(this.texts.extTypeSuratPerPerubahanTerakhir, 10);
     return I.grabTextFrom(this.texts.extTypeSuratPerPerubahanTerakhir);
+  },
+
+  clickMove(){
+    I.waitForElement(this.buttons.move, 20);
+    I.click(this.buttons.move);
+  },
+
+  confirmMove(){
+    I.waitForElement(this.buttons.confirmMove, 20);
+    I.click(this.buttons.confirmMove);
+  },
+
+  clickCopy(){
+    I.waitForElement(this.buttons.copy, 20);
+    I.click(this.buttons.copy);
   },
 
 }
