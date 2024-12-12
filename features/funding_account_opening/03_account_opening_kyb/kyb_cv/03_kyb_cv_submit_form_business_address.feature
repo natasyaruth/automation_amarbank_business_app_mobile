@@ -74,9 +74,9 @@ Feature: Account Opening KYB CV - Submit Business Address
         When I fill field 'address' with '<Value>' in form Business Address
         Then I should see message error '<Message>' in the below of field 'address' in form Business Address
         Examples:                                                                 ❸
-            | testRailTag | Value                                                                                                                                                   | Message                                  |
-            | @C171429    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
-            | @C171430    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
+            | testRailTag | Value                                                                                                                                                   | Message                                 |
+            | @C171429    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 50 karakter |
+            | @C171430    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 50 karakter |
 
     @C171431
     Scenario: Verifying field address contain with special char and number
