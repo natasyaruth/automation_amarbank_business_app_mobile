@@ -55,7 +55,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak ditemukan
         And User not available to continue the process
 
-
+    @C167474
     Scenario: User Success Transfer and check daily limit transaction next day
         Given I am a customer who wants to Transfer and has friend list and transfer on 10.00 PM
         When I input name 'Surya Edwin' from the search box
@@ -86,8 +86,8 @@ Feature: Manual Transfer
         And I am on page transfer
         Then I see limit transaction was reset to "200000000"
 
-
-Scenario: Verify page "Transaksi sedang diproses" when user doing transaction with BIFAST
+    @C167475               
+    Scenario: Verify page "Transaksi sedang diproses" when user doing transaction with BIFAST
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -107,8 +107,8 @@ Scenario: Verify page "Transaksi sedang diproses" when user doing transaction wi
         And I was directed to Page "Transaksi sedang diproses"
         And I see loading page and button "x" on page "Transaksi sedang diproses"
         
-
-Scenario: User will be redirected to Main Dashboard after click button "x" on page "Transaksi sedang diproses"
+    @C167476
+    Scenario: User will be redirected to Main Dashboard after click button "x" on page "Transaksi sedang diproses"
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -130,8 +130,8 @@ Scenario: User will be redirected to Main Dashboard after click button "x" on pa
         When I click button "x" on page "Transaksi sedang diproses"
         Then I will be redirected to Main Dashboard
 
-
-Scenario: User create another transaction after click button "x" on page "Transaksi sedang diproses"
+    @C167477
+    Scenario: User create another transaction after click button "x" on page "Transaksi sedang diproses"
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -156,8 +156,8 @@ Scenario: User create another transaction after click button "x" on page "Transa
         And I do another transaction
         Then I can do another transaction until I successfully transferred
 
-
-Scenario: Check page when transaction is failed
+    @C167478
+    Scenario: Check page when transaction is failed
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction failed
         When I input name 'Surya Edwin' from the search box
@@ -182,8 +182,8 @@ Scenario: Check page when transaction is failed
         When I cek my balance
         Then I see my balance was not deducted
 
-
-Scenario: Check page when transaction is success
+    @C167479
+    Scenario: Check page when transaction is success
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
@@ -212,8 +212,8 @@ Scenario: Check page when transaction is success
         When I click that transaction history
         Then I see detail transaction history
 
-
-Scenario: Check success screen if waiting until get result after doing transaction (max waiting time 300s)
+    @C167480
+    Scenario: Check success screen if waiting until get result after doing transaction (max waiting time 300s)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction suspend and got waiting page until 300s
         When I input name 'Surya Edwin' from the search box
@@ -237,8 +237,8 @@ Scenario: Check success screen if waiting until get result after doing transacti
         And I wait on page "Transaksi sedang diproses" for 300 second
         Then I see page "Transaction Success"
         
-
-Scenario: Check transaction history when got suspend and then fund revearsal (pengembalian dana)
+    @C167481
+    Scenario: Check transaction history when got suspend and then fund revearsal (pengembalian dana)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction suspend, got waiting page until 300s and fund revearsal
         When I input name 'Surya Edwin' from the search box
@@ -267,8 +267,8 @@ Scenario: Check transaction history when got suspend and then fund revearsal (pe
         Then I see detail transaction with notes "Pengembalian Dana BIFAST"
         And I see my balance is not deducted
 
-
-Scenario: Check transaction history when got suspend and then fund sent (dana diteruskan)
+    @C167482
+    Scenario: Check transaction history when got suspend and then fund sent (dana diteruskan)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction suspend, got waiting page until 300s and fund sent
         When I input name 'Surya Edwin' from the search box
@@ -297,9 +297,8 @@ Scenario: Check transaction history when got suspend and then fund sent (dana di
         Then I see detail transaction
         And I see my balance was deducted
 
---------------
-
-Scenario: Verify page "Transaksi sedang diproses" when maker doing transaction with BIFAST (Pending Task)
+    @C172436
+    Scenario: Verify page "Transaksi sedang diproses" when maker doing transaction with BIFAST (Pending Task)
         Given I am a customer who wants to Transfer and has friend list
         And I am a maker and have approver in other side
         When I input name 'Surya Edwin' from the search box
@@ -329,9 +328,8 @@ Scenario: Verify page "Transaksi sedang diproses" when maker doing transaction w
         And I see loading page and button "x" on page "Transaksi sedang diproses"
         And I see page transaksi berhasil
 
-
-
-Scenario: Check page when transaction is failed (pending task)
+    @C172437
+    Scenario: Check page when transaction is failed (pending task)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction failed
         And I am a maker and have approver in other side
@@ -365,9 +363,8 @@ Scenario: Check page when transaction is failed (pending task)
         Then I see revearsal fund and transaction out on transaction history
         And Balance is not deducted
 
-
-
-Scenario: Check page when transaction is success (pending task)
+    @C172438
+    Scenario: Check page when transaction is success (pending task)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction failed
         And I am a maker and have approver in other side
@@ -401,8 +398,8 @@ Scenario: Check page when transaction is success (pending task)
         Then I see transaction out on transaction history
         And Balance is deducted
 
-
-Scenario: Check success screen if waiting until get result after doing transaction (max waiting time 300s) (Pending task)
+    @C172439
+    Scenario: Check success screen if waiting until get result after doing transaction (max waiting time 300s) (Pending task)
         Given I am a customer who wants to Transfer and has friend list
         And I hit api mocking to make transaction suspend and got waiting page until 300s
         And I am a maker and have approver in other side
