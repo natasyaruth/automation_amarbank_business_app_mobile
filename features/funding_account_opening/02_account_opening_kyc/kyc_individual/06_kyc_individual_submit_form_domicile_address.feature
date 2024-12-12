@@ -65,8 +65,8 @@ Feature: Account Opening KYC Individual - Submit Domicile Address
         Then I should see message error '<Message>' in the below of field 'address' in form New Domicile Address
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                  |
-            | @C171053    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 150 karakter |
-            | @C171054    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 150 karakter |
+            | @C171053    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Alamat minimal 3 & maksimal 50 karakter |
+            | @C171054    | Pa                                                                                                                                                      | Alamat minimal 3 & maksimal 50 karakter |
 
     @C171055
     Scenario: Verifying field address contain with special char and number
