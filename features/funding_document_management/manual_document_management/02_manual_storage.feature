@@ -2,7 +2,7 @@ Feature: Manual Document Management
     As a customer
     I want to view business document that I previously uploaded
         
-    
+    @C172538
     Scenario: Test upload document 15MB (check progress bar and total size) 
         Given I am a customer active with biometric is active
         And Storage on account is under 1GB
@@ -22,7 +22,7 @@ Feature: Manual Document Management
         And I check storage bar
         Then I see storage scale is still "0 GB/25 GB telah digunakan"
 
-    
+    @C172539
     Scenario: Performance testing 100MB, 500MB, 1GB 
         Given I am a customer active with biometric is active
         And Storage on account is under 1GB
@@ -53,7 +53,7 @@ Feature: Manual Document Management
         And I check storage bar
         Then I see storage scale is still "1 GB/25 GB telah digunakan"
 
-
+    @C172540
     Scenario: Test upload delete document 500MB (make sure storage calculation) 
         Given I am a customer active with biometric is active
         And Storage on account is under 1GB
@@ -71,7 +71,7 @@ Feature: Manual Document Management
         And I check storage bar
         Then I see storage scale is still "1 GB/25 GB telah digunakan"
 
-
+    @C172541
     Scenario: Test upload delete document 500MB from trash (make sure storage calculation) 
         Given I am a customer active with biometric is active
         And Storage on account is under 1GB
