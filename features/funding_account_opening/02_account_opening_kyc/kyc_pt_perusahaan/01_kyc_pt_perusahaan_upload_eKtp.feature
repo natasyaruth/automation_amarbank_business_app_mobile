@@ -29,7 +29,7 @@ Feature: Account Opening KYC PT Perusahaan - Upload KTP Photo
     And I click confirm NPWP Business
     And I see page 'Upload eKTP'
 
-  @C131826
+  @C170748
   Scenario: Upload eKTP photo successfully business type PT Perusahaan
     Given I am a customer who has selected the business type PT Perusahaan
     When I click take photo eKTP

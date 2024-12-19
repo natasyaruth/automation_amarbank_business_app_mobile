@@ -849,7 +849,7 @@ Then("I will see helping center via email", () => {
   headerPage.closeCallCenter();
 });
 
-Then("I will directing to page login", () => {
+Then("I will directing to page login", async () => {
   I.waitForText("Masuk Akun", 20);
   I.waitForElement(headerPage.buttons.back, 10);
   I.waitForElement(headerPage.icon.callCenter, 10);
@@ -879,6 +879,8 @@ Then("I will directing to page login", () => {
   I.see("Belum memiliki akun?");
   I.see("Daftar");
   I.waitForElement(loginPage.link.registration, 10);
+
+  await resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
 });
 
 Then("I will directing to web view terms and condition", () => {

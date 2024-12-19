@@ -39,7 +39,7 @@ Feature: Account Opening KYB UD - Submit Business Owners
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    @C131945
+    @C171484
     Scenario: Submit form Business owner successfully business type UD
         Given I am a customer who has submitted my business profile
         And I am the only one business owner

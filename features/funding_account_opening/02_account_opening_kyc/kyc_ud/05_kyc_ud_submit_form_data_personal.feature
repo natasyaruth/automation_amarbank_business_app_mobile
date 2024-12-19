@@ -30,7 +30,7 @@ Feature: Account Opening KYC UD - Submit Data Personal
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie'
 
-    @C131844
+    @C171087
     Scenario: Submit form Data Personal successfully business type UD
         Given I am a customer want to fill my personal details
         When I submit my personal data details business and upload my npwp as followings:

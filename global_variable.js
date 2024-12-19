@@ -15,6 +15,13 @@ module.exports = {
 
         return day;
     },
+    getCurrentDayString() {
+        const currentDate = new Date();
+        const day = currentDate.getDay();
+        const adjustedIndex = (day === 0) ? 6 : day - 1;
+
+        return this.constant.days[adjustedIndex];
+    },
     getCurrentDateWithoutZero() {
         const currentDate = new Date();
         const date = currentDate.getDate();
@@ -75,6 +82,9 @@ module.exports = {
             "Januari", "Februari", "Maret", "April",
             "Mei", "Juni", "Juli", "Agustus",
             "September", "Oktober", "November", "Desember"
+        ],
+        days:[
+            "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
         ],
         formatDate: {
             ddmmmyyyy: "ddmmmyyyy",
@@ -171,9 +181,14 @@ module.exports = {
         fileType: "",
         fileName: [],
         folderName: [],
+        folderDeleted: "",
         updateFolderName: "",
         updateFileName: "",
-        levelBackFolder: 0
+        levelBackFolder: 0,
+        fileNameGiro: "",
+        openedFolder: [],
+        moveFolderFile: "",
+        copiedFiles: [],
     },
     createPin: {
         newPin: "",
@@ -211,6 +226,7 @@ module.exports = {
         activeAmount: "",
         method: "",
         totalAmount: "",
+        listApproval: [],
     },
     dashboard: {
         activeAmount: "",

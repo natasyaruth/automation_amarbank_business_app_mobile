@@ -513,7 +513,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media/delete/permanently/all");
+        const response = await I.sendDeleteRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media/trash/delete/all");
 
         return {
             status: response.status,

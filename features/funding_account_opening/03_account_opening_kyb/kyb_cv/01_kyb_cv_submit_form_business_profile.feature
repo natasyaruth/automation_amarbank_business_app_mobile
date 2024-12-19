@@ -38,10 +38,10 @@ Feature: Account Opening KYB CV - Submit Business Profile
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Profile
         Examples:
             | testRailTag | Field              | Field Name            |
-            | @C131851    | businessName       | Nama bisnis           |
-            | @C131852    | businessField      | Jenis bisnis          |
-            | @C134126    | averageTransaction | Rata - rata transaksi |
-            | @C131854    | nib                | NIB Berbasis Resiko   |
+            | @C171325    | businessName       | Nama bisnis           |
+            | @C171326    | businessField      | Jenis bisnis          |
+            | @C171327    | averageTransaction | Rata - rata transaksi |
+            | @C171328    | nib                | NIB Berbasis Resiko   |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Profile
         Given I am a customer who has completed my KYC process
@@ -52,13 +52,13 @@ Feature: Account Opening KYB CV - Submit Business Profile
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Profile
         Examples:
             | testRailTag | Field             | Field Name                   |
-            | @C131855    | businessName      | Nama bisnis                  |
-            | @C131856    | industry          | Tipe industri                |
-            | @C131857    | businessField     | Jenis bisnis                 |
-            | @C131858    | monthlyIncome     | Penghasilan bisnis per bulan |
-            | @C134133    | averageTransaction| Rata - rata transaksi        |
-            | @C131860    | nib               | NIB Berbasis Resiko          |
-            | @C131861    | businessDateStart | Tanggal bisnis berdiri       |
+            | @C171329    | businessName      | Nama bisnis                  |
+            | @C171330    | industry          | Tipe industri                |
+            | @C171331    | businessField     | Jenis bisnis                 |
+            | @C171332    | monthlyIncome     | Penghasilan bisnis per bulan |
+            | @C171333    | averageTransaction| Rata - rata transaksi        |
+            | @C171334    | nib               | NIB Berbasis Resiko          |
+            | @C171335    | businessDateStart | Tanggal bisnis berdiri       |
 
     Scenario Outline: Verifying business name with invalid value in form Business Profile
         Given I am a customer who has completed my KYC process
@@ -67,17 +67,17 @@ Feature: Account Opening KYB CV - Submit Business Profile
         Then I should see message error '<Message>' in the below of field 'businessName' in form Business Profile
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                       |
-            | @C131862    | Pa                                                                                                                                                      | Nama bisnis minimal 3 & maksimal 150 karakter |
-            | @C131863    | Offlineeeeeeeeeee licenses are for using KSE without the internett Once generatedd the license cannot be revoked or transferred to a different machinee | Nama bisnis minimal 3 & maksimal 150 karakter |
+            | @C171336    | Pa                                                                                                                                                      | Nama bisnis minimal 3 & maksimal 150 karakter |
+            | @C171337    | Offlineeeeeeeeeee licenses are for using KSE without the internett Once generatedd the license cannot be revoked or transferred to a different machinee | Nama bisnis minimal 3 & maksimal 150 karakter |
 
-    @C131864
+    @C171338
     Scenario: Verifying field business name contain with special char and number
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
         And I fill field 'businessName' with 'John Doe S.Kom, M\'Kom- 11233' in form Business Profile
         Then I shouldn't see message error in the below of field 'businessName' in form Business Profile
 
-    @C134116
+    @C171339
     Scenario: Verifying field average transaction contain with special char and alphabeth
         Given I am a customer who has completed my KYC process
         When I continue to process KYB
@@ -91,8 +91,8 @@ Feature: Account Opening KYB CV - Submit Business Profile
         Then I should see message error '<Message>' in the below of field 'businessField' in form Business Profile
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                        |
-            | @C131865    | Pa                                                                                                                                                      | Jenis bisnis minimal 3 & maksimal 150 karakter |
-            | @C131866    | Offlineeeeeeeeeee licenses are for using KSE without the internett Once generatedd the license cannot be revoked or transferred to a different machinee | Jenis bisnis minimal 3 & maksimal 150 karakter |
+            | @C171340    | Pa                                                                                                                                                      | Jenis bisnis minimal 3 & maksimal 150 karakter |
+            | @C171341    | Offlineeeeeeeeeee licenses are for using KSE without the internett Once generatedd the license cannot be revoked or transferred to a different machinee | Jenis bisnis minimal 3 & maksimal 150 karakter |
 
     Scenario Outline: Verifying NIB field with invalid value in form Business Profile
         Given I am a customer who has completed my KYC process
@@ -101,11 +101,11 @@ Feature: Account Opening KYB CV - Submit Business Profile
         Then I should see message error '<Message>' in the below of field 'nib' in form Business Profile
         Examples:                                                                 ❸
             | testRailTag | Value           | Message                                 |
-            | @C131867    | 9129106701A!4   | NIB Berbasis Resiko tidak sesuai format |
-            | @C131868    | 912910670123412 | NIB harus 13 digit                      |
-            | @C131869    | 912910          | NIB harus 13 digit                      |
+            | @C171342    | 9129106701A!4   | NIB Berbasis Resiko tidak sesuai format |
+            | @C171344    | 912910670123412 | NIB harus 13 digit                      |
+            | @C171345    | 912910          | NIB harus 13 digit                      |
 
-    @C131872
+    @C171347
     Scenario: Submit form Business Profile successfully business type CV
         Given I am a customer who has completed my KYC process
         When I continue to process KYB

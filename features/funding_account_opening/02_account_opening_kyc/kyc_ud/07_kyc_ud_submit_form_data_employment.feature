@@ -29,7 +29,7 @@ Feature: Account Opening KYC UD - Submit Data Employment
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Domicile Address'
 
-    @C131847
+    @C171090
     Scenario: Submit form Data Employment successfully business type UD
         Given I am a customer who has submitted my domicile address
         And I see fields that available in Data Employment
