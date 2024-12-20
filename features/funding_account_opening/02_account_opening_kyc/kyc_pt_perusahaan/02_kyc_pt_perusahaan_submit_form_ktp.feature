@@ -21,7 +21,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Form KTP
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
-        And I submit my giro type
+    And I submit my giro type
     And I choose legality business type 'company'
     And I submit my legality type
     And I fill NPWP Business
@@ -30,7 +30,7 @@ Feature: Account Opening KYC PT Perusahaan - Submit Form KTP
     And I see page 'Upload eKTP'
     And I upload my eKTP photo
 
-  @C131827
+  @C170749
   Scenario: Submit form KTP successfully business type PT Perusahaan
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

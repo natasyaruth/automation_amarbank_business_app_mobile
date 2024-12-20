@@ -30,7 +30,7 @@ Feature: Account Opening KYB UD - Submit Business Profile
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
 
-    @C131944
+    @C171483
     Scenario: Submit form Business Profile successfully business type UD
         Given I am a customer who has completed my KYC process
         And I see fields that available in Business Profile

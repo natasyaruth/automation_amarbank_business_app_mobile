@@ -30,7 +30,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Personal'
 
-    @C131838
+    @C171080
     Scenario: Submit form Domicile address same with KTP successfully business type PT Perorangan
         Given I am a customer who has submitted my personal data details
         When I choose my domicile address same with my identity information
@@ -39,7 +39,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Domicile Address
         And I will direct to page Data Employment
         And I reset my state journey
 
-    @C131839
+    @C171081
     Scenario: Submit form Domicile address with new address successfully business type PT Perorangan
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

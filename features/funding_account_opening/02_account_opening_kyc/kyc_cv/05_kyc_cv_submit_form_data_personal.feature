@@ -30,7 +30,7 @@ Feature: Account Opening KYC CV - Submit Data Personal
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie with KTP'
 
-    @C131822
+    @C170744
     Scenario: Submit form Data Personal successfully business type CV
         Given I am a customer want to fill my personal details
         When I fill my personal data details as followings:

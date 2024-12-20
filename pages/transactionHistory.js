@@ -596,6 +596,10 @@ module.exports = {
         I.waitForElement(this.textFields.adminFeeAmount, 10);
         return await I.grabTextFrom(this.textFields.adminFeeAmount);
     },
+    async getAdminFeeTitle(){
+        I.waitForElement(this.textFields.adminFeeTitle, 10);
+        return await I.grabTextFrom(this.textFields.adminFeeTitle);
+    },
     async getAllAdminFeeAmount(){
         I.waitForElement(this.textFields.adminFeeAmount, 10);
         return await I.grabTextFromAll(this.textFields.adminFeeAmount);

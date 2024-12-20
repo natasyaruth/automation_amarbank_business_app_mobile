@@ -30,7 +30,7 @@ Feature: Account Opening KYC PT Perorangan - Submit Data Personal
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie with KTP'
 
-    @C131837
+    @C171079
     Scenario: Submit form Data Personal successfully business type PT Perorangan
         Given I am a customer want to fill my personal details
         When I submit my personal data details business and upload my npwp as followings:

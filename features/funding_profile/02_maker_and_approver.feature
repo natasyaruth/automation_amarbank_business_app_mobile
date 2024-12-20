@@ -598,6 +598,7 @@ Feature: Maker and Approver Transaction
         And I close page detail transfer
         And I will direct to page notification center
         And I click close in header page
+        And I will see card account 'active'
         And I click tab profile
         And I click menu transaction approval
         And I click tab approval has been done
@@ -698,6 +699,7 @@ Feature: Maker and Approver Transaction
         And I close page detail transfer
         And I will direct to page notification center
         And I click close in header page
+        And I will see card account 'active'
         And I click tab profile
         And I click menu transaction approval
         And I click tab approval has been done
@@ -1263,6 +1265,7 @@ Feature: Maker and Approver Transaction
         And I close page detail transfer
         And I will direct to page notification center
         And I click close in header page
+        And I will see card account 'active'
         And I click tab profile
         And I click menu transaction approval
         And I click tab approval has been done
@@ -1317,6 +1320,7 @@ Feature: Maker and Approver Transaction
         And I close page detail transfer
         And I will direct to page notification center
         And I click close in header page
+        And I will see card account 'active'
         And I choose other
         And I click logout
         And I filling in form login with the following details:
@@ -1341,6 +1345,7 @@ Feature: Maker and Approver Transaction
         And I click close in header page
         And I will direct to page notification center
         And I click close in header page
+        And I will see card account 'active'
         And I don't see indicator red in tab profile
         And I don't see red dot notification center
         And I choose other
