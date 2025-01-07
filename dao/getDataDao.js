@@ -313,9 +313,9 @@ module.exports = {
 
     async getNotificationList(userID, password, category) {
 
-        if(
+        if (
             category === "all"
-        ){
+        ) {
             category = "";
         }
 
@@ -323,7 +323,7 @@ module.exports = {
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications/?category="+category);
+        const response = await I.sendGetRequest("https://" + env + "-smb-user.otoku.io/api/v1/notifications/?category=" + category);
 
         I.seeResponseCodeIsSuccessful();
 
@@ -346,6 +346,143 @@ module.exports = {
         return {
             status: response.status,
             accountHolderName: response.data.accountHolderName
+        }
+    },
+
+    async getCountFolderRootOtherDoc(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media",
+            {
+                source: ""
+            }
+        );
+
+        I.seeResponseCodeIsSuccessful();
+
+        let count = 0;
+
+        const lengthList = response.data.items.length;
+
+        for (let i = 0; i < lengthList; i++) {
+            const item = response.data.items[i];
+
+            if (
+                item.url === ""
+            ) {
+                count += 1;
+            }
+        }
+
+        return {
+            status: response.status,
+            numberOfFolder: count
+        }
+    },
+
+    async getCountFileRootOtherDoc(userID, password) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media",
+            {
+                source: ""
+            }
+        );
+
+        I.seeResponseCodeIsSuccessful();
+
+        let count = 0;
+
+        const lengthList = response.data.items.length;
+
+        for (let i = 0; i < lengthList; i++) {
+            const item = response.data.items[i];
+
+            if (
+                item.url !== ""
+            ) {
+                count += 1;
+            }
+        }
+
+        return {
+            status: response.status,
+            numberOfFiles: count
+        }
+    },
+
+    async getIDFolder(bearerToken, folderName) {
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media",
+            {
+                source: ""
+            }
+        );
+
+        I.seeResponseCodeIsSuccessful();
+
+        let idFolder = "";
+
+        const lengthList = response.data.items.length;
+
+        for (let i = 0; i < lengthList; i++) {
+            const item = response.data.items[i];
+
+            if (
+                item.name === folderName
+            ) {
+                idFolder = item.path;
+                break;
+            }
+        }
+
+        return {
+            status: response.status,
+            idFolder: idFolder
+        }
+    },
+
+    async getCountFolderInSpecificPath(userID, password, folderName) {
+
+        const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
+
+        I.amBearerAuthenticated(secret(bearerToken));
+
+        const idFolder = (await this.getIDFolder(bearerToken, folderName)).idFolder;
+
+        const response = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/drive/media",
+            {
+                source: idFolder
+            }
+        );
+
+        I.seeResponseCodeIsSuccessful();
+
+        let count = 0;
+
+        const lengthList = response.data.items.length;
+
+        for (let i = 0; i < lengthList; i++) {
+            const item = response.data.items[i];
+
+            if (
+                item.url === ""
+            ) {
+                count += 1;
+            }
+        }
+
+        return {
+            status: response.status,
+            numberOfFolder: count
         }
     },
 }

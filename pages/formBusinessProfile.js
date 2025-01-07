@@ -4,10 +4,10 @@ module.exports = {
 
   fields: {
     businessName: "~textFieldBusinessName",
-    businessField: "~textFieldBusiness",
     npwp: "~textFieldNpwp",
     nib: "~textFieldNib",
     averageTransaction: "~averageTransactionField",
+    otherType: "~textFieldOther",
   },
   buttons: {
     saveProfileBusiness: "~buttonSaveJobData",
@@ -15,10 +15,13 @@ module.exports = {
     cancelDate: "~buttonCancel",
     closeBottomSheet: "~buttonClose",
     helpDHN: "~showSupportBtn",
+    submitIndustry: "~buttonSubmit",
+    submitBusinessField: "~buttonSubmit",
   },
   dropDowns: {
     industry: "~textFieldIndustryType",
     monthlyIncome: "~textFieldIncome",
+    businessField: "~textFieldBusiness",
     firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View[1]" },
   },
   datePicker: {
@@ -40,6 +43,16 @@ module.exports = {
     year: "~textYear",
     blockerVerificationTitle: "~blockerVerificationTitle",
     blockerVerificationDesc: "~blockerVerificationDesc",
+    optionIndustryType: "~industryTypeOption",
+    optionBusinessField: "~businessTypeOption",
+  },
+  statusElement: {
+    buttonSubmitIndustryType: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]" },
+    buttonSubmitBusinessField: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View[2]" },
+    valueFieldIndustryType: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.ScrollView/android.widget.EditText[2]" },
+    valueFieldBusinessField: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ScrollView/android.widget.ScrollView/android.widget.EditText[3]" },
+    valueFieldOtherIndustryType: { xpath: "/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.widget.EditText" },
+    valueFieldOtherBusinessField: { xpath: "/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.widget.EditText" },
   },
 
   fillBusinessProfile(businessProfileData) {
@@ -52,19 +65,27 @@ module.exports = {
       if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
       ) {
-        I.waitForElement(this.fields[fieldName], 10);
+        I.waitForElement(this.fields[fieldName], 20);
         I.clearField(this.fields[fieldName]);
         I.setText(this.fields[fieldName], value);
 
       } else if (
         Object.keys(this.dropDowns).indexOf(fieldName) !== -1
       ) {
-
+        I.waitForElement(this.dropDowns[fieldName], 20);
         I.click(this.dropDowns[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.wait(2);
         I.click(value);
         I.wait(2);
+        if (
+          fieldName === "industry" ||
+          fieldName === "businessField"
+        ) {
+          I.click(this.buttons.submitBusinessField);
+        }
+
+        I.waitForElement(this.dropDowns[fieldName], 20);
         I.swipeUp(this.dropDowns[fieldName], 1300, 1000);
 
       } else if (
@@ -150,6 +171,50 @@ module.exports = {
 
     return valueField;
 
+  },
+
+  clickDropDown(dropdownName) {
+    I.waitForElement(this.dropDowns[dropdownName], 10);
+    I.click(this.dropDowns[dropdownName]);
+    I.waitForElement(this.buttons.closeBottomSheet, 20);
+  },
+
+  closeBottomSheet() {
+    I.waitForElement(this.buttons.closeBottomSheet, 10);
+    I.click(this.buttons.closeBottomSheet);
+  },
+
+  async getOptionTextIndustry(index) {
+    const finalIndex = index + 1;
+    const path = "//android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[" + finalIndex + "]/android.widget.TextView";
+ 
+    I.waitForElement(path, 10);
+    return await I.grabTextFrom(path);
+  },
+
+  async getOptionTextBusinessField(index) {
+    const finalIndex = index + 1;
+    const path = "//android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[" + finalIndex + "]/android.widget.TextView";
+ 
+    I.waitForElement(path, 10);
+    return await I.grabTextFrom(path);
+  },
+
+  submitIndustry() {
+    I.waitForElement(this.buttons.submitIndustry, 10);
+    I.click(this.buttons.submitIndustry);
+  },
+
+  submitBusinessField() {
+    I.waitForElement(this.buttons.submitBusinessField, 10);
+    I.click(this.buttons.submitBusinessField);
+  },
+
+  fillFieldOtherType(otherType) {
+    I.waitForElement(this.fields.otherType, 10);
+    I.click(this.fields.otherType);
+    I.type(otherType, 1000);
+    I.hideDeviceKeyboard();
   },
 
 }

@@ -277,7 +277,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Data Employment'
 
-    @C131968 @FunctTestFundingSprint4
+    @C131968
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Profile
         Given I am a registered customer with following details:
             | userID      | devece34 |
@@ -341,8 +341,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -387,8 +387,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -403,7 +403,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data business
         And I can continue to page 'Data Director List'
 
-    @C131971 @FunctTestFundingSprint4
+    @C131971
     Scenario: User can see cards continue to complete data business after drop off from flow Submit data Business Address
         Given I am a registered customer with following details:
             | userID      | devece34 |
@@ -433,8 +433,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -482,8 +482,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -539,8 +539,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -596,8 +596,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -650,8 +650,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -711,8 +711,8 @@ Feature: Account Opening Main Dashboard
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |

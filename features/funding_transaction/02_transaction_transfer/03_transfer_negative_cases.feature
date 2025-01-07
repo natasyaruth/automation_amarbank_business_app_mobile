@@ -222,17 +222,16 @@ Feature: User Want to Transfer with Negative Cases
         And I will directing to page login
         And I reset attempt failed PIN
 
-    @C135522 
-    ## NEED TO TEST MANUAL, Because this scenario need account with total balance is 50.000.000
-    Scenario: Transfer with amount more than admin fee RTOL
+    @C135522
+    Scenario: Transfer with amount doesn't cover admin fee RTOL, BIFAST and SKN
         Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
+            | userID      | deveffba |
+            | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
+            | userID      | deveffba |
+            | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -254,16 +253,15 @@ Feature: User Want to Transfer with Negative Cases
         Then I see message error total amount shouldn't more than active amount
 
     @C135523
-    ## NEED TO TEST MANUAL, Because this scenario need account with total balance is 50.000.000
-    Scenario: Transfer with amount more than admin fee BIFAST
+    Scenario: Transfer with amount doesn't cover one of the method transfer
         Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
+            | userID      | deve9b96 |
+            | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
+            | userID      | deve9b96 |
+            | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I click login
@@ -273,73 +271,13 @@ Feature: User Want to Transfer with Negative Cases
         And I am on receiver list page
         And I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount more than active amount
+        And I input amount '20000000'
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
         And I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service BIFAST
         Then I see message error total amount shouldn't more than active amount
-        And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount
-
-    @C135524
-    Scenario: Transfer with amount more than admin fee SKN
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, RTOL and SKN
-        And I choose transfer service RTOL
-        Then I shouldn't see message error total amount more than active amount
         And I choose transfer service BIFAST
-        Then I shouldn't see message error total amount more than active amount
+        And I shouldn't see message error total amount more than active amount
         And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount    
-
-    @C135525
-    Scenario: Transfer with amount more than admin fee RTGS
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, SKN and RTGS
-        And I choose transfer service SKN
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service BIFAST
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service RTGS
-        Then I see message error total amount shouldn't more than active amount   
+        And I shouldn't see message error total amount more than active amount 
