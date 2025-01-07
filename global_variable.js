@@ -95,6 +95,23 @@ module.exports = {
             rtol: "RTOL",
             skn: "SKN",
             rtgs: "RTGS"
+        },
+        industryType: {
+            industryCreative: "Industri Kreatif",
+            processing: "Industri Pengolahan",
+            food: "Industri Makanan & Minuman",
+            service: "Jasa",
+            contruction: "Konstruksi",
+            finance: "Keuangan & Asuransi",
+            education: "Pendidikan",
+            warehouse: "Pengangkutan & Pergudangan",
+            mining: "Pertambangan & Penggalian",
+            retail: "Perdagangan Besar & Eceran",
+            hospitality: "Restoran, Kafe dan Hotel",
+            healthService: "Rumah Sakit, Apotik dan Industri Kesehatan",
+            IT: "Teknologi Informasi",
+            transportation: "Transportasi",
+            other: "Lainnya",
         }
     },
     registration: {
@@ -166,6 +183,9 @@ module.exports = {
         averageTransaction: "",
         npwp: "",
         nib: "",
+        optionChoose: "",
+        otherIndustryType: "",
+        otherBusinessField: "",
     },
     formDirector: {
         fullName: "",

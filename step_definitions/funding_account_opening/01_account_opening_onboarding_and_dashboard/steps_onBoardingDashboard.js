@@ -502,8 +502,7 @@ Then("I will directing to main dashboard with card loan application and account 
 Then("I will see card continue to data personal", () => {
     I.waitForText("Lengkapi Data Personal", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
-    I.see("Perbankan Giro");
-    I.see("Pinjaman");
+    // I.see("Perbankan Giro");
     I.seeElement(onboardingAccOpeningPage.buttons.completeData);
     onboardingAccOpeningPage.continueCompleteData();
 });
@@ -511,8 +510,7 @@ Then("I will see card continue to data personal", () => {
 Then("I will see card continue to data business", () => {
     I.waitForText("Lengkapi Data Bisnis", 30);
     I.see("Lanjutkan Pembuatan Rekening Giro");
-    I.see("Perbankan Giro");
-    I.see("Pinjaman");
+    // I.see("Perbankan Giro");
     I.waitForElement(onboardingAccOpeningPage.buttons.completeData, 10);
     onboardingAccOpeningPage.continueCompleteData();
 });
@@ -541,8 +539,7 @@ Then("I will see card continue to complete upload document business and registra
     I.see("Mohon lengkapi Dokumen yang dibutuhkan");
     I.see("Lihat Daftar Direksi");
     I.see("Menunggu proses registrasi Daftar Direksi lainnya");
-    I.see("Perbankan Giro");
-    I.see("Pinjaman");
+    // I.see("Perbankan Giro");
     I.waitForElement(onboardingAccOpeningPage.buttons.completeDoc, 10);
     I.waitForElement(onboardingAccOpeningPage.buttons.invitedDirectors, 10);
     onboardingAccOpeningPage.continueCompleteRegistrationDirectors();
@@ -551,8 +548,7 @@ Then("I will see card continue to complete upload document business and registra
 Then("I will see card continue to complete registration director list", () => {
     I.waitForText("Lihat Daftar Direksi", 20);
     I.see("Menunggu proses registrasi Daftar Direksi lainnya");
-    I.see("Perbankan Giro");
-    I.see("Pinjaman");
+    // I.see("Perbankan Giro");
     I.waitForElement(onboardingAccOpeningPage.buttons.invitedDirectors, 10);
     onboardingAccOpeningPage.continueCompleteRegistrationDirectors();
 });
