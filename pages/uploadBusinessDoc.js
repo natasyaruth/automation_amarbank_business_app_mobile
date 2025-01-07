@@ -27,6 +27,7 @@ module.exports = {
     confirmDelete: "~buttonDelete",
     cancelDelete: "~buttonBack",
     close: "~buttonCloseBottomSheet",
+    learnBrankas: "~buttonLearn",
   },
   upload: {
     nib: { xpath: "(//android.view.View[@content-desc=\"buttonUpload\"])[1]" },

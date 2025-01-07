@@ -328,7 +328,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         @C171461
         Scenario: Upload document with type JPG
             Given I am a customer who has submitted business address
-              And I choose method upload document
+              When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpg'
@@ -339,7 +339,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         @C171462
         Scenario: Upload document with type PNG
             Given I am a customer who has submitted business address
-              And I choose method upload document
+              When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'png'
@@ -350,7 +350,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         @C171463
         Scenario: Upload document with type JPEG
             Given I am a customer who has submitted business address
-              And I choose method upload document
+              When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpeg'
@@ -361,7 +361,7 @@ Feature: Account Opening KYB CV - Upload Document Business
         @C171464
         Scenario: Checking button account opening if user CV only upload un-required document business
             Given I am a customer who has submitted business address
-              And I choose method upload document
+              When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'Akta Perubahan Terakhir' with type 'pdf'
@@ -373,6 +373,74 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I close page progress upload document
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
+
+        @C173112
+        Scenario: Access widget brankas document in upload document business without uploaded document
+            Given I am a customer who has submitted business address
+              When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I click widget document safe
+              Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will not see all document company
+              And I see widget brankas document in upload document business
+
+        @C173113
+        Scenario: Access widget brankas document in upload document business with some uploaded document
+            Given I am a customer who has submitted business address
+              When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I upload document business 'NIB' with type 'pdf'
+              And I upload document business 'Akta Pendirian' with type 'pdf'
+              And I click button progress upload document
+              And I will see document 'NIB' is uploaded
+              And I will see document 'Akta Pendirian' is uploaded
+              And I will see 'SK Kemenkumham Pendirian' is empty
+              And I will see 'NPWP Bisnis' is empty
+              And I will not see button request account opening
+              And I click widget document safe
+              Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will see document 'NIB' is uploaded
+              And I will see document 'Akta Pendirian' is uploaded
+              And I will see 'SK Kemenkumham Pendirian' is empty
+              And I will see 'NPWP Bisnis' is empty
+              And I see widget brankas document in upload document business
+
+        @C173114
+        Scenario: Access widget brankas document in upload document business with all document has been uploaded
+            Given I am a customer who has submitted business address
+              When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I upload all document business for type company
+              And I click button progress upload document
+              And I will see all document company has been uploaded
+              And I will see button request account opening is shown
+              And I click widget document safe
+              Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will see all document company has been uploaded
+              And I will see button request account opening is shown
+              And I see widget brankas document in upload document business  
+
+        @C173115
+        Scenario: Close information brankas document from upload document business
+              Given I am a customer who has submitted business address
+              When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I click widget document safe
+              Then I will see onboarding page document safe continue to upload document business
+              And I close page onboarding document safe
+              And I will not see all document company
+              And I see widget brankas document in upload document business
 
         @C171465
         Scenario: Upload only document required business type CV   

@@ -29,7 +29,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak ditemukan
         And User not available to continue the process
 
-    #@C157065
+    @C157065
     Scenario: Checking inactive account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -42,7 +42,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak aktif
         And User not available to continue the process
 
-    #@C157066
+    @C157066
     Scenario: Checking not exist account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -464,4 +464,18 @@ Feature: Manual Transfer
         And I choose transfer service BIFAST
         Then I shouldn't see message error total amount more than active amount
         And I choose transfer service RTGS
-        Then I see message error total amount shouldn't more than active amount      
+        Then I see message error total amount shouldn't more than active amount
+
+    @C173118
+    Scenario: Check push notification limit RTOL
+        Given I am in dashboard
+        When push notification adjust RTOL
+        Then I receive notification about information adjust RTOL
+        And I see information that limit RTOL is adjusted to Rp200.000.000
+
+    @C173119
+    Scenario: Check notification email limit RTOL
+        Given I am in dashboard
+        When push notification adjust RTOL
+        Then I receive notification email about information adjust RTOL
+        And I see information that limit RTOL is adjusted to Rp200.000.000
