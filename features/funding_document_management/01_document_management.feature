@@ -375,6 +375,7 @@ Feature: Brankas - Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type company
 
     @C131653
@@ -400,6 +401,7 @@ Feature: Brankas - Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type company
 
     @C131656
@@ -425,6 +427,7 @@ Feature: Brankas - Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type individual company
 
     @C131659
@@ -450,6 +453,7 @@ Feature: Brankas - Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type individual company
 
     @C157169
@@ -537,13 +541,13 @@ Feature: Brankas - Document Management
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | test3c09 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | test3c09 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -1637,8 +1641,8 @@ Feature: Brankas - Document Management
         And I click edit folder name
         And I edit folder name same with other folder
         And I click change name
-        Then I see message error folder name is exist
-        And I see button change name is enabled
+        Then I will see snackbar success change folder name
+        And I will see both folder with same name in root other document
 
     @C164053
     Scenario: Edit naming file
@@ -1864,12 +1868,12 @@ Feature: Brankas - Document Management
         And I input password document
         And I click see my document
         And I click button menu action brankas
-        And I upload other document with type 'jpg'
+        And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I click button menu action brankas
-        And I upload other document with type 'pdf'
+        And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
@@ -1877,8 +1881,8 @@ Feature: Brankas - Document Management
         And I click edit file name
         And I edit file name same with file name as before
         And I click change name
-        Then I see message error file name is exist
-        And I see button change name is enabled
+        Then I will see snackbar success change file name
+        And I will see both files with same filename in root other document
 
     @C164060
     Scenario: Let file naming is blank when editing

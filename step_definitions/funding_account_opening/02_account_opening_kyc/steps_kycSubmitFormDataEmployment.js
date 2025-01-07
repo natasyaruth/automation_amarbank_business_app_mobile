@@ -178,7 +178,7 @@ Then("I will notify that my personal data details needs to be verified first", (
 });
 
 Then("I shouldn't see message error in the below of field company name in form Data Employment", async () => {
-    let infoCompanyName = "Isi \"Tidak Ada\" jika kamu bekerja sendiri";
+    let infoCompanyName = "Isi dengan nama toko, gerai, atau layanan Anda";
 
     let messageField = await formEmploymentDataPage.getMessageError("companyName");
     I.assertEqual(messageField, infoCompanyName);

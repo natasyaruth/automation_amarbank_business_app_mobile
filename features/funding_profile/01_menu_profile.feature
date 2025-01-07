@@ -1,3 +1,4 @@
+@menu_profile
 Feature: Menu Profile
     In order to display customer data profile
     As a customer
@@ -123,13 +124,13 @@ Feature: Menu Profile
             | userID      | autoeb6a |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
