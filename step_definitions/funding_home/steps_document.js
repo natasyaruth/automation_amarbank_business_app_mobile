@@ -2212,3 +2212,62 @@ Then("I will direct to detail folder {string} with file inside", async (parentFo
     I.assertEqual(actFileName, globalVariable.uploadDocuments.fileName[0]);
     I.dontSeeElement(documentPage.buttons.infoDoc + "0");
 });
+
+
+// lending
+Then('I wait for {int} seconds', async (seconds) => {
+    await I.wait(seconds); // Menunggu dalam hitungan detik
+});
+
+Then('I click document pinjaman', () => {
+   documentPage.clickDocumentLoan(); 
+});
+
+When('I verifying the naming folder loan when has more than one active facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_103169"); 
+});
+
+When('I click folder facility', () => {
+    documentPage.clickFolderFacility();
+}); 
+
+Then('I should see file document facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_SCF-81421803-103179")
+});
+
+When('I click folder disbursement', () => {
+    documentPage.clickFolderDisbursement();
+});
+
+Then('I should see file document disbursement', () => {
+    I.wait(3);
+    I.see("Pencairan_19/10/2024_1944");
+});
+
+When('I should see document facility when has one facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_101147");
+});
+
+Then('I should see notification to apply loan', () => {
+    I.wait(3);
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mulai pembukaan rekening atau pengajuan pinjaman terlebih dahulu");
+});
+
+When('I click button nanti saja', () => {
+    I.wait(3);
+    documentPage.clickButtonNantiSaja();
+});
+
+When('I click document', () => {
+    documentPage.clickOverflowMenu();
+});
+When('I click icon donwload', () => {
+    documentPage.clickIconDownload();
+});
+
+When('I close bottom sheet download document', () => {
+    documentPage.closeBottomSheet();
+});

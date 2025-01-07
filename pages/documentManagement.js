@@ -52,6 +52,7 @@ module.exports = {
     confirmMove: "~buttonMove",
     move: "~buttonMove",
     copy: "~btnDuplicate",
+    buttonNantiSaja: "~buttonBackLoan",
     legalityBusiness: "~buttonLegalityType",
   },
   links: {
@@ -67,7 +68,7 @@ module.exports = {
     password: "~textErrorPassword",
     folderName: "~fieldFolderNameError",
     changeFolderName: "~fieldChangeFolderError",
-    changeFileName: "~fieldChangeNameError"
+    changeFileName: "~fieldChangeNameError",
   },
   texts: {
     titleDocBrankas: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.TextView" },
@@ -100,7 +101,9 @@ module.exports = {
   },
   icons: {
     completeUpload: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.ImageView" },
-    resetName: "~buttonReset"
+    resetName: "~buttonReset",
+    overflowMenu: {xpath: '(//android.widget.ImageView[@content-desc="file"])[1]'},
+    iconDownload: "~download icon",
   },
   googleElement: {
     titleDrive: { xpath: "(//android.widget.TextView[@text=\"Drive\"])[1]" },
@@ -115,6 +118,10 @@ module.exports = {
     fieldNameDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText" },
     buttonSeeDoc: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View" },
     buttonMove: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
+  },
+  folders: {
+    folderNameFacility: { xpath: '(//android.view.View[@content-desc="folderName"])[3]' },
+    folderDisbursement: "~folderName",
   },
 
   clickTabDocument() {
@@ -749,4 +756,36 @@ module.exports = {
     I.click(this.buttons.copy);
   },
 
+
+  // lending
+  clickDocumentLoan() {
+    I.wait(5);
+    I.click(this.buttons.documentLoan);
+  },
+
+  clickFolderFacility(){
+    I.wait(3);
+    I.click(this.folders.folderNameFacility);
+  },
+
+  clickFolderDisbursement(){
+    I.wait(3);
+    I.click(this.folders.folderDisbursement);
+  },
+
+  clickButtonNantiSaja() {
+    I.waitForElement(this.buttons.buttonNantiSaja, 10);
+    I.click(this.buttons.buttonNantiSaja);
+  },
+  clickOverflowMenu() {
+    I.wait(3);
+    I.click(this.icons.overflowMenu);
+  },
+  clickIconDownload(){
+    I.wait(3);
+    I.click(this.icons.iconDownload);
+  },
+
+
 }
+
