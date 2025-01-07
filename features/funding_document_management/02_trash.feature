@@ -1,3 +1,4 @@
+@brankas_trash
 Feature: Brankas - Trash
     As a customer
     I want to see list folder and file other that has been deleted

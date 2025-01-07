@@ -3,7 +3,7 @@ Feature: Manual Transfer
     As a customer
     I want to make sure show error when rekening is inactive or not exist
 
-    #@C157063 @FunctTestFunding
+    @C157063
     Scenario: Checking inactive account number for Business
         Given I am a customer that want to transfer with business account
         When I login to app
@@ -16,7 +16,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak aktif
         And User not available to continue the process
 
-    #@C157064
+    @C157064
     Scenario: Checking not exist account number for Business
         Given I am a customer that want to transfer with business account
         When I login to app
@@ -29,7 +29,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak ditemukan
         And User not available to continue the process
 
-    # #@C157065
+    #@C157065
     Scenario: Checking inactive account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -42,7 +42,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak aktif
         And User not available to continue the process
 
-    # #@C157066
+    #@C157066
     Scenario: Checking not exist account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -435,4 +435,33 @@ Feature: Manual Transfer
         When I check on transaction history
         Then I see transaction out on transaction history
         And Balance is deducted
-        
+
+    @C135525
+    Scenario: Transfer with amount more than admin fee RTGS
+        Given I am a registered customer with following details:
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
+        And I filling in form login with the following details:
+            | userID      | natace13 |
+            | password    | Test1234 |
+            | userIDstg   | ruth1600 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will direct to dashboard
+        When I choose menu Transfer from main dashboard
+        And I am on receiver list page
+        And I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I input amount more than active amount
+        And I choose category 'Pembayaran'
+        And I click choose bank transfer service
+        And I can see BIFAST, SKN and RTGS
+        And I choose transfer service SKN
+        Then I shouldn't see message error total amount more than active amount
+        And I choose transfer service BIFAST
+        Then I shouldn't see message error total amount more than active amount
+        And I choose transfer service RTGS
+        Then I see message error total amount shouldn't more than active amount      

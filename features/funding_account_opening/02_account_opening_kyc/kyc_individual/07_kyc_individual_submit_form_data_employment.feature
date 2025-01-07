@@ -6,15 +6,15 @@ Feature: Account Opening KYC Individual - Submit Data Employment
 
     Background: User choose legality business type Individual
         Given I am a registered customer with following details:
-            | userID      | ruth0c1c |
+            | userID      | deve2f2c |
             | password    | 1234Test |
-            | userIDstg   | ruth530f |
+            | userIDstg   | stagd7b3 |
             | passwordStg | 1234Test |
         And I reset my state journey
         And I filling in form login with the following details:
-            | userID      | ruth0c1c |
+            | userID      | deve2f2c |
             | password    | 1234Test |
-            | userIDstg   | ruth530f |
+            | userIDstg   | stagd7b3 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -49,15 +49,15 @@ Feature: Account Opening KYC Individual - Submit Data Employment
         Then I should see message error '<Message>' in the below of field 'companyName' in form Data Employment
         Examples:                                                                 ❸
             | testRailTag | Value                                                                                                                                                   | Message                                           |
-            | @C171068    | TA                                                                                                                                                      | Nama perusahaan minimal 3 & maksimal 150 karakter |
-            | @C171069    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Nama perusahaan minimal 3 & maksimal 150 karakter |
+            | @C171068    | TA                                                                                                                                                      | Nama usaha minimal 3 & maksimal 150 karakter |
+            | @C171069    | Offline123457890 licenses are for using KSE without the internet. Once generated, the license cannot be revoked or transferred to a different machine.. | Nama usaha minimal 3 & maksimal 150 karakter |
 
     @C171070
     Scenario: Verifying business name has been filled and then empty the fields
         Given I am a customer who has submitted my domicile address
         When I fill my company name with 'AMARBANK'
         And I clear field company name
-        Then I should see message error 'Nama perusahaan wajib diisi' in the below of field 'companyName' in form Data Employment
+        Then I should see message error 'Nama usaha wajib diisi' in the below of field 'companyName' in form Data Employment
 
     @C171071
     Scenario: Verifying average transaction has been filled and then empty the fields

@@ -62,7 +62,7 @@ Given("I register initiator with partner as below", async (table) => {
         legalityType: legality,
         businessName: "CV BINTANG TIMUR",
         businessEmail: "bintang.timur.official@gmail.com",
-        businessType: "Tambang",
+        businessType: "Operator tur",
         industryType: "Jasa",
         monthlyIncome: "30 - 50 juta",
         averageTransaction: "20000000",

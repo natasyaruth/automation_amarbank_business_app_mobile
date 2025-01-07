@@ -111,13 +111,13 @@ Feature: Home - Document Brankas
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | test3c09 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | test3c09 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -153,13 +153,13 @@ Feature: Home - Document Brankas
         Given I am a registered customer with following details:
             | userID      | rudi71d5 |
             | password    | 1234Test |
-            | userIDstg   | gama3f6d |
+            | userIDstg   | rudi7a32 |
             | passwordStg | 1234Test | 
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | rudi71d5 |
             | password    | 1234Test |
-            | userIDstg   | gama3f6d |
+            | userIDstg   | rudi7a32 |
             | passwordStg | 1234Test | 
         And I click login
         And I click later in pop up biometric

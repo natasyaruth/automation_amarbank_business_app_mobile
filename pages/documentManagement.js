@@ -50,9 +50,10 @@ module.exports = {
     cancelMoveCopy: "~buttonCancel",
     moveAndCopy: "~buttonMove",
     confirmMove: "~buttonMove",
-    move: "~MoveButton",
+    move: "~buttonMove",
     copy: "~btnDuplicate",
     buttonNantiSaja: "~buttonBackLoan",
+    legalityBusiness: "~buttonLegalityType",
   },
   links: {
     usePassword: "~buttonUsePassword",
@@ -70,33 +71,33 @@ module.exports = {
     changeFileName: "~fieldChangeNameError",
   },
   texts: {
-    titleDocBrankas: {xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView"},
-    titleBottomSheet: {xpath:"/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView"},
+    titleDocBrankas: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.TextView" },
+    titleBottomSheet: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.TextView" },
     fileSize: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.TextView[3]" },
     fileNameUploaded: "~textDocName",
     titleDetailFolder: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView",
-    fileNameNIB: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[2]"},
-    fileNameAktaPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]"},
-    fileNameSKKemPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]"},
-    fileNameNPWPBisnisCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]"},
-    fileNameNPWPBisnisIndividualCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]"},
-    fileNameSerPendaftaran: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]"},
-    fileNameSerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]"},
-    fileNameAktaPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]"},
-    fileNameSuratPerPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]"},
-    fileNameSuratPerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]"},
-    fileNameSKKemPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]"},
-    extTypeNIB: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[3]"},
-    extTypeAktaPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]"},
-    extTypeSKKemPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]"},
-    extTypeNPWPBisnisCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]"},
-    extTypeNPWPBisnisIndividualCompany: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]"},
-    extTypeSerPendaftaran: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]"},
-    extTypeSerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]"},
-    extTypeAktaPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]"},
-    extTypeSuratPerPendirian: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]"},
-    extTypeSuratPerPerubahanTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]"},
-    extTypeSKKemPerTerakhir: {xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]"},
+    fileNameNIB: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[2]" },
+    fileNameAktaPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]" },
+    fileNameSKKemPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]" },
+    fileNameNPWPBisnisCompany: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]" },
+    fileNameNPWPBisnisIndividualCompany: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[5]" },
+    fileNameSerPendaftaran: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[8]" },
+    fileNameSerPerubahanTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]" },
+    fileNameAktaPerTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[14]" },
+    fileNameSuratPerPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[11]" },
+    fileNameSuratPerPerubahanTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]" },
+    fileNameSKKemPerTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[17]" },
+    extTypeNIB: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[3]" },
+    extTypeAktaPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]" },
+    extTypeSKKemPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]" },
+    extTypeNPWPBisnisCompany: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]" },
+    extTypeNPWPBisnisIndividualCompany: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[6]" },
+    extTypeSerPendaftaran: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[9]" },
+    extTypeSerPerubahanTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]" },
+    extTypeAktaPerTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[15]" },
+    extTypeSuratPerPendirian: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[12]" },
+    extTypeSuratPerPerubahanTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]" },
+    extTypeSKKemPerTerakhir: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.TextView[18]" }
   },
   icons: {
     completeUpload: { xpath: "//android.view.View[2]/android.widget.ScrollView/android.widget.ImageView" },
@@ -116,7 +117,7 @@ module.exports = {
     buttonSaveOtherDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
     fieldNameDoc: { xpath: "//android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText" },
     buttonSeeDoc: { xpath: "//android.view.View/android.view.View/android.view.View[2]/android.view.View" },
-    buttonMove: {xpath: ""},
+    buttonMove: { xpath: "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]" },
   },
   folders: {
     folderNameFacility: { xpath: '(//android.view.View[@content-desc="folderName"])[3]' },
@@ -243,6 +244,11 @@ module.exports = {
   cancelDeleteDoc() {
     I.waitForElement(this.buttons.cancelDelete, 10);
     I.click(this.buttons.cancelDelete);
+  },
+
+  openDocLegalityBusiness() {
+    I.waitForElement(this.buttons.legalityBusiness, 10);
+    I.click(this.buttons.legalityBusiness);
   },
 
   confirmDeleteDoc() {
@@ -526,6 +532,15 @@ module.exports = {
     return await I.grabTextFrom(finalElement);
   },
 
+  async getFolderNameMoveCopyRoot(index) {
+    const textView = "/android.widget.TextView";
+    const rootView = "//android.widget.ScrollView/android.view.View";
+    const finalElement = rootView + "[" + index + "]" + textView;
+
+    I.waitForElement(finalElement, 10);
+    return await I.grabTextFrom(finalElement);
+  },
+
   async getDocNameTrashRoot(index) {
     const idElement = this.buttons.openFileTrash.replace(/~/, '');
     const textView = "//android.view.View[@content-desc=\"" + idElement + index + "\"]/android.widget.TextView";
@@ -596,147 +611,147 @@ module.exports = {
     }
   },
 
-  clickMoveAndCopy(){
+  clickMoveAndCopy() {
     I.waitForElement(this.buttons.copyMove, 20);
     I.click(this.buttons.copyMove);
   },
 
-  cancelMoveAndCopy(){
+  cancelMoveAndCopy() {
     I.waitForElement(this.buttons.cancelMoveCopy, 20);
     I.click(this.buttons.cancelMoveCopy);
   },
 
-  moveAndCopy(){
+  moveAndCopy() {
     I.waitForElement(this.buttons.moveAndCopy, 20);
     I.click(this.buttons.moveAndCopy);
   },
 
-  clickCreateNewFolderInMoveAndCopy(){
+  clickCreateNewFolderInMoveAndCopy() {
     I.waitForElement(this.buttons.addFolderFromMoveCopy, 20);
     I.click(this.buttons.addFolderFromMoveCopy);
   },
 
-  async getFileNameGiroNIB(){
+  async getFileNameGiroNIB() {
     I.waitForElement(this.texts.fileNameNIB, 10);
     return I.grabTextFrom(this.texts.fileNameNIB);
   },
 
-  async getFileNameGiroAktaPendirian(){
+  async getFileNameGiroAktaPendirian() {
     I.waitForElement(this.texts.fileNameAktaPendirian, 10);
     return I.grabTextFrom(this.texts.fileNameAktaPendirian);
   },
 
-  async getFileNameGiroSKKemPendirian(){
+  async getFileNameGiroSKKemPendirian() {
     I.waitForElement(this.texts.fileNameSKKemPendirian, 10);
     return I.grabTextFrom(this.texts.fileNameSKKemPendirian);
   },
 
-  async getFileNameGiroNPWPBusinessCompany(){
+  async getFileNameGiroNPWPBusinessCompany() {
     I.waitForElement(this.texts.fileNameNPWPBisnisCompany, 10);
     return I.grabTextFrom(this.texts.fileNameNPWPBisnisCompany);
   },
 
-  async getFileNameGiroAktaPerTerakhir(){
+  async getFileNameGiroAktaPerTerakhir() {
     I.waitForElement(this.texts.fileNameAktaPerTerakhir, 10);
     return I.grabTextFrom(this.texts.fileNameAktaPerTerakhir);
   },
 
-  async getFileNameSKKemPerTerakhir(){
+  async getFileNameSKKemPerTerakhir() {
     I.waitForElement(this.texts.fileNameSKKemPerTerakhir, 10);
     return I.grabTextFrom(this.texts.fileNameSKKemPerTerakhir);
   },
 
-  async getFileNameNPWPBusinessIndividualCompany(){
+  async getFileNameNPWPBusinessIndividualCompany() {
     I.waitForElement(this.texts.fileNameNPWPBisnisIndividualCompany, 10);
     return I.grabTextFrom(this.texts.fileNameNPWPBisnisIndividualCompany);
   },
 
-  async getFileNameSerPendaftaran(){
+  async getFileNameSerPendaftaran() {
     I.waitForElement(this.texts.fileNameSerPendaftaran, 10);
     return I.grabTextFrom(this.texts.fileNameSerPendaftaran);
   },
 
-  async getFileNameSuratPerPendirian(){
+  async getFileNameSuratPerPendirian() {
     I.waitForElement(this.texts.fileNameSuratPerPendirian, 10);
     return I.grabTextFrom(this.texts.fileNameSuratPerPendirian);
   },
 
-  async getFileNameSertifikatPerTerakhir(){
+  async getFileNameSertifikatPerTerakhir() {
     I.waitForElement(this.texts.fileNameSerPerubahanTerakhir, 10);
     return I.grabTextFrom(this.texts.fileNameSerPerubahanTerakhir);
   },
 
-  async getFileNameSuratPerPerubahanTerakhir(){
+  async getFileNameSuratPerPerubahanTerakhir() {
     I.waitForElement(this.texts.fileNameSuratPerPerubahanTerakhir, 10);
     return I.grabTextFrom(this.texts.fileNameSuratPerPerubahanTerakhir);
   },
 
-  async getExtTypeGiroNIB(){
+  async getExtTypeGiroNIB() {
     I.waitForElement(this.texts.extTypeNIB, 10);
     return I.grabTextFrom(this.texts.extTypeNIB);
   },
 
-  async getExtTypeGiroAktaPendirian(){
+  async getExtTypeGiroAktaPendirian() {
     I.waitForElement(this.texts.extTypeAktaPendirian, 10);
     return I.grabTextFrom(this.texts.extTypeAktaPendirian);
   },
 
-  async getExtTypeGiroSKKemPendirian(){
+  async getExtTypeGiroSKKemPendirian() {
     I.waitForElement(this.texts.extTypeSKKemPendirian, 10);
     return I.grabTextFrom(this.texts.extTypeSKKemPendirian);
   },
 
-  async getExtTypeGiroNPWPBusinessCompany(){
+  async getExtTypeGiroNPWPBusinessCompany() {
     I.waitForElement(this.texts.extTypeNPWPBisnisCompany, 10);
     return I.grabTextFrom(this.texts.extTypeNPWPBisnisCompany);
   },
 
-  async getExtTypeGiroAktaPerTerakhir(){
+  async getExtTypeGiroAktaPerTerakhir() {
     I.waitForElement(this.texts.extTypeAktaPerTerakhir, 10);
     return I.grabTextFrom(this.texts.extTypeAktaPerTerakhir);
   },
 
-  async getExtTypeSKKemPerTerakhir(){
+  async getExtTypeSKKemPerTerakhir() {
     I.waitForElement(this.texts.extTypeSKKemPerTerakhir, 10);
     return I.grabTextFrom(this.texts.extTypeSKKemPerTerakhir);
   },
 
-  async getExtTypeNPWPBusinessIndividualCompany(){
+  async getExtTypeNPWPBusinessIndividualCompany() {
     I.waitForElement(this.texts.extTypeNPWPBisnisIndividualCompany, 10);
     return I.grabTextFrom(this.texts.extTypeNPWPBisnisIndividualCompany);
   },
 
-  async getExtTypeSerPendaftaran(){
+  async getExtTypeSerPendaftaran() {
     I.waitForElement(this.texts.extTypeSerPendaftaran, 10);
     return I.grabTextFrom(this.texts.extTypeSerPendaftaran);
   },
 
-  async getExtTypeSuratPerPendirian(){
+  async getExtTypeSuratPerPendirian() {
     I.waitForElement(this.texts.extTypeSuratPerPendirian, 10);
     return I.grabTextFrom(this.texts.extTypeSuratPerPendirian);
   },
 
-  async getExtTypeSertifikatPerTerakhir(){
+  async getExtTypeSertifikatPerTerakhir() {
     I.waitForElement(this.texts.extTypeSerPerubahanTerakhir, 10);
     return I.grabTextFrom(this.texts.extTypeSerPerubahanTerakhir);
   },
 
-  async getExtTypeSuratPerPerubahanTerakhir(){
+  async getExtTypeSuratPerPerubahanTerakhir() {
     I.waitForElement(this.texts.extTypeSuratPerPerubahanTerakhir, 10);
     return I.grabTextFrom(this.texts.extTypeSuratPerPerubahanTerakhir);
   },
 
-  clickMove(){
+  clickMove() {
     I.waitForElement(this.buttons.move, 20);
     I.click(this.buttons.move);
   },
 
-  confirmMove(){
+  confirmMove() {
     I.waitForElement(this.buttons.confirmMove, 20);
     I.click(this.buttons.confirmMove);
   },
 
-  clickCopy(){
+  clickCopy() {
     I.waitForElement(this.buttons.copy, 20);
     I.click(this.buttons.copy);
   },

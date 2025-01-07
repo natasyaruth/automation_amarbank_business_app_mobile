@@ -32,8 +32,8 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Owners
         And I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
