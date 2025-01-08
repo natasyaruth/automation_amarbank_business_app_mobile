@@ -56,6 +56,23 @@ Feature: Account Opening KYB PT Perorangan - Upload Document Business
         And I will see checkbox Rights and Obligations is checked
         And I submit my business address
 
+    @C173116
+    Scenario: Access widget brankas document in upload document business PT Perorangan
+        Given I am a customer who has submitted business address
+        When I choose method upload document
+        And I choose direct upload via app
+        And I see files that need to be uploaded for type individual company
+        And I see widget brankas document in upload document business
+        And I upload all document business required for type individual company
+        And I click button progress upload document
+        And I will see all document business individual company has been uploaded
+        And I will see button request account opening is shown
+        And I click widget document safe
+        Then I will see onboarding page document safe continue to upload document business 
+        And I continue to process upload document business
+        And I will see all document business individual company has been uploaded
+        And I see widget brankas document in upload document business
+
     @C171480
     Scenario: Checking button account opening if user PT Perorangan only upload un-required document business
         Given I am a customer who has submitted business address

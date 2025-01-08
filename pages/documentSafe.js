@@ -38,6 +38,11 @@ module.exports = {
     I.click(this.buttons.continueOnboarding);
   },
 
+  clickContinueToUploadDocBusiness() {
+    I.waitForElement(this.buttons.continueOnboarding, 10);
+    I.click(this.buttons.continueOnboarding);
+  },
+
   clickUseDocumentSafe() {
     I.waitForElement(this.buttons.continueOnboarding, 10);
     I.click(this.buttons.continueOnboarding);

@@ -121,7 +121,7 @@ Then("I can see BIFAST and SKN", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -164,7 +164,7 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -205,7 +205,7 @@ Then("I can see SKN and RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -245,7 +245,7 @@ Then("I can see RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.dontSee(transferPage.radioButtons.methodSkn);
   I.dontSee(transferPage.texts.adminFeeSKN);
@@ -292,7 +292,7 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
   I.see(globalVariable.constant.methodTf.rtol);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
-  I.see("Rp 10.000 - Rp 50.000.000");
+  I.see("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
