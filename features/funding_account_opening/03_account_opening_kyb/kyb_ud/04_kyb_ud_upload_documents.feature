@@ -81,7 +81,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I see files that need to be uploaded for type individual company
         And I upload all document business required for type individual company
         And I click button progress upload document
-        Then I will see all document business individual company has been uploaded
+        Then I will see all document required business individual company has been uploaded
         And I will see button request account opening is shown
         And I click button request account opening
         And I will direct to page thank you and need verification of my data
@@ -95,6 +95,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I click see my document
         And I will direct to page document brankas
         And I click document giro
+        And I click document legality business
         And I will see document business required for type individual company
 
     @C171487
@@ -118,4 +119,5 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I click see my document
         And I will direct to page document brankas
         And I click document giro
+        And I click document legality business
         And I will see document business for type individual company

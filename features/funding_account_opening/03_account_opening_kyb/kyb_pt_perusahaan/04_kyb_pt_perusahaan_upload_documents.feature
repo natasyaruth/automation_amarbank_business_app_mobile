@@ -101,4 +101,5 @@ Feature: Account Opening KYB PT Perusahaan - Upload Document Business
         And I click see my document
         And I will direct to page document brankas
         And I click document giro
+        And I click document legality business
         And I will see document business for type company

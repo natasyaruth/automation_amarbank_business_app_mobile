@@ -30,7 +30,6 @@ Feature: User transfer with all transfer method
         And I choose category "Pembayaran"
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
-        And I am on Transfer methode list page
         Then I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
@@ -61,7 +60,6 @@ Feature: User transfer with all transfer method
         And I choose category 'Pembayaran'
         And I input notes with 'Test RTOL'
         And I click choose bank transfer service
-        And I am on Transfer methode list page
         And I can see BIFAST, RTOL and SKN
         And I choose transfer service RTOL
         And I click transfer
@@ -70,17 +68,16 @@ Feature: User transfer with all transfer method
         And I input PIN '111111'
         Then I successfully transferred
 
-    @C96932
+    @C133897
     Scenario: User Success Transfer BiFast and check daily limit
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '60000000'
+        And I input amount '100000'
         And I choose category 'Tagihan'
         And I input notes with 'Test BiFast'
         And I click choose bank transfer service
-        And I am on Transfer methode list page
-        And I can see BIFAST and SKN
+        And I can see BIFAST, RTOL and SKN
         And I choose transfer service BIFAST
         And I click transfer
         And I click transfer now
@@ -94,53 +91,34 @@ Feature: User transfer with all transfer method
         And I validate page transfer
         And I see limit transaction is updated
         And I input amount '200000000'
-        Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian"
-
-    @C135519
-    Scenario: User confirmation transfer SKN with choice between SKN and RTGS
-        Given I am a customer who wants to Transfer and has friend list
-        When I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount '200000000'
-        And I choose category 'Tagihan'
-        And I input notes with 'Test SKN'
-        And I click choose bank transfer service
-        And I am on Transfer methode list page
-        And I can see SKN and RTGS
-        And I choose transfer service SKN
-        And I click transfer
-        And I click transfer now
-        And I input PIN '111111'
-        Then I successfully transferred    
+        Then I see error message daily transaction "Nominal melebihi sisa limit transaksi harian" 
 
     @C133898
     Scenario: User Success Transfer SKN
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '200000000'
+        And I input amount '55000000'
         And I choose category 'Tagihan'
         And I input notes with 'Test SKN'
         And I click choose bank transfer service
-        And I am on Transfer methode list page
-        And I can see BIFAST, SKN and RTGS
+        And I can see BIFAST, RTOL and SKN
         And I choose transfer service SKN
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
         Then I successfully transferred
 
-    @C96934
+    @C96934    
     Scenario: User Success Transfer RTGS
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '1000000020'
+        And I input amount '100000020'
         And I choose category 'Tagihan'
         And I input notes with 'Test RTGS'
         And I click choose bank transfer service
-        And I am on Transfer methode list page
-        And I can see RTGS
+        And I can see BIFAST, RTOL, SKN and RTGS
         And I choose transfer service RTGS
         And I click transfer
         And I click transfer now
