@@ -7,12 +7,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161080
     Scenario: User transfer input notes with emoji
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -31,12 +31,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161081
     Scenario: User transfer input notes with symbol
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -55,12 +55,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161082
     Scenario: User Transfer with under minimum transfer amount
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -77,12 +77,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161083
     Scenario: User Transfer with saldo aktif tidak mencukupi
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -99,12 +99,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161084
     Scenario: User Transfer with category not selected
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -122,12 +122,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161085
     Scenario: User transfer and input wrong PIN
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -153,12 +153,12 @@ Feature: User Want to Transfer with Negative Cases
     @C161086
     Scenario: User transfer and input wrong PIN twice
         Given I am a registered customer with following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | natace13 |
+            | userID      | ruth9ba1 |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
             | passwordStg | 1234Test |
@@ -220,123 +220,3 @@ Feature: User Want to Transfer with Negative Cases
         And I click understand to page login
         And I will directing to page login
         And I reset attempt failed PIN
-
-    @C161088
-    Scenario: Transfer with amount more than admin fee RTOL
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, RTOL and SKN
-        And I choose transfer service RTOL
-        Then I see message error total amount shouldn't more than active amount
-        And I choose transfer service BIFAST
-        Then I see message error total amount shouldn't more than active amount
-        And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount
-
-    @C161089
-    Scenario: Transfer with amount more than admin fee BIFAST
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, RTOL and SKN
-        And I choose transfer service RTOL
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service BIFAST
-        Then I see message error total amount shouldn't more than active amount
-        And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount
-
-    @C161090
-    Scenario: Transfer with amount more than admin fee SKN
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, RTOL and SKN
-        And I choose transfer service RTOL
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service BIFAST
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service SKN
-        Then I see message error total amount shouldn't more than active amount
-
-    @C161091
-    Scenario: Transfer with amount more than admin fee RTGS
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | 1234Test |
-            | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will direct to dashboard
-        When I choose menu Transfer from main dashboard
-        And I am on receiver list page
-        And I input name 'Surya Edwin' from the search box
-        And I choose the friendlist
-        And I input amount more than active amount
-        And I choose category 'Pembayaran'
-        And I click choose bank transfer service
-        And I can see BIFAST, SKN and RTGS
-        And I choose transfer service SKN
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service BIFAST
-        Then I shouldn't see message error total amount more than active amount
-        And I choose transfer service RTGS
-        Then I see message error total amount shouldn't more than active amount

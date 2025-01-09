@@ -6,7 +6,7 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         Background: User choose legality business type PT Perusahaan
             Given I am a registered customer with following details:
-                  | userID      | deve0721 |
+                  | userID      | deveed47 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |   
@@ -14,7 +14,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I reset my state journey
               And complete onboarding document safe and survey
               And I filling in form login with the following details:
-                  | userID      | deve0721 |
+                  | userID      | deveed47 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
@@ -36,7 +36,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I fill my business profile as followings:
                   | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
                   | industry           | Jasa                                  |
-                  | businessField      | Restoran                              |
+                  | businessField      | Operator tur                          |
                   | monthlyIncome      | 30 - 50 juta                          |
                   | averageTransaction | 2000000                               |
                   | nib                | 9129106701234                         |
@@ -488,4 +488,5 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click see my document
               And I will direct to page document brankas
               And I click document giro
+              And I click document legality business
               And I will see document business for type company    

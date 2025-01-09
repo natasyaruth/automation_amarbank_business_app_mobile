@@ -682,7 +682,7 @@ Then("I will see all document required business individual company has been uplo
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
 
-        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
     } else if (
@@ -694,7 +694,7 @@ Then("I will see all document required business individual company has been uplo
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
 
-        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
         I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });

@@ -51,9 +51,11 @@ module.exports = {
         Object.keys(this.fields).indexOf(fieldName) !== -1
         ){
         I.waitForElement(this.fields[fieldName], 10);
+        I.click(this.fields[fieldName]);
+        I.wait(2);
         I.clearField(this.fields[fieldName]);
         I.setText(this.fields[fieldName], value);
-
+        I.hideDeviceKeyboard();
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
         ){

@@ -463,7 +463,6 @@ module.exports = {
 
   fillFieldNPWPBusiness(npwp) {
     I.waitForElement(this.fields.npwpBusiness, 10);
-    I.click(this.fields.npwpBusiness);
     I.setText(this.fields.npwpBusiness, npwp);
     I.hideDeviceKeyboard();
   },
