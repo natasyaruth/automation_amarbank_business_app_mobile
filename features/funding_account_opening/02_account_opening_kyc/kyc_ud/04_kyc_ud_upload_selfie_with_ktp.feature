@@ -29,7 +29,7 @@ Feature: Account Opening KYC UD - Upload Selfie with KTP
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Upload Selfie'
 
-    @C141166
+    @C171086
     Scenario: Upload selfie with KTP successfully business type UD   
         Given I am a customer who has uploaded my selfie photo
         When I click take photo selfie with KTP

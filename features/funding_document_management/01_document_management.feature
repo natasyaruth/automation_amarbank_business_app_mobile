@@ -1,5 +1,5 @@
 @document_management
-Feature: Document Management
+Feature: Brankas - Document Management
     As a customer
     I want to view business document that I previously uploaded
 
@@ -239,6 +239,7 @@ Feature: Document Management
             | userIDstg   | stag302d |
             | passwordStg | 1234Test |
         And complete onboarding document safe and survey
+        And never entered wrong password
         And I filling in form login with the following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -374,6 +375,7 @@ Feature: Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type company
 
     @C131653
@@ -382,13 +384,13 @@ Feature: Document Management
             | userID      | autoeb6a |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | autoeb6a |
             | password    | 1234Test |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
@@ -399,6 +401,7 @@ Feature: Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type company
 
     @C131656
@@ -424,6 +427,7 @@ Feature: Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type individual company
 
     @C131659
@@ -449,6 +453,7 @@ Feature: Document Management
         And I will direct to page document brankas
         Then I will see menu document giro and other
         And I click document giro
+        And I click document legality business
         And I will see document business for type individual company
 
     @C157169
@@ -536,13 +541,13 @@ Feature: Document Management
         Given I am a registered customer with following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And still not complete onboarding document safe and survey
         And I filling in form login with the following details:
             | userID      | auto0e1c |
             | password    | 1234Test |
-            | userIDstg   | ruth7cb8 |
+            | userIDstg   | test0792 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -722,7 +727,7 @@ Feature: Document Management
         And I will see button upload other document
         Then I will see empty detail menu other document
 
-    @C157518 @FunctTestFundingSprint4
+    @C157518
     Scenario: Close bottom sheet Add new file and new folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -742,8 +747,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I close bottom sheet upload
         Then I will direct to page document brankas
 
@@ -768,8 +773,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -797,8 +802,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I upload other document with type 'jpeg'
         And I will see other document has been uploaded
         And I click save document
@@ -826,15 +831,15 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I upload other document with type 'png'
         And I will see other document has been uploaded
         And I click save document
         Then I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
 
-    @C157524 @FunctTestFundingSprint4
+    @C157524
     Scenario: Upload other document with type PDF
         Given I am a registered customer with following details:
             | userID      | devef721 |
@@ -855,8 +860,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
@@ -884,14 +889,14 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         Then I will see other document has been uploaded
         And I click save document
@@ -919,8 +924,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I will see bottom sheet new folder
         And I close bottom sheet upload
@@ -947,8 +952,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -976,12 +981,12 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Tidak Penting'
         And I save new folder
         And I see snackbar success create new folder
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -1009,24 +1014,24 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
         And I will direct to page other document with document that has been uploaded is in there
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Rahasia'
         And I save new folder
@@ -1054,8 +1059,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I click icon clear name
         Then I will see button create new folder is disabled
@@ -1081,8 +1086,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I click icon clear name
         And I will see button create new folder is disabled
@@ -1110,8 +1115,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I clear new folder name using keyboard
         Then I will see button create new folder is disabled
@@ -1137,8 +1142,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting & R4has!@.,'
         And I save new folder
@@ -1166,8 +1171,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting 1'
         And I save new folder
@@ -1195,8 +1200,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with char more than 100 character
         Then I see field new folder is filled with only 100 character, the rest is auto trimmed
@@ -1226,8 +1231,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'A'
         And I save new folder
@@ -1255,13 +1260,13 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with new folder using name Folder Baru
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         Then I will see field new folder is filled with Folder Baru 1
 
@@ -1286,13 +1291,13 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'A'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill new folder name same as before
         And I save new folder
@@ -1320,8 +1325,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1354,8 +1359,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1368,7 +1373,8 @@ Feature: Document Management
         Then I will see snackbar success change folder name
         And I will direct to page document brankas with folder name has been change
 
-    Scenario: Edit naming folder in detail folder
+    @C164065
+    Scenario: Edit naming folder from menu detail in title 
         Given I am a registered customer with following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -1388,8 +1394,8 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I will see bottom sheet upload other document and create folder
+        And I click button menu action brankas
+        And I will see bottom sheet menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1426,7 +1432,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1459,7 +1465,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1492,7 +1498,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1527,7 +1533,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1560,7 +1566,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1591,7 +1597,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
@@ -1622,12 +1628,12 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting'
         And I save new folder
         And I see snackbar success create new folder
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I save new folder
         And I see snackbar success create new folder
@@ -1635,8 +1641,8 @@ Feature: Document Management
         And I click edit folder name
         And I edit folder name same with other folder
         And I click change name
-        Then I see message error folder name is exist
-        And I see button change name is enabled
+        Then I will see snackbar success change folder name
+        And I will see both folder with same name in root other document
 
     @C164053
     Scenario: Edit naming file
@@ -1659,7 +1665,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1694,7 +1700,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1727,7 +1733,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1760,7 +1766,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1793,7 +1799,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1828,7 +1834,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1861,13 +1867,13 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
-        And I upload other document with type 'jpg'
+        And I click button menu action brankas
+        And I upload other document with type 'pdf'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
-        And I click button upload other document
-        And I upload other document with type 'pdf'
+        And I click button menu action brankas
+        And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
@@ -1875,8 +1881,8 @@ Feature: Document Management
         And I click edit file name
         And I edit file name same with file name as before
         And I click change name
-        Then I see message error file name is exist
-        And I see button change name is enabled
+        Then I will see snackbar success change file name
+        And I will see both files with same filename in root other document
 
     @C164060
     Scenario: Let file naming is blank when editing
@@ -1899,7 +1905,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1930,7 +1936,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -1961,7 +1967,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -1969,7 +1975,7 @@ Feature: Document Management
         And I will direct to page document brankas with folder that has been created in section other document
         And I open other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia 2'
         And I save new folder
@@ -1977,7 +1983,7 @@ Feature: Document Management
         And I see the new folder is created
         And I open detail other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia 3'
         And I save new folder
@@ -1985,7 +1991,7 @@ Feature: Document Management
         And I see the new folder is created
         And I open detail other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia 4'
         And I save new folder
@@ -1993,7 +1999,7 @@ Feature: Document Management
         And I see the new folder is created
         And I open detail other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia 5'
         And I save new folder
@@ -2021,14 +2027,14 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Bisnis MSME'
         And I save new folder
         And I see snackbar success create new folder
         And I will direct to page document brankas with folder that has been created in section other document
         And I open other folder
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -2056,7 +2062,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Perusahaan Aku'
         And I save new folder
@@ -2064,7 +2070,7 @@ Feature: Document Management
         And I will direct to page document brankas with folder that has been created in section other document
         And I open other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -2078,8 +2084,8 @@ Feature: Document Management
         Then I will see snackbar success change file name
         And I will see file name has been change
 
-    @C164065
-    Scenario: Edit folder naming in detail folder
+    @C167409
+    Scenario: Edit naming folder in detail folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -2099,7 +2105,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Harus dijaga'
         And I save new folder
@@ -2107,7 +2113,7 @@ Feature: Document Management
         And I will direct to page document brankas with folder that has been created in section other document
         And I open other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia 2'
         And I save new folder
@@ -2142,7 +2148,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -2175,7 +2181,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -2186,7 +2192,7 @@ Feature: Document Management
         And I cancel delete file
         Then I will direct to page document brankas
 
-    @C165176
+    @C167410
     Scenario: Delete single folder
         Given I am a registered customer with following details:
             | userID      | deveceea |
@@ -2207,7 +2213,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -2220,7 +2226,8 @@ Feature: Document Management
         Then I will see snackbar folder deleted successfully
         And I will not see the deleted folder
 
-    Scenario: Delete single folder via detail folder
+    @C165176
+    Scenario: Delete folder from menu detail in title
         Given I am a registered customer with following details:
             | userID      | deveceea |
             | password    | 1234Test |
@@ -2240,7 +2247,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Folder Penting dan Rahasia'
         And I save new folder
@@ -2311,14 +2318,14 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Segera Dihapus'
         And I save new folder
         And I see snackbar success create new folder
         And I open other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Segera Dihapus 2'
         And I save new folder
@@ -2351,7 +2358,7 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
@@ -2384,12 +2391,12 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document
         And I will see snackbar success upload success
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'png'
         And I will see other document has been uploaded
         And I click save document
@@ -2425,14 +2432,14 @@ Feature: Document Management
         And I click direct to input password document
         And I input password document
         And I click see my document
-        And I click button upload other document
+        And I click button menu action brankas
         And I click create new folder
         And I fill field new folder with 'Rahasia Negara'
         And I save new folder
         And I see snackbar success create new folder
         And I open other folder
         And I will see folder contents still empty
-        And I click button upload other document
+        And I click button menu action brankas
         And I upload other document with type 'jpg'
         And I will see other document has been uploaded
         And I click save document

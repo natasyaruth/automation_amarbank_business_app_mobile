@@ -32,14 +32,14 @@ Feature: Account Opening KYB UD - Submit Business Owners
         And I see page 'Data Business Profile'
         When I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | nib               | 9129106701234   |
             | businessDateStart | 10/10/2010      |
         And I submit my business profile
 
-    @C131945
+    @C171484
     Scenario: Submit form Business owner successfully business type UD
         Given I am a customer who has submitted my business profile
         And I am the only one business owner

@@ -34,8 +34,8 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I see page 'Data Business Profile'
         When I fill my business profile as followings:
             | businessName      | FITHUB          |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129101111112   |
@@ -56,7 +56,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I will see checkbox Rights and Obligations is checked
         And I submit my business address
 
-    @C160207
+    @C171486
     Scenario: Upload only document required business type UD   
         Given I am a customer who has submitted business address
         And I choose method upload document
@@ -80,7 +80,7 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I click document giro
         And I will see document business required for type individual company
 
-    @C131947
+    @C171487
     Scenario: Upload All document business type UD
         Given I am a customer who has uploaded my eKTP photo and selfie
         When I choose method upload document

@@ -33,8 +33,8 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I see page 'Data Business Profile'
         When I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry          | Jasa            |
-            | businessField     | Restoran        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
@@ -49,9 +49,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Add Director
         Examples:
             | testRailTag | Field    | Field Name   |
-            | @C131873    | fullName | Nama lengkap |
-            | @C131874    | email    | E-mail       |
-            | @C131875    | nik      | Nomor KTP    |
+            | @C171377    | fullName | Nama lengkap |
+            | @C171378    | email    | E-mail       |
+            | @C171380    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Add Director
         Given I am a customer who has submitted my business profile
@@ -61,9 +61,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Add Director
         Examples:
             | testRailTag | Field    | Field Name   |
-            | @C131876    | fullName | Nama lengkap |
-            | @C131877    | email    | E-mail       |
-            | @C131878    | nik      | Nomor KTP    |
+            | @C171382    | fullName | Nama lengkap |
+            | @C171383    | email    | E-mail       |
+            | @C171384    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying full name with invalid value in form Add Director
         Given I am a customer who has submitted my business profile
@@ -72,13 +72,13 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'fullName' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value                                               | Message                                                                        |
-            | @C131879    | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            | @C131880    | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
-            | @C131881    | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-            | @C131882    | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
-            | @C131883    |                                                     | Nama lengkap wajib diisi                                                       |
+            | @C171386    | 31245                                               | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            | @C171387    | Ruth Natasya 1                                      | Nama lengkap tidak boleh mengandung angka dan spesial karakter kecuali (.,\'-) |
+            | @C171389    | Ruth Natasya Natasya Natasya Natasya Natasya Natasy | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            | @C171390    | Ru                                                  | Nama lengkap minimal 3 & maksimal 50 karakter                                  |
+            | @C171391    |                                                     | Nama lengkap wajib diisi                                                       |
 
-    @C131884
+    @C171393
     Scenario: Verifying field full name contain with special char and number
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -92,9 +92,9 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'email' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value                  | Message                    |
-            | @C131885    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
-            | @C131886    | ruth natasya@gmail.com | E-mail tidak sesuai format |
-            | @C131887    |                        | E-mail wajib diisi         |
+            | @C171395    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+            | @C171396    | ruth natasya@gmail.com | E-mail tidak sesuai format |
+            | @C171397    |                        | E-mail wajib diisi         |
 
     Scenario Outline: Verifying NIK field with invalid value in form Add Director
         Given I am a customer who has submitted my business profile
@@ -103,15 +103,15 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I should see message error '<Message>' in the below of field 'nik' in form Add Director
         Examples:                                                                 ❸
             | testRailTag | Value              | Message                             |
-            | @C131888    | 31730aa601860007   | Nomor KTP tidak sesuai format       |
-            | @C131889    | 31730@!601860007   | Nomor KTP tidak sesuai format       |
-            | @C131890    | 31730 601860007    | Nomor KTP tidak sesuai format       |
-            | @C131891    | 31730356018607     | Nomor KTP harus 16 digit            |
-            | @C131892    | 317303560186000712 | Nomor KTP harus 16 digit            |
-            | @C131893    | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
-            | @C131894    |                    | Nomor KTP wajib diisi               |
+            | @C171399    | 31730aa601860007   | Nomor KTP tidak sesuai format       |
+            | @C171400    | 31730@!601860007   | Nomor KTP tidak sesuai format       |
+            | @C171401    | 31730 601860007    | Nomor KTP tidak sesuai format       |
+            | @C171403    | 31730356018607     | Nomor KTP harus 16 digit            |
+            | @C171405    | 317303560186000712 | Nomor KTP harus 16 digit            |
+            | @C171406    | 417303560186000712 | Nomor KTP tidak boleh diawali 0 & 4 |
+            | @C171408    |                    | Nomor KTP wajib diisi               |
 
-    @C131895
+    @C171409
     Scenario: Submit one business director successfully business type CV
         Given I am a customer who has submitted my business profile
         And I am the only one business director
@@ -119,7 +119,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131896
+    @C171411
     Scenario: Submit more than one business director successfully business type CV
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -142,7 +142,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131897
+    @C171413
     Scenario: Delete director for business type CV
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -156,7 +156,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify director successfully deleted
         And I will not be able to see the deleted data director
 
-    @C131898
+    @C171414
     Scenario: Delete director and then submit for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -181,7 +181,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C131899
+    @C171416
     Scenario: Update director for business type CV
         Given I am a customer who has submitted my business profile
         When I click add business director
@@ -200,7 +200,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
         Then I will notify director successfully updated
         And I will see the updated director
 
-    @C131900
+    @C171417
     Scenario: Update director and then submit for business type CV
         Given I am a customer who has submitted my business profile
         When I click add business director

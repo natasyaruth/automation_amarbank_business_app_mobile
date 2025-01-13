@@ -15,6 +15,13 @@ module.exports = {
 
         return day;
     },
+    getCurrentDayString() {
+        const currentDate = new Date();
+        const day = currentDate.getDay();
+        const adjustedIndex = (day === 0) ? 6 : day - 1;
+
+        return this.constant.days[adjustedIndex];
+    },
     getCurrentDateWithoutZero() {
         const currentDate = new Date();
         const date = currentDate.getDate();
@@ -76,6 +83,9 @@ module.exports = {
             "Mei", "Juni", "Juli", "Agustus",
             "September", "Oktober", "November", "Desember"
         ],
+        days:[
+            "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
+        ],
         formatDate: {
             ddmmmyyyy: "ddmmmyyyy",
         },
@@ -85,6 +95,23 @@ module.exports = {
             rtol: "RTOL",
             skn: "SKN",
             rtgs: "RTGS"
+        },
+        industryType: {
+            industryCreative: "Industri Kreatif",
+            processing: "Industri Pengolahan",
+            food: "Industri Makanan & Minuman",
+            service: "Jasa",
+            contruction: "Konstruksi",
+            finance: "Keuangan & Asuransi",
+            education: "Pendidikan",
+            warehouse: "Pengangkutan & Pergudangan",
+            mining: "Pertambangan & Penggalian",
+            retail: "Perdagangan Besar & Eceran",
+            hospitality: "Restoran, Kafe dan Hotel",
+            healthService: "Rumah Sakit, Apotik dan Industri Kesehatan",
+            IT: "Teknologi Informasi",
+            transportation: "Transportasi",
+            other: "Lainnya",
         }
     },
     registration: {
@@ -156,6 +183,9 @@ module.exports = {
         averageTransaction: "",
         npwp: "",
         nib: "",
+        optionChoose: "",
+        otherIndustryType: "",
+        otherBusinessField: "",
     },
     formDirector: {
         fullName: "",
@@ -171,8 +201,14 @@ module.exports = {
         fileType: "",
         fileName: [],
         folderName: [],
+        folderDeleted: "",
         updateFolderName: "",
         updateFileName: "",
+        levelBackFolder: 0,
+        fileNameGiro: "",
+        openedFolder: [],
+        moveFolderFile: "",
+        copiedFiles: [],
     },
     createPin: {
         newPin: "",
@@ -210,6 +246,7 @@ module.exports = {
         activeAmount: "",
         method: "",
         totalAmount: "",
+        listApproval: [],
     },
     dashboard: {
         activeAmount: "",

@@ -30,7 +30,7 @@ Feature: Account Opening KYB PT Perorangan - Submit Business Profile
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
 
-    @C131940
+    @C171477
     Scenario: Submit form Business Profile successfully business type PT Perorangan
         Given I am a customer who has completed my KYC process
         When I continue to process KYB

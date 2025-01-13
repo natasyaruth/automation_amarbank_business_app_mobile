@@ -30,7 +30,7 @@ Feature: Account Opening KYC UD - Submit Form KTP
     And I see page 'Upload eKTP'
     And I upload my eKTP photo
 
-  @C131842
+  @C171084
   Scenario: Submit form KTP successfully business type UD
     Given I am a customer who has uploaded my eKTP photo
     When I fill all information identity details as followings:

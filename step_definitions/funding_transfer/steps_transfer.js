@@ -310,10 +310,13 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
 });
 
 Then("I choose transfer service RTGS", async () => {
+  I.wait(2);
   transferPage.chooseRtgs();
   globalVariable.transfer.adminFee = 30000;
   globalVariable.transfer.method = globalVariable.constant.methodTf.rtgs;
 
+  I.wait(2);
+  
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeRTGS);
 
@@ -325,9 +328,12 @@ Then("I choose transfer service RTGS", async () => {
 });
 
 Then("I choose transfer service RTOL", async () => {
+  I.wait(2);
   transferPage.chooseRtol();
   globalVariable.transfer.adminFee = 6500;
   globalVariable.transfer.method = globalVariable.constant.methodTf.rtol;
+
+  I.wait(2);
 
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeRTOL);
@@ -341,10 +347,13 @@ Then("I choose transfer service RTOL", async () => {
 });
 
 Then("I choose transfer service BIFAST", async () => {
+  I.wait(2);
   transferPage.chooseBifast();
   globalVariable.transfer.adminFee = 2500;
   globalVariable.transfer.method = globalVariable.constant.methodTf.bifast;
 
+  I.wait(2);
+  
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeBIFAST);
 
@@ -356,10 +365,13 @@ Then("I choose transfer service BIFAST", async () => {
 });
 
 Then("I choose transfer service SKN", async () => {
+  I.wait(2);
   transferPage.chooseSkn();
   globalVariable.transfer.adminFee = 2900;
   globalVariable.transfer.method = globalVariable.constant.methodTf.skn;
 
+  I.wait(2);
+  
   const actualAdminFee = await transferPage.getValueAdminFee();
   I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeSKN);
 
@@ -375,7 +387,7 @@ When("I click transfer", () => {
 });
 
 When("I input PIN {string}", (Pin) => {
-  I.waitForText("Masukkan PIN Transaksi", 10);
+  I.waitForText("Masukkan PIN", 10);
   transferPage.inputPin(Pin);
 }),
 
@@ -400,6 +412,7 @@ Then("I successfully transferred", async () => {
   const actualSenderAccNumber = (await transferPage.getSenderAccNnumber()).replace(/\s+/g, '');
   const expectedSenderAccNumber = (await resetStateDao.getAccountNumber(globalVariable.login.userID, globalVariable.login.password)).accountNumber;
   I.assertEqual(actualSenderAccNumber, expectedSenderAccNumber);
+  globalVariable.transfer.senderAccountNumber = expectedSenderAccNumber;
 
   const actualReceiverName = await transferPage.getReceiverName();
   I.assertEqual(actualReceiverName, globalVariable.friendList.friendListName);
@@ -429,7 +442,13 @@ Then("I successfully transferred", async () => {
   I.waitForElement(transferPage.texts.referenceNumber, 10);
 
   I.see("Tanggal");
-  I.waitForElement(transferPage.texts.dateTransfer, 10);
+  const actDate = await transferPage.getDateTransfer();
+  const date = globalVariable.getCurrentDateWithZero();
+  const month = globalVariable.getMonthString();
+  const year = globalVariable.getCurrentYear();
+  const expDate = date +" "+ month +" "+ year;
+  I.assertEqual(actDate, expDate);
+  globalVariable.transfer.date = actDate;
 
   I.see("Waktu");
   I.waitForElement(transferPage.texts.timeTransfer, 10);
@@ -532,9 +551,9 @@ Then("I see message error total amount shouldn't more than active amount", async
   const actualMsgError = await transferPage.getMessageErrorField("balance");
   I.assertEqual(actualMsgError, "Total transfer melebihi saldo aktif");
 
-  const disabledButton = await I.grabAttributeFrom(transferPage.buttons.transfer, 'enabled');
+  const isEnabled = await I.grabAttributeFrom(transferPage.buttons.transfer, 'enabled');
 
-  I.assertEqual(disabledButton, "true");
+  I.assertEqual(isEnabled, "true");
 });
 
 Then("I shouldn't see message error total amount more than active amount", async () => {
@@ -542,9 +561,9 @@ Then("I shouldn't see message error total amount more than active amount", async
   I.dontSee(transferPage.messageErrorFields.balance);
   I.dontSee("Total transfer melebihi saldo aktif");
 
-  const disabledButton = await I.grabAttributeFrom(transferPage.buttons.transfer, 'enabled');
+  const isEnabled = await I.grabAttributeFrom(transferPage.buttons.transfer, 'enabled');
 
-  I.assertEqual(disabledButton, "false");
+  I.assertEqual(isEnabled, "true");
 });
 
 Then("I see PIN message error {string}", async (expectedMessageErrorPIN) => {

@@ -4,7 +4,7 @@ Feature: Account Forgot Password
     As a customer
     I want to reset password
 
-    @C133804
+    @C165952
     Scenario: Reset password with user ID is empty
         Given I am a customer want to reset password
         When I leave field User ID empty
@@ -18,11 +18,11 @@ Feature: Account Forgot Password
         Then I should be notified '<Message>' in the below of field 'email' forgot password
         Examples:                                                                 ❸
             | testRailTag | Value                  | Message                    |
-            | @C133805    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
-            | @C133806    | ruth natasya@gmail.com | E-mail tidak sesuai format |
-            | @C133807    |                        | E-mail wajib diisi         |
+            | @C165953    | ruth.natasyagmail.com  | E-mail tidak sesuai format |
+            | @C165954    | ruth natasya@gmail.com | E-mail tidak sesuai format |
+            | @C165955    |                        | E-mail wajib diisi         |
 
-    @C133808
+    @C165956
     Scenario: Fill form reset password with user id and email is not match
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -37,7 +37,7 @@ Feature: Account Forgot Password
         And I click try again to reset password
         And I reset attempt failed login
 
-    @C133809
+    @C165957
     Scenario: Fill form reset password with user id and email is not match 3 times
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -59,7 +59,7 @@ Feature: Account Forgot Password
         And I will directing to page login
         And I reset attempt failed login
 
-    @C133810
+    @C165958
     Scenario: Fill form reset password with user id and email is match after fill form with user id and email is not match 3 times
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -84,7 +84,7 @@ Feature: Account Forgot Password
         And I click button Reset Password
         Then I will see information about the reset password can be done in the next 10 minutes
 
-    @C133811
+    @C165959
     Scenario: Reset password with user ID has been registered
         Given I am a registered customer with following details:
             | userID      | ruthf200 |
@@ -97,7 +97,7 @@ Feature: Account Forgot Password
         And I click button Reset Password
         Then I should be notified that email Reset Password successfully sent
 
-    @C133812
+    @C165960
     Scenario: Resend email reset password
         Given I am a customer with User ID and email has already requested a password reset
             | userID      | ruth5010 |
@@ -108,7 +108,7 @@ Feature: Account Forgot Password
         When I resend email reset password
         Then I should be notified that email reset password has been successfully sent
 
-    @C133813
+    @C165961
     Scenario: Reset password with user ID from invitation business
         Given I am a registered customer with following details:
             | userID      | autoeb6a |
@@ -122,7 +122,7 @@ Feature: Account Forgot Password
         And I click button confirmation reset password
         Then I should be notified that email Reset Password successfully sent
 
-    @C133814
+    @C165962
     Scenario: Back to page reset password from pop up confirmation
         Given I am a registered customer with following details:
             | userID      | autoeb6a |
@@ -136,7 +136,7 @@ Feature: Account Forgot Password
         And I click button back from pop up reset password
         Then I should back to page reset password with field User ID still filled
 
-    @C133815
+    @C165963
     Scenario: Back to page login from page reset password
         Given I am a customer want to reset password
         When I click button back in the header page

@@ -38,6 +38,61 @@ Given("I have more than one other folders", async () => {
 
 });
 
+Given("I recently have folder in other doc", async () => {
+
+    const folderName = "Rahasia Perusahaan"
+
+    globalVariable.uploadDocuments.folderName.unshift(folderName);
+
+    await
+        resetStateDao.deleteAllDocInTrash(globalVariable.login.userID, globalVariable.login.password);
+
+    await
+        resetStateDao.deleteOtherDoc(globalVariable.login.userID, globalVariable.login.password);
+
+    I.wait(2);
+
+    await
+        uploadDao.uploadOtherFolder(globalVariable.login.userID, globalVariable.login.password, folderName);
+
+    globalVariable.uploadDocuments.folderName.unshift(folderName);
+});
+
+Given("I recently have {string} folder in other doc", async (numberOfFolder) => {
+
+    await
+        resetStateDao.deleteAllDocInTrash(globalVariable.login.userID, globalVariable.login.password);
+
+    await
+        resetStateDao.deleteOtherDoc(globalVariable.login.userID, globalVariable.login.password);
+
+    I.wait(2);
+
+    const folderName = "Rahasia Perusahaan";
+    const lengthListFolder = parseInt(numberOfFolder);
+
+    for (let i = 0; i < lengthListFolder; i++) {
+        const name = folderName + " " + i;
+        globalVariable.uploadDocuments.folderName.unshift(name);
+
+        await
+            uploadDao.uploadOtherFolder(globalVariable.login.userID, globalVariable.login.password, name);
+
+        I.wait(1);
+
+        globalVariable.uploadDocuments.folderName.unshift(name);
+    }
+});
+
+Given("don't have any document in trash", async () => {
+
+    await
+        resetStateDao.deleteAllDocInTrash(globalVariable.login.userID, globalVariable.login.password);
+
+});
+
+Given("I am on root other folder", () => { });
+
 When("I click document giro", () => {
     documentPage.clickDocumentGiro();
 });
@@ -46,7 +101,7 @@ When("I click menu other document", () => {
     documentPage.clickMenuOtherDocument();
 });
 
-When("I click button upload other document", () => {
+When("I click button menu action brankas", () => {
     documentPage.clickUploadOtherDocument();
 });
 
@@ -288,7 +343,32 @@ When("I click icon three dot folder detail", () => {
     documentPage.clickInfoFolderDetail();
 });
 
-When("I click icon three dot file", () => {
+When("I click icon three dot file", async () => {
+
+    let numberFolders;
+
+    if(
+        globalVariable.uploadDocuments.openedFolder.length === 0
+    ){
+        numberFolders = (await getDataDao.getCountFolderRootOtherDoc(globalVariable.login.userID, globalVariable.login.password)).numberOfFolder;
+
+    } else{
+        const folderName = globalVariable.uploadDocuments.folderName[0];
+
+        numberFolders = (await getDataDao.getCountFolderInSpecificPath(globalVariable.login.userID, globalVariable.login.password, folderName)).numberOfFolder;
+    }
+
+    if (
+        numberFolders === 0
+    ) {
+        documentPage.clickInfoFolderBucketlist(0);
+    } else {
+        documentPage.clickInfoFolderBucketlist(numberFolders);
+    }
+
+});
+
+When("I click icon three dot file inside the folder", () => {
     documentPage.clickInfoFolderBucketlist(0);
 });
 
@@ -354,10 +434,19 @@ When("I clear change file name using keyboard", () => {
 
 When("I open other folder", () => {
     documentPage.clickItemOtherDoc();
+
+    const openedFolder = globalVariable.uploadDocuments.folderName[0];
+    globalVariable.uploadDocuments.openedFolder.unshift(openedFolder);
+
+    I.wait(2);
 });
 
 When("I open detail other folder", () => {
     documentPage.clickFolderInDetail(0);
+});
+
+When("I open second folder to move", () => {
+    documentPage.clickFolderInDetail(1);
 });
 
 When("I edit file name same with file name as before", () => {
@@ -365,28 +454,294 @@ When("I edit file name same with file name as before", () => {
     const newFileName = globalVariable.uploadDocuments.fileName[0].replace(/\./g, "").replace(regex, "");
 
     documentPage.fillNewFileName(newFileName);
+    globalVariable.uploadDocuments.updateFileName = newFileName;
+});
+
+When("I click menu trash", () => {
+    documentPage.clickMenuTrash();
+});
+
+When("I click menu detail trash", () => {
+    documentPage.clickMenuTitleTrash();
+});
+
+When("I click menu detail trash", () => {
+    documentPage.clickMenuTitleTrash();
+});
+
+When("I close bottom sheet menu delete all permanent", () => {
+    documentPage.closeBottomSheet();
+});
+
+When("I close bottom sheet menu detail content trash", () => {
+    documentPage.closeBottomSheet();
+});
+
+When("I open folder in trash", () => {
+    documentPage.openFolderTrash(0);
+});
+
+When("I click icon three dot folder in trash", () => {
+    documentPage.clickInfoDetailFolderInTrash(0);
+});
+
+When("I click icon three dot file in trash", () => {
+    documentPage.clickInfoDetailFileInTrash(0);
+});
+
+When("I click delete all permanent", () => {
+    documentPage.clickDeleteAllPermanent();
+});
+
+When("I confirm delete all permanent", () => {
+    documentPage.confirmDeleteAll();
+});
+
+When("I cancel delete all permanent", () => {
+    documentPage.cancelDeleteAll();
+});
+
+When("I click restore", () => {
+    documentPage.clickRestore();
+});
+
+When("I click delete permanent", () => {
+    documentPage.clickDeletePermanent();
+});
+
+When("I confirm delete permanent", () => {
+    documentPage.confirmDelete();
+});
+
+When("I cancel delete permanent", () => {
+    documentPage.cancelDelete();
+});
+
+When("I back from detail folder to root folder", () => {
+    const listFolder = globalVariable.uploadDocuments.folderName;
+    let loopFolder;
+
+    if (
+        globalVariable.uploadDocuments.levelBackFolder !== 0
+    ) {
+        loopFolder = listFolder.length - globalVariable.uploadDocuments.levelBackFolder;
+        for (let i = 0; i < loopFolder; i++) {
+            headerPage.clickButtonBack();
+            I.wait(4);
+        }
+    } else {
+        loopFolder = listFolder.length;
+        for (let i = 1; i < loopFolder; i++) {
+            headerPage.clickButtonBack();
+            I.wait(4);
+        }
+    }
+
+
+});
+
+When("I back from detail folder to root folder in trash", () => {
+    const listFolder = globalVariable.uploadDocuments.folderName;
+    let loopFolder;
+
+    if (
+        globalVariable.uploadDocuments.levelBackFolder !== 0
+    ) {
+        loopFolder -= globalVariable.uploadDocuments.levelBackFolder;
+    } else {
+        loopFolder -= listFolder.length;
+    }
+
+    I.wait(2);
+
+    for (let i = 0; i < loopFolder; i++) {
+        headerPage.clickButtonBack();
+        I.wait(4);
+    }
+});
+
+When("I back to folder in branch {string}", (levelFolder) => {
+    const listFolder = globalVariable.uploadDocuments.folderName;
+    const numberLevel = parseInt(levelFolder);
+
+    const loopFolder = listFolder.length - numberLevel;
+
+    for (let i = 0; i < loopFolder; i++) {
+        headerPage.clickButtonBack();
+        I.wait(4);
+    }
+
+    globalVariable.uploadDocuments.levelBackFolder = numberLevel;
+});
+
+When("I refresh the page with swipe down screen", async () => {
+    I.wait(2);
+
+    I.performSwipe({ x: 362, y: 704 }, { x: 831, y: 1249 });
+});
+
+When("I click menu detail info document {string}", async (giroDoc) => {
+
+    let fileName = "";
+    let extType = "";
+
+    switch (giroDoc) {
+        case "NIB":
+            fileName = await documentPage.getFileNameGiroNIB();
+            extType = await documentPage.getExtTypeGiroNIB();
+            break;
+
+        case "Akta Pendirian":
+            fileName = await documentPage.getFileNameGiroAktaPendirian();
+            extType = await documentPage.getExtTypeGiroAktaPendirian();
+            break;
+
+        case "SK Kemenkumham Pendirian":
+            fileName = await documentPage.getFileNameGiroSKKemPendirian();
+            extType = await documentPage.getExtTypeGiroSKKemPendirian();
+            break;
+
+        case "NPWP Bisnis":
+            const legalityType = (await getDataDao.getLegalityType(globalVariable.login.userID, globalVariable.login.password)).legalityType;
+            if (
+                legalityType === "PT Perorangan" &&
+                legalityType === "UD"
+            ) {
+                fileName = await documentPage.getFileNameNPWPBusinessIndividualCompany();
+                extType = await documentPage.getExtTypeNPWPBusinessIndividualCompany();
+
+            } else {
+                fileName = await documentPage.getFileNameGiroNPWPBusinessCompany();
+                extType = await documentPage.getExtTypeGiroNPWPBusinessCompany();
+            }
+            break;
+
+        case "Akta Perubahan Terakhir":
+            fileName = await documentPage.getFileNameGiroAktaPerTerakhir();
+            extType = await documentPage.getExtTypeGiroAktaPerTerakhir();
+            break;
+
+        case "SK Kemenkumham Perubahan Terakhir":
+            fileName = await documentPage.getFileNameSKKemPerTerakhir();
+            extType = await documentPage.getExtTypeSKKemPerTerakhir();
+            break;
+
+        case "Sertifikat Pendaftaran":
+            fileName = await documentPage.getFileNameSerPendaftaran();
+            extType = await documentPage.getExtTypeSerPendaftaran();
+            break;
+
+        case "Surat Pernyataan Pendirian":
+            fileName = await documentPage.getFileNameSuratPerPendirian();
+            extType = await documentPage.getExtTypeSuratPerPendirian();
+            break;
+
+        case "Sertifikat Perubahan Terakhir":
+            fileName = await documentPage.getFileNameSertifikatPerTerakhir();
+            extType = await documentPage.getExtTypeSertifikatPerTerakhir();
+            break;
+
+        case "Surat Pernyataan Perubahan Terakhir":
+            fileName = await documentPage.getFileNameSuratPerPerubahanTerakhir();
+            extType = await documentPage.getExtTypeSuratPerPerubahanTerakhir();
+            break;
+        default:
+            throw new Error("Not recognize the giro document name");
+    }
+
+    globalVariable.uploadDocuments.fileNameGiro = fileName + extType;
+
+    await
+        documentPage.clickThreeDotFileGiro(globalVariable.login.userID, globalVariable.login.password, giroDoc);
+});
+
+When("I close bottom sheet detail info document giro", async () => {
+    documentPage.closeBottomSheet();
+});
+
+When("I click copy and move files", async () => {
+    documentPage.clickMoveAndCopy();
+});
+
+When("I cancel move and copy files", async () => {
+    documentPage.cancelMoveAndCopy();
+});
+
+When("I cancel move", async () => {
+    documentPage.cancelMoveAndCopy();
+});
+
+When("I click create new folder in move and copy", async () => {
+    documentPage.clickCreateNewFolderInMoveAndCopy();
+});
+
+When("I click create new folder in move folder or files", async () => {
+    documentPage.clickCreateNewFolderInMoveAndCopy();
+});
+
+When("I click move and copy here", async () => {
+    documentPage.moveAndCopy();
+
+    const copiedFileName = globalVariable.uploadDocuments.fileNameGiro;
+
+    globalVariable.uploadDocuments.copiedFiles.unshift(copiedFileName);
+});
+
+When("I click move", async () => {
+    globalVariable.uploadDocuments.moveFolderFile = await documentPage.getTitleBottomSheet();
+
+    documentPage.clickMove();
+});
+
+When("I click move here", () => {
+    documentPage.confirmMove();
+});
+
+When("I open folder with name {string}", (folderName) => {
+    I.waitForText(folderName, 10);
+    I.click(folderName);
+
+    globalVariable.uploadDocuments.openedFolder.unshift(folderName);
+});
+
+When("I click copy files", async () => {
+    const fileName = await documentPage.getTitleBottomSheet();
+    globalVariable.uploadDocuments.copiedFiles.unshift(fileName);
+
+    documentPage.clickCopy();
+});
+
+When("I click icon three dot file that has been copied before", async () => {
+    const copiedFile = globalVariable.uploadDocuments.copiedFiles[0];
+
+    const indexFile = globalVariable.uploadDocuments.fileName.indexOf(copiedFile);
+
+    documentPage.clickInfoFolderBucketlist(indexFile);
+});
+
+When("I click document legality business", ()=>{
+    documentPage.openDocLegalityBusiness();
 });
 
 Then("I will see pop up confirm delete folder", () => {
-    I.waitForText("Hapus Folder ini?", 10);
-    I.waitForText("Apakah Anda yakin " + "\n" +
-        "ingin menghapus folder “" + globalVariable.uploadDocuments.folderName + "” ?", 10);
+    I.waitForText("Pindahkan ke Trash?", 10);
+    I.waitForText("“" + globalVariable.uploadDocuments.folderName + "” akan terhapus permanen setelah 30 hari.", 10);
+
     I.see("Batalkan");
     I.waitForElement(documentPage.buttons.cancelDelete, 10);
 
-    I.see("Ya, Hapus");
+    I.see("Pindahkan");
     I.waitForElement(documentPage.buttons.confirmDelete, 10);
 });
 
 Then("I will see pop up confirm delete file", () => {
-    I.waitForText("Hapus Dokumen ini?", 10);
-    I.waitForText("Apakah Anda yakin "+"\n"+
-    "ingin menghapus dokumen “"+globalVariable.uploadDocuments.fileName[0]+"” ? ", 10);
+    I.waitForText("Pindahkan ke Trash?", 10);
+    I.waitForText("“" + globalVariable.uploadDocuments.fileName + "” akan terhapus permanen setelah 30 hari.", 10);
 
     I.see("Batalkan");
     I.waitForElement(documentPage.buttons.cancelDelete, 10);
 
-    I.see("Ya, Hapus");
+    I.see("Pindahkan");
     I.waitForElement(documentPage.buttons.confirmDelete, 10);
 });
 
@@ -415,16 +770,16 @@ Then("I will see bottom sheet input password document", () => {
 });
 
 Then("I will see button see document is enabled", async () => {
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSeeDoc, 'enabled');
 
-    I.assertEqual(isEnabled, 'false');
+    I.assertEqual(isEnabled, "true");
 });
 
 Then("I will see button see document is disabled", async () => {
 
-    const isEnabled = await I.grabAttributeFrom(documentPage.buttons.seeDocument, 'disabled');
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonSeeDoc, 'enabled');
 
-    I.assertEqual(isEnabled, 'true');
+    I.assertEqual(isEnabled, "false");
 
 });
 
@@ -494,6 +849,11 @@ Then("I will see document loan is empty", () => {
     I.waitForText("Pilih Nomor Pinjaman", 10);
     I.see("Halaman Ini Masih Kosong");
     I.see("Saat ini, belum ada aktivitas pinjaman yang tersedia untuk ditampilkan.");
+});
+
+Then("I will direct to page document giro", () => {
+
+    I.waitForText("Dokumen Giro", 10);
 });
 
 Then("I will see document business for type company", () => {
@@ -829,8 +1189,13 @@ Then("I will see empty detail menu other document", () => {
         "tersedia untuk ditampilkan.");
 });
 
-Then("I will see bottom sheet upload other document and create folder", () => {
+Then("I will see bottom sheet menu action brankas", () => {
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+    I.waitForText("Kapasitas", 20);
+    I.see("0 GB / 25 GB telah digunakan ");
+
+    I.see("Trash");
+    I.waitForElement(documentPage.buttons.trash, 10);
 
     I.see("Upload Dokumen");
     I.waitForElement(documentPage.buttons.addDoc, 10);
@@ -912,6 +1277,8 @@ Then("I see list document is ordered alphabetical", async () => {
 
     const listFileName = globalVariable.uploadDocuments.fileName.sort();
 
+    // console.log(listFileName);
+
     I.wait(5);
 
     for (let i = 0; i < listFileName.length; i++) {
@@ -944,15 +1311,16 @@ Then("I will see bottom sheet new folder", async () => {
 
 Then("I see snackbar success create new folder", () => {
     I.waitForText("Folder baru berhasil dibuat", 10);
+    I.wait(4);
 });
 
 Then("I will see snackbar folder deleted successfully", () => {
-    I.waitForText("Folder berhasil dihapus", 10);
+    I.waitForText("Folder berhasil dipindahkan ke Trash", 10);
     I.wait(3);
 });
 
 Then("I will see snackbar file deleted successfully", () => {
-    I.waitForText("Dokumen berhasil dihapus", 10);
+    I.waitForText("Dokumen berhasil dipindahkan ke Trash", 10);
     I.wait(3);
 });
 
@@ -984,36 +1352,12 @@ Then("I see list other document is ordering by folder and follow with file with 
 
     const listFolderName = globalVariable.uploadDocuments.folderName.sort();
     const listFileName = globalVariable.uploadDocuments.fileName.sort();
-    const combineLength = listFolderName.length + listFileName.length;
+    const combineList = listFolderName.concat(listFileName);
 
-    console.log(listFolderName);
-    console.log(listFileName);
-    let flag = false;
-
-    I.wait(6);
-
-    for (let i = 0; i < combineLength; i++) {
-
-        if (
-            flag === false
-        ) {
-            for (let j = 0; j < listFolderName.length; j++) {
-                const number = 1 + j;
-                const titleFolder = await documentPage.getFolderNameInListOtherDoc(number);
-                I.assertEqual(titleFolder, listFolderName[j]);
-                I.waitForElement(documentPage.buttons.infoDoc + i, 10);
-            }
-
-            flag = true;
-        } else {
-
-            for (let k = 0; k < listFileName.length; k++) {
-                const number = 1 + k;
-                const titleFile = await documentPage.getFileNameInListOtherDoc(number);
-                I.assertEqual(titleFile, listFileName[k]);
-                I.waitForElement(documentPage.buttons.infoDoc + i, 10);
-            }
-        }
+    for (let i = 0; i < combineList.length; i++) {
+        const title = await documentPage.getFileNameInListOtherDoc(i + 1);
+        I.assertEqual(title, combineList[i]);
+        I.waitForElement(documentPage.buttons.infoDoc + i, 10);
     }
 });
 
@@ -1059,8 +1403,17 @@ Then("I will see bottom sheet detail info folder", () => {
     I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
     I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
 
+    I.dontSee("Download");
+    I.dontSeeElement(documentPage.buttons.downloadOtherDoc);
+
     I.see("Ubah Nama");
     I.waitForElement(documentPage.buttons.changeName, 10);
+
+    I.dontSee("Buat Salinan");
+    I.dontSeeElement(documentPage.buttons.copy);
+
+    I.see("Pindahkan");
+    I.waitForElement(documentPage.buttons.move, 10);
 
     I.see("Hapus");
     I.waitForElement(documentPage.buttons.deleteDoc, 10);
@@ -1076,16 +1429,24 @@ Then("I will see bottom sheet detail info file", () => {
     I.see("Ubah Nama");
     I.waitForElement(documentPage.buttons.changeName, 10);
 
+    I.see("Buat Salinan");
+    I.waitForElement(documentPage.buttons.copy, 10);
+
+    I.see("Pindahkan");
+    I.waitForElement(documentPage.buttons.move, 10);
+
     I.see("Hapus");
     I.waitForElement(documentPage.buttons.deleteDoc, 10);
 });
 
 Then("I will see snackbar success change folder name", () => {
     I.waitForText("Nama folder berhasil diubah", 10);
+    I.wait(3);
 });
 
 Then("I will see snackbar success change file name", () => {
     I.waitForText("Nama dokumen berhasil diubah", 10);
+    I.wait(3);
 });
 
 Then("I will direct to page document brankas with folder name has been change", async () => {
@@ -1140,8 +1501,8 @@ Then("I see button change name is disabled", async () => {
 
 Then("I will see folder contents still empty", async () => {
     I.waitForText("Halaman Ini Masih Kosong", 10);
-    I.see("Saat ini, belum ada dokumen yang" + "\n" +
-        "tersedia untuk ditampilkan.");
+    I.waitForText("Saat ini, belum ada dokumen yang" + "\n" +
+        "tersedia untuk ditampilkan.", 20);
 
     I.waitForElement(documentPage.buttons.infoDocDetail, 10);
     I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
@@ -1236,8 +1597,677 @@ Then("I will see bottom sheet change file name", async () => {
 });
 
 Then("I will see title folder name is change", async () => {
-    I.wait(2);
+    I.wait(5);
 
     const actTitle = await documentPage.getTitleFolderDetail();
     I.assertEqual(actTitle, globalVariable.uploadDocuments.updateFolderName);
+});
+
+Then("I will see bottom sheet menu delete all permanent", async () => {
+
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+    I.waitForText("Hapus Permanen Semua", 10);
+    I.waitForElement(documentPage.buttons.permanentDeleteAll, 10);
+});
+
+Then("I will direct to trash page", () => {
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForElement(documentPage.buttons.infoDocTrashDetail, 10);
+
+    I.waitForText("Dokumen / Folder akan terhapus permanen setelah 30 hari.", 10);
+});
+
+Then("I will see folder that recently deleted in trash", async () => {
+
+    let listFolder = globalVariable.uploadDocuments.folderName;
+    let expFolderName;
+
+    if (
+        globalVariable.uploadDocuments.levelBackFolder !== 0
+    ) {
+        const index = globalVariable.uploadDocuments.levelBackFolder;
+        expFolderName = listFolder[index - 1];
+
+    } else {
+        expFolderName = listFolder[0];
+    }
+
+    const actFolderName = await documentPage.getFolderNameTrashRoot(1);
+    I.assertEqual(actFolderName, expFolderName);
+    globalVariable.uploadDocuments.folderDeleted = expFolderName;
+
+    I.waitForElement(documentPage.buttons.infoDocTrash + "0", 10);
+});
+
+Then("I will see folder that recently deleted from root in trash", async () => {
+
+    let listFolder = globalVariable.uploadDocuments.folderName;
+
+    const actFolderName = await documentPage.getFolderNameTrashRoot(1);
+    I.assertEqual(actFolderName, listFolder[listFolder.length - 1]);
+    globalVariable.uploadDocuments.folderDeleted = actFolderName;
+
+    I.waitForElement(documentPage.buttons.infoDocTrash + "0", 10);
+});
+
+Then("I will see file that recently deleted in trash", async () => {
+
+    const actFolderName = await documentPage.getDocNameTrashRoot(0);
+    I.assertEqual(actFolderName, globalVariable.uploadDocuments.fileName[0]);
+
+    I.waitForElement(documentPage.buttons.infoDocTrash + "0");
+});
+
+Then("I will see pop up confirm delete all permanent", () => {
+    I.waitForText("Hapus Permanen?", 10);
+    I.waitForText("Semua dokumen / folder akan dihapus secara permanen dan tidak dapat dikembalikan lagi.", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelPermanentDelete, 10);
+
+    I.see("Ya, Hapus");
+    I.waitForElement(documentPage.buttons.confirmPermanentDelete, 10);
+});
+
+Then("I will see snackbar success delete all permanent", () => {
+    I.waitForText("Semua dokumen / folder berhasil dihapus permanen", 10);
+});
+
+Then("I will not see all content in trash", () => {
+
+    I.waitForText("Halaman Ini Kosong", 10);
+    I.waitForText("Saat ini, belum ada dokumen yang" + "\n" +
+        "tersedia untuk ditampilkan.", 10);
+});
+
+Then("I will see bottom sheet menu file trash", () => {
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+    I.waitForText(globalVariable.uploadDocuments.fileName[0], 10);
+
+    I.see("Kembalikan");
+    I.waitForElement(documentPage.buttons.restoreDoc, 10);
+
+    I.see("Hapus Permanen");
+    I.waitForElement(documentPage.buttons.permanentDeleteDoc, 10);
+});
+
+Then("I will see bottom sheet menu folder trash", () => {
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+
+    I.see("Kembalikan");
+    I.waitForElement(documentPage.buttons.restoreDoc, 10);
+
+    I.see("Hapus Permanen");
+    I.waitForElement(documentPage.buttons.permanentDeleteDoc, 10);
+});
+
+Then("I will see pop up confirm delete folder permanent", () => {
+    I.waitForText("Hapus Permanen?", 10);
+    I.waitForText("“" + globalVariable.uploadDocuments.folderName[0] + "” ini akan dihapus secara permanen dan tidak dapat dikembalikan lagi. ", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelPermanentDelete, 10);
+
+    I.see("Ya, Hapus");
+    I.waitForElement(documentPage.buttons.confirmPermanentDelete, 10);
+});
+
+Then("I will see pop up confirm delete file permanent", () => {
+    I.waitForText("Hapus Permanen?", 10);
+    I.waitForText("“" + globalVariable.uploadDocuments.fileName[0] + "” ini akan dihapus secara permanen dan tidak dapat dikembalikan lagi. ", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelPermanentDelete, 10);
+
+    I.see("Ya, Hapus");
+    I.waitForElement(documentPage.buttons.confirmPermanentDelete, 10);
+});
+
+Then("I will see snackbar success restore document", () => {
+    I.waitForText("Dokumen berhasil dikembalikan", 10);
+});
+
+Then("I will see snackbar success restore folder", () => {
+    I.waitForText("Folder berhasil dikembalikan", 10);
+});
+
+Then("The file is not in trash anymore", () => {
+    I.waitForText("Dokumen / Folder akan terhapus permanen setelah 30 hari.", 10);
+
+    I.wait(2);
+    I.dontSee(globalVariable.uploadDocuments.fileName[0]);
+});
+
+Then("The folder is not in trash anymore", () => {
+    I.wait(3);
+    I.dontSee(globalVariable.uploadDocuments.folderDeleted);
+});
+
+Then("I will see snackbar success delete permanent document", () => {
+    I.waitForText("Dokumen berhasil dihapus permanen", 10);
+});
+
+Then("I will see snackbar success delete permanent folder", () => {
+    I.waitForText("Folder berhasil dihapus permanen", 10);
+});
+
+Then("I will see folder that has been restored in root brankas document", async () => {
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+    if (
+        globalVariable.uploadDocuments.folderDeleted !== ""
+    ) {
+        const actFolderName = await documentPage.getFolderNameInListOtherDoc(1);
+        I.assertEqual(actFolderName, globalVariable.uploadDocuments.folderDeleted);
+    } else {
+        const actFolderName = await documentPage.getFolderNameInListOtherDoc(1);
+        I.assertEqual(actFolderName, globalVariable.uploadDocuments.folderName[0]);
+    }
+
+});
+
+Then("I will see file that has been restored in root brankas document", async () => {
+
+    const listFile = globalVariable.uploadDocuments.fileName;
+
+    if (
+        listFile.length = 1
+    ) {
+        I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+        const actFileName = await documentPage.getFileNameInListOtherDoc(1);
+        I.assertEqual(actFileName, listFile[0]);
+
+    } else {
+
+        const sortedList = listFile.sort();
+
+        for (let i = 0; i < listFile.length; i++) {
+            const index = i + 1;
+            I.waitForElement(documentPage.buttons.infoDoc + index, 20);
+
+            const actFileName = await documentPage.getFileNameInListOtherDoc(index);
+            I.assertEqual(actFileName, sortedList[i]);
+        }
+    }
+
+});
+
+Then("I will see the folder and the rest child folder is in root brankas document", async () => {
+
+    const sortedListFolder = globalVariable.uploadDocuments.folderName.sort();
+
+    for (let i = 0; i < sortedListFolder.length; i++) {
+        const index = i + 1;
+        I.waitForElement(documentPage.buttons.infoDoc + index, 20);
+
+        const actFolderName = await documentPage.getFolderNameInListOtherDoc(index);
+        I.assertEqual(actFolderName, sortedListFolder[i]);
+    }
+
+});
+
+Then("I will see folder that recently deleted in trash include the child inside the folder", async () => {
+    let listFolder = globalVariable.uploadDocuments.folderName;
+
+    if (
+        globalVariable.uploadDocuments.levelBackFolder !== 0
+    ) {
+        listFolder.splice(globalVariable.uploadDocuments.levelBackFolder - 1);
+    }
+
+    for (let i = 0; i < listFolder.length; i++) {
+
+        const actFolderName = await documentPage.getFolderNameInListDetailOtherDoc(1);
+        I.assertEqual(actFolderName, listFolder[i]);
+
+        documentPage.clickFolderInDetail(1);
+        I.wait(3);
+    }
+});
+
+Then("I will see two folders with same name", async () => {
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+    const actFolderName1 = await documentPage.getFolderNameInListOtherDoc(1);
+    I.assertEqual(actFolderName1, globalVariable.uploadDocuments.folderName[0]);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 20);
+
+    const actFolderName2 = await documentPage.getFolderNameInListOtherDoc(2);
+    I.assertEqual(actFolderName2, globalVariable.uploadDocuments.folderName[0]);
+
+});
+
+Then("I will see two files with same name", async () => {
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+    const actFileName1 = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(actFileName1, globalVariable.uploadDocuments.fileName[0]);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 20);
+
+    const actFileName2 = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFileName2, globalVariable.uploadDocuments.fileName[0]);
+
+});
+
+Then("I see root folder is exist", async () => {
+
+    const listFolder = globalVariable.uploadDocuments.folderName;
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+    const actFileName1 = await documentPage.getFileNameInListOtherDoc(1);
+
+    I.assertEqual(actFileName1, listFolder[listFolder.length - 1]);
+});
+
+Then("I will see file that has been restored in root brankas document along with root folder", async () => {
+
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 20);
+
+    const actFileName = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFileName, globalVariable.uploadDocuments.fileName[0]);
+
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 20);
+
+    const actFolderName = await documentPage.getFolderNameInListOtherDoc(1);
+    I.assertEqual(actFolderName, globalVariable.uploadDocuments.folderName[0]);
+
+});
+
+Then("I will see bottom sheet detail info document giro", async () => {
+
+    I.waitForElement(documentPage.buttons.closeBottomSheet, 10);
+    I.waitForText(globalVariable.uploadDocuments.fileNameGiro, 10);
+
+    I.see("Download");
+    I.waitForElement(documentPage.buttons.downloadGiroDoc, 10);
+
+    I.see("Salin & Pindahkan");
+    I.waitForElement(documentPage.buttons.copyMove, 10);
+});
+
+Then("I will direct to page move and copy files to root other document", async () => {
+
+    I.waitForText("Pilih Tujuan", 20);
+    I.waitForElement(documentPage.buttons.addFolderFromMoveCopy, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForText("Lainnya", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelMoveCopy, 10);
+
+    I.see("Pindahkan Disini");
+    I.waitForElement(documentPage.buttons.moveAndCopy, 10);
+
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonMove, 'enabled');
+    I.assertEqual(isEnabled, "true");
+});
+
+Then("I will direct to page move folder or files to root other document", async () => {
+
+    I.wait(4);
+
+    I.waitForText("Pilih Tujuan", 20);
+    I.waitForElement(documentPage.buttons.addFolderFromMoveCopy, 10);
+    I.dontSeeElement(headerPage.buttons.back);
+    I.waitForText("Lainnya", 10);
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelMoveCopy, 10);
+
+    I.see("Pindahkan Disini");
+    I.waitForElement(documentPage.buttons.moveAndCopy, 10);
+});
+
+Then("button move is disabled", async () => {
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonMove, 'enabled');
+    I.assertEqual(isEnabled, "false");
+});
+
+Then("button move is enabled", async () => {
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonMove, 'enabled');
+    I.assertEqual(isEnabled, "true");
+});
+
+Then("I will see snackbar success copy and move files", () => {
+    I.waitForText("Dokumen berhasil disalin dan dipindahkan", 30);
+});
+
+Then("I will see file is copied and move to section other document", () => {
+    I.waitForText("Dokumen Utama", 20);
+    I.waitForText("Brankas Dokumen", 20);
+    I.waitForText("Lainnya", 20);
+
+    I.waitForText("copy of " + globalVariable.uploadDocuments.fileNameGiro, 20);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+});
+
+Then("I will see file is copied and move inside the folder", () => {
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 20);
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForElement(documentPage.buttons.infoDocDetail, 10);
+
+    I.waitForText("copy of " + globalVariable.uploadDocuments.fileNameGiro, 20);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+});
+
+Then("I will see folder contents still empty inside the new folder in page copy and move files", () => {
+    I.waitForText("Halaman Ini Masih Kosong", 10);
+    I.waitForText("Saat ini, belum ada dokumen yang" + "\n" +
+        "tersedia untuk ditampilkan.", 20);
+
+    I.dontSeeElement(documentPage.buttons.infoDocDetail);
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+    I.waitForElement(documentPage.buttons.addFolderFromMoveCopy, 10);
+    I.dontSeeElement(documentPage.buttons.uploadOtherDoc);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.business);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.home);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.document);
+    I.dontSeeElement(onboardingAccOpeningPage.tabs.others);
+});
+
+Then("I can't move folder or file to root because button move is disabled", async () => {
+
+    I.wait(4);
+
+    I.waitForElement(documentPage.buttons.moveAndCopy, 20);
+
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonMove, 'enabled');
+    I.assertEqual(isEnabled, "false");
+});
+
+Then("I will direct to detail folder {string} with child {string}", async (parentFolder, childFolder) => {
+
+    I.wait(4);
+
+    I.waitForElement(documentPage.buttons.itemOtherDoc + "0", 20);
+    I.waitForText(parentFolder, 20);
+
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.dontSeeElement(documentPage.buttons.infoDocDetail);
+    I.dontSeeElement(documentPage.buttons.infoDoc + "0");
+    I.dontSeeElement(documentPage.buttons.uploadOtherDoc);
+
+    const actChildFolder = await documentPage.getFolderNameInListDetailOtherDoc(1);
+    I.assertEqual(actChildFolder, childFolder);
+});
+
+Then("I will see folder {string} and {string} is inside folder {string}", async (childFolder1, childFolder2, parentFolder) => {
+    I.waitForText(parentFolder, 20);
+
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForElement(documentPage.buttons.infoDocDetail, 10);
+
+    const listFolder = [];
+
+    listFolder.push(childFolder1);
+    listFolder.push(childFolder2);
+    listFolder.sort();
+
+    const actChildFolder1 = await documentPage.getFolderNameInListDetailOtherDoc(1);
+    I.assertEqual(actChildFolder1, listFolder[0]);
+    I.waitForElement(documentPage.buttons.itemOtherDocDetail + "0", 10);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+
+    const actChildFolder2 = await documentPage.getFolderNameInListDetailOtherDoc(2);
+    I.assertEqual(actChildFolder2, listFolder[1]);
+    I.waitForElement(documentPage.buttons.itemOtherDocDetail + "1", 10);
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 10);
+});
+
+Then("I will see file with folder {string} is inside folder {string}", async (childFolder, parentFolder) => {
+    I.waitForText(parentFolder);
+
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.waitForElement(documentPage.buttons.infoDocDetail, 10);
+
+    const actChildFolder = await documentPage.getFolderNameInListDetailOtherDoc(1);
+    I.assertEqual(actChildFolder, childFolder);
+    I.waitForElement(documentPage.buttons.itemOtherDoc + "0", 10);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+
+    const actFileName = await documentPage.getFileNameInListDetailOtherDoc(2);
+    I.assertEqual(actFileName, globalVariable.uploadDocuments.fileName[0]);
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 10);
+});
+
+Then("I will see both file is move to root other document", async () => {
+
+    I.waitForText("Brankas Dokumen", 10);
+
+    const sortedListFileName = globalVariable.uploadDocuments.fileName.sort();
+
+    const actFileName1 = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFileName1, sortedListFileName[0]);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+
+    const actFileName2 = await documentPage.getFileNameInListOtherDoc(3);
+    I.assertEqual(actFileName2, sortedListFileName[1]);
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 10);
+});
+
+Then("I will see both file is move and copied to root other document", async () => {
+
+    I.waitForText("Brankas Dokumen", 10);
+
+    const sortedListFileName = globalVariable.uploadDocuments.copiedFiles.sort();
+
+    const actFileName1 = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(actFileName1, "copy of " + sortedListFileName[0]);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+
+    const actFileName2 = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFileName2, "copy of " + sortedListFileName[1]);
+    I.waitForElement(documentPage.buttons.infoDoc + "1", 10);
+});
+
+Then("I will see snackbar success move folder", () => {
+    I.waitForText("Folder berhasil dipindahkan", 10);
+});
+
+Then("I will see snackbar success move file", () => {
+    I.waitForText("Dokumen berhasil dipindahkan", 10);
+});
+
+Then("I will see folder is move to root other document", () => {
+    I.waitForText("Brankas Dokumen", 10);
+
+    I.waitForText(globalVariable.uploadDocuments.folderName[0], 10);
+});
+
+Then("I will see file is move to root other document", () => {
+    I.waitForText("Brankas Dokumen", 10);
+
+    I.waitForText(globalVariable.uploadDocuments.fileName[0], 10);
+});
+
+Then("I will see folder is move to inside the folder", async () => {
+
+    if (
+        globalVariable.uploadDocuments.openedFolder.length === 0
+    ) {
+        I.waitForText(globalVariable.uploadDocuments.folderName[0], 20);
+    } else {
+        I.waitForText(globalVariable.uploadDocuments.openedFolder[0], 20);
+    }
+
+    I.waitForText(globalVariable.uploadDocuments.moveFolderFile, 10);
+    I.waitForElement(documentPage.buttons.infoDoc + "0", 10);
+    I.dontSeeElement(documentPage.buttons.addFolderFromMoveCopy);
+    I.dontSeeElement(documentPage.buttons.move);
+    I.dontSeeElement(documentPage.buttons.cancelMoveCopy);
+});
+
+Then("I will see file is move to inside the folder", async () => {
+
+    if (
+        globalVariable.uploadDocuments.openedFolder.length === 0
+    ) {
+        I.waitForText(globalVariable.uploadDocuments.folderName[0], 20);
+    } else {
+        I.waitForText(globalVariable.uploadDocuments.openedFolder[0], 20);
+    }
+
+    I.waitForText(globalVariable.uploadDocuments.moveFolderFile, 10);
+});
+
+Then("I will see both files with same filename in root other document", async () => {
+    I.waitForText("Brankas Dokumen", 10);
+
+    const updateName = globalVariable.uploadDocuments.updateFileName + "." + globalVariable.uploadDocuments.fileType;
+
+    const actFileName1 = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(actFileName1, updateName);
+    I.waitForElement(documentPage.buttons.infoDoc + "0");
+
+    const actFileName2 = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFileName2, updateName);
+    I.waitForElement(documentPage.buttons.infoDoc + "1");
+});
+
+Then("I will see both folder with same name in root other document", async () => {
+    I.waitForText("Brankas Dokumen", 10);
+
+    const updateName = globalVariable.uploadDocuments.folderName[0];
+
+    const actFolderName1 = await documentPage.getFileNameInListOtherDoc(1);
+    I.assertEqual(actFolderName1, updateName);
+    I.waitForElement(documentPage.buttons.infoDoc + "0");
+
+    const actFolderName2 = await documentPage.getFileNameInListOtherDoc(2);
+    I.assertEqual(actFolderName2, updateName);
+    I.waitForElement(documentPage.buttons.infoDoc + "1");
+});
+
+Then("I will see the copied files with text copy in the front name", async () => {
+
+    const copiedFileName = "copy of " + globalVariable.uploadDocuments.copiedFiles[0];
+
+    I.waitForText(copiedFileName, 20);
+
+    if (
+        copiedFileName !== globalVariable.uploadDocuments.fileName[0]
+    ) {
+        globalVariable.uploadDocuments.fileName.unshift(copiedFileName);
+    }
+});
+
+Then("I will see snackbar success copy files", () => {
+    I.waitForText("Dokumen berhasil disalin", 10);
+});
+
+Then("I will see both folder in page move and copy files", async () => {
+
+    I.waitForText("Pilih Tujuan", 10);
+    I.waitForElement(documentPage.buttons.addFolderFromMoveCopy, 10);
+
+    const sortedListFolderName = globalVariable.uploadDocuments.folderName.sort();
+
+    const actFolderName1 = await documentPage.getFolderNameMoveCopyRoot(1);
+    I.assertEqual(actFolderName1, sortedListFolderName[0]);
+    I.dontSeeElement(documentPage.buttons.infoDoc + "0");
+
+    const actFolderName2 = await documentPage.getFolderNameMoveCopyRoot(2);
+    I.assertEqual(actFolderName2, sortedListFolderName[1]);
+    I.dontSeeElement(documentPage.buttons.infoDoc + "1");
+});
+
+Then("I will direct to empty detail folder {string}", async (folderName) => {
+
+    I.waitForText(folderName, 10);
+    I.waitForElement(documentPage.buttons.addFolderFromMoveCopy, 10);
+    I.waitForElement(headerPage.buttons.back, 10);
+
+    I.waitForText("Halaman Ini Masih Kosong", 10);
+    I.see("Saat ini, belum ada dokumen yang" + "\n" +
+        "tersedia untuk ditampilkan.");
+
+    I.see("Batalkan");
+    I.waitForElement(documentPage.buttons.cancelMoveCopy, 10);
+
+    I.see("Pindahkan Disini");
+    I.waitForElement(documentPage.buttons.moveAndCopy, 10);
+
+    const isEnabled = await I.grabAttributeFrom(documentPage.statusElement.buttonMove, 'enabled');
+    I.assertEqual(isEnabled, "true");
+});
+
+Then("I will direct to detail folder {string} with file inside", async (parentFolder) => {
+    I.wait(4);
+    
+    I.waitForText(parentFolder, 20);
+
+    I.waitForElement(headerPage.buttons.back, 10);
+    I.dontSeeElement(documentPage.buttons.infoDocDetail);
+
+    const actFileName = await documentPage.getFileNameInListDetailOtherDoc(1);
+    I.assertEqual(actFileName, globalVariable.uploadDocuments.fileName[0]);
+    I.dontSeeElement(documentPage.buttons.infoDoc + "0");
+});
+
+
+// lending
+Then('I wait for {int} seconds', async (seconds) => {
+    await I.wait(seconds); // Menunggu dalam hitungan detik
+});
+
+Then('I click document pinjaman', () => {
+   documentPage.clickDocumentLoan(); 
+});
+
+When('I verifying the naming folder loan when has more than one active facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_103169"); 
+});
+
+When('I click folder facility', () => {
+    documentPage.clickFolderFacility();
+}); 
+
+Then('I should see file document facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_SCF-81421803-103179")
+});
+
+When('I click folder disbursement', () => {
+    documentPage.clickFolderDisbursement();
+});
+
+Then('I should see file document disbursement', () => {
+    I.wait(3);
+    I.see("Pencairan_19/10/2024_1944");
+});
+
+When('I should see document facility when has one facility', () => {
+    I.wait(3);
+    I.see("Pengajuan Pinjaman_101147");
+});
+
+Then('I should see notification to apply loan', () => {
+    I.wait(3);
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, mulai pembukaan rekening atau pengajuan pinjaman terlebih dahulu");
+});
+
+When('I click button nanti saja', () => {
+    I.wait(3);
+    documentPage.clickButtonNantiSaja();
+});
+
+When('I click document', () => {
+    documentPage.clickOverflowMenu();
+});
+When('I click icon donwload', () => {
+    documentPage.clickIconDownload();
+});
+
+When('I close bottom sheet download document', () => {
+    documentPage.closeBottomSheet();
 });

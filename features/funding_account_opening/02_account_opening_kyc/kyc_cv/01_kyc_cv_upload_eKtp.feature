@@ -30,7 +30,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I click confirm NPWP Business
     And I see page 'Upload eKTP'
 
-  @C141156
+  @C170735
   Scenario: Re-upload eKTP photo successfully
     Given I am a customer who has selected the business type CV
     When I click take photo eKTP
@@ -40,7 +40,7 @@ Feature: Account Opening KYC CV - Upload KTP Photo
     And I retake photo eKTP
     Then I will directing to page take photo eKTP
 
-  @C131819
+  @C170735
   Scenario: Upload eKTP photo successfully business type CV
     Given I am a customer who has selected the business type CV
     When I click take photo eKTP

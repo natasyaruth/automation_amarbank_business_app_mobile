@@ -30,7 +30,7 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Personal'
 
-    @C131823
+    @C170745
     Scenario: Submit form Domicile address same with KTP successfully business type CV
         Given I am a customer who has submitted my personal data details
         And register my identity details as below
@@ -65,7 +65,7 @@ Feature: Account Opening KYC CV - Submit Domicile Address
         And I will direct to page Data Employment
         And I reset my state journey
 
-    @C131824
+    @C170746
     Scenario: Submit form Domicile address with new address successfully business type CV
         Given I am a customer who has submitted my personal data details
         When I choose my new domicile address

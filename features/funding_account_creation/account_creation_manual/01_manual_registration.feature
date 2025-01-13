@@ -3,7 +3,7 @@ Feature: Account registration
   As a customer lead
   I want to register for an account
 
-    @C162103
+    @C165982
     Scenario: Check email user ID with checklist PDP only required
         Given I am a customer that recently register to SMB app
         And I accept only the required PDP checklist
@@ -13,7 +13,7 @@ Feature: Account registration
         And contain with information I agree my personal is used by Amarbank
         And not aggree to receive new information from innovation product Amarbank
 
-    @C162104
+    @C165983
     Scenario: Check email user ID with checklist all option PDP
         Given I am a customer that recently register to SMB app
         And I accept all PDP checklist
@@ -23,7 +23,7 @@ Feature: Account registration
         And contain with information I agree my personal is used by Amarbank
         And I aggree to receive new information from innovation product Amarbank
 
-    @C162105
+    @C165984
     Scenario: Check email after login and submit PDP with checklist only required
         Given I am an existing customer of SMB app
         And I still not submit the PDP concern
@@ -37,7 +37,7 @@ Feature: Account registration
         And not aggree to receive new information from innovation product Amarbank
         And the email is not contain with my user id
 
-    @C162106
+    @C165985
     Scenario: Check email after login and submit all PDP option
         Given I am an existing customer of SMB app
         And I still not submit the PDP concern
@@ -51,14 +51,14 @@ Feature: Account registration
         And not aggree to receive new information from innovation product Amarbank
         And the email is not contain with my user id
 
-    @C163325
+    @C165986
     Scenario: Try to register with business code after 24 hours
         Given I am a customer that has business code to register as invitee
         When after 24 hours
         And I register as partner
         Then I success create my user id with business code
 
-    @C163326
+    @C165987
     Scenario: Register after resend business code for each director with same email
         Given I am a customer that has list uncomplete register director more than one
         And their emails are same
@@ -68,7 +68,7 @@ Feature: Account registration
         And they success register account with business code
         And each of them receive different user id
 
-    @C163327
+    @C165988
     Scenario: Register after resend business code for each director with different email
         Given I am a customer that has list uncomplete register director more than one
         And their emails are different
@@ -78,7 +78,7 @@ Feature: Account registration
         And they success register account with business code
         And each of them receive different user id
 
-    @C163328
+    @C165989
     Scenario: Register invitee with business code from more than one company
         Given I am a customer that has invited by more than one company
         And I have different email business code from each company

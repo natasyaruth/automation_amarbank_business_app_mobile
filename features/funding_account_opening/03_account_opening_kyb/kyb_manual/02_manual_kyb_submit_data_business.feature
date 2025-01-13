@@ -3,7 +3,7 @@ Feature: Account Opening Manual - Submit Data Business
     As a customer
     I want to submit my data personal as part of the KYB Process
 
-    @C159213 @FunctTestFundingSprint4
+    @C171582
     Scenario: Check bottomsheet on Data Bisnis 
         Given I am a customer want to check bottomsheet on Data Bisnis
         When I regist account

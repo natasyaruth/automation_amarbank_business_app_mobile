@@ -8,7 +8,7 @@ Feature: Account Opening - CV
   Scenario: Complete KYC and KYB business type CV
     Given I am a customer that recently registered to amarbank business with data as below
         | fullName        | Staging                 |
-        | email           | cv_staging_01@gmail.com |
+        | email           | cv_staging_02@gmail.com |
         | phoneNumber     | 878900754041            |
         | password        | 1234Test                |
         | confirmPassword | 1234Test                |
@@ -18,7 +18,7 @@ Feature: Account Opening - CV
     And I swipe to card Giro Account
     And I choose Giro Account
     And I choose Giro Account Corporate
-        And I submit my giro type
+    And I submit my giro type
     And I choose legality business type 'cv'
     And I submit my legality type
     And I fill NPWP Business
