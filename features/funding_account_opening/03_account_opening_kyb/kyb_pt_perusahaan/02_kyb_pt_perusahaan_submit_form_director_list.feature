@@ -47,29 +47,6 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
 
-    @C171469
-    Scenario: Submit more than one business director successfully business type PT Perusahaan
-        Given I am a customer who has submitted my business profile
-        When I click add business director
-        And I fill business director data as followings:
-            | fullName | BIMO PURWOKO        |
-            | email    | bimo@trash-mail.com |
-            | nik      | 3166021710820021    |
-        And I save data director
-        And I validate my first director
-        And I click add business director
-        And I fill business director data as followings:
-            | fullName | ADRI GINANJAR       |
-            | email    | adri@trash-mail.com |
-            | nik      | 3133021710820021    |
-        And I save data director
-        And I validate my second director
-        And I submit business director list
-        And I validate all the data in the confirmation list
-        And I confirm my director lists
-        Then I will notify business director list has successfully submitted
-        And I will directing to page business address
-
     @C171470
     Scenario: Delete director for business type PT Perusahaan
         Given I am a customer who has submitted my business profile
@@ -148,3 +125,26 @@ Feature: Account Opening KYB PT Perusahaan - Submit Business Directors
         And I confirm my director lists
         Then I will notify business director list has successfully submitted
         And I will directing to page business address
+
+    @C171469
+    Scenario: Submit more than one business director successfully business type PT Perusahaan
+        Given I am a customer who has submitted my business profile
+        When I click add business director
+        And I fill business director data as followings:
+            | fullName | BIMO PURWOKO        |
+            | email    | bimo@trash-mail.com |
+            | nik      | 3166021710820021    |
+        And I save data director
+        And I validate my first director
+        And I click add business director
+        And I fill business director data as followings:
+            | fullName | ADRI GINANJAR       |
+            | email    | adri@trash-mail.com |
+            | nik      | 3133021710820021    |
+        And I save data director
+        And I validate my second director
+        And I submit business director list
+        And I validate all the data in the confirmation list
+        And I confirm my director lists
+        Then I will notify business director list has successfully submitted
+        And I will directing to page business address    

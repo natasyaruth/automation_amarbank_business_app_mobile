@@ -4,7 +4,7 @@ Feature: Account Opening KYB CV - Submit Business Address
     As a customer
     I want to submit my business address as part of the KYB Process
 
-    Background: User choose legality business type CV
+    Scenario Outline: Verifying form Business Address fields has been filled and then empty the fields
         Given I am a registered customer with following details:
             | userID      | nata5ff1 |
             | password    | 1234Test |
@@ -31,19 +31,16 @@ Feature: Account Opening KYB CV - Submit Business Address
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
         And I see page 'Data Business Profile'
-        When I fill my business profile as followings:
+        And I fill my business profile as followings:
             | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
             | industry           | Jasa                                  |
-            | businessField      | Restoran                              |
+            | businessField      | Operator tur                          |
             | monthlyIncome      | 30 - 50 juta                          |
             | averageTransaction | 2000000                               |
             | nib                | 9129106701234                         |
             | businessDateStart  | 10/10/2010                            |
         And I submit my business profile
         And I submit business director list
-
-    Scenario Outline: Verifying form Business Address fields has been filled and then empty the fields
-        Given I am a customer who has submitted business owner list
         When I fill field '<Field>' with '123' in form Business Address
         And I clear the field '<Field>' in form Business Address
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Address
@@ -54,7 +51,42 @@ Feature: Account Opening KYB CV - Submit Business Address
             | @C171421    | rw      | RW         |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Address
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill form Business Address except field '<Field>'
         And I submit my business address
         And I swipe to field '<Field>' in form Business Address
@@ -70,7 +102,42 @@ Feature: Account Opening KYB CV - Submit Business Address
             | @C171428    | village  | Kelurahan      |
 
     Scenario Outline: Verifying length address in form Business Address
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'address' with '<Value>' in form Business Address
         Then I should see message error '<Message>' in the below of field 'address' in form Business Address
         Examples:                                                                 ❸
@@ -80,12 +147,82 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     @C171431
     Scenario: Verifying field address contain with special char and number
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'address' with 'John Doe S.Kom, M\'Kom- 11233' in form Business Address
         Then I shouldn't see message error in the below of field 'address' in form Business Address
 
     Scenario Outline: Verifying rt with invalid value in form Business Address
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'rt' with '<Value>' in form Business Address
         Then I should see message error '<Message>' in the below of field 'rt' in form Business Address
         Examples:                                                                 ❸
@@ -97,12 +234,82 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     @C171436
     Scenario: Verifying field rt contain with -
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'rt' with '-' in form Business Address
         Then I shouldn't see message error in the below of field 'rt' in form Business Address
 
     Scenario Outline: Verifying rw with invalid value in form Business Address
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'rw' with '<Value>' in form Business Address
         Then I should see message error '<Message>' in the below of field 'rw' in form Business Address
         Examples:                                                                 ❸
@@ -114,14 +321,77 @@ Feature: Account Opening KYB CV - Submit Business Address
 
     @C171441
     Scenario: Verifying field rw contain with -
-        Given I am a customer who has submitted business owner list
+        Given I am a registered customer with following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I reset my state journey     
+        And I filling in form login with the following details:
+            | userID      | nata5ff1 |
+            | password    | 1234Test |
+            | userIDstg   | stag036a |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill field 'rt' with '-' in form Business Address
         Then I shouldn't see message error in the below of field 'rw' in form Business Address
 
     @C171442
     Scenario: Submit form Business Address successfully business type CV
-        Given I am a customer who has uploaded my eKTP photo and selfie
-        And has submitted business owner list
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                |
+            | email           | acc_op_cv@gmail.com    |
+            | phoneNumber     | 812967754041           |
+            | password        | 1234Test               |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+            | industry           | Jasa                                  |
+            | businessField      | Operator tur                          |
+            | monthlyIncome      | 30 - 50 juta                          |
+            | averageTransaction | 2000000                               |
+            | nib                | 9129106701234                         |
+            | businessDateStart  | 10/10/2010                            |
+        And I submit my business profile
+        And I submit business director list
         When I fill my business address as followings:
             | address  | Jl. Gambir Belok Kiri No. 10 |
             | rt       | 000                          |

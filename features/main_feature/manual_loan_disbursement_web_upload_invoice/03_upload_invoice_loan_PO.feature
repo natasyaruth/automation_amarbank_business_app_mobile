@@ -107,7 +107,9 @@ Scenario: Continue to payment if there is no on supplier list
     And I will see list of Pilih Nama Supplier Bank
     And I search 'BCA' in search box bank name
     And I tap on bank name
-    And I input account number '9001600005'
+    And I input account number
+        | accNumberDev | 9001600005 |
+        | accNumberStg |            |
     And I click on check
     Then I will see Nama Pemilik Rekening
     And I click button Lanjut Data Perwakilan
@@ -138,7 +140,9 @@ Scenario: Upload Invoice with add new supplier list
     And I click Tambah Data Supplier Baru
     And I search 'BCA' in search box bank
     And I tap on bank name
-    And I input account number '00520000002300'
+    And I input account number
+        | accNumberDev | 00520000002300 |
+        | accNumberStg | 00520000002300 |
     And I click on check 
     And I click button Lanjut Data Perwakilan
     And I input nama Perwakilan
