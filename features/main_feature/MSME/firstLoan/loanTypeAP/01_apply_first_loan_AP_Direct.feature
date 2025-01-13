@@ -17,27 +17,13 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
       | passwordStg | Test1234 |
     And I click login
     Then I successed go to dashbord
-  Background:
-    Given I am a registered customer with followng details:
-      | userID      | yahyde6f |
-      | password    | Akuntes1 |
-      | userIDstg   | bots2643 |
-      | passwordStg | Test1234 |
-    When I filling in form login with the following details:
-      | userID      | yahyde6f |
-      | password    | Akuntes1 |
-      | userIDstg   | bots2643 |
-      | passwordStg | Test1234 |
-    And I click login
-    Then I successed go to dashbord
+  
 
 
   @Sprint6Lending @C142642
   Scenario: Verify bottom sheet Loan Schema
     Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    #section wants to see loan schema
+    When user click button Ajukan Limit Kredit    
     And User click button Pelajari Tipe Skema Kredit
     Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
     And user click back button to back to type loan page
@@ -45,84 +31,41 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
   @Sprint6Lending @C142643
   Scenario: User apply first loan AP direct and want to see AP loan schema
     Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    #section wants to see loan schema
+    When user click button Ajukan Limit Kredit   
     And User click button Pelajari Tipe Skema Kredit
     And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing
     And user validate content loan schema "AP"
     And user click back to loan type page
 
-  @Sprint6Lending @C142644
-  Scenario: User validate dropdown list on nominal option
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AP"
-    And User on Loan Needs Page
-    And user click dropdown option
-    Then user can validate List of Nominal Limit Credit
-    Then user can validate List of Nominal Limit Credit
-    And user can click close button and back to loan needs page
-
   @Sprint6Lending @C142645
   Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AP"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user input tenor "1"
+    And User select loan type "AP"  
+    And user input nominal for MSME "5000000000"
+    And user click button Save
+    And user input tenor "10"
     And user click button Lanjut Isi Data Supplier
-    And user click button Lanjut Isi Data Supplier
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+    Then user user see error message "Minimal tenor 30 hari"
 
   @Sprint6Lending @C142646
   Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AP"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user input tenor "1"
+    And User select loan type "AP"  
+    And user input nominal for MSME "5000000000"
+    And user click button Save
+    And user input tenor "300"
     And user click button Lanjut Isi Data Supplier
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
-
-  ##Take out Location Bisnis
-  @FunctTestLending
-  @C161659
-  Scenario: Take out validation page of “Lokasi Bisnis” after input nominal
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AP"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user on select loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user input tenor "1"
-    And user click button Lanjut Isi Data Supplier
-    Then user direct to Data Supplier Page
-
+    Then user user see error message "Maximal tenor 180 hari"
 
   @Sprint6Lending @C142647
   Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
+    Given User on Main Dashboard    
     When user click button Ajukan Limit Kredit
     And User select loan type "AP"
-    And User on Loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"
-    And user input loan tenor "30"
-    And user click button Lanjut Isi Data Supplier
-    And User choose nominal "Rp50 juta - 5 Miliar"
+    And user input nominal for MSME "5000000000"    
     And user input loan tenor "30"
     And user click button Lanjut Isi Data Supplier
     #section select Anchor
@@ -137,9 +80,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user input supplier representatives name
     And user input contact name
     And user input email address supplier
-    And user click button Lanjut Melengkapi Data
-    And user input email address supplier
-    And user click button Lanjut Melengkapi Data
+    And user click button Lanjut Melengkapi Data   
     And user click button Lanjut Proses KYC
     #section KYC Process
     Given user choose Business Type "UD"
@@ -157,9 +98,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And click "Simpan Data Pekerjaan"
     And system direct to Success screen
     Then user click button Lanjut Lengkapi Data Bisnis
-    #section KYB Process
-    And user in Profil Bisnis page
-    And user in Profil Bisnis page
+    #section KYB Process        
     And user input profil bisnis and click button Simpan Profil Bisnis
     And user input and click Simpan Daftar Direktur
     And I fill my business address as followings:
@@ -182,15 +121,19 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user checklist checkbox right and obligations
     And user checklist checbox privy
     And user click button Lanjut Upload Dokumen
-    And user validate description prepare the following documents 'MSMEAPUD'
-    And user validate description prepare the following documents 'MSMEAPUD'
+    And user validate description prepare the following documents 'MSMEAPUD'    
     And user click buttton Pilih Metode Upload Dokumen
     #Upload Dokumen from Aplikasi
     And user click button Langsung dari Aplikasi
     And user on Progress Upload Dokumen Page
     And user upload document "nib"
+    And user upload document "aktapendirian"
+    And user upload document "skkemenkumhanpendirian"
     And user upload document "npwpbisnis"
-    And user upload document "npwpbisnis"
+    And user upload document "aktaperubahanterakhir"
+    And user upload document "skkemenkumhanperubahanakhir"
+    And user upload document "ktpcomm"
+    And user upload document "npwpcomm"
     And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
@@ -205,8 +148,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
-    And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
-    Then user can click button Upload Ulang Dokumen
+    Then user see button "Upload Ulang Dokumen"
 
   @Sprint6Lending @C142649
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
@@ -220,20 +162,16 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user upload multiple document "3contohInvoicewithSupplier"
+    And user upload multiple document "3contohInvoicewithSupplier"   
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
-  @C142651
   @C142651
   Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
     Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    Then user validate wording information "Tim Amar Bank sedang menganalisis riwayat kredit"
-    And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
   @C142652
   Scenario: Validate bottom sheet for Metode Upload Dokumen
@@ -325,22 +263,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user verify upload all document Finance Report
     And user click button delete file uploaded
     Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
-  @C142656
-  Scenario: user verify pop up confirmation to delete uploaded file
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
-    And user click button delete file uploaded
-    Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
+ 
 
   @C142657
   Scenario: user delete uploaded file
@@ -351,29 +274,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Pilih Metode Upload Dokumen
     And user click button Langsung dari Aplikasi
     And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
-    And user click button delete file uploaded
-    And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
-    And user click button Hapus
-    Then user back to Progres Upload Dokumen page
-  @C142657
-  Scenario: user delete uploaded file
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
+    And user verify upload all document Invoice    
     And user click button delete file uploaded
     And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
     And user click button Hapus
@@ -397,24 +298,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
     And user click button Kembali
     Then pop up confirmation will disappear
-  @C142658
-  Scenario: user cancel to delete uploaded file
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
-    And user click button delete file uploaded
-    And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
-    And user click button Kembali
-    Then pop up confirmation will disappear
+
 
   @C142659
   Scenario: user upload file more than 15MB
@@ -426,6 +310,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Langsung dari Aplikasi
     And user upload multiple document more than 15 MB "3contohInvoicewithSupplier"
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
+
+
   @C142659
   Scenario: user upload file more than 15MB
     Given user already apply loan but have no upload document
@@ -436,6 +322,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Langsung dari Aplikasi
     And user upload multiple document more than 15 MB "3contohInvoicewithSupplier"
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
+
 
   @C142660
   Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
@@ -464,33 +351,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user click button Langsung dari Aplikasi
     And user on Progres Upload Dokumen
     Then user will not see button Kirim Pengajuan Limit Kredit
-  @C142660
-  Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user on Progres Upload Dokumen
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
-    And user see button Kirim Pengajuan Limit Kredit
 
-  @C142661
-  Scenario: user have not upload mandatory document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user on Progres Upload Dokumen
-    Then user will not see button Kirim Pengajuan Limit Kredit
+
 
   @Sprint6Lending @C142662
   Scenario: user back to main dashboard from progress loan page

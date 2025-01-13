@@ -34,8 +34,8 @@ Scenario: Validate upload invoice page when the dashboard invoice still empty
     And I see Buyer name
     And I see No. Pinjaman
     And I see "Anda bisa mengunggah beberapa invoice. Setiap invoice berlaku untuk satu pencairan"
-    And User will see button for upload invoice
-    And User will see disable button for add invoice
+    And I will see button for upload invoice
+    And I will see disable button for add invoice
     
    
 Scenario: Validate error message when upload invoice  > 10 MB
@@ -156,15 +156,18 @@ Scenario: Uploading multiple invoices in one submission
     And a notification should be sent to the user's mobile app and email
 
 
-Scenario: Validate Pop Up confirmation after finished uploading invoice through web 
+Scenario: Validate New Screen confirmation after finished uploading single invoice through web 
     Given I have the accesses the unique web link     
     When I am on Progress Upload Invoice Page 
     And I see invoices with status "Invoice Berhasil Tersimpan"
     And I click button Upload Invoice Selesai
-    Then I will see Pop Up confirmation "Upload Invoice Berhasil"
-    And I click button Mengerti
-    And I will receive a push notification and email notification on mobile app
-
+    Then I will direct to new screen "Pengajuan Berhasil Disimpan"
+    And I see "Kembali ke aplikasi Amar Bank Bisnis untuk melanjutkan proses pencairan Limit."
+    And I see "Langkah selanjutnya"
+    And I see "Buka aplikasi Amar Bank Bisnis."
+    And I see "Pergi halaman pencairan pinjaman."
+    And I see "Pilih pengajuan dengan status “Segera Ciarkan Pinjaman."
+    And I see "Lanjutkan proses pencairan sesuai petunjuk."
 
 
 Scenario: Expired web link for upload invoice

@@ -1,5 +1,5 @@
 
-@TestRepayment1
+
 Feature: History Page Repayment
     As a customer,
     I want to filter my history repayment records
@@ -21,7 +21,7 @@ Feature: History Page Repayment
         When I click bottom sheet more than 1 facility repayment
         Then I should see history "Tagihan" for more than 1 facility
 
-    @TestRepayment
+    @TestRepayment2
     Scenario: Access Histoy Page Repayment For Only 1 Facility
         Given I am a registered customer with following details:
             | userID   | ecap2158 |

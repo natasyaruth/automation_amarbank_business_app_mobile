@@ -72,7 +72,7 @@ Scenario: Checking Detail Notification Success Submit Loan
     And I click login   
     And I will see card account 'active'
     And I see red dot notification center
-    When I click click notification center    
+    When I click notification center    
     And I see notification Success Submmit Loan
     And I click bucketlist notification Success Submit Loan
     Then I will direct to page progress Loan
@@ -221,7 +221,7 @@ Scenario: Checking detail Facility activated
     Then I will direct to page Active Limit
 
 
-Scenario: Checking detail Disburse confirm invoice
+Scenario: Checking detail Disburse verification invoice
     Given I am a registered customer with following details:
             | userID      | autocaea |
             | password    | 1234Test |
@@ -239,9 +239,10 @@ Scenario: Checking detail Disburse confirm invoice
     And I click tab pinjaman
     And I see notification Disburse confirm invoice
     And I click menu Disburse confirm invoice    
-    And I will direct to page Aktivitas Pinjaman 
-    And I click card with status Segera Kirim PDC
-    Then system will direct to "Pengiriman PDC (Cek Mundur)" page
+    And I will direct to page Perhitungan Pencairan 
+    And I click button Terima Pencairan
+    And I click menu Disburse confirm invoice
+    Then system will direct to Pengiriman PDC (Cek Mundur) page
 
 Scenario: Checking  detail Disburse reject invoice
      Given I am a registered customer with following details:
