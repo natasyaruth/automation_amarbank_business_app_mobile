@@ -1,5 +1,5 @@
 
-@TestRepayment1
+
 Feature: History Page Repayment
     As a customer,
     I want to filter my history repayment records

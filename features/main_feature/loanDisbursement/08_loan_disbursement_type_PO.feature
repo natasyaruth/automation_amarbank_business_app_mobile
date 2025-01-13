@@ -207,3 +207,12 @@ Feature: Loan Disbursement for Loan Type PO
     And user select invoice number
     And user select invoice date
     And User select invoice due date
+
+  
+  Scenario: Validate disbursement status is failed then in mobile application will display latest status 
+    Given I have been in anchor detail page to validate status failed disburse
+    When I click button "Gunakan Limit" in card type Direct Loan AP
+    And I see card "Segera Kirim Dokumen Pencairan" after user got failed disbursement
+    And I click the card with status Segera Kirim Dokumen Pencairan
+    And I will direct to page waiting PDC page.
+

@@ -37,83 +37,56 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     And user validate content loan schema "AR"
     And user click back to loan type page
 
-  @Sprint6Lending @C142595
-  Scenario: User validate dropdown list on nominal option
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And User on Loan Needs Page
-    And user click dropdown option
-    Then user can validate List of Nominal Limit Credit
-    And user can click close button and back to loan needs page
 
   @Sprint6Lending @C142596
   Scenario: Validate Error meesage on Loan Needs when empty field
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And user on select loan Needs Page
-    And user click button Lanjut Isi Data Buyer
+    And User select loan type "AR"    
+    And user click button Lanjut Isi Data Supplier
     Then user should see error message "Nominal limit kredit wajib diisi" in the field "errorAmountLoanField"
     And user should see error message "Tenor limit kredit wajib diisi" in the field "errorTenorLoanField"
 
+
   @Sprint6Lending @C142597
-  Scenario: Validate Error input nominal min Rp.50000000001
+  Scenario: Validate Error input nominal min Rp.100.000
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And user on select loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
-    And user input nominal below minimun nominal "13500000"
-    And user click button Save
-    Then user can see error message "Min Rp.5.000.000.001, Max Rp.25.000.000.000" in the field "errorAmountLoanField"
+    And User select loan type "AR"        
+    And user input nominal below minimun nominal "100000"
+    And user click button Lanjut Isi Data Supplier
+    Then user can see error message "Minimal nominal Rp50.000000" in the field "errorAmountLoanField"
 
-  @Sprint6Lending @C142598
-  Scenario: user clear the text input nominal
-    Given User on Main Dashboard
-    When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And user on select loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
-    And user input nominal for Corp "13500000"
-    Then user click button clear to delete all input nominal and back to zero
-    And user click back button to back to page drop down option nominal
-
+  
   @Sprint6Lending @C142599
   Scenario: Validate error input tenor below min 30 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And user on select loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
+    And User select loan type "AR"  
     And user input nominal for Corp "10000000000"
     And user click button Save
     And user input tenor "10"
-    And user click button Lanjut Isi Data Buyer
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Minimal tenor 30 hari"
+
 
   @Sprint6Lending @C142600
   Scenario: Validate error input tenor more than 180 hari
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And user on select loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
-    And user input nominal for Corp "10000000000"
-    And user click button Save
+    And User select loan type "AR"    
+    And user input nominal for Corp "10000000000"    
     And user input tenor "240"
-    And user click button Lanjut Isi Data Buyer
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Maksimal tenor 180 hari"
+
 
   @Sprint6Lending @C142601
   Scenario: User apply first loan AR Anchor with business type CV and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And User on Loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
-    And user input nominal for Corp "15000000000"
-    And user click button Save
+    And User select loan type "AR"    
+    And user input nominal for Corp "15000000000"    
     And User input tenor "60"
     And user click button Lanjut Isi Data Buyer
     #section select Anchor
@@ -186,11 +159,8 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
   Scenario: User apply first loan AR Anchor with business type UD and flaging Corp
     Given User on Main Dashboard
     When user click button Ajukan Limit Kredit
-    And User select loan type "AR"
-    And User on Loan Needs Page
-    And User choose nominal "Lebih dari 5 Milyar"
-    And user input nominal for Corp "15000000000"
-    And user click button Save
+    And User select loan type "AR"   
+    And user input nominal for Corp "15000000000"   
     And User input tenor "60"
     And user click button Lanjut Isi Data Buyer
     #section select Anchor
@@ -259,7 +229,7 @@ Feature: Apply First Loan With Flagging Corp Using AR Anchor
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
     And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click loan with status Upload Dokumen
     And user click button Pilih Metode Upload Dokumen
     Then user will see bottom sheet metode upload Dokumen
 
