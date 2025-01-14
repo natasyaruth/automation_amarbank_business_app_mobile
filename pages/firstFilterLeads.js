@@ -13,7 +13,8 @@ module.exports = {
         buttonHubungiCallCenter: "~buttonCallCenter",
         buttonClose: "~buttonClose",
         buttonLanjutkanPengajuan: "~buttonContinue",
-        buttonMengerti: "~buttonOk"
+        buttonMengerti: "~buttonOk",
+        buttonKirim: "~buttonSend",
     },
     radioButtons: {
         radioButton1: "~radioButton1",
@@ -26,6 +27,8 @@ module.exports = {
     Fields: {
         textFieldLainnya: "~textFieldOther",
         messageTooltip: "~messageTooltip",
+        textFieldNomorNIB: "~textFieldNIB",
+        textFieldNamaSesuaiNIB: "~textFieldName",
     },
 
 
@@ -66,7 +69,7 @@ module.exports = {
         
     },
     clickButtonSelanjutnya() {
-        I.wait(3);
+        I.wait(5);
         I.click(this.buttons.buttonNext);
     },
 
@@ -104,6 +107,22 @@ module.exports = {
 
     fillTextFieldLainnya() {
         I.wait(3);
-        I.fillField(this.textFieldLainnya, 'Buat renovasi');
-    }
+        I.fillField(this.Fields.textFieldLainnya, 'Buat renovasi');
+    },
+
+    //enhance blok to cs
+    fillTextNomorNIB() {
+        I.wait(3);
+        I.fillField(this.Fields.textFieldNomorNIB, '9129106701234');
+    },
+
+    fillTextNamaSesuaiNIB() {
+        I.wait(3);
+        I.fillField(this.Fields.textFieldNamaSesuaiNIB, 'Ricky Hodiyanto');
+    },
+
+    clickButtonKirim() {
+        I.wait(3);
+        I.click(this.buttons.buttonKirim);
+    },
 }

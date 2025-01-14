@@ -96,7 +96,7 @@ Feature: First Filter from source Ajukan Pinjaman
         And I click Mengerti & Lanjutkan Pengajuan
         Then I should see Pengajuan Limit Kredit Bisnis
 
-    @TestAjukanPinjaman
+    
     Scenario: with monthly income 50 juta sampai 100 juta with cases Investasi Bisnis (Pengembangan & Perluasan Usaha)
        Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -123,7 +123,8 @@ Feature: First Filter from source Ajukan Pinjaman
         When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
-
+        Then I wait for 5 seconds
+   
     Scenario: with monthly income 50 juta sampai 100 juta with cases Pembayaran Sewa Tempat Usaha
         Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -150,7 +151,9 @@ Feature: First Filter from source Ajukan Pinjaman
         When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
+        Then I wait for 10 seconds
 
+    @cobaNIB
     Scenario: with monthly income 50 juta sampai 100 juta with cases Lainnya
         Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -164,6 +167,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | passwordStg | Eca12345 |
         And I click login
         When I click button Ajukan Pinjaman Limit
+        And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
         And I choose 50 juta sampai 100 juta "3"
@@ -177,6 +181,7 @@ Feature: First Filter from source Ajukan Pinjaman
         When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
+        Then I wait for 10 seconds
 
     Scenario: Source from Ajukan Pinjaman (untuk kebutuhan pribadi) and click install aplikasi tunaiku
         Given I am a registered customer with following details:
