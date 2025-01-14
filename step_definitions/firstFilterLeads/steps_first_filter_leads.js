@@ -97,4 +97,22 @@ When('I choose Untuk Kebutuhan Pribadi {string}', (radioNumber) => {
     firstFilterLeadsPage.clickRadioButton(radioNumber);
 });
 
+// enhancement
+When('I should see form input data business', () => {
+    I.wait(3);
+    I.see("Isi data bisnis Anda dibawah ini!");
+});
+
+When('I input field Nomor NIB', () => {
+    firstFilterLeadsPage.fillTextNomorNIB();
+});
+
+When('I input field Nama Sesuai NIB', () => {
+    firstFilterLeadsPage.fillTextNamaSesuaiNIB();
+});
+
+When('I click button kirim', () => {
+    firstFilterLeadsPage.clickButtonKirim();
+});
+
 
