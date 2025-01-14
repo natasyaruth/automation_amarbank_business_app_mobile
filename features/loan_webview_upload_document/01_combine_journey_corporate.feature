@@ -35,9 +35,12 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
-        And I upload document in field "NIB"
+        And I upload document in field "NIB"        
         And I upload document in field "Akta Pendirian"
         And I upload document in field "SK Kemenkumham Pendirian"
+        And I upload document in field "NPWP Bisnis"
+        And I upload document in field "Akta Perubahan Terakhir"
+        And I upload document in field "SK Kemenkumham Perubahan Terakhir"      
         Then I update the Progress
         And I see fields upload document
         And I see icon edit
@@ -64,7 +67,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
 
     @C136626
     Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AP "PT Perorangan"
-        Given I has been access to the link web view for uploading data documents AP "PT Perorangan or UD"
+        Given I has been access to the link web view for uploading data documents AP "PT Perorangan"
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
@@ -81,7 +84,7 @@ Feature: Upload Data Documents For Cases Combine Journey Corporate
         And I see button to update the Progress
 
     @C136627
-    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan" with Case Partial Uploaded
+    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan" with Case Uploaded
         Given I has been access to the link web view for uploading data documents AP "PT Perorangan"
         When I see the wording of "Supplier"
         And I see Supplier name
@@ -880,287 +883,44 @@ Scenario: Validate all the document successfully uploaded on web in AR Individu
 
 
 
-##Click button “Upload Dokumen Selesai” after upload all mandatory
-#@FunctTestLendingSprint5
-@C159338
-    Scenario: Verify after upload all mandatory documents in combine journey AP 
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"
-        And I upload document in field "NIB"
-        And I see the file size should be displayed "0.11kb"
-        And I upload document in field "Akta Pendirian"
-        And I see the file size should be displayed "5 MB"
-        And I upload document in field "SK Kemenkumham Pendirian"
-        And I see the file size should be displayed "5 MB"
-        And I upload document in field "NPWP Bisnis"
-        And I see the file size should be displayed "5 MB"
-        And I upload document in field "Akta Perubahan Terakhir"
-        And I see the file size should be displayed "0.42kb"
-        And I upload document in field "SK Kemenkumham Perubahan Terakhir"
-        And I see the file size should be displayed "1.1 MB"    
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.2 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed  "1.2 MB"
-        Then I see button Upload Dokumen Selesai
-
-#@FunctTestLendingSprint5
-@C159339
-
-    Scenario: User successfully uploaded all documents in web for loan AP
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-#@FunctTestLendingSprint5
-@C159340
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perorangan or UD"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-#@FunctTestLendingSprint5
-@C159341
-    Scenario: User successfully re-Upload documents
-        Given I has reupload documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
-   
-    #Loan AR
-    #@FunctTestLendingSprint5
-    @C159342
-    Scenario: Verify after upload all mandatory documents in combine journey AR 
-        Given I has been access to the link web view for upload multiple data documents AR "PT.Perorangan"
-        When I see the wording of "Buyer"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"
-         And I upload document in field "NIB"
-        And I see the file size should be displayed "0.24kb"
-        And I upload document in field "Sertifikat Pendaftaran"
-        And I see the file size should be displayed "0.16"
-        And I upload document in field "NPWP Bisnis"
-        And I see the file size should be displayed "0.12kb"
-        And I upload document in field "Surat Pernyataan Pendirian"
-        And I see the file size should be displayed "0.16 kb"
-        And I upload document in field "SK Kemenkumham Perubahan Terakhir"
-        And I see the file size should be displayed "1.1 MB"
-        And I upload document in field "Sertifikat Perubahan Terakhir"
-        And I see the file size should be displayed "0.12 kb"
-        And I upload document in field "Surat Pernyataan Perubahan Terakhir"  
-        And I see the file size should be displayed "1.1 MB"   
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed  "1.2 MB"
-        Then I see button Upload Dokumen Selesai
-
-    #@FunctTestLendingSprint5
-    @C159343
-    Scenario: User successfully uploaded all documents in web for loan AR
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-    #@FunctTestLendingSprint5
-    @C159344
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AR "PT Perusahaan or CV"
-        When I see the wording of "Buyer"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-    #@FunctTestLendingSprint5
     @C159345
     Scenario: User successfully re-Upload documents
-        Given I has reupload documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
+        Given I am on Loan Progress Status Page
+        When I click button Upload Ulang Dokumen
+        And I click Upload Dari Perangkat Lain/ Delegasi
+        And I receive link and click the link
+        And I am on web to reupload document
+        And I reupload document "Minimal 3 contoh invoice dengan supplier terkait"
+        And I clik button Kirim Dokumen        
+        Then I will direct to new screen "Upload Dokumen Selesai"
+        And I see "Silakan kembali ke aplikasi Amar Bank Bisnis untuk melanjutkan proses."
+        And I see "Langkah selanjutnya"
+        And I see "Buka aplikasi Amar Bank Bisnis."
+        And I see "Lanjutkan proses submit pengajuan pinjaman."
 
-
-
-    #Loan AP Individu
-    #@FunctTestLendingSprint5
-    @C159346
-    Scenario: Verify after upload all mandatory documents in combine journey AP Individu
-        Given I has been access to the link web view for upload multiple data documents AP "Individu"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"           
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed  "1.2 MB"
-        Then I see button Upload Dokumen Selesai
-
-    #@FunctTestLendingSprint5
-    @C159347
-    Scenario: User successfully uploaded all documents in web for loan AP
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-
-    #@FunctTestLendingSprint5
-    @C159348
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AP "Individu"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-    #@FunctTestLendingSprint5
-    @C159349
-    Scenario: User successfully re-Upload documents
-        Given I has reupload documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
-
-    ##UD
-    Scenario: Verify after upload all mandatory documents in combine journey AP 
-        Given I has been access to the link web view for upload multiple data documents AP "UD"
+    
+    Scenario: User verify Change design success message from popup to full screen after submit Dokumen
+        Given I has been access to the link web view for upload multiple data documents AP "PT.Perusahaan"
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
         And I see wording of "Format file: PDF"
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"
-        And I upload document in field "NIB"
-        And I see the file size should be displayed "0.11kb"        
-        And I upload document in field "NPWP Bisnis"
-        And I see the file size should be displayed "5 MB"       
+        And I upload "NIB *"
+        And I upload "Akta Pendirian *"
+        And I upload "SK Kemenkumham Pendirian *"
+        And I upload "NPWP Bisnis *"
+        And I upload "Akta Perubahan Terakhir"
+        And I upload "SK Kemenkumham Perubahan Terakhir"        
+        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
+        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
         And I upload multiple documents of field "Minimal 3 contoh invoice dengan supplier terkait"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.2 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed  "1.2 MB"
-        Then I see button Upload Dokumen Selesai
-
-    Scenario: User successfully uploaded all documents in web for loan AP
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AP "UD"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-
-    Scenario: User successfully re-Upload documents
-        Given I has reupload documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
-
-    Scenario: Verify after upload all mandatory documents in combine journey AR
-        Given I has been access to the link web view for upload multiple data documents AR "UD"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"
-        And I upload document in field "NIB"
-        And I see the file size should be displayed "0.11kb"        
-        And I upload document in field "NPWP Bisnis"
-        And I see the file size should be displayed "5 MB"       
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
-        And I see the file size should be displayed  "1.2 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.2 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed  "1.2 MB"
-        Then I see button Upload Dokumen Selesai
-
-    Scenario: User successfully uploaded all documents in web for loan AR
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AR "UD"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-
-    Scenario: User successfully re-Upload documents
-        Given I has reupload documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
+        And I upload multiple documents of field "Rekening Koran/Mutasi Rekening operasional 6 bulan terakhir *"
+        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"        
+        And I click button Upload Dokumen Selesai
+        Then I will direct to new screen "Upload Dokumen Selesai"
+        And I see "Silakan kembali ke aplikasi Amar Bank Bisnis untuk melanjutkan proses."
+        And I see "Langkah selanjutnya"
+        And I see "Buka aplikasi Amar Bank Bisnis."
+        And I see "Lanjutkan proses submit pengajuan pinjaman."

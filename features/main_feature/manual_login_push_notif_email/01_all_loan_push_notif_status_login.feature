@@ -118,7 +118,7 @@ Feature: Notification Redirection for all loan push apps notification and email
         And I click the notification
         Then I direct to page Perhitungan Pencairan
 
-    Scenario: Validate email notification disbursement approved
+    Scenario: Validate email notification disbursement approed from back office
         Given I receive push notif and email Disbursement Approved
         When I see the title "Pencairan Disetujui"
         And I click the email

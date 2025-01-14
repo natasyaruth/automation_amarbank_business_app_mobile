@@ -205,5 +205,65 @@ Feature: History Page Disbursement
         And I click bottom sheet "Tidak Disetujui"
         Then I should see history "Pencairan" for tidak disetujui
 
+    
+Scenario: Validate new status for Pencairan Dalam Proses
+        Given I am a registered customer with following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        When I click menu lihat detail pinjaman
+        When I click menu history
+        Then I acces menu bar "Pencairan"
+        When I click menu bar "Pilih Status"
+        And I should see bottom sheet "Filter Status"
+        And I click bottom sheet "Dalam Proses"
+        Then I validate new title for status "Pencairan"  Dalam proses
 
 
+Scenario: Validate new status for Pencairan berhasil
+        Given I am a registered customer with following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        When I click menu lihat detail pinjaman
+        When I click menu history
+        Then I acces menu bar "Pencairan"
+        When I click menu bar "Pilih Status"
+        And I should see bottom sheet "Filter Status"
+        And I click bottom sheet "Pencairan Berhasil"
+        Then I validate new title for status "Pencairan" berhasil
+
+
+Scenario: Validate new status for Pencairan failed
+        Given I am a registered customer with following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        When I filling in form login with the following details:
+            | userID      | ecap2158 |
+            | password    | Eca12345 |
+            | userIDstg   | stag76ee |
+            | passwordStg | Test1234 |
+        And I click login
+        When I click menu lihat detail pinjaman
+        When I click menu history
+        Then I acces menu bar "Pencairan"
+        When I click menu bar "Pilih Status"
+        And I should see bottom sheet "Filter Status"
+        And I click bottom sheet "Tidak Disetujui"
+        Then I validate new title for status "Pencairan" tidak disetujui

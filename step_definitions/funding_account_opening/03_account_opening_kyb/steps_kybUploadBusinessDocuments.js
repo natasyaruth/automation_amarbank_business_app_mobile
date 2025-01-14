@@ -3,6 +3,7 @@ const {
     resetStateDao,
     globalVariable,
     uploadBusinessDocPage,
+    documentSafePage,
     uploadDao,
     getDataDao,
     headerPage,
@@ -328,6 +329,11 @@ Then("I will see bottom sheet with email contact", () => {
     I.waitForText("Hubungi Tim Kami", 10);
     I.see("Kami bantu meng-upload dokumen melalui:");
     I.see("support.bisnis@amarbank.co.id");
+});
+
+When("I continue to process upload document business", () => {
+    I.waitForText("Lanjut Upload Dokumen", 10);
+    documentSafePage.clickContinueToUploadDocBusiness();
 });
 
 Then("I will direct to page to re-upload document company", () => {
@@ -676,7 +682,7 @@ Then("I will see all document required business individual company has been uplo
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
 
-        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
     } else if (
@@ -688,7 +694,7 @@ Then("I will see all document required business individual company has been uplo
         I.waitForElement(uploadBusinessDocPage.buttons.deleteNIB, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNIB, 10);
 
-        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWP, 10);
+        I.waitForElement(uploadBusinessDocPage.buttons.deleteNPWPBusiness, 10);
         I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentNPWP, 10);
 
         I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
@@ -933,4 +939,33 @@ Then("I will see {string} still exists", async (typeDoc) => {
 Then("I reset state upload document", async () => {
     await
         resetStateDao.deleteAllDocuments(globalVariable.login.userID, globalVariable.login.password);
+});
+
+Then("I see widget brankas document in upload document business", () => {
+    I.waitForText("Dokumen yang Anda upload"+"\n"
+    +"tersimpan di fitur Brankas"+"\n"
+    +"dan bisa diakses kapan saja.", 10);
+
+    I.see("Pelajari");
+    I.waitForElement(uploadBusinessDocPage.buttons.learnBrankas, 10);
+});
+
+Then("I will see onboarding page document safe continue to upload document business", () => {
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.see("Brankas Dokumen");
+    I.see("Brankas jaga dokumen bisnis berharga Anda");
+
+    I.see("Simpan & Kelola Dokumen Bisnis secara Digital");
+    I.see("Tidak ada lagi kehilangan ataupun kesulitan untuk mencari dokumen bisnis Anda.");
+
+    I.see("Kapasitas Besar");
+    I.see("Kelola dokumen bisnis Anda tanpa khawatir kehabisan ruang penyimpanan.");
+
+    I.see("Akses Kapan Saja");
+    I.see("Unduh dan bagikan dokumen Anda kapanpun dibutuhkan, dengan cepat dan mudah.");
+
+    I.see("Untuk dapat menggunakan fitur Brankas Dokumen, silakan lanjutkan proses upload dokumen terlebih dahulu");
+
+    I.see("Lanjut Upload Dokumen");
+    I.waitForElement(documentSafePage.buttons.continueOnboarding, 10);
 });

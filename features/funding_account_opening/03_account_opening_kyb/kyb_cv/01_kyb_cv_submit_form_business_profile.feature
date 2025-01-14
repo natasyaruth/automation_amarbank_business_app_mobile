@@ -4,7 +4,8 @@ Feature: Account Opening KYB CV - Submit Business Profile
     As a customer
     I want to submit my business profile as part of the KYB Process
 
-    Background: User choose legality business type CV
+    @validation_kyb_fields_text_business_profile
+    Scenario Outline: Verifying form Business Profile fields has been filled and then empty the fields
         Given I am a registered customer with following details:
             | userID      | revv286a |
             | password    | 1234Test |
@@ -30,10 +31,6 @@ Feature: Account Opening KYB CV - Submit Business Profile
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
-
-    @validation_kyb_fields_text_business_profile
-    Scenario Outline: Verifying form Business Profile fields has been filled and then empty the fields
-        Given I am a customer who has completed my KYC process
         When I fill field '<Field>' with '121212' in form Business Profile
         And I clear the field '<Field>' in form Business Profile
         Then I should see message error '<Field Name> wajib diisi' in the below of field '<Field>' in form Business Profile
@@ -45,7 +42,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @validation_kyb_one_empty_field_business_profile
     Scenario Outline: Verifying one fields hasn't been filled by user in form Business Profile
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I fill form Business Profile except field '<Field>'
         And I submit my business profile
         And I swipe to field '<Field>' in form Business Profile
@@ -61,7 +82,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
             | @C171335    | businessDateStart | Tanggal bisnis berdiri       |
 
     Scenario Outline: Verifying business name with invalid value in form Business Profile
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I fill field 'businessName' with '<Value>' in form Business Profile
         Then I should see message error '<Message>' in the below of field 'businessName' in form Business Profile
         Examples:                                                                 ❸
@@ -71,18 +116,90 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C171338
     Scenario: Verifying field business name contain with special char and number
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I fill field 'businessName' with 'John Doe S.Kom, M\'Kom- 11233' in form Business Profile
         Then I shouldn't see message error in the below of field 'businessName' in form Business Profile
 
     @C171339
     Scenario: Verifying field average transaction contain with special char and alphabeth
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I fill field 'averageTransaction' with '20;0000ty@#$' in form Business Profile
         Then I should see message error 'Rata - rata transaksi wajib diisi' in the below of field 'averageTransaction' in form Business Profile   
 
     Scenario Outline: Verifying NIB field with invalid value in form Business Profile
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I fill field 'nib' with '<Value>' in form Business Profile
         Then I should see message error '<Message>' in the below of field 'nib' in form Business Profile
         Examples:                                                                 ❸
@@ -93,7 +210,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172490
     Scenario: Validate content business field with industry type "Teknologi Informasi"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Teknologi Informasi'
@@ -104,7 +245,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172491
     Scenario: Validate content business field with industry type "Rumah Sakit, Apotik dan Industri Kesehatan"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Rumah Sakit, Apotik dan Industri Kesehatan'
         And I submit my industry type
@@ -114,7 +279,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172492
     Scenario: Validate content business field with industry type "Keuangan & Asuransi"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Keuangan & Asuransi'
         And I submit my industry type
@@ -124,7 +313,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172493
     Scenario: Validate content business field with industry type "Perdagangan Besar & Eceran"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Perdagangan Besar & Eceran'
         And I submit my industry type
@@ -134,7 +347,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172494
     Scenario: Validate content business field with industry type "Industri Pengolahan"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Industri Pengolahan'
         And I submit my industry type
@@ -144,7 +381,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172495
     Scenario: Validate content business field with industry type "Konstruksi"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Konstruksi'
         And I submit my industry type
@@ -154,7 +415,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172496
     Scenario: Validate content business field with industry type "Pendidikan"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Pendidikan'
         And I submit my industry type
@@ -164,7 +449,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172497
     Scenario: Validate content business field with industry type "Jasa"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Jasa'
         And I submit my industry type
@@ -174,7 +483,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172498
     Scenario: Validate content business field with industry type "Transportasi"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Transportasi'
         And I submit my industry type
@@ -184,7 +517,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172499
     Scenario: Validate content business field with industry type "Pengangkutan & Pergudangan"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Pengangkutan & Pergudangan'
         And I submit my industry type
@@ -194,7 +551,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172500
     Scenario: Validate content business field with industry type "Pertambangan & Penggalian"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Pertambangan & Penggalian'
         And I submit my industry type
@@ -204,7 +585,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172501
     Scenario: Validate content business field with industry type "Industri Kreatif"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Industri Kreatif'
         And I submit my industry type
@@ -214,7 +619,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172502
     Scenario: Validate content business field with industry type "Restoran, Kafe dan Hotel"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Restoran, Kafe dan Hotel'
         And I submit my industry type
@@ -224,7 +653,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172503
     Scenario: Validate content business field with industry type "Industri Makanan & Minuman"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Industri Makanan & Minuman'
         And I submit my industry type
@@ -234,7 +687,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172504
     Scenario: Validate content business field with industry type "Lainnya"
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Lainnya'
         And I will see text field to fill my industry type
@@ -246,14 +723,62 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172505
     Scenario: Choose business field without choose industry type
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'businessField' in form Business Profile
         Then I will see information I need to choose industry type first
         And I close bottom sheet business field
 
     @C172506
     Scenario: Choose industry type and then change again
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Jasa'
         And I submit my industry type
@@ -265,7 +790,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172507
     Scenario: Fill field other industry type and then delete
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Lainnya'
@@ -277,7 +826,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172508
     Scenario: Fill field other business field and then delete
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Lainnya'
@@ -294,7 +867,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172509
     Scenario: Fill field other industry type with char more than 50
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Lainnya'
@@ -304,7 +901,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172510
     Scenario: Fill field other business field with char more than 50
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Lainnya'
@@ -319,7 +940,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172511
     Scenario: Fill option other in industry type and then choose other option
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I will see content of dropdown industry
         And I choose option 'Lainnya'
@@ -332,7 +977,31 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C172512
     Scenario: Change option industry type after choose business field
-        Given I am a customer who has completed my KYC process
+        Given I am a registered customer with following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | revv286a |
+            | password    | 1234Test |
+            | userIDstg   | testb741 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I click dropdown 'industry' in form Business Profile
         And I choose option 'Jasa'
         And I submit my industry type
@@ -348,7 +1017,25 @@ Feature: Account Opening KYB CV - Submit Business Profile
 
     @C171347
     Scenario: Submit form Business Profile successfully business type CV
-        Given I am a customer who has completed my KYC process
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                |
+            | email           | acc_op_cv@gmail.com    |
+            | phoneNumber     | 812967754041           |
+            | password        | 1234Test               |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
         When I see fields that available in Business Profile
         And I fill my business profile as followings:
             | businessName       | PT. ABCD        |

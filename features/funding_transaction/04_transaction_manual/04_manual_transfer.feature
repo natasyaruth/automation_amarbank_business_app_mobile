@@ -29,7 +29,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak ditemukan
         And User not available to continue the process
 
-    #@C157065
+    @C157065
     Scenario: Checking inactive account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -42,7 +42,7 @@ Feature: Manual Transfer
         Then Show error message Nomor rekening tidak aktif
         And User not available to continue the process
 
-    #@C157066
+    @C157066
     Scenario: Checking not exist account number for Individual
         Given I am a customer that want to transfer with individual account
         When I login to app
@@ -464,4 +464,286 @@ Feature: Manual Transfer
         And I choose transfer service BIFAST
         Then I shouldn't see message error total amount more than active amount
         And I choose transfer service RTGS
-        Then I see message error total amount shouldn't more than active amount      
+        Then I see message error total amount shouldn't more than active amount
+
+    @C173118
+    Scenario: Check push notification limit RTOL
+        Given I am in dashboard
+        When push notification adjust RTOL
+        Then I receive notification about information adjust RTOL
+        And I see information that limit RTOL is adjusted to Rp200.000.000
+
+    @C173119
+    Scenario: Check notification email limit RTOL
+        Given I am in dashboard
+        When push notification adjust RTOL
+        Then I receive notification email about information adjust RTOL
+        And I see information that limit RTOL is adjusted to Rp200.000.000
+
+    @C173151
+    Scenario: Check Push Notification Transaction Out Single Transfer Sesama Amar Bank
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'ICHA KUN' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test Overbooking'
+        And I click button next
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        When I wait for a second
+        Then I see page "Transfer Berhasil"
+        Then I got push notification from that transaction
+
+    @@C173152
+    Scenario: Check Push Notification Transaction Transaction Out Single Transfer BIFAST
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test BIFAST'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service BIFAST
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        When I wait for a second
+        Then I see page "Transfer Berhasil"
+        Then I got push notification from that transaction
+
+    @C173153
+    Scenario: Check Push Notification Transaction Out Single Transfer RTOL
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test RTOL'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service RTOL
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        When I wait for a second
+        Then I see page "Transfer Berhasil"
+        Then I got push notification from that transaction
+
+    @C173154
+    Scenario: Check Push Notification Transaction Out Single Transfer SKN
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '50000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test SKN'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service SKN
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        When I wait for a second
+        Then I see page "Transfer Berhasil"
+        Then I got push notification from that transaction
+
+    @C173155
+    Scenario: Check Push Notification Transaction Out Single Transfer RTGS
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '100000001'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test RTGS'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL, SKN and RTGS
+        When I choose transfer service RTGS
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        When I wait for a second
+        Then I see page "Transfer Berhasil"
+        Then I got push notification from that transaction
+
+    @C173156
+    Scenario: Check Push Notification Transaction Transaction Out Maker Approval Sesama Amar Bank.
+        Given I am a customer who wants to Transfer and has friend list
+        And I hit api mocking to make transaction failed
+        And I am a maker and have approver in other side
+        When I input name 'ICHA KUN' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test Overbooking'
+        And I click button next
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        And I see page waiting for approval
+        When Approver login to approve the transaction
+        And Approver open request transaction that need approval
+        And Approver accept the transaction
+        And Approver input PIN '111111'
+        And I got snackbar success
+        Then I got push notification from that transaction
+
+    @C173157
+    Scenario: Check Push Notification Transaction Transaction Out Maker Approval BI-FAST
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test BIFAST'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service BIFAST
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        And I see page waiting for approval
+        When Approver login to approve the transaction
+        And Approver open request transaction that need approval
+        And Approver accept the transaction
+        And Approver input PIN '111111'
+        And I got snackbar success
+        Then I got push notification from that transaction
+
+    @C173158
+    Scenario: Check Push Notification Transaction Transaction Out Maker Approval RTOL
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test RTOL'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service RTOL
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        And I see page waiting for approval
+        When Approver login to approve the transaction
+        And Approver open request transaction that need approval
+        And Approver accept the transaction
+        And Approver input PIN '111111'
+        And I got snackbar success
+        Then I got push notification from that transaction
+
+    @C173159
+    Scenario: Check Push Notification Transaction Transaction Out Maker Approval SKN
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '15000'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test SKN'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL and SKN
+        When I choose transfer service SKN
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        And I see page waiting for approval
+        When Approver login to approve the transaction
+        And Approver open request transaction that need approval
+        And Approver accept the transaction
+        And Approver input PIN '111111'
+        And I got snackbar success
+        Then I got push notification from that transaction
+
+    @C173160
+    Scenario: Check Push Notification Transaction ransaction Out Maker Approval RTGS
+        Given I am a customer who wants to Transfer and has friend list
+        When I input name 'Surya Edwin' from the search box
+        And I choose the friendlist
+        And I validate page transfer
+        And I input amount '100000001'
+        And I choose category 'Pembayaran'
+        And I input notes with 'Test RTGS'
+        And I click choose bank transfer service
+        And I am on Transfer methode list page
+        Then I can see BIFAST, RTOL, SKN and RTGS
+        When I choose transfer service RTGS
+        And I click transfer
+        And I am on page transfer confirmation
+        And I click transfer now
+        And I input PIN '111111'
+        Then I see loading proccess after input PIN
+        And I was directed to Page "Transaksi sedang diproses"
+        And I see loading page and button "x" on page "Transaksi sedang diproses"
+        And I see page waiting for approval
+        When Approver login to approve the transaction
+        And Approver open request transaction that need approval
+        And Approver accept the transaction
+        And Approver input PIN '111111'
+        And I got snackbar success
+        Then I got push notification from that transaction
+    
+    @C173161
+    Scenario: Redirection From Heads-Up Notification Transaction Out To Detail Transaction.
+        Given I got push notification from transaction out
+        When I open the notification from Heads-Up Notification
+        Then I will directed to page detail transaction out
+
+    @C173162
+    Scenario: Redirection From Device Screen Notification Transaction Out To Detail Transaction.
+        Given I am in device screen who has transaction out notification
+        When I open the notification from device screen
+        Then I will directed to page detail transaction out

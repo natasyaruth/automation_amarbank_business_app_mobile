@@ -55,7 +55,9 @@ Feature: User add friend list
         And I can choose Bank name
         And I search 'BCA' in search box bank name
         And I tap on bank name
-        And I input account number '9001600005'
+        And I input account number
+            | accNumberDev | 9001600005 |
+            | accNumberStg | 9001600010 |
         And I click on check
         Then I will see error message "Nomor rekening tidak ditemukan"
 
@@ -76,7 +78,9 @@ Feature: User add friend list
         And I can choose Bank name
         And I search 'BCA' in search box bank name
         And I tap on bank name
-        And I input account number '00520000002300'
+        And I input account number
+            | accNumberDev | 00520000002300 |
+            | accNumberStg | 00520000002300 |
         And I click on check
         And I choose bank name again
         And I search 'BNI' in search box bank name
@@ -91,7 +95,9 @@ Feature: User add friend list
         And I can choose Bank name
         And I search 'BCA' in search box bank name
         And I tap on bank name
-        And I input account number '00520000002300'
+        And I input account number
+            | accNumberDev | 00520000002300 |
+            | accNumberStg | 00520000002300 |
         And I click on check
         And I uncheck on the checkbox save as friend list
         And I process to transfer detail
@@ -107,7 +113,9 @@ Feature: User add friend list
         And I can choose Bank name
         And I search 'Bank Amar Indonesia' in search box bank name
         And I tap on bank name
-        And I input account number '1602000018'
+        And I input account number
+            | accNumberDev | 1602000018 |
+            | accNumberStg | 1702000099 |
         And I click on check
         And I check on the checkbox save as friend list
         And I process to transfer detail

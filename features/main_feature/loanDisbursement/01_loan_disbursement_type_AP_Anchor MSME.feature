@@ -205,3 +205,10 @@ Feature: Loan Disbursement for Loan Type AP
 #   When user should see field "Total Bunga" in the below of field "textInterestFee"
 #   When user should see field "Biaya Administrasi 3%" in the below of field "textAdminFee"
 #   Then show amount disbursement calculation page if invoice value 80%
+
+Scenario: Validate disbursement status is failed then in mobile application will display latest status 
+    Given I have been in anchor detail page to validate status failed disburse
+    When I click button "Gunakan Limit" in card type Direct Loan AP
+    And I see card "Segera Kirim Dokumen Pencairan" after user got failed disbursement
+    And I click the card with status Segera Kirim Dokumen Pencairan
+    And I will direct to page waiting PDC page.

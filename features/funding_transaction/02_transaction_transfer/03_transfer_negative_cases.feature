@@ -96,7 +96,7 @@ Feature: User Want to Transfer with Negative Cases
         And I input amount more than active amount
         Then I should see error message "Saldo aktif tidak mencukupi" in field "amount"
 
-    @C96928
+    @C133904
     Scenario: User Transfer with category not selected
         Given I am a registered customer with following details:
             | userID      | natace13 |
@@ -271,7 +271,7 @@ Feature: User Want to Transfer with Negative Cases
         And I am on receiver list page
         And I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '20000000'
+        And I input amount same with amount active plus with admin fee BIFAST
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
         And I can see BIFAST, RTOL and SKN

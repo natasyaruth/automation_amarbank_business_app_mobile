@@ -4,7 +4,7 @@ Feature: Account Opening KYB CV - Submit Business Directors
     As a customer
     I want to submit list business director as part of the KYB Process
 
-    Background: User choose legality business type CV
+    Scenario Outline: Verifying form Add Director fields has been filled and then empty the fields
         Given I am a registered customer with following details:
             | userID      | deve196a |
             | password    | 1234Test |
@@ -31,18 +31,15 @@ Feature: Account Opening KYB CV - Submit Business Directors
         And I see page 'Upload eKTP'
         And I update my last journey step to 'Data Employment'
         And I see page 'Data Business Profile'
-        When I fill my business profile as followings:
-            | businessName      | PT. ABCD        |
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
             | industry           | Jasa            |
             | businessField      | Operator tur    |
-            | monthlyIncome     | 30 - 50 juta    |
-            | averageTransaction| 2000000         |
-            | nib               | 9129106701234   |
-            | businessDateStart | 10/10/2010      |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
         And I submit my business profile
-
-    Scenario Outline: Verifying form Add Director fields has been filled and then empty the fields
-        Given I am a customer who has submitted my business profile
         When I click add business director
         And I fill field '<Field>' with 'Testing' in form Add Director
         And I clear the field '<Field>' in form Add Director
@@ -54,7 +51,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | @C171380    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying one fields hasn't been filled by user in form Add Director
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill form Add Director except field '<Field>'
         And I save data director
@@ -66,7 +97,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | @C171384    | nik      | Nomor KTP    |
 
     Scenario Outline: Verifying full name with invalid value in form Add Director
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill field 'fullName' with '<Value>' in form Add Director
         Then I should see message error '<Message>' in the below of field 'fullName' in form Add Director
@@ -80,13 +145,81 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171393
     Scenario: Verifying field full name contain with special char and number
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill field 'fullName' with 'John Doe S.Kom, M\'Kom-' in form Add Director
         Then I shouldn't see message error in the below of field 'fullName' in form Add Director
 
     Scenario Outline: Verifying email with invalid value in form Add Director
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill field 'email' with '<Value>' in form Add Director
         Then I should see message error '<Message>' in the below of field 'email' in form Add Director
@@ -97,7 +230,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
             | @C171397    |                        | E-mail wajib diisi         |
 
     Scenario Outline: Verifying NIK field with invalid value in form Add Director
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill field 'nik' with '<Value>' in form Add Director
         Then I should see message error '<Message>' in the below of field 'nik' in form Add Director
@@ -113,7 +280,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171409
     Scenario: Submit one business director successfully business type CV
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         And I am the only one business director
         When I submit business director list
         Then I will notify business director list has successfully submitted
@@ -121,7 +322,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171411
     Scenario: Submit more than one business director successfully business type CV
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill business director data as followings:
             | fullName | PUPUT                |
@@ -144,7 +379,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171413
     Scenario: Delete director for business type CV
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill business director data as followings:
             | fullName | NURUL                |
@@ -158,7 +427,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171414
     Scenario: Delete director and then submit for business type PT Perusahaan
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill business director data as followings:
             | fullName | AVIL PURWOKO                |
@@ -183,7 +486,41 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171416
     Scenario: Update director for business type CV
-        Given I am a customer who has submitted my business profile
+        Given I am a registered customer with following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I reset my state journey
+        And I filling in form login with the following details:
+            | userID      | deve196a |
+            | password    | 1234Test |
+            | userIDstg   | ruth7cb8 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill business director data as followings:
             | fullName | BIMO PURWOKO        |
@@ -202,7 +539,35 @@ Feature: Account Opening KYB CV - Submit Business Directors
 
     @C171417
     Scenario: Update director and then submit for business type CV
-        Given I am a customer who has submitted my business profile
+        Given I am a customer that recently registered to amarbank business with data as below
+            | fullName        | Testing                |
+            | email           | acc_op_cv@gmail.com    |
+            | phoneNumber     | 812967754041           |
+            | password        | 1234Test               |
+        And I login using my user id that I recently receive through email
+        And I click later in pop up biometric
+        And I will directing to Hook 1 Onboarding Account Opening
+        And I swipe to card Giro Account
+        And I choose Giro Account
+        And I choose Giro Account Corporate
+        And I submit my giro type
+        And I choose legality business type 'cv'
+        And I submit my legality type
+        And I fill NPWP Business
+        And I click continue to data personal
+        And I click confirm NPWP Business
+        And I see page 'Upload eKTP'
+        And I update my last journey step to 'Data Employment'
+        And I see page 'Data Business Profile'
+        And I fill my business profile as followings:
+            | businessName       | PT. ABCD        |
+            | industry           | Jasa            |
+            | businessField      | Operator tur    |
+            | monthlyIncome      | 30 - 50 juta    |
+            | averageTransaction | 2000000         |
+            | nib                | 9129106701234   |
+            | businessDateStart  | 10/10/2010      |
+        And I submit my business profile
         When I click add business director
         And I fill business director data as followings:
             | fullName | BIMO PURWOKO        |
