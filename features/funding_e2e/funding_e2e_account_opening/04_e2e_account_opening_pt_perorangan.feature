@@ -57,7 +57,7 @@ Feature: Account Opening - PT Perorangan
     And I fill my business profile as followings:
         | businessName       | PT. ABCD        |
         | industry           | Jasa            |
-        | businessField      | Restoran        |
+        | businessField      | Operator tur    |
         | monthlyIncome      | 30 - 50 juta    |
         | averageTransaction | 2000000         |
         | nib                | 9129106701234   |
