@@ -283,7 +283,7 @@ exports.config = {
       "./features/funding_transaction/03_transaction_history/*.feature",
       "./features/funding_transfer/*.feature",
       "./features/funding_profile/*.feature",
-      "./features/funding_document_management/*.feature",
+      "./features/funding_brankas_document/*.feature",
       "./features/funding_other/*.feature",
       "./features/loanDisbursement/*.feature",
       "./features/funding_home/*.feature",

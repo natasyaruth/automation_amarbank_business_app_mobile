@@ -157,8 +157,35 @@ Feature: Account Opening KYB UD - Upload Document Business
         And I click continue to data personal
         And I click confirm NPWP Business
         And I see page 'Upload eKTP'
-        And I update my last journey step to 'Data Employment'
-        And I see page 'Data Business Profile'
+        And I click take photo eKTP
+        And I will directing to page take photo eKTP
+        And I take photo eKTP
+        And I submit my eKTP photo
+        And I fill all information identity details as followings:
+            | eKtpNumber    | 3171131810770033          |
+        And I swipe to button save data eKTP
+        And I submit my information identity details
+        And I click take my photo selfie
+        And I will direct to page take selfie picture KYC
+        And I take selfie picture
+        And I submit my selfie photo
+        And I click take photo selfie with KTP
+        And I will directing to page take selfie with KTP
+        And I click take photo
+        And I submit my selfie with KTP
+        And I will directing to page submit Data Personal
+        And I submit my personal data details business and upload my npwp as followings:
+            | lastEducation        | SMA          |
+            | motherName           | NADYA LAMUSU |
+            | referenceName        | IBU SAYA     |
+            | referencePhoneNumber | 812343455677 |
+        And I choose my domicile address same with my identity information
+        And I submit my domicile address
+        And I fill my employment details as followings:
+            | workType     | Pegawai Swasta       |
+            | sourceIncome | Pemasukan dari Usaha |
+        And I submit my employment data
+        And I continue to process KYB
         And I fill my business profile as followings:
             | businessName      | FITHUB          |
             | industry          | Jasa            |

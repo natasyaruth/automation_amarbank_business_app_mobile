@@ -10,12 +10,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -34,12 +34,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -58,12 +58,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -80,12 +80,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -102,12 +102,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -125,13 +125,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -155,13 +155,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -189,13 +189,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -227,12 +227,12 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a registered customer with following details:
             | userID      | deveffba |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deveffba |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -257,12 +257,12 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a registered customer with following details:
             | userID      | deve9b96 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve9b96 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
