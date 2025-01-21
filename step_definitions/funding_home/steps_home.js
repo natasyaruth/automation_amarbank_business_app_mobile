@@ -425,6 +425,10 @@ When("I open the latest notification", () => {
 
 });
 
+When("I click tab funding", () => {
+    onboardingAccOpeningPage.clickTabFunding();
+});
+
 Then("I will not see my active, blocking and total amount", async () => {
     I.dontSee(globalVariable.dashboard.activeAmount);
     I.dontSee(globalVariable.dashboard.blockingAmount);

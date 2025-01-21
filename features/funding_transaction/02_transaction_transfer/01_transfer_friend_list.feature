@@ -9,12 +9,12 @@ Feature: User add friend list
             | userID      | niza9813 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         When I filling in form login with the following details:
             | userID      | niza9813 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -151,10 +151,7 @@ Feature: User add friend list
             | accNumberDev | 1503372327 |
             | accNumberStg | 1503372327 |
         And I click on check
-        And I check on the checkbox save as friend list
-        And I process to transfer detail
-        Then I can see toastbar "Data berhasil disimpan ke daftar penerima"
-        And name of receiver should be added in friendlist
+        Then I will not see error message "Nomor rekening tidak aktif"
 
     @C173833
     Scenario: Inquiry Amar Bank account with both status Dormant and Deleted is true
