@@ -342,8 +342,6 @@ Feature: Brankas - Document Management
         And I click login
         And I click later in pop up biometric
         And I will see card account 'active'
-        And I click tab profile
-        And I will see my profile individual data
         When I click tab brankas
         And I click direct to input password document
         And I input password document

@@ -10,15 +10,15 @@ Feature: User create PIN Journey Transfer
         Given I am a registered customer with following details:
             | userID      | ruthf292 |
             | password    | 1234Test |
-            | userIDstg   | nuru099d |
-            | passwordStg | Test1234 |
+            | userIDstg   | casi590a |
+            | passwordStg | 1234Test |
         And never entered wrong password
         And I reset attempt otp after login
         When I filling in form login with the following details:
             | userID      | ruthf292 |
             | password    | 1234Test |
-            | userIDstg   | nuru099d |
-            | passwordStg | Test1234 |
+            | userIDstg   | casi590a |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric 
         Then I will direct to dashboard
@@ -223,3 +223,5 @@ Feature: User create PIN Journey Transfer
         And I will receive email contain with OTP
         And I input OTP
         Then My PIN successfully created
+        And I click understand
+        And I will direct to page friendlist with list still empty

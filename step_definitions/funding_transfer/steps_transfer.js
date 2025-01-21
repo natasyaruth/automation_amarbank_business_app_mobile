@@ -510,7 +510,7 @@ Then("I successfully transferred", async () => {
   } else {
 
     I.dontSee("Catatan");
-    I.dontSee(transferPage.texts.note);
+    I.dontSeeElement(transferPage.texts.note);
   }
 
   I.waitForText("Bagikan Bukti Transfer", 10);

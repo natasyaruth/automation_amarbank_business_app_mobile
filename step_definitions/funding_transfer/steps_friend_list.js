@@ -83,6 +83,11 @@ Then("I will see error message {string}", async (expectedMessage) => {
 
 });
 
+Then("I will not see error message {string}", async (expectedMessage) => {
+    I.wait(3);
+    I.dontSee(expectedMessage);
+});
+
 When("I close bottom sheet list bank name", () => {
     friendListPage.closeBankList();
 });
@@ -168,3 +173,16 @@ Then("I will see detail inquiry", async () => {
     I.see("Selanjutnya");
     I.waitForElement(friendListPage.buttons.next, 10)
 });
+
+Then("I will direct to page friendlist with list still empty", () => {
+    I.waitForElement(headerPage.buttons.back, 20);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Daftar Penerima");
+    I.see("Belum ada Daftar Penerima");
+    I.see("Klik “Transfer ke Penerima Baru” "+"\n"+
+    "dan simpan nomor rekening");
+
+    I.see("Transfer ke Penerima Baru");
+    I.waitForElement(friendListPage.buttons.newFriendlist, 10);
+})

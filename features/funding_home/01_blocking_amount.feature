@@ -127,15 +127,16 @@ Feature: Home - Blocking amount
         Given I am a registered customer with following details:
             | userID      | trys5524 |
             | password    | Eca12345 |
-            | userIDstg   | stag6dbb |
-            | passwordStg | 1234Test |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I filling in form login with the following details:
             | userID      | trys5524 |
             | password    | Eca12345 |
-            | userIDstg   | stag6dbb |
-            | passwordStg | 1234Test |
+            | userIDstg   | perob6d5 |
+            | passwordStg | Eca12345 |
         And I click login
         And I click later in pop up biometric
+        And I click tab funding
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee
@@ -155,6 +156,7 @@ Feature: Home - Blocking amount
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
+        And I click tab funding
         And I wait until my account name displayed
         When I click detail amount
         Then I will see detail blocking amount coming from loan fee and minimum amount
@@ -163,12 +165,12 @@ Feature: Home - Blocking amount
     @C156918
     Scenario: Validate Wording blocking amount with account hasn’t Loan and product type MSME
         Given I am a registered customer with following details:
-            | userID      | ptpe5040 |
+            | userID      | mapp0eee |
             | password    | 1234Test |
             | userIDstg   | stag2add |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
-            | userID      | ptpe5040 |
+            | userID      | mapp0eee |
             | password    | 1234Test |
             | userIDstg   | stag2add |
             | passwordStg | 1234Test |
@@ -207,14 +209,14 @@ Feature: Home - Blocking amount
         Given I am a registered customer with following details:
             | userID      | mike1eb6 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | fakea190 |
+            | passwordStg | 1234Test |
         And don't have list pending task
         And I filling in form login with the following details:
             | userID      | mike1eb6 |
             | password    | 1234Test |
-            | userIDstg   | stag76ee |
-            | passwordStg | Test1234 |
+            | userIDstg   | fakea190 |
+            | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
         And I don't see any card transaction in main dashboard
@@ -290,9 +292,7 @@ Feature: Home - Blocking amount
         And I click notification maker transaction
         And I will direct to page need approval from other director
         And I canceled my transaction
-        And I input password for approver
-        And I submit my password for approver
-        And I input OTP to approve transaction
+        And I input PIN '111111' maker
         Then I will see snackbar with wording 'Transaksi berhasil dibatalkan'
         And I will direct to page notification center
         And I click close in header page
@@ -313,6 +313,7 @@ Feature: Home - Blocking amount
             | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
+        And I click tab funding
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee
@@ -361,6 +362,7 @@ Feature: Home - Blocking amount
             | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
+        And I click tab funding
         And I don't see any card transaction in main dashboard
         And I click detail amount
         And I will see detail blocking amount coming from loan fee and minimum amount

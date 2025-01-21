@@ -172,7 +172,7 @@ Feature: Account Opening Main Dashboard
         Then I will see card continue to data personal
         And I can continue to page 'Upload Selfie with KTP'      
 
-    @C131965 @FunctTestFundingSprint4
+    @C131965
     Scenario: User can see cards continue to complete data personal after drop off from flow Submit data Personal
         Given I am a registered customer with following details:
             | userID      | devece34 |

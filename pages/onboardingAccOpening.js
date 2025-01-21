@@ -114,6 +114,8 @@ module.exports = {
     callCenter: "~tabCallCenter",
     document: "~tabDocument",
     others: "~tabOthers",
+    funding: "~tabFunding",
+    lending: "~tabLending",
   },
   icons: {
     redDotNotificationDoc: "~indicatorRedDot",
@@ -662,6 +664,16 @@ module.exports = {
   confirmEmailAndSendBusinessCode(){
     I.waitForElement(this.buttons.confirmChangeEmailInvitee, 10);
     I.click(this.buttons.confirmChangeEmailInvitee);
+  },
+
+  clickTabLending(){
+    I.waitForElement(this.tabs.lending, 30);
+    I.click(this.tabs.lending);
+  },
+
+  clickTabFunding(){
+    I.waitForElement(this.tabs.funding, 30);
+    I.click(this.tabs.funding);
   },
 
 }

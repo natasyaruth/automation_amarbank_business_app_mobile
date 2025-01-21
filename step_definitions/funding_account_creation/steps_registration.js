@@ -17,9 +17,9 @@ const {
   uploadDao,
 } = inject();
 
-Given("I am a customer open app amarbank business", () => {});
+Given("I am a customer open app amarbank business", () => { });
 
-Given("I am a customer lead wanting to open a new account", () => {});
+Given("I am a customer lead wanting to open a new account", () => { });
 
 Given("I am a customer want to access menu registration", () => {
   welcomePage.clickButtonRegister();
@@ -31,7 +31,7 @@ Given("My company name is {string}", (companyName) => {
 
 Given(
   "I am a customer lead wanting to register account business from invitation",
-  async () => {}
+  async () => { }
 );
 
 Given(
@@ -61,7 +61,7 @@ Given(
     ).otp;
     account.otp = otpCode;
 
-    await 
+    await
       firstRegistrationDao.firstRegistration(account);
 
     globalVariable.login.userID = (await otpDao.getUserID(account["email"])).userID;
@@ -70,7 +70,7 @@ Given(
       resetStateDao.submitPDP(globalVariable.login.userID, globalVariable.login.password);
 
     globalVariable.login.userIDInitiator = globalVariable.login.userID;
-});
+  });
 
 Given("I've requested OTP {string} times", (timesAttempt) => {
   I.wait(3)
@@ -81,7 +81,7 @@ Given("I've requested OTP {string} times", (timesAttempt) => {
   }
 });
 
-Given("still not agree with PDP concern", async ()=>{
+Given("still not agree with PDP concern", async () => {
   // API to update status PDP
 });
 
@@ -188,38 +188,38 @@ When("I verifying my phone number by entering the code sent to me", async () => 
   let actualPhoneNumber = await otpConfirmationPage.getPhoneNumber();
   let expectedPhoneNumber = globalVariable.registration.phoneNumber.substring(2);
 
-    I.see("Verifikasi Nomor HP");
-    I.see("Kode OTP telah dikirim ke nomor");
-    I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
+  I.see("Verifikasi Nomor HP");
+  I.see("Kode OTP telah dikirim ke nomor");
+  I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
 
-    I.wait(3);
+  I.wait(3);
 
-    globalVariable.registration.otpCode = (
-      await otpDao.getOTP(globalVariable.registration.phoneNumber)
-    ).otp;
-    otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
-  }
+  globalVariable.registration.otpCode = (
+    await otpDao.getOTP(globalVariable.registration.phoneNumber)
+  ).otp;
+  otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
+}
 );
 
 When("I verifying phone number invitee by entering the code", async () => {
   let actualPhoneNumber = await otpConfirmationPage.getPhoneNumber();
   let expectedPhoneNumber = globalVariable.registration.phoneNumberPartner;
 
-    I.see("Verifikasi Nomor HP");
-    I.see("Kode OTP telah dikirim ke nomor");
-    I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
+  I.see("Verifikasi Nomor HP");
+  I.see("Kode OTP telah dikirim ke nomor");
+  I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
 
-    I.wait(3);
+  I.wait(3);
 
-    globalVariable.registration.otpCode = (
-      await otpDao.getOTP("62"+globalVariable.registration.phoneNumberPartner)
-    ).otp;
+  globalVariable.registration.otpCode = (
+    await otpDao.getOTP("62" + globalVariable.registration.phoneNumberPartner)
+  ).otp;
 
-    otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
-  }
+  otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
+}
 );
 
-When("I click icon info business code", ()=>{
+When("I click icon info business code", () => {
   registrationPage.openInfoBusinessCode();
 });
 
@@ -490,9 +490,9 @@ When("I will directing to page privacy and policy", () => {
   I.wait(3);
   I.waitForText("Kebijakan Privasi", 10);
   I.waitForElement(headerPage.buttons.back, 10);
-  
+
   registrationPage.clickScrollToEndOfPage();
-  
+
   I.waitForElement(registrationPage.buttons.acceptWebView, 10);
   I.see("Setujui Kebijakan Privasi");
 });
@@ -512,14 +512,6 @@ When("I click button back in the header page", () => {
 When("I let the otp code expire", () => {
   I.wait(63);
   I.waitForElement(otpConfirmationPage.links.resendOTP, 10);
-});
-
-When("I verifying my phone number by entering the wrong code five times", () => {
-  otpConfirmationPage.isOpen();
-  for (let attempts = 1; attempts < 6; attempts++) {
-    otpConfirmationPage.fillInOtpCode("123456");
-    I.wait(2);
-  }
 });
 
 When("I verifying my phone number by entering the wrong code four times", () => {
@@ -578,7 +570,7 @@ When("I get my first OTP", async () => {
   globalVariable.registration.otpCode = (await otpDao.getOTP(globalVariable.registration.phoneNumber)).otp
 });
 
-When("I submit the PDP registration", ()=>{
+When("I submit the PDP registration", () => {
   registrationPage.submitPDPRegist();
 });
 
@@ -716,7 +708,9 @@ When(
     otpConfirmationPage.isOpen();
     for (let attempts = 1; attempts < 6; attempts++) {
       otpConfirmationPage.fillInOtpCode("123456");
-      I.wait(2);
+      if (attempts !== 5) {
+        I.wait(2);
+      }
     }
   }
 );
@@ -733,7 +727,7 @@ When(
   }
 );
 
-When("I close bottom sheet info business code", ()=>{
+When("I close bottom sheet info business code", () => {
   registrationPage.closeBottomSheet();
   I.wait(2);
   I.dontSeeElement(registrationPage.buttons.closeBottomSheet);
@@ -802,7 +796,7 @@ When("I checked the 2 mandatory PDP checklists", () => {
   registrationPage.clickCheckboxPDPMandatory();
 });
 
-When("I unchecked the 2 mandatory PDP checklists", () => {});
+When("I unchecked the 2 mandatory PDP checklists", () => { });
 
 When("I checked the optional PDP checklist", () => {
   registrationPage.clickCheckboxPDPOptional();
@@ -816,11 +810,11 @@ When("I am on page PDP consent", () => {
   I.see("Persetujuan Penggunaan Data dan Informasi Pribadi");
 });
 
-When("I click button first login", ()=>{
+When("I click button first login", () => {
   verificationEmailPage.clickButtonFirstLogin();
 });
 
-When("I edit field email with old email invitee", ()=>{
+When("I edit field email with old email invitee", () => {
   registrationPage.fillFieldRegistration("email", globalVariable.registration.emailPartner);
 });
 
@@ -959,7 +953,7 @@ Then("I should see message error register code business first with the email", a
   I.wait(1);
 
   let actualMsgError = await registrationPage.getMessageErrorFieldRegistration("businessCode");
-  I.assertEqual(actualMsgError, "Masukkan kode bisnis yang kami kirim ke e-mail: "+globalVariable.registration.emailPartner);
+  I.assertEqual(actualMsgError, "Masukkan kode bisnis yang kami kirim ke e-mail: " + globalVariable.registration.emailPartner);
 });
 
 Then("I will direct to page verification phonenumber", () => {
@@ -993,7 +987,7 @@ Then("I should see button Buat Akun will disable", async () => {
   I.waitForText("Buat Akun", 10);
   const isEnabled = await I.grabAttributeFrom(registrationPage.statusElement.buttonRegist, 'enabled');
   I.assertEqual(isEnabled, 'false');
-  
+
 });
 
 Then("my account should be created", () => {
@@ -1084,8 +1078,8 @@ Then("I will see helping center via email", () => {
   I.waitForText("Hubungi Tim Kami", 10);
   I.see(
     "Kami akan membantu Anda dalam" +
-      "\n" +
-      "pembentukan rekening ataupun pinjaman"
+    "\n" +
+    "pembentukan rekening ataupun pinjaman"
   );
   I.see("support.bisnis@amarbank.co.id");
   I.waitForElement(headerPage.cards.whatsApp, 10);
@@ -1166,7 +1160,7 @@ Then("I should go to Verifikasi No. HP page", () => {
 
 Then(
   "I get email including the information about PDP that i checked before",
-  () => {}
+  () => { }
 );
 
 Then("I see text consent PDP", () => {
@@ -1185,7 +1179,7 @@ Then("I will directing to page PDP", () => {
   I.waitForElement(registrationPage.scroll.scrollToButton, 10);
 
   registrationPage.clickScrollToEndOfPage();
-  
+
   I.waitForElement(registrationPage.buttons.acceptPDP, 10);
   I.see("Setujui Pelindungan Data Pribadi");
 });
@@ -1194,7 +1188,7 @@ Then("I will back to page PDP", () => {
   I.waitForText("Pelindungan Data Pribadi", 10);
 });
 
-Then("I will see pop up option PDP registration", async ()=>{
+Then("I will see pop up option PDP registration", async () => {
   I.waitForText("Persetujuan Penggunaan Data dan Informasi Pribadi", 10);
   I.see("Wajib dicentang");
 
@@ -1210,7 +1204,7 @@ Then("I will see pop up option PDP registration", async ()=>{
   I.assertEqual(isEnabled, 'false');
 });
 
-Then ("I will see pop up confirmation registration with company name", async ()=>{
+Then("I will see pop up confirmation registration with company name", async () => {
 
   I.waitForText("Konfirmasi Data Anda", 20);
   I.see("Pastikan kembali e-mail dan nomor HP Anda sudah benar dan aktif");
@@ -1234,7 +1228,7 @@ Then ("I will see pop up confirmation registration with company name", async ()=
   I.waitForElement(registrationPage.buttons.backRegist, 10);
 });
 
-Then("I will see information of business code", ()=>{
+Then("I will see information of business code", () => {
   I.waitForElement(registrationPage.buttons.closeBottomSheet, 10);
   I.see("Apa Itu Kode Bisnis?");
 

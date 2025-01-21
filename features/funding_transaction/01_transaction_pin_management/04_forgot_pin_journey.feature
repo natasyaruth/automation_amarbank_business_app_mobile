@@ -32,7 +32,9 @@ Feature: User forgot PIN and want to create new
         And I input new PIN with "111111"
         And I confirm create PIN
         And I input OTP
-        Then I will go back to other page
+        Then I will direct to page PIN has been successfully changes
+        And I click understand
+        And I will go back to other page
 
     @C109140
     Scenario: User input incorrect password once from forgot PIN

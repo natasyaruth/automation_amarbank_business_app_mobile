@@ -1158,7 +1158,7 @@ Feature: Account registration
   Scenario: Resend email verification
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya                 |
-      | email           | ruth.hutauruk@amarbank.co.id |
+      | email           | fakemail@email.com           |
       | mobileNumber    | 89561338639                  |
       | password        | Test1234                     |
       | confirmPassword | Test1234                     |
