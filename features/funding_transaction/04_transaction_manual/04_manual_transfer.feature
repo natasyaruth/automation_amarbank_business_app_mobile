@@ -501,7 +501,7 @@ Feature: Manual Transfer
         Then I see page "Transfer Berhasil"
         Then I got push notification from that transaction
 
-    @@C173152
+    @C173152
     Scenario: Check Push Notification Transaction Transaction Out Single Transfer BIFAST
         Given I am a customer who wants to Transfer and has friend list
         When I input name 'Surya Edwin' from the search box
@@ -737,13 +737,37 @@ Feature: Manual Transfer
         Then I got push notification from that transaction
     
     @C173161
-    Scenario: Redirection From Heads-Up Notification Transaction Out To Detail Transaction.
-        Given I got push notification from transaction out
-        When I open the notification from Heads-Up Notification
-        Then I will directed to page detail transaction out
+    Scenario: Redirection Push Notification while user already login
+        Given I got push notification from transaction out and already login
+        When I open the notification
+        Then I will directed to transaction history page
 
     @C173162
-    Scenario: Redirection From Device Screen Notification Transaction Out To Detail Transaction.
-        Given I am in device screen who has transaction out notification
-        When I open the notification from device screen
-        Then I will directed to page detail transaction out
+    Scenario: Redirection Push Notification while user not login
+        Given I got push notification from transaction out and not login
+        When I open the notification
+        Then I will directed to login page
+
+    Scenario: Check Push Notification Transaction Inbound Sesama Amar
+        Given I am a customer and recently receive push notification transfer in from sesama Amar Bank
+        When I already login to app
+        And I click the push notification transfer in
+        Then I will direct to page transaction history
+
+    Scenario: Check Push Notification Transaction Inbound BI-FAST
+        Given I am a customer and recently receive push notification transfer in from other bank with method BIFAST
+        When I already login to app
+        And I click the push notification transfer in
+        Then I will direct to page transaction history
+
+    Scenario: Check Push Notification Transaction Inbound RTOL
+        Given I am a customer and recently receive push notification transfer in from other bank with method RTOL
+        When I already login to app
+        And I click the push notification transfer in
+        Then I will direct to page transaction history
+
+    Scenario: Check Redirection Push Notification while User Not Login
+        Given I am a customer and recently receive push notification transfer in from sesama Amar Bank
+        When I already login to app
+        And I click the push notification transfer in
+        Then I will direct to page transaction history
