@@ -61,6 +61,7 @@ const getReleases = async function () {
     const response = await appDistribution.projects.apps.releases.list({
       parent: `projects/${projectId}/apps/${appName}`,
       pageSize: 1,
+      filter: `releaseNotes.text="*regres*"`,
       orderBy: "createTime desc",
     });
 
