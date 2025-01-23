@@ -33,8 +33,8 @@ Feature: Account Opening - Validation Auto Reject
         When I see page 'Data Business Profile'
         And I fill my business profile as followings:
             | businessName      | PT. ABCD        |
-            | industry           | Jasa            |
-            | businessField      | Operator tur    |
+            | industry          | Jasa            |
+            | businessField     | Operator tur    |
             | monthlyIncome     | 30 - 50 juta    |
             | averageTransaction| 2000000         |
             | nib               | 9129106701234   |
