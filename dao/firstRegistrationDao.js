@@ -18,7 +18,8 @@ module.exports = {
             password: dataRegistration["password"],
             confirmPassword: dataRegistration["password"],
             otp: dataRegistration["otp"],
-            receivedInfoProduct: dataRegistration["receivedInfoProduct"],
+            pdpConsent: true,
+            receivedInfoProduct: false,
         });
         
         I.seeResponseCodeIsSuccessful();
