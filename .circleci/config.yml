@@ -28,6 +28,11 @@ jobs:
       - checkout  # Checkout your Bitbucket repo
 
       - run:
+          name: showing all directory current...
+          command: |
+            ls -la
+
+      - run:
           name: Install dependencies based on package.json
           command: |
             npm install
