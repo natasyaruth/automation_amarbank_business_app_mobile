@@ -10,7 +10,7 @@ orbs:
 executors:
   node-executor:
     docker:
-      - image: circleci/node:14.17-browsers  # Node image with browsers for running tests
+      - image: cimg/node:18.20.6-browsers
     working_directory: ~/ambis-auto-mobile-app
   compute-engine:
     machine: true
