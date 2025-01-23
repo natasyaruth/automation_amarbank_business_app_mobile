@@ -11,7 +11,6 @@ executors:
   node-executor:
     docker:
       - image: cimg/node:18.20.6-browsers
-    working_directory: ~/ambis-auto-mobile-app
   compute-engine:
     machine: true
     resource_class: amarbank/compute_sre
