@@ -22,6 +22,8 @@ jobs:
     environment:
       BROWSERSTACK_USERNAME: qatestingtechnol1  # BrowserStack credentials
       BROWSERSTACK_ACCESS_KEY: ubKJg1fyqyprtJMiJedy
+      FIREBASE_PROJECT_NUMBER: 594672590520 # firebase credentials
+      FIREBASE_APP_ID: 1:594672590520:android:2a5c88ca5cba8e12031e4d
       
     steps:
       - checkout  # Checkout your Bitbucket repo
