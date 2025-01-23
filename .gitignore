@@ -29,3 +29,5 @@ mochawesome-report/
 *.iml
 *.DS_Store
 Thumbs.db
+
+*.apk
