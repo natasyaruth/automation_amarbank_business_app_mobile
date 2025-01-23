@@ -5,7 +5,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@21.3.0
+  node: circleci/node@7.0.0
 
 executors:
   node-executor:
@@ -26,6 +26,11 @@ jobs:
     steps:
       - checkout  # Checkout your Bitbucket repo
 
+      - run:
+          name: Install dependencies based on package.json
+          command: |
+            npm install
+            
       - run:
           name: Install dependencies
           command: |
