@@ -121,7 +121,7 @@ Then("I can see BIFAST and SKN", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -164,7 +164,54 @@ Then("I can see BIFAST, SKN and RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
+
+  I.waitForElement(transferPage.radioButtons.methodSkn, 10);
+  const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
+  I.assertEqual(actualAdminFeeSkn, "Rp " + globalVariable.transfer.adminFeeSKN);
+  I.see(globalVariable.constant.methodTf.skn);
+  I.see("Dana langsung sampai ke penerima");
+  I.see("Nominal transfer:");
+  I.see("Rp 10.000 - Rp 1.000.000.000");
+
+  I.waitForElement(transferPage.radioButtons.methodRtgs, 10);
+  const actualAdminFeeRtgs = await transferPage.getAdminFeeRTGS();
+  I.assertEqual(actualAdminFeeRtgs, "Rp " + globalVariable.transfer.adminFeeRTGS);
+  I.see(globalVariable.constant.methodTf.rtgs);
+  I.see("Dana langsung sampai ke penerima");
+  I.see("Nominal transfer:");
+  I.see("> Rp 100.000.000");
+});
+
+Then("I can see BIFAST, RTOL, SKN and RTGS", async () => {
+
+  I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
+
+  I.waitForElement(transferPage.radioButtons.methodBifast, 10);
+  const actualAdminFeeBifast = await transferPage.getAdminFeeBIFAST();
+  I.assertEqual(actualAdminFeeBifast, "Rp " + globalVariable.transfer.adminFeeBIFAST);
+  I.see("BI Fast");
+  I.see("Dana langsung sampai ke penerima");
+  I.see("Nominal transfer:");
+  I.see("Rp 10.000 - Rp 250.000.000");
+
+  const actualAdminFee = await transferPage.getValueAdminFee();
+  I.assertEqual(actualAdminFee, "+Rp" + globalVariable.transfer.adminFeeBIFAST);
+
+  const actualTotalAmount = await transferPage.getValueTotalAmount();
+  const formattedString = globalVariable.transfer.adminFeeBIFAST.replace(/Rp|\./g, '');
+  const numberAdminFee = parseInt(formattedString);
+  const numberTotalAmount = globalVariable.transfer.amount + numberAdminFee;
+  const expectedTotalAmount = transferPage.formattedToThreeDigit(numberTotalAmount);
+  I.assertEqual(actualTotalAmount, "Rp" + expectedTotalAmount);
+
+  I.waitForElement(transferPage.radioButtons.methodRtol, 10);
+  const actualAdminFeeRtol = await transferPage.getAdminFeeRTOL();
+  I.assertEqual(actualAdminFeeRtol, "Rp " + globalVariable.transfer.adminFeeRTOL);
+  I.see(globalVariable.constant.methodTf.rtol);
+  I.see("Dana langsung sampai ke penerima");
+  I.see("Nominal transfer:");
+  I.see("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -205,7 +252,7 @@ Then("I can see SKN and RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -245,7 +292,7 @@ Then("I can see RTGS", async () => {
   I.dontSee(transferPage.texts.adminFeeRTOL);
   I.dontSee("Rp " + globalVariable.transfer.adminFeeRTOL);
   I.dontSee(globalVariable.constant.methodTf.rtol);
-  I.dontSee("Rp 10.000 - Rp 50.000.000");
+  I.dontSee("Rp 10.000 - Rp 200.000.000");
 
   I.dontSee(transferPage.radioButtons.methodSkn);
   I.dontSee(transferPage.texts.adminFeeSKN);
@@ -292,7 +339,7 @@ Then("I can see BIFAST, RTOL and SKN", async () => {
   I.see(globalVariable.constant.methodTf.rtol);
   I.see("Dana langsung sampai ke penerima");
   I.see("Nominal transfer:");
-  I.see("Rp 10.000 - Rp 50.000.000");
+  I.see("Rp 10.000 - Rp 200.000.000");
 
   I.waitForElement(transferPage.radioButtons.methodSkn, 10);
   const actualAdminFeeSkn = await transferPage.getAdminFeeSKN();
@@ -463,7 +510,7 @@ Then("I successfully transferred", async () => {
   } else {
 
     I.dontSee("Catatan");
-    I.dontSee(transferPage.texts.note);
+    I.dontSeeElement(transferPage.texts.note);
   }
 
   I.waitForText("Bagikan Bukti Transfer", 10);
@@ -527,6 +574,16 @@ When("I input amount same with amount active", async () => {
   globalVariable.transfer.amount = numberActiveAmount
 });
 
+When("I input amount same with amount active plus with admin fee BIFAST", async () => {
+  const amountActive = (await transferPage.getAmountActive()).replace(/Rp|\./g, '');
+
+  const numberActiveAmount = parseInt(amountActive);
+  const adminFee = parseInt(globalVariable.transfer.adminFeeBIFAST);
+
+  const amountTransfer = numberActiveAmount + adminFee;
+
+  transferPage.inputAmountTransfer(amountTransfer);
+});
 
 When("I input wrong PIN", () => {
   transferPage.inputPin(dummyPin);

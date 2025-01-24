@@ -12,101 +12,15 @@ Feature: Registering New Device
         And I have new device id 'Test32'
         And I will mock liveness to success
 
-    @C165964
-    Scenario: Recapture selfie picture
-        Given I am a registered customer with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I will see bottom sheet register new device
-        And I click button register new device
-        And I will direct to page verification new device
-        And I click button continue to take selfie
-        And I will direct to page take selfie
-        And I take picture selfie for matching the face
-        And I will direct to page preview selfie picture
-        And I retake my picture selfie
-        Then I will direct to page take selfie
-
-    @C165965
-    Scenario: Submit photo selfie with picture is blur
-        Given I am a registered customer with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I will reset my attempt failed face match
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | nata8119 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with face is blur
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'
-
-    @C165966
-    Scenario: Submit photo selfie with picture is dark
-        Given I am a registered customer with following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | stag4cce |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I will reset my attempt failed face match
-        And I filling in form login with the following details:
-            | userID      | mich875d |
-            | password    | 1234Test |
-            | userIDstg   | stag4cce |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with face is dark
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Foto terlalu gelap atau blur. Silakan ulangi selfie Anda.'
-
-    @C165967
-    Scenario: Submit photo selfie is blank or not selfie picture
-        Given I am a registered customer with following details:
-            | userID      | rotacb82 |
-            | password    | 1234Test |
-            | userIDstg   | nata30bc |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I will reset my attempt failed face match
-        And I filling in form login with the following details:
-            | userID      | rotacb82 |
-            | password    | 1234Test |
-            | userIDstg   | nata30bc |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with no face
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'
-
-    @C165968
-    Scenario: Submit photo selfie with server is error
+    @C174143
+    Scenario: Checking email masking with char before @ is only one character
         Given I am a registered customer with following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
             | userIDstg   | natace59 |
             | passwordStg | 1234Test |
         And I reset my device id to new device
+        And I reset condition block change device
         And I filling in form login with the following details:
             | userID      | rotacb82 |
             | password    | 1234Test |
@@ -114,11 +28,218 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with server is error
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'
-        
+        Then I will direct to page verification with email is masked
+
+    @C174144
+    Scenario: Checking email masking with char before @ is 5 character
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        Then I will direct to page verification with email is masked
+
+    @C174145
+    Scenario: Input wrong OTP code once for change device
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input wrong OTP code
+        Then I will notify by message error 'Kode OTP yang Anda masukkan salah (1/3)' in field 'otp'
+
+    @C174146
+    Scenario: Input expired OTP code for change device
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input expired OTP
+        Then I will notify by message error 'Kode verifikasi yang dimasukan sudah kedaluwarsa' in field 'otp'
+
+    @C174147
+    Scenario: Input wrong OTP code for change device three times
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input wrong OTP code change device three times
+        Then I will notify otp for change device can be sent after 24 hours
+        And I click button back to page login
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I click login
+        And I will see information that my account can be opened tomorrow
+
+    @C174148
+    Scenario: Resend OTP more than five times
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I wait for 1 minutes
+        And I click link resend OTP change device
+        Then I will see message error OTP with information can be tried tomorrow
+
+    @C174149
+    Scenario: Input wrong OTP code once and then input the correct one
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I input wrong OTP code
+        And I will notify by message error 'Kode OTP yang Anda masukkan salah (1/3)' in field 'otp'
+        And I input OTP code change device that sent to me
+        Then I will direct to page verification new device
+
+    @C174150
+    Scenario: Input expired OTP code and then input the new one
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input expired OTP
+        And I will notify by message error 'Kode verifikasi yang dimasukan sudah kedaluwarsa' in field 'otp'
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I input OTP code change device that sent to me
+        Then I will direct to page verification new device
+
+    @C174151
+    Scenario: Input the old OTP code after resent new otp code
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I will see snackbar OTP successfully sent
+        And I will direct to page verification with email is masked
+        And I get the first otp code change device
+        And I click link resend OTP change device
+        And I will see snackbar OTP successfully sent
+        And I will get new otp code different from the first one
+        And I input field OTP with the first one
+        Then I will notify by message error 'Kode OTP yang Anda masukkan salah (1/3)' in field 'otp'
+
+    @C174152
+    Scenario: Open call center in page OTP change device
+        Given I am a registered customer with following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        And I reset my device id to new device
+        And I reset condition block change device
+        And I filling in form login with the following details:
+            | userID      | rotacb82 |
+            | password    | 1234Test |
+            | userIDstg   | natace59 |
+            | passwordStg | 1234Test |
+        When I click login
+        And I click button register new device
+        And I click help center
+        Then I will see helping center via email
+     
     @C165969
     Scenario: Submit failed photo till account is blocked
         Given I am a registered customer with following details:
@@ -136,15 +257,18 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input OTP code change device that sent to me
         And I click button continue to take selfie
         And I take picture selfie with no face
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
-        And I submit my selfie photo
         And I will direct to page verification is failed
-        And I understand about the information
+        And I click button continue to take selfie
+        And I take picture selfie with no face
+        And I will direct to page verification is failed
+        And I click button continue to take selfie
+        And I take picture selfie with no face
+        And I will direct to page can't continue with the new device
+        And I click button back to page login
         And I will directing to page login
         And I filling in form login with the following details:
             | userID      | rotacb82 |
@@ -155,30 +279,6 @@ Feature: Registering New Device
         Then I will see information that my account can be opened tomorrow 
         And I understand about the information
         And I will back to page login
-
-    @C165970
-    Scenario: Submit failed photo three times got server error
-        Given I am a registered customer with following details:
-            | userID      | rota3159 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I filling in form login with the following details:
-            | userID      | rota3159 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with server is error
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'       
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'      
-        And I submit my selfie photo
-        Then I will see snackbar error upload photo 'Terjadi kendala sistem. Silakan coba kembali'
 
     @C165971
     Scenario: Back to page login from bottom sheet register new device
@@ -232,6 +332,8 @@ Feature: Registering New Device
         When I click login
         And I will see bottom sheet register new device
         And I click button register new device
+        And I will direct to page verification with email is masked
+        And I input OTP code change device that sent to me
         And I will direct to page verification new device
         And I close page verification new device
         Then I will directing to page login
@@ -252,9 +354,9 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
+        And I will direct to page verification with email is masked
+        And I input OTP code change device that sent to me
+        And I click button to check selfie
         Then I will direct to page verification face is success
         And I click button continue to page login
         And I will directing to page login
@@ -271,90 +373,6 @@ Feature: Registering New Device
         And I see notification register new device successfully changes
         And I click bucketlist notification info
         And I will direct to detail register new device successfully changes
-
-    @C165975
-    Scenario: Checking notification after failed attempt register new device
-        Given I am a registered customer with following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | stagfc98 |
-            | passwordStg | 1234Test |
-        And don't have any notification
-        And I reset my device id to new device
-        And I will reset my attempt failed face match 
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | stagfc98 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with no face
-        And I submit my selfie photo
-        And I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'
-        And I will mock liveness to success
-        And I submit my selfie photo
-        And I will direct to page verification face is success
-        And I click button continue to page login
-        And I will directing to page login
-        And I filling in form login with the following details:
-            | userID      | natace13 |
-            | password    | Test1234 |
-            | userIDstg   | stagfc98 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I click later in pop up biometric
-        And I will see card account 'active'
-        And I see red dot notification center
-        And I click notification center
-        And I see notification attempt of register new device
-        And I click notification center attempt register new device
-        And I will direct to detail attempt register new device
-
-    @C165976
-    Scenario: Checking notification after attempt failed till blocked
-        Given I am a registered customer with following details:
-            | userID      | rotacb82 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        And don't have any notification
-        And I reset my device id to new device
-        And I will reset my attempt failed face match
-        And I reset attempt failed login
-        And I filling in form login with the following details:
-            | userID      | rotacb82 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie with no face
-        And I submit my selfie photo
-        And I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
-        And I submit my selfie photo
-        And I will see snackbar error upload photo 'Pastikan Anda sudah mengambil foto selfie. Silakan ulangi selfie Anda'    
-        And I submit my selfie photo
-        And I will direct to page verification is failed
-        And I understand about the information
-        And I will directing to page login
-        And I filling in form login with the following details:
-            | userID      | rotacb82 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I will see information my account has been blocked
-        And I understand about the information
-        And I reset attempt failed login
-        And I click login
-        And I see red dot notification center
-        And I click notification center
-        Then I see two notification attempt of register new device
-        And I click bucketlist notification info
-        And I will direct to detail attempt register new device
     
     @C165977
     Scenario: Login to app using different user id - device id of other user id has been registered
@@ -371,9 +389,9 @@ Feature: Registering New Device
             | passwordStg | 1234Test |
         When I click login
         And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
+        And I will direct to page verification with email is masked
+        And I input OTP code change device that sent to me
+        And I click button to check selfie
         And I will direct to page verification face is success
         And I click button continue to page login
         And I will directing to page login
@@ -395,9 +413,9 @@ Feature: Registering New Device
         And I reset my device id to new device
         And I click login
         And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
+        And I will direct to page verification with email is masked
+        And I input OTP code change device that sent to me
+        And I click button to check selfie
         And I will direct to page verification face is success
         And I click button continue to page login
         And I will directing to page login
@@ -470,41 +488,3 @@ Feature: Registering New Device
         When I click login
         And I click later in pop up biometric
         Then I will see card account 'on verification'
-
-    @C165981
-    Scenario: Register new device with PDP still not submitted yet
-        Given I am a registered customer with following details:
-            | userID      | rota3159 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        And I reset my device id to new device
-        And I filling in form login with the following details:
-            | userID      | rota3159 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        When I click login
-        And I click button register new device
-        And I click button continue to take selfie
-        And I take picture selfie for matching the face
-        And I submit my selfie photo
-        And I will direct to page verification face is success
-        And I click button continue to page login
-        And I will directing to page login
-        And I filling in form login with the following details:
-            | userID      | rota3159 |
-            | password    | 1234Test |
-            | userIDstg   | natace59 |
-            | passwordStg | 1234Test |
-        And I click login
-        And I see pop up Terms Updates
-        And I click to see terms and conditions
-        And I will directing to page PDP
-        And I click button agree to PDP
-        And I will see pop up option PDP login
-        And I check option already and read the condition PDP
-        And I check option I agree Amarbank send me new information and innovation from the bank
-        And I submit the PDP login
-        And I click later in pop up biometric
-        Then I will see card account 'active' 

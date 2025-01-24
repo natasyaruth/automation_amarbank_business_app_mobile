@@ -69,6 +69,13 @@ When("I see pop up Create PIN", () => {
     createPINPage.popupCreatePIN();
 });
 
+When("I don't see pop up Create PIN", () => {
+    I.wait(3);
+
+    I.dontSee("Buat PIN transaksi terlebih dahulu sebelum melakukan transfer");
+    I.dontSeeElement(createPINPage.buttons.creatPINPopUp);
+});
+
 When("I click button Back ke Dashboard", () => {
     createPINPage.clickButtonBackToDashboard();
 });
@@ -348,6 +355,9 @@ Then("I should stay on page fill password", () => {
 
 Then("My PIN successfully created", () => {
     I.waitForText("Selamat, PIN Berhasil Dibuat!", 10);
+    I.waitForText("Selanjutnya", 10);
+
+    I.waitForElement(createPINPage.buttons.nextpagetransfer, 10);
 });
 
 Then("I will directly go to Friend list page", () => {

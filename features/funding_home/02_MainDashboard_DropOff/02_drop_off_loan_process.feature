@@ -60,6 +60,9 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see text card "Proses" on field "textCardProcess"                     
         And user should see text card "Menunggu proses registrasi Daftar Direksi lainnya" on field "textCardInvetedUserDireksi"
         And user should see text button "Lihat Daftar Direksi" on field "btnTextDropOffAccOpeningOnlyInvitedUser"
+        And user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
+        And user should see text button "Progres Pembukaan Rekening" on field "textbtnprogresopenrekening"
+
         And user click button invited user
         And user should see invited user account opening only page
 
@@ -95,5 +98,6 @@ Feature: User Should See Main Dashboard Drop Off For Loan Process
         And user should see text card "1" on field "textCardValueProcess"
         And user should see text card "Proses" on field "textCardProcess"
         Then user should see text card "Menunggu verifikasi data selesai" on field "textCardWaitVerifyData"
+        
 
     

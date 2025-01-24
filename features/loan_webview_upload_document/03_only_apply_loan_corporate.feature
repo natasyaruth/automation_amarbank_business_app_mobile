@@ -10,6 +10,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I redirect to the upload data documents page
         Then I should able to see 'Progress Upload Dokumen' page
 
+    @C136668
     Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AP "PT Perusahaan or CV"
         Given I has been access to the link web view for uploading data documents AP "PT Perusahaan or CV"
         When I see the wording of "Supplier"
@@ -21,6 +22,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
+    @C136669
     Scenario: Update Progress After Upload Document with Loan Type AP "PT Perusahaan or CV" with Case Partial Uploaded
         Given I has been access to the link web view for uploading data documents AP "PT Perusahaan or CV"
         When I see the wording of "Supplier"
@@ -32,6 +34,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
+    @C136670
     Scenario: Update Progress After Upload Document with Loan Type AP "PT Perusahaan or CV" with Case Full Uploaded
         Given I has been access to the link web view for uploading data documents AP "PT Perusahaan or CV"
         When I see the wording of "Supplier"
@@ -44,8 +47,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
-    Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AP "PT Perorangan or UD"
-        Given I has been access to the link web view for uploading data documents AP "PT Perorangan or UD"
+    @C136671
+    Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AP "PT Perorangan"
+        Given I has been access to the link web view for uploading data documents AP "PT Perorangan"
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
@@ -54,8 +58,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
-    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan or UD" with Case Partial Uploaded
-        Given I has been access to the link web view for uploading data documents AP "PT Perorangan or UD"
+    @C136672
+    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan" with Case Partial Uploaded
+        Given I has been access to the link web view for uploading data documents AP "PT Perorangan"
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
@@ -65,8 +70,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
-    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan or UD" with Case Full Uploaded
-        Given I has been access to the link web view for uploading data documents AP "PT Perorangan or UD"
+    @@C136673
+    Scenario: Update Progress After Upload Document with Loan Type AP "PT Perorangan" with Case Full Uploaded
+        Given I has been access to the link web view for uploading data documents AP "PT Perorangan"
         When I see the wording of "Supplier"
         And I see Supplier name
         And I see Loan Id
@@ -77,6 +83,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
+    @@C136674
     Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AP "Individu"
         Given I has been access to the link web view for uploading data documents AP "Individu"
         When I see the wording of "Supplier"
@@ -87,6 +94,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
+    @C136675
     Scenario: Update Progress After Upload Document with Loan Type AP "Individu" with Case Partial Uploaded
         Given I has been access to the link web view for uploading data documents AP "Individu"
         When I see the wording of "Supplier"
@@ -98,6 +106,8 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
+
+    @C136676
     Scenario: Update Progress After Upload Document with Loan Type AP "Individu" with Case Full Uploaded
         Given I has been access to the link web view for uploading data documents AP "Individu"
         When I see the wording of "Supplier"
@@ -110,6 +120,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
+    @C136677
     Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AR "PT Perusahaan or CV"
         Given I has been access to the link web view for uploading data documents AR "PT Perusahaan or CV"
         When I see the wording of "Buyer"
@@ -121,6 +132,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
+    @@C136678
     Scenario: Update Progress After Upload Document with Loan Type AR "PT Perusahaan or CV" with Case Partial Uploaded
         Given I has been access to the link web view for uploading data documents AR "PT Perusahaan or CV"
         When I see the wording of "Buyer"
@@ -132,6 +144,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
+    @C136679
     Scenario: Update Progress After Upload Document with Loan Type AR "PT Perusahaan or CV" with Case Full Uploaded
         Given I has been access to the link web view for uploading data documents AR "PT Perusahaan or CV"
         When I see the wording of "Buyer"
@@ -144,8 +157,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
-    Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AR "PT Perorangan or UD"
-        Given I has been access to the link web view for uploading data documents AR "PT Perorangan or UD"
+    @@C136680
+    Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AR "PT Perorangan"
+        Given I has been access to the link web view for uploading data documents AR "PT Perorangan"
         When I see the wording of "Buyer"
         And I see Buyer name
         And I see Loan Id
@@ -154,8 +168,9 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
-    Scenario: Update Progress After Upload Document with Loan Type AR "PT Perorangan or UD" with Case Partial Uploaded
-        Given I has been access to the link web view for uploading data documents AR "PT Perorangan or UD"
+    @C136681
+    Scenario: Update Progress After Upload Document with Loan Type AR "PT Perorangan" with Case Partial Uploaded
+        Given I has been access to the link web view for uploading data documents AR "PT Perorangan"
         When I see the wording of "Buyer"
         And I see Buyer name
         And I see Loan Id
@@ -165,8 +180,10 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
-    Scenario: Update Progress After Upload Document with Loan Type AR "PT Perorangan or UD" with Case Full Uploaded
-        Given I has been access to the link web view for uploading data documents AR "PT Perorangan or UD"
+
+    @C136682
+    Scenario: Update Progress After Upload Document with Loan Type AR "PT Perorangan" with Case Full Uploaded
+        Given I has been access to the link web view for uploading data documents AR "PT Perorangan"
         When I see the wording of "Buyer"
         And I see Buyer name
         And I see Loan Id
@@ -177,6 +194,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
+    @C136683
     Scenario: Verify Page of "Progress Upload Dokumen" with Loan Type AR "Individu"
         Given I has been access to the link web view for uploading data documents AR "Individu"
         When I see the wording of "Buyer"
@@ -187,6 +205,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see "Laporan Keuangan 2 tahun terakhir dan tahun berjalan"
         And I see button to update the Progress
 
+    @C136684
     Scenario: Update Progress After Upload Document with Loan Type AR "Individu" with Case Partial Uploaded
         Given I has been access to the link web view for uploading data documents AR "Individu"
         When I see the wording of "Buyer"
@@ -198,6 +217,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I see fields upload document
         And I see icon edit
 
+    @C136685
     Scenario: Update Progress After Upload Document with Loan Type AR "Individu" with Case Full Uploaded
         Given I has been access to the link web view for uploading data documents AR "Individu"
         When I see the wording of "Buyer"
@@ -210,12 +230,14 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         Then I update the Progress
         And I see fields upload document
 
+    @C142505
     Scenario: Direct to the expired link upload document
         Given I has been access to the link web view for upload document
         When I am on the expired link page
         Then I see wording "Link Telah Kedaluwarsa"
         And I see wording "Anda dapat membuat link baru di dalam aplikasi Amar Bank Bisnis Anda"
 
+    @C142506
     Scenario: Delete Uploaded Document Loan Type Corporate  when upload file more than 15MB
         Given I has been access to the link web view for upload multiple data documents for AP or AR Corporate
         When I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
@@ -224,6 +246,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I click button to update the Progres
         And the new updated document will updated to mobile apps
 
+    @C142507
     Scenario: Cancel Uploading Document Loan Type Corporate
         Given I has been access to the link web view for upload multiple data documents for AP or AR Corporate
         When I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
@@ -233,6 +256,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And I click button to update the Progres
         And the new updated document will updated to mobile apps
 
+    @C142508
     Scenario: Delete The Document After Success Upload Document
         Given I has been access to the link web view for upload multiple data documents
         When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
@@ -244,6 +268,7 @@ Feature: Upload Data Documents For Cases Loan Only Journey Corporate
         And the document will dissapear
         And the new deleted document will dissapear from mobile apps as well
 
+    @C142509
     Scenario: Cancel Document Deletion After Success Uploading Document
         Given I has been access to the link web view for upload multiple data documents
         When I upload multiple documents of field "Rekening Koran/Mutasi operasional 6 bulan terakhir"
@@ -388,9 +413,8 @@ Scenario: Validate all the document successfully uploaded on web in second loan 
         And I see the file size should be displayed "1.8 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.8 MB"
-        And I click button to update the Progress
-        And I click button Perbarui Progress on mobile
-        And I see button Kirim Pengajuan Limit Kredit
+        And I see button Upload Dokumen Selesai
+
 
 @FunctTestLending
 Scenario: Validate all the document successfully uploaded on web in second loan AP PT.Perorangan or UD   
@@ -407,9 +431,7 @@ Scenario: Validate all the document successfully uploaded on web in second loan 
         And I see the file size should be displayed "1.9 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.9 MB"
-        And I click button to update the Progress
-        And I click button Perbarui Progress on mobile
-        And I see button Kirim Pengajuan Limit Kredit
+        And I see button Upload Dokumen Selesai
 
 @FunctTestLending
 Scenario: Validate all the document successfully uploaded on web in second loan AR Individu
@@ -426,160 +448,38 @@ Scenario: Validate all the document successfully uploaded on web in second loan 
         And I see the file size should be displayed "1.9 MB"
         And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
         And I see the file size should be displayed "1.9 MB"
-        And I click button to update the Progress
-        And I click button Perbarui Progress on mobile
-        And I see button Kirim Pengajuan Limit Kredit
-
-
-##Click button “Upload Dokumen Selesai” after upload all mandatory
-    @FunctTestLendingSprint5
-    Scenario: Verify after upload all mandatory documents in second apply loan AP  
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"                
-        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
-        And I see the file size should be displayed "1.8 MB"
-        And I upload multiple documents of field "NPWP Komisioner & Pemegang Saham"
-        And I see the file size should be displayed "1.8 MB"
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
-        And I see the file size should be displayed "1.8 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.8 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed "1.8 MB"
         Then I see button Upload Dokumen Selesai
-        
-     @FunctTestLendingSprint5   
-    Scenario: User successfully uploaded all documents in web for loan AP
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
 
-    @FunctTestLendingSprint5
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AP "PT Perusahaan or CV"
-        When I see the wording of "Supplier"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-    @FunctTestLendingSprint5
-    Scenario: User successfully re-Upload documents
-        Given I has upload all documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
-
-
-
-    #AR PT.Perorangan
-    @FunctTestLendingSprint5
-    Scenario: Verify after upload all mandatory documents in second apply loan AR 
-        Given I has been access to the link web view for upload multiple data documents AR "PT Perorangan or UD"
+    
+    Scenario: User verify Change design success message from popup to full screen after submit Dokumen
+        Given I has been access to the link web view for upload multiple data documents AR "PT.Perorangan"
         When I see the wording of "Buyer"
-        And I see Supplier name
+        And I see Buyer name
         And I see Loan Id
         And I see wording of "Format file: PDF"
         And I see wording of "Maximal ukuran per file: 15B"
         And I see wording of "Anda dapat upload langsung beberapa file"           
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
-        And I see the file size should be displayed "2.5 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "2.5 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed "2.5 MB"
-        Then I see button Upload Dokumen Selesai
+        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait *"        
+        And I upload multiple documents of field "Rekening Koran/Mutasi Rekening operasional 6 bulan terakhir *"        
+        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"        
+        And I click button Upload Dokumen Selesai
+        Then I will direct to new screen "Upload Dokumen Selesai"
+        And I see "Silakan kembali ke aplikasi Amar Bank Bisnis untuk melanjutkan proses."
+        And I see "Langkah selanjutnya"
+        And I see "Buka aplikasi Amar Bank Bisnis."
+        And I see "Lanjutkan proses submit pengajuan pinjaman."
 
-    @FunctTestLendingSprint5
-    Scenario: User successfully uploaded all documents in web for loan AR
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-    @FunctTestLendingSprint5
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AR "PT Perorangan or UD"
-        When I see the wording of "Buyer"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-        
-    @FunctTestLendingSprint5
+    
     Scenario: User successfully re-Upload documents
-        Given I has upload all documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
-
-
-    #AR Individu
-    @FunctTestLendingSprint5
-    Scenario: Verify after upload all mandatory documents in second apply loan AR 
-        Given I has been access to the link web view for upload multiple data documents AR "Individu"
-        When I see the wording of "Buyer"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file"           
-        And I upload multiple documents of field "Minimal 3 contoh invoice dengan buyer terkait"
-        And I see the file size should be displayed "1.9 MB"
-        And I upload multiple documents of field "Contoh Mutasi Rekening Koran 6 Bulan Terakhir"
-        And I see the file size should be displayed "1.9 MB"
-        And I upload multiple documents of field "Laporan Keuangan dalam 2 tahun terakhir dan tahun berjalan"
-        And I see the file size should be displayed "1.9 MB"
-        Then I see button Upload Dokumen Selesai
-
-
-    @FunctTestLendingSprint5
-    Scenario: User successfully uploaded all documents in web for loan AR
-        Given I has upload all documents in web
-        When I clik button Upload Dokumen Selesai
-        And I see dialog box confirmation 'Upload Dokumen Selesai'
-        And I click button Mengerti
-        Then I see on Mobile and all documents have uploaded 
-        And I see button Kirim Pengajuan Limit Kredit
-
-
-    @FunctTestLendingSprint5
-    Scenario: Verify button Kirim Dokumen after re-Upload if there is new document uploaded and all mandatory
-        Given I has been access to the link web view for upload multiple data documents AR "Individu"
-        When I see the wording of "Buyer"
-        And I see Supplier name
-        And I see Loan Id
-        And I see wording of "Format file: PDF"
-        And I see wording of "Maximal ukuran per file: 15B"
-        And I see wording of "Anda dapat upload langsung beberapa file" 
-        And I upload multiple documents of field "KTP Komisioner & Pemegang Saham"
-        And I see the file size should be displayed "1.8 MB"
-        And I see button Kirim Dokumen
-
-    @FunctTestLendingSprint5
-    Scenario: User successfully re-Upload documents
-        Given I has upload all documents in web
-        When I clik button Kirim Dokumen
-        And I see dialog box confirmation 'Dokumen Berhasil Diubah'
-        And I click button Mengerti
-        Then I back to upload document page
+        Given I am on Loan Progress Status Page
+        When I click button Upload Ulang Dokumen
+        And I click Upload Dari Perangkat Lain/ Delegasi
+        And I receive link and click the link
+        And I am on web to reupload document
+        And I reupload document "Minimal 3 contoh invoice dengan supplier terkait"
+        And I clik button Kirim Dokumen        
+        Then I will direct to new screen "Upload Dokumen Selesai"
+        And I see "Silakan kembali ke aplikasi Amar Bank Bisnis untuk melanjutkan proses."
+        And I see "Langkah selanjutnya"
+        And I see "Buka aplikasi Amar Bank Bisnis."
+        And I see "Lanjutkan proses submit pengajuan pinjaman."

@@ -153,6 +153,8 @@ module.exports = {
         lastStep: "",
         newDeviceID: "",
         tokenLogin: "",
+        oldOtp: "",
+        newOtp: "",
     },
     forgotPassword: {
         userID: "",

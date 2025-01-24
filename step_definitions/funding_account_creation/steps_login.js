@@ -10,6 +10,7 @@ const {
   globalVariable,
   getDataDao,
   resetStateDao,
+  otpConfirmationPage,
   mockingDao,
 } = inject();
 
@@ -156,6 +157,12 @@ Given("I am customer that already on page login", () => {
 
 Given("I am an unregistered customer trying to login", () => {
   welcomePage.clickButtonLogin();
+});
+
+Given("I reset condition block change device", async()=>{
+  // add api to reset block condition
+  
+  otpDao.resetLimitRequestOtpUsingToken(globalVariable.login.userID, globalVariable.login.password);
 });
 
 When("I filling in form login with the following details:", (table) => {
@@ -330,40 +337,7 @@ When("I take picture selfie with face is dark", async () => {
 });
 
 When("I take picture selfie with no face", async () => {
-  I.wait(3);
-
-  await mockingDao.livenessFaceNotDetected();
-
-  loginPage.takePicture();
-});
-
-When("I take picture selfie with face is blur and dark", async () => {
-  I.wait(3);
-
-  await mockingDao.livenessFaceBlurAndDark();
-
-  loginPage.takePicture();
-});
-
-When("I take picture selfie with server is error", async () => {
-  I.wait(3);
-
-  await mockingDao.livenessError();
-
-  loginPage.takePicture();
-});
-
-When("I will direct to page preview selfie picture", () => {
-  I.waitForElement(loginPage.buttons.reTakeSelfie, 10);
-  I.waitForText("Ulangi", 10);
-});
-
-When("I retake my picture selfie", () => {
-  loginPage.retakePicture();
-});
-
-When("I submit my selfie photo", () => {
-  loginPage.submitPhoto();
+  I.wait(5);
 });
 
 When("I will mock liveness to success", async () => {
@@ -373,6 +347,23 @@ When("I will mock liveness to success", async () => {
 });
 
 When("I will direct to page verification is failed", () => {
+  I.waitForElement(headerPage.buttons.closePage, 10);
+
+  I.waitForElement(loginPage.buttons.callCenter, 10);
+
+  I.waitForText("Verifikasi Data Gagal", 10);
+  I.see(
+    "Kami tidak dapat memverifikasi identitas karena hasil verifikasi wajah Anda tidak sesuai dengan data kami."
+  );
+  I.see(
+    "Lanjutkan proses selfie ulang untuk dapat melanjutkan pendaftaran perangkat baru dengan aman."
+  );
+
+  I.see("Ambil Selfie Ulang");
+  I.waitForElement(loginPage.buttons.reTakeSelfie, 10);
+});
+
+When("I will direct to page can't continue with the new device", () => {
   I.waitForElement(headerPage.buttons.closePage, 10);
 
   const currentDate = new Date();
@@ -410,13 +401,13 @@ When("I will direct to page verification is failed", () => {
 
   I.waitForElement(loginPage.buttons.callCenter, 10);
 
-  I.waitForText("Verifikasi Data Gagal", 10);
+  I.waitForText("Masuk Perangkat Baru Tidak Dapat Dilakukan", 10);
   I.see(
-    "Amar Bank belum bisa melayani Anda di perangkat baru. Saat ini akun Anda terblokir dalam 1x24 jam."
+    "Akun Anda tidak diperkenankan melakukan perubahan perangkat selama 1x24 jam."
   );
 
-  I.see("Saya Mengerti");
-  I.waitForElement(loginPage.buttons.understand, 10);
+  I.see("Kembali ke Halaman Login");
+  I.waitForElement(loginPage.buttons.backToLogin, 10);
 });
 
 When("I understand about the information", () => {
@@ -468,6 +459,45 @@ When("I cancel continue to see PDP", () => {
 
 When("I submit the PDP login", () => {
   loginPage.submitPDPLogin();
+});
+
+When("I input wrong OTP code change device three times", async() => {
+  I.wait(3);
+
+  otpConfirmationPage.fillInOtpCode("000000");
+  const actMsgError = await otpConfirmationPage.getMessageError();
+  I.assertEqual(actMsgError, "Kode OTP yang Anda masukkan salah (1/3)");
+
+  I.wait(1);
+
+  otpConfirmationPage.fillInOtpCode("000000");
+  const actMsgErrorTwo = await otpConfirmationPage.getMessageError();
+  I.assertEqual(actMsgError, "Kode OTP yang Anda masukkan salah (2/3)."+"\n"+
+  "1 percobaan tersisa. Jika salah lagi, akun Anda akan tidak diperkenankan melakukan perubahan perangkat selama 1x24 jam.");
+
+  otpConfirmationPage.fillInOtpCode("000000");
+});
+
+When("I click link resend OTP change device", () => {
+  otpConfirmationPage.resendOTP();
+});
+
+When("I click button back to page login", () => {
+  loginPage.backToLoginChangeDevice();
+});
+
+When("I click button to check selfie", () => {
+  loginPage.skipSelfieLiveness();
+});
+
+When("I input OTP code change device that sent to me", async()=>{
+  const otp = ""; // add api get otp
+
+  otpConfirmationPage.fillInOtpCode(otp);
+});
+
+When("I input field OTP with the first one", ()=>{
+  otpConfirmationPage.fillInOtpCode(globalVariable.login.oldOtp);
 });
 
 Then("I should see pop up with text {string} displayed", (actualMessage) => {
@@ -606,13 +636,18 @@ Then(
   async () => {
     I.waitForElement(loginPage.buttons.close, 10);
 
-    I.see("Akun Anda Terblokir");
+    I.see("Akun Anda tidak diperkenankan melakukan perubahan perangkat untuk sementara");
     I.see("Silakan coba lagi pada");
 
     const actualInfo = await loginPage.getInfoMessageBlocked();
     const expInfo =
       globalVariable.login.date + ", pukul " + globalVariable.login.time;
     I.assertEqual(actualInfo, expInfo);
+
+    I.see("Mengerti");
+    I.waitForElement(loginPage.buttons.understandBlocked, 10);
+
+    loginPage.clickUnderstandBlocked();
   }
 );
 
@@ -705,33 +740,31 @@ Then(
     let numberHours = parseInt(formattedHours);
     let numberMinutes = parseInt(formattedMinutes);
 
+    if (
+      numberMinutes > 60
+    ) {
 
+      diffMinutes = numberMinutes - 60;
+      numberHours = numberHours + 1;
+      currentTime = numberHours + ":" + diffMinutes;
 
-    // if (
-    //   numberMinutes > 60
-    // ) {
+    } else if (
 
-    //   diffMinutes = numberMinutes - 60;
-    //   numberHours = numberHours + 1;
-    //   currentTime = numberHours + ":" + diffMinutes;
+      numberMinutes = 60
+    ) {
 
-    // } else if (
+      numberHours = numberHours + 1;
+      currentTime = numberHours + ":00"
 
-    //   numberMinutes = 60
-    // ) {
+    } else {
 
-    //   numberHours = numberHours + 1;
-    //   currentTime = numberHours + ":00"
+    }
 
-    // } else {
-
-    // }
-
-    // I.waitForText("Data Yang Dimasukkan Salah", 10);
-    // I.see(
-    //   "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
-    //   currentTime
-    // );
+    I.waitForText("Data Yang Dimasukkan Salah", 10);
+    I.see(
+      "Tiga kali salah memasukkan data. Silahkan coba lagi pada pukul " +
+      currentTime
+    );
   }
 );
 
@@ -760,4 +793,59 @@ Then("I see pop up confirm to exit", () => {
 
   I.see("Keluar");
   I.waitForElement(registrationPage.buttons.closePDP, 10);
+});
+
+Then("I will direct to page verification with email is masked", async () => {
+  I.waitForElement(headerPage.icon.callCenter, 10);
+  I.dontSeeElement(headerPage.buttons.closePage);
+  I.dontSeeElement(headerPage.buttons.back);
+
+  I.waitForText("Verifikasi E-mail", 10);
+  I.see("Masukkan Kode OTP");
+  I.see("Kode OTP telah dikirim ke e-mail");
+
+  const emailUser = (await resetStateDao.getEmail(globalVariable.login.userID, globalVariable.login.password)).email;
+
+  const atIndex = emailUser.indexOf('@');
+  const stringBeforeAt = emailUser.slice(0, atIndex);
+  const stringAfterAt = emailUser.slice(atIndex + 1);
+  let numberUnmask = 0;
+
+  if (
+    stringBeforeAt.length % 2 === 0
+  ) {
+    numberUnmask = stringBeforeAt.length / 2;
+  } else {
+    numberUnmask = (stringBeforeAt.length / 2) + 0.5;
+  }
+
+  const unmaskString = stringBeforeAt.slice(0, numberUnmask)
+
+  const finalString = unmaskString + "****@" + stringAfterAt;
+
+  I.waitForText(finalString, 10);
+
+  I.waitForElement(otpConfirmationPage.fields.otp, 10);
+});
+
+Then("I get the first otp code change device", async() => {
+  const otp = ""; // add api get otp
+
+  globalVariable.login.oldOtp = otp;
+});
+
+Then("I will get new otp code different from the first one", async() => {
+  const newOtp = ""; // add api get otp
+
+  I.assertNotEqual(newOtp, globalVariable.login.oldOtp);
+});
+
+Then("I will notify otp for change device can be sent after 24 hours", async ()=>{
+  I.waitForText("Kode OTP yang Anda masukkan salah (3/3)."+"\n"+
+  "Akun Anda tidak diperkenankan melakukan perubahan perangkat selama 1x24 jam.");
+
+  I.hideDeviceKeyboard();
+
+  I.see("Kembali ke Halaman Login");
+  I.waitForElement(loginPage.buttons.backToLogin, 10);
 });

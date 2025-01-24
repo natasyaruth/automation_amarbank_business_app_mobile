@@ -124,7 +124,7 @@ Scenario: Validate Push notif disburse after the back office approves the disbur
     And I click login
     Then I direct to page Perhitungan Pencairan
 
-Scenario: Validate email notification disbursement approved
+Scenario: Validate email notification disbursement approved from back office when session is expired
     Given I receive push notif and email Disbursement Approved
     When I see the title "Pencairan Disetujui"
     And I click the email

@@ -36,8 +36,15 @@ Feature: Account registration
     And I check option I agree Amarbank send me new information and innovation from the bank
     And I submit the PDP registration
     And I verifying my phone number by entering the code sent to me
+    And I will get my user id with format combination from number and alphabeth lower case without special char 
     And I verifying my email by login by user id
     Then my account should be created
+
+  @C174161
+  Scenario: Checking user id with some attempt
+    Given I register customer '5' times
+    When I receive all the user id's
+    Then All user id's using format combination from number and alphabeth lower case without special char
 
   @C165849
   Scenario: Verifying field fullname contain with special char (.-,')
@@ -1158,7 +1165,7 @@ Feature: Account registration
   Scenario: Resend email verification
     Given I am a customer had been registering the account with the following details:
       | fullName        | Ruth Natasya                 |
-      | email           | ruth.hutauruk@amarbank.co.id |
+      | email           | fakemail@email.com           |
       | mobileNumber    | 89561338639                  |
       | password        | Test1234                     |
       | confirmPassword | Test1234                     |

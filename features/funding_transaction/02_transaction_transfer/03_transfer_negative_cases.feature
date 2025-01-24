@@ -10,12 +10,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -34,12 +34,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -58,12 +58,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -80,12 +80,12 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -96,18 +96,18 @@ Feature: User Want to Transfer with Negative Cases
         And I input amount more than active amount
         Then I should see error message "Saldo aktif tidak mencukupi" in field "amount"
 
-    @C96928
+    @C133904
     Scenario: User Transfer with category not selected
         Given I am a registered customer with following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -125,13 +125,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -155,13 +155,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -189,13 +189,13 @@ Feature: User Want to Transfer with Negative Cases
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I reset attempt failed PIN
         And I filling in form login with the following details:
             | userID      | natace13 |
             | password    | Test1234 |
             | userIDstg   | ruth1600 |
-            | passwordStg | 1234Test |
+            | passwordStg | Test1234 |
         And I click login
         And I click later in pop up biometric
         And I will direct to dashboard
@@ -227,12 +227,12 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a registered customer with following details:
             | userID      | deveffba |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deveffba |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -257,12 +257,12 @@ Feature: User Want to Transfer with Negative Cases
         Given I am a registered customer with following details:
             | userID      | deve9b96 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | deve9b96 |
             | password    | 1234Test |
-            | userIDstg   | ruth1600 |
+            | userIDstg   | stagb6ff |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric
@@ -271,7 +271,7 @@ Feature: User Want to Transfer with Negative Cases
         And I am on receiver list page
         And I input name 'Surya Edwin' from the search box
         And I choose the friendlist
-        And I input amount '20000000'
+        And I input amount same with amount active plus with admin fee BIFAST
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
         And I can see BIFAST, RTOL and SKN

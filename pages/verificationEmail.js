@@ -16,7 +16,7 @@ module.exports = {
   loginWithUserId(userID, password, email) {
     I.click(this.button.login);
     // I.waitForText("Selamat akun berhasil dibuat. Silakan masuk akun", 10);
-    I.see("Masuk Akun");
+    I.waitForText("Masuk Akun", 10);
     // I.see("Gunakan User ID yang telah kami kirim ke e-mail:");
     I.see(email);
 

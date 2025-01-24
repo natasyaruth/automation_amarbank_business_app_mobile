@@ -21,6 +21,7 @@ Feature: Apply Either Loan and select the loan type
         And I click button loan dashboard
 
 
+@C142825
 Scenario: Verify bottom sheet Loan Schema
      iven User click button loan dashboard
     When user click button Ajukan Limit Baru
@@ -29,6 +30,7 @@ Scenario: Verify bottom sheet Loan Schema
     Then user will see bottom sheet page of Pelajari Tipe Skema Kredit
     And user click back button to back to type loan page
 
+@C142826
 Scenario: User apply second loan AP direct and want to see AP loan schema
     Given User click button loan dashboard
     When user click button Ajukan Limit Baru   
@@ -37,32 +39,34 @@ Scenario: User apply second loan AP direct and want to see AP loan schema
     And User click button "Distributor Financing"
     Then System will display Schema of Distributor Financing   
 
+ @C142827
  Scenario: Validate error input tenor below min 30 hari 
-    Given User click button loan dashboard
-    When user click button Ajukan Limit Baru
-    And User select loan type "AP"
-    And user on select loan Needs Page 
-    And User choose nominal "Rp50 juta - 5 Miliar"       
-    And user input tenor "1"
-    And user click button Lanjut Isi Data Supplier    
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
-
-Scenario: Validate error input tenor more than 180 hari 
-    Given User click button loan dashboard
-    When user click button Ajukan Limit Baru
-    And User select loan type "AP"
-    And user on select loan Needs Page 
-    And User choose nominal "Rp50 juta - 5 Miliar"       
-    And user input tenor "1"
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
+    And User select loan type "AP"  
+    And user input nominal for MSME "5000000000"
+    And user click button Save
+    And user input tenor "10"
     And user click button Lanjut Isi Data Supplier
-    Then user user see error message "Min.tenor 30 hari, Max tenor 180 hari"
+    Then user user see error message "Minimal tenor 30 hari"
 
+@C142828
+Scenario: Validate error input tenor more than 180 hari 
+    Given User on Main Dashboard
+    When user click button Ajukan Limit Kredit
+    And User select loan type "AP"  
+    And user input nominal for MSME "5000000000"
+    And user click button Save
+    And user input tenor "300"
+    And user click button Lanjut Isi Data Supplier
+    Then user user see error message "Maximal tenor 180 hari"
+
+@C142829
 Scenario: user choose type loan AP Direct with business type Individu with flaging msme
     Given User click button loan dashboard
     When user click button Ajukan Limit Baru
     And User select loan type "AP"
-    And User on Loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"  
+    And user input nominal for MSME "5000000000" 
     And user input loan tenor "30" 
     And user click button Lanjut Isi Data Supplier
     #Select Anchor
@@ -97,28 +101,17 @@ Scenario: user choose type loan AP Direct with business type Individu with flagi
     And user trigered api change status loan is approved
           
     
-   
-Scenario: Validate bottom sheet for Metode Upload Dokumen Dari perangkat lain/ delegasi
-    Given User click button loan dashboard
-    When user click button Ajukan Limit Baru
-    And User select loan type "AR"
-    And User on Loan Needs Page
-    And User choose nominal "Rp50 juta - 5 Miliar"  
-    And user input loan tenor "30" 
-    And user click button Lanjut Isi Data Supplier
-    #section select Anchor
-    And user select "Anchor MSME Test"
-    And user select the date cooperating
-    And user click button Selanjutnya   
-    And user checklist checkbox term and condition  
-    And user checklist checkbox Privy term and condition
-    And user click button Lanjut Upload Dokumen      
-    And user validate description prepare the following documents 'SecondLoanAPIndividu' 
-    And user click buttton Pilih Metode Upload Dokumen
-    And user validate wording for "Dari Perangkat lain/ Delegasi"
-    And user click button close bottom sheet
+@C142830
+Scenario: Validate bottom sheet for Metode Upload Dokumen
+    Given user already apply loan but have no upload document
+    When user click from Aktivitas pinjaman
+    And user on Aktivitas Pinjaman Page
+    And user click loan with status Upload Dokumen
+    And user click button Pilih Metode Upload Dokumen
+    Then user will see bottom sheet metode upload Dokumen
    
 
+@@C142831
 Scenario: validate progress monitoring loan checking document
     Given user on monitoring loan process page
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
@@ -126,13 +119,14 @@ Scenario: validate progress monitoring loan checking document
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     Then user can click button Upload Ulang Dokumen
 
-
+@C142832
 Scenario: user validate button Simpan Dokumen when upload ulang dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document page
     Then user see button Simpan Dokumen
 
+@C142833
 Scenario: user click button Simpan Dokumen
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
@@ -141,6 +135,7 @@ Scenario: user click button Simpan Dokumen
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
+@C142834
 Scenario: Checking Credit Analyst Process
     Given user on monitoring loan process page
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
@@ -149,7 +144,7 @@ Scenario: Checking Credit Analyst Process
     And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforAR"
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
-
+@C142835
 Scenario: user can select and upload multiple document for PT. Perorangan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -162,6 +157,7 @@ Scenario: user can select and upload multiple document for PT. Perorangan
   And user upload multiple document "1YearfinancialReports"  
  
 
+@C142836
 Scenario: user validate field after success upload document PT.perorangan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -178,6 +174,7 @@ Scenario: user validate field after success upload document PT.perorangan
   Then user see button Kirim Pengajuan Limit Kredit
   
 
+@C142837
 Scenario: User add another document after the user success to uploads the previous document
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -191,7 +188,7 @@ Scenario: User add another document after the user success to uploads the previo
   Then user will see the document will be uploaded and show in one row below uploaded document list 
 
 
-
+@C142838
 Scenario: user verify pop up confirmation to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -208,6 +205,7 @@ Scenario: user verify pop up confirmation to delete uploaded file
   And user click button delete file uploaded
   Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
 
+@C142839
 Scenario: user delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -226,6 +224,8 @@ Scenario: user delete uploaded file
   And user click button Hapus
   Then user back to Progres Upload Dokumen page
 
+
+@C142840
 Scenario: user cancel to delete uploaded file
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -244,6 +244,8 @@ Scenario: user cancel to delete uploaded file
   And user click button Kembali
   Then pop up confirmation will disappear
 
+
+@C142841
 Scenario: user upload file more than 15MB
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -254,7 +256,7 @@ Scenario: user upload file more than 15MB
   And user upload multiple document more than 15 MB "KTPComp"  
   Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
   
-
+@C142842
 Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -271,7 +273,7 @@ Scenario: user validate button Kirim Pengajuan Kredit Limit after all document u
   And user verify upload all document Finance Report
   And user see button Kirim Pengajuan Limit Kredit
    
-  
+@C142843
 Scenario: user have not upload mandatory document
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
@@ -282,7 +284,7 @@ Scenario: user have not upload mandatory document
   And user on Progres Upload Dokumen
   Then user will not see button Kirim Pengajuan Limit Kredit
 
-
+@C142844
 Scenario: user back to main dashboard from progress loan page
   Given user on monitoring loan process page
   And user can see X button to back to Main Dashboard

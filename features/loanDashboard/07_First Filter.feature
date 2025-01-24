@@ -1,10 +1,9 @@
-
 Feature: First Filter from source Ajukan Pinjaman
     As a customer,
     I want to filter from source Ajukan Pinjaman
     So that I can improve data quality and application relevance
 
-    
+    @ajukan1
     Scenario: with monthly income 5 juta sampai 50 juta and click Install Aplikasi Tunaiku
         Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -17,8 +16,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -40,8 +38,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -64,8 +61,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -88,8 +84,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -101,7 +96,7 @@ Feature: First Filter from source Ajukan Pinjaman
         And I click Mengerti & Lanjutkan Pengajuan
         Then I should see Pengajuan Limit Kredit Bisnis
 
-    @TestAjukanPinjaman
+    
     Scenario: with monthly income 50 juta sampai 100 juta with cases Investasi Bisnis (Pengembangan & Perluasan Usaha)
        Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -114,8 +109,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -123,9 +117,14 @@ Feature: First Filter from source Ajukan Pinjaman
         And I click Selanjutnya
         And I choose Investasi Bisnis, Pengembangan & Perluasan Usaha "3"
         And I click Selanjutnya
+        And I should see form input data business
+        And I input field Nomor NIB
+        And I input field Nama Sesuai NIB
+        When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
-
+        Then I wait for 5 seconds
+   
     Scenario: with monthly income 50 juta sampai 100 juta with cases Pembayaran Sewa Tempat Usaha
         Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -138,8 +137,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
@@ -147,9 +145,15 @@ Feature: First Filter from source Ajukan Pinjaman
         And I click Selanjutnya
         And I choose Pembayaran Sewa Tempat Usaha "4"
         And I click Selanjutnya
+        And I should see form input data business
+        And I input field Nomor NIB
+        And I input field Nama Sesuai NIB
+        When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
+        Then I wait for 10 seconds
 
+    @cobaNIB
     Scenario: with monthly income 50 juta sampai 100 juta with cases Lainnya
         Given I am a registered customer with following details:
             | userID      | arij6841 |
@@ -162,8 +166,8 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
+        And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan bisnis atau usaha "1"
         And I click Selanjutnya
         And I choose 50 juta sampai 100 juta "3"
@@ -171,8 +175,13 @@ Feature: First Filter from source Ajukan Pinjaman
         And I choose Lainnya "5"
         And I filling field lainnya
         And I click Selanjutnya
+        And I should see form input data business
+        And I input field Nomor NIB
+        And I input field Nama Sesuai NIB
+        When I click button kirim 
         Then I should see message Terima Kasih Telah Menjawab Pertanyaan Kami
         And I click Mengerti
+        Then I wait for 10 seconds
 
     Scenario: Source from Ajukan Pinjaman (untuk kebutuhan pribadi) and click install aplikasi tunaiku
         Given I am a registered customer with following details:
@@ -186,8 +195,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan Pribadi "2"
         And I click Selanjutnya
@@ -206,8 +214,7 @@ Feature: First Filter from source Ajukan Pinjaman
             | userIDstg   | perob6d5 |
             | passwordStg | Eca12345 |
         And I click login
-        When I click button nanti saja
-        When I click button Ajukan Limit Kredit 
+        When I click button Ajukan Pinjaman Limit
         And I click Ayo Mulai Sekarang
         And I choose Untuk Kebutuhan Pribadi "2"
         And I click Selanjutnya

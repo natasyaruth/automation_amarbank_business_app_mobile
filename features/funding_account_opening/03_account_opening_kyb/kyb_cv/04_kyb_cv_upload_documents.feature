@@ -4,9 +4,10 @@ Feature: Account Opening KYB CV - Upload Document Business
               As a customer
               I want to upload document business as part of the KYB Process
 
-        Background: User choose legality business type PT Perusahaan
+        @C171443
+        Scenario: Upload some document business via direct app
             Given I am a registered customer with following details:
-                  | userID      | deve0721 |
+                  | userID      | deveed47 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |   
@@ -14,7 +15,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I reset my state journey
               And complete onboarding document safe and survey
               And I filling in form login with the following details:
-                  | userID      | deve0721 |
+                  | userID      | deveed47 |
                   | password    | 1234Test |
                   | userIDstg   | ruth7cb8 |
                   | passwordStg | 1234Test |
@@ -36,7 +37,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I fill my business profile as followings:
                   | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
                   | industry           | Jasa                                  |
-                  | businessField      | Restoran                              |
+                  | businessField      | Operator tur                          |
                   | monthlyIncome      | 30 - 50 juta                          |
                   | averageTransaction | 2000000                               |
                   | nib                | 9129106701234                         |
@@ -55,19 +56,15 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will directing to page Rights and Obligations
               And I click button agree with Rights and Obligations
               And I will see checkbox Rights and Obligations is checked
-             When I submit my business address
-
-        @C171443
-        Scenario: Upload some document business via direct app
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+              And I submit my business address
+            When I choose method upload document
               And I will see bottom sheet option upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'pdf'
               And I upload document business 'Akta Pendirian' with type 'pdf'
               And I click button progress upload document
-             Then I will see document 'NIB' is uploaded
+            Then I will see document 'NIB' is uploaded
               And I will see document 'Akta Pendirian' is uploaded
               And I will see 'SK Kemenkumham Pendirian' is empty
               And I will see 'NPWP Bisnis' is empty
@@ -78,50 +75,300 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171444
         Scenario: Upload document and user drop off via direct app
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'pdf'
               And I close page progress upload document
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
-             Then I will see document 'NIB' is uploaded
+            Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
         @C171445
         Scenario: Upload document with method copy link
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose upload via link
-             Then I will direct to page upload document via link
+            Then I will direct to page upload document via link
               And I copy link upload document
               And I will see snackbar success link is copied
               And will dissapear after 3-5 seconds
 
         @C171446
         Scenario: Go to page progress upload document company from page upload via link
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose upload via link
               And I will direct to page upload document via link
               And I click button direct to page progress upload document
-             Then I see files that need to be uploaded for type company
+            Then I see files that need to be uploaded for type company
 
         @C171447
         Scenario: Click link direct upload from other device
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I will see bottom sheet option upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I click link direct upload from other device
-             Then I will direct to page upload document via link
+            Then I will direct to page upload document via link
 
         @C171448
         Scenario: Delete one document
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'pdf'
@@ -131,7 +378,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I delete document 'NIB'
               And I will see pop up confirmation delete document
               And I click confirm delete document
-             Then I will see 'NIB' is empty
+            Then I will see 'NIB' is empty
               And I will not see button request account opening
               And I close page progress upload document
               And I will see card continue to complete upload document business
@@ -139,8 +386,58 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171449
         Scenario: Delete some document
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -150,7 +447,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I delete document 'NIB'
               And I click confirm delete document
               And I will not see button request account opening
-             Then I will see 'NIB' is empty
+            Then I will see 'NIB' is empty
               And I delete document 'Akta Pendirian'
               And I click confirm delete document
               And I will not see button request account opening
@@ -165,8 +462,58 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171450
         Scenario: Delete all document
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -175,7 +522,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see button request account opening is shown
               And I click button progress upload document
               And I delete all document company
-             Then I will not see all document company
+            Then I will not see all document company
               And I will not see button request account opening
               And I close page progress upload document
               And I will see card continue to complete upload document business
@@ -183,8 +530,58 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171451
         Scenario: Cancel Delete Document
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -192,12 +589,62 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will see button request account opening is shown
               And I delete document 'Akta Pendirian'
               And I cancel delete document
-             Then I will see all document company has been uploaded
+            Then I will see all document company has been uploaded
 
         @C171452
         Scenario: Go to main dashboard from page thank you and need verification
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -207,35 +654,184 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click link go to main dashboard
-             Then I will see card account 'on verification'
+            Then I will see card account 'on verification'
               And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
 
         @C171453
         Scenario: Close bottom sheet choosing method upload document
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I will see bottom sheet option upload document
               And I close bottom sheet option upload document
-             Then I will directing to page upload require documents for business
+            Then I will directing to page upload require documents for business
 
         @C171454
         Scenario: Close page Progress upload Document (condition: no uploaded yet)
-            Given I am a customer who has submitted business address
-             And complete onboarding document safe and survey
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I close page progress upload document
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
-             Then I see files that need to be uploaded for type company
+            Then I see files that need to be uploaded for type company
               And I will not see button request account opening
 
         @C171455
         Scenario: Close page Progress upload Document (condition: some uploaded)
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'pdf'
@@ -245,7 +841,7 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button progress upload document
               And I will see document 'NPWP Bisnis' is uploaded
               And I close page progress upload document
-             Then I will see card continue to complete upload document business
+            Then I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
               And I will see document 'NIB' is uploaded
               And I will see document 'NPWP Bisnis' is uploaded
@@ -257,8 +853,58 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171456
         Scenario: Close in page information progress verification
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -270,34 +916,184 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click progress account opening
               And I will direct to page detail progress account opening
               And I close page detail progress account opening
-             Then I will see card account 'on verification'
+            Then I will see card account 'on verification'
               And I will see card continue to see progress verification
               And I can continue to page 'Detail Progress Account Opening'
 
         @C171457
         Scenario: Close in page upload document via link - Entry journey from page upload progress
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I click link direct upload from other device
               And I will direct to page upload document via link
               And I close page upload document via link
-             Then I see files that need to be uploaded for type company
+            Then I see files that need to be uploaded for type company
         
         @C171458
         Scenario: Close in page upload document via link - Entry journey from bottom sheet method upload
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose upload via link
               And I will direct to page upload document via link
               And I close page upload document via link
-             Then I will directing to page upload require documents for business      
+            Then I will directing to page upload require documents for business      
 
         @C171459
         Scenario: Access call center in page Request Account Opening
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -307,12 +1103,62 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click call center
-             Then I should see bottom sheet call center with email
+            Then I should see bottom sheet call center with email
 
         @C171460
         Scenario: Access call center in page information progress verification
-            Given I am a customer who has submitted business address
-             When I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
@@ -323,66 +1169,603 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I will direct to page thank you and need verification of my data
               And I click progress account opening
               And I click call center in page detail progress account opening
-             Then I should see bottom sheet call center with email
+            Then I should see bottom sheet call center with email
 
         @C171461
         Scenario: Upload document with type JPG
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpg'
               And I click button progress upload document
-              Then I will see document 'NIB' is uploaded
+            Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
         @C171462
         Scenario: Upload document with type PNG
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'png'
               And I click button progress upload document
-              Then I will see document 'NIB' is uploaded
+            Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
         @C171463
         Scenario: Upload document with type JPEG
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'NIB' with type 'jpeg'
               And I click button progress upload document
-              Then I will see document 'NIB' is uploaded
+            Then I will see document 'NIB' is uploaded
               And I will not see button request account opening
 
         @C171464
         Scenario: Checking button account opening if user CV only upload un-required document business
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload document business 'Akta Perubahan Terakhir' with type 'pdf'
               And I upload document business 'SK Kemenkumham Perubahan Terakhir' with type 'pdf'
               And I click button progress upload document
-              Then I will see document 'Akta Perubahan Terakhir' is uploaded
+            Then I will see document 'Akta Perubahan Terakhir' is uploaded
               And I will see document 'SK Kemenkumham Perubahan Terakhir' is uploaded
               And I will not see button request account opening
               And I close page progress upload document
               And I will see card continue to complete upload document business
               And I can continue to page 'Upload Document Business'
 
+        @C173112
+        Scenario: Access widget brankas document in upload document business without uploaded document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I click widget document safe
+            Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will not see all document company
+              And I see widget brankas document in upload document business
+
+        @C173113
+        Scenario: Access widget brankas document in upload document business with some uploaded document
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I upload document business 'NIB' with type 'pdf'
+              And I upload document business 'Akta Pendirian' with type 'pdf'
+              And I click button progress upload document
+              And I will see document 'NIB' is uploaded
+              And I will see document 'Akta Pendirian' is uploaded
+              And I will see 'SK Kemenkumham Pendirian' is empty
+              And I will see 'NPWP Bisnis' is empty
+              And I will not see button request account opening
+              And I click widget document safe
+            Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will see document 'NIB' is uploaded
+              And I will see document 'Akta Pendirian' is uploaded
+              And I will see 'SK Kemenkumham Pendirian' is empty
+              And I will see 'NPWP Bisnis' is empty
+              And I see widget brankas document in upload document business
+
+        @C173114
+        Scenario: Access widget brankas document in upload document business with all document has been uploaded
+            Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I upload all document business for type company
+              And I click button progress upload document
+              And I will see all document company has been uploaded
+              And I will see button request account opening is shown
+              And I click widget document safe
+            Then I will see onboarding page document safe continue to upload document business
+              And I continue to process upload document business
+              And I will see all document company has been uploaded
+              And I will see button request account opening is shown
+              And I see widget brankas document in upload document business  
+
+        @C173115
+        Scenario: Close information brankas document from upload document business
+              Given I am a registered customer with following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |   
+              And I reset state upload document
+              And I reset my state journey
+              And complete onboarding document safe and survey
+              And I filling in form login with the following details:
+                  | userID      | deveed47 |
+                  | password    | 1234Test |
+                  | userIDstg   | ruth7cb8 |
+                  | passwordStg | 1234Test |
+              And I click login
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I update my last journey step to 'Data Employment'
+              And I see page 'Data Business Profile'
+              And I fill my business profile as followings:
+                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                  | industry           | Jasa                                  |
+                  | businessField      | Operator tur                          |
+                  | monthlyIncome      | 30 - 50 juta                          |
+                  | averageTransaction | 2000000                               |
+                  | nib                | 9129106701234                         |
+                  | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                  | address  | Jl. Gambir Belok Kiri No. 10 |
+                  | rt       | 000                          |
+                  | rw       | 011                          |
+                  | province | DKI JAKARTA                  |
+                  | city     | JAKARTA SELATAN              |
+                  | district | PANCORAN                     |
+                  | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
+              And I choose direct upload via app
+              And I see files that need to be uploaded for type company
+              And I see widget brankas document in upload document business
+              And I click widget document safe
+            Then I will see onboarding page document safe continue to upload document business
+              And I close page onboarding document safe
+              And I will not see all document company
+              And I see widget brankas document in upload document business
+
         @C171465
         Scenario: Upload only document required business type CV   
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a customer that recently registered to amarbank business with data as below
+                | fullName        | Testing                |
+                | email           | acc_op_cv@gmail.com    |
+                | phoneNumber     | 812967754041           |
+                | password        | 1234Test               |
+              And I login using my user id that I recently receive through email
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I click take photo eKTP
+              And I will directing to page take photo eKTP
+              And I take photo eKTP
+              And I submit my eKTP photo
+              And I fill all information identity details as followings:
+                | eKtpNumber    | 3171131810770033          |
+              And I swipe to button save data eKTP
+              And I submit my information identity details
+              And I click take my photo selfie
+              And I will direct to page take selfie picture KYC
+              And I take selfie picture
+              And I submit my selfie photo
+              And I click take photo selfie with KTP
+              And I will directing to page take selfie with KTP
+              And I click take photo
+              And I submit my selfie with KTP
+              And I will directing to page submit Data Personal
+              And I submit my personal data details business and upload my npwp as followings:
+                | lastEducation        | SMA          |
+                | motherName           | NADYA LAMUSU |
+                | referenceName        | IBU SAYA     |
+                | referencePhoneNumber | 812343455677 |
+              And I choose my domicile address same with my identity information
+              And I submit my domicile address
+              And I fill my employment details as followings:
+                | workType     | Pegawai Swasta       |
+                | sourceIncome | Pemasukan dari Usaha |
+              And I submit my employment data
+              And I continue to process KYB
+              And I fill my business profile as followings:
+                | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                | industry           | Jasa                                  |
+                | businessField      | Operator tur                          |
+                | monthlyIncome      | 30 - 50 juta                          |
+                | averageTransaction | 2000000                               |
+                | nib                | 9129106701234                         |
+                | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                | address  | Jl. Gambir Belok Kiri No. 10 |
+                | rt       | 000                          |
+                | rw       | 011                          |
+                | province | DKI JAKARTA                  |
+                | city     | JAKARTA SELATAN              |
+                | district | PANCORAN                     |
+                | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business required for type company
               And I click button progress upload document
-            Then I will see all document required company has been uploaded
+              And I will see all document required company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
@@ -400,24 +1783,94 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171466
         Scenario: Upload All document business type CV
-            Given I am a customer who has submitted business address
-              And I choose method upload document
+            Given I am a customer that recently registered to amarbank business with data as below
+                | fullName        | Testing                |
+                | email           | acc_op_cv@gmail.com    |
+                | phoneNumber     | 812967754041           |
+                | password        | 1234Test               |
+              And I login using my user id that I recently receive through email
+              And I click later in pop up biometric
+              And I will directing to Hook 1 Onboarding Account Opening
+              And I swipe to card Giro Account
+              And I choose Giro Account
+              And I choose Giro Account Corporate
+              And I submit my giro type
+              And I choose legality business type 'cv'
+              And I submit my legality type
+              And I fill NPWP Business
+              And I click continue to data personal
+              And I click confirm NPWP Business
+              And I see page 'Upload eKTP'
+              And I click take photo eKTP
+              And I will directing to page take photo eKTP
+              And I take photo eKTP
+              And I submit my eKTP photo
+              And I fill all information identity details as followings:
+                | eKtpNumber    | 3171131810770033          |
+              And I swipe to button save data eKTP
+              And I submit my information identity details
+              And I click take my photo selfie
+              And I will direct to page take selfie picture KYC
+              And I take selfie picture
+              And I submit my selfie photo
+              And I click take photo selfie with KTP
+              And I will directing to page take selfie with KTP
+              And I click take photo
+              And I submit my selfie with KTP
+              And I will directing to page submit Data Personal
+              And I submit my personal data details business and upload my npwp as followings:
+                | lastEducation        | SMA          |
+                | motherName           | NADYA LAMUSU |
+                | referenceName        | IBU SAYA     |
+                | referencePhoneNumber | 812343455677 |
+              And I choose my domicile address same with my identity information
+              And I submit my domicile address
+              And I fill my employment details as followings:
+                | workType     | Pegawai Swasta       |
+                | sourceIncome | Pemasukan dari Usaha |
+              And I submit my employment data
+              And I continue to process KYB
+              And I fill my business profile as followings:
+                | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
+                | industry           | Jasa                                  |
+                | businessField      | Operator tur                          |
+                | monthlyIncome      | 30 - 50 juta                          |
+                | averageTransaction | 2000000                               |
+                | nib                | 9129106701234                         |
+                | businessDateStart  | 10/10/2010                            |
+              And I submit my business profile
+              And I submit business director list
+              And I fill my business address as followings:
+                | address  | Jl. Gambir Belok Kiri No. 10 |
+                | rt       | 000                          |
+                | rw       | 011                          |
+                | province | DKI JAKARTA                  |
+                | city     | JAKARTA SELATAN              |
+                | district | PANCORAN                     |
+                | village  | PANCORAN                     |
+              And I agree to carry out the Rights and Obligations
+              And I will directing to page Rights and Obligations
+              And I click button agree with Rights and Obligations
+              And I will see checkbox Rights and Obligations is checked
+              And I submit my business address
+            When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company
               And I upload all document business for type company
               And I click button progress upload document
-             Then I will see all document company has been uploaded
+              And I will see all document company has been uploaded
               And I will see button request account opening is shown
               And I click button request account opening
               And I will direct to page thank you and need verification of my data
               And I click progress account opening
               And I will direct to page detail progress account opening
               And I close page detail progress account opening
-             Then I will see card account 'on verification'
+            Then I will see card account 'on verification'
               And I click tab brankas
               And I click direct to input password document
               And I input password document
               And I click see my document
               And I will direct to page document brankas
               And I click document giro
+              And I click document legality business
               And I will see document business for type company    
