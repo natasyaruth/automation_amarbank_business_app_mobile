@@ -63,19 +63,38 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Minimal tenor 30 hari"
 
-  
+
+  Scenario: User verify new required document apply loan for PO PT.Perusahaan
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"
+    Then I should see the following document requirements:
+      |NIB                                                                                                      |
+      |Akta Pendirian                                                                                           |
+      |SK Kemenkumham Pendirian                                                                                 |
+      |NPWP Bisnis                                                                                              |
+      |Akta Perubahan Terakhir (jika ada)                                                                       |
+      |SK Kemenkumham Perubahan Terakhir (jika ada)                                                          |
+      | KTP Komisioner & Pemegang Saham                                                                       |
+      | NPWP Komisioner & Pemegang Saham                                                                      |
+      | Surat Perintah Kerja (SPK) dari Buyer saat ini atau Buyer lainnya dengan produk yang sama              |
+      | Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.     |
+      | Rekening koran/mutasi rekening operasional 6 bulan terakhir.                                 |
+      | Laporan keuangan dalam 1 tahun terakhir (jika ada). "                                                   |
+    And I see buttton Pilih Metode Upload Dokumen
+
   
   @Sprint6Lending @C142729
-  Scenario: User apply combine journey PO direct type CV with flagging MSME
+  Scenario: User apply combine journey PO direct type combine journey CV with flagging MSME
     Given User on Main Dashboard   
     When user click button Ajukan Limit Kredit
     And User select loan type "PO"
     And user input nominal for MSME "5000000000"
     And user input loan tenor "30"
-    And user click button Lanjut Isi Data Bouwheer
+    And user click button Lanjut Isi Data Buyer
     #section select Anchor
     When user on buyer cooperating page
-    And user fill a field "BowheerName" with "PO test"
+    And user fill a field "BuyerName" with "PO test"
     And user select industry type
     And user select the year cooperating    
     And user click Pilih
@@ -129,6 +148,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload document "ktpcomm"
     And user upload document "npwpcomm"        
     And user upload document "SPKdok"
+    And user upload document "3contohInvoicewithSupplier"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
@@ -137,6 +157,27 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
+
+  Scenario: User verify new required document apply loan for combine journey PO PT.Perorangan
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"
+    Then I should see the following document requirements:
+      |NIB                                                                                                      |
+      |Sertifikat Pendaftaran                                                                                   |
+      |NPWP Bisnis                                                                                              |
+      |Surat Pernyataan Pendirian                                                                               |
+      |Sertifikat Perubahan Terakhir (jika ada)                                                                 |
+      | Surat Pernyataan Perubahan Terakhir (jika ada)                                                          |
+      | Surat Perintah Kerja (SPK) dari Buyer saat ini atau Buyer lainnya dengan produk yang sama"              |
+      | Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama."       |
+      | Rekening koran/mutasi rekening operasional 6 bulan terakhir."                                           |
+      | Laporan keuangan dalam 1 tahun terakhir (jika ada). "                                                   |
+    And I see buttton Pilih Metode Upload Dokumen
+
+  
+
+
   @Sprint6Lending @C161669
   Scenario: User combine journey PO direct type PT.Perorangan with flagging MSME
     Given User on Main Dashboard   
@@ -144,10 +185,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And User select loan type "PO"
     And user input nominal for MSME "5000000000"
     And user input loan tenor "30"
-    And user click button Lanjut Isi Data Bouwheer
+    And user click button Lanjut Isi Data Buyer
     #section select Anchor
     When user on buyer cooperating page
-    And user fill a field "BowheerName" with "PO test"
+    And user fill a field "Buyer" with "PO test"
     And user select industry type
     And user select the year cooperating
     And user click Pilih
@@ -197,6 +238,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload document "sertifikatperubahanterakhir"
     And user upload document "suratpernyataanperubahanakhir"
     And user upload document "SPKdok"
+    And user upload document "3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
@@ -205,6 +247,31 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user click button Lihat Progres Pengajuan
     And user on monitoring loan process page
 
+
+  Scenario: User verify new required document apply loan for combine journey PO UD
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"
+    Then User should see the list of required documents
+    And User see "NIB"    
+    And User see "NPWP Bisnis"        
+    And User see "Surat Perintah Kerja (SPK) dari Buyer saat ini atau Buyer lainnya dengan produk yang sama"
+    And User see "Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama."
+    And User see "Rekening koran/mutasi rekening operasional 6 bulan terakhir."
+    And User see "Laporan keuangan dalam 1 tahun terakhir (jika ada). "
+    
+
+  Scenario: User verify new required document apply loan for combine journey PO Individu
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"
+    Then User should see the list of required documents 
+    And User see "Surat Pernyataan Perubahan Terakhir (jika ada)"    
+    And User see "Surat Perintah Kerja (SPK) dari Buyer saat ini atau Buyer lainnya dengan produk yang sama"
+    And User see "Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama."
+    And User see "Rekening koran/mutasi rekening operasional 6 bulan terakhir."
+    And User see "Laporan keuangan dalam 1 tahun terakhir (jika ada)."
+
   @Sprint6Lending @C161670
   Scenario: User combine journey PO direct type UD with flagging MSME
     Given User on Main Dashboard   
@@ -212,10 +279,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And User select loan type "PO"
     And user input nominal for MSME "5000000000"
     And user input loan tenor "30"
-    And user click button Lanjut Isi Data Bouwheer
+    And user click button Lanjut Isi Data Buyer
     #section select Anchor
     When user on buyer cooperating page
-    And user fill a field "BowheerName" with "PO test"
+    And user fill a field "Buyer" with "PO test"
     And user select industry type
     And user select the year cooperating
     And user click Pilih    
@@ -263,6 +330,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload docuemnt "nib"
     And user upload document "npwpbisnis"
     And user upload document "SPKdok"
+    And user upload document ""3contohInvoicewithBuyer"
     And user upload document "paymentMutation"
     And user upload document "1YearfinancialReports"
     And user click button Perbaharui Progres
@@ -278,7 +346,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user can see X button to back to Main Dashboard
     And user validate title "Pengajuan Limit & Upload Dokumen" on field "titleDocumentField"
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan bouwheer." on field "textforPO"
+    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforPO"
     And user click button Upload Ulang Dokumen
     Then user go back to page Progres Upload Dokumen
 
@@ -288,7 +356,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     Given user on monitoring loan process page
     When user click Upload Ulang dokumen button
     And user go back to page Upload document
-    And user upload multiple document "KTPComm"
+    And user upload multiple document "3contohInvoicewithBuyer"
     Then user click button Simpan Dokumen
     And user will back to loan process page
 
@@ -298,7 +366,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user can see X button to back to Main Dashboard
     And user validate title "Analisa Kredit" on field "titleAnalystCreditField"
     When user validate status process "Proses saat ini" on field "statusAnalystCreditField"
-    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan bouwheer." on field "textforPO"
+    And user validate content "Dengan ini Anda mengizinkan Amar Bank untuk joint account dengan rekening bank yang Anda gunakan dalam bertransaksi dengan buyer." on field "textforPO"
     And user validate wording information "Tim Amar Bank sedang verifkasi data & dokumen yang sudah Anda upload"
 
 
@@ -328,6 +396,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document "KTPComm"
     And user upload multiple document "npwpOfComm"
     And user upload multiple document "SPKdok"
+    And user upload multiple document "3contohInvoicewithBuyer"
     And user upload multiple document "paymentMutation"
     And user upload multiple document "1YearfinancialReports"
 
@@ -350,7 +419,9 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document "npwpOfComm"
     And user verify upload all document NPWP
     And user upload multiple document "SPKdok"
-    And user verify upload all document SPK Bouwheer
+    And user verify upload all document SPK Buyer
+    And user upload multiple document "3contohInvoicewithBuyer"
+    And user verify upload all document Invoice Buyer
     And user upload multiple document "paymentMutation"
     And user verify upload all document Mutasi
     And user upload multiple document "1YearfinancialReports"
@@ -399,7 +470,7 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document "npwpcomm"
     And user verify upload all document NPWP
     And user upload multiple document "SPKdok"
-    And user verify upload all document SPK Bouwheer   
+    And user verify upload all document SPK Buyer
     And user click button delete file uploaded
     And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?"
     And user click button Hapus
@@ -455,7 +526,9 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
     And user upload multiple document "npwpcomm"
     And user verify upload all document NPWP
     And user upload multiple document "SPKdok"
-    And user verify upload all document SPK Bouwheer
+    And user verify upload all document SPK Buyer
+    And user upload multiple document "3contohInvoicewithBuyer"
+    And user verify upload all document Invoice Buyer
     And user upload multiple document "paymentMutation"
     And user verify upload all document Mutasi
     And user upload multiple document "1YearfinancialReports"
@@ -464,10 +537,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct
 
   @Sprint6Lending @C142743
   Scenario: user have not upload mandatory document
-    Given user already apply loan but have no upload document
+    Given user already apply loan but have not upload mandatory document
     When user click from Aktivitas pinjaman
     And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
+    And user click loan with status Upload Dokumen
     And user click button Pilih Metode Upload Dokumen
     And user click button Langsung dari Aplikasi
     And user on Progres Upload Dokumen

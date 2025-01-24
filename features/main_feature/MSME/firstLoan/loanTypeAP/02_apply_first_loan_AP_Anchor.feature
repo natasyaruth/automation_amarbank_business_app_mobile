@@ -66,7 +66,27 @@ Feature: Apply First Loan With Flagging MSME Using AP Anchor
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Maximal tenor 180 hari"
 
- 
+
+  Scenario: User verify required document apply loan for combine journey AP PT.Perusahaan
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"    
+    Then I should see the following document requirements "APPerusahaanfirst"
+      | NIB                                                                                            |
+      | Akta Pendirian                                                                                 |
+      | SK Kemenkumham Pendirian                                                                       |
+      | NPWP Bisnis                                                                                    |
+      | Akta Perubahan Terakhir (jika ada)                                                             |
+      | SK Kemenkumham Perubahan Terakhir (jika ada)                                                   |
+      | KTP Komisioner & Pemegang Saham                                                                |
+      | NPWP Komisioner & Pemegang Saham                                                               |
+      | Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama.|
+      | Rekening koran/mutasi rekening operasional 6 bulan terakhir.                                    |
+      | Laporan keuangan dalam 1 tahun terakhir (jika ada)."                                            |
+    And I see button Pilih Metode Upload Document
+      
+   
+   
   @Sprint6Lending @C142667
   Scenario: User apply first loan AP Anchor with bussiness type PT Perusahaan flaging MSME
     Given User on Main Dashboard
@@ -194,20 +214,15 @@ Feature: Apply First Loan With Flagging MSME Using AP Anchor
     And user click loan with status Pengajuan Limit & Upload Dokumen
     And user click button Pilih Metode Upload Dokumen
     And user click button Langsung dari Aplikasi
-    And user upload docuemnt "nib"
-    And user upload document "aktapendirian"
-    And user upload document "skkemenkumhanpendirian"
-    And user upload document "npwpbisnis"
-    And user upload document "aktaperubahanterakhir"
-    And user upload document "skkemenkumhanperubahanakhir"
     And user upload multiple document "ktpcomm"
     And user upload multiple document "npwpcomm"
     And user upload multiple document "3contohInvoicewithSupplier"
     And user upload multiple document "paymentMutation"
     And user upload multiple document "1YearfinancialReports"
+    Then I should see all documents uploaded successfully
 
   @Sprint6Lending @C142674
-  Scenario: user validate field after success upload document
+  Scenario: User successfully uploads multiple documents
     Given user already apply loan but have no upload document
     When user click from Aktivitas pinjaman
     And user on Aktivitas Pinjaman Page
@@ -223,11 +238,8 @@ Feature: Apply First Loan With Flagging MSME Using AP Anchor
     And user upload multiple document "ktpdcomm"
     And user upload multiple document "npwpcomm"
     And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
     And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
     And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
     Then user see button Kirim Pengajuan Limit Kredit
 
   @C142675

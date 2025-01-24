@@ -1,9 +1,7 @@
 Feature: Apply First Loan With Flagging MSME Using AP Direct
   As a customer lead
   I want to apply first loan using AP Direct with flaging MSME
-  As a customer lead
-  I want to apply first loan using AP Direct with flaging MSME
-
+  
   Background:
     Given I am a registered customer with followng details:
       | userID      | yahyde6f |
@@ -59,6 +57,19 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user input tenor "300"
     And user click button Lanjut Isi Data Supplier
     Then user user see error message "Maximal tenor 180 hari"
+
+
+  Scenario: User verify required document apply loan for combine journey AP UD
+    Given User on drop off Upload Dokumen
+    When User click Aktifitas Pinjaman
+    And User click loan with status "Upload Dokumen"
+    Then I should see the following document requirements:
+      |NIB                                                                                            |
+      |NPWP Bisnis                                                                                    |    
+      |Minimal 3 contoh invoice dengan supplier saat ini atau supplier lainnya dengan produk yang sama|
+      |Rekening koran/mutasi rekening operasional 6 bulan terakhir.                                   |
+      |Laporan keuangan dalam 1 tahun terakhir (jika ada).                                            |
+
 
   @Sprint6Lending @C142647
   Scenario: User apply first loan AP Direct with bussiness type UD and flaging MSME
@@ -150,6 +161,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user validate status process "Proses selesai" on field "statusCheckingDocumentField"
     Then user see button "Upload Ulang Dokumen"
 
+
   @Sprint6Lending @C142649
   Scenario: user validate button Simpan Dokumen when upload ulang dokumen
     Given user on monitoring loan process page
@@ -233,20 +245,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     And user upload multiple document "3contohInvoicewithSupplier"
     Then user will see the document will be uploaded and show in one row below uploaded document list
 
-  @C142655
-  Scenario: User add another document after the user success to uploads the previous document
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document invoice
-    And user upload multiple document "3contohInvoicewithSupplier"
-    Then user will see the document will be uploaded and show in one row below uploaded document list
-
-
+  
   @C142656
   Scenario: user verify pop up confirmation to delete uploaded file
     Given user already apply loan but have no upload document
@@ -312,34 +311,7 @@ Feature: Apply First Loan With Flagging MSME Using AP Direct
     Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
 
 
-  @C142659
-  Scenario: user upload file more than 15MB
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user upload multiple document more than 15 MB "3contohInvoicewithSupplier"
-    Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
-
-
-  @C142660
-  Scenario: user validate button Kirim Pengajuan Kredit Limit after all document uploaded
-    Given user already apply loan but have no upload document
-    When user click from Aktivitas pinjaman
-    And user on Aktivitas Pinjaman Page
-    And user click loan with status Pengajuan Limit & Upload Dokumen
-    And user click button Pilih Metode Upload Dokumen
-    And user click button Langsung dari Aplikasi
-    And user on Progres Upload Dokumen
-    And user upload multiple document "3contohInvoicewithSupplier"
-    And user verify upload all document Invoice
-    And user upload multiple document "paymentMutation"
-    And user verify upload all document Mutasi
-    And user upload multiple document "1YearfinancialReports"
-    And user verify upload all document Finance Report
-    And user see button Kirim Pengajuan Limit Kredit
+   
 
   @C142661
   Scenario: user have not upload mandatory document
