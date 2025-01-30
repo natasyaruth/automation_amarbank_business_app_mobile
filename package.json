@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "codeceptjs": "codeceptjs run --steps",
-        "codeceptjs:browserstack": "ENVIRONMENT=staging BROWSERSTACK=true npx codeceptjs run --debug",
+        "codeceptjs:browserstack": "ENVIRONMENT=staging BROWSERSTACK=true npx codeceptjs run --debug --steps",
         "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
         "codeceptjs:ui": "codecept-ui --app",
         "codeceptjs:demo": "codeceptjs run --steps -c node_modules/@codeceptjs/examples",
