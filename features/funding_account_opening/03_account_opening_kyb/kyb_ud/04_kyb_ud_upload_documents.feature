@@ -4,7 +4,7 @@ Feature: Account Opening KYB UD - Upload Document Business
     I want to submit my business address as part of the KYB Process
 
     @C173117
-    Scenario: Scenario: Access widget brankas document in upload document business UD
+    Scenario: Access widget brankas document in upload document business UD
         Given I am a registered customer with following details:
             | userID      | devecac3 |
             | password    | 1234Test |

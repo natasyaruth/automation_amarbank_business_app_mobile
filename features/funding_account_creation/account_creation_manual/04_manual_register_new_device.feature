@@ -154,3 +154,22 @@ Feature: Manual Registering New Device
         Then I will direct to main dashboard
         And I try to login with user id B
         Then I will direct to main dashboard
+
+    @C174154
+    Scenario: Selfie with real face and match after face compare
+        Given I have account and have new device
+        When I login to the new device
+        And I register new device
+        And I take picture selfie
+        Then I will direct to page on process to connect to the new device
+        And I will direct to page verification is success
+        And I click button go to login
+        And I will success login to dashboard
+
+    @C174155
+    Scenario: Selfie with real face and not match after face compare
+        Given I have my friend account and have new device
+        When I login with my friend account to the new device
+        And I register new device
+        And I take picture selfie
+        Then I will direct to page verification data is failed
