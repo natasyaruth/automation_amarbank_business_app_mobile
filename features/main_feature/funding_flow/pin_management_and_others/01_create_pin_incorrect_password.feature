@@ -1,4 +1,4 @@
-# @regressionTest
+@regressionTest
 Feature: User create PIN Journey Transfer
     In order to transfer
     As a customer

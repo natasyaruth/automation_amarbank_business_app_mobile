@@ -1,4 +1,4 @@
-# @regressionTest
+@regressionTest
 Feature: User create PIN Journey Transfer Incorrect OTP
     In order to transfer
     As a customer
