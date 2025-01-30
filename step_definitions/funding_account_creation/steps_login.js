@@ -712,12 +712,12 @@ Then(
     I.waitForElement(loginPage.buttons[buttonName], 10);
   });
 
-Then(
-  "I reset attempt failed login",
-  async () => {
-    await
-      resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
-  });
+// Then(
+//   "I reset attempt failed login",
+//   async () => {
+//     await
+//       resetStateDao.resetAttemptFailedLogin(globalVariable.login.userID);
+//   });
 
 Then(
   "I should see pop up with information three times input incorrect data and can be tried in the next 10 minutes",

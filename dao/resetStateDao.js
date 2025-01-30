@@ -219,7 +219,6 @@ module.exports = {
     },
 
     async resetAttemptFailedLogin(userID) {
-
         I.haveRequestHeaders({
             Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
         });
