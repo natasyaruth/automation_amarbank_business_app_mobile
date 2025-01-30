@@ -121,7 +121,7 @@ exports.config = {
     loanMonitoringProcessPage:
       "./pages/loanApplication/loanMonitoringProcess.js",
 
-    forgotPasswordPage: "./pages/forgotPassword.js",
+    forgotPasswordPage: "./pages/forgotpassword.js",
 
     uploadDocLoanPage: "./pages/loanApplication/uploadDocLoanApp.js",
 
