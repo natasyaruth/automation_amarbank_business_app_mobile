@@ -38,11 +38,6 @@ jobs:
             yarn install
             
       - run:
-          name: Install dependencies
-          command: |
-            yarn add codeceptjs webdriverio@8.6.3 --save
-
-      - run:
           name: Make execute-on-ci.sh executable
           command: chmod +x ./execute-on-ci.sh  # Ensure script is executable
 
