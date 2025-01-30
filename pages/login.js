@@ -22,12 +22,15 @@ module.exports = {
     cancelNewDevice: "~buttonCancel",
     registerNewDevice: "~buttonRegister",
     understand: "~buttonUnderstand",
+    understandBlocked: "~buttonOke",
     continueSelfie: "~buttonContinueSelfie",
     takeSelfie: "~buttonTakeSelfie",
     reTakeSelfie: "~buttonTry",
     uploadSelfie: "~buttonUpload",
     continueToMainDashboard: "~buttonGoToDashboard",
     submitPDP: "~btnLogin",
+    backToLogin: "~buttonBackToLogin",
+    selfieLiveness: "~",
   },
   messageErrorFields: {
     userID: "~textMsgErrorUserID",
@@ -220,5 +223,20 @@ module.exports = {
   submitPDPLogin(){
     I.waitForElement(this.buttons.submitPDP, 10);
     I.click(this.buttons.submitPDP);
+  },
+
+  backToLoginChangeDevice() {
+    I.waitForElement(this.buttons.backToLogin, 30);
+    I.click(this.buttons.backToLogin);
+  },
+
+  clickUnderstandBlocked() {
+    I.waitForElement(this.buttons.understandBlocked, 30);
+    I.click(this.buttons.understandBlocked);
+  },
+
+  skipSelfieLiveness() {
+    I.waitForElement(this.buttons.selfieLiveness, 30);
+    I.click(this.buttons.selfieLiveness);
   },
 }

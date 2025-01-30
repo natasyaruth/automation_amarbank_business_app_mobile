@@ -64,6 +64,7 @@ Feature: Apply First Loan With Flagging MSME Using AR Direct
     Then user user see error message "Maxima tenor 180 hari"
 
 
+
   @Sprint6Lending @C142708
   Scenario: User apply combine journey AR direct type with bussiness type PT.Perorangan flagging MSME
     Given User on Main Dashboard

@@ -11,10 +11,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct PT
       And user on stepper Detail Kredit
       And User on nominal "Rp50 juta - 5 Miliar"
       And user input loan tenor "30"
-      And user click button Lanjut Isi Data Bouwheer
-      And user on stepper Data Bouwheer
+      And user click button Lanjut Isi Data Buyer
+      And user on stepper Data Buyer
       When user on buyer cooperating page
-      And user fill a field "BowheerName" with "PO test"
+      And user fill a field "BuyerName" with "PO test"
       And user select industry type
       And user select the year cooperating
       And user click Pilih
@@ -80,10 +80,10 @@ Feature: Apply First Loan With Flagging MSME Using PO Direct PT
       And user on stepper Detail Kredit
       And User on nominal "Rp50 juta - 5 Miliar"
       And user input loan tenor "30"
-      And user click button Lanjut Isi Data Bouwheer
-      And user on stepper Data Bouwheer
+      And user click button Lanjut Isi Data Buyer
+      And user on stepper Data Buyer
       When user on buyer cooperating page
-      And user fill a field "BowheerName" with "PO test 2"
+      And user fill a field "BuyerName" with "PO test 2"
       And user select industry type
       And user select the year cooperating
       And user click Pilih
