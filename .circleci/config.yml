@@ -59,7 +59,6 @@ commands:
               touch .env
               echo "BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME" > .env
               echo "BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY" > .env
-
 workflows:
   version: 2.1
   test:
