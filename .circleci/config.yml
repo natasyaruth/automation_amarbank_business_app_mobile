@@ -31,6 +31,8 @@ jobs:
           name: Showing all directory current location
           command: |
             pwd && ls -la
+            ls -al ./pages
+            ls -al ./step_definitions
 
       - run:
           name: Install dependencies based on package.json
