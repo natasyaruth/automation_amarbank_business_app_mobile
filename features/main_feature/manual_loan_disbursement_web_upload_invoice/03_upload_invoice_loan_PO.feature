@@ -31,7 +31,7 @@ Scenario: Access Email notification for receive unique web link
 Scenario: Validate upload invoice page when the dashboard invoice still empty
     Given I have the accesses the unique web link
     When I am on Progress Upload Invoice Page
-    And I see Bouwheer name
+    And I see Buyer name
     And I see No. Pinjaman
     And I will see button for upload invoice
     And I will see disable button for add invoice
@@ -40,7 +40,7 @@ Scenario: Validate upload invoice page when the dashboard invoice still empty
 Scenario: Validate error message when upload invoice  > 10 MB
     Given I have the accesses the unique web link
     When I am on Progress Upload Invoice Page 
-    And I see Bouwheer name
+    And I see Buyer name
     And I see No. Pinjaman
     And I see "Anda bisa mengunggah beberapa invoice. Setiap invoice berlaku untuk satu pencairan"
     And I upload a valid invoice file in PDF, JPG, JPEG, or PNG format
@@ -51,7 +51,7 @@ Scenario: Validate error message when upload invoice  > 10 MB
 Scenario: Validate error message when upload invalid invoice
     Given I have the accesses the unique web link
     When I am on Progress Upload Invoice Page   
-    And I see Bouwheer name
+    And I see Buyer name
     And I see No. Pinjaman
     And I see "Anda bisa mengunggah beberapa invoice. Setiap invoice berlaku untuk satu pencairan"
     And I upload a invalid invoice with format mp3
@@ -62,7 +62,7 @@ Scenario: Validate error message when upload invalid invoice
 Scenario: Successful invoice upload via web link through upload invoice for Loan PO
     Given I have the accesses the unique web link
     When I am on Progress Upload Invoice Page 
-    And I see Bouwheer name
+    And I see Buyer name
     And I see No. Pinjaman
     And I see "Anda bisa mengunggah beberapa invoice. Setiap invoice berlaku untuk satu pencairan"
     And I upload a valid invoice file in PDF, JPG, JPEG, or PNG format
@@ -169,7 +169,7 @@ Scenario: Delete invoice that already submitted
 Scenario: Validate upload invoice page when the dashboard invoice if has at least one invoice number 
     Given I have suceesfully upload invoice
     When I am on dashboard invoice upload
-    And I see Bouwheer Name
+    And I see Buyer Name
     And I see Nomor Pinjaman       
     And I see enable button for Tambbah invoice
     And I see button Upload Invoice Selesai

@@ -154,79 +154,47 @@ Scenario: user can select and upload multiple document for PT.Perusahaan
   And user upload multiple document "3contohInvoicewithSupplier"
   And user upload multiple document "paymentMutation"
   And user upload multiple document "1YearfinancialReports"  
-  Then user see button Kirim Pengajuan Limit Kredit
+  Then I should see all documents uploaded successfully
  
 
 @C142816
-Scenario: user validate field after success upload document PT.Perusahaan
+Scenario: User successfully uploads multiple documents PT.Perusahaan
   Given user already apply loan but have no upload document
   When user click from Aktivitas pinjaman
   And user on Aktivitas Pinjaman Page
   And user click loan with status Pengajuan Limit & Upload Dokumen
   And user click button Pilih Metode Upload Dokumen
   And user click button Langsung dari Aplikasi 
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "npwpOfComm"
-  And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
-  And user verify upload all document Invoice
-  And user upload multiple document "paymentMutation"
-  And user verify upload all document Mutasi
-  And user upload multiple document "1YearfinancialReports"
-  And user verify upload all document Finance Report
-  And user click button Kirim Pengajuan Limit Kredit
-  Then user direct to "Selamat, Pengajuan Kredit Anda Berhasil Dikirim"
-  And user click button Lihat Progres Pengajuan
-  And user on monitoring loan process page
-  And user trigered api change status loan is approved
-
-
+  And user upload multiple document "KTPComm"          
+  And user upload multiple document "npwpOfComm"  
+  And user upload multiple document "3contohInvoicewithSupplier"  
+  And user upload multiple document "paymentMutation"  
+  And user upload multiple document "1YearfinancialReports"  
+  Then user see button Kirim Pengajuan Limit Kredit
+  
 
 @C142817
 Scenario: User add another document after the user success to uploads the previous document
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "KTPComm"
-  Then user will see the document will be uploaded and show in one row below uploaded document list 
-
+  Given I am on the "Progress Upload Dokumen" page
+  When user upload multiple document "3contohInvoicewithSupplier"   
+  Then user will see the document will be uploaded and show in one row below uploaded document list  
 
 
 @C142818
 Scenario: user verify pop up confirmation to delete uploaded file
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "npwpOfComm"
-  And user verify upload all document NPWP  
+  Given I am on the "Progress Upload Dokumen" page   
+  And I add multiple document "npwpOfComm"
+  And I should see all documents uploaded successfully
   And user click button delete file uploaded
   Then user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
 
 
 @C142819
 Scenario: user delete uploaded file
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "npwpOfComm"
-  And user verify upload all document NPWP  
-  And user click button delete file uploaded
+  Given I am on the "Progress Upload Dokumen" page   
+  And I add upload multiple document "npwpOfComm"
+  And I should see all documents uploaded successfully
+  And I click button delete file uploaded   
   And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
   And user click button Hapus
   Then user back to Progres Upload Dokumen page
@@ -234,67 +202,25 @@ Scenario: user delete uploaded file
 
 @C142820
 Scenario: user cancel to delete uploaded file
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "npwpOfComm"
-  And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
-  And user verify upload all document Invoice
-  And user upload multiple document "paymentMutation"
-  And user verify upload all document Mutasi
-  And user upload multiple document "1YearfinancialReports"
-  And user verify upload all document Finance Report
-  And user click button delete file uploaded
-  And user should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
-  And user click button Kembali
+  Given I am on the "Progress Upload Dokumen" page   
+  And I add upload multiple document "npwpOfComm"  
+  And I add upload multiple document "paymentMutation"
+  And I should see all documents uploaded successfully
+  And I click button delete file uploaded
+  And I should see pop up message to delete file "Apakah kamu yakin akan menghapus dokumen ini?" 
+  And I click button Kembali
   Then pop up confirmation will disappear
 
 
 
 @C142821
 Scenario: user upload file more than 15MB
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user upload multiple document more than 15 MB "KTPComp"  
-  Then user see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
+  Given I am on the "Progress Upload Dokumen" page   
+  And I add upload multiple document "npwpOfComm"  
+  And I add upload multiple document "paymentMutation"
+  And I upload multiple document more than 15 MB "KTPComp"  
+  Then I see message for upload more than 15Mb "File melebihi maksimal ukuran 15MB."
   
-
-
-@C142822
-Scenario: user validate button Kirim Pengajuan Kredit Limit after all documen uploaded
-  Given user already apply loan but have no upload document
-  When user click from Aktivitas pinjaman
-  And user on Aktivitas Pinjaman Page
-  And user click loan with status Pengajuan Limit & Upload Dokumen
-  And user click button Pilih Metode Upload Dokumen
-  And user click button Langsung dari Aplikasi
-  And user on Progres Upload Dokumen
-  And user upload document "nib"
-  And user upload document "aktaperusahaan"
-  And user upload document "skkemenkumhan"
-  And user upload document "npwpComp"
-  And user upload multiple document "KTPComm"     
-  And user verify upload all document KTP   
-  And user upload multiple document "npwpOfComm"
-  And user verify upload all document NPWP
-  And user upload multiple document "3contohInvoicewithSupplier"
-  And user verify upload all document Invoice
-  And user upload multiple document "paymentMutation"
-  And user verify upload all document Mutasi
-  And user upload multiple document "1YearfinancialReports"
-  And user verify upload all document Finance Report
-  And user see button Kirim Pengajuan Limit Kredit
-   
 
 @C142823
 Scenario: user have not upload mandatory document
