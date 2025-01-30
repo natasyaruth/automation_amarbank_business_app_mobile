@@ -4,7 +4,7 @@ Feature: Account Deletion
     As a customer
     I want to delete my account
 
-    @C101644
+    #@C101644
     Scenario: Close in page how to delete account and important information
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -25,7 +25,7 @@ Feature: Account Deletion
         And I click close in header page
         Then I will back to menu other
 
-    @C101645
+    #@C101645
     Scenario: Close in page verification account delete
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -47,7 +47,7 @@ Feature: Account Deletion
         And I click close in header page
         Then I will back to menu other
 
-    @C101646
+    #@C101646
     Scenario: Close in page input reason account delete
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -71,7 +71,7 @@ Feature: Account Deletion
         And I click close in header page
         Then I will back to menu other
 
-    @C101647
+    #@C101647
     Scenario: Verify account deletion with incorrect password
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -94,7 +94,7 @@ Feature: Account Deletion
         Then I should see pop up with text 'Data Yang Dimasukkan Salah' displayed
         And I can click button try again
 
-    # @C101648
+    # #@C101648
     # Scenario: Input password and then delete
     #     Given I am a registered customer with following details:
     #         | userID      | autocaea |
@@ -116,7 +116,7 @@ Feature: Account Deletion
     #     And I delete my password
     #     Then I see button verify is disable
 
-    # @C101649
+    # #@C101649
     # Scenario: User unmask and mask password
     #     Given I am a registered customer with following details:
     #         | userID      | autocaea |
@@ -163,11 +163,11 @@ Feature: Account Deletion
         Then I will see message error '<Message>' in the below of field reason
         Examples:                                                                 ❸
             | testRailTag | Value                                                | Message                                            |
-            | @C101650    |                                                      | Alasan hapus akun wajib diisi                      |
-            | @C101651    | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Alasan hapus akun minimal 3 & maksimal 60 karakter |
-            | @C101652    | R                                                    | Alasan hapus akun minimal 3 & maksimal 60 karakter |
+            | #@C101650    |                                                      | Alasan hapus akun wajib diisi                      |
+            | #@C101651    | Ruth Natasya Natasya Natasya Natasya Natasya Natasya | Alasan hapus akun minimal 3 & maksimal 60 karakter |
+            | #@C101652    | R                                                    | Alasan hapus akun minimal 3 & maksimal 60 karakter |
 
-    @C101653
+    #@C101653
     Scenario: Input reason delete account with alphanumeric and special char
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -190,7 +190,7 @@ Feature: Account Deletion
         And I fill my reason account deletion with 'Sudah tidak menjadi bagian dari perusahaan @b123.'
         Then I will not see message error in the below of field reason
 
-    # @C101653
+    # #@C101653
     # Scenario: Input reason delete account and then delete
     #     Given I am a registered customer with following details:
     #         | userID      | autocaea |
@@ -215,7 +215,7 @@ Feature: Account Deletion
     #     Then I will see message error 'Alasan hapus akun wajib diisi' in the below of field reason
     #     And I see button request delete account is disable
 
-    # @C101655
+    # #@C101655
     # Scenario: Submit request account deletion with reason empty
     #     Given I am a registered customer with following details:
     #         | userID      | autocaea |
@@ -238,7 +238,7 @@ Feature: Account Deletion
     #     And I let field reason empty
     #     Then I see button request delete account is disable
 
-    @C101656
+    #@C101656
     Scenario: Delete account active Individual
         Given I am a registered customer with following details:
             | userID      | autocaea |
@@ -265,7 +265,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    @C101657
+    #@C101657
     Scenario: Delete account on process Individual
         Given I am a registered customer with following details:
             | userID      | ruth152d |
@@ -292,7 +292,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    @C101658
+    #@C101658
     Scenario: Delete account on verification Individual
         Given I am a registered customer with following details:
             | userID      | auto4424 |
@@ -319,7 +319,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    # @C101659
+    # #@C101659
     # Scenario: Access menu delete account after process delete account active Individual
     #     Given I am a registered customer with following details:
     #         | userID      | autocaea |
@@ -340,7 +340,7 @@ Feature: Account Deletion
     #     And I click close in header page
     #     And I will back to menu other
 
-    @C101660
+    #@C101660
     Scenario: Delete account active Business
         Given I am a registered customer with following details:
             | userID      | autofb2c |
@@ -367,7 +367,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    @C101661
+    #@C101661
     Scenario: Delete account on process Business
         Given I am a registered customer with following details:
             | userID      | auto436d |
@@ -394,7 +394,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    @C101662
+    #@C101662
     Scenario: Delete account on verification Business
         Given I am a registered customer with following details:
             | userID      | auto79e2 |
@@ -421,7 +421,7 @@ Feature: Account Deletion
         And I click close in header page
         And I will back to menu other
 
-    # @C101663
+    # #@C101663
     # Scenario: Access menu delete account after process delete account active Business
     #     Given I am a registered customer with following details:
     #         | userID      | autofb2c |

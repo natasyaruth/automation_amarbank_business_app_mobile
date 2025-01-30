@@ -1,5 +1,3 @@
-// const firstFilterLeads = require("./pages/firstFilterLeads");
-
 require("dotenv").config();
 // require("./heal");
 

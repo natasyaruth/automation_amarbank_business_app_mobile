@@ -186,6 +186,7 @@ module.exports = {
   },
 
   goToLoginPage() {
+    I.wait(5);
     I.waitForElement(this.buttons.login, 10);
   },
 

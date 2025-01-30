@@ -1,4 +1,4 @@
-# @regressionTest
+@regressionTest
 Feature: User create PIN Journey Transfer
     In order to transfer
     As a customer
@@ -14,22 +14,22 @@ Feature: User create PIN Journey Transfer
             | userIDstg   | elka74a9 |
             | passwordStg | Test1234 |
         And I click login
-        And I click later in pop up biometric 
         Then I will direct to dashboard
 
-    @C109106
+    @C163985
     Scenario: User wants to Transfer but doesn't have PIN
         Given I am a customer who wants to create PIN
-        And I don't have a PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         When I see pop up Create PIN
         When I click button Create PIN
         Then I will directly to Create New Transaction PIN page
 
-    @C109107
+    @C163986
     Scenario: User input incorrect password once
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I input incorrect password
@@ -38,10 +38,11 @@ Feature: User create PIN Journey Transfer
         And I can click try again
         And I reset attempt failed login
 
-    @C109108
+    @C163987
     Scenario: User input incorrect password twice
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password twice
@@ -49,10 +50,11 @@ Feature: User create PIN Journey Transfer
         And I can click try again
         And I reset attempt failed login
 
-    @C109109
+    @C163988
     Scenario: User input incorrect password three times
         Given I am a customer who wants to create PIN
         When I choose menu Transfer from main dashboard
+        And I click Transfer to Receiver Name
         And I see pop up Create PIN
         And I click button Create PIN
         And I submit incorrect password three times

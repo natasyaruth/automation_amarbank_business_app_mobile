@@ -1,4 +1,4 @@
-@automate_user_add_friend_list
+@regressionTest
 Feature: User add friend list
     In order to transfer
     As a customer

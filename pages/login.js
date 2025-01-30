@@ -81,6 +81,7 @@ module.exports = {
   },
 
   clickLoginButton() {
+    I.wait(2);
     I.click(this.buttons.login);
   },
 
