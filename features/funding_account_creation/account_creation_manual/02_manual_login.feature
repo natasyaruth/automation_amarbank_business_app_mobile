@@ -228,7 +228,7 @@ Feature: Manual Account login
         And I will direct to page success change password
         And I click button direct to page login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @C174862
     Scenario: Login with biometric after forgot password with account active initiator
@@ -246,7 +246,7 @@ Feature: Manual Account login
         And I will direct to page reset password successful changes
         And I can click button direct to login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
     
     @C174863
     Scenario: Login with biometric after change password with account active partner
@@ -263,7 +263,7 @@ Feature: Manual Account login
         And I will direct to page success change password
         And I click button direct to page login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @@C174864
     Scenario: Login with biometric after forgot password with account active partner
@@ -281,7 +281,7 @@ Feature: Manual Account login
         And I will direct to page reset password successful changes
         And I can click button direct to login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @C174865
     Scenario: Login with biometric after change password with account status is not opening
@@ -298,7 +298,7 @@ Feature: Manual Account login
         And I will direct to page success change password
         And I click button direct to page login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @C174866
     Scenario: Login with biometric after forgot password with account status is not opening
@@ -316,7 +316,7 @@ Feature: Manual Account login
         And I will direct to page reset password successful changes
         And I can click button direct to login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @C174867
     Scenario: Login with biometric after change password with account status wating verification on CRM
@@ -333,7 +333,7 @@ Feature: Manual Account login
         And I will direct to page success change password
         And I click button direct to page login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
 
     @C174868
     Scenario: Login with biometric after forgot password with account status wating verification on CRM
@@ -351,4 +351,4 @@ Feature: Manual Account login
         And I will direct to page reset password successful changes
         And I can click button direct to login
         When I click button login using biometric
-        And I will see pop up information that login with biometric not active
+        Then I will see pop up information that login with biometric not active
