@@ -31,6 +31,9 @@ When("I input amount higher than active balance", async () => {
 Then("I should see error message {string} in field {string}", async (expectedValue, fieldName) => {
   let actualMessageError = await transferPage.getMessageErrorField(fieldName);
   I.assertEqual(actualMessageError, expectedValue);
+
+  let isVisible = await transferPage.getElementVisible(fieldName);
+  I.assertEqual(isVisible, true);
 });
 
 When("I input amount {string}", async (amount) => {
@@ -757,4 +760,9 @@ Then("I am on page transfer confirmation", async () => {
   I.see("Transfer Sekarang");
   I.waitForElement(transferPage.buttons.transfer, 10);
 
+});
+
+Then("I should see the screen focused on field {string}", async (fieldName) => {
+  let actualMessageError = await transferPage.getMessageErrorField(fieldName);
+  I.assertEqual(actualMessageError, expectedValue);
 });
