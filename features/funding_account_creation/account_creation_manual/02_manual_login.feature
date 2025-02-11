@@ -212,3 +212,143 @@ Feature: Manual Account login
         And I input otp code
         Then I got email notification
         And I validate email content according to figma 
+
+    @C174861
+    Scenario: Login with biometric after change password with account active initiator
+        Given I am a registered customer with account active initiator
+        And already activated biometric
+        And already in page other
+        And I click menu change password
+        And I click next to input new password
+        And I input new password
+        And I input confirm new password
+        And I confirm my new password
+        And I will see snackbar OTP successfully sent
+        And I input OTP change password
+        And I will direct to page success change password
+        And I click button direct to page login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @C174862
+    Scenario: Login with biometric after forgot password with account active initiator
+        Given I am a registered customer with account active initiator
+        And already activated biometric
+        And I am a customer want to reset password
+        And I am filling field User ID
+        And I input email for reset password
+        And I click button Reset Password
+        And I should be notified that email Reset Password successfully sent
+        And I click reset password link in email
+        And I input new password
+        And I input confirm new password
+        And I click reset password
+        And I will direct to page reset password successful changes
+        And I can click button direct to login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+    
+    @C174863
+    Scenario: Login with biometric after change password with account active partner
+        Given I am a registered customer with account active partner
+        And already activated biometric
+        And already in page other
+        And I click menu change password
+        And I click next to input new password
+        And I input new password
+        And I input confirm new password
+        And I confirm my new password
+        And I will see snackbar OTP successfully sent
+        And I input OTP change password
+        And I will direct to page success change password
+        And I click button direct to page login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @@C174864
+    Scenario: Login with biometric after forgot password with account active partner
+        Given I am a registered customer with account active partner
+        And already activated biometric
+        And I am a customer want to reset password
+        And I am filling field User ID
+        And I input email for reset password
+        And I click button Reset Password
+        And I should be notified that email Reset Password successfully sent
+        And I click reset password link in email
+        And I input new password
+        And I input confirm new password
+        And I click reset password
+        And I will direct to page reset password successful changes
+        And I can click button direct to login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @C174865
+    Scenario: Login with biometric after change password with account status is not opening
+        Given I am a registered customer with account status is not opening
+        And already activated biometric
+        And already in page other
+        And I click menu change password
+        And I click next to input new password
+        And I input new password
+        And I input confirm new password
+        And I confirm my new password
+        And I will see snackbar OTP successfully sent
+        And I input OTP change password
+        And I will direct to page success change password
+        And I click button direct to page login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @C174866
+    Scenario: Login with biometric after forgot password with account status is not opening
+        Given I am a registered customer with account status is not opening
+        And already activated biometric
+        And I am a customer want to reset password
+        And I am filling field User ID
+        And I input email for reset password
+        And I click button Reset Password
+        And I should be notified that email Reset Password successfully sent
+        And I click reset password link in email
+        And I input new password
+        And I input confirm new password
+        And I click reset password
+        And I will direct to page reset password successful changes
+        And I can click button direct to login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @C174867
+    Scenario: Login with biometric after change password with account status wating verification on CRM
+        Given I am a registered customer with account status wating verification on CRM
+        And already activated biometric
+        And already in page other
+        And I click menu change password
+        And I click next to input new password
+        And I input new password
+        And I input confirm new password
+        And I confirm my new password
+        And I will see snackbar OTP successfully sent
+        And I input OTP change password
+        And I will direct to page success change password
+        And I click button direct to page login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
+
+    @C174868
+    Scenario: Login with biometric after forgot password with account status wating verification on CRM
+        Given I am a registered customer with account status wating verification on CRM
+        And already activated biometric
+        And I am a customer want to reset password
+        And I am filling field User ID
+        And I input email for reset password
+        And I click button Reset Password
+        And I should be notified that email Reset Password successfully sent
+        And I click reset password link in email
+        And I input new password
+        And I input confirm new password
+        And I click reset password
+        And I will direct to page reset password successful changes
+        And I can click button direct to login
+        When I click button login using biometric
+        Then I will see pop up information that login with biometric not active
