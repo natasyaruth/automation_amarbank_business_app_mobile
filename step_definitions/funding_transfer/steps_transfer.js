@@ -761,8 +761,3 @@ Then("I am on page transfer confirmation", async () => {
   I.waitForElement(transferPage.buttons.transfer, 10);
 
 });
-
-Then("I should see the screen focused on field {string}", async (fieldName) => {
-  let actualMessageError = await transferPage.getMessageErrorField(fieldName);
-  I.assertEqual(actualMessageError, expectedValue);
-});
