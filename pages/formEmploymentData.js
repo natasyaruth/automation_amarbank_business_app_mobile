@@ -91,6 +91,7 @@ module.exports = {
   },
 
   continueToKYB(){
+    I.waitForElement(this.buttons.continue, 10);
     I.click(this.buttons.continue);
   },
 

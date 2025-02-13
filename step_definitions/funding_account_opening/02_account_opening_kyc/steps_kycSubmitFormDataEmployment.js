@@ -162,7 +162,6 @@ Then("I will notify that I already fill my personal details data", () => {
     I.dontSee("Multiple User");
     I.dontSee("Debit Card");
     I.see("e-Statement");
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.see("Lanjut Lengkapi Data Bisnis");
     I.seeElement(formEmploymentDataPage.buttons.continue);
 });

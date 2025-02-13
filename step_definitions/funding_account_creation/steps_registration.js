@@ -261,6 +261,24 @@ When("I verifying phone number invitee by entering the code", async () => {
 }
 );
 
+When("I verifying phone number new user by entering the code", async () => {
+  let actualPhoneNumber = await otpConfirmationPage.getPhoneNumber();
+  let expectedPhoneNumber = globalVariable.userManagement.phoneNumber;
+
+  I.see("Verifikasi Nomor HP");
+  I.see("Kode OTP telah dikirim ke nomor");
+  I.assertEqual(actualPhoneNumber, "+62 " + expectedPhoneNumber);
+
+  I.wait(3);
+
+  globalVariable.registration.otpCode = (
+    await otpDao.getOTP("62" + expectedPhoneNumber)
+  ).otp;
+
+  otpConfirmationPage.fillInOtpCode(globalVariable.registration.otpCode);
+}
+);
+
 When("I click icon info business code", () => {
   registrationPage.openInfoBusinessCode();
 });
@@ -310,6 +328,22 @@ When("I verifying new email invitee through login with user id invitee", async (
   const userID = (await otpDao.getUserID(globalVariable.registration.newEmailPartner)).userID;
 
   verificationEmailPage.loginWithUserId(userID, globalVariable.registration.passwordPartner, globalVariable.registration.newEmailPartner);
+
+  globalVariable.login.userIDPartner = userID;
+});
+
+When("I verifying email new user through login with user id", async () => {
+  verificationEmailPage.isOpen();
+
+  I.see("Segera Cek E-mail");
+  I.see("Kami telah mengirim User ID ke e-mail:");
+
+  let actualEmail = await verificationEmailPage.getEmailValue();
+  I.assertEqual(actualEmail, globalVariable.userManagement.email);
+
+  const userID = (await otpDao.getUserID(globalVariable.userManagement.email)).userID;
+
+  verificationEmailPage.loginWithUserId(userID, globalVariable.login.password, globalVariable.userManagement.email);
 
   globalVariable.login.userIDPartner = userID;
 });
@@ -479,6 +513,31 @@ When(
 
     await whitelistDao.whitelistPhoneNumber(
       "+" + globalVariable.registration.phoneNumberPartner
+    );
+
+    await whitelistDao.whitelistEmail(
+      account.email
+    );
+
+    registrationPage.fillInAccountInformation(account);
+  }
+);
+
+When(
+  "I filling in new user account business information",
+  async () => {
+
+    const account = {
+      fullName: globalVariable.userManagement.fullName,
+      email: globalVariable.userManagement.email,
+      mobileNumber: globalVariable.userManagement.phoneNumber,
+      password: globalVariable.login.password,
+      confirmPassword: globalVariable.login.password,
+      businessCode: globalVariable.registration.businessCode,
+    }
+
+    await whitelistDao.whitelistPhoneNumber(
+      "+62" + account.mobileNumber
     );
 
     await whitelistDao.whitelistEmail(
@@ -1038,6 +1097,10 @@ Then("account invitee should be created", () => {
   I.waitForText("Lanjutkan proses registrasi", 20);
 });
 
+Then("account new user should be created", () => {
+  I.waitForText("Lanjutkan proses registrasi", 20);
+});
+
 Then("my account business should be created", () => {
   I.waitForText("Lanjutkan proses registrasi", 10);
   I.see("Anda hanya perlu melakukan:");
@@ -1314,6 +1377,8 @@ Then("All user id's using format combination from number and alphabeth lower cas
 
   for (let i = 0; i < listUserID.length; i++) {
 
+    console.log(listUserID[i]);
+
     // checking user id length is 8
     I.assertEqual(listUserID[i].length, 8);
 
@@ -1337,4 +1402,28 @@ Then("All user id's using format combination from number and alphabeth lower cas
     const filterSpace = / /.test(listUserID[i]);
     I.assertFalse(filterSpace);
   }
+});
+
+Then("I will see pop up confirmation registration new user", async () => {
+
+  I.waitForText("Konfirmasi Data Anda", 20);
+  I.see("Pastikan kembali e-mail dan nomor HP Anda sudah benar dan aktif");
+
+  I.see("Nomor Handphone");
+  let actualPhoneNumber = await registrationPage.getValueInformation(
+    "mobileNumber"
+  );
+  I.assertEqual(actualPhoneNumber, globalVariable.userManagement.phoneNumber);
+
+  I.see("Anda akan registrasi sebagai bagian dari:");
+  let actualCompanyName = await registrationPage.getValueInformation("companyName");
+  const companyName = (await resetStateDao.getCompanyName(globalVariable.login.userID, globalVariable.login.password)).businessName;
+  I.dontSeeElement(registrationPage.label.email);
+  I.assertEqual(actualCompanyName, companyName);
+
+  I.see("Konfirmasi");
+  I.waitForElement(registrationPage.buttons.confirm, 10);
+
+  I.see("Kembali");
+  I.waitForElement(registrationPage.buttons.backRegist, 10);
 });

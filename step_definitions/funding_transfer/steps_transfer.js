@@ -497,7 +497,7 @@ Then("I successfully transferred", async () => {
   I.assertEqual(actDate, expDate);
   globalVariable.transfer.date = actDate;
 
-  I.see("Waktu");
+  I.waitForText("Waktu", 10);
   I.waitForElement(transferPage.texts.timeTransfer, 10);
 
   if (

@@ -112,6 +112,10 @@ module.exports = {
             IT: "Teknologi Informasi",
             transportation: "Transportasi",
             other: "Lainnya",
+        },
+        crmAuth: {
+            userApproval: "user-approver-1",
+            passApproval: "Test1234"
         }
     },
     registration: {
@@ -285,5 +289,15 @@ module.exports = {
         email: "",
         domicileAddress: "",
         companyName: "",
+    },
+    userManagement:{
+        fullName: "",
+        email: "",
+        phoneNumber: "",
+        department: "",
+        role: "",
+        file: "",
+        rejectedBy: [],
+        refID: "",
     },
 }

@@ -223,12 +223,12 @@ Feature: Menu Profile
         Given I am a registered customer with following details:
             | userID      | auto7d0b |
             | password    | 1234Test |
-            | userIDstg   | stagc6ce |
+            | userIDstg   | e278aa26 |
             | passwordStg | 1234Test |
         And I filling in form login with the following details:
             | userID      | auto7d0b |
             | password    | 1234Test |
-            | userIDstg   | stagc6ce |
+            | userIDstg   | e278aa26 |
             | passwordStg | 1234Test |
         And I click login
         And I click later in pop up biometric

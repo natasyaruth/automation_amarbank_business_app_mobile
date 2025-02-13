@@ -436,7 +436,6 @@ When("I click checkbox remember me", () => {
 
 When("I click logout", () => {
   I.wait(3);
-  I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
   loginPage.clickLogout();
 });
 

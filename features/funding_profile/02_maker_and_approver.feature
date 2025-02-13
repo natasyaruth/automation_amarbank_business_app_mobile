@@ -859,7 +859,7 @@ Feature: Maker and Approver Transaction
         And I input amount '10000'
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
-        And I choose transfer service BIFAST
+        And I choose transfer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
@@ -961,7 +961,7 @@ Feature: Maker and Approver Transaction
         And I input amount '10000'
         And I choose category 'Pembayaran'
         And I click choose bank transfer service
-        And I choose transfer service BIFAST
+        And I choose transfer service RTOL
         And I click transfer
         And I click transfer now
         And I input PIN '111111'
@@ -1383,3 +1383,42 @@ Feature: Maker and Approver Transaction
         And I can click detail card completed
         And I will see detail card maker that has been approved
         And I close page detail card completed
+
+    Scenario: Create pending task using account that has been added from user management
+        Given I am a registered customer with following details:
+            | userID      |  |
+            | password    | 1234Test |
+            | userIDstg   |  |
+            | passwordStg | 1234Test |
+        And don't have any notification
+        And don't have list pending task
+        And I filling in form login with the following details:
+            | userID      |  |
+            | password    | 1234Test |
+            | userIDstg   |  |
+            | passwordStg | 1234Test |
+        And I click login
+        And I click later in pop up biometric
+        And I will see card account 'active'
+        And I unmask my amount
+        And I will see my active, blocking and total amount
+        And I choose menu Transfer from main dashboard
+        When I input name 'RUTH BISNIS A' from the search box
+        And I choose the friendlist
+        And I input amount '10000'
+        And I choose category 'Pembayaran'
+        And I submit to next flow
+        And I click transfer now
+        And I input PIN '111111'
+        Then I will direct to page need approval from other director
+        And I close page detail transfer
+        And I click back in header page
+        And I unmask my amount
+        And I will see my blocking amount increase but active balance decrease from amount transfer
+        And I will see indicator red in tab profile
+        And I see red dot notification center
+        And I click notification center
+        And I will see list maker transaction in notification center
+        And I click notification maker transaction
+        And I will direct to page need approval from other director
+        And there is no button approve and reject the transaction

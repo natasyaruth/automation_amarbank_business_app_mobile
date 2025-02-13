@@ -15,14 +15,14 @@ module.exports = {
     closePage: "~buttonClose",
     acceptWebView: "~acceptWebviewBtn",
   },
-  dropDownsSearch:{
+  dropDownsSearch: {
     province: "~textFieldProvince",
     city: "~textFieldCity",
     district: "~textFieldDistrict",
     village: "~textFieldVillage",
-    firstItem: {xpath: "//android.view.View[2]/android.view.View/android.view.View"},
+    firstItem: { xpath: "//android.view.View[2]/android.view.View/android.view.View" },
   },
-  messageErrorFields:{
+  messageErrorFields: {
     address: "~textErrorAddress",
     rt: "~textErrorRT",
     rw: "~textErrorRW",
@@ -31,25 +31,25 @@ module.exports = {
     village: "~textErrorVillage",
     district: "~textErrorDistrict",
   },
-  checkBox:{
+  checkBox: {
     termsAndCondition: "~checkBoxPrivacyPolicy",
     rights: "~checkBoxRight",
     privy: "~checkBoxPrivy",
     loan: "~checkBoxLoan",
   },
-  scroll:{
+  scroll: {
     scrollToButton: "~scrollContentWebview",
   },
 
-  fillBusinessAddress(businessAddress){
+  fillBusinessAddress(businessAddress) {
     const information = Object.keys(businessAddress);
 
-    for(let i=0;i<information.length;i++){
+    for (let i = 0; i < information.length; i++) {
       const fieldName = information[i];
       const value = businessAddress[fieldName];
-      if(
+      if (
         Object.keys(this.fields).indexOf(fieldName) !== -1
-        ){
+      ) {
         I.waitForElement(this.fields[fieldName], 10);
         I.click(this.fields[fieldName]);
         I.wait(2);
@@ -58,57 +58,61 @@ module.exports = {
         I.hideDeviceKeyboard();
       } else if (
         Object.keys(this.dropDownsSearch).indexOf(fieldName) !== -1
-        ){
+      ) {
+        if (
+          fieldName === "village"
+        ) {
+          I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
+        }
+        I.wait(1);
         I.click(this.dropDownsSearch[fieldName]);
         I.waitForElement(this.buttons.closeBottomSheet, 10);
         I.wait(2);
         I.setText(this.fields.search, value);
         I.hideDeviceKeyboard();
         I.click(this.dropDownsSearch.firstItem);
-        I.swipeUp(this.dropDownsSearch[fieldName], 500, 1000);
-
-      } else{
-        throw new Error(information[i]+" not found, please check again data naming");
+      } else {
+        throw new Error(information[i] + " not found, please check again data naming");
       }
     }
   },
 
-  async checkTnC(){
+  async checkTnC() {
 
-    I.waitForElement(this.checkBox.termsAndCondition,10);
+    I.waitForElement(this.checkBox.termsAndCondition, 10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.termsAndCondition, "checked");
 
-    if(isChecked === "false"){
+    if (isChecked === "false") {
       I.click(this.checkBox.termsAndCondition);
     }
   },
 
-  async checkPrivy(){
+  async checkPrivy() {
 
-    I.waitForElement(this.checkBox.privy,10);
+    I.waitForElement(this.checkBox.privy, 10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.privy, "checked");
 
-    if(isChecked === "false"){
+    if (isChecked === "false") {
       I.click(this.checkBox.privy);
     }
   },
 
-  async checkRights(){
+  async checkRights() {
 
-    I.waitForElement(this.checkBox.rights,10);
+    I.waitForElement(this.checkBox.rights, 10);
     const isChecked = await I.grabAttributeFrom(this.checkBox.rights, "checked");
 
-    if(isChecked === "false"){
+    if (isChecked === "false") {
       I.click(this.checkBox.rights);
     }
   },
 
-  openAccount(){
+  openAccount() {
     I.waitForElement(this.buttons.openAccount, 10);
     I.click(this.buttons.openAccount);
   },
 
-  closePageUploadDoc(){
+  closePageUploadDoc() {
     I.click(this.buttons.closePage);
   },
 
@@ -126,7 +130,7 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
-  clickScrollToEndOfPage(){
+  clickScrollToEndOfPage() {
     I.waitForElement(this.scroll.scrollToButton, 10);
     I.click(this.scroll.scrollToButton);
   },
