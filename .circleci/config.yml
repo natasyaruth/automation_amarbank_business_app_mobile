@@ -5,13 +5,12 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@21.3.0
+  node: circleci/node@7.0.0
 
 executors:
   node-executor:
     docker:
-      - image: circleci/node:14.17-browsers  # Node image with browsers for running tests
-    working_directory: ~/ambis-auto-mobile-app
+      - image: cimg/node:18.20.6-browsers
   compute-engine:
     machine: true
     resource_class: amarbank/compute_sre
@@ -21,16 +20,25 @@ jobs:
     executor: node-executor
     environment:
       BROWSERSTACK_USERNAME: qatestingtechnol1  # BrowserStack credentials
-      BROWSERSTACK_ACCESS_KEY: ubKJg1fyqyprtJMiJedy
+      BROWSERSTACK_API_KEY: ubKJg1fyqyprtJMiJedy
+      FIREBASE_PROJECT_NUMBER: "594672590520" # firebase credentials
+      FIREBASE_APP_ID: 1:594672590520:android:2a5c88ca5cba8e12031e4d
       
     steps:
       - checkout  # Checkout your Bitbucket repo
 
       - run:
-          name: Install dependencies
+          name: Showing all directory current location
           command: |
-            npm install codeceptjs webdriverio@8.6.3 --save
+            pwd && ls -la
+            ls -al ./pages
+            ls -al ./step_definitions
 
+      - run:
+          name: Install dependencies based on package.json
+          command: |
+            yarn install
+            
       - run:
           name: Make execute-on-ci.sh executable
           command: chmod +x ./execute-on-ci.sh  # Ensure script is executable
@@ -48,7 +56,6 @@ commands:
               touch .env
               echo "BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME" > .env
               echo "BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY" > .env
-
 workflows:
   version: 2.1
   test:

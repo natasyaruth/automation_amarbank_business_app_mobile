@@ -18,7 +18,7 @@ Feature: Account Opening Main Dashboard User Invited
             | passwordStg | 1234Test |
         And I click login
         And I will direct to page continue to register KYC Invitee
-        And I continue to register my KYC data
+        And I continue to register the KYC data
 
     @C131974
     Scenario: User invited can see cards continue to complete data personal after drop off from flow Upload eKTP

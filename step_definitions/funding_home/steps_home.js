@@ -13,6 +13,7 @@ const {
     notificationCenterPage,
     mockingDao,
     mainActivePage,
+    crmDao,
 } = inject();
 
 Given(/I am on home page/, () => {
@@ -243,6 +244,71 @@ Given("has notification in notification center", async () => {
     }
 });
 
+Given("I recently add new user from CRM", async () => {
+    await
+        resetStateDao.deleteAllNotification(globalVariable.login.userID, globalVariable.login.password);
+    const formNewUser = {
+        fullname: "ANDREW WILLIAM",
+        phoneNumber: "81267678901",
+        email: "add_new_user_test@email.cc",
+        department: "Admin Operation",
+    }
+
+    await
+        crmDao.addNewUser(formNewUser, globalVariable.userManagement.refID);
+
+    I.wait(3);
+
+    globalVariable.userManagement.fullName = formNewUser.fullname;
+    globalVariable.userManagement.phoneNumber = formNewUser.phoneNumber;
+    globalVariable.userManagement.email = formNewUser.email;
+    globalVariable.userManagement.department = formNewUser.department;
+    globalVariable.userManagement.role = "Maker";
+});
+
+Given("we recently add new user from CRM", async () => {
+    const listPartnerUserID = globalVariable.login.listUserID;
+    const listPartnerPassword = globalVariable.login.listPassword;
+
+    for (let i = 0; i < listPartnerUserID.length; i++) {
+        await
+            resetStateDao.deleteAllNotification(listPartnerUserID[i], listPartnerPassword[i]);
+        I.wait(2);
+    }
+
+    const formNewUser = {
+        fullname: "ANDREW WILLIAM",
+        phoneNumber: "81267678901",
+        email: "add_new_user_test@email.cc",
+        department: "Admin Operation",
+    }
+
+    await
+        crmDao.addNewUser(formNewUser, globalVariable.userManagement.refID);
+
+    I.wait(3);
+
+    globalVariable.userManagement.fullName = formNewUser.fullname;
+    globalVariable.userManagement.phoneNumber = formNewUser.phoneNumber;
+    globalVariable.userManagement.email = formNewUser.email;
+    globalVariable.userManagement.department = formNewUser.department;
+    globalVariable.userManagement.role = "Maker";
+});
+
+Given("I have company with reference id in CRM as following:", async () => {
+    const account = table.parse().rowsHash();
+
+    if (process.env.ENVIRONMENT == "staging") {
+        globalVariable.userManagement.refID = account["refStg"];
+    } else {
+        globalVariable.userManagement.refID = account["refDev"];
+    }
+});
+
+Given("new user will receive business code to register", async () => {
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(globalVariable.userManagement.email)).businessCode;
+});
+
 When("I click detail amount", () => {
     amountDetailPage.openDetailAmount();
     I.waitForText("Saldo Rekening Giro", 10);
@@ -427,6 +493,29 @@ When("I open the latest notification", () => {
 
 When("I click tab funding", () => {
     onboardingAccOpeningPage.clickTabFunding();
+});
+
+When("I click detail list approval adding user", () => {
+    notificationCenterPage.openDetailNotifInfoAddUser(0);
+});
+
+When("I click button reject adding user", async () => {
+    notificationCenterPage.rejectAddNewUser();
+
+    const directorName = (await resetStateDao.getFullName(globalVariable.login.userID, globalVariable.login.password)).ktpName;
+    globalVariable.userManagement.rejectedBy.unshift(directorName);
+});
+
+When("I click button approve adding user", () => {
+    notificationCenterPage.approveAddNewUser();
+});
+
+When("I click detail approval add user that has been rejected", () => {
+    notificationCenterPage.openDetailNotifInfo(0);
+});
+
+When("I click detail approval add user that has been approved", () => {
+    notificationCenterPage.openDetailNotifInfo(0);
 });
 
 Then("I will not see my active, blocking and total amount", async () => {
@@ -840,7 +929,7 @@ Then("I don't see red dot notification center", () => {
 
 Then("I don't see red dot notification in bucketlist", () => {
     I.wait(2);
-    I.dontSeeElement(notificationCenterPage.indicators.notifRedDotBucketlist+"0");
+    I.dontSeeElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0");
 });
 
 Then("I will direct to page notification center", () => {
@@ -1541,4 +1630,195 @@ Then("I will see snackbar success copy account number", () => {
 Then("snackbar success copy account number will dissapear after 3-4 seconds", () => {
     I.wait(4);
     I.dontSee("Berhasil disalin");
+});
+
+Then("I will see list approval adding user in notification center", async () => {
+
+    I.waitForElement(notificationCenterPage.indicators.notifRedDotBucketlist + "0", 10);
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Info");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    globalVariable.notificationCenter.date = globalVariable.getCurrentFullDate(globalVariable.constant.formatDate.ddmmmyyyy);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusInfo = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusInfo, "Persetujuan Penambahan User");
+
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Butuh Persetujuan Anda");
+
+    const actualName = await notificationCenterPage.getLatestTitle();
+    I.assertEqual(actualName, globalVariable.userManagement.fullName);
+
+    const actualDepartment = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+});
+
+Then("I will direct to page need approval add user from other director", async () => {
+
+    I.waitForText("Butuh Persetujuan Penambahan User", 10);
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Nama Lengkap");
+    const actualFullName = await notificationCenterPage.getNameUser();
+    I.assertEqual(actualFullName, globalVariable.userManagement.fullName);
+
+    I.see("Email");
+    const actualEmail = await notificationCenterPage.getEmailUser();
+    I.assertEqual(actualEmail, globalVariable.userManagement.email);
+
+    I.see("No. Handphone");
+    const actualPhonenumber = await notificationCenterPage.getPhoneNumberUser();
+    I.assertEqual(actualPhonenumber, "0" + globalVariable.userManagement.phoneNumber);
+
+    I.see("Departemen");
+    const actualDepartment = await notificationCenterPage.getDepartmentUser();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+
+    I.see("Role");
+    const actualRole = await notificationCenterPage.getRoleUser();
+    I.assertEqual(actualRole, globalVariable.userManagement.role);
+
+    I.see("Lampiran Surat Kuasa");
+    const actualFileName = await notificationCenterPage.getLinkNameSKUser();
+    I.assertEqual(actualFileName, globalVariable.userManagement.file);
+    I.waitForElement(notificationCenterPage.link.skDoc, 10);
+
+    I.see("Tolak");
+    I.waitForElement(notificationCenterPage.buttons.reject, 10);
+
+    I.see("Setujui");
+    I.waitForElement(notificationCenterPage.buttons.approve, 10);
+});
+
+Then("I will see status approval add user is change into rejected", async () => {
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Info");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusInfo = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusInfo, "Persetujuan Penambahan User");
+
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Telah Ditolak");
+
+    const actualName = await notificationCenterPage.getLatestTitle();
+    I.assertEqual(actualName, globalVariable.userManagement.fullName);
+
+    const actualDepartment = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+});
+
+Then("I will direct to page need approval add user has been rejected", async () => {
+
+    I.waitForText("Penambahan User Ditolak", 10);
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Nama Lengkap");
+    const actualFullName = await notificationCenterPage.getNameUser();
+    I.assertEqual(actualFullName, globalVariable.userManagement.fullName);
+
+    I.see("Email");
+    const actualEmail = await notificationCenterPage.getEmailUser();
+    I.assertEqual(actualEmail, globalVariable.userManagement.email);
+
+    I.see("No. Handphone");
+    const actualPhonenumber = await notificationCenterPage.getPhoneNumberUser();
+    I.assertEqual(actualPhonenumber, "0" + globalVariable.userManagement.phoneNumber);
+
+    I.see("Departemen");
+    const actualDepartment = await notificationCenterPage.getDepartmentUser();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+
+    I.see("Role");
+    const actualRole = await notificationCenterPage.getRoleUser();
+    I.assertEqual(actualRole, globalVariable.userManagement.role);
+
+    I.see("Lampiran Surat Kuasa");
+    const actualFileName = await notificationCenterPage.getLinkNameSKUser();
+    I.assertEqual(actualFileName, globalVariable.userManagement.file);
+    I.waitForElement(notificationCenterPage.link.skDoc, 10);
+
+    I.see("Ditolak Oleh");
+    const actRejectedBy = await notificationCenterPage.getRejectedBy();
+    const listDirector = globalVariable.userManagement.rejectedBy.join(", ");
+    I.assertEqual(actRejectedBy, listDirector);
+
+    I.dontSee("Tolak");
+    I.dontSeeElement(notificationCenterPage.buttons.reject);
+
+    I.dontSee("Setujui");
+    I.dontSeeElement(notificationCenterPage.buttons.approve);
+});
+
+Then("I will see status approval add user is change into waiting for registration", async () => {
+
+    const actualStatus = await notificationCenterPage.getInfoNotif();
+    I.assertEqual(actualStatus, "Info");
+
+    const actualDate = await notificationCenterPage.getDateBucketlist(0);
+    I.assertEqual(actualDate, globalVariable.notificationCenter.date);
+
+    const actualTime = await notificationCenterPage.getTimeBucketlist(0);
+
+    const actualStatusInfo = await notificationCenterPage.getLatestStatusTrx();
+    I.assertEqual(actualStatusInfo, "Persetujuan Penambahan User");
+
+    const actualStatusPending = await notificationCenterPage.getPendingTrxStatus(0);
+    I.assertEqual(actualStatusPending, "Menunggu Proses Registrasi");
+
+    const actualName = await notificationCenterPage.getLatestTitle();
+    I.assertEqual(actualName, globalVariable.userManagement.fullName);
+
+    const actualDepartment = await notificationCenterPage.getLatestDescription();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+});
+
+Then("I will direct to page new user waiting for register", async () => {
+
+    I.waitForText("Menunggu Proses Registrasi untuk Penambahan User", 10);
+    I.waitForElement(headerPage.buttons.closePage, 10);
+    I.waitForElement(headerPage.icon.callCenter, 10);
+
+    I.see("Nama Lengkap");
+    const actualFullName = await notificationCenterPage.getNameUser();
+    I.assertEqual(actualFullName, globalVariable.userManagement.fullName);
+
+    I.see("Email");
+    const actualEmail = await notificationCenterPage.getEmailUser();
+    I.assertEqual(actualEmail, globalVariable.userManagement.email);
+
+    I.see("No. Handphone");
+    const actualPhonenumber = await notificationCenterPage.getPhoneNumberUser();
+    I.assertEqual(actualPhonenumber, "0" + globalVariable.userManagement.phoneNumber);
+
+    I.see("Departemen");
+    const actualDepartment = await notificationCenterPage.getDepartmentUser();
+    I.assertEqual(actualDepartment, globalVariable.userManagement.department);
+
+    I.see("Role");
+    const actualRole = await notificationCenterPage.getRoleUser();
+    I.assertEqual(actualRole, globalVariable.userManagement.role);
+
+    I.see("Lampiran Surat Kuasa");
+    const actualFileName = await notificationCenterPage.getLinkNameSKUser();
+    I.assertEqual(actualFileName, globalVariable.userManagement.file);
+    I.waitForElement(notificationCenterPage.link.skDoc, 10);
+
+    I.dontSee("Tolak");
+    I.dontSeeElement(notificationCenterPage.buttons.reject);
+
+    I.dontSee("Setujui");
+    I.dontSeeElement(notificationCenterPage.buttons.approve);
 });

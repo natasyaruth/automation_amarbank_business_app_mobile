@@ -635,7 +635,6 @@ Then("I will see card approver transaction", () => {
 });
 
 Then("there is no button approve and reject the transaction", () => {
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.dontSeeElement(approvalTransactionPage.buttons.approveTransaction);
     I.dontSeeElement(approvalTransactionPage.buttons.rejectTransaction);
     I.dontSee("Tolak");
@@ -643,7 +642,6 @@ Then("there is no button approve and reject the transaction", () => {
 });
 
 Then("along with button approve and reject the transaction", () => {
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     I.seeElement(approvalTransactionPage.buttons.approveTransaction);
     I.seeElement(approvalTransactionPage.buttons.rejectTransaction);
     I.see("Tolak");
@@ -966,8 +964,6 @@ Then("I will see detail card maker that has been rejected", async () => {
     const expectedAmount = numberString.join('');
     I.see("-Rp" + expectedAmount);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-
     I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();
     I.assertEqual(actualMakerName, globalVariable.transfer.makerName);
@@ -1062,8 +1058,6 @@ Then("I will see detail card maker that has been canceled", async () => {
     }
     const expectedAmount = numberString.join('');
     I.see("-Rp" + expectedAmount);
-
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
 
     I.see("Dibuat oleh");
     const actualMakerName = await approvalTransactionPage.getNameCreatedBy();

@@ -32,14 +32,14 @@ let defaultAppium = {
   appiumV2: true,
   // app: "./assets/app/app-development-debug.apk",
   platform: "Android",
-  device: "emulator",
-  path: "/wd/hub",
+  // device: "emulator",
+  path: "/",
   desiredCapabilities: {
     platformName: "Android",
     // platformVersion: "12.0",
     automationName: "UiAutomator2",
     newCommandTimeout: 300,
-    deviceName: "emulator-5554",
+    // deviceName: "emulator-5554",
     appPackage: appPackage,
     appActivity: "id.co.amarbank.smb.ui.MainActivity",
     autoGrantPermissions: true,
@@ -121,7 +121,7 @@ exports.config = {
     loanMonitoringProcessPage:
       "./pages/loanApplication/loanMonitoringProcess.js",
 
-    forgotPasswordPage: "./pages/forgotPassword.js",
+    forgotPasswordPage: "./pages/forgotpassword.js",
 
     uploadDocLoanPage: "./pages/loanApplication/uploadDocLoanApp.js",
 
@@ -220,6 +220,8 @@ exports.config = {
     filterLoanHistory: "./pages/filterLoanHistory.js",
 
     firstFilterLeadsPage: "./pages/firstFilterLeads.js",
+
+    crmDao: "./dao/crmDao.js",
   },
   settings: {
     logging: {

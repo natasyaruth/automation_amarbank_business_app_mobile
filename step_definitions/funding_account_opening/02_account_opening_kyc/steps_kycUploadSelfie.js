@@ -43,6 +43,10 @@ When("I upload invited user selfie photo", async () => {
     onboardingAccOpeningPage.chooseLater()
 });
 
+When("I submit my selfie photo",() =>{
+    uploadSelfiePage.uploadSelfie();
+})
+
 Then("I will direct to page preview selfie picture KYC", () => {
     I.waitForText("Foto Selfie", 10);
     I.waitForText("Pastikan foto selfie tidak buram, tidak terkena pantulan cahaya dan tidak terpotong", 10);
@@ -90,9 +94,6 @@ Then("I will directing to page submit Data Personal", async () => {
     I.see("Tulis nomor handphone kerabat");
     I.waitForElement(formPersonalDataPage.fields.referencePhoneNumber, 10);
 
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.wait(1);
-
     I.see("NPWP Individu");
     I.see("Upload Foto");
     I.see("Format file jpeg, png maximal 10MB");
@@ -125,9 +126,6 @@ Then("I will directing to page submit Data Personal individual", async () => {
     I.see("Nomor Handphone Kerabat");
     I.see("Tulis nomor handphone kerabat");
     I.waitForElement(formPersonalDataPage.fields.referencePhoneNumber, 10);
-
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.wait(1);
 
     I.waitForText("Tujuan Pembuatan Rekening", 10);
     I.waitForText("Pilih tujuan pembuatan rekening", 10);

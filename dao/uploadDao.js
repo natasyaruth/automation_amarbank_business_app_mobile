@@ -1,3 +1,4 @@
+const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 
@@ -32,16 +33,16 @@ module.exports = {
 
     async uploadKTP(userID, password) {
 
-        const base64Ktp = this.loadImageAsBase64('./data/eKTP.jpg');
-
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
         I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseKtp = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/photo/ktp", secret({
-            imageFormat: "jpg",
-            file: base64Ktp,
-        }));
+        const formData = new FormData();
+        formData.append('file', fs.createReadStream('./data/eKTP.jpg')); 
+
+        const responseKtp = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/photo/ktp", formData, {
+            headers: formData.getHeaders() // Important: Set correct headers
+        });
 
         I.seeResponseCodeIsSuccessful();
 
@@ -54,16 +55,16 @@ module.exports = {
 
     async uploadSelfie(userID, password) {
 
-        const base64Selfie = this.loadImageAsBase64('./data/selfie.jpg');
-
         const bearerToken = (await this.getTokenLogin(userID, password)).bearerToken;
 
-        I.amBearerAuthenticated(secret(bearerToken))
+        I.amBearerAuthenticated(secret(bearerToken));
 
-        const responseSelfie = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/photo/selfie", secret({
-            imageFormat: "jpg",
-            file: base64Selfie,
-        }));
+        const formData = new FormData();
+        formData.append('file', fs.createReadStream('./data/selfie.jpg')); 
+
+        const responseSelfie = await I.sendPostRequest("https://" + env + "-smb-user.otoku.io/api/v1/user/photo/selfie", formData, {
+            headers: formData.getHeaders() // Important: Set correct headers
+        });
 
         I.seeResponseCodeIsSuccessful();
 

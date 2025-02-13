@@ -24,7 +24,7 @@ Feature: Account Opening KYC - User Invited
     And I login using user id partner
     And I click later in pop up biometric
     And I will direct to page continue to register KYC Invitee
-    And I continue to register my KYC data
+    And I continue to register the KYC data
 
   @C171314 
   Scenario: User invited complete KYC

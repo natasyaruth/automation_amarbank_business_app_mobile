@@ -13,7 +13,7 @@ type loanTypePage = typeof import('./pages/loanApplication/loanType.js');
 type selectAnchorPage = typeof import('./pages/loanApplication/selectAnchor.js');
 type selectLoanAmountPage = typeof import('./pages/loanApplication/selectLoanAmountTenor.js');
 type loanMonitoringProcessPage = typeof import('./pages/loanApplication/loanMonitoringProcess.js');
-type forgotPasswordPage = typeof import('./pages/forgotPassword.js');
+type forgotPasswordPage = typeof import('./pages/forgotpassword.js');
 type uploadDocLoanPage = typeof import('./pages/loanApplication/uploadDocLoanApp.js');
 type loanDashboardPage = typeof import('./pages/loanDashboard.js');
 type privyAggrementPage = typeof import('./pages/loanApplication/privyAggrement.js');
@@ -62,6 +62,7 @@ type documentSafePage = typeof import('./pages/documentSafe.js');
 type surveyRatingPage = typeof import('./pages/surveyRating.js');
 type notificationCenterPage = typeof import('./pages/notificationCenter.js');
 type firstFilterLeadsPage = typeof import('./pages/firstFilterLeads.js');
+type crmDao = typeof import('./dao/crmDao.js');
 type Appium = import('./helpers/JetpackComposeHelper.js');
 type ChaiWrapper = import('codeceptjs-chai');
 
@@ -78,7 +79,7 @@ declare namespace CodeceptJS {
     hookOnBoardingPage: hookOnBoardingPage, mainActivePage: mainActivePage, uploadBusinessDocPage: uploadBusinessDocPage, profilePage: profilePage, uploadDao: uploadDao, accountDeletionPage: accountDeletionPage, 
     amountDetailPage: amountDetailPage, documentManagementPage: documentManagementPage, approvalTransactionPage: approvalTransactionPage, loanFlaggingPage: loanFlaggingPage, documentPage: documentPage, mockingDao: mockingDao, 
     firstRegistrationDao: firstRegistrationDao, getDataDao: getDataDao, otherPage: otherPage, uploadSelfieKtpPage: uploadSelfieKtpPage, changePasswordPage: changePasswordPage, documentSafePage: documentSafePage, 
-    surveyRatingPage: surveyRatingPage, notificationCenterPage: notificationCenterPage, firstFilterLeadsPage:firstFilterLeadsPage }
+    surveyRatingPage: surveyRatingPage, notificationCenterPage: notificationCenterPage, firstFilterLeadsPage:firstFilterLeadsPage, crmDao: crmDao }
   interface Methods extends Appium, ChaiWrapper, REST, JSONResponse {}
   interface I extends ReturnType<steps_file>, WithTranslation<Methods> {}
   namespace Translation {
