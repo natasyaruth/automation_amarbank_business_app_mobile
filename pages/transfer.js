@@ -105,6 +105,16 @@ module.exports = {
     return await I.grabTextFrom(this.messageErrorFields[fieldName]);
   },
 
+  async getElementVisible(fieldName) {
+    try {
+      I.waitForElement(this.messageErrorFields[fieldName], 10);
+      I.seeElement(this.messageErrorFields[fieldName]);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
+  
   async getBalance() {
     I.waitForElement(this.texts.balance, 10)
     return await I.grabTextFrom(this.texts.balance);

@@ -27,7 +27,7 @@ Feature: Account Opening - Individual
     And I take photo eKTP
     And I submit my eKTP photo
     And I fill all information identity details as followings:
-      | eKtpNumber    | 3171651899770033          |
+      | eKtpNumber    | 3299651899770033          |
     And I swipe to button save data eKTP
     And I submit my information identity details
     And I click take my photo selfie

@@ -86,13 +86,12 @@ module.exports = {
         ) {
           I.click(this.buttons.submitBusinessField);
         }
-
         I.waitForElement(this.dropDowns[fieldName], 20);
-        I.swipeUp(this.dropDowns[fieldName], 1300, 1000);
-
       } else if (
         Object.keys(this.datePicker).indexOf(fieldName) !== -1
       ) {
+        I.swipeUp(this.fields.nib, 500, 1000);
+        I.waitForElement(this.datePicker[fieldName], 10);
         I.click(this.datePicker[fieldName]);
         I.waitForElement(this.buttons.chooseDate, 10);
         I.swipeDown(this.text.date, 2000, 4000);
@@ -102,7 +101,6 @@ module.exports = {
         I.swipeDown(this.text.year, 2000, 4000);
         I.click(this.buttons.chooseDate);
         I.waitForInvisible(this.buttons.chooseDate, 10);
-
       } else {
         throw new Error(information[i] + " not found, please check again data naming");
       }

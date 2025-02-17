@@ -232,10 +232,7 @@ Then("I will directing to page submit form KTP", async () => {
 
     I.see("Jenis Kelamin");
     I.waitForElement(formKtpPage.dropDowns.gender, 10);
-
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.wait(1);
-
+    
     I.see("Alamat");
     I.waitForElement(formKtpPage.fields.address, 10);
 

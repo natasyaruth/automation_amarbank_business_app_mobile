@@ -31,6 +31,9 @@ When("I input amount higher than active balance", async () => {
 Then("I should see error message {string} in field {string}", async (expectedValue, fieldName) => {
   let actualMessageError = await transferPage.getMessageErrorField(fieldName);
   I.assertEqual(actualMessageError, expectedValue);
+
+  let isVisible = await transferPage.getElementVisible(fieldName);
+  I.assertEqual(isVisible, true);
 });
 
 When("I input amount {string}", async (amount) => {
@@ -497,7 +500,7 @@ Then("I successfully transferred", async () => {
   I.assertEqual(actDate, expDate);
   globalVariable.transfer.date = actDate;
 
-  I.see("Waktu");
+  I.waitForText("Waktu", 10);
   I.waitForElement(transferPage.texts.timeTransfer, 10);
 
   if (

@@ -131,7 +131,7 @@ When("I close page upload document", () => {
     headerPage.closePage();
 });
 
-When("I continue to register my KYC data", () => {
+When("I continue to register the KYC data", () => {
     onboardingAccOpeningPage.continueToKYC();
     I.waitForElement(uploadKtpPage.buttons.takePhoto, 10);
 });
@@ -425,6 +425,12 @@ When("I register initiator with partner more than 1", async () => {
     globalVariable.registration.phoneNumberPartner = dataInviteeOne.phoneNumber;
     globalVariable.registration.fullNamePartner = dataInviteeOne.fullName
     globalVariable.registration.companyName = businessProfile.businessName;
+});
+
+When("I close page to main dashboard", () => {
+    headerPage.closePage();
+    onboardingAccOpeningPage.clickRbProcessLater();
+    onboardingAccOpeningPage.sendExitSurvey();
 });
 
 Then("I will directing to page legality business", () => {

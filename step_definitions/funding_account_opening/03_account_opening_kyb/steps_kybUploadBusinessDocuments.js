@@ -13,6 +13,91 @@ Given("I am a customer who has submitted business address", () => { });
 
 Given("has submitted business address", () => { });
 
+Given("I complete data KYC and KYB", async () => {
+    const dataKTP = {
+        ktpnumber: "3171032905930006",
+        ktpname: "SHELDON COPPER",
+        birthplace: "TEXAS",
+        dateofbirth: "1981-03-30",
+        gender: "Laki-laki",
+        bloodtype: "-",
+        religion: "Kristen",
+        maritalstatus: "KAWIN",
+        province: "DKI JAKARTA",
+        city: "KOTA ADM. JAKARTA UTARA",
+        district: "PENJARINGAN",
+        village: "PEJAGALAN",
+        rt: "01",
+        rw: "21",
+        ktpaddress: "Jl. Asia Afrika No. 44, Kav.23",
+        postalcode: "14450",
+        job: "WIRASWASTA",
+        nationality: "WNI",
+        noWincoreProvince: "0300",
+        noWincoreCity: "0392",
+        noWincoreDistrict: "GA01",
+        noWincoreVillage: "GA0104",
+        expiryDate: "-",
+    };
+
+    const personalData = {
+        legalityType: legality,
+        businessName: "CV BINTANG UTARA",
+        businessEmail: "bintang.utara.official@gmail.com",
+        businessType: "Operator tur",
+        industryType: "Jasa",
+        monthlyIncome: "30 - 50 juta",
+        averageTransaction: "20000000",
+        annualEarnings: "500 juta",
+        businessNPWP: globalVariable.registration.npwpBusinessDefault,
+        nib: "3337798233333",
+        foundedAt: "01-01-1991",
+    };
+
+    const businessProfile = {
+        legalityType: legality,
+        businessName: "CV BINTANG UTARA",
+        businessEmail: "bintang.utara.official@gmail.com",
+        businessType: "Operator tur",
+        industryType: "Jasa",
+        monthlyIncome: "30 - 50 juta",
+        averageTransaction: "20000000",
+        annualEarnings: "500 juta",
+        businessNPWP: globalVariable.registration.npwpBusinessDefault,
+        nib: "3337798233333",
+        foundedAt: "01-01-1991",
+    };
+
+    // HIT UPLOAD KTP IMAGE
+    await
+        uploadDao.uploadKTP(globalVariable.login.userID, globalVariable.login.password);
+    
+    // HIT FORM KTP
+    await
+        uploadDao.submitIdentityDetails(globalVariable.login.userID, globalVariable.login.password, dataKTP);
+
+    
+
+    // HIT BUSINESS PROFILE
+    await
+        uploadDao.submitBusinessProfile(globalVariable.login.userID, globalVariable.login.password, businessProfile, legality);
+
+    // ADD PARTNER
+    await
+        uploadDao.submitOnePartner(globalVariable.login.userID, globalVariable.login.password, dataInvitee);
+
+    // GET BUSINESS CODE
+    I.wait(2);
+    globalVariable.registration.businessCode = (await getDataDao.getBusinessCode(dataInvitee["email"])).businessCode;
+
+    // STORE INVITEE DATA
+    globalVariable.registration.emailPartner = dataInvitee["email"];
+    globalVariable.registration.passwordPartner = dataInvitee["password"];
+    globalVariable.registration.phoneNumberPartner = dataInvitee["phoneNumber"];
+    globalVariable.registration.fullNamePartner = dataInvitee["fullName"];
+    globalVariable.registration.companyName = businessProfile.businessName;
+});
+
 When("I choose method upload document", () => {
     uploadBusinessDocPage.clickChooseMethodUpload();
 });
@@ -583,11 +668,11 @@ Then("I will see all document company has been uploaded", () => {
 
     I.performSwipe({ x: 1000, y: 1000 }, { x: 500, y: 500 });
 
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificate, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificate, 10);
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastCertificateBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastCertificateBusiness, 10);
 
-    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSk, 10);
-    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSk, 10);
+    I.waitForElement(uploadBusinessDocPage.buttons.deleteLastSkBusiness, 10);
+    I.waitForElement(uploadBusinessDocPage.texts.sizeDocumentLastSkBusiness, 10);
 
 });
 

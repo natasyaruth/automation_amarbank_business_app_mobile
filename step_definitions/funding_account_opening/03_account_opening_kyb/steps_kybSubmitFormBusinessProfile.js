@@ -63,8 +63,6 @@ When("I see fields that available in Business Profile", async () => {
 });
 
 When("I continue to process KYB", () => {
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
-    I.waitForElement(formEmploymentDataPage.buttons.continue, 10);
     formEmploymentDataPage.continueToKYB();
 });
 

@@ -593,20 +593,11 @@ Feature: Account Opening KYB CV - Upload Document Business
 
         @C171452
         Scenario: Go to main dashboard from page thank you and need verification
-            Given I am a registered customer with following details:
-                  | userID      | deveed47 |
-                  | password    | 1234Test |
-                  | userIDstg   | ruth7cb8 |
-                  | passwordStg | 1234Test |   
-              And I reset state upload document
-              And I reset my state journey
-              And complete onboarding document safe and survey
-              And I filling in form login with the following details:
-                  | userID      | deveed47 |
-                  | password    | 1234Test |
-                  | userIDstg   | ruth7cb8 |
-                  | passwordStg | 1234Test |
-              And I click login
+            Given I am a customer that recently registered to amarbank business with data as below
+                | fullName        | Testing                |
+                | email           | acc_op_cv@gmail.com    |
+                | phoneNumber     | 812967754041           |
+                | password        | 1234Test               |
               And I click later in pop up biometric
               And I will directing to Hook 1 Onboarding Account Opening
               And I swipe to card Giro Account
@@ -619,31 +610,8 @@ Feature: Account Opening KYB CV - Upload Document Business
               And I click continue to data personal
               And I click confirm NPWP Business
               And I see page 'Upload eKTP'
-              And I update my last journey step to 'Data Employment'
-              And I see page 'Data Business Profile'
-              And I fill my business profile as followings:
-                  | businessName       | PT. BOTOL MINUM PERKASA RAYA DAN JAYA |
-                  | industry           | Jasa                                  |
-                  | businessField      | Operator tur                          |
-                  | monthlyIncome      | 30 - 50 juta                          |
-                  | averageTransaction | 2000000                               |
-                  | nib                | 9129106701234                         |
-                  | businessDateStart  | 10/10/2010                            |
-              And I submit my business profile
-              And I submit business director list
-              And I fill my business address as followings:
-                  | address  | Jl. Gambir Belok Kiri No. 10 |
-                  | rt       | 000                          |
-                  | rw       | 011                          |
-                  | province | DKI JAKARTA                  |
-                  | city     | JAKARTA SELATAN              |
-                  | district | PANCORAN                     |
-                  | village  | PANCORAN                     |
-              And I agree to carry out the Rights and Obligations
-              And I will directing to page Rights and Obligations
-              And I click button agree with Rights and Obligations
-              And I will see checkbox Rights and Obligations is checked
-              And I submit my business address
+              And I close page to main dashboard
+              And I complete data KYC and KYB
             When I choose method upload document
               And I choose direct upload via app
               And I see files that need to be uploaded for type company

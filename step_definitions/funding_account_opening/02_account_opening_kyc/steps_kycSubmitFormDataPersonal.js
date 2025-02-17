@@ -86,7 +86,6 @@ When("I don't upload my NPWP photo", ()=>{
 
 When("I click button upload document NPWP", ()=>{
     I.waitForElement(formPersonalDataPage.dropDowns.lastEducation, 10);
-    I.performSwipe({ x: 1000, y: 1000 }, { x: 100, y: 100 });
     formPersonalDataPage.clickUploadNPWP();
 });
 

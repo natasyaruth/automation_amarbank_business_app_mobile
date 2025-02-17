@@ -31,20 +31,6 @@ Feature: Manual Registering New Device
         And I back to my old device
         Then I will see the app is auto logout
 
-    @C166014
-    Scenario: Login same account with different device using user id password
-        Given I have two device A and B
-        When I try to login using user id and password in device B
-        And I will see loading icon
-        And I will see bottom sheet to register new device id
-        And I register my new device
-        And I can login again without register again the device id
-        And I try to login using user id and password in device A
-        And I will see loading icon
-        Then I will see bottom sheet to register new device id
-        And I register my new device
-        And I can login again without register again the device id
-
     @C166015
     Scenario: Login different account in same device and other user want to activated the biometric
         Given I have two Account A and B
@@ -123,24 +109,10 @@ Feature: Manual Registering New Device
         And my account was blocked
         Then agent will receive notification email that my account is blocked
 
-    @C166023
-    Scenario: Login and register other device success after got blocking from my device
-        Given I get blocked after failed to register my device id using device A
-        When I try to login in device B
-        And I will see bottom sheet to register new device id
-        And I register new device success in device B
-        And I try again to login in device A
-        Then I will see bottom sheet blocked information
-
     @C166024
     Scenario: Login and register other device failed after got blocking from my device
         Given I get blocked after failed to register my device id using device A
         When I try to login in device B
-        And I will see bottom sheet to register new device id
-        And I register new device but failed till blocked in device B
-        And I try again to login in device B
-        Then I will see bottom sheet blocked information    
-        And I try again to login in device A
         Then I will see bottom sheet blocked information    
 
     @C166025

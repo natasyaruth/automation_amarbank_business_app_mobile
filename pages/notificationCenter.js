@@ -6,7 +6,10 @@ module.exports = {
     notifCenter: "~buttonNotification",
     detailNotificationInfo: "~buttonNotificationDetailInfo",
     detailNotificationTrx: "~buttonNotificationDetailTransaction",
+    detailNotificationAddUser: "~buttonNotificationDetailInfoAddUser",
     understand: "~buttonUnderstand",
+    reject: "~buttonReject",
+    approve: "~buttonApprove",
   },
   tabs: {
     all: "~buttonChipAll",
@@ -28,6 +31,16 @@ module.exports = {
     statusTrx: "~textTransactionStatus",
     amount: "~textAmount",
     pendingTrxStatus: "~textPendingTransactionStatus",
+    fullName: {xpath: ""},
+    email: {xpath: ""},
+    phoneNumber: {xpath: ""},
+    department: {xpath: ""},
+    role: {xpath: ""},
+    linkSKDoc: {xpath: ""},
+    rejectedBy: {xpath: ""},
+  },
+  link:{
+    skDoc: "~textLinkSK",
   },
 
   openNotificationCenter(){
@@ -110,6 +123,11 @@ module.exports = {
     I.click(this.buttons.detailNotificationTrx+index);
   },
 
+  openDetailNotifInfoAddUser(index){
+    I.waitForElement(this.buttons.detailNotificationAddUser+index, 10);
+    I.click(this.buttons.detailNotificationAddUser+index);
+  },
+
   async getDescription(){
     I.waitForElement(this.texts.description, 10);
     return await I.grabTextFrom(this.texts.description);
@@ -163,5 +181,50 @@ module.exports = {
   async getPendingTrxStatus(index){
     I.waitForElement(this.texts.pendingTrxStatus+index, 10);
     return I.grabTextFrom(this.texts.pendingTrxStatus+index);
+  },
+
+  approveAddNewUser(){
+    I.waitForElement(this.buttons.approve, 10);
+    I.click(this.buttons.approve);
+  },
+
+  rejectAddNewUser(){
+    I.waitForElement(this.buttons.reject, 10);
+    I.click(this.buttons.reject);
+  },
+
+  async getNameUser(){
+    I.waitForElement(this.texts.fullName, 10);
+    return await I.grabTextFrom(this.texts.fullName);
+  },
+
+  async getEmailUser(){
+    I.waitForElement(this.texts.email, 10);
+    return await I.grabTextFrom(this.texts.email);
+  },
+
+  async getPhoneNumberUser(){
+    I.waitForElement(this.texts.phoneNumber, 10);
+    return await I.grabTextFrom(this.texts.phoneNumber);
+  },
+
+  async getDepartmentUser(){
+    I.waitForElement(this.texts.department, 10);
+    return await I.grabTextFrom(this.texts.department);
+  },
+
+  async getRoleUser(){
+    I.waitForElement(this.texts.role, 10);
+    return await I.grabTextFrom(this.texts.role);
+  },
+
+  async getLinkNameSKUser(){
+    I.waitForElement(this.texts.linkSKDoc, 10);
+    return await I.grabTextFrom(this.texts.linkSKDoc);
+  },
+
+  async getRejectedBy(){
+    I.waitForElement(this.texts.rejectedBy, 10);
+    return await I.grabTextFrom(this.texts.rejectedBy);
   },
 }
