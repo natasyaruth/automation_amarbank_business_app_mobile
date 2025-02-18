@@ -1,17 +1,10 @@
 const {
     I,
     formBusinessAddressPage,
-    onboardingAccOpeningPage,
-    resetStateDao,
     uploadBusinessDocPage,
     headerPage,
-    getDataDao,
     globalVariable
 } = inject();
-
-Given("I am a customer who has submitted business owner list", () => { });
-
-Given("has submitted business owner list", () => { });
 
 When("I fill my business address as followings:", (table) => {
     I.waitForElement(formBusinessAddressPage.fields.address, 10);
@@ -48,76 +41,6 @@ When("I will see checkbox Rights and Obligations is checked", async () => {
     const isChecked = await I.grabAttributeFrom(formBusinessAddressPage.checkBox.rights, "checked");
 
     I.assertEqual(isChecked, "true");
-});
-
-When("I allow to agree to use my digital signature through Privy.id", async () => {
-    await formBusinessAddressPage.checkPrivy();
-});
-
-When("I fill field {string} with {string} in form Business Address", (fieldName, valueField) => {
-    formBusinessAddressPage.fillField(fieldName, valueField);
-});
-
-When("I fill form Business Address except field {string}", (fieldName) => {
-    const account = {
-        address: "Jl. Durian Runtuh No. 13",
-        rt: "01",
-        rw: "05",
-        province: "DKI JAKARTA",
-        city: "KOTA ADM. JAKARTA SELATAN",
-        district: "KEBAYORAN BARU",
-        village: "SENAYAN",
-    };
-
-    delete account[fieldName];
-
-    if (
-        fieldName === "province"
-    ) {
-
-        delete account["city"];
-        delete account["district"];
-        delete account["village"];
-
-    } else if (
-        fieldName === "city"
-    ) {
-
-        delete account["district"];
-        delete account["village"];
-
-    } else if (
-        fieldName === "district"
-    ) {
-        delete account["village"];
-    }
-
-    formBusinessAddressPage.fillBusinessAddress(account);
-});
-
-When("I clear the field {string} in form Business Address", (fieldName) => {
-    formBusinessAddressPage.clearField(fieldName);
-});
-
-When("I swipe to field {string} in form Business Address", (fieldName) => {
-    if (
-        fieldName === "address" ||
-        fieldName === "rt" ||
-        fieldName === "rw"
-    ) {
-        I.swipeDown(formBusinessAddressPage.dropDownsSearch.city, 800, 1000);
-    }
-});
-
-Then("I shouldn't see message error in the below of field {string} in form Business Address", async (fieldName) => {
-    I.dontSee(formBusinessAddressPage.messageErrorFields[fieldName]);
-});
-
-Then("I should see message error {string} in the below of field {string} in form Business Address", async (expectedMsgError, fieldName) => {
-    I.wait(1);
-    let textMsgError = await formBusinessAddressPage.getMessageError(fieldName);
-    let actualMsgError = textMsgError.trimEnd();
-    I.assertEqual(actualMsgError, expectedMsgError);
 });
 
 When("I submit my business address", () => {
@@ -180,9 +103,4 @@ Then("I will directing to page upload require documents for business individual"
     I.waitForElement(uploadBusinessDocPage.buttons.chooseMethodUpload, 10);
     I.see("Pilih Metode Upload Dokumen");
 
-});
-
-Then("I can close the page so that I can back to main dashboard", () => {
-    formBusinessAddressPage.closePageUploadDoc();
-    I.waitForElement(onboardingAccOpeningPage.tabs.home, 10);
 });

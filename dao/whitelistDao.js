@@ -6,12 +6,10 @@ module.exports = {
   async whitelistPhoneNumber(phoneNumber) {
 
     I.haveRequestHeaders(secret({
-      Authorization: "basic NWY2NjdjMTJmYmJmNjlmNzAwZjdkYzgzNTg0ZTc5ZDI2MmEwODVjMmJmOTIxYzU2MzZjNzgzNTExYzIzNDFhYg=="
+      Authorization: "basic auth"
     }));
 
-    const response = await I.sendPostRequest("https://"+env+"-api-sms.otoku.io/address/whitelist/v1", {
-      address: phoneNumber,
-    });
+    const response = await I.sendPostRequest("api whitelist phonenumber");
 
     if (!response) {
       throw new Error("failed to whitelist phone number");
@@ -26,12 +24,10 @@ module.exports = {
   async whitelistEmail(email) {
 
     I.haveRequestHeaders(secret({
-      Authorization: "Basic dHVuYWlrdW1vYmlsZToxOTNJN1Y1RVFU"
+      Authorization: "Basic auth"
     }));
 
-    const response = await I.sendPostRequest("https://dev-api-notification.tunaiku.com/notification/whitelist", {
-      contact_address: email,
-    });
+    const response = await I.sendPostRequest("api whitelist email");
 
     return {
       status: response.status,

@@ -89,13 +89,6 @@ module.exports = {
         formatDate: {
             ddmmmyyyy: "ddmmmyyyy",
         },
-        methodTf: {
-            overbooking: "OVERBOOK",
-            bifast: "BIFAST",
-            rtol: "RTOL",
-            skn: "SKN",
-            rtgs: "RTGS"
-        },
         industryType: {
             industryCreative: "Industri Kreatif",
             processing: "Industri Pengolahan",
@@ -112,10 +105,6 @@ module.exports = {
             IT: "Teknologi Informasi",
             transportation: "Transportasi",
             other: "Lainnya",
-        },
-        crmAuth: {
-            userApproval: "user-approver-1",
-            passApproval: "Test1234"
         }
     },
     registration: {
@@ -160,15 +149,6 @@ module.exports = {
         oldOtp: "",
         newOtp: "",
     },
-    forgotPassword: {
-        userID: "",
-        email: "",
-    },
-    changePassword: {
-        oldPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-    },
     formKtp: {
         eKTPNumber: "",
         fullName: "",
@@ -193,12 +173,6 @@ module.exports = {
         otherIndustryType: "",
         otherBusinessField: "",
     },
-    formDirector: {
-        fullName: "",
-        email: "",
-        nik: "",
-        numberOfDirectors: 1
-    },
     uploadDocuments: {
         nib: false,
         akta: false,
@@ -216,44 +190,6 @@ module.exports = {
         moveFolderFile: "",
         copiedFiles: [],
     },
-    createPin: {
-        newPin: "",
-        oldPin: "",
-        otp: "",
-    },
-    friendList: {
-        bankName: "",
-        receiverName: "",
-        friendListName: "",
-        friendListAccNumber: "",
-    },
-    transfer: {
-        amount: 0,
-        amountTransfer: "",
-        dailyLimit: 0,
-        service: "",
-        note: "",
-        category: "",
-        accountNumber: "",
-        date: "",
-        senderName: "",
-        senderBankName: "",
-        senderAccountNumber: "",
-        recipientName: "",
-        recipientBankName: "",
-        recipientAccountNumber: "",
-        makerName: "",
-        status: "",
-        adminFee: 0,
-        adminFeeRTOL: "6.500",
-        adminFeeBIFAST: "2.500",
-        adminFeeSKN: "2.900",
-        adminFeeRTGS: "30.000",
-        activeAmount: "",
-        method: "",
-        totalAmount: "",
-        listApproval: [],
-    },
     dashboard: {
         activeAmount: "",
         blockingAmount: "",
@@ -268,36 +204,5 @@ module.exports = {
         date: "",
         amountTransaction: "",
         lastPage: "",
-    },
-    historyTrx: {
-        startDate: "",
-        endDate: "",
-    },
-    survey: {
-        feedBack: "",
-        lengthFeedback: ""
-    },
-    notificationCenter: {
-        desc: "",
-        date: "",
-        descTrx: "",
-        numberOfNotif: 0,
-    },
-    profile: {
-        fullName: "",
-        phoneNumber: "",
-        email: "",
-        domicileAddress: "",
-        companyName: "",
-    },
-    userManagement:{
-        fullName: "",
-        email: "",
-        phoneNumber: "",
-        department: "",
-        role: "",
-        file: "",
-        rejectedBy: [],
-        refID: "",
     },
 }
