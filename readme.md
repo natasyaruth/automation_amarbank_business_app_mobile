@@ -1,4 +1,4 @@
-# E2E Mobile Automation Testing of Digital SMB Mobile App
+# E2E Mobile Automation Testing of Digital SMB Mobile Business App
 
 ## Introduction
 
